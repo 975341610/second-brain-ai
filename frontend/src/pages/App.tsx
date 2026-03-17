@@ -99,7 +99,7 @@ export default function App() {
           />
         </div>
 
-        <div className={`grid gap-4 ${mobileTab === 'editor' || mobileTab === 'tasks' ? 'block xl:grid' : 'hidden xl:grid'}`}>
+        <div className={`min-h-0 grid gap-4 ${mobileTab === 'editor' || mobileTab === 'tasks' ? 'block xl:grid' : 'hidden xl:grid'}`}>
           <div className={mobileTab === 'editor' ? 'block' : 'hidden xl:block'}>
             <EditorPanel note={selectedNote} relatedNotes={relatedNotes} isSaving={isSavingNote} onSave={saveNote} />
           </div>

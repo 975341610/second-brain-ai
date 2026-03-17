@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from backend.models.db_models import ModelConfig, Note, NoteLink, Task
@@ -57,6 +57,14 @@ def create_task(db: Session, title: str, status: str = "todo") -> Task:
     db.commit()
     db.refresh(task)
     return task
+
+
+def find_task_by_title(db: Session, title: str) -> Task | None:
+    normalized = title.strip().lower()
+    if not normalized:
+        return None
+    statement = select(Task).where(func.lower(Task.title) == normalized).order_by(Task.created_at.desc())
+    return db.scalar(statement)
 
 
 def update_task(db: Session, task_id: int, title: str | None = None, status: str | None = None) -> Task | None:

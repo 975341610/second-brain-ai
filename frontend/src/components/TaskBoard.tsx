@@ -19,7 +19,7 @@ export function TaskBoard({ tasks, onCreateTask, onUpdateTaskStatus }: TaskBoard
   const [title, setTitle] = useState('');
 
   return (
-    <section className="rounded-[28px] border border-white/50 bg-[rgba(255,251,245,0.82)] p-5 shadow-soft backdrop-blur">
+    <section className="h-[min(52vh,640px)] min-h-[420px] overflow-hidden rounded-[28px] border border-white/50 bg-[rgba(255,251,245,0.82)] p-5 shadow-soft backdrop-blur">
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <div className="text-sm font-medium text-stone-900">任务看板</div>
@@ -40,11 +40,11 @@ export function TaskBoard({ tasks, onCreateTask, onUpdateTaskStatus }: TaskBoard
         </div>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid h-[calc(100%-76px)] gap-3 overflow-hidden md:grid-cols-3">
         {columns.map((column) => (
-          <div key={column} className="rounded-[24px] bg-white/90 p-4">
+          <div key={column} className="flex min-h-0 flex-col rounded-[24px] bg-white/90 p-4">
             <div className="mb-3 text-xs uppercase tracking-[0.25em] text-stone-400">{statusLabels[column]}</div>
-            <div className="space-y-2">
+            <div className="space-y-2 overflow-y-auto pr-1">
               {tasks.filter((task) => task.status === column).map((task) => (
                 <div key={task.id} className="rounded-2xl border border-stone-100 bg-stone-50 px-4 py-3">
                   <div className="flex items-start justify-between gap-3">

@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from backend.models.schemas import TaskResponse
 from backend.rag.pipeline import citations_from_results, search_knowledge
 from backend.services.ai_client import AIClient
-from backend.services.repositories import create_task, list_tasks
+from backend.services.repositories import create_task, find_task_by_title, list_tasks
 
 
 async def search_knowledge_tool(db: Session, ai_client: AIClient, query: str) -> list[dict]:
@@ -14,6 +14,9 @@ async def search_knowledge_tool(db: Session, ai_client: AIClient, query: str) ->
 
 
 def create_task_tool(db: Session, task: str) -> TaskResponse:
+    existing = find_task_by_title(db, task)
+    if existing:
+        return TaskResponse.model_validate(existing)
     created = create_task(db, task)
     return TaskResponse.model_validate(created)
 

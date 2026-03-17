@@ -1,4 +1,4 @@
-import { Clock3, Save } from 'lucide-react';
+import { BookOpenText, Clock3, PencilLine, Save } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import type { Note } from '../lib/types';
@@ -14,6 +14,7 @@ export function EditorPanel({ note, relatedNotes, isSaving, onSave }: EditorPane
   const [title, setTitle] = useState('未命名笔记');
   const [content, setContent] = useState('');
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'edit' | 'preview'>('edit');
   const autosaveTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export function EditorPanel({ note, relatedNotes, isSaving, onSave }: EditorPane
   }, [content, title, note?.id, isDirty, isSaving, onSave]);
 
   return (
-    <section className="flex h-full flex-col gap-4 rounded-[28px] border border-white/50 bg-[rgba(255,252,247,0.85)] p-6 shadow-soft backdrop-blur">
+    <section className="flex h-[min(72vh,980px)] min-h-[680px] flex-col gap-4 overflow-hidden rounded-[28px] border border-white/50 bg-[rgba(255,252,247,0.85)] p-6 shadow-soft backdrop-blur">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <input
@@ -62,29 +63,50 @@ export function EditorPanel({ note, relatedNotes, isSaving, onSave }: EditorPane
             ))}
           </div>
         </div>
-        <button
-          onClick={() => onSave({ id: note?.id, title, content })}
-          disabled={isSaving}
-          className="flex items-center gap-2 rounded-2xl bg-stone-900 px-4 py-3 text-sm font-medium text-stone-50"
-        >
-          <Save size={16} /> {isSaving ? '保存中...' : '保存'}
-        </button>
+        <div className="flex flex-col items-end gap-3">
+          <div className="grid grid-cols-2 gap-2 rounded-2xl bg-white p-2">
+            <button
+              onClick={() => setViewMode('edit')}
+              className={`rounded-2xl px-3 py-2 text-sm font-medium ${viewMode === 'edit' ? 'bg-stone-900 text-white' : 'text-stone-500'}`}
+            >
+              <span className="flex items-center gap-2"><PencilLine size={14} /> 输入</span>
+            </button>
+            <button
+              onClick={() => setViewMode('preview')}
+              className={`rounded-2xl px-3 py-2 text-sm font-medium ${viewMode === 'preview' ? 'bg-stone-900 text-white' : 'text-stone-500'}`}
+            >
+              <span className="flex items-center gap-2"><BookOpenText size={14} /> 阅读</span>
+            </button>
+          </div>
+          <button
+            onClick={() => onSave({ id: note?.id, title, content })}
+            disabled={isSaving}
+            className="flex items-center gap-2 rounded-2xl bg-stone-900 px-4 py-3 text-sm font-medium text-stone-50"
+          >
+            <Save size={16} /> {isSaving ? '保存中...' : '保存'}
+          </button>
+        </div>
       </div>
 
-      <div className="grid min-h-0 flex-1 gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
-        <textarea
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-          className="min-h-[320px] w-full rounded-[24px] border border-stone-200 bg-white/90 p-5 text-sm leading-7 text-stone-700 outline-none"
-        />
+      <div className="grid min-h-0 flex-1 gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="min-h-0 overflow-hidden rounded-[24px] border border-stone-200 bg-white/90">
+          {viewMode === 'edit' ? (
+            <textarea
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              className="h-full min-h-[320px] w-full resize-none bg-transparent p-5 text-sm leading-7 text-stone-700 outline-none"
+            />
+          ) : (
+            <div className="markdown-body h-full min-h-[320px] overflow-y-auto p-5">
+              <ReactMarkdown>{content}</ReactMarkdown>
+            </div>
+          )}
+        </div>
 
-        <div className="flex min-h-0 flex-col gap-4">
-          <div className="markdown-body min-h-[220px] overflow-y-auto rounded-[24px] border border-stone-200 bg-white/90 p-5">
-            <ReactMarkdown>{content}</ReactMarkdown>
-          </div>
-          <div className="rounded-[24px] border border-stone-200 bg-white/90 p-5">
+        <div className="flex min-h-0 flex-col gap-4 overflow-hidden">
+          <div className="rounded-[24px] border border-stone-200 bg-white/90 p-5 overflow-hidden">
             <div className="mb-3 text-sm font-medium text-stone-500">关联卡片</div>
-            <div className="space-y-2">
+            <div className="max-h-[420px] space-y-2 overflow-y-auto pr-1">
               {relatedNotes.length === 0 && <div className="text-sm text-stone-400">暂时还没有相似卡片。</div>}
               {relatedNotes.map((item) => (
                 <div key={item.id} className="rounded-2xl bg-stone-50 px-4 py-3">
