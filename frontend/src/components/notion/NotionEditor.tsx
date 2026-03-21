@@ -102,11 +102,11 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
 
   const slashItems: SlashItem[] = useMemo(() => [
     { group: '基础', label: '正文', description: '插入普通文本段落', icon: <Type size={18} />, keywords: ['p', 'text', 'zw'], action: (c) => c.setParagraph() },
+    { group: '基础', label: '表格', description: '插入飞书级强大表格', icon: <Table size={18} className="text-blue-600" />, keywords: ['table', 'bg', 'bg'], action: (c) => c.insertTable({ rows: 3, cols: 3, withHeaderRow: true }) },
     { group: '标题', label: '标题 1', description: '最大的标题', icon: <Heading1 size={18} />, keywords: ['h1', 'bt1'], action: (c) => c.toggleHeading({ level: 1 }) },
     { group: '标题', label: '标题 2', description: '中等标题', icon: <Heading2 size={18} />, keywords: ['h2', 'bt2'], action: (c) => c.toggleHeading({ level: 2 }) },
     { group: '标题', label: '标题 3', description: '小标题', icon: <Heading3 size={18} />, keywords: ['h3', 'bt3'], action: (c) => c.toggleHeading({ level: 3 }) },
     { group: '列表', label: '任务列表', description: '带复选框的任务', icon: <CheckSquare size={18} />, keywords: ['todo', 'task', 'rw'], action: (c) => c.toggleTaskList() },
-    { group: '内容', label: '表格', description: '3x3 的标准表格', icon: <Table size={18} />, keywords: ['table', 'bg'], action: (c) => c.insertTable({ rows: 3, cols: 3, withHeaderRow: true }) },
     { group: '列表', label: '无序列表', description: '普通的圆点列表', icon: <List size={18} />, keywords: ['ul', 'list', 'lb'], action: (c) => c.toggleBulletList() },
     { group: '列表', label: '有序列表', description: '带数字的列表', icon: <ListOrdered size={18} />, keywords: ['ol', 'number', 'lb'], action: (c) => c.toggleOrderedList() },
     { group: '内容', label: '引用', description: '插入一段引用', icon: <Quote size={18} />, keywords: ['quote', 'yy'], action: (c) => c.toggleBlockquote() },
@@ -137,7 +137,8 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       listItem: false,
       blockquote: false,
       codeBlock: false,
-      history: true,
+      link: false,
+      underline: false,
     }),
     BulletList.configure({
       HTMLAttributes: { class: 'notion-bullet-list' },

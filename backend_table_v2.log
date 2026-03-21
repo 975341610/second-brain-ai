@@ -1,0 +1,30 @@
+INFO:     Started server process [1282137]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     fdbd:dc07:fe:4005::2230:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2042:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2053:0 - "GET / HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2735:0 - "GET /assets/index-ss76fuBR.js HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2349:0 - "GET /assets/index-8Pb1bjkr.css HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::266c:0 - "GET /api/notebooks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2358:0 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::266b:0 - "GET /api/model-config HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2453:0 - "GET /api/tasks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2346:0 - "GET /api/trash HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2138:0 - "GET /favicon.svg HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2451:0 - "GET /assets/index-8Pb1bjkr.css HTTP/1.1" 304 Not Modified
+INFO:     fdbd:dc07:fe:4005::2633:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::215d:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2544:0 - "GET / HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2232:0 - "GET /assets/index-8Pb1bjkr.css HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2145:0 - "GET /assets/index-ss76fuBR.js HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2033:0 - "GET /api/notebooks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2360:0 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::255d:0 - "GET /api/tasks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2058:0 - "GET /api/model-config HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2723:0 - "GET /favicon.svg HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::243d:0 - "GET /api/trash HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2651:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2757:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::214d:0 - "GET /assets/index-8Pb1bjkr.css HTTP/1.1" 304 Not Modified
