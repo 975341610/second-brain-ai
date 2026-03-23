@@ -932,3 +932,42 @@ textarea,
 input {
   -webkit-appearance: none;
 }
+
+/* --- 预览模式增强样式 (v0.3.22) --- */
+.is-preview .ProseMirror {
+  cursor: default !important;
+}
+
+.is-preview .ProseMirror * {
+  cursor: default !important;
+}
+
+/* 预览模式隐藏占位符 */
+.is-preview .ProseMirror p.is-editor-empty:first-child::before {
+  display: none !important;
+}
+
+/* 预览模式隐藏表格控制按钮和调整手柄 */
+.is-preview .column-resize-handle,
+.is-preview .table-controls-container,
+.is-preview th::after,
+.is-preview .table-inline-add {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* 预览模式下链接仍然可点击 */
+.is-preview .ProseMirror a {
+  cursor: pointer !important;
+}
+
+/* 预览模式下代码块复制按钮保留，但隐藏其他编辑UI */
+.is-preview .code-block-header {
+  opacity: 0.6;
+}
+
+/* 预览模式下图片/媒体节点不可调整大小 */
+.is-preview .media-node-resize,
+.is-preview .media-node-toolbar {
+  display: none !important;
+}

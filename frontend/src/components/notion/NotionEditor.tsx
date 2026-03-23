@@ -24,7 +24,7 @@ const lowlight = createLowlight(common);
 import { 
   AudioNode, CalloutNode, DatabaseTableCell, DatabaseTableHeader, 
   EmbedNode, ResizableImage, TaskItem, TaskList, VideoNode, WikiLink,
-  SlashCommands, FileNode
+  SlashCommands, FileNode, Heading
 } from '../../lib/tiptapExtensions';
 
 import { SlashItem, getSuggestionConfig } from './SlashMenu';
@@ -39,7 +39,8 @@ import {
   Type, Heading1, Heading2, Heading3, CheckSquare, List, ListOrdered, 
   Quote, Minus, Plus, Table, FileCode, ImageIcon, 
   Sparkles, Wand2, GripVertical, Bold, Italic, Underline, Code, Link2, Eraser,
-  Rows, Columns, Trash2, Combine, Split, Settings2, Calendar, Hash, CheckCircle2
+  Rows, Columns, Trash2, Combine, Split, Settings2, Calendar, Hash, CheckCircle2,
+  Bookmark as BookMarked
 } from 'lucide-react';
 
 interface NotionEditorProps {
@@ -61,6 +62,26 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
   console.log("NotionEditor (V4 Table Upgrade) Loaded");
   const [isSaving, setIsSaving] = useState(false);
   const [viewMode, setViewMode] = useState<'edit' | 'preview'>('edit');
+  const [showOutline, setShowOutline] = useState(false);
+  const outlineTimeoutRef = useRef<any>(null);
+
+  const handleOutlineEnter = useCallback(() => {
+    if (outlineTimeoutRef.current) window.clearTimeout(outlineTimeoutRef.current);
+    setShowOutline(true);
+  }, []);
+
+  const handleOutlineLeave = useCallback(() => {
+    outlineTimeoutRef.current = window.setTimeout(() => {
+      setShowOutline(false);
+    }, 300);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (outlineTimeoutRef.current) window.clearTimeout(outlineTimeoutRef.current);
+    };
+  }, []);
+
   const [isAIStreaming, setIsAIStreaming] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [propertyMenuNode, setPropertyMenuNode] = useState<{ pos: number; rect: DOMRect } | null>(null);
@@ -69,7 +90,10 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
 
   const updateTableRect = useCallback(() => {
     const currentEditor = editorRef.current;
-    if (!currentEditor) return;
+    if (!currentEditor || viewMode === 'preview') {
+      setActiveTableRect(null);
+      return;
+    }
 
     try {
       // 优先从原生 DOM 选区寻找，这是最直接且不依赖 Tiptap 状态的方法
@@ -187,7 +211,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
 
   const extensions = useMemo(() => [
     StarterKit.configure({
-      heading: { levels: [1, 2, 3] },
+      heading: false, // Disable default heading to use our Heading with ID support
       bulletList: false,
       orderedList: false,
       listItem: false,
@@ -196,6 +220,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       link: false,
       underline: false,
     }),
+    Heading.configure({ levels: [1, 2, 3] }),
     BulletList.configure({
       HTMLAttributes: { class: 'notion-bullet-list' },
     }),
@@ -301,6 +326,9 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     if (!editor) return;
     editorRef.current = editor;
 
+    // Sync editable status with viewMode
+    editor.setEditable(viewMode === 'edit');
+
     const handleUpdate = () => {
       if (!editorRef.current) return;
       updateTableRect();
@@ -341,12 +369,26 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       window.removeEventListener('scroll', handleScrollAndResize, true);
       window.removeEventListener('resize', handleScrollAndResize);
     };
-  }, [editor, updateTableRect]);
+  }, [editor, updateTableRect, viewMode]);
 
-  // Sync with Note content
+  // Sync with Note content — 只在切换笔记时（note.id 变化）同步内容
+  // 同一篇笔记的自动保存回流绝对不允许覆盖编辑器当前内容
+  // 在单人编辑场景下，编辑器内存状态是唯一事实来源
   useEffect(() => {
     if (!editor || !note) return;
-    if (lastSyncedNoteIdRef.current !== note.id) {
+    
+    // 识别“草稿转正”：如果 ID 从负数变正数，认为是同一篇笔记，不触发重置
+    const isDraftPromotion = typeof lastSyncedNoteIdRef.current === 'number' && 
+                             lastSyncedNoteIdRef.current < 0 && 
+                             note.id > 0;
+                             
+    if (lastSyncedNoteIdRef.current === note.id || isDraftPromotion) {
+      lastSyncedNoteIdRef.current = note.id; // 只更新引用 ID
+      return;
+    }
+
+    // 只有在确定是切换到完全不同的笔记，且当前没有聚焦输入时，才同步内容
+    if (!editor.isFocused || lastSyncedNoteIdRef.current === undefined) {
       let content = note.content || '<p></p>';
       
       // Sanitization: Remove any orphan blob URLs from previous failed sessions
@@ -363,22 +405,21 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       lastSyncedNoteIdRef.current = note.id;
       setLastSavedAt(new Date().toLocaleTimeString());
     }
-  }, [note, editor]);
+  }, [note?.id, editor]); // ← 关键：只依赖 note.id，不依赖整个 note 对象
 
-  // Auto-save logic
+  // Auto-save logic with Debounce
   useEffect(() => {
     if (!editor || !note) return;
     
-    const interval = setInterval(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    const handleSave = () => {
       let currentContent = editor.getHTML();
       
-      // Sanitization: Remove blob URLs before saving to database
+      // Sanitization: Only parse DOM if blob URLs exist (heavy operation)
       if (currentContent.includes('src="blob:')) {
         const doc = new DOMParser().parseFromString(currentContent, 'text/html');
-        const elementsWithBlob = doc.querySelectorAll('[src^="blob:"]');
-        elementsWithBlob.forEach(el => {
-          // If it's an image that's still uploading, we might want to keep it as a placeholder 
-          // but strip the src so it doesn't break. Or just wait for next save.
+        doc.querySelectorAll('[src^="blob:"]').forEach(el => {
           el.setAttribute('src', ''); 
           el.setAttribute('data-loading', 'true');
         });
@@ -386,23 +427,19 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       }
 
       const currentText = editor.getText().trim();
-      
       let newTitle = note.title;
       let isTitleEdited = note.is_title_manually_edited;
 
       // Auto-extract title if not manually edited
       if (!isTitleEdited && currentText) {
-        // Try to find the first H1
+        // Simple regex fallback for performance, then DOM if needed
         const doc = new DOMParser().parseFromString(currentContent, 'text/html');
         const h1 = doc.querySelector('h1');
         if (h1 && h1.textContent?.trim()) {
           newTitle = h1.textContent.trim().slice(0, 100);
         } else {
-          // Fallback to first line of text
           const firstLine = currentText.split('\n')[0].trim();
-          if (firstLine) {
-            newTitle = firstLine.slice(0, 100);
-          }
+          if (firstLine) newTitle = firstLine.slice(0, 100);
         }
       }
 
@@ -424,13 +461,23 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
           })
           .finally(() => setIsSaving(false));
       }
-    }, 5000);
+    };
 
-    return () => clearInterval(interval);
+    const onUpdate = () => {
+      clearTimeout(timer);
+      timer = setTimeout(handleSave, 1500); // 停笔 1.5 秒即存
+    };
+
+    editor.on('update', onUpdate);
+
+    return () => {
+      clearTimeout(timer);
+      editor.off('update', onUpdate);
+    };
   }, [editor, note, onSave, isSaving]);
 
   return (
-    <div ref={editorContainerRef} className="relative flex flex-col h-full bg-reflect-bg overflow-hidden notion-editor-layout">
+    <div ref={editorContainerRef} className={`relative flex flex-col h-full bg-reflect-bg overflow-hidden notion-editor-layout ${viewMode === 'preview' ? 'is-preview' : ''}`}>
       <div className="flex-1 overflow-y-auto relative bg-reflect-bg scrollbar-hide pt-0">
         <div className="flex flex-col w-full max-w-[800px] mx-auto">
           <div className="px-8">
@@ -444,7 +491,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
               isDirty={false}
               lastSavedAt={lastSavedAt}
               showRelations={false}
-              showOutline={false}
+              showOutline={showOutline}
               viewMode={viewMode}
               onSave={() => {
                 if (editor && note) {
@@ -474,10 +521,76 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
                 }
               }}
               onToggleRelations={() => {}}
-              onOutlineEnter={() => {}}
-              onOutlineLeave={() => {}}
+              onOutlineEnter={handleOutlineEnter}
+              onOutlineLeave={handleOutlineLeave}
               onSetViewMode={setViewMode}
             />
+
+            {showOutline && (
+              <div 
+                className="fixed top-24 right-12 z-[100] w-64 bg-white/95 backdrop-blur-md border border-stone-200 rounded-xl shadow-2xl p-4 animate-in fade-in slide-in-from-right-4 duration-200"
+                onMouseEnter={handleOutlineEnter}
+                onMouseLeave={handleOutlineLeave}
+              >
+                <div className="flex items-center gap-2 mb-3 text-stone-500">
+                  <BookMarked size={16} />
+                  <span className="text-xs font-bold uppercase tracking-widest">文章大纲</span>
+                </div>
+                <div className="flex flex-col gap-1.5 max-h-[60vh] overflow-y-auto scrollbar-hide">
+                  {outline.length > 0 ? (
+                    outline.map((item, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          handleOutlineLeave(); // Close menu on click
+                          
+                          // First, try direct ID from item (if it exists in DOM)
+                          const element = document.getElementById(item.id);
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            return;
+                          }
+
+                          // Fallback 1: Search for heading element with matching text in editor's DOM
+                          const editorDom = editor?.view.dom;
+                          if (editorDom) {
+                            const headings = Array.from(editorDom.querySelectorAll('h1, h2, h3'));
+                            const itemText = item.text.trim();
+                            
+                            // Try exact match first
+                            let match = headings.find(h => h.textContent?.trim() === itemText);
+                            
+                            // Try fuzzy match if exact match fails
+                            if (!match) {
+                              match = headings.find(h => {
+                                const headingText = h.textContent?.trim() || '';
+                                return headingText.includes(itemText) || itemText.includes(headingText);
+                              });
+                            }
+                            
+                            if (match) {
+                              match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                          }
+                        }}
+                        className={`text-left hover:text-blue-600 transition-colors py-1 px-2 rounded hover:bg-stone-100 ${
+                          item.level === 1 ? 'text-sm font-semibold' : 
+                          item.level === 2 ? 'text-xs pl-4' : 
+                          'text-[10px] pl-6'
+                        }`}
+                      >
+                        {item.text}
+                      </button>
+                    ))
+                  ) : (
+                    <div className="py-4 text-center">
+                      <p className="text-xs text-stone-400 italic">笔记中暂无标题内容</p>
+                      <p className="text-[10px] text-stone-300 mt-1">请使用 /h1 /h2 创建标题</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {note && (
               <PropertyPanel 
@@ -489,7 +602,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
           </div>
 
           <div className="relative group/editor mt-0 w-full">
-          {editor && activeTableRect && createPortal(
+          {viewMode === 'edit' && editor && activeTableRect && createPortal(
             <div 
               className="table-controls-container fixed z-[9999] pointer-events-none"
               style={{
@@ -554,11 +667,16 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
             <DragHandle 
               editor={editor}
             >
-              <div className="flex items-center gap-1 text-stone-300 hover:text-stone-500 transition-colors">
+              {/* 始终挂载以避免 Tiptap DOM removeChild 崩溃，通过 CSS 控制预览模式不可见 */}
+              <div
+                className="flex items-center gap-1 text-stone-300 hover:text-stone-500 transition-colors"
+                style={viewMode !== 'edit' ? { opacity: 0, pointerEvents: 'none' } : undefined}
+              >
                 <button
                   className="p-1 rounded-md hover:bg-stone-100 transition-colors"
                   title="插入命令"
                   onClick={(e) => {
+                    if (viewMode !== 'edit') return;
                     // 使用点击坐标寻找最近的编辑器位置，确保在鼠标当前行操作
                     // 向右偏移 40px 以确保落入编辑器内容区域
                     try {
@@ -596,8 +714,8 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
             <BubbleMenu 
               editor={editor} 
               shouldShow={({ editor }) => {
-                // 只有在选中表格且不是正在输入时显示（或者选区不为空）
-                return editor.isActive('table') && !editor.state.selection.empty;
+                // 只有在编辑模式且选中表格且不是正在输入时显示（或者选区不为空）
+                return viewMode === 'edit' && editor.isActive('table') && !editor.state.selection.empty;
               }}
               className="flex items-center gap-0.5 p-1 bg-white rounded-lg shadow-xl border border-stone-200"
             >
@@ -679,7 +797,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
           )}
 
           {/* 表格表头属性菜单 - Notion 风格 */}
-          {propertyMenuNode && editor && createPortal(
+          {viewMode === 'edit' && propertyMenuNode && editor && createPortal(
             <div 
               className="fixed z-[10000] bg-white rounded-lg shadow-2xl border border-stone-200 p-1 w-60 animate-in fade-in zoom-in duration-150"
               style={{
@@ -736,7 +854,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
             <BubbleMenu 
               editor={editor} 
               shouldShow={({ editor }) => {
-                return !editor.state.selection.empty && !editor.isActive('table');
+                return viewMode === 'edit' && !editor.state.selection.empty && !editor.isActive('table');
               }}
               className="flex overflow-hidden rounded-lg border border-stone-200 bg-white shadow-xl"
             >

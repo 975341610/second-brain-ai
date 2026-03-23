@@ -3,6 +3,7 @@ import Suggestion from '@tiptap/suggestion';
 import Image from '@tiptap/extension-image';
 import { TableCell as BaseTableCell } from '@tiptap/extension-table-cell';
 import { TableHeader as BaseTableHeader } from '@tiptap/extension-table-header';
+import { Heading as BaseHeading } from '@tiptap/extension-heading';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import { ReactNodeViewRenderer } from '@tiptap/react';
@@ -11,6 +12,22 @@ import { MediaNodeView } from '../components/MediaNodeView';
 import { FileBlockView } from '../components/editor/FileBlockView';
 
 export { TaskList, TaskItem };
+
+export const Heading = BaseHeading.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      id: {
+        default: null,
+        parseHTML: element => element.getAttribute('id'),
+        renderHTML: attributes => {
+          if (!attributes.id) return {};
+          return { id: attributes.id };
+        },
+      },
+    };
+  },
+});
 
 export const SlashCommands = Extension.create({
   name: 'slashCommands',

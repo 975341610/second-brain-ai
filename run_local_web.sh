@@ -7,9 +7,6 @@ BACKEND_LOG="/tmp/second-brain-backend.log"
 cd "$ROOT/frontend"
 npm run build >/tmp/second-brain-build.log 2>&1
 
-rm -rf "$ROOT/frontend_dist"
-cp -r "$ROOT/frontend/dist" "$ROOT/frontend_dist"
-
 pkill -f "uvicorn backend.main:app" || true
 python3 - <<PY
 import os, subprocess

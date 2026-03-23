@@ -199,7 +199,17 @@ export const useAppStore = create<AppState>((set, get) => ({
       const notes = hasTarget
         ? withoutOriginal.map((item) => (item.id === note.id ? note : item))
         : [note, ...withoutOriginal];
-      set({ notes, selectedNoteId: note.id, toast: silent ? get().toast : { id: Date.now(), tone: 'success', text: id && !isDraft ? '笔记已保存。' : '新笔记已创建。' } });
+
+      // 只有在非静默保存（通常是手动点击保存或明确创建笔记）时，才可能更新 selectedNoteId
+      // 如果是自动保存 (silent: true)，绝对不触碰当前选中的 ID，防止页面跳变
+      const isCurrentlyViewingThisNote = get().selectedNoteId === id;
+      const shouldUpdateSelection = !silent && (isCurrentlyViewingThisNote || !get().selectedNoteId || isDraft);
+      
+      set({ 
+        notes, 
+        selectedNoteId: shouldUpdateSelection ? note.id : get().selectedNoteId, 
+        toast: silent ? get().toast : { id: Date.now(), tone: 'success', text: id && !isDraft ? '笔记已保存。' : '新笔记已创建。' } 
+      });
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `保存失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     } finally {

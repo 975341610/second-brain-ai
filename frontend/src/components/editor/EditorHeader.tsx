@@ -57,8 +57,8 @@ export function EditorHeader(props: EditorHeaderProps) {
   };
 
   return (
-    <div className="flex flex-col bg-transparent px-0 pt-6 pb-2 antialiased">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col bg-transparent px-0 pt-0 pb-2 antialiased">
+      <div className="sticky top-0 z-50 bg-reflect-bg/95 backdrop-blur-sm pt-6 pb-4 mb-4 border-b border-transparent hover:border-reflect-border/10 transition-colors flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div 
             className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-reflect-muted opacity-40 cursor-default"

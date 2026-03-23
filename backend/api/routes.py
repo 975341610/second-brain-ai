@@ -3,7 +3,7 @@ import os
 import uuid
 import shutil
 from pathlib import Path
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, Form
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, Form, BackgroundTasks
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 from backend.agent.planner import run_agent
@@ -80,6 +80,60 @@ router = APIRouter()
 settings = get_settings()
 ai_client = AIClient()
 
+async def background_index_note(db: Session, note_id: int, title: str, content: str, tags: list[str] | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False):
+    """异步执行 AI 处理：摘要、向量化、自动链接"""
+    try:
+        model_config = get_or_create_model_config(db)
+        llm_config = {
+            "provider": model_config.provider,
+            "api_key": model_config.api_key,
+            "base_url": model_config.base_url,
+            "model_name": model_config.model_name,
+        }
+        
+        # 1. 摘要处理
+        summary = await ai_client.summarize(content, llm_config)
+        
+        # 2. 更新数据库摘要 (这里不需要重复传入 content 以免大并发下覆盖新数据，但后端接口通常是全量)
+        update_note(db, note_id, title=title, content=content, summary=summary, tags=tags, icon=icon, parent_id=parent_id, is_title_manually_edited=is_title_manually_edited)
+        
+        # 3. 向量索引处理
+        chunks = chunk_text(content, settings.chunk_size_words, settings.chunk_overlap_words)
+        records = []
+        vector_store.delete_note_chunks(note_id)
+        
+        # 笔记级向量（基于摘要和前 3000 字）
+        note_embedding = await ai_client.embed(f"{title}\n{summary}\n{content[:3000]}", llm_config)
+        
+        for index, chunk in enumerate(chunks):
+            embedding = await ai_client.embed(chunk, llm_config)
+            records.append({
+                "id": f"note-{note_id}-chunk-{index}",
+                "document": chunk,
+                "embedding": embedding,
+                "metadata": {"note_id": note_id, "title": title, "chunk_index": index},
+            })
+        
+        if records:
+            vector_store.upsert_chunks(records)
+            
+        # 4. 自动链接处理
+        results = vector_store.search(note_embedding, top_k=6)
+        link_targets: list[tuple[int, float]] = []
+        seen_notes = {note_id}
+        for item in results:
+            target_id = item["metadata"]["note_id"]
+            if target_id not in seen_notes and item["score"] >= 0.2:
+                link_targets.append((target_id, item["score"]))
+                seen_notes.add(target_id)
+        
+        if link_targets:
+            replace_note_links(db, note_id, sorted(link_targets, key=lambda pair: pair[1], reverse=True)[:5])
+            
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).error(f"Error in background indexing note {note_id}: {str(e)}")
+
 def note_to_response(note: Note) -> NoteResponse:
     links = [link.target_note_id for link in note.links_from]
     properties = [NotePropertyResponse.model_validate(p) for p in note.properties]
@@ -103,63 +157,28 @@ def note_to_response(note: Note) -> NoteResponse:
 def notebook_to_response(notebook: Notebook) -> NotebookResponse:
     return NotebookResponse.model_validate(notebook)
 
-async def persist_note(db: Session, title: str, content: str, notebook_id: int | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False, tags: list[str] | None = None) -> NoteResponse:
-    return await index_note(db, None, title, content, notebook_id, icon, parent_id, is_title_manually_edited, tags)
-
-async def index_note(db: Session, note_id: int | None, title: str, content: str, notebook_id: int | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False, tags: list[str] | None = None) -> NoteResponse:
-    model_config = get_or_create_model_config(db)
-    llm_config = {
-        "provider": model_config.provider,
-        "api_key": model_config.api_key,
-        "base_url": model_config.base_url,
-        "model_name": model_config.model_name,
-    }
-    summary = await ai_client.summarize(content, llm_config)
+async def persist_note(db: Session, title: str, content: str, background_tasks: BackgroundTasks, notebook_id: int | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False, tags: list[str] | None = None) -> NoteResponse:
+    # 1. 快速创建数据库记录
+    notebook_id = notebook_id or get_or_create_default_notebook(db).id
+    note = create_note(db, title=title, content=content, summary="", tags=tags, notebook_id=notebook_id, icon=icon, parent_id=parent_id, is_title_manually_edited=is_title_manually_edited)
     
-    if note_id is None:
-        notebook_id = notebook_id or get_or_create_default_notebook(db).id
-        note = create_note(db, title=title, content=content, summary=summary, tags=tags, notebook_id=notebook_id, icon=icon, parent_id=parent_id, is_title_manually_edited=is_title_manually_edited)
-    else:
-        note = update_note(db, note_id, title, content, summary, tags, icon, parent_id, is_title_manually_edited)
+    # 2. 异步执行 AI 任务
+    background_tasks.add_task(
+        background_index_note, 
+        db, note.id, title, content, 
+        tags, icon, parent_id, is_title_manually_edited
+    )
     
-    chunks = chunk_text(content, settings.chunk_size_words, settings.chunk_overlap_words)
-    records = []
-    vector_store.delete_note_chunks(note.id)
-    note_embedding = await ai_client.embed(f"{title}\n{summary}\n{content[:3000]}", llm_config)
-    
-    for index, chunk in enumerate(chunks):
-        embedding = await ai_client.embed(chunk, llm_config)
-        records.append(
-            {
-                "id": f"note-{note.id}-chunk-{index}",
-                "document": chunk,
-                "embedding": embedding,
-                "metadata": {"note_id": note.id, "title": title, "chunk_index": index},
-            }
-        )
-    
-    vector_store.upsert_chunks(records)
-    results = vector_store.search(note_embedding, top_k=6)
-    link_targets: list[tuple[int, float]] = []
-    seen_notes = {note.id}
-    for item in results:
-        target_note_id = item["metadata"]["note_id"]
-        if target_note_id not in seen_notes and item["score"] >= 0.2:
-            link_targets.append((target_note_id, item["score"]))
-            seen_notes.add(target_note_id)
-    
-    replace_note_links(db, note.id, sorted(link_targets, key=lambda pair: pair[1], reverse=True)[:5])
-    db.refresh(note)
     return note_to_response(note)
 
 @router.post("/upload", response_model=UploadResponse)
-async def upload_documents(files: list[UploadFile] = File(...), db: Session = Depends(get_db)) -> UploadResponse:
+async def upload_documents(background_tasks: BackgroundTasks, files: list[UploadFile] = File(...), db: Session = Depends(get_db)) -> UploadResponse:
     imported: list[NoteResponse] = []
     default_notebook = get_or_create_default_notebook(db)
     for file in files:
         content = await file.read()
         title, parsed = parse_document(file.filename, content)
-        imported.append(await persist_note(db, title, parsed, default_notebook.id))
+        imported.append(await persist_note(db, title, parsed, background_tasks, default_notebook.id))
     return UploadResponse(imported_notes=imported)
 
 @router.post("/media/upload")
@@ -271,6 +290,7 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
         "rewrite": "You are a writing assistant. Rewrite the following text to be more professional and clear. Return only the rewritten text.",
         "translate": "You are a writing assistant. Translate the following text to Chinese (if it is English) or English (if it is Chinese). Return only the translation.",
         "outline": "You are a writing assistant. Generate a structured outline for the following topic or text. Return only the outline.",
+        "ask": "You are a writing assistant. Based on the selected text and context, answer the user's intent or improve the text accordingly. Return only the result.",
     }
     messages = [
         {"role": "system", "content": system_prompts.get(payload.action, "You are a helpful writing assistant.")},
@@ -403,22 +423,34 @@ def purge_notebook_api(notebook_id: int, db: Session = Depends(get_db)) -> dict:
     return {"status": "ok"}
 
 @router.post("/notes", response_model=NoteResponse)
-async def create_note_api(payload: NoteCreate, db: Session = Depends(get_db)) -> NoteResponse:
-    return await persist_note(db, payload.title, payload.content, payload.notebook_id, payload.icon, payload.parent_id, payload.is_title_manually_edited, payload.tags)
+async def create_note_api(payload: NoteCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)) -> NoteResponse:
+    return await persist_note(db, payload.title, payload.content, background_tasks, payload.notebook_id, payload.icon, payload.parent_id, payload.is_title_manually_edited, payload.tags)
 
 @router.put("/notes/{note_id}", response_model=NoteResponse)
-async def update_note_api(note_id: int, payload: NoteUpdate, db: Session = Depends(get_db)) -> NoteResponse:
+async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)) -> NoteResponse:
     existing = get_note(db, note_id)
     if not existing:
         raise HTTPException(status_code=404, detail="Note not found")
     
+    # 1. 快速更新基本信息
     title = payload.title or existing.title
     content = payload.content or existing.content
     icon = payload.icon or existing.icon
     parent_id = payload.parent_id if payload.parent_id is not None else existing.parent_id
     is_title_manually_edited = payload.is_title_manually_edited if payload.is_title_manually_edited is not None else (existing.is_title_manually_edited == 1)
     tags = payload.tags
-    return await index_note(db, note_id, title, content, existing.notebook_id, icon, parent_id, is_title_manually_edited, tags)
+    
+    # 同步更新数据库
+    note = update_note(db, note_id, title, content, existing.summary, tags, icon, parent_id, is_title_manually_edited)
+    
+    # 2. 异步执行 AI 后台任务
+    background_tasks.add_task(
+        background_index_note,
+        db, note.id, title, content,
+        tags, icon, parent_id, is_title_manually_edited
+    )
+    
+    return note_to_response(note)
 
 @router.patch("/notes/{note_id}/tags", response_model=NoteResponse)
 def update_note_tags_api(note_id: int, tags: list[str], db: Session = Depends(get_db)) -> NoteResponse:
