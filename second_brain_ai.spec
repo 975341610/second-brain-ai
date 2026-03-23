@@ -11,8 +11,12 @@ backend_data = root / "backend" / "data"
 datas = []
 if frontend_dist.exists():
     datas.append((str(frontend_dist), "frontend_dist"))
-if backend_data.exists():
-    datas.append((str(backend_data), "backend/data"))
+
+# 注意：不建议将开发中的 backend/data 目录直接打包，而是让程序启动时动态创建
+# 但如果需要内置一些样本数据，可以将其放在 sample_docs 中
+sample_docs = root / "data" / "sample_docs"
+if sample_docs.exists():
+    datas.append((str(sample_docs), "data/sample_docs"))
 
 datas += collect_data_files("chromadb")
 

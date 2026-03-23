@@ -11,8 +11,12 @@ PROJECT_DIR = BASE_DIR.parent
 
 
 def runtime_root() -> Path:
+    # 如果是打包运行，返回 exe 所在目录
     if getattr(sys, "frozen", False):
         return Path(sys.executable).resolve().parent
+    # 开发环境下，优先检查工作目录下的 data 是否存在，如果存在则认为是桌面独立运行模式
+    if (Path.cwd() / "data").exists():
+        return Path.cwd()
     return PROJECT_DIR
 
 

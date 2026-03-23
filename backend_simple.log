@@ -1,0 +1,66 @@
+Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+INFO:     Started server process [4038829]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:34366 - "GET /health HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::226b:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2567:0 - "GET / HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2777:0 - "GET /assets/index-DpsN5L9z.js HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2256:0 - "GET /assets/index-BXf7lUv6.css HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::244e:0 - "GET /api/notebooks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2755:0 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2581:0 - "GET /api/tasks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::208d:0 - "GET /api/model-config HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2671:0 - "GET /favicon.svg HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2285:0 - "GET /api/trash HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::225e:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::205c:0 - "POST /api/ai/inline HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::236a:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2172:0 - "POST /api/ai/inline HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2051:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::216c:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2337:0 - "POST /api/ai/inline HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2067:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+INFO:     fdbd:dc07:fe:4005::2275:0 - "POST /api/ai/inline HTTP/1.1" 422 Unprocessable Entity
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::276a:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::279f:0 - "POST /api/ai/inline HTTP/1.1" 422 Unprocessable Entity
+INFO:     fdbd:dc07:fe:4005::2346:0 - "POST /api/ai/inline HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2596:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::248c:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2449:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2787:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2658:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2585:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2686:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::235a:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK

@@ -1,8 +1,50 @@
 import { create } from 'zustand';
+import { openDB, type IDBPDatabase } from 'idb';
 import { api } from '../lib/api';
 import type { AskResponse, ChatMessage, ChatSession, ModelConfig, Note, Notebook, Task, ToastMessage, TrashState, Citation } from '../lib/types';
 
 const CHAT_STORAGE_KEY = 'second-brain-chat-sessions';
+const DB_NAME = 'second-brain-offline';
+const STORE_NOTES = 'notes';
+const STORE_NOTEBOOKS = 'notebooks';
+const STORE_TASKS = 'tasks';
+const STORE_CONFIG = 'config';
+
+async function initDB() {
+  return openDB(DB_NAME, 1, {
+    upgrade(db) {
+      if (!db.objectStoreNames.contains(STORE_NOTES)) db.createObjectStore(STORE_NOTES, { keyPath: 'id' });
+      if (!db.objectStoreNames.contains(STORE_NOTEBOOKS)) db.createObjectStore(STORE_NOTEBOOKS, { keyPath: 'id' });
+      if (!db.objectStoreNames.contains(STORE_TASKS)) db.createObjectStore(STORE_TASKS, { keyPath: 'id' });
+      if (!db.objectStoreNames.contains(STORE_CONFIG)) db.createObjectStore(STORE_CONFIG, { keyPath: 'id' });
+    },
+  });
+}
+
+async function getCachedData<T>(storeName: string): Promise<T[]> {
+  const db = await initDB();
+  return db.getAll(storeName);
+}
+
+async function setCachedData<T>(storeName: string, items: T[]) {
+  const db = await initDB();
+  const tx = db.transaction(storeName, 'readwrite');
+  await tx.store.clear();
+  for (const item of items) {
+    await tx.store.put(item);
+  }
+  await tx.done;
+}
+
+async function setCachedItem<T>(storeName: string, item: T) {
+  const db = await initDB();
+  await db.put(storeName, item);
+}
+
+async function deleteCachedItem(storeName: string, id: number) {
+  const db = await initDB();
+  await db.delete(storeName, id);
+}
 
 type StoredChatState = {
   sessions: ChatSession[];
@@ -131,20 +173,51 @@ export const useAppStore = create<AppState>((set, get) => ({
   toast: null,
   modelConfig: defaultModelConfig,
   loadInitialData: async () => {
+    // 优先从缓存加载，实现离线瞬间看到内容
+    const [cachedNotes, cachedNotebooks, cachedTasks] = await Promise.all([
+      getCachedData<Note>(STORE_NOTES),
+      getCachedData<Notebook>(STORE_NOTEBOOKS),
+      getCachedData<Task>(STORE_TASKS)
+    ]);
+
+    if (cachedNotes.length > 0 || cachedNotebooks.length > 0) {
+      set({
+        notes: cachedNotes,
+        notebooks: cachedNotebooks,
+        tasks: cachedTasks,
+        selectedNoteId: cachedNotes[0]?.id ?? null,
+      });
+    }
+
     set({ loading: true });
     try {
-      const [notes, notebooks, tasks, modelConfig, trash] = await Promise.all([api.listNotes(), api.listNotebooks(), api.listTasks(), api.getModelConfig(), api.getTrash()]);
+      const [notes, notebooks, tasks, modelConfig, trash] = await Promise.all([
+        api.listNotes(),
+        api.listNotebooks(),
+        api.listTasks(),
+        api.getModelConfig(),
+        api.getTrash()
+      ]);
+
+      // 异步更新缓存
+      setCachedData(STORE_NOTES, notes);
+      setCachedData(STORE_NOTEBOOKS, notebooks);
+      setCachedData(STORE_TASKS, tasks);
+
       set({
         notes,
         notebooks,
         tasks,
         trash,
         modelConfig,
-        selectedNoteId: notes[0]?.id ?? null,
+        selectedNoteId: get().selectedNoteId || notes[0]?.id || null,
         assistant: latestAssistantFromSession(get().chatSessions.find((session) => session.id === get().activeChatSessionId)),
       });
     } catch (error) {
-      set({ toast: { id: Date.now(), tone: 'error', text: `初始化失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
+      console.warn('Network request failed, using cached data:', error);
+      if (!get().notes.length) {
+        set({ toast: { id: Date.now(), tone: 'error', text: `初始化失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
+      }
     } finally {
       set({ loading: false });
     }
@@ -210,6 +283,9 @@ export const useAppStore = create<AppState>((set, get) => ({
         selectedNoteId: shouldUpdateSelection ? note.id : get().selectedNoteId, 
         toast: silent ? get().toast : { id: Date.now(), tone: 'success', text: id && !isDraft ? '笔记已保存。' : '新笔记已创建。' } 
       });
+
+      // 同步更新 IndexedDB 缓存，实现离线编辑
+      setCachedData(STORE_NOTES, notes);
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `保存失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     } finally {
