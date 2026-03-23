@@ -45,9 +45,9 @@ pushd "%ROOT%"
 if errorlevel 1 goto :unc_failed
 if not exist "%VENV_PY%" "%PY_CMD%" -m venv "%VENV_DIR%"
 if errorlevel 1 goto :build_failed
-"%VENV_PY%" -m pip install --upgrade pip
+"%VENV_PY%" -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
 if errorlevel 1 goto :build_failed
-"%VENV_PY%" -m pip install -r backend\requirements.txt pyinstaller
+"%VENV_PY%" -m pip install -r backend\requirements.txt pyinstaller -i https://pypi.tuna.tsinghua.edu.cn/simple --default-timeout=100
 if errorlevel 1 goto :build_failed
 
 echo [3/7] Staging frontend assets...
