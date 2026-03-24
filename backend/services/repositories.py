@@ -103,23 +103,40 @@ def update_note(db: Session, note_id: int, title: str | None = None, content: st
     note = db.get(Note, note_id)
     if not note:
         return None
-    if title is not None:
+    
+    changed = False
+
+    if title is not None and note.title != title:
         note.title = title
-    if content is not None:
+        changed = True
+    if content is not None and note.content != content:
         note.content = content
-    if summary is not None:
+        changed = True
+    if summary is not None and note.summary != summary:
         note.summary = summary
+        changed = True
     if tags is not None:
-        note.tags = ",".join(tags)
-    if icon is not None:
+        new_tags = ",".join(tags)
+        if note.tags != new_tags:
+            note.tags = new_tags
+            changed = True
+    if icon is not None and note.icon != icon:
         note.icon = icon
-    if parent_id is not None or "parent_id" in db.dirty: # Handle setting to None
+        changed = True
+    if parent_id is not None and note.parent_id != parent_id:
         note.parent_id = parent_id
+        changed = True
     if is_title_manually_edited is not None:
-        note.is_title_manually_edited = 1 if is_title_manually_edited else 0
-    db.add(note)
-    db.commit()
-    db.refresh(note)
+        val = 1 if is_title_manually_edited else 0
+        if note.is_title_manually_edited != val:
+            note.is_title_manually_edited = val
+            changed = True
+    
+    if changed:
+        db.add(note)
+        db.commit()
+        db.refresh(note)
+    
     return note
 
 
