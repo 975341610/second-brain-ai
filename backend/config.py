@@ -10,11 +10,21 @@ BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
 
 
-def runtime_root() -> Path:
-    # 如果是打包运行，返回 exe 所在目录
+def resource_root() -> Path:
+    """获取程序资源根目录（用于前端静态文件、内置资源）"""
     if getattr(sys, "frozen", False):
+        # PyInstaller 打包后的临时解压目录
+        import sys as _sys
+        return Path(getattr(_sys, "_MEIPASS", _sys.executable))
+    return PROJECT_DIR
+
+
+def runtime_root() -> Path:
+    """获取程序运行时根目录（用于数据库、上传文件等需要持久化的数据）"""
+    if getattr(sys, "frozen", False):
+        # exe 所在目录
         return Path(sys.executable).resolve().parent
-    # 开发环境下，优先检查工作目录下的 data 是否存在，如果存在则认为是桌面独立运行模式
+    # 开发环境下，优先检查工作目录下的 data 是否存在
     if (Path.cwd() / "data").exists():
         return Path.cwd()
     return PROJECT_DIR
