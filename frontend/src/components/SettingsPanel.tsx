@@ -13,9 +13,9 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
   const [dataPath, setDataPath] = useState('');
   const [logs, setLogs] = useState<string[]>([]);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [updateStatus, setUpdateStatus] = useState<'idle' | 'updating' | 'success' | 'error'>('idle');
+  const [updateStatus, setUpdateStatus] = useState<'idle' | 'checking' | 'up-to-date' | 'pending' | 'updating' | 'success' | 'error'>('idle');
   const [updateOutput, setUpdateOutput] = useState('');
-  const logEndRef = useRef<HTMLDivElement>(null);
+  const logContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setConfig(modelConfig);
@@ -38,16 +38,34 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
   }, []);
 
   useEffect(() => {
-    logEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (logContainerRef.current) {
+      logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight;
+    }
   }, [logs]);
 
-  const handleUpdate = async () => {
+  const handleCheck = async () => {
     setIsUpdating(true);
-    setUpdateStatus('updating');
+    setUpdateStatus('checking');
+    setUpdateOutput('');
     try {
       const res = await api.checkUpdate();
       setUpdateOutput(res.output);
-      setUpdateStatus('success');
+      setUpdateStatus(res.status as any);
+    } catch (e: any) {
+      setUpdateOutput(e.message);
+      setUpdateStatus('error');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const handlePerformUpdate = async () => {
+    setIsUpdating(true);
+    setUpdateStatus('updating');
+    try {
+      const res = await api.performUpdate();
+      setUpdateOutput(res.output);
+      setUpdateStatus(res.status === 'ok' ? 'success' : 'error');
     } catch (e: any) {
       setUpdateOutput(e.message);
       setUpdateStatus('error');
@@ -137,14 +155,27 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
           
           <div className="flex gap-2">
             <button 
-              onClick={handleUpdate} 
+              onClick={handleCheck} 
               disabled={isUpdating}
               className="flex items-center gap-2 rounded-2xl bg-stone-100 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200 transition-all disabled:opacity-50"
             >
-              <RefreshCw size={14} className={isUpdating ? 'animate-spin' : ''} />
-              {isUpdating ? '正在检查...' : '检查更新'}
+              <RefreshCw size={14} className={isUpdating && updateStatus === 'checking' ? 'animate-spin' : ''} />
+              {isUpdating && updateStatus === 'checking' ? '检查中...' : '检查更新'}
             </button>
             
+            {/* 发现新版本 → 显示确认更新按钮 */}
+            {updateStatus === 'pending' && (
+              <button 
+                onClick={handlePerformUpdate} 
+                disabled={isUpdating}
+                className="flex items-center gap-2 rounded-2xl bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-all disabled:opacity-50"
+              >
+                <RefreshCw size={14} className={isUpdating ? 'animate-spin' : ''} />
+                {isUpdating ? '更新中...' : '确认更新'}
+              </button>
+            )}
+            
+            {/* 更新成功 → 显示重启按钮 */}
             {updateStatus === 'success' && (
               <button 
                 onClick={handleRestart} 
@@ -158,22 +189,32 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
         </div>
 
         <div className="space-y-4">
-          {updateStatus !== 'idle' && (
-            <div className={`rounded-2xl p-4 text-xs font-mono whitespace-pre-wrap ${updateStatus === 'error' ? 'bg-red-50 text-red-600' : 'bg-stone-50 text-stone-600'}`}>
+          {updateStatus !== 'idle' && updateOutput && (
+            <div className={`rounded-2xl p-4 text-xs font-mono whitespace-pre-wrap ${
+              updateStatus === 'error' ? 'bg-red-50 text-red-600' : 
+              updateStatus === 'up-to-date' ? 'bg-green-50 text-green-700' :
+              updateStatus === 'pending' ? 'bg-blue-50 text-blue-700' :
+              'bg-stone-50 text-stone-600'
+            }`}>
               <div className="mb-2 font-bold flex items-center gap-2">
-                {updateStatus === 'success' ? <CheckCircle2 size={12} /> : <AlertTriangle size={12} />}
-                Update Result:
+                {updateStatus === 'error' ? <AlertTriangle size={12} /> : <CheckCircle2 size={12} />}
+                {updateStatus === 'up-to-date' ? '已是最新版本' : 
+                 updateStatus === 'pending' ? '发现新版本' :
+                 updateStatus === 'success' ? '更新成功' : 
+                 updateStatus === 'error' ? '操作失败' : 'Update Result:'}
               </div>
               {updateOutput}
             </div>
           )}
 
-          <div className="h-64 overflow-y-auto rounded-[24px] bg-stone-900 p-4 font-mono text-xs text-stone-300 shadow-inner">
+          <div 
+            ref={logContainerRef}
+            className="h-64 overflow-y-auto rounded-[24px] bg-stone-900 p-4 font-mono text-xs text-stone-300 shadow-inner scroll-smooth"
+          >
             <div className="space-y-1">
               {logs.map((log, i) => (
                 <div key={i} className="opacity-90">{log}</div>
               ))}
-              <div ref={logEndRef} />
             </div>
           </div>
         </div>

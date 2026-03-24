@@ -160,5 +160,6 @@ export const api = {
     body: JSON.stringify({ data_path: dataPath }),
   }),
   checkUpdate: () => request<{ status: string; output: string }>('/system/update', { method: 'POST' }),
+  performUpdate: () => request<{ status: string; output: string }>('/system/update?force=true', { method: 'POST' }),
   restartApp: () => request<{ status: string; message: string }>('/system/restart', { method: 'POST' }),
 };

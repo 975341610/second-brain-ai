@@ -320,7 +320,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
         class: 'tiptap-notion tiptap-editor prose prose-reflect focus:outline-none min-h-[500px] w-full max-w-[800px] mx-auto pt-0 px-8 mb-32 font-serif text-reflect-text selection:bg-reflect-accent/10'
       }
     }
-  }, [note?.id]);
+  }, []); // Remove note?.id dependency to prevent editor recreation on ID change (e.g. draft promotion)
 
   useEffect(() => {
     if (!editor) return;

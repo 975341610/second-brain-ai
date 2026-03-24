@@ -608,13 +608,50 @@ async def update_data_path(payload: dict):
         raise HTTPException(status_code=500, detail=f"Failed to update data path: {str(e)}")
 
 @router.post("/system/update")
-async def system_update():
-    """执行 git pull origin main 并返回结果"""
+async def system_update(force: bool = False):
+    """检查更新或执行 git pull origin main"""
+    import shutil as _shutil
+    import sys as _sys
+    
     try:
+        # 1. 确定正确的 git 仓库根目录
+        #    在 PyInstaller 打包版中：PROJECT_DIR = _MEIPASS（临时解压目录，无.git）
+        #    真正的仓库目录 = exe 所在位置（即 runtime_root()）
+        from backend.config import runtime_root
+        if getattr(_sys, "frozen", False):
+            repo_dir = str(runtime_root())
+        else:
+            repo_dir = str(PROJECT_DIR)
+        
+        # 2. 检查 git 是否可用
+        if not _shutil.which("git"):
+            return {"status": "error", "output": "❌ 系统未找到 git 命令，请先安装 Git 并将其添加到 PATH。\n下载地址: https://git-scm.com/download/win"}
+        
+        # 3. 检查 .git 目录是否存在
+        from pathlib import Path as _Path
+        if not (_Path(repo_dir) / ".git").exists():
+            return {"status": "error", "output": f"❌ 未找到 Git 仓库（.git 目录不存在）\n查找路径: {repo_dir}\n\n请确认您是从源码目录运行，而非只复制了 .exe 文件。"}
+        
+        print(f"[*] Git repo dir: {repo_dir}")
         print("[*] Checking for updates...")
+        
+        # 4. 先执行 fetch 获取远程状态
+        subprocess.run(["git", "fetch", "origin", "main"], cwd=repo_dir, capture_output=True)
+        
+        # 5. 比较本地和远程版本
+        local = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_dir, capture_output=True, text=True).stdout.strip()
+        remote = subprocess.run(["git", "rev-parse", "origin/main"], cwd=repo_dir, capture_output=True, text=True).stdout.strip()
+        
+        if local == remote and not force:
+            return {"status": "up-to-date", "output": f"🎉 已是最新版本！无需更新。\n当前版本: {local[:7]}"}
+
+        if not force:
+            return {"status": "pending", "output": f"🔍 发现新版本！\n当前版本: {local[:7]}\n最新版本: {remote[:7]}\n\n请点击「确认更新」下载并安装最新代码。"}
+
+        # 6. 执行更新
         process = subprocess.run(
             ["git", "pull", "origin", "main"],
-            cwd=str(PROJECT_DIR),
+            cwd=repo_dir,
             capture_output=True,
             text=True,
             encoding='utf-8',
@@ -622,21 +659,28 @@ async def system_update():
         )
         output = process.stdout + "\n" + process.stderr
         print(output)
-        return {"status": "ok", "output": output}
+        return {"status": "ok", "output": f"✅ 更新完成！\n{output}"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/system/restart")
 async def system_restart():
     """执行 fast_update.bat 脚本"""
+    import sys as _sys
     try:
-        bat_path = PROJECT_DIR / "fast_update.bat"
+        from backend.config import runtime_root
+        if getattr(_sys, "frozen", False):
+            repo_dir = runtime_root()
+        else:
+            repo_dir = PROJECT_DIR
+            
+        bat_path = repo_dir / "fast_update.bat"
         if not bat_path.exists():
-            raise HTTPException(status_code=404, detail="fast_update.bat not found")
+            raise HTTPException(status_code=404, detail=f"fast_update.bat not found at {bat_path}")
         
-        print("[*] Restarting application via fast_update.bat...")
+        print(f"[*] Restarting application via {bat_path}...")
         # 启动脚本，不阻塞当前进程
-        subprocess.Popen([str(bat_path)], shell=True, cwd=str(PROJECT_DIR))
+        subprocess.Popen([str(bat_path)], shell=True, cwd=str(repo_dir))
         return {"status": "ok", "message": "Restarting..."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
