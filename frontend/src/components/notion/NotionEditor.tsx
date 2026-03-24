@@ -387,24 +387,24 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       return;
     }
 
-    // 只有在确定是切换到完全不同的笔记，且当前没有聚焦输入时，才同步内容
-    if (!editor.isFocused || lastSyncedNoteIdRef.current === undefined) {
-      let content = note.content || '<p></p>';
-      
-      // Sanitization: Remove any orphan blob URLs from previous failed sessions
-      if (content.includes('src="blob:')) {
-        const doc = new DOMParser().parseFromString(content, 'text/html');
-        doc.querySelectorAll('[src^="blob:"]').forEach(el => {
-          el.setAttribute('src', '');
-          el.setAttribute('data-broken-upload', 'true');
-        });
-        content = doc.body.innerHTML;
-      }
-      
-      editor.commands.setContent(content);
-      lastSyncedNoteIdRef.current = note.id;
-      setLastSavedAt(new Date().toLocaleTimeString());
+    // 只有在确定是切换到完全不同的笔记时，才全量同步内容
+    // 强制同步一次内容，并重置上次同步 ID
+    let content = note.content || '<p></p>';
+    
+    // Sanitization: Remove any orphan blob URLs from previous failed sessions
+    if (content.includes('src="blob:')) {
+      const doc = new DOMParser().parseFromString(content, 'text/html');
+      doc.querySelectorAll('[src^="blob:"]').forEach(el => {
+        el.setAttribute('src', '');
+        el.setAttribute('data-broken-upload', 'true');
+      });
+      content = doc.body.innerHTML;
     }
+    
+    editor.commands.setContent(content);
+    lastSyncedNoteIdRef.current = note.id;
+    setLastSavedAt(new Date().toLocaleTimeString());
+    
   }, [note?.id, editor]); // ← 关键：只依赖 note.id，不依赖整个 note 对象
 
   // Auto-save logic with Debounce and Ref Lock (v0.3.41)

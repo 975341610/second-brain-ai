@@ -612,35 +612,50 @@ async def system_update(force: bool = False):
     """检查更新或执行 git pull origin main"""
     import shutil as _shutil
     import sys as _sys
+    import os as _os
     
     try:
         # 1. 确定正确的 git 仓库根目录
-        #    在 PyInstaller 打包版中：PROJECT_DIR = _MEIPASS（临时解压目录，无.git）
-        #    真正的仓库目录 = exe 所在位置（即 runtime_root()）
         from backend.config import runtime_root
         if getattr(_sys, "frozen", False):
             repo_dir = str(runtime_root())
         else:
             repo_dir = str(PROJECT_DIR)
         
-        # 2. 检查 git 是否可用
-        if not _shutil.which("git"):
-            return {"status": "error", "output": "❌ 系统未找到 git 命令，请先安装 Git 并将其添加到 PATH。\n下载地址: https://git-scm.com/download/win"}
+        # 2. 检查 git 是否可用 (增强检测：主动寻找安装路径)
+        git_cmd = _shutil.which("git")
+        if not git_cmd:
+            # 常见安装路径探测 (Windows)
+            possible_git_paths = [
+                "C:\\Program Files\\Git\\bin\\git.exe",
+                "C:\\Program Files\\Git\\cmd\\git.exe",
+                "C:\\Program Files (x86)\\Git\\bin\\git.exe",
+                "C:\\Program Files (x86)\\Git\\cmd\\git.exe",
+                _os.path.join(_os.environ.get("LOCALAPPDATA", ""), "Programs", "Git", "cmd", "git.exe")
+            ]
+            for path in possible_git_paths:
+                if _os.path.exists(path):
+                    git_cmd = path
+                    break
+        
+        if not git_cmd:
+            return {"status": "error", "output": "❌ 系统未找到 git 命令。\n请确保已安装 Git 并在终端中可访问。\n下载地址: https://git-scm.com/download/win"}
         
         # 3. 检查 .git 目录是否存在
         from pathlib import Path as _Path
         if not (_Path(repo_dir) / ".git").exists():
             return {"status": "error", "output": f"❌ 未找到 Git 仓库（.git 目录不存在）\n查找路径: {repo_dir}\n\n请确认您是从源码目录运行，而非只复制了 .exe 文件。"}
         
+        print(f"[*] Using git at: {git_cmd}")
         print(f"[*] Git repo dir: {repo_dir}")
         print("[*] Checking for updates...")
         
         # 4. 先执行 fetch 获取远程状态
-        subprocess.run(["git", "fetch", "origin", "main"], cwd=repo_dir, capture_output=True)
+        subprocess.run([git_cmd, "fetch", "origin", "main"], cwd=repo_dir, capture_output=True)
         
         # 5. 比较本地和远程版本
-        local = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_dir, capture_output=True, text=True).stdout.strip()
-        remote = subprocess.run(["git", "rev-parse", "origin/main"], cwd=repo_dir, capture_output=True, text=True).stdout.strip()
+        local = subprocess.run([git_cmd, "rev-parse", "HEAD"], cwd=repo_dir, capture_output=True, text=True).stdout.strip()
+        remote = subprocess.run([git_cmd, "rev-parse", "origin/main"], cwd=repo_dir, capture_output=True, text=True).stdout.strip()
         
         if local == remote and not force:
             return {"status": "up-to-date", "output": f"🎉 已是最新版本！无需更新。\n当前版本: {local[:7]}"}
@@ -650,7 +665,7 @@ async def system_update(force: bool = False):
 
         # 6. 执行更新
         process = subprocess.run(
-            ["git", "pull", "origin", "main"],
+            [git_cmd, "pull", "origin", "main"],
             cwd=repo_dir,
             capture_output=True,
             text=True,
