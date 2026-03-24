@@ -36,7 +36,7 @@ from backend.models.schemas import (
     TrashResponse,
     UploadResponse,
 )
-from backend.database import get_db
+from backend.database import get_db, SessionLocal
 from backend.utils import log_buffer
 import subprocess
 import json
@@ -84,10 +84,11 @@ router = APIRouter()
 settings = get_settings()
 ai_client = AIClient()
 
-async def background_index_note(db: Session, note_id: int, title: str, content: str, tags: list[str] | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False):
+async def background_index_note(note_id: int, title: str, content: str, tags: list[str] | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False):
     """异步执行 AI 处理：摘要、向量化、自动链接"""
     try:
-        model_config = get_or_create_model_config(db)
+        with SessionLocal() as db:
+            model_config = get_or_create_model_config(db)
         llm_config = {
             "provider": model_config.provider,
             "api_key": model_config.api_key,
@@ -169,7 +170,7 @@ async def persist_note(db: Session, title: str, content: str, background_tasks: 
     # 2. 异步执行 AI 任务
     background_tasks.add_task(
         background_index_note, 
-        db, note.id, title, content, 
+        note.id, title, content, 
         tags, icon, parent_id, is_title_manually_edited
     )
     
@@ -450,7 +451,7 @@ async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: B
     # 2. 异步执行 AI 后台任务
     background_tasks.add_task(
         background_index_note,
-        db, note.id, title, content,
+        note.id, title, content,
         tags, icon, parent_id, is_title_manually_edited
     )
     

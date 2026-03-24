@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import asyncio
 from pathlib import Path
 from typing import Any
 
@@ -29,6 +30,7 @@ class AIClient:
     def __init__(self) -> None:
         self.settings = get_settings()
         self.logger = get_ai_logger()
+        self.client = httpx.AsyncClient(timeout=30.0, trust_env=True)
 
     def _get_active_config(self, config: dict[str, str] | None = None) -> dict[str, str]:
         active = config or {}
@@ -61,11 +63,10 @@ class AIClient:
             "input": text,
         }
         try:
-            async with httpx.AsyncClient(timeout=10.0, trust_env=True) as client:
-                response = await client.post(f"{conf['base_url']}/embeddings", headers=headers, json=payload)
-                response.raise_for_status()
-                body = response.json()
-                return body["data"][0]["embedding"]
+            response = await self.client.post(f"{conf['base_url']}/embeddings", headers=headers, json=payload, timeout=10.0)
+            response.raise_for_status()
+            body = response.json()
+            return body["data"][0]["embedding"]
         except Exception as e:
             self.logger.error(f"Embed Error: {str(e)} | URL: {conf['base_url']}")
             return build_embedding(text, self.settings.embedding_dimension)
@@ -174,14 +175,13 @@ class AIClient:
             "temperature": 0.2,
         }
         try:
-            async with httpx.AsyncClient(timeout=30.0, trust_env=True) as client:
-                response = await client.post(f"{conf['base_url']}/chat/completions", headers=headers, json=payload)
-                if response.status_code != 200:
-                    err_msg = f"Error: {response.status_code} {response.reason_phrase} - {response.text}"
-                    self.logger.error(f"Chat Error: {err_msg} | URL: {conf['base_url']}")
-                    return err_msg
-                body = response.json()
-                return body["choices"][0]["message"]["content"].strip()
+            response = await self.client.post(f"{conf['base_url']}/chat/completions", headers=headers, json=payload, timeout=30.0)
+            if response.status_code != 200:
+                err_msg = f"Error: {response.status_code} {response.reason_phrase} - {response.text}"
+                self.logger.error(f"Chat Error: {err_msg} | URL: {conf['base_url']}")
+                return err_msg
+            body = response.json()
+            return body["choices"][0]["message"]["content"].strip()
         except Exception as e:
             err_msg = f"Error: {str(e)}"
             self.logger.error(f"Chat Exception: {err_msg} | URL: {conf['base_url']}")
@@ -201,9 +201,9 @@ class AIClient:
             "stream": True,
         }
         
-        try:
-            async with httpx.AsyncClient(timeout=60.0, trust_env=True) as client:
-                async with client.stream("POST", f"{conf['base_url']}/chat/completions", headers=headers, json=payload) as response:
+        for attempt in range(3):
+            try:
+                async with self.client.stream("POST", f"{conf['base_url']}/chat/completions", headers=headers, json=payload, timeout=60.0) as response:
                     response.raise_for_status()
                     async for line in response.aiter_lines():
                         if not line or not line.startswith("data: "):
@@ -220,6 +220,11 @@ class AIClient:
                                 yield content
                         except Exception:
                             continue
-        except Exception as e:
-            self.logger.error(f"Stream Error: {str(e)} | URL: {conf['base_url']}")
-            yield f"Error: {str(e)}"
+                return # Exit on success
+            except Exception as e:
+                if attempt == 2:
+                    self.logger.error(f"Stream Error: {str(e)} | URL: {conf['base_url']}")
+                    yield f"Error: {str(e)}"
+                else:
+                    await asyncio.sleep(1)
+                    continue
