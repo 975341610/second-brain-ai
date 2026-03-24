@@ -407,13 +407,27 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     }
   }, [note?.id, editor]); // ← 关键：只依赖 note.id，不依赖整个 note 对象
 
-  // Auto-save logic with Debounce
+  // Auto-save logic with Debounce and Ref Lock (v0.3.41)
+  const isSavingRef = useRef(false);
+  const onSaveRef = useRef(onSave);
+  
+  useEffect(() => {
+    onSaveRef.current = onSave;
+  }, [onSave]);
+
   useEffect(() => {
     if (!editor || !note) return;
     
     let timer: ReturnType<typeof setTimeout>;
 
-    const handleSave = () => {
+    const handleSave = async () => {
+      // 防止重复进入或已在保存中
+      if (isSavingRef.current) {
+        // 如果还在保存，就再等等
+        timer = setTimeout(handleSave, 1000);
+        return;
+      }
+
       let currentContent = editor.getHTML();
       
       // Sanitization: Only parse DOM if blob URLs exist (heavy operation)
@@ -427,12 +441,11 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       }
 
       const currentText = editor.getText().trim();
-      let newTitle = note.title;
-      let isTitleEdited = note.is_title_manually_edited;
+      let newTitle = noteRef.current?.title || '未命名笔记';
+      let isTitleEdited = noteRef.current?.is_title_manually_edited || false;
 
       // Auto-extract title if not manually edited
       if (!isTitleEdited && currentText) {
-        // Simple regex fallback for performance, then DOM if needed
         const doc = new DOMParser().parseFromString(currentContent, 'text/html');
         const h1 = doc.querySelector('h1');
         if (h1 && h1.textContent?.trim()) {
@@ -443,23 +456,28 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
         }
       }
 
-      const hasContentChanged = currentContent !== note.content;
-      const hasTitleChanged = newTitle !== note.title;
+      const hasContentChanged = currentContent !== noteRef.current?.content;
+      const hasTitleChanged = newTitle !== noteRef.current?.title;
 
-      if ((hasContentChanged || hasTitleChanged) && !isSaving) {
+      if (hasContentChanged || hasTitleChanged) {
+        isSavingRef.current = true;
         setIsSaving(true);
-        onSave({ 
-          id: note.id, 
-          content: currentContent, 
-          title: newTitle, 
-          icon: note.icon, 
-          is_title_manually_edited: isTitleEdited,
-          silent: true 
-        })
-          .then(() => {
-            setLastSavedAt(new Date().toLocaleTimeString());
-          })
-          .finally(() => setIsSaving(false));
+        try {
+          await onSaveRef.current({ 
+            id: noteRef.current?.id, 
+            content: currentContent, 
+            title: newTitle, 
+            icon: noteRef.current?.icon, 
+            is_title_manually_edited: isTitleEdited,
+            silent: true 
+          });
+          setLastSavedAt(new Date().toLocaleTimeString());
+        } catch (error) {
+          console.error("Auto-save failed", error);
+        } finally {
+          isSavingRef.current = false;
+          setIsSaving(false);
+        }
       }
     };
 
@@ -474,7 +492,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       clearTimeout(timer);
       editor.off('update', onUpdate);
     };
-  }, [editor, note, onSave, isSaving]);
+  }, [editor, note?.id]); // 只依赖 note.id
 
   return (
     <div ref={editorContainerRef} className={`relative flex flex-col h-full bg-reflect-bg overflow-hidden notion-editor-layout ${viewMode === 'preview' ? 'is-preview' : ''}`}>

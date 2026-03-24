@@ -178,7 +178,7 @@ def restore_note(db: Session, note_id: int) -> Note | None:
     
     # Check if parent is deleted
     if note.parent_id:
-        parent = db.get(Note, note_id=note.parent_id)
+        parent = db.get(Note, note.parent_id)
         if not parent or parent.deleted_at is not None:
             note.parent_id = None
             

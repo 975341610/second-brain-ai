@@ -433,9 +433,9 @@ async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: B
         raise HTTPException(status_code=404, detail="Note not found")
     
     # 1. 快速更新基本信息
-    title = payload.title or existing.title
-    content = payload.content or existing.content
-    icon = payload.icon or existing.icon
+    title = payload.title if payload.title is not None else existing.title
+    content = payload.content if payload.content is not None else existing.content
+    icon = payload.icon if payload.icon is not None else existing.icon
     parent_id = payload.parent_id if payload.parent_id is not None else existing.parent_id
     is_title_manually_edited = payload.is_title_manually_edited if payload.is_title_manually_edited is not None else (existing.is_title_manually_edited == 1)
     tags = payload.tags
