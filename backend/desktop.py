@@ -69,14 +69,17 @@ if __name__ == "__main__":
     # 使用最简日志配置，绕过 uvicorn 的彩色格式器。
     # ============================================================
     if getattr(sys, "frozen", False):
-        # 重定向空流，防止 uvicorn/logging 访问 None.isatty()
-        devnull = open(os.devnull, "w")
-        if sys.stdout is None:
-            sys.stdout = devnull
-        if sys.stderr is None:
-            sys.stderr = devnull
+        # 🔧 增强鲁棒性：彻底解决 stdout/stderr 为 None 的各种场景
+        class DevNull:
+            def write(self, *args, **kwargs): pass
+            def flush(self): pass
+            def isatty(self): return False
 
-        # 使用最简日志配置，跳过 uvicorn 的 DefaultFormatter
+        if sys.stdout is None:
+            sys.stdout = DevNull()
+        if sys.stderr is None:
+            sys.stderr = DevNull()
+
         import logging
         logging.basicConfig(level=logging.WARNING)
 
@@ -84,7 +87,7 @@ if __name__ == "__main__":
             app,
             host="127.0.0.1",
             port=8765,
-            log_config=None,   # 完全禁用 uvicorn 自带的日志配置
+            log_config=None,
             log_level="warning",
         )
     else:

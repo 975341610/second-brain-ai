@@ -69,7 +69,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,
+    console=True,   # 🔧 DEBUG: 暂时开启 console，方便查看报错信息
 )
 
 coll = COLLECT(
