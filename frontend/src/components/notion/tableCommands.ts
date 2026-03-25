@@ -1,4 +1,4 @@
-import type { EditorState, Transaction } from '@tiptap/pm/state';
+import { EditorState, Transaction, TextSelection } from '@tiptap/pm/state';
 import { Fragment, Node } from '@tiptap/pm/model';
 
 // Pure transaction helper for table row drag/reorder.
