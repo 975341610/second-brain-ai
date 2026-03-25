@@ -30,40 +30,22 @@ echo [1/4] 正在清理旧的构建缓存...
 if exist build rmdir /s /q build
 if exist dist rmdir /s /q dist
 
-echo [2/4] 智能检测前端是否需要重新构建...
-
-:: 默认不构建
-set "BUILD_FRONTEND=0"
-
-:: 用 PowerShell 检测：frontend（排除 node_modules/dist）中是否有比 frontend_dist 更新的文件
-if not exist "%ROOT%frontend_dist" (
-    echo [*] 未找到 frontend_dist，强制构建前端...
-    set "BUILD_FRONTEND=1"
-) else (
-    for /f %%R in ('powershell -NoProfile -Command "$srcLatest = (Get-ChildItem -Recurse ''%ROOT%frontend'' -File | Where-Object { $_.FullName -notmatch ''\\node_modules\\'' -and $_.FullName -notmatch ''\\dist\\'' } | Sort-Object LastWriteTime -Descending | Select-Object -First 1).LastWriteTime; $distLatest = (Get-ChildItem -Recurse ''%ROOT%frontend_dist'' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 1).LastWriteTime; if ($srcLatest -gt $distLatest) { echo 1 } else { echo 0 }"') do set "BUILD_FRONTEND=%%R"
-
-    if "!BUILD_FRONTEND!"=="1" (
-        echo [*] 检测到前端源码有更新，将重新构建...
-    ) else (
-        echo [*] 前端代码无变化，跳过构建。
-    )
+echo [2/4] 正在强制构建前端...
+cd /d "%ROOT%frontend"
+echo [*] 正在运行 npm install...
+call npm install
+echo [*] 正在运行 npm run build...
+call npm run build
+if errorlevel 1 (
+    echo [!] 前端构建失败，请检查 Node.js 环境。
+    pause
+    exit /b 1
 )
-
-if "!BUILD_FRONTEND!"=="1" (
-    echo [*] 正在执行前端构建 npm run build...
-    cd /d "%ROOT%frontend"
-    call npm run build
-    if errorlevel 1 (
-        echo [!] 前端构建失败，请检查 Node.js 环境。
-        pause
-        exit /b 1
-    )
-    cd /d "%ROOT%"
-    if exist "frontend_dist" rmdir /s /q "frontend_dist"
-    mkdir "frontend_dist"
-    xcopy /e /i /y "frontend\dist" "frontend_dist" >nul
-    echo [*] 前端构建完成，产物已同步到 frontend_dist。
-)
+cd /d "%ROOT%"
+if exist "frontend_dist" rmdir /s /q "frontend_dist"
+mkdir "frontend_dist"
+xcopy /e /i /y "frontend\dist" "frontend_dist" >nul
+echo [*] 前端构建完成，产物已同步到 frontend_dist。
 
 echo [3/4] 正在重新打包后端 EXE...
 "%VENV_PY%" -m PyInstaller second_brain_ai.spec --noconfirm --clean
