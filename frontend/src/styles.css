@@ -215,6 +215,16 @@ textarea {
   pointer-events: none;
 }
 
+.table-controls-container button {
+  pointer-events: auto;
+}
+
+/* 隐藏 Tiptap 自带的控制 UI，使用我们精准还原的 Notion 风格 */
+.tiptap-editor .tableWrapper .column-resize-handle {
+  background-color: #3b82f6;
+  width: 2px;
+}
+
 .tiptap-editor th::before,
 .tiptap-preview th::before {
   display: none !important;
