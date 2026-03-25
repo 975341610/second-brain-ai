@@ -43,6 +43,8 @@ import {
   Bookmark as BookMarked
 } from 'lucide-react';
 
+import { moveTableRow } from './tableCommands';
+
 interface NotionEditorProps {
   note: Note | null;
   notes: Note[];
@@ -86,12 +88,28 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [propertyMenuNode, setPropertyMenuNode] = useState<{ pos: number; rect: DOMRect } | null>(null);
   const [activeTableRect, setActiveTableRect] = useState<DOMRect | null>(null);
+  const [activeRowRect, setActiveRowRect] = useState<DOMRect | null>(null);
+  
+  // Use a ref to track the last hovered elements to avoid redundant state updates
+  const lastHoveredRef = useRef<{ table: HTMLElement | null; tr: HTMLElement | null }>({ table: null, tr: null });
+  
+  const [draggedRowIndex, setDraggedRowIndex] = useState<number | null>(null);
   const editorRef = useRef<any>(null);
+
+  const moveRow = useCallback((fromIndex: number, toIndex: number) => {
+    const currentEditor = editorRef.current;
+    if (!currentEditor || fromIndex === toIndex) return;
+
+    currentEditor.commands.command(({ tr, state }: any) => {
+      return moveTableRow(tr, state, fromIndex, toIndex);
+    });
+  }, []);
 
   const updateTableRect = useCallback(() => {
     const currentEditor = editorRef.current;
     if (!currentEditor || viewMode === 'preview') {
       setActiveTableRect(null);
+      setActiveRowRect(null);
       return;
     }
 
@@ -109,6 +127,17 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
           const rect = tableElement.getBoundingClientRect();
           if (rect.width > 0 && rect.height > 0) {
             setActiveTableRect(rect);
+            
+            // 追踪当前行
+            const rowElement = container.nodeType === Node.ELEMENT_NODE 
+              ? (container as HTMLElement).closest('tr')
+              : container.parentElement?.closest('tr');
+            
+            if (rowElement) {
+              setActiveRowRect(rowElement.getBoundingClientRect());
+            } else {
+              setActiveRowRect(null);
+            }
             return;
           }
         }
@@ -121,6 +150,13 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
         if (tableDOM) {
           const rect = tableDOM.getBoundingClientRect();
           setActiveTableRect(rect);
+          
+          const rowDOM = currentEditor.view.dom.querySelector('tr:has(.selectedCell)');
+          if (rowDOM) {
+            setActiveRowRect(rowDOM.getBoundingClientRect());
+          } else {
+            setActiveRowRect(null);
+          }
           return;
         }
       }
@@ -129,7 +165,8 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     }
 
     setActiveTableRect(null);
-  }, []);
+    setActiveRowRect(null);
+  }, [viewMode]);
 
 
   const editorContainerRef = useRef<HTMLDivElement>(null);
@@ -329,6 +366,34 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     // Sync editable status with viewMode
     editor.setEditable(viewMode === 'edit');
 
+    const handleMouseMove = (e: MouseEvent) => {
+      if (viewMode !== 'edit') return;
+      const target = e.target as HTMLElement;
+      
+      // 寻找表格和行
+      const table = target.closest('table');
+      const tr = target.closest('tr');
+
+      // Check if the hovered elements have actually changed before updating state
+      if (table !== lastHoveredRef.current.table || tr !== lastHoveredRef.current.tr) {
+        lastHoveredRef.current = { table, tr };
+        
+        if (table) {
+          setActiveTableRect(table.getBoundingClientRect());
+          if (tr) {
+            setActiveRowRect(tr.getBoundingClientRect());
+          }
+        } else {
+          // 如果不在表格内，检查是否在控制按钮内
+          const isOverControls = target.closest('.table-controls-container');
+          if (!isOverControls) {
+            setActiveTableRect(null);
+            setActiveRowRect(null);
+          }
+        }
+      }
+    };
+
     const handleUpdate = () => {
       if (!editorRef.current) return;
       updateTableRect();
@@ -356,16 +421,19 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     editor.on('update', handleUpdate);
     editor.on('selectionUpdate', handleUpdate);
     editor.on('focus', handleUpdate);
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScrollAndResize, true);
     window.addEventListener('resize', handleScrollAndResize);
 
-    // 初始执行一次
-    setTimeout(handleUpdate, 100);
+    // 初始执行一次（需要在卸载时清理，避免卸载后 setState）
+    const initUpdateTimer = window.setTimeout(handleUpdate, 100);
 
     return () => {
+      window.clearTimeout(initUpdateTimer);
       editor.off('update', handleUpdate);
       editor.off('selectionUpdate', handleUpdate);
       editor.off('focus', handleUpdate);
+      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScrollAndResize, true);
       window.removeEventListener('resize', handleScrollAndResize);
     };
@@ -410,6 +478,14 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
   // Auto-save logic with Debounce and Ref Lock (v0.3.41)
   const isSavingRef = useRef(false);
   const onSaveRef = useRef(onSave);
+  const isUnmountedRef = useRef(false);
+
+  useEffect(() => {
+    isUnmountedRef.current = false;
+    return () => {
+      isUnmountedRef.current = true;
+    };
+  }, []);
   
   useEffect(() => {
     onSaveRef.current = onSave;
@@ -421,6 +497,8 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     let timer: ReturnType<typeof setTimeout>;
 
     const handleSave = async () => {
+      if (isUnmountedRef.current) return;
+      
       // 防止重复进入或已在保存中
       if (isSavingRef.current) {
         // 如果还在保存，就再等等
@@ -461,7 +539,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
 
       if (hasContentChanged || hasTitleChanged) {
         isSavingRef.current = true;
-        setIsSaving(true);
+        if (!isUnmountedRef.current) setIsSaving(true);
         try {
           await onSaveRef.current({ 
             id: noteRef.current?.id, 
@@ -471,12 +549,12 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
             is_title_manually_edited: isTitleEdited,
             silent: true 
           });
-          setLastSavedAt(new Date().toLocaleTimeString());
+          if (!isUnmountedRef.current) setLastSavedAt(new Date().toLocaleTimeString());
         } catch (error) {
           console.error("Auto-save failed", error);
         } finally {
           isSavingRef.current = false;
-          setIsSaving(false);
+          if (!isUnmountedRef.current) setIsSaving(false);
         }
       }
     };
@@ -677,6 +755,79 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
                   </button>
                 </div>
               </div>
+
+              {/* 行操作柄 - 仅当有活动行时显示 */}
+              {activeRowRect && (
+                <div 
+                  className="absolute -left-12 w-10 flex items-center justify-end gap-1 pointer-events-auto transition-all duration-150"
+                  style={{
+                    top: activeRowRect.top - activeTableRect.top,
+                    height: activeRowRect.height,
+                  }}
+                >
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      editor.chain().focus().deleteRow().run();
+                    }}
+                    onMouseDown={(e) => e.preventDefault()}
+                    className="w-5 h-5 flex items-center justify-center bg-white border border-stone-200 text-stone-400 rounded-md hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-all shadow-sm"
+                    title="删除当前行"
+                  >
+                    <Trash2 size={12} />
+                  </button>
+                  <div 
+                    draggable
+                    onDragStart={(e) => {
+                      // 获取当前行的索引
+                      const selection = editor.state.selection;
+                      const { $from } = selection;
+                      let rowIndex = -1;
+                      for (let i = $from.depth; i > 0; i--) {
+                        if ($from.node(i).type.name === 'tableRow') {
+                          // 获取行在父表格中的索引
+                          rowIndex = $from.index(i-1);
+                          break;
+                        }
+                      }
+                      if (rowIndex !== -1) {
+                        setDraggedRowIndex(rowIndex);
+                        // 设置拖拽预览
+                        e.dataTransfer.setData('text/plain', rowIndex.toString());
+                        e.dataTransfer.effectAllowed = 'move';
+                      }
+                    }}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      e.dataTransfer.dropEffect = 'move';
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      // 获取落点的行索引
+                      const rect = editor.view.dom.getBoundingClientRect();
+                      const pos = editor.view.posAtCoords({ left: e.clientX, top: e.clientY });
+                      if (pos && draggedRowIndex !== null) {
+                        const $pos = editor.state.doc.resolve(pos.pos);
+                        let targetRowIndex = -1;
+                        for (let i = $pos.depth; i > 0; i--) {
+                          if ($pos.node(i).type.name === 'tableRow') {
+                            targetRowIndex = $pos.index(i-1);
+                            break;
+                          }
+                        }
+                        if (targetRowIndex !== -1 && targetRowIndex !== draggedRowIndex) {
+                          moveRow(draggedRowIndex, targetRowIndex);
+                        }
+                      }
+                      setDraggedRowIndex(null);
+                    }}
+                    className="w-5 h-5 flex items-center justify-center bg-white border border-stone-200 text-stone-400 rounded-md hover:bg-stone-50 hover:text-stone-600 transition-all shadow-sm cursor-grab active:cursor-grabbing"
+                    title="拖拽排序"
+                  >
+                    <GripVertical size={12} />
+                  </div>
+                </div>
+              )}
             </div>,
             document.body
           )}
