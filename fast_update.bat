@@ -12,6 +12,13 @@ if exist "%ROOT%VERSION.txt" (
     for /f "usebackq delims=" %%v in ("%ROOT%VERSION.txt") do set "VERSION=%%v"
 )
 
+:: 获取 Git Hash
+set "GIT_HASH=unknown"
+for /f "tokens=*" %%i in ('git rev-parse --short HEAD 2^>nul') do set "GIT_HASH=%%i"
+
+:: 生成 metadata.json
+echo { "version": "!VERSION!", "git_commit": "!GIT_HASH!", "build_time": "%date% %time%" } > "%ROOT%metadata.json"
+
 :: 强制杀掉旧实例，防止文件被占用
 taskkill /F /IM SecondBrainAI.exe /T >nul 2>&1
 
@@ -91,8 +98,20 @@ if %ERRORLEVEL% GEQ 8 (
 echo.
 echo ==============================================
 echo   ✨ 更新完成！
-echo   程序位置: %APP_DIR%\SecondBrainAI.exe
-echo   版本号:   !VERSION!
+echo ==============================================
+echo   当前运行信息 (自证):
+set "TARGET_EXE=%APP_DIR%\SecondBrainAI.exe"
+if exist "%TARGET_EXE%" (
+    for %%I in ("%TARGET_EXE%") do (
+        echo   - 绝对路径: %%~fI
+        echo   - 修改时间: %%~tI
+        echo   - 文件大小: %%~zI bytes
+    )
+    echo   - 版本号:   !VERSION!
+    echo   - Git Hash: !GIT_HASH!
+) else (
+    echo   [!] 警告: 未在预期位置找到 EXE: %TARGET_EXE%
+)
 echo ==============================================
 echo.
 pause

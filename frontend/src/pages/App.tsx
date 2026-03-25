@@ -45,6 +45,8 @@ export default function App() {
     toast,
     modelConfig,
     appVersion,
+    gitCommit,
+    exePath,
     loadInitialData,
     saveNote,
     createDraftNote,
@@ -258,8 +260,8 @@ export default function App() {
         </>
       )}
     </main>
-    <div className="fixed bottom-4 left-4 z-50 text-[10px] text-stone-400 font-mono pointer-events-none opacity-50">
-      {appVersion}
+    <div className="fixed bottom-4 left-4 z-50 text-[10px] text-stone-400 font-mono pointer-events-auto opacity-30 hover:opacity-100 transition-opacity max-w-[400px] truncate" title={`${appVersion} | ${gitCommit}\n${exePath}`}>
+      {appVersion} ({gitCommit})
     </div>
     </>
   );

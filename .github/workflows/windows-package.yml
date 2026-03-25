@@ -54,11 +54,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r backend/requirements.txt pyinstaller
 
-      - name: Stage frontend bundle
+      - name: Stage frontend bundle and metadata
         shell: powershell
         run: |
           if (Test-Path frontend_dist) { Remove-Item frontend_dist -Recurse -Force }
           Copy-Item frontend/dist frontend_dist -Recurse
+          $version = (Get-Content VERSION.txt).Trim()
+          $git_commit = $env:GITHUB_SHA.Substring(0, 7)
+          $build_time = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
+          $metadata = @{ version = $version; git_commit = $git_commit; build_time = $build_time }
+          $metadata | ConvertTo-Json | Out-File -FilePath metadata.json -Encoding utf8
 
       - name: Build desktop executable
         shell: powershell

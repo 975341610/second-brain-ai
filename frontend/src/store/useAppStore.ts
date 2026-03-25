@@ -114,6 +114,9 @@ type AppState = {
   toast: ToastMessage | null;
   modelConfig: ModelConfig;
   appVersion: string;
+  gitCommit: string;
+  buildTime: string;
+  exePath: string;
   loadInitialData: () => Promise<void>;
     selectNote: (noteId: number) => void;
     createDraftNote: (notebookId?: number | null, parentId?: number | null) => void;
@@ -174,6 +177,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   toast: null,
   modelConfig: defaultModelConfig,
   appVersion: 'v0.5.3', // 默认版本，加载后会被覆盖
+  gitCommit: 'unknown',
+  buildTime: 'unknown',
+  exePath: 'unknown',
   loadInitialData: async () => {
     // 优先从缓存加载，实现离线瞬间看到内容
     const [cachedNotes, cachedNotebooks, cachedTasks] = await Promise.all([
@@ -214,6 +220,9 @@ export const useAppStore = create<AppState>((set, get) => ({
         trash,
         modelConfig,
         appVersion: versionData?.version || get().appVersion,
+        gitCommit: versionData?.git_commit || 'unknown',
+        buildTime: versionData?.build_time || 'unknown',
+        exePath: versionData?.executable || 'unknown',
         selectedNoteId: get().selectedNoteId || notes[0]?.id || null,
         assistant: latestAssistantFromSession(get().chatSessions.find((session) => session.id === get().activeChatSessionId)),
       });

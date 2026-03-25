@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 
 :: 强制杀掉所有运行中的实例，释放文件
 taskkill /F /IM SecondBrainAI.exe /T >nul 2>&1
@@ -24,7 +25,15 @@ set "VERSION=unknown"
 if exist "VERSION.txt" (
     for /f "usebackq delims=" %%v in ("VERSION.txt") do set "VERSION=%%v"
 )
-echo Current Version: !VERSION!
+
+:: 获取 Git Hash
+set "GIT_HASH=unknown"
+for /f "tokens=*" %%i in ('git rev-parse --short HEAD 2^>nul') do set "GIT_HASH=%%i"
+
+:: 生成 metadata.json
+echo { "version": "!VERSION!", "git_commit": "!GIT_HASH!", "build_time": "%date% %time%" } > "metadata.json"
+
+echo Current Version: !VERSION! (!GIT_HASH!)
 call pyinstaller --clean second_brain_ai.spec
 
 echo Cleaning up top-level standalone EXE in dist...

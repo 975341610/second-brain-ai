@@ -69,7 +69,20 @@ if __name__ == "__main__":
     setup_desktop_env()
     
     # 打印一些调试信息到控制台 (此时会被拦截并存入 buffer)
+    from backend.config import resource_root
+    import json
+    metadata_file = resource_root() / "metadata.json"
+    metadata = {}
+    if metadata_file.exists():
+        try:
+            with open(metadata_file, "r") as f:
+                metadata = json.load(f)
+        except: pass
+
     print(f"[*] Starting Second Brain AI (Native Window Mode)...")
+    print(f"[*] Version: {metadata.get('version', 'unknown')}")
+    print(f"[*] Git Commit: {metadata.get('git_commit', 'unknown')}")
+    print(f"[*] Build Time: {metadata.get('build_time', 'unknown')}")
     print(f"[*] Frozen: {getattr(sys, 'frozen', False)}")
     print(f"[*] Executable: {sys.executable}")
     print(f"[*] Current Working Directory: {os.getcwd()}")

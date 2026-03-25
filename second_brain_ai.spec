@@ -11,6 +11,8 @@ backend_data = root / "backend" / "data"
 datas = [
     ("VERSION.txt", "."),
 ]
+if (root / "metadata.json").exists():
+    datas.append(("metadata.json", "."))
 if frontend_dist.exists():
     datas.append((str(frontend_dist), "frontend_dist"))
 

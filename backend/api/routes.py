@@ -682,18 +682,32 @@ async def switch_data_path(payload: dict):
 
 @router.get("/system/version")
 async def get_system_version():
-    """读取 VERSION.txt 获取版本号"""
+    """读取 VERSION.txt 或 metadata.json 获取详细版本信息"""
+    import sys
     from backend.config import resource_root
-    version_file = resource_root() / "VERSION.txt"
+    
+    res_root = resource_root()
+    metadata_file = res_root / "metadata.json"
+    version_file = res_root / "VERSION.txt"
+    
+    info = {
+        "version": "unknown",
+        "git_commit": "unknown",
+        "build_time": "unknown",
+        "executable": sys.executable,
+    }
+    
     try:
-        if version_file.exists():
-            return {"version": version_file.read_text(encoding="utf-8").strip()}
-        else:
-            print(f"[!] VERSION.txt not found at {version_file}")
-            return {"version": "v0.0.0"}
+        if metadata_file.exists():
+            with open(metadata_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                info.update(data)
+        elif version_file.exists():
+            info["version"] = version_file.read_text(encoding="utf-8").strip()
     except Exception as e:
-        print(f"[!] Error reading VERSION.txt: {str(e)}")
-        return {"version": "v0.0.0"}
+        print(f"[!] Error reading version info: {str(e)}")
+        
+    return info
 
 @router.post("/system/update")
 async def system_update(force: bool = False):
