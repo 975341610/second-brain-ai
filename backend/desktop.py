@@ -90,10 +90,12 @@ if __name__ == "__main__":
     # 启动后端线程
     def run_api():
         print("[*] Launching API server...")
+        host = os.environ.get("HOST", "127.0.0.1")
+        port = int(os.environ.get("PORT", "8765"))
         uvicorn.run(
             app,
-            host="127.0.0.1",
-            port=8765,
+            host=host,
+            port=port,
             log_config=None,
             log_level="info",
         )
