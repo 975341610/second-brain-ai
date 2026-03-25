@@ -84,6 +84,7 @@ export default function App() {
     notify,
     clearToast,
     userStats,
+    userAchievements,
   } = useAppStore();
 
   useEffect(() => {
@@ -221,7 +222,8 @@ export default function App() {
               sessions={chatSessions} 
               activeSessionId={activeChatSessionId} 
               userStats={userStats}
-              onSelectNote={(noteId) => { selectNote(noteId); setActivePage('notes'); }} 
+              userAchievements={userAchievements}
+              onSelectNote={(noteId) => { selectNote(noteId); setActivePage('notes'); }}
               onAsk={askStreamingAssistant} 
               onCreateTask={createTask} 
               onUpdateTaskStatus={updateTaskStatus} 

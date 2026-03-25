@@ -100,4 +100,22 @@ export type UserStats = {
   exp: number;
   level: number;
   total_captures: number;
+  current_theme: string;
+};
+
+export type Achievement = {
+  id: number;
+  name: string;
+  description: string;
+  condition_type: string;
+  condition_value: number;
+  icon: string;
+  created_at: string;
+};
+
+export type UserAchievement = {
+  id: number;
+  achievement_id: number;
+  unlocked_at: string;
+  achievement: Achievement;
 };

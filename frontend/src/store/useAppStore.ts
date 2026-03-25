@@ -1,7 +1,20 @@
 import { create } from 'zustand';
 import { openDB, type IDBPDatabase } from 'idb';
 import { api } from '../lib/api';
-import type { AskResponse, ChatMessage, ChatSession, ModelConfig, Note, Notebook, Task, ToastMessage, TrashState, Citation, UserStats } from '../lib/types';
+import type { 
+  AskResponse, 
+  ChatMessage, 
+  ChatSession, 
+  ModelConfig, 
+  Note, 
+  Notebook, 
+  Task, 
+  ToastMessage, 
+  TrashState, 
+  Citation, 
+  UserStats,
+  UserAchievement,
+} from '../lib/types';
 
 
 const CHAT_STORAGE_KEY = 'second-brain-chat-sessions';
@@ -120,7 +133,9 @@ type AppState = {
   buildTime: string;
   exePath: string;
   userStats: UserStats | null;
+  userAchievements: UserAchievement[];
   loadInitialData: () => Promise<void>;
+  updateUserTheme: (theme: string) => Promise<void>;
     selectNote: (noteId: number) => void;
     createDraftNote: (notebookId?: number | null, parentId?: number | null) => void;
     saveNote: (payload: { id?: number; title?: string; content?: string; notebookId?: number | null; parent_id?: number | null; icon?: string; is_title_manually_edited?: boolean; tags?: string[]; silent?: boolean }) => Promise<void>;
@@ -184,6 +199,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   buildTime: 'unknown',
   exePath: 'unknown',
   userStats: null,
+  userAchievements: [],
   loadInitialData: async () => {
     // 优先从缓存加载，实现离线瞬间看到内容
     const [cachedNotes, cachedNotebooks, cachedTasks] = await Promise.all([
@@ -203,14 +219,15 @@ export const useAppStore = create<AppState>((set, get) => ({
 
     set({ loading: true });
     try {
-      const [notes, notebooks, tasks, modelConfig, trash, versionData, userStats] = await Promise.all([
+      const [notes, notebooks, tasks, modelConfig, trash, versionData, userStats, userAchievements] = await Promise.all([
         api.listNotes(),
         api.listNotebooks(),
         api.listTasks(),
         api.getModelConfig(),
         api.getTrash(),
         api.getSystemVersion(),
-        api.getUserStats()
+        api.getUserStats(),
+        api.listUserAchievements()
       ]);
 
       // 异步更新缓存
@@ -225,6 +242,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         trash,
         modelConfig,
         userStats,
+        userAchievements,
         appVersion: versionData?.version || get().appVersion,
         gitCommit: versionData?.git_commit || 'unknown',
         buildTime: versionData?.build_time || 'unknown',
@@ -239,6 +257,14 @@ export const useAppStore = create<AppState>((set, get) => ({
       }
     } finally {
       set({ loading: false });
+    }
+  },
+  updateUserTheme: async (theme) => {
+    try {
+      const userStats = await api.updateUserTheme(theme);
+      set({ userStats });
+    } catch (error) {
+      set({ toast: { id: Date.now(), tone: 'error', text: `主题切换失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
   },
   selectNote: (selectedNoteId) => set((state) => ({ selectedNoteId, recentNoteIds: [selectedNoteId, ...state.recentNoteIds.filter((id) => id !== selectedNoteId)].slice(0, 8) })),

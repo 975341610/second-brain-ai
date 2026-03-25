@@ -5,7 +5,19 @@ from datetime import datetime
 from sqlalchemy import case, func, select
 from sqlalchemy.orm import Session
 
-from backend.models.db_models import ModelConfig, Note, Notebook, NoteLink, NoteProperty, Task, UserStats, deobfuscate, obfuscate
+from backend.models.db_models import (
+    Achievement,
+    ModelConfig,
+    Note,
+    NoteLink,
+    Notebook,
+    NoteProperty,
+    Task,
+    UserAchievement,
+    UserStats,
+    deobfuscate,
+    obfuscate,
+)
 
 
 DEFAULT_NOTEBOOK_NAME = "快速笔记"
@@ -460,11 +472,73 @@ def get_or_create_inbox_notebook(db: Session) -> Notebook:
 def get_or_create_user_stats(db: Session) -> UserStats:
     stats = db.get(UserStats, 1)
     if not stats:
-        stats = UserStats(id=1, exp=0, level=1, total_captures=0)
+        stats = UserStats(id=1, exp=0, level=1, total_captures=0, current_theme="default")
         db.add(stats)
         db.commit()
         db.refresh(stats)
     return stats
+
+
+def update_user_theme(db: Session, theme: str) -> UserStats:
+    stats = get_or_create_user_stats(db)
+    stats.current_theme = theme
+    db.add(stats)
+    db.commit()
+    db.refresh(stats)
+    return stats
+
+
+def list_achievements(db: Session) -> list[Achievement]:
+    return list(db.scalars(select(Achievement)))
+
+
+def list_user_achievements(db: Session) -> list[UserAchievement]:
+    return list(db.scalars(select(UserAchievement).order_by(UserAchievement.unlocked_at.desc())))
+
+
+def check_and_unlock_achievements(db: Session) -> list[UserAchievement]:
+    stats = get_or_create_user_stats(db)
+    all_achievements = list_achievements(db)
+    unlocked_ids = {ua.achievement_id for ua in list_user_achievements(db)}
+    
+    newly_unlocked = []
+    for ach in all_achievements:
+        if ach.id in unlocked_ids:
+            continue
+            
+        unlocked = False
+        if ach.condition_type == "total_captures" and stats.total_captures >= ach.condition_value:
+            unlocked = True
+        elif ach.condition_type == "level" and stats.level >= ach.condition_value:
+            unlocked = True
+        # 可以根据需要添加更多条件类型
+            
+        if unlocked:
+            ua = UserAchievement(achievement_id=ach.id)
+            db.add(ua)
+            newly_unlocked.append(ua)
+            
+    if newly_unlocked:
+        db.commit()
+        for ua in newly_unlocked:
+            db.refresh(ua)
+            
+    return newly_unlocked
+
+
+def init_default_achievements(db: Session):
+    defaults = [
+        {"name": "初出茅庐", "description": "累计捕捉 1 条灵感", "condition_type": "total_captures", "condition_value": 1, "icon": "🌱"},
+        {"name": "捕捉达人", "description": "累计捕捉 10 条灵感", "condition_type": "total_captures", "condition_value": 10, "icon": "🕸️"},
+        {"name": "见习记录员", "description": "等级达到 2 级", "condition_type": "level", "condition_value": 2, "icon": "🥉"},
+        {"name": "知识守门人", "description": "等级达到 5 级", "condition_type": "level", "condition_value": 5, "icon": "🥈"},
+    ]
+    
+    for item in defaults:
+        exists = db.scalar(select(Achievement).where(Achievement.name == item["name"]))
+        if not exists:
+            db.add(Achievement(**item))
+    db.commit()
 
 
 def add_exp(db: Session, amount: int) -> UserStats:

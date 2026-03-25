@@ -5,7 +5,31 @@
 :root {
   color-scheme: light;
   --reflect-bg: #fcfbf9;
+  --reflect-sidebar: #f4f3f0;
+  --reflect-accent: #7c7267;
+  --reflect-border: #e8e6e1;
   --reflect-text: #2d2c2a;
+  --reflect-muted: #8e8c89;
+}
+
+[data-theme="cyber"] {
+  color-scheme: dark;
+  --reflect-bg: #050505;
+  --reflect-sidebar: #0a0a0c;
+  --reflect-accent: #00f3ff;
+  --reflect-border: #1a1a1f;
+  --reflect-text: #e0e0e0;
+  --reflect-muted: #666666;
+}
+
+[data-theme="p5"] {
+  color-scheme: dark;
+  --reflect-bg: #1a1a1a;
+  --reflect-sidebar: #000000;
+  --reflect-accent: #d32f2f;
+  --reflect-border: #333333;
+  --reflect-text: #ffffff;
+  --reflect-muted: #999999;
 }
 
 body {

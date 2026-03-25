@@ -10,12 +10,12 @@ export default {
       },
       colors: {
         reflect: {
-          bg: '#fcfbf9',
-          sidebar: '#f4f3f0',
-          accent: '#7c7267',
-          border: '#e8e6e1',
-          text: '#2d2c2a',
-          muted: '#8e8c89',
+          bg: 'var(--reflect-bg)',
+          sidebar: 'var(--reflect-sidebar)',
+          accent: 'var(--reflect-accent)',
+          border: 'var(--reflect-border)',
+          text: 'var(--reflect-text)',
+          muted: 'var(--reflect-muted)',
         }
       },
       boxShadow: {

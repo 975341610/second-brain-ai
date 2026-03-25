@@ -1,7 +1,8 @@
 import { ChevronRight, Clock3, Filter, ListTodo, Plus, Trash2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { AssistantPanel } from './AssistantPanel';
-import type { AskResponse, ChatSession, ModelConfig, Note, Task, UserStats } from '../lib/types';
+import { AchievementWall } from './AchievementWall';
+import type { AskResponse, ChatSession, ModelConfig, Note, Task, UserStats, UserAchievement } from '../lib/types';
 
 type HomeDashboardProps = {
   recentNotes: Note[];
@@ -11,6 +12,7 @@ type HomeDashboardProps = {
   sessions: ChatSession[];
   activeSessionId: string;
   userStats: UserStats | null;
+  userAchievements: UserAchievement[];
   onSelectNote: (noteId: number) => void;
   onAsk: (question: string, mode: 'chat' | 'rag' | 'agent') => Promise<void>;
   onCreateTask: (payload: { title: string; priority: Task['priority']; task_type: Task['task_type']; deadline: string | null }) => Promise<void>;
@@ -28,7 +30,7 @@ const typeLabels: Record<Task['task_type'], string> = { meeting: '会议', work:
 const priorityLabels: Record<Task['priority'], string> = { low: '低', medium: '中', high: '高' };
 
 export function HomeDashboard({ 
-  recentNotes, tasks, assistant, modelConfig, sessions, activeSessionId, userStats,
+  recentNotes, tasks, assistant, modelConfig, sessions, activeSessionId, userStats, userAchievements,
   onSelectNote, onAsk, onCreateTask, onUpdateTaskStatus, onDeleteTask, onClearCompleted, 
   onStartNewChat, onSwitchSession, onClearSession, onRenameSession, onDeleteSession 
 }: HomeDashboardProps) {
@@ -49,18 +51,21 @@ export function HomeDashboard({
           <h1 className="font-serif text-3xl italic font-medium">早上好，Reflect。</h1>
           <p className="mt-2 text-sm text-reflect-muted font-sans tracking-tight">今天是 {new Date().toLocaleDateString('zh-CN', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
         </div>
-        {userStats && (
-          <div className="text-right">
-             <div className="text-[10px] font-bold uppercase tracking-widest text-reflect-accent mb-1">Level {userStats.level}</div>
-             <div className="h-1.5 w-32 bg-reflect-sidebar rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-reflect-accent transition-all duration-500" 
-                  style={{ width: `${(userStats.exp % 100)}%` }}
-                />
-             </div>
-             <div className="text-[9px] text-reflect-muted mt-1 font-mono">{userStats.exp} EXP</div>
-          </div>
-        )}
+        <div className="flex flex-col items-end gap-3">
+          <AchievementWall achievements={userAchievements} />
+          {userStats && (
+            <div className="text-right">
+               <div className="text-[10px] font-bold uppercase tracking-widest text-reflect-accent mb-1">Level {userStats.level}</div>
+               <div className="h-1.5 w-32 bg-reflect-sidebar rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-reflect-accent transition-all duration-500" 
+                    style={{ width: `${(userStats.exp % 100)}%` }}
+                  />
+               </div>
+               <div className="text-[9px] text-reflect-muted mt-1 font-mono">{userStats.exp} EXP</div>
+            </div>
+          )}
+        </div>
       </header>
 
       {/* Recent Notes Section */}

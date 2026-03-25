@@ -211,6 +211,34 @@ class UserStatsResponse(BaseModel):
     exp: int
     level: int
     total_captures: int
+    current_theme: str
 
     class Config:
         from_attributes = True
+
+
+class AchievementResponse(BaseModel):
+    id: int
+    name: str
+    description: str
+    condition_type: str
+    condition_value: int
+    icon: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class UserAchievementResponse(BaseModel):
+    id: int
+    achievement_id: int
+    unlocked_at: datetime
+    achievement: AchievementResponse
+
+    class Config:
+        from_attributes = True
+
+
+class ThemeUpdatePayload(BaseModel):
+    theme: str

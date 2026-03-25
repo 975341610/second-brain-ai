@@ -120,4 +120,27 @@ class UserStats(Base):
     exp: Mapped[int] = mapped_column(Integer, default=0)
     level: Mapped[int] = mapped_column(Integer, default=1)
     total_captures: Mapped[int] = mapped_column(Integer, default=0)
+    current_theme: Mapped[str] = mapped_column(String(50), default="default")
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class Achievement(Base):
+    __tablename__ = "achievements"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    description: Mapped[str] = mapped_column(String(500))
+    condition_type: Mapped[str] = mapped_column(String(50))  # e.g., "total_captures", "total_notes"
+    condition_value: Mapped[int] = mapped_column(Integer)
+    icon: Mapped[str] = mapped_column(String(500))  # SVG or Emoji
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class UserAchievement(Base):
+    __tablename__ = "user_achievements"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    achievement_id: Mapped[int] = mapped_column(ForeignKey("achievements.id", ondelete="CASCADE"), index=True)
+    unlocked_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+    achievement: Mapped[Achievement] = relationship()

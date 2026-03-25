@@ -117,6 +117,16 @@ def run_migrations() -> None:
         # UserStats migration
         if "user_stats" not in inspector.get_table_names():
             connection.execute(text("CREATE TABLE user_stats (id INTEGER PRIMARY KEY, exp INTEGER DEFAULT 0, level INTEGER DEFAULT 1, total_captures INTEGER DEFAULT 0, updated_at DATETIME)"))
+        
+        user_stats_columns = {column["name"] for column in inspector.get_columns("user_stats")} if "user_stats" in inspector.get_table_names() else set()
+        if "current_theme" not in user_stats_columns:
+            connection.execute(text("ALTER TABLE user_stats ADD COLUMN current_theme VARCHAR(50) DEFAULT 'default'"))
+
+        # Achievements migration
+        if "achievements" not in inspector.get_table_names():
+            connection.execute(text("CREATE TABLE achievements (id INTEGER PRIMARY KEY, name VARCHAR(255) UNIQUE, description VARCHAR(500), condition_type VARCHAR(50), condition_value INTEGER, icon VARCHAR(500), created_at DATETIME)"))
+        if "user_achievements" not in inspector.get_table_names():
+            connection.execute(text("CREATE TABLE user_achievements (id INTEGER PRIMARY KEY, achievement_id INTEGER, unlocked_at DATETIME, FOREIGN KEY(achievement_id) REFERENCES achievements(id) ON DELETE CASCADE)"))
 
 
 @app.on_event("startup")
@@ -127,6 +137,8 @@ async def startup_event() -> None:
     seed_files()
     with SessionLocal() as db:
         seed_database(db)
+        from backend.services.repositories import init_default_achievements
+        init_default_achievements(db)
 
 
 @app.get("/health")

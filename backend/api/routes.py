@@ -38,6 +38,9 @@ from backend.models.schemas import (
     TrashResponse,
     UploadResponse,
     UserStatsResponse,
+    AchievementResponse,
+    UserAchievementResponse,
+    ThemeUpdatePayload,
 )
 from backend.database import get_db, SessionLocal
 from backend.utils import log_buffer
@@ -83,6 +86,9 @@ from backend.services.repositories import (
     update_model_config,
     update_note_property,
     update_task,
+    list_user_achievements,
+    check_and_unlock_achievements,
+    update_user_theme,
 )
 from backend.services.vector_store import vector_store
 
@@ -230,6 +236,19 @@ async def quick_capture_api(payload: QuickCaptureRequest, background_tasks: Back
 @router.get("/user/stats", response_model=UserStatsResponse)
 def get_user_stats_api(db: Session = Depends(get_db)) -> UserStatsResponse:
     stats = get_or_create_user_stats(db)
+    # 每次获取 stats 时检查是否有新成就解锁
+    check_and_unlock_achievements(db)
+    return UserStatsResponse.model_validate(stats)
+
+
+@router.get("/user/achievements", response_model=list[UserAchievementResponse])
+def get_user_achievements_api(db: Session = Depends(get_db)) -> list[UserAchievementResponse]:
+    return [UserAchievementResponse.model_validate(ua) for ua in list_user_achievements(db)]
+
+
+@router.patch("/user/theme", response_model=UserStatsResponse)
+def update_user_theme_api(payload: ThemeUpdatePayload, db: Session = Depends(get_db)) -> UserStatsResponse:
+    stats = update_user_theme(db, payload.theme)
     return UserStatsResponse.model_validate(stats)
 
 

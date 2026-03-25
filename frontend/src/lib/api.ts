@@ -1,4 +1,14 @@
-import type { AskResponse, ModelConfig, Note, Notebook, NoteProperty, Task, TrashState, UserStats } from './types';
+import type { 
+  AskResponse, 
+  ModelConfig, 
+  Note, 
+  Notebook, 
+  NoteProperty, 
+  Task, 
+  TrashState, 
+  UserStats,
+  UserAchievement,
+} from './types';
 
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
@@ -193,4 +203,6 @@ export const api = {
   getSystemVersion: () => request<{ version: string; git_commit?: string; build_time?: string; executable?: string }>('/system/version'),
   restartApp: () => request<{ status: string; message: string }>('/system/restart', { method: 'POST' }),
   getUserStats: () => request<UserStats>('/user/stats'),
+  listUserAchievements: () => request<UserAchievement[]>('/user/achievements'),
+  updateUserTheme: (theme: string) => request<UserStats>('/user/theme', { method: 'PATCH', body: JSON.stringify({ theme }) }),
 };
