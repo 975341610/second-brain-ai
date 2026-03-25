@@ -1,4 +1,8 @@
 @echo off
+
+:: 强制杀掉所有运行中的实例，释放文件
+taskkill /F /IM SecondBrainAI.exe /T >nul 2>&1
+
 echo ====================================================
 echo   Performing Forced Clean Build - Bypassing Local Cache
 echo ====================================================

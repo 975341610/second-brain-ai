@@ -656,9 +656,15 @@ async def get_system_version():
     """读取 VERSION.txt 获取版本号"""
     from backend.config import resource_root
     version_file = resource_root() / "VERSION.txt"
-    if version_file.exists():
-        return {"version": version_file.read_text(encoding="utf-8").strip()}
-    return {"version": "v0.0.0"}
+    try:
+        if version_file.exists():
+            return {"version": version_file.read_text(encoding="utf-8").strip()}
+        else:
+            print(f"[!] VERSION.txt not found at {version_file}")
+            return {"version": "v0.0.0"}
+    except Exception as e:
+        print(f"[!] Error reading VERSION.txt: {str(e)}")
+        return {"version": "v0.0.0"}
 
 @router.post("/system/update")
 async def system_update(force: bool = False):

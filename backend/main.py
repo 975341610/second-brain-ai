@@ -20,8 +20,13 @@ app = FastAPI(title=settings.app_name)
 # 读取并打印版本号
 version_file = resource_root() / "VERSION.txt"
 version = "unknown"
-if version_file.exists():
-    version = version_file.read_text(encoding="utf-8").strip()
+try:
+    if version_file.exists():
+        version = version_file.read_text(encoding="utf-8").strip()
+    else:
+        print(f"[!] VERSION.txt not found at {version_file}")
+except Exception as e:
+    print(f"[!] Error reading VERSION.txt: {str(e)}")
 print(f"[*] Second Brain AI Version: {version}")
 
 app.add_middleware(

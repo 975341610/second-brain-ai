@@ -21,7 +21,8 @@ Production-style MVP for a local-first AI second brain with notes, RAG search, c
 
 ## Versions
 
-- `v0.5.1`: (Current) Robust AI stream parsing, Table TDD fixes, and improved fast update logic.
+- `v0.5.2`: (Current) Diagnostic fixes for update persistence, taskkill integration, and robocopy verification.
+- `v0.5.1`: Robust AI stream parsing, Table TDD fixes, and improved fast update logic.
 - `v0.5.0`: Initial system fix release.
 
 ## Project Structure

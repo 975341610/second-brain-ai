@@ -12,6 +12,9 @@ if exist "%ROOT%VERSION.txt" (
     for /f "usebackq delims=" %%v in ("%ROOT%VERSION.txt") do set "VERSION=%%v"
 )
 
+:: 强制杀掉旧实例，防止文件被占用
+taskkill /F /IM SecondBrainAI.exe /T >nul 2>&1
+
 echo ==============================================
 echo   Second Brain AI - 智能热更新 (!VERSION!)
 echo ==============================================
@@ -74,7 +77,7 @@ if errorlevel 1 (
 if exist "dist\SecondBrainAI.exe" del /f /q "dist\SecondBrainAI.exe"
 
 echo [4/4] 正在覆盖更新到 %APP_DIR% ...
-taskkill /f /im SecondBrainAI.exe >nul 2>nul
+taskkill /f /im SecondBrainAI.exe /t >nul 2>nul
 timeout /t 1 >nul
 
 :: 记录日志信息
@@ -89,9 +92,16 @@ if exist "%APP_DIR%.exe" (
     del /f /q "%APP_DIR%.exe"
 )
 
-xcopy /e /i /y dist\SecondBrainAI "%APP_DIR%" >nul
-if errorlevel 1 (
-    echo [!] 覆盖失败！请确保程序已完全关闭，或尝试以管理员权限运行。
+:: 使用 robocopy 并检查严格错误码 (GEQ 8)
+robocopy "dist\SecondBrainAI" "%APP_DIR%" /E /IS /IT /R:3 /W:5 >nul
+if %ERRORLEVEL% GEQ 8 (
+    echo.
+    echo [!] ==================================================
+    echo [!] 覆盖失败！(Robocopy ErrorLevel: %ERRORLEVEL%)
+    echo [!] 请确保程序 %APP_DIR%\SecondBrainAI.exe 已完全关闭。
+    echo [!] 请尝试以管理员权限运行此脚本。
+    echo [!] ==================================================
+    echo.
     pause
     exit /b 1
 )
