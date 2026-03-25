@@ -161,5 +161,6 @@ export const api = {
   }),
   checkUpdate: () => request<{ status: string; output: string }>('/system/update', { method: 'POST' }),
   performUpdate: () => request<{ status: string; output: string }>('/system/update?force=true', { method: 'POST' }),
+  getSystemVersion: () => request<{ version: string }>('/system/version'),
   restartApp: () => request<{ status: string; message: string }>('/system/restart', { method: 'POST' }),
 };

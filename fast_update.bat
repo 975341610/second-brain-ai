@@ -7,9 +7,13 @@ set "ROOT=%~dp0"
 set "OUT_DIR=C:\AI"
 set "APP_DIR=%OUT_DIR%\SecondBrainAI"
 set "VENV_PY=%ROOT%.venv\Scripts\python.exe"
+set "VERSION=unknown"
+if exist "%ROOT%VERSION.txt" (
+    for /f "usebackq delims=" %%v in ("%ROOT%VERSION.txt") do set "VERSION=%%v"
+)
 
 echo ==============================================
-echo   Second Brain AI - 智能热更新 (v0.5.1)
+echo   Second Brain AI - 智能热更新 (!VERSION!)
 echo ==============================================
 echo.
 
@@ -66,9 +70,24 @@ if errorlevel 1 (
     exit /b 1
 )
 
+:: 显式删除根目录下的冗余单体 EXE，以防混淆
+if exist "dist\SecondBrainAI.exe" del /f /q "dist\SecondBrainAI.exe"
+
 echo [4/4] 正在覆盖更新到 %APP_DIR% ...
 taskkill /f /im SecondBrainAI.exe >nul 2>nul
 timeout /t 1 >nul
+
+:: 记录日志信息
+echo [*] 正在同步构建产物...
+echo     - 源路径:   %ROOT%dist\SecondBrainAI
+echo     - 目标路径: %APP_DIR%
+echo     - 版本号:   !VERSION!
+
+:: 显式删除目标路径下可能残余的旧版单文件 exe (防止运行错误)
+if exist "%APP_DIR%.exe" (
+    echo [*] 正在清理旧版单文件 EXE...
+    del /f /q "%APP_DIR%.exe"
+)
 
 xcopy /e /i /y dist\SecondBrainAI "%APP_DIR%" >nul
 if errorlevel 1 (
@@ -80,7 +99,8 @@ if errorlevel 1 (
 echo.
 echo ==============================================
 echo   ✨ 更新完成！
-echo   程序位置: %APP_DIR%
+echo   程序位置: %APP_DIR%\SecondBrainAI.exe
+echo   版本号:   !VERSION!
 echo ==============================================
 echo.
 pause

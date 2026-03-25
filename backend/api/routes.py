@@ -651,6 +651,15 @@ async def update_data_path(payload: dict):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to update data path: {str(e)}")
 
+@router.get("/system/version")
+async def get_system_version():
+    """读取 VERSION.txt 获取版本号"""
+    from backend.config import resource_root
+    version_file = resource_root() / "VERSION.txt"
+    if version_file.exists():
+        return {"version": version_file.read_text(encoding="utf-8").strip()}
+    return {"version": "v0.0.0"}
+
 @router.post("/system/update")
 async def system_update(force: bool = False):
     """检查更新或执行 git pull origin main"""

@@ -8,9 +8,14 @@ set "APP_DIR=%OUT_DIR%\SecondBrainAI"
 set "SETUP_EXE=%OUT_DIR%\Setup.exe"
 set "VENV_DIR=%ROOT%.venv"
 set "VENV_PY=%VENV_DIR%\Scripts\python.exe"
+set "VERSION=unknown"
+if exist "%ROOT%VERSION.txt" (
+    for /f "usebackq delims=" %%v in ("%ROOT%VERSION.txt") do set "VERSION=%%v"
+)
 
 echo ==============================================
 echo   Second Brain AI - Windows EXE Builder
+echo   Version: !VERSION!
 echo ==============================================
 echo.
 
@@ -63,9 +68,24 @@ echo [5/7] Running PyInstaller...
 "%VENV_PY%" -m PyInstaller second_brain_ai.spec --noconfirm --clean
 if errorlevel 1 goto :build_failed
 
+:: 显式删除根目录下的冗余单体 EXE，以防混淆
+if exist "dist\SecondBrainAI.exe" del /f /q "dist\SecondBrainAI.exe"
+
 echo [6/7] Copying app to %APP_DIR% ...
 if exist "%APP_DIR%" rmdir /s /q "%APP_DIR%"
 mkdir "%APP_DIR%"
+
+:: 显式删除目标路径下可能残余的旧版单文件 exe (防止运行错误)
+if exist "%APP_DIR%.exe" (
+    echo [*] 正在清理旧版单文件 EXE...
+    del /f /q "%APP_DIR%.exe"
+)
+
+echo [*] 正在同步构建产物...
+echo     - 源路径:   %ROOT%dist\SecondBrainAI
+echo     - 目标路径: %APP_DIR%
+echo     - 版本号:   !VERSION!
+
 xcopy /e /i /y dist\SecondBrainAI "%APP_DIR%" >nul
 if errorlevel 1 goto :build_failed
 copy /y windows\Start SecondBrainAI.bat "%APP_DIR%\Start SecondBrainAI.bat" >nul
@@ -77,7 +97,8 @@ if "%ISCC_EXE%"=="" call "%ROOT%setup_build_env.bat" --quiet
 call :find_inno_setup
 if "%ISCC_EXE%"=="" goto :missing_inno
 if exist "%SETUP_EXE%" del /f /q "%SETUP_EXE%"
-"%ISCC_EXE%" "%ROOT%installer.iss"
+set "INNO_VERSION=!VERSION:v=!"
+"%ISCC_EXE%" /DMyAppVersion="!INNO_VERSION!" "%ROOT%installer.iss"
 if errorlevel 1 goto :build_failed
 popd
 

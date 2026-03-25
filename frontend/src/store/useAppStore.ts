@@ -113,7 +113,8 @@ type AppState = {
   isUploading: boolean;
   toast: ToastMessage | null;
   modelConfig: ModelConfig;
-    loadInitialData: () => Promise<void>;
+  appVersion: string;
+  loadInitialData: () => Promise<void>;
     selectNote: (noteId: number) => void;
     createDraftNote: (notebookId?: number | null, parentId?: number | null) => void;
     saveNote: (payload: { id?: number; title?: string; content?: string; notebookId?: number | null; parent_id?: number | null; icon?: string; is_title_manually_edited?: boolean; tags?: string[]; silent?: boolean }) => Promise<void>;
@@ -172,6 +173,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   isUploading: false,
   toast: null,
   modelConfig: defaultModelConfig,
+  appVersion: 'v0.5.1', // 默认版本，加载后会被覆盖
   loadInitialData: async () => {
     // 优先从缓存加载，实现离线瞬间看到内容
     const [cachedNotes, cachedNotebooks, cachedTasks] = await Promise.all([
@@ -191,12 +193,13 @@ export const useAppStore = create<AppState>((set, get) => ({
 
     set({ loading: true });
     try {
-      const [notes, notebooks, tasks, modelConfig, trash] = await Promise.all([
+      const [notes, notebooks, tasks, modelConfig, trash, versionData] = await Promise.all([
         api.listNotes(),
         api.listNotebooks(),
         api.listTasks(),
         api.getModelConfig(),
-        api.getTrash()
+        api.getTrash(),
+        api.getSystemVersion()
       ]);
 
       // 异步更新缓存
@@ -210,6 +213,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         tasks,
         trash,
         modelConfig,
+        appVersion: versionData?.version || get().appVersion,
         selectedNoteId: get().selectedNoteId || notes[0]?.id || null,
         assistant: latestAssistantFromSession(get().chatSessions.find((session) => session.id === get().activeChatSessionId)),
       });

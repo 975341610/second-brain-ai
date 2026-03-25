@@ -8,7 +8,9 @@ root = Path.cwd()
 frontend_dist = root / "frontend_dist"
 backend_data = root / "backend" / "data"
 
-datas = []
+datas = [
+    ("VERSION.txt", "."),
+]
 if frontend_dist.exists():
     datas.append((str(frontend_dist), "frontend_dist"))
 
@@ -60,10 +62,8 @@ pyz = PYZ(a.pure)
 exe = EXE(
     pyz,
     a.scripts,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
     [],
+    exclude_binaries=True,
     name="SecondBrainAI",
     debug=False,
     bootloader_ignore_signals=False,
