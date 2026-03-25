@@ -19,6 +19,11 @@ Production-style MVP for a local-first AI second brain with notes, RAG search, c
 - Local-first persistence and offline-safe responses when no API key is configured
 - Model configuration UI for provider, base URL, API key, and model name
 
+## Versions
+
+- `v0.5.1`: (Current) Robust AI stream parsing, Table TDD fixes, and improved fast update logic.
+- `v0.5.0`: Initial system fix release.
+
 ## Project Structure
 
 ```text

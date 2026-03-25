@@ -17,6 +17,13 @@ from backend.sample_data import seed_database, seed_files
 settings = get_settings()
 app = FastAPI(title=settings.app_name)
 
+# 读取并打印版本号
+version_file = resource_root() / "VERSION.txt"
+version = "unknown"
+if version_file.exists():
+    version = version_file.read_text(encoding="utf-8").strip()
+print(f"[*] Second Brain AI Version: {version}")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,

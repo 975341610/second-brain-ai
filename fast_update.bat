@@ -9,7 +9,7 @@ set "APP_DIR=%OUT_DIR%\SecondBrainAI"
 set "VENV_PY=%ROOT%.venv\Scripts\python.exe"
 
 echo ==============================================
-echo   Second Brain AI - 智能热更新
+echo   Second Brain AI - 智能热更新 (v0.5.1)
 echo ==============================================
 echo.
 
