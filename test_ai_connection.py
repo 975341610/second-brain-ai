@@ -104,6 +104,18 @@ def test_connection():
             print(f"[*] 响应时间: {elapsed:.2f}s")
             print(f"[*] 状态码: {response.status_code}")
             
+            # Check for Cloudflare/HTML Error Pages
+            content_type = response.headers.get("Content-Type", "")
+            server = response.headers.get("Server", "")
+            is_html = "text/html" in content_type or response.text.strip().startswith("<!DOCTYPE")
+            
+            if is_html:
+                print(f"[!] 警告: 收到 HTML 响应，疑似 Cloudflare 或网关错误页。")
+                print(f"    Server: {server}")
+                print(f"    Content-Type: {content_type}")
+                if "cloudflare" in server.lower():
+                    print(f"    提示: 检测到 Cloudflare 节点。如果状态码为 521/522，通常意味着中转网关无法连接到真正的 AI 源站。")
+            
             if response.status_code == 200:
                 print("[+] 连接成功！")
                 result = response.json()

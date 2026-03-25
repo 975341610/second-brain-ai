@@ -268,6 +268,38 @@ class AIClient:
             )
         return f"Error: {err_msg}"
 
+    def _handle_cloudflare_error(self, response: httpx.Response) -> str | None:
+        """
+        Identify HTML error pages (Content-Type text/html or response body contains <!DOCTYPE html>)
+        and provide a concise Chinese error message for Cloudflare 521-524.
+        """
+        content_type = response.headers.get("Content-Type", "")
+        body_peek = response.text[:200]
+        
+        is_html = "text/html" in content_type or "<!DOCTYPE html>" in body_peek
+        if not is_html and response.status_code < 500:
+            return None
+
+        # Detect Cloudflare specific errors
+        server = response.headers.get("Server", "").lower()
+        is_cloudflare = "cloudflare" in server
+        
+        status_code = response.status_code
+        if is_cloudflare or is_html:
+            if status_code == 521:
+                return "Error: [Cloudflare 521] Web Server Is Down (源站 Web 服务已关闭)。"
+            elif status_code == 522:
+                return "Error: [Cloudflare 522] Connection Timed Out (源站连接超时)。建议检查 base_url 是否可直接访问，或尝试更换 OpenAI-compatible 网关。"
+            elif status_code == 523:
+                return "Error: [Cloudflare 523] Origin Is Unreachable (源站不可达)。请检查您的网关/中转服务器配置。"
+            elif status_code == 524:
+                return "Error: [Cloudflare 524] A Timeout Occurred (源站响应超时)。"
+            
+            if is_html:
+                return f"Error: 收到非预期 HTML 响应 (HTTP {status_code})。请检查 API 地址是否正确，或是否被代理/防火墙拦截。"
+                
+        return None
+
     async def _chat_completion(self, prompt: str, config: dict[str, str] | None = None) -> str:
         conf = self._get_active_config(config)
         if not (conf["api_key"] and conf["base_url"]):
@@ -292,7 +324,13 @@ class AIClient:
             self.logger.info(f"Chat Request | URL: {self._obfuscate_url(full_url)} | trust_env: {self.trust_env}")
             response = await self.client.post(full_url, headers=headers, json=payload, timeout=30.0)
             if response.status_code != 200:
-                err_msg = f"Error: {response.status_code} {response.reason_phrase} - {response.text}"
+                # Check for Cloudflare/HTML errors first
+                cf_error = self._handle_cloudflare_error(response)
+                if cf_error:
+                    self.logger.error(f"Chat CF/HTML Error: {cf_error} | URL: {conf['base_url']}")
+                    return cf_error
+
+                err_msg = f"Error: {response.status_code} {response.reason_phrase} - {response.text[:200]}"
                 self.logger.error(f"Chat Error: {err_msg} | URL: {conf['base_url']}")
                 return err_msg
             body = response.json()
@@ -336,6 +374,13 @@ class AIClient:
                     # Handle non-200 status codes manually to yield SSE error
                     if response.status_code != 200:
                         await response.aread() # Must read content before accessing response.text
+                        
+                        cf_error = self._handle_cloudflare_error(response)
+                        if cf_error:
+                            self.logger.error(f"Stream CF/HTML Error: {cf_error} | URL: {conf['base_url']}")
+                            yield format_sse_error(cf_error)
+                            return
+
                         err_body = response.text
                         err_msg = f"API Error {response.status_code}: {err_body[:200]}"
                         self.logger.error(f"Stream Status Error: {err_msg} | URL: {conf['base_url']}")
