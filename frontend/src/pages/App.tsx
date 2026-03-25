@@ -6,6 +6,7 @@ import { EditorPanel } from '../components/EditorPanel';
 import { HomeDashboard } from '../components/HomeDashboard';
 import { SettingsPanel } from '../components/SettingsPanel';
 import { Sidebar } from '../components/Sidebar';
+import { LoginPage } from '../components/LoginPage';
 import { useAppStore } from '../store/useAppStore';
 import { api } from '../lib/api';
 import type { OutlineItem } from '../lib/types';
@@ -25,6 +26,7 @@ function extractReferences(content: string): string[] {
 }
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getItem('access_token'));
   const [mobileTab, setMobileTab] = useState<'notes' | 'editor'>('editor');
   const [activePage, setActivePage] = useState<'home' | 'notes' | 'settings' | 'database'>('home');
   const [showAssistantCard, setShowAssistantCard] = useState(false);
@@ -84,8 +86,24 @@ export default function App() {
   } = useAppStore();
 
   useEffect(() => {
-    void loadInitialData();
-  }, [loadInitialData]);
+    if (isAuthenticated) {
+      void loadInitialData();
+    }
+  }, [loadInitialData, isAuthenticated]);
+
+  useEffect(() => {
+    const handleUnauthorized = () => {
+      setIsAuthenticated(false);
+      localStorage.removeItem('access_token');
+    };
+    window.addEventListener('unauthorized', handleUnauthorized);
+    return () => window.removeEventListener('unauthorized', handleUnauthorized);
+  }, []);
+
+  const handleLogin = (token: string) => {
+    localStorage.setItem('access_token', token);
+    setIsAuthenticated(true);
+  };
 
   useEffect(() => {
     if (!toast) return;
@@ -107,7 +125,10 @@ export default function App() {
 
   return (
     <>
-    <main className="min-h-screen bg-reflect-bg text-reflect-text font-sans antialiased lg:flex lg:gap-0">
+    {!isAuthenticated ? (
+      <LoginPage onLogin={handleLogin} />
+    ) : (
+      <main className="min-h-screen bg-reflect-bg text-reflect-text font-sans antialiased lg:flex lg:gap-0">
       {/* Toast Notification */}
       {toast && (
         <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-2 rounded-xl border px-6 py-4 text-sm shadow-soft-lg animate-in fade-in slide-in-from-bottom-4 duration-300 ${toastClasses}`}>
@@ -260,6 +281,7 @@ export default function App() {
         </>
       )}
     </main>
+    )}
     <div className="fixed bottom-4 left-4 z-50 text-[10px] text-stone-400 font-mono pointer-events-auto opacity-30 hover:opacity-100 transition-opacity max-w-[400px] truncate" title={`${appVersion} | ${gitCommit}\n${exePath}`}>
       {appVersion} ({gitCommit})
     </div>

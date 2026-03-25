@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -30,12 +30,41 @@ except Exception as e:
 print(f"[*] Second Brain AI Version: {version}")
 
 app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.cors_origins,
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+     CORSMiddleware,
+     allow_origins=settings.cors_origins,
+     allow_credentials=False,
+     allow_methods=["*"],
+     allow_headers=["*"],
+ )
+
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    # 豁免路径：健康检查、静态文件、以及认证配置本身不开启时
+    if (
+        not settings.access_token
+        or request.url.path == "/health"
+        or not request.url.path.startswith(settings.api_prefix)
+        # 允许某些不需要认证的路径，比如媒体文件，如果需要也可以加上
+        or request.url.path.startswith(f"{settings.api_prefix}/media/files")
+    ):
+        return await call_next(request)
+
+    # 从 Header 或 Cookie 中获取 Token
+    auth_header = request.headers.get("Authorization")
+    token = None
+    if auth_header and auth_header.startswith("Bearer "):
+        token = auth_header.split(" ")[1]
+    
+    if not token:
+        token = request.cookies.get("access_token")
+
+    if token != settings.access_token:
+        return JSONResponse(
+            status_code=401,
+            content={"detail": "Unauthorized: Invalid or missing access token"}
+        )
+
+    return await call_next(request)
 
 app.include_router(router, prefix=settings.api_prefix)
 

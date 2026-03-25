@@ -2,14 +2,25 @@ import type { AskResponse, ModelConfig, Note, Notebook, NoteProperty, Task, Tras
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
+function getAuthHeaders() {
+  const token = localStorage.getItem('access_token');
+  return token ? { 'Authorization': `Bearer ${token}` } : {};
+}
+
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
     headers: {
       'Content-Type': 'application/json',
+      ...getAuthHeaders(),
       ...(options?.headers || {}),
     },
     ...options,
   });
+  if (response.status === 401) {
+    // 触发认证失败事件或清除 token
+    localStorage.removeItem('access_token');
+    window.dispatchEvent(new CustomEvent('unauthorized'));
+  }
   if (!response.ok) {
     const message = await response.text();
     throw new Error(message || 'Request failed');
@@ -68,9 +79,16 @@ export const api = {
   streamInlineAI: async (payload: { prompt: string; context?: string; action: string }, onChunk: (chunk: string) => void) => {
     const response = await fetch(`${API_BASE}/ai/inline`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        ...getAuthHeaders(),
+      },
       body: JSON.stringify(payload),
     });
+    if (response.status === 401) {
+      localStorage.removeItem('access_token');
+      window.dispatchEvent(new CustomEvent('unauthorized'));
+    }
     if (!response.ok) throw new Error(await response.text());
     const reader = response.body?.getReader();
     if (!reader) return;
@@ -84,9 +102,16 @@ export const api = {
   streamChat: async (payload: { question: string; mode: string }, onChunk: (chunk: string) => void) => {
     const response = await fetch(`${API_BASE}/chat`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        ...getAuthHeaders(),
+      },
       body: JSON.stringify(payload),
     });
+    if (response.status === 401) {
+      localStorage.removeItem('access_token');
+      window.dispatchEvent(new CustomEvent('unauthorized'));
+    }
     if (!response.ok) throw new Error(await response.text());
     const reader = response.body?.getReader();
     if (!reader) return;

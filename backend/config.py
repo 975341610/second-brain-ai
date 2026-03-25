@@ -79,6 +79,7 @@ class Settings(BaseSettings):
     chunk_overlap_words: int = 80
     top_k: int = 5
     cors_origins: list[str] = ["*"]
+    access_token: str = ""  # 访问密钥，为空则不开启认证
 
     model_config = SettingsConfigDict(env_file=str(PROJECT_DIR / ".env"), extra="ignore")
 

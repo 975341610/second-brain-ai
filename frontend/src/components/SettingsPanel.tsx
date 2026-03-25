@@ -1,4 +1,4 @@
-import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import type { ModelConfig } from '../lib/types';
 import { api } from '../lib/api';
@@ -11,6 +11,7 @@ type SettingsPanelProps = {
 export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPanelProps) {
   const [config, setConfig] = useState(modelConfig);
   const [dataPath, setDataPath] = useState('');
+  const [accessToken, setAccessToken] = useState(() => localStorage.getItem('access_token') || '');
   const [logs, setLogs] = useState<string[]>([]);
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateStatus, setUpdateStatus] = useState<'idle' | 'checking' | 'up-to-date' | 'pending' | 'updating' | 'success' | 'error'>('idle');
@@ -93,6 +94,16 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
     }
   };
 
+  const handleUpdateAccessToken = () => {
+    localStorage.setItem('access_token', accessToken);
+    alert('本地访问密钥已更新。请确保它与后端配置一致。');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    window.dispatchEvent(new CustomEvent('unauthorized'));
+  };
+
   return (
     <section className="space-y-6">
       <div className="rounded-[28px] border border-white/50 bg-[rgba(255,252,247,0.88)] p-6 shadow-soft backdrop-blur">
@@ -136,6 +147,38 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
               </button>
               <div className="text-[11px] text-stone-400 leading-relaxed italic">
                 * 切换成功后请重启软件生效。
+              </div>
+            </div>
+          </div>
+
+          {/* 访问密钥设置 */}
+          <div className="rounded-[24px] bg-white/85 p-5">
+            <div className="mb-3 flex items-center gap-2 text-sm font-medium text-stone-500"><ShieldCheck size={16} /> 访问控制</div>
+            <div className="space-y-3">
+              <div className="text-xs text-stone-400 mb-1">本地 Access Token</div>
+              <input 
+                type="password"
+                value={accessToken} 
+                onChange={(e) => setAccessToken(e.target.value)} 
+                className="w-full rounded-2xl border border-stone-200 px-3 py-2 text-sm" 
+                placeholder="输入密钥" 
+              />
+              <div className="flex gap-2">
+                <button 
+                  onClick={handleUpdateAccessToken} 
+                  className="flex-1 rounded-2xl bg-stone-900 px-4 py-3 text-sm font-medium text-white hover:bg-stone-800 transition-colors"
+                >
+                  更新密钥
+                </button>
+                <button 
+                  onClick={handleLogout} 
+                  className="rounded-2xl border border-rose-200 px-4 py-3 text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors"
+                >
+                  退出登录
+                </button>
+              </div>
+              <div className="text-[11px] text-stone-400 leading-relaxed italic">
+                * 修改此处仅更新浏览器存储的密钥，后端验证密钥需在 .env 或 backend/config.py 中配置。
               </div>
             </div>
           </div>
