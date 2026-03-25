@@ -612,15 +612,15 @@ async def get_system_logs():
     """获取实时日志 Buffer"""
     return {"logs": log_buffer.get_logs()}
 
-@router.post("/system/data-path")
-async def update_data_path(payload: dict):
-    """更新自定义数据路径并移动现有文件"""
+@router.post("/system/switch-data-path")
+async def switch_data_path(payload: dict):
+    """切换数据存储路径。如果目标路径不存在数据库，则迁移；如果已存在，则直接切换。"""
     new_path_str = payload.get("data_path")
     if not new_path_str:
         raise HTTPException(status_code=400, detail="Missing data_path")
     
     new_path = Path(new_path_str).resolve()
-    old_path = settings.data_root
+    old_path = settings.data_root.resolve()
     
     if new_path == old_path:
         return {"status": "ok", "message": "Path is same"}
@@ -629,27 +629,46 @@ async def update_data_path(payload: dict):
         # 1. 确保新路径父目录存在
         new_path.mkdir(parents=True, exist_ok=True)
         
-        # 2. 移动现有文件 (如果有)
-        if old_path.exists():
-            print(f"[*] Moving data from {old_path} to {new_path}...")
-            # 由于可能跨盘符，采用 copy + remove
-            for item in old_path.iterdir():
-                dest = new_path / item.name
-                if item.is_dir():
-                    shutil.copytree(item, dest, dirs_exist_ok=True)
-                else:
-                    shutil.copy2(item, dest)
-            # 备注：为了安全，暂不删除原目录，让用户手动清理
-            # shutil.rmtree(old_path)
-            
-        # 3. 写入配置文件
+        # 2. 检查目标路径是否已存在数据库
+        target_db = new_path / "second_brain.db"
+        if not target_db.exists():
+            # 目标路径没有数据库，执行“迁移”逻辑：将当前 data_root 的所有文件剪切/移动到新路径
+            if old_path.exists():
+                print(f"[*] Moving data from {old_path} to {new_path}...")
+                # 遍历旧目录下的所有文件和文件夹
+                for item in old_path.iterdir():
+                    dest = new_path / item.name
+                    # 如果目标已存在，先尝试删除（通常新目录下不会有同名文件）
+                    if dest.exists():
+                        if dest.is_dir():
+                            shutil.rmtree(dest)
+                        else:
+                            dest.unlink()
+                    
+                    # 尝试移动
+                    try:
+                        shutil.move(str(item), str(dest))
+                    except Exception:
+                        if item.is_dir():
+                            shutil.copytree(item, dest, dirs_exist_ok=True)
+                            shutil.rmtree(item)
+                        else:
+                            shutil.copy2(item, dest)
+                            item.unlink()
+        else:
+            # 目标路径已存在数据库，直接切换指向新路径（相当于自动读取新路径的旧数据）
+            print(f"[*] Target database exists at {target_db}, switching engine to use it.")
+
+        # 3. 更新 data_config.json
         config_path = get_custom_config_path()
         with open(config_path, "w", encoding="utf-8") as f:
             json.dump({"data_path": str(new_path)}, f, indent=4)
             
-        return {"status": "ok", "message": "Data path updated. Please restart app."}
+        return {"status": "ok", "message": "路径切换成功，请重启软件生效"}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to update data path: {str(e)}")
+        import logging
+        logging.getLogger(__name__).error(f"Failed to switch data path: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to switch data path: {str(e)}")
 
 @router.get("/system/version")
 async def get_system_version():
@@ -745,60 +764,6 @@ async def system_update(force: bool = False):
         return {"status": "ok", "output": f"✅ 更新完成！\n{output}"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-@router.post("/system/import-data")
-async def import_data(payload: dict):
-    """从本地目录导入数据并覆盖当前数据"""
-    from backend.database import engine
-    source_path_str = payload.get("source_path")
-    if not source_path_str:
-        raise HTTPException(status_code=400, detail="Missing source_path")
-    
-    source_path = Path(source_path_str).resolve()
-    if not source_path.exists() or not source_path.is_dir():
-        raise HTTPException(status_code=400, detail=f"Invalid source path: {source_path_str}")
-    
-    # 验证是否包含核心数据库文件
-    db_file = source_path / "second_brain.db"
-    if not db_file.exists():
-        raise HTTPException(status_code=400, detail=f"second_brain.db not found in {source_path_str}")
-
-    target_path = settings.data_root.resolve()
-    if source_path == target_path:
-        raise HTTPException(status_code=400, detail="选择的导入目录与当前数据目录相同，无需导入")
-    
-    try:
-        # 1. 释放当前数据库连接
-        engine.dispose()
-        
-        # 2. 覆盖数据
-        print(f"[*] Importing data from {source_path} to {target_path}...")
-        
-        # 定义需要迁移的项目
-        items_to_import = ["second_brain.db", "chroma_store", "uploads", "sample_docs"]
-        
-        for item_name in items_to_import:
-            src_item = source_path / item_name
-            if not src_item.exists():
-                continue
-                
-            dest_item = target_path / item_name
-            try:
-                if src_item.is_dir():
-                    # 目录覆盖
-                    shutil.copytree(src_item, dest_item, dirs_exist_ok=True)
-                else:
-                    # 文件覆盖
-                    shutil.copy2(src_item, dest_item)
-            except shutil.SameFileError:
-                # 即使路径没被前面的 == 判定出来（例如软链接），这里也能兜底
-                continue
-                
-        return {"status": "ok", "message": "Import successful. Please restart the app."}
-    except Exception as e:
-        import logging
-        logging.getLogger(__name__).error(f"Failed to import data: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Failed to import data: {str(e)}")
 
 @router.post("/system/restart")
 async def system_restart():

@@ -155,13 +155,9 @@ export const api = {
   // 🖥️ 系统管理 API (Windows 窗口化增强)
   // ============================================================
   getSystemLogs: () => request<{ logs: string[] }>('/system/logs'),
-  updateDataPath: (dataPath: string) => request<{ status: string; message: string }>('/system/data-path', {
+  switchDataPath: (dataPath: string) => request<{ status: string; message: string }>('/system/switch-data-path', {
     method: 'POST',
     body: JSON.stringify({ data_path: dataPath }),
-  }),
-  importData: (sourcePath: string) => request<{ status: string; message: string }>('/system/import-data', {
-    method: 'POST',
-    body: JSON.stringify({ source_path: sourcePath }),
   }),
   checkUpdate: () => request<{ status: string; output: string }>('/system/update', { method: 'POST' }),
   performUpdate: () => request<{ status: string; output: string }>('/system/update?force=true', { method: 'POST' }),

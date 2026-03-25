@@ -213,7 +213,7 @@ class AIClient:
             "stream": True,
         }
         
-        first_token_timeout = 15.0 # Increased for stability
+        first_token_timeout = 60.0 # Increased for stability (e.g. DeepSeek R1)
         
         for attempt in range(3):
             try:
