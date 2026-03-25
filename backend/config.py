@@ -81,7 +81,7 @@ class Settings(BaseSettings):
     cors_origins: list[str] = ["*"]
     access_token: str = ""  # 访问密钥，为空则不开启认证
 
-    model_config = SettingsConfigDict(env_file=str(PROJECT_DIR / ".env"), extra="ignore")
+    model_config = SettingsConfigDict(env_file=str(runtime_root() / ".env"), extra="ignore")
 
 
 @lru_cache(maxsize=1)
