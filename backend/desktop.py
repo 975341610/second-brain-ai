@@ -16,8 +16,16 @@ import uvicorn
 import tkinter as tk
 from tkinter import messagebox
 import requests
-import keyboard
-from plyer import notification
+
+try:
+    import keyboard
+except ImportError:
+    keyboard = None
+
+try:
+    from plyer import notification
+except ImportError:
+    notification = None
 
 
 # ============================================================
@@ -147,12 +155,18 @@ if __name__ == "__main__":
                         data = resp.json()
                         exp = data.get("exp_gained", 10)
                         # 系统通知 (plyer)
-                        notification.notify(
-                            title="灵感已捕获！",
-                            message=f"灵感已飞向收集箱。经验值 +{exp}",
-                            app_name="Second Brain AI",
-                            timeout=3
-                        )
+                        if notification:
+                            try:
+                                notification.notify(
+                                    title="灵感已捕获！",
+                                    message=f"灵感已飞向收集箱。经验值 +{exp}",
+                                    app_name="Second Brain AI",
+                                    timeout=3
+                                )
+                            except Exception as ne:
+                                print(f"[!] Notification error: {str(ne)}")
+                        else:
+                            print("[*] Notification skipped: plyer not available")
                 except Exception as e:
                     print(f"[!] Quick capture error: {str(e)}")
             root.destroy()
@@ -168,9 +182,16 @@ if __name__ == "__main__":
 
     def setup_hotkeys():
         """在后台注册全局快捷键"""
-        print("[*] Registering global hotkey: Ctrl+Alt+N")
-        keyboard.add_hotkey("ctrl+alt+n", lambda: threading.Thread(target=show_quick_capture, daemon=True).start())
-        keyboard.wait()
+        if not keyboard:
+            print("[!] Global hotkeys disabled: 'keyboard' module not found.")
+            return
+            
+        try:
+            print("[*] Registering global hotkey: Ctrl+Alt+N")
+            keyboard.add_hotkey("ctrl+alt+n", lambda: threading.Thread(target=show_quick_capture, daemon=True).start())
+            keyboard.wait()
+        except Exception as e:
+            print(f"[!] Hotkey error: {str(e)}")
 
     # 在单独线程运行快捷键监听
     threading.Thread(target=setup_hotkeys, daemon=True).start()

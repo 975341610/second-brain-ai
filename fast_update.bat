@@ -33,9 +33,10 @@ if not exist "%VENV_PY%" (
     exit /b 1
 )
 
-echo [1/4] 正在清理旧的构建缓存...
+echo [1/4] 正在清理旧的构建缓存并同步环境...
 if exist build rmdir /s /q build
 if exist dist rmdir /s /q dist
+"%VENV_PY%" -m pip install keyboard plyer --upgrade
 
 echo [2/4] 正在强制构建前端...
 cd /d "%ROOT%frontend"
