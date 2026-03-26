@@ -13,16 +13,22 @@ import time
 import webbrowser
 from pathlib import Path
 
-try:
-    import webview
-except ImportError:
-    webview = None
-
 import uvicorn
 import tkinter as tk
 from tkinter import messagebox
 import requests
 import traceback
+
+try:
+    import keyboard
+except ImportError:
+    keyboard = None
+
+try:
+    from plyer import notification
+except ImportError:
+    notification = None
+
 
 def show_error_popup(error_msg: str):
     """显示原生的错误弹窗"""
@@ -39,17 +45,6 @@ def show_error_popup(error_msg: str):
             ctypes.windll.user32.MessageBoxW(0, error_msg, "启动严重错误", 0x10)
         except:
             print(f"CRITICAL ERROR: {error_msg}")
-
-try:
-    import keyboard
-except ImportError:
-    keyboard = None
-
-try:
-    from plyer import notification
-except ImportError:
-    notification = None
-
 
 # ============================================================
 # 🔧 ChromaDB PyInstaller 最终修复 (v0.3.36)
@@ -195,7 +190,7 @@ if __name__ == "__main__":
                     metadata = json.load(f)
             except: pass
 
-        print(f"[*] Starting Second Brain AI (Native Window Mode)...")
+        print(f"[*] Starting Second Brain AI (Browser Mode)...")
         print(f"[*] Version: {metadata.get('version', 'unknown')}")
         print(f"[*] Git Commit: {metadata.get('git_commit', 'unknown')}")
         print(f"[*] Build Time: {metadata.get('build_time', 'unknown')}")
@@ -226,23 +221,16 @@ if __name__ == "__main__":
         # 在单独线程运行快捷键监听
         threading.Thread(target=setup_hotkeys, daemon=True).start()
 
-        # 启动前端窗口
-        if webview:
-            print("[*] Opening Native Window...")
-            webview.create_window(
-                "Second Brain AI",
-                "http://127.0.0.1:8765",
-                width=1280,
-                height=800,
-                background_color="#ffffff"
-            )
-            webview.start()
-        else:
-            print("[!] pywebview not installed. Falling back to browser...")
-            threading.Thread(target=open_browser, daemon=True).start()
-            # 这种情况下主线程不能结束，因为 uvicorn 是在子线程跑的
+        # 启动前端浏览器
+        print("[*] Opening Default System Browser...")
+        threading.Thread(target=open_browser, daemon=True).start()
+
+        # 保持主线程存活
+        try:
             while True:
                 time.sleep(1)
+        except KeyboardInterrupt:
+            print("[*] Shutting down...")
     except Exception as e:
         full_error = traceback.format_exc()
         print(f"[CRITICAL ERROR] Failed to initialize Second Brain AI:\n{full_error}")
