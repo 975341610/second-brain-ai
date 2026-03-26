@@ -16,6 +16,23 @@ import uvicorn
 import tkinter as tk
 from tkinter import messagebox
 import requests
+import traceback
+
+def show_error_popup(error_msg: str):
+    """显示原生的错误弹窗"""
+    try:
+        # 使用 tkinter 弹窗
+        root = tk.Tk()
+        root.withdraw() # 隐藏主窗口
+        messagebox.showerror("启动失败 - Second Brain AI", error_msg)
+        root.destroy()
+    except Exception as e:
+        # 如果 tkinter 也挂了，尝试用 ctypes (Windows 专属)
+        try:
+            import ctypes
+            ctypes.windll.user32.MessageBoxW(0, error_msg, "启动严重错误", 0x10)
+        except:
+            print(f"CRITICAL ERROR: {error_msg}")
 
 try:
     import keyboard
@@ -79,42 +96,48 @@ def open_browser() -> None:
 
 
 if __name__ == "__main__":
-    setup_log_interceptor()
-    setup_desktop_env()
-    
-    # 打印一些调试信息到控制台 (此时会被拦截并存入 buffer)
-    from backend.config import resource_root
-    import json
-    metadata_file = resource_root() / "metadata.json"
-    metadata = {}
-    if metadata_file.exists():
-        try:
-            with open(metadata_file, "r") as f:
-                metadata = json.load(f)
-        except: pass
+    try:
+        setup_log_interceptor()
+        setup_desktop_env()
+        
+        # 打印一些调试信息到控制台 (此时会被拦截并存入 buffer)
+        from backend.config import resource_root
+        import json
+        metadata_file = resource_root() / "metadata.json"
+        metadata = {}
+        if metadata_file.exists():
+            try:
+                with open(metadata_file, "r") as f:
+                    metadata = json.load(f)
+            except: pass
 
-    print(f"[*] Starting Second Brain AI (Native Window Mode)...")
-    print(f"[*] Version: {metadata.get('version', 'unknown')}")
-    print(f"[*] Git Commit: {metadata.get('git_commit', 'unknown')}")
-    print(f"[*] Build Time: {metadata.get('build_time', 'unknown')}")
-    print(f"[*] Frozen: {getattr(sys, 'frozen', False)}")
-    print(f"[*] Executable: {sys.executable}")
-    print(f"[*] Current Working Directory: {os.getcwd()}")
+        print(f"[*] Starting Second Brain AI (Native Window Mode)...")
+        print(f"[*] Version: {metadata.get('version', 'unknown')}")
+        print(f"[*] Git Commit: {metadata.get('git_commit', 'unknown')}")
+        print(f"[*] Build Time: {metadata.get('build_time', 'unknown')}")
+        print(f"[*] Frozen: {getattr(sys, 'frozen', False)}")
+        print(f"[*] Executable: {sys.executable}")
+        print(f"[*] Current Working Directory: {os.getcwd()}")
 
-    # 启动后端线程
-    def run_api():
-        print("[*] Launching API server...")
-        host = os.environ.get("HOST", "127.0.0.1")
-        port = int(os.environ.get("PORT", "8765"))
-        uvicorn.run(
-            app,
-            host=host,
-            port=port,
-            log_config=None,
-            log_level="info",
-        )
+        # 启动后端线程
+        def run_api():
+            try:
+                print("[*] Launching API server...")
+                host = os.environ.get("HOST", "127.0.0.1")
+                port = int(os.environ.get("PORT", "8765"))
+                uvicorn.run(
+                    app,
+                    host=host,
+                    port=port,
+                    log_config=None,
+                    log_level="info",
+                )
+            except Exception as api_err:
+                err_msg = f"API Server Failed to start:\n{traceback.format_exc()}"
+                print(f"[!] {err_msg}")
+                show_error_popup(err_msg)
 
-    threading.Thread(target=run_api, daemon=True).start()
+        threading.Thread(target=run_api, daemon=True).start()
 
     # ============================================================
     # 📝 全局灵感捕获 (Quick Capture)
@@ -213,3 +236,8 @@ if __name__ == "__main__":
         # 这种情况下主线程不能结束，因为 uvicorn 是在子线程跑的
         while True:
             time.sleep(1)
+    except Exception as e:
+        full_error = traceback.format_exc()
+        print(f"[CRITICAL ERROR] Failed to initialize Second Brain AI:\n{full_error}")
+        show_error_popup(f"程序初始化失败，详细错误信息如下：\n\n{full_error}")
+        sys.exit(1)
