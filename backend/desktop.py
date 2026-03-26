@@ -95,6 +95,84 @@ def open_browser() -> None:
     webbrowser.open("http://127.0.0.1:8765")
 
 
+
+# ============================================================
+# 📝 全局灵感捕获 (Quick Capture)
+# ============================================================
+
+def show_quick_capture():
+    """弹出 Tkinter 输入框"""
+    root = tk.Tk()
+    root.title("灵感捕获")
+    
+    # 窗口样式：无边框、置顶
+    root.overrideredirect(True)
+    root.attributes("-topmost", True)
+    
+    # 居中显示
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    width, height = 500, 60
+    x = (screen_width - width) // 2
+    y = (screen_height - height) // 3
+    root.geometry(f"{width}x{height}+{x}+{y}")
+    
+    # 简易输入框
+    frame = tk.Frame(root, bg="#2d2d2d", highlightthickness=2, highlightbackground="#3d3d3d")
+    frame.pack(fill="both", expand=True)
+    
+    entry = tk.Entry(frame, bg="#2d2d2d", fg="white", font=("Arial", 16), insertbackground="white", borderwidth=0)
+    entry.pack(fill="x", padx=15, pady=15)
+    entry.focus_set()
+    
+    def submit(event=None):
+        content = entry.get().strip()
+        if content:
+            try:
+                port = os.environ.get("PORT", "8765")
+                resp = requests.post(f"http://127.0.0.1:{port}/api/notes/quick-capture", json={"content": content}, timeout=3)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    exp = data.get("exp_gained", 10)
+                    # 系统通知 (plyer)
+                    if notification:
+                        try:
+                            notification.notify(
+                                title="灵感已捕获！",
+                                message=f"灵感已飞向收集箱。经验值 +{exp}",
+                                app_name="Second Brain AI",
+                                timeout=3
+                            )
+                        except Exception as ne:
+                            print(f"[!] Notification error: {str(ne)}")
+                    else:
+                        print("[*] Notification skipped: plyer not available")
+            except Exception as e:
+                print(f"[!] Quick capture error: {str(e)}")
+        root.destroy()
+
+    def cancel(event=None):
+        root.destroy()
+
+    # 绑定热键
+    entry.bind("<Return>", submit)
+    entry.bind("<Escape>", cancel)
+    
+    root.mainloop()
+
+def setup_hotkeys():
+    """在后台注册全局快捷键"""
+    if not keyboard:
+        print("[!] Global hotkeys disabled: 'keyboard' module not found.")
+        return
+        
+    try:
+        print("[*] Registering global hotkey: Ctrl+Alt+N")
+        keyboard.add_hotkey("ctrl+alt+n", lambda: threading.Thread(target=show_quick_capture, daemon=True).start())
+        keyboard.wait()
+    except Exception as e:
+        print(f"[!] Hotkey error: {str(e)}")
+
 if __name__ == "__main__":
     try:
         setup_log_interceptor()
@@ -139,105 +217,29 @@ if __name__ == "__main__":
 
         threading.Thread(target=run_api, daemon=True).start()
 
-    # ============================================================
-    # 📝 全局灵感捕获 (Quick Capture)
-    # ============================================================
-    
-    def show_quick_capture():
-        """弹出 Tkinter 输入框"""
-        root = tk.Tk()
-        root.title("灵感捕获")
-        
-        # 窗口样式：无边框、置顶
-        root.overrideredirect(True)
-        root.attributes("-topmost", True)
-        
-        # 居中显示
-        screen_width = root.winfo_screenwidth()
-        screen_height = root.winfo_screenheight()
-        width, height = 500, 60
-        x = (screen_width - width) // 2
-        y = (screen_height - height) // 3
-        root.geometry(f"{width}x{height}+{x}+{y}")
-        
-        # 简易输入框
-        frame = tk.Frame(root, bg="#2d2d2d", highlightthickness=2, highlightbackground="#3d3d3d")
-        frame.pack(fill="both", expand=True)
-        
-        entry = tk.Entry(frame, bg="#2d2d2d", fg="white", font=("Arial", 16), insertbackground="white", borderwidth=0)
-        entry.pack(fill="x", padx=15, pady=15)
-        entry.focus_set()
-        
-        def submit(event=None):
-            content = entry.get().strip()
-            if content:
-                try:
-                    port = os.environ.get("PORT", "8765")
-                    resp = requests.post(f"http://127.0.0.1:{port}/api/notes/quick-capture", json={"content": content}, timeout=3)
-                    if resp.status_code == 200:
-                        data = resp.json()
-                        exp = data.get("exp_gained", 10)
-                        # 系统通知 (plyer)
-                        if notification:
-                            try:
-                                notification.notify(
-                                    title="灵感已捕获！",
-                                    message=f"灵感已飞向收集箱。经验值 +{exp}",
-                                    app_name="Second Brain AI",
-                                    timeout=3
-                                )
-                            except Exception as ne:
-                                print(f"[!] Notification error: {str(ne)}")
-                        else:
-                            print("[*] Notification skipped: plyer not available")
-                except Exception as e:
-                    print(f"[!] Quick capture error: {str(e)}")
-            root.destroy()
+        # 在单独线程运行快捷键监听
+        threading.Thread(target=setup_hotkeys, daemon=True).start()
 
-        def cancel(event=None):
-            root.destroy()
-
-        # 绑定热键
-        entry.bind("<Return>", submit)
-        entry.bind("<Escape>", cancel)
-        
-        root.mainloop()
-
-    def setup_hotkeys():
-        """在后台注册全局快捷键"""
-        if not keyboard:
-            print("[!] Global hotkeys disabled: 'keyboard' module not found.")
-            return
-            
-        try:
-            print("[*] Registering global hotkey: Ctrl+Alt+N")
-            keyboard.add_hotkey("ctrl+alt+n", lambda: threading.Thread(target=show_quick_capture, daemon=True).start())
-            keyboard.wait()
-        except Exception as e:
-            print(f"[!] Hotkey error: {str(e)}")
-
-    # 在单独线程运行快捷键监听
-    threading.Thread(target=setup_hotkeys, daemon=True).start()
-
-    # 启动前端窗口
-    if webview:
-        print("[*] Opening Native Window...")
-        webview.create_window(
-            "Second Brain AI",
-            "http://127.0.0.1:8765",
-            width=1280,
-            height=800,
-            background_color="#ffffff"
-        )
-        webview.start()
-    else:
-        print("[!] pywebview not installed. Falling back to browser...")
-        threading.Thread(target=open_browser, daemon=True).start()
-        # 这种情况下主线程不能结束，因为 uvicorn 是在子线程跑的
-        while True:
-            time.sleep(1)
+        # 启动前端窗口
+        if webview:
+            print("[*] Opening Native Window...")
+            webview.create_window(
+                "Second Brain AI",
+                "http://127.0.0.1:8765",
+                width=1280,
+                height=800,
+                background_color="#ffffff"
+            )
+            webview.start()
+        else:
+            print("[!] pywebview not installed. Falling back to browser...")
+            threading.Thread(target=open_browser, daemon=True).start()
+            # 这种情况下主线程不能结束，因为 uvicorn 是在子线程跑的
+            while True:
+                time.sleep(1)
     except Exception as e:
         full_error = traceback.format_exc()
         print(f"[CRITICAL ERROR] Failed to initialize Second Brain AI:\n{full_error}")
         show_error_popup(f"程序初始化失败，详细错误信息如下：\n\n{full_error}")
         sys.exit(1)
+
