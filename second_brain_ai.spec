@@ -24,7 +24,7 @@ if sample_docs.exists():
 
 datas += collect_data_files("chromadb")
 
-hiddenimports = collect_submodules("chromadb") + [
+hiddenimports = collect_submodules("chromadb") + collect_submodules("keyboard") + collect_submodules("plyer") + [
     "backend",
     "backend.api",
     "backend.agent",
@@ -46,6 +46,10 @@ hiddenimports = collect_submodules("chromadb") + [
     "pydantic_settings",
     "webview",
     "keyboard",
+    "keyboard._winkeyboard",
+    "keyboard._nixkeyboard",
+    "plyer",
+    "plyer.platforms.win.notification",
 ]
 
 a = Analysis(
