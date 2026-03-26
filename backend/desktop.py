@@ -2,6 +2,12 @@ from __future__ import annotations
 
 import os
 import sys
+
+# 🚀 模块导入路径修复：确保项目根目录在 sys.path 中，防止 ModuleNotFoundError
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
+
 import threading
 import time
 import webbrowser

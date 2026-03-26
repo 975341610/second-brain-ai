@@ -73,7 +73,7 @@ hiddenimports = collect_submodules("chromadb") + collect_submodules("keyboard") 
 
 a = Analysis(
     ["backend/desktop.py"],
-    pathex=[str(root)],
+    pathex=[str(root), str(root / "backend")],
     binaries=[],
     datas=datas,
     hiddenimports=hiddenimports,
