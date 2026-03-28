@@ -165,18 +165,13 @@ function createWindow() {
   });
 }
 
-app.whenReady().then(async () => {
+app.whenReady().then(() => {
   createSplashWindow();
   
-  let sidecarStarted = false;
-  try {
-    console.log('Starting Python Sidecar...');
-    await sidecar.start();
-    sidecarStarted = true;
-    console.log('Sidecar started successfully.');
-  } catch (err) {
-    console.error('Failed to start sidecar:', err);
-  }
+  // 启动后端但是不阻塞主窗口创建
+  sidecar.start()
+    .then(() => console.log('Sidecar started successfully.'))
+    .catch((err) => console.error('Failed to start sidecar:', err));
 
   createWindow();
   createTray();
