@@ -35,7 +35,8 @@ export class SidecarManager {
     log.info(`Starting sidecar process: ${command} ${args.join(' ')}`);
     log.info(`Sidecar working directory: ${this.backendPath}`);
 
-    this.process = spawn(command, args, {
+    try {
+      this.process = spawn(command, args, {
       cwd: this.backendPath,
       stdio: 'pipe', // 修改为 pipe 以便捕获输出
       shell: false,
@@ -43,9 +44,15 @@ export class SidecarManager {
       env: {
         ...process.env,
         PORT: '8765',
-        HOST: '127.0.0.1'
+        HOST: '127.0.0.1',
+        PYTHONUNBUFFERED: '1'
       }
     });
+
+    } catch (err) {
+      log.error('Synchronous error during spawn:', err);
+      throw err;
+    }
 
     if (this.process.stdout) {
       this.process.stdout.on('data', (data) => {
@@ -73,6 +80,7 @@ export class SidecarManager {
       });
 
       this.process?.on('error', (err) => {
+        log.error('Backend process emitted error event:', err);
         log.error('Backend process failed to start:', err);
         reject(err);
       });
@@ -87,7 +95,12 @@ export class SidecarManager {
     const healthUrl = 'http://127.0.0.1:8765/health'; // 假设后端有 /health 接口
     for (let i = 0; i < retries; i++) {
       try {
-        const response = await fetch(healthUrl);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const response = await fetch(healthUrl, { signal: controller.signal as any });
+        clearTimeout(timeoutId);
+
         if (response.ok) return;
       } catch (e) {
         // ignore
