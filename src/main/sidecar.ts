@@ -38,7 +38,7 @@ export class SidecarManager {
     this.process = spawn(command, args, {
       cwd: this.backendPath,
       stdio: 'pipe', // 修改为 pipe 以便捕获输出
-      shell: true,
+      shell: false,
       detached: true,
       env: {
         ...process.env,
