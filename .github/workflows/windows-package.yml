@@ -26,6 +26,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -41,14 +43,14 @@ jobs:
         shell: powershell
         run: |
           if (Test-Path package-lock.json) { Remove-Item package-lock.json -Force }
-          yarn install
+          pnpm install --no-frozen-lockfile --config.strict-peer-dependencies=false
 
       - name: Build frontend
         working-directory: frontend
         shell: powershell
         env:
           CI: false
-        run: yarn build
+        run: pnpm run build
 
       - name: Install backend build dependencies
         shell: powershell

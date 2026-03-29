@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -36,22 +38,22 @@ jobs:
           CI: false
         run: |
           if (Test-Path package-lock.json) { Remove-Item package-lock.json -Force }
-          yarn install
-          yarn build
+          pnpm install --no-frozen-lockfile --config.strict-peer-dependencies=false
+          pnpm run build
         working-directory: ./frontend
           
       - name: Install Dependencies
         run: |
           if (Test-Path package-lock.json) { Remove-Item package-lock.json -Force }
-          yarn install
+          pnpm install --no-frozen-lockfile --config.strict-peer-dependencies=false
       - name: Build Windows App
         env:
           CI: false
           CSC_IDENTITY_AUTO_DISCOVERY: false
         run: |
-          yarn build:electron
-          yarn copy:frontend
-          yarn build:builder
+          pnpm run build:electron
+          pnpm run copy:frontend
+          pnpm run build:builder
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
