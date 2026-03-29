@@ -112,12 +112,22 @@ export class SidecarManager {
 
   async stop(): Promise<void> {
     if (this.process?.pid) {
+      log.info('Killing sidecar process using tree-kill...');
       try {
-        // 使用负 PID 杀死进程组 (前提是开启了 detached)
-        process.kill(-this.process.pid, 'SIGTERM');
+        await new Promise<void>((resolve, reject) => {
+          treeKill(this.process!.pid!, 'SIGKILL', (err) => {
+            if (err) {
+              log.error('tree-kill error:', err);
+              reject(err);
+            } else {
+              log.info('Sidecar process tree killed successfully.');
+              resolve();
+            }
+          });
+        });
       } catch (e) {
-        // 如果失败，尝试常规杀死
-        this.process.kill();
+        log.error('Failed to kill sidecar gracefully, forcing kill...', e);
+        this.process.kill('SIGKILL');
       }
       this.process = null;
     }
