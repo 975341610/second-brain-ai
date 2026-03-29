@@ -171,11 +171,7 @@ function createWindow() {
   }
 
   mainWindow.once('ready-to-show', () => {
-    if (splashWindow && !splashWindow.isDestroyed()) {
-      splashWindow.close();
-      splashWindow = null;
-    }
-    if (mainWindow && !mainWindow.isDestroyed()) mainWindow.show();
+    // wait for sidecar to show
   });
 
   mainWindow.on('closed', () => {
@@ -185,19 +181,42 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createSplashWindow();
-  
-  // 启动后端但是不阻塞主窗口创建
-  sidecar.start()
-    .then(() => console.log('Sidecar started successfully.'))
-    .catch((err) => console.error('Failed to start sidecar:', err));
-
   createWindow();
+  
   createTray();
   handleIPC();
   setupAutoUpdater();
 
+  // 异步启动 Sidecar，不阻塞主窗口创建过程
+  sidecar.start()
+    .then(() => {
+      log.info('Sidecar started successfully.');
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.show();
+      }
+      if (splashWindow && !splashWindow.isDestroyed()) {
+        splashWindow.close();
+      }
+    })
+    .catch((err) => {
+      log.error('Failed to start sidecar:', err);
+      // 即便后端启动失败，也尝试显示主窗口，以便用户看到界面进行反馈或展示错误提示
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.show();
+      }
+      if (splashWindow && !splashWindow.isDestroyed()) {
+        splashWindow.close();
+      }
+    });
+
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+      // 如果 sidecar 已经在运行，直接显示
+      if (sidecar.isAlive()) {
+        mainWindow?.show();
+      }
+    }
   });
 });
 
@@ -208,6 +227,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('before-quit', async () => {
-  console.log('Shutting down Sidecar...');
+  log.info('Shutting down Sidecar...');
   await sidecar.stop();
 });
