@@ -7,10 +7,11 @@
   "scripts": {
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
-    "build": "electron-vite build && electron-builder",
-    "build:win": "electron-vite build && electron-builder --win",
+    "build": "npm run build:frontend && electron-vite build && node scripts/copy_frontend.js && electron-builder",
+    "build:win": "npm run build:frontend && electron-vite build && node scripts/copy_frontend.js && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "build:frontend": "cd frontend && npm install && npm run build"
   },
   "dependencies": {
     "electron-updater": "^6.1.8",
