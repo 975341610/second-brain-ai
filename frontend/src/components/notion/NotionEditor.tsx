@@ -563,6 +563,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
           content: currentContent, 
           title: newTitle, 
           icon: note.icon, 
+          parent_id: note.parent_id,
           is_title_manually_edited: isTitleEdited,
           silent: true 
         });
@@ -637,6 +638,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
                     content: content, 
                     title: note.title, 
                     icon: note.icon,
+                    parent_id: note.parent_id,
                     is_title_manually_edited: note.is_title_manually_edited
                   });
                 }
