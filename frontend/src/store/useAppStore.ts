@@ -145,7 +145,8 @@ type AppState = {
   setBgmVolume: (volume: number) => void;
   nextTrack: () => void;
   updateUserTheme: (theme: string) => Promise<void>;
-    selectNote: (noteId: number) => void;
+  updateUserWallpaper: (wallpaperUrl: string) => Promise<void>;
+  selectNote: (noteId: number) => void;
     createDraftNote: (notebookId?: number | null, parentId?: number | null) => void;
     saveNote: (payload: { id?: number; title?: string; content?: string; notebookId?: number | null; parent_id?: number | null; icon?: string; is_title_manually_edited?: boolean; tags?: string[]; silent?: boolean }) => Promise<void>;
     updateNoteTags: (noteId: number, tags: string[]) => Promise<void>;
@@ -327,6 +328,14 @@ export const useAppStore = create<AppState>((set, get) => ({
       set({ userStats });
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `主题切换失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
+    }
+  },
+  updateUserWallpaper: async (wallpaperUrl) => {
+    try {
+      const userStats = await api.updateUserWallpaper(wallpaperUrl);
+      set({ userStats });
+    } catch (error) {
+      set({ toast: { id: Date.now(), tone: 'error', text: `壁纸设置失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
   },
   selectNote: (selectedNoteId) => set((state) => ({ selectedNoteId, recentNoteIds: [selectedNoteId, ...state.recentNoteIds.filter((id) => id !== selectedNoteId)].slice(0, 8) })),

@@ -10,6 +10,7 @@ import { LoginPage } from '../components/LoginPage';
 import { SplashScreen } from '../components/SplashScreen';
 import { Mascot } from '../components/Mascot';
 import { useAppStore } from '../store/useAppStore';
+import { wallpaperStore } from '../lib/wallpaperStore';
 import hyruleSunset from '../assets/ui/hyrule_sunset.webp';
 import { api } from '../lib/api';
 import type { OutlineItem } from '../lib/types';
@@ -33,6 +34,7 @@ export default function App() {
   const [mobileTab, setMobileTab] = useState<'notes' | 'editor'>('editor');
   const [activePage, setActivePage] = useState<'home' | 'notes' | 'settings' | 'database'>('home');
   const [showAssistantCard, setShowAssistantCard] = useState(false);
+  const [wallpaperUrl, setWallpaperUrl] = useState<string | null>(null);
   const {
     notes,
     notebooks,
@@ -116,6 +118,22 @@ export default function App() {
     return () => window.clearTimeout(timer);
   }, [toast, clearToast]);
 
+  useEffect(() => {
+    const loadWallpaper = async () => {
+      if (userStats?.wallpaper_url) {
+        if (userStats.wallpaper_url.startsWith('idb://')) {
+          const url = await wallpaperStore.resolveIdbUrl(userStats.wallpaper_url);
+          setWallpaperUrl(url);
+        } else {
+          setWallpaperUrl(userStats.wallpaper_url);
+        }
+      } else {
+        setWallpaperUrl(null);
+      }
+    };
+    void loadWallpaper();
+  }, [userStats?.wallpaper_url]);
+
   const selectedNote = useMemo(() => notes.find((note) => note.id === selectedNoteId) || null, [notes, selectedNoteId]);
   const recentNotes = useMemo(() => recentNoteIds.map((id) => notes.find((note) => note.id === id)).filter(Boolean) as typeof notes, [recentNoteIds, notes]);
   const relatedNotes = useMemo(() => notes.filter((note) => selectedNote?.links.includes(note.id)).slice(0, 5), [notes, selectedNote]);
@@ -136,7 +154,18 @@ export default function App() {
     ) : (
       <main className="min-h-screen bg-reflect-bg text-reflect-text font-sans antialiased lg:flex lg:gap-0 relative">
       {/* Theme Background Layer */}
-      {userStats?.current_theme === 'zelda' && (
+      {wallpaperUrl && (
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          {wallpaperUrl.includes('video') || wallpaperUrl.endsWith('.mp4') || wallpaperUrl.endsWith('.webm') ? (
+            <video src={wallpaperUrl} autoPlay muted loop className="wallpaper-video" />
+          ) : (
+            <img src={wallpaperUrl} alt="Wallpaper" className="w-full h-full object-cover fixed" />
+          )}
+          <div className="absolute inset-0 bg-black/10 backdrop-blur-[2px]" />
+        </div>
+      )}
+      
+      {userStats?.current_theme === 'zelda' && !wallpaperUrl && (
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img src={hyruleSunset} alt="Hyrule Background" className="w-full h-full object-cover opacity-10 scale-105 fixed" />
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-reflect-bg/80 to-reflect-bg" />
@@ -178,7 +207,7 @@ export default function App() {
         {/* Sidebar Navigation */}
         <div className={`
           ${mobileTab === 'notes' || activePage !== 'notes' ? 'block' : 'hidden lg:block'} 
-          w-full lg:w-[320px] lg:border-r border-reflect-border/50 bg-reflect-sidebar/40
+          w-full lg:w-[320px] lg:border-r border-reflect-border/50 bg-reflect-sidebar/40 ${wallpaperUrl ? 'sidebar-bg-fix' : ''}
         `}>
           <Sidebar
             activePage={activePage}
@@ -224,7 +253,7 @@ export default function App() {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-auto bg-reflect-bg relative">
+        <div className={`flex-1 overflow-auto bg-reflect-bg relative ${wallpaperUrl ? 'bg-transparent' : ''}`}>
           <div className="max-w-5xl mx-auto px-6 py-8 h-full">
             {activePage === 'home' && <HomeDashboard 
               recentNotes={recentNotes} 

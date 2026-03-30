@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
 import { defaultIconFor, isDataIcon, validateExistingDataIcon, validateIconFile } from '../lib/iconUtils';
 import type { Note, Notebook, Task, TrashState } from '../lib/types';
 import { BGMPlayer } from './BGMPlayer';
+import { useAppStore } from '../store/useAppStore';
 
 type SidebarProps = {
   activePage: 'home' | 'notes' | 'settings' | 'database';
@@ -65,6 +66,8 @@ export function Sidebar({
   onPurgeTrash,
   onUpload,
 }: SidebarProps) {
+  const { userStats } = useAppStore();
+  const hasWallpaper = !!userStats?.wallpaper_url;
   const [query, setQuery] = useState('');
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [showAllTags, setShowAllTags] = useState(false);
@@ -293,7 +296,7 @@ export function Sidebar({
   };
 
   return (
-    <aside className="flex h-full flex-col gap-5 py-6 px-3 font-sans antialiased text-reflect-text">
+    <aside className={`flex h-full flex-col gap-5 py-6 px-3 font-sans antialiased text-reflect-text ${hasWallpaper ? 'bg-transparent' : ''}`}>
       {/* Brand Header */}
       <div className="px-2 mb-1">
         <div className="text-[9px] uppercase tracking-[0.4em] text-reflect-muted font-bold opacity-40">Second Brain</div>

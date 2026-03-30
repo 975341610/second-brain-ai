@@ -34,6 +34,7 @@ import { CodeBlockComponent } from '../editor/CodeBlockComponent';
 import { api } from '../../lib/api';
 import { uploadLocalMedia, genericEmbedUrl } from '../editor/utils';
 import type { Note } from '../../lib/types';
+import { useAppStore } from '../../store/useAppStore';
 
 import { 
   Type, Heading1, Heading2, Heading3, CheckSquare, List, ListOrdered, 
@@ -59,6 +60,8 @@ interface NotionEditorProps {
 export const NotionEditor: React.FC<NotionEditorProps> = ({
   note, notes, onSave, onUpdateTags, onCreateSubPage, onSelectNote, onNotify, outline, references, relatedNotes
 }) => {
+  const { userStats } = useAppStore();
+  const hasWallpaper = !!userStats?.wallpaper_url;
   console.log("NotionEditor (V4 Table Upgrade) Loaded");
   const [isSaving, setIsSaving] = useState(false);
   const [viewMode, setViewMode] = useState<'edit' | 'preview'>('edit');
@@ -604,8 +607,8 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
   }, [editor, note?.id]); // 只依赖 note.id
 
   return (
-    <div ref={editorContainerRef} className={`relative flex flex-col h-full bg-reflect-bg overflow-hidden notion-editor-layout ${viewMode === 'preview' ? 'is-preview' : ''}`}>
-      <div className="flex-1 overflow-y-auto relative bg-reflect-bg scrollbar-hide pt-0">
+    <div ref={editorContainerRef} className={`relative flex flex-col h-full bg-reflect-bg overflow-hidden notion-editor-layout ${viewMode === 'preview' ? 'is-preview' : ''} ${hasWallpaper ? 'bg-transparent' : ''}`}>
+      <div className={`flex-1 overflow-y-auto relative bg-reflect-bg scrollbar-hide pt-0 ${hasWallpaper ? 'bg-transparent' : ''}`}>
         <div className="flex flex-col w-full max-w-[800px] mx-auto">
           <div className="px-8">
             <EditorHeader

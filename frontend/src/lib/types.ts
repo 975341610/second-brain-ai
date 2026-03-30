@@ -101,6 +101,7 @@ export type UserStats = {
   level: number;
   total_captures: number;
   current_theme: string;
+  wallpaper_url?: string;
 };
 
 export type Achievement = {

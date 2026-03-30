@@ -1,7 +1,9 @@
-import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck } from 'lucide-react';
-import { useEffect, useState, useRef } from 'react';
+import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Image as ImageIcon, Upload, Palette } from 'lucide-react';
+import { useEffect, useState, useRef, ChangeEvent } from 'react';
 import type { ModelConfig } from '../lib/types';
 import { api } from '../lib/api';
+import { useAppStore } from '../store/useAppStore';
+import { wallpaperStore } from '../lib/wallpaperStore';
 
 type SettingsPanelProps = {
   modelConfig: ModelConfig;
@@ -9,6 +11,7 @@ type SettingsPanelProps = {
 };
 
 export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPanelProps) {
+  const { userStats, updateUserWallpaper, updateUserTheme } = useAppStore();
   const [config, setConfig] = useState(modelConfig);
   const [dataPath, setDataPath] = useState('');
   const [accessToken, setAccessToken] = useState(() => localStorage.getItem('access_token') || '');
@@ -16,7 +19,17 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateStatus, setUpdateStatus] = useState<'idle' | 'checking' | 'up-to-date' | 'pending' | 'updating' | 'success' | 'error'>('idle');
   const [updateOutput, setUpdateOutput] = useState('');
+  const [isUploadingWallpaper, setIsUploadingWallpaper] = useState(false);
   const logContainerRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const themes = [
+    { id: 'default', name: '默认 (Reflect)', color: 'bg-[#fcfbf9]' },
+    { id: 'cyber', name: '赛博朋克', color: 'bg-[#00f3ff]' },
+    { id: 'p5', name: '女神异闻录 5', color: 'bg-[#d32f2f]' },
+    { id: 'zelda', name: '塞尔达', color: 'bg-[#00eeff]' },
+    { id: 'ff7', name: '最终幻想 7', color: 'bg-[#003da5]' },
+  ];
 
   useEffect(() => {
     setConfig(modelConfig);
@@ -104,6 +117,28 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
     window.dispatchEvent(new CustomEvent('unauthorized'));
   };
 
+  const handleWallpaperChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploadingWallpaper(true);
+    try {
+      const id = `wp-${Date.now()}`;
+      const buffer = await file.arrayBuffer();
+      const idbUrl = await wallpaperStore.setWallpaper(id, buffer, file.type, file.name);
+      await updateUserWallpaper(idbUrl);
+      alert('壁纸已上传并保存到本地存储。');
+    } catch (err: any) {
+      alert('壁纸上传失败: ' + err.message);
+    } finally {
+      setIsUploadingWallpaper(false);
+    }
+  };
+
+  const clearWallpaper = async () => {
+    await updateUserWallpaper('');
+  };
+
   return (
     <section className="space-y-6">
       <div className="rounded-[28px] border border-white/50 bg-[rgba(255,252,247,0.88)] p-6 shadow-soft backdrop-blur">
@@ -125,6 +160,65 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
               <input value={config.base_url} onChange={(e) => setConfig({ ...config, base_url: e.target.value })} className="w-full rounded-2xl border border-stone-200 px-3 py-2 text-sm" placeholder="接口地址 (需包含 /v1)" />
               <input value={config.api_key} onChange={(e) => setConfig({ ...config, api_key: e.target.value })} className="w-full rounded-2xl border border-stone-200 px-3 py-2 text-sm" placeholder="API Key" />
               <button onClick={() => onUpdateModelConfig(config)} className="w-full rounded-2xl bg-stone-900 px-4 py-3 text-sm font-medium text-white hover:bg-stone-800 transition-colors">保存设置</button>
+            </div>
+          </div>
+
+          {/* 外观与主题 */}
+          <div className="rounded-[24px] bg-white/85 p-5">
+            <div className="mb-3 flex items-center gap-2 text-sm font-medium text-stone-500"><Palette size={16} /> 主题与外观</div>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-2">
+                {themes.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => updateUserTheme(t.id)}
+                    className={`flex items-center gap-3 rounded-2xl border p-3 transition-all ${
+                      userStats?.current_theme === t.id
+                        ? 'border-stone-900 bg-stone-50 ring-1 ring-stone-900'
+                        : 'border-stone-100 hover:border-stone-300'
+                    }`}
+                  >
+                    <div className={`h-4 w-4 rounded-full ${t.color}`} />
+                    <span className="text-xs font-medium text-stone-700">{t.name}</span>
+                  </button>
+                ))}
+              </div>
+              
+              <div className="h-px bg-stone-100 my-2" />
+              
+              <div className="space-y-3">
+                <div className="text-xs text-stone-400 mb-1 flex items-center gap-2">
+                  <ImageIcon size={14} /> 自定义壁纸
+                </div>
+                <input 
+                  type="file" 
+                  ref={fileInputRef} 
+                  onChange={handleWallpaperChange} 
+                  className="hidden" 
+                  accept="image/*,video/*"
+                />
+                <div className="flex gap-2">
+                  <button 
+                    onClick={() => fileInputRef.current?.click()} 
+                    disabled={isUploadingWallpaper}
+                    className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-stone-900 px-4 py-3 text-sm font-medium text-white hover:bg-stone-800 transition-colors disabled:opacity-50"
+                  >
+                    <Upload size={14} />
+                    {isUploadingWallpaper ? '上传中...' : '上传壁纸'}
+                  </button>
+                  {userStats?.wallpaper_url && (
+                    <button 
+                      onClick={clearWallpaper}
+                      className="rounded-2xl border border-rose-200 px-4 py-3 text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors"
+                    >
+                      清除
+                    </button>
+                  )}
+                </div>
+                <div className="text-[11px] text-stone-400 leading-relaxed italic">
+                  * 壁纸支持 MP4, WEBP, PNG。大视频将保存在本地。
+                </div>
+              </div>
             </div>
           </div>
 

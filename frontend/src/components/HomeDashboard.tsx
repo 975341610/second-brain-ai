@@ -43,6 +43,9 @@ export function HomeDashboard({
   const [filterStatus, setFilterStatus] = useState<'all' | Task['status']>('all');
   const visibleTasks = useMemo(() => tasks.filter((task) => filterStatus === 'all' || task.status === filterStatus), [tasks, filterStatus]);
 
+  const hasWallpaper = !!userStats?.wallpaper_url;
+  const glassClasses = hasWallpaper ? 'glass-panel' : 'bg-white';
+
   return (
     <section className="grid gap-8 max-w-5xl mx-auto py-4 antialiased text-reflect-text">
       {/* Welcome Header */}
@@ -78,7 +81,7 @@ export function HomeDashboard({
             <button 
               key={note.id} 
               onClick={() => onSelectNote(note.id)} 
-              className="group relative h-40 rounded-2xl border border-reflect-border/50 bg-white p-6 text-left transition-all hover:border-reflect-accent/30 hover:shadow-soft"
+              className={`group relative h-40 rounded-2xl border border-reflect-border/50 p-6 text-left transition-all hover:border-reflect-accent/30 hover:shadow-soft ${glassClasses}`}
             >
               <div className="text-2xl mb-3 opacity-80 group-hover:opacity-100 transition-opacity">{note.icon || '📝'}</div>
               <div className="text-sm font-semibold text-reflect-text leading-tight mb-1">{note.title}</div>
@@ -110,7 +113,7 @@ export function HomeDashboard({
         </div>
 
         {showCreate && (
-          <div className="mx-2 p-4 bg-white border border-reflect-border/50 rounded-2xl shadow-soft animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className={`mx-2 p-4 border border-reflect-border/50 rounded-2xl shadow-soft animate-in fade-in slide-in-from-top-2 duration-300 ${glassClasses}`}>
             <div className="grid gap-4 md:grid-cols-4">
               <input 
                 value={title} 
@@ -184,7 +187,7 @@ export function HomeDashboard({
               </div>
               <div className="space-y-3 overflow-y-auto pr-1 max-h-[300px] custom-scrollbar">
                 {visibleTasks.filter((task) => task.status === status).map((task) => (
-                  <div key={task.id} className="group rounded-xl bg-white p-4 border border-reflect-border/50 shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all hover:shadow-soft relative">
+                  <div key={task.id} className={`group rounded-xl p-4 border border-reflect-border/50 shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all hover:shadow-soft relative ${glassClasses}`}>
                     <div className="flex items-start justify-between gap-2">
                       <div className="text-xs font-medium text-reflect-text leading-snug">{task.title}</div>
                       <button 
@@ -224,7 +227,7 @@ export function HomeDashboard({
            <div className="flex items-center gap-2 px-2 text-[10px] uppercase tracking-widest text-reflect-muted font-bold opacity-60">
             智能助手
           </div>
-          <div className="rounded-2xl border border-reflect-border/50 bg-white p-6 overflow-hidden min-h-[400px]">
+          <div className={`rounded-2xl border border-reflect-border/50 p-6 overflow-hidden min-h-[400px] ${glassClasses}`}>
              <AssistantPanel assistant={assistant} modelConfig={modelConfig} loading={false} sessions={sessions} activeSessionId={activeSessionId} isEmbedded={true} onAsk={onAsk} onStartNewChat={onStartNewChat} onSwitchSession={onSwitchSession} onClearSession={onClearSession} onRenameSession={onRenameSession} onDeleteSession={onDeleteSession} onUpdateModelConfig={async () => {}} />
           </div>
         </div>
@@ -238,7 +241,7 @@ export function HomeDashboard({
               <button 
                 key={note.id} 
                 onClick={() => onSelectNote(note.id)} 
-                className="group flex items-center gap-3 w-full rounded-xl bg-white p-3 border border-reflect-border/40 transition-all hover:bg-reflect-sidebar/40"
+                className={`group flex items-center gap-3 w-full rounded-xl p-3 border border-reflect-border/40 transition-all hover:bg-reflect-sidebar/40 ${glassClasses}`}
               >
                 <span className="text-sm opacity-70 group-hover:opacity-100">{note.icon || '📄'}</span>
                 <span className="text-xs font-medium text-reflect-text truncate flex-1 text-left">{note.title}</span>
