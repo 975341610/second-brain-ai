@@ -341,7 +341,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   selectNote: (selectedNoteId) => set((state) => ({ selectedNoteId, recentNoteIds: [selectedNoteId, ...state.recentNoteIds.filter((id) => id !== selectedNoteId)].slice(0, 8) })),
   createDraftNote: (notebookId, parentId) => {
     const targetNotebookId = notebookId ?? get().notebooks[0]?.id ?? null;
-    const draftId = -Date.now();
+    // 使用更精细的时间戳和随机数，防止快速点击导致 ID 冲突
+    const draftId = -(Date.now() * 1000 + Math.floor(Math.random() * 1000));
     const draft: Note = {
       id: draftId,
       title: '未命名笔记',
@@ -383,17 +384,18 @@ export const useAppStore = create<AppState>((set, get) => ({
             tags
           });
       const currentNotes = get().notes;
-      const withoutOriginal = typeof id === 'number' ? currentNotes.filter((item) => item.id !== id) : currentNotes;
+      // 核心修复逻辑：在合并状态前，必须同时剔除掉旧 ID（如果是草稿转正，则是那个负数 ID）
+      // 以及任何可能已经存在的、与后端返回的 note.id 相同的正式 ID。
+      // 否则会导致 React Key 重复，引发显示混乱甚至崩溃。
+      const withoutOriginal = currentNotes.filter((item) => item.id !== id && item.id !== note.id);
       
       // 更新所有子笔记的 parent_id，如果它们的父笔记刚从草稿转正
       const updatedNotesWithParentUpdate = isDraft && typeof id === 'number'
         ? withoutOriginal.map(n => n.parent_id === id ? { ...n, parent_id: note.id } : n)
         : withoutOriginal;
 
-      const hasTarget = updatedNotesWithParentUpdate.some((item) => item.id === note.id);
-      const notes = hasTarget
-        ? updatedNotesWithParentUpdate.map((item) => (item.id === note.id ? note : item))
-        : [note, ...updatedNotesWithParentUpdate];
+      // 永远将最新的 note 放在列表最前面，不再需要 hasTarget 判断
+      const notes = [note, ...updatedNotesWithParentUpdate];
 
       // 只有在非静默保存（通常是手动点击保存或明确创建笔记）时，才可能更新 selectedNoteId
       // 如果是自动保存 (silent: true)，绝对不触碰当前选中的 ID，防止页面跳变
@@ -508,34 +510,57 @@ export const useAppStore = create<AppState>((set, get) => ({
     const noteIds = get().selectedNoteIds;
     if (noteIds.length === 0) return;
     try {
+      const notesToFilter = new Set<number>(noteIds);
+      const findChildren = (pids: number[]) => {
+        const nextPids: number[] = [];
+        get().notes.forEach(n => {
+          if (n.parent_id && pids.includes(n.parent_id) && !notesToFilter.has(n.id)) {
+            notesToFilter.add(n.id);
+            nextPids.push(n.id);
+          }
+        });
+        if (nextPids.length > 0) findChildren(nextPids);
+      };
+      findChildren(noteIds);
+
       const realNoteIds = noteIds.filter(id => id > 0);
-      const draftNoteIds = noteIds.filter(id => id < 0);
       
       if (realNoteIds.length > 0) {
         await api.bulkDeleteNotes({ note_ids: realNoteIds });
       }
       
-      const [notes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
-      
-      // 对于本地草稿，由于后端返回的 notes 肯定不含它们，我们只需要确保不小心混入的草稿也被过滤掉（通常 api.listNotes() 就够了）
-      // 但为了保险，我们可以显式过滤掉 draftNoteIds
-      const finalNotes = notes.filter(n => !draftNoteIds.includes(n.id));
+      const [backendNotes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
+      const finalNotes = backendNotes.filter(n => !notesToFilter.has(n.id));
       
       set({ notes: finalNotes, trash, selectedNoteIds: [], toast: { id: Date.now(), tone: 'success', text: '已批量移入垃圾桶。' } });
+      setCachedData(STORE_NOTES, finalNotes);
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `批量删除失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
   },
   deleteNote: async (noteId) => {
     try {
+      // 在后端删除前，先获取它的所有子孙节点 ID，以便同步在前端过滤掉
+      // 避免因为后端软删除延迟或 api.listNotes() 未及时响应导致的“子页面删不掉”
+      const notesToFilter = new Set<number>([noteId]);
+      const findChildren = (pid: number) => {
+        get().notes.forEach(n => {
+          if (n.parent_id === pid) {
+            notesToFilter.add(n.id);
+            findChildren(n.id);
+          }
+        });
+      };
+      findChildren(noteId);
+
       if (noteId > 0) {
         await api.deleteNote(noteId);
       }
       
-      const [notes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
+      const [backendNotes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
       
-      // 如果是草稿，手动从 notes 列表中移除（以防 api.listNotes 还没更新或者网络延迟）
-      const finalNotes = noteId < 0 ? notes.filter(n => n.id !== noteId) : notes;
+      // 最终合并时，确保这些被标记删除的 ID 绝对不会出现在 notes 列表中
+      const finalNotes = backendNotes.filter(n => !notesToFilter.has(n.id));
       
       set({ 
         notes: finalNotes, 
@@ -543,6 +568,8 @@ export const useAppStore = create<AppState>((set, get) => ({
         selectedNoteId: get().selectedNoteId === noteId ? finalNotes[0]?.id ?? null : get().selectedNoteId, 
         toast: { id: Date.now(), tone: 'success', text: noteId < 0 ? '草稿已移除。' : '笔记已移入垃圾桶。' } 
       });
+      // 异步更新 IndexedDB 缓存
+      setCachedData(STORE_NOTES, finalNotes);
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `删除笔记失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
