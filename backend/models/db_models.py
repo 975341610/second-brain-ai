@@ -1,3 +1,4 @@
+from typing import Optional
 import base64
 from datetime import datetime
 

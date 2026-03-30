@@ -253,6 +253,17 @@ def update_user_theme_api(payload: ThemeUpdatePayload, db: Session = Depends(get
     return UserStatsResponse.model_validate(stats)
 
 
+from pydantic import BaseModel
+class WallpaperUpdatePayload(BaseModel):
+    wallpaper_url: str
+
+@router.patch("/user/wallpaper", response_model=UserStatsResponse)
+def update_user_wallpaper_api(payload: WallpaperUpdatePayload, db: Session = Depends(get_db)) -> UserStatsResponse:
+    stats = update_user_wallpaper(db, payload.wallpaper_url)
+    return UserStatsResponse.model_validate(stats)
+
+
+
 @router.post("/upload", response_model=UploadResponse)
 async def upload_documents(background_tasks: BackgroundTasks, files: list[UploadFile] = File(...), db: Session = Depends(get_db)) -> UploadResponse:
     imported: list[NoteResponse] = []
