@@ -358,7 +358,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       created_at: new Date().toISOString(),
       is_draft: true,
     };
-    set({ notes: [draft, ...get().notes], selectedNoteId: draftId });
+    set({ notes: [draft, ...get().notes], selectedNoteId: draftId, recentNoteIds: [draftId, ...get().recentNoteIds].slice(0, 8) });
   },
   saveNote: async ({ id, title, content, notebookId, parent_id, icon, is_title_manually_edited, tags, silent }) => {
     set({ isSavingNote: true });
@@ -394,9 +394,19 @@ export const useAppStore = create<AppState>((set, get) => ({
       const isCurrentlyViewingThisNote = get().selectedNoteId === id;
       const shouldUpdateSelection = isDraft || (!silent && (isCurrentlyViewingThisNote || !get().selectedNoteId));
       
+      // 更新 recentNoteIds，将旧 ID 替换为新 ID
+      let recentNoteIds = get().recentNoteIds;
+      let selectedNoteIds = get().selectedNoteIds;
+      if (isDraft && typeof id === 'number') {
+        recentNoteIds = recentNoteIds.map(rid => rid === id ? note.id : rid);
+        selectedNoteIds = selectedNoteIds.map(sid => sid === id ? note.id : sid);
+      }
+      
       set({ 
         notes, 
         selectedNoteId: shouldUpdateSelection ? note.id : get().selectedNoteId, 
+        recentNoteIds,
+        selectedNoteIds,
         toast: silent ? get().toast : { id: Date.now(), tone: 'success', text: id && !isDraft ? '笔记已保存。' : '新笔记已创建。' } 
       });
 
