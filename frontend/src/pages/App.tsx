@@ -152,16 +152,17 @@ export default function App() {
     {!isAuthenticated ? (
       <LoginPage onLogin={handleLogin} />
     ) : (
-      <main className={`min-h-screen bg-reflect-bg text-reflect-text font-sans antialiased lg:flex lg:gap-0 relative ${userStats?.current_theme === 'dark' ? 'dark' : ''}`} data-theme={userStats?.current_theme}>
+      <main className={`min-h-screen text-reflect-text font-sans antialiased lg:flex lg:gap-0 relative ${userStats?.current_theme === 'dark' ? 'dark' : ''} ${wallpaperUrl ? 'bg-transparent' : 'bg-reflect-bg'}`} data-theme={userStats?.current_theme}>
       {/* Theme Background Layer */}
       {wallpaperUrl && (
         <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
           {wallpaperUrl.includes('video') || wallpaperUrl.endsWith('.mp4') || wallpaperUrl.endsWith('.webm') ? (
-            <video src={wallpaperUrl} autoPlay muted loop className="wallpaper-video w-full h-full object-cover" />
+            <video src={wallpaperUrl} autoPlay muted loop playsInline className="wallpaper-video w-full h-full object-cover" />
           ) : (
             <img src={wallpaperUrl} alt="Wallpaper" className="w-full h-full object-cover" />
           )}
-          <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]" />
+          {/* 玻璃拟态底层遮罩：在壁纸上覆盖一层极薄的暗色或亮色，增加文字可读性 */}
+          <div className={`absolute inset-0 ${userStats?.current_theme === 'dark' ? 'bg-black/20' : 'bg-white/10'} backdrop-blur-[1px]`} />
         </div>
       )}
       

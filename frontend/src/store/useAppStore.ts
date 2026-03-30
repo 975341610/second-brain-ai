@@ -341,13 +341,14 @@ export const useAppStore = create<AppState>((set, get) => ({
   selectNote: (selectedNoteId) => set((state) => ({ selectedNoteId, recentNoteIds: [selectedNoteId, ...state.recentNoteIds.filter((id) => id !== selectedNoteId)].slice(0, 8) })),
   createDraftNote: (notebookId, parentId) => {
     const targetNotebookId = notebookId ?? get().notebooks[0]?.id ?? null;
-    // 使用更精细的时间戳和随机数，防止快速点击导致 ID 冲突
-    const draftId = -(Date.now() * 1000 + Math.floor(Math.random() * 1000));
+    // 使用绝对唯一的负数 ID：时间戳(ms) + 6位随机数
+    // 负数 ID 仅用于前端草稿标识，转正后会被后端正数 ID 替换
+    const draftId = -(Date.now() * 1000 + Math.floor(Math.random() * 1000000));
     const draft: Note = {
       id: draftId,
       title: '未命名笔记',
       icon: '📝',
-      content: '<h1>新建笔记</h1><p>从这里开始记录你的想法。</p>',
+      content: '<h1></h1><p></p>',
       summary: '新建草稿',
       is_title_manually_edited: false,
       tags: [],
@@ -383,27 +384,27 @@ export const useAppStore = create<AppState>((set, get) => ({
             is_title_manually_edited,
             tags
           });
+      
       const currentNotes = get().notes;
-      // 核心修复逻辑：在合并状态前，必须同时剔除掉旧 ID（如果是草稿转正，则是那个负数 ID）
-      // 以及任何可能已经存在的、与后端返回的 note.id 相同的正式 ID。
-      // 否则会导致 React Key 重复，引发显示混乱甚至崩溃。
-      const withoutOriginal = currentNotes.filter((item) => item.id !== id && item.id !== note.id);
       
-      // 更新所有子笔记的 parent_id，如果它们的父笔记刚从草稿转正
-      const updatedNotesWithParentUpdate = isDraft && typeof id === 'number'
-        ? withoutOriginal.map(n => n.parent_id === id ? { ...n, parent_id: note.id } : n)
-        : withoutOriginal;
+      // 核心修复：状态合并逻辑重构
+      // 1. 移除旧的 ID (可能是草稿负数 ID，也可能是旧的正式 ID)
+      // 2. 移除任何已经存在的、与后端返回的新 ID 冲突的项
+      const filteredNotes = currentNotes.filter((item) => item.id !== id && item.id !== note.id);
+      
+      // 3. 处理子节点关联：如果父节点从草稿转正，更新所有子节点的 parent_id
+      const finalNotes = isDraft && typeof id === 'number'
+        ? [note, ...filteredNotes.map(n => n.parent_id === id ? { ...n, parent_id: note.id } : n)]
+        : [note, ...filteredNotes];
 
-      // 永远将最新的 note 放在列表最前面，不再需要 hasTarget 判断
-      const notes = [note, ...updatedNotesWithParentUpdate];
+      // 4. 排序：确保顺序一致性（笔记本内按 position，笔记本间按 ID 或顺序）
+      // 这里暂时保持原样，仅在 moveNote 中排序，平时按创建/更新时间倒序（note 已经在最前）
 
-      // 只有在非静默保存（通常是手动点击保存或明确创建笔记）时，才可能更新 selectedNoteId
-      // 如果是自动保存 (silent: true)，绝对不触碰当前选中的 ID，防止页面跳变
       const currentSelectedId = get().selectedNoteId;
-      const isCurrentlyViewingThisNote = currentSelectedId === id;
-      const shouldUpdateSelection = isDraft || (!silent && (isCurrentlyViewingThisNote || !currentSelectedId));
+      // 只有在当前选中的正是被保存的笔记，或者是草稿转正时，才更新选中 ID
+      const shouldUpdateSelection = (currentSelectedId === id) || isDraft;
       
-      // 更新 recentNoteIds，将旧 ID 替换为新 ID
+      // 更新辅助状态
       let recentNoteIds = get().recentNoteIds;
       let selectedNoteIds = get().selectedNoteIds;
       if (isDraft && typeof id === 'number') {
@@ -412,15 +413,14 @@ export const useAppStore = create<AppState>((set, get) => ({
       }
       
       set({ 
-        notes, 
+        notes: finalNotes, 
         selectedNoteId: shouldUpdateSelection ? note.id : currentSelectedId, 
         recentNoteIds,
         selectedNoteIds,
         toast: silent ? get().toast : { id: Date.now(), tone: 'success', text: id && !isDraft ? '笔记已保存。' : '新笔记已创建。' } 
       });
 
-      // 同步更新 IndexedDB 缓存，实现离线编辑
-      setCachedData(STORE_NOTES, notes);
+      setCachedData(STORE_NOTES, finalNotes);
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `保存失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     } finally {
@@ -546,27 +546,18 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
   deleteNote: async (noteId) => {
     try {
-      // 在后端删除前，先获取它的所有子孙节点 ID，以便同步在前端过滤掉
-      // 避免因为后端软删除延迟或 api.listNotes() 未及时响应导致的“子页面删不掉”
-      const notesToFilter = new Set<number>([noteId]);
-      const findChildren = (pid: number) => {
-        get().notes.forEach(n => {
-          if (n.parent_id === pid) {
-            notesToFilter.add(n.id);
-            findChildren(n.id);
-          }
-        });
-      };
-      findChildren(noteId);
-
       if (noteId > 0) {
         await api.deleteNote(noteId);
       }
       
       const [backendNotes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
       
-      // 最终合并时，确保这些被标记删除的 ID 绝对不会出现在 notes 列表中
-      const finalNotes = backendNotes.filter(n => !notesToFilter.has(n.id));
+      // 简单直观：后端返回什么，前端就显示什么。
+      // 后端 repositories.py:192 已经处理了递归软删除，前端不需要重复计算子树。
+      // 只有对于负数 ID（尚未持久化的草稿），后端不知道它们，需要前端手动过滤。
+      const finalNotes = noteId < 0 
+        ? backendNotes.filter(n => n.id !== noteId)
+        : backendNotes;
       
       set({ 
         notes: finalNotes, 
@@ -574,7 +565,6 @@ export const useAppStore = create<AppState>((set, get) => ({
         selectedNoteId: get().selectedNoteId === noteId ? finalNotes[0]?.id ?? null : get().selectedNoteId, 
         toast: { id: Date.now(), tone: 'success', text: noteId < 0 ? '草稿已移除。' : '笔记已移入垃圾桶。' } 
       });
-      // 异步更新 IndexedDB 缓存
       setCachedData(STORE_NOTES, finalNotes);
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `删除笔记失败：${error instanceof Error ? error.message : '请稍后重试'}` } });

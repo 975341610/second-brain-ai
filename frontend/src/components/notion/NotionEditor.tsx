@@ -533,73 +533,65 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     const handleSave = async (targetNoteId: number) => {
       if (isUnmountedRef.current) return;
       
-      // 重要：校验目标 ID 是否仍然是当前 Ref 中的 ID
-      // 防止“跨页面保存”：如果用户已经切换到了别的笔记，则不执行之前的保存任务
+      // [关键修复] 严格校验当前编辑器正在编辑的笔记 ID
+      // 必须与进入 handleSave 时的 ID 强一致，且 noteRef.current 必须指向该 ID
       if (noteRef.current?.id !== targetNoteId) {
-        console.warn(`[Auto-save] Skip saving for stale note ID: ${targetNoteId} (current: ${noteRef.current?.id})`);
+        console.warn(`[Auto-save] Note ID mismatch. Aborting save for ${targetNoteId}`);
         return;
       }
 
-      // 防止重复进入或已在保存中
+      // 防止并发保存冲突
       if (isSavingRef.current) {
-        // 如果还在保存，就再等等，但必须透传 targetNoteId
+        // 如果正在保存，1秒后再试一次。再次尝试时依然会进行 ID 校验
         timer = setTimeout(() => handleSave(targetNoteId), 1000);
         return;
       }
 
-      let currentContent = editor.getHTML();
-      
-      // Sanitization: Only parse DOM if blob URLs exist (heavy operation)
-      if (currentContent.includes('src="blob:')) {
-        const doc = new DOMParser().parseFromString(currentContent, 'text/html');
-        doc.querySelectorAll('[src^="blob:"]').forEach(el => {
-          el.setAttribute('src', ''); 
-          el.setAttribute('data-loading', 'true');
-        });
-        currentContent = doc.body.innerHTML;
-      }
-
+      const currentContent = editor.getHTML();
       const currentText = editor.getText().trim();
-      let newTitle = noteRef.current?.title || '未命名笔记';
-      let isTitleEdited = noteRef.current?.is_title_manually_edited || false;
+      
+      // 仅在有内容或标题变化时执行保存
+      const lastNote = noteRef.current;
+      if (!lastNote) return;
 
-      // Auto-extract title if not manually edited
+      let newTitle = lastNote.title || '未命名笔记';
+      const isTitleEdited = lastNote.is_title_manually_edited || false;
+
       if (!isTitleEdited && currentText) {
-        const doc = new DOMParser().parseFromString(currentContent, 'text/html');
-        const h1 = doc.querySelector('h1');
-        if (h1 && h1.textContent?.trim()) {
-          newTitle = h1.textContent.trim().slice(0, 100);
-        } else {
-          const firstLine = currentText.split('\n')[0].trim();
-          if (firstLine) newTitle = firstLine.slice(0, 100);
-        }
+        const firstLine = currentText.split('\n')[0].trim();
+        if (firstLine) newTitle = firstLine.slice(0, 100);
       }
 
-      const hasContentChanged = currentContent !== noteRef.current?.content;
-      const hasTitleChanged = newTitle !== noteRef.current?.title;
+      if (currentContent === lastNote.content && newTitle === lastNote.title) {
+        return;
+      }
 
-      if (hasContentChanged || hasTitleChanged) {
-        isSavingRef.current = true;
-        if (!isUnmountedRef.current) setIsSaving(true);
-        try {
-          // 锁定此时要保存的 ID，防止由于网络延迟导致异步保存完成时 ID 已经变化
-          await onSaveRef.current({ 
-            id: targetNoteId, 
-            content: currentContent, 
-            title: newTitle, 
-            icon: noteRef.current?.icon, 
-            is_title_manually_edited: isTitleEdited,
-            silent: true 
-          });
-          if (!isUnmountedRef.current && noteRef.current?.id === targetNoteId) {
-            setLastSavedAt(new Date().toLocaleTimeString());
-          }
-        } catch (error) {
-          console.error("Auto-save failed", error);
-        } finally {
-          isSavingRef.current = false;
-          if (!isUnmountedRef.current) setIsSaving(false);
+      isSavingRef.current = true;
+      if (!isUnmountedRef.current) setIsSaving(true);
+      
+      try {
+        // [关键修复] 再次校验 ID，因为 getHTML 等操作可能耗时
+        if (noteRef.current?.id !== targetNoteId || isUnmountedRef.current) {
+          return;
         }
+
+        await onSaveRef.current({ 
+          id: targetNoteId, 
+          content: currentContent, 
+          title: newTitle, 
+          icon: lastNote.icon, 
+          is_title_manually_edited: isTitleEdited,
+          silent: true 
+        });
+
+        if (!isUnmountedRef.current && noteRef.current?.id === targetNoteId) {
+          setLastSavedAt(new Date().toLocaleTimeString());
+        }
+      } catch (error) {
+        console.error("Auto-save failed", error);
+      } finally {
+        isSavingRef.current = false;
+        if (!isUnmountedRef.current) setIsSaving(false);
       }
     };
 
