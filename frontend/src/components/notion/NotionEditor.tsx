@@ -530,13 +530,20 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     
     let timer: ReturnType<typeof setTimeout>;
 
-    const handleSave = async () => {
+    const handleSave = async (targetNoteId: number) => {
       if (isUnmountedRef.current) return;
       
+      // 重要：校验目标 ID 是否仍然是当前 Ref 中的 ID
+      // 防止“跨页面保存”：如果用户已经切换到了别的笔记，则不执行之前的保存任务
+      if (noteRef.current?.id !== targetNoteId) {
+        console.warn(`[Auto-save] Skip saving for stale note ID: ${targetNoteId} (current: ${noteRef.current?.id})`);
+        return;
+      }
+
       // 防止重复进入或已在保存中
       if (isSavingRef.current) {
-        // 如果还在保存，就再等等
-        timer = setTimeout(handleSave, 1000);
+        // 如果还在保存，就再等等，但必须透传 targetNoteId
+        timer = setTimeout(() => handleSave(targetNoteId), 1000);
         return;
       }
 
@@ -575,15 +582,18 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
         isSavingRef.current = true;
         if (!isUnmountedRef.current) setIsSaving(true);
         try {
+          // 锁定此时要保存的 ID，防止由于网络延迟导致异步保存完成时 ID 已经变化
           await onSaveRef.current({ 
-            id: noteRef.current?.id, 
+            id: targetNoteId, 
             content: currentContent, 
             title: newTitle, 
             icon: noteRef.current?.icon, 
             is_title_manually_edited: isTitleEdited,
             silent: true 
           });
-          if (!isUnmountedRef.current) setLastSavedAt(new Date().toLocaleTimeString());
+          if (!isUnmountedRef.current && noteRef.current?.id === targetNoteId) {
+            setLastSavedAt(new Date().toLocaleTimeString());
+          }
         } catch (error) {
           console.error("Auto-save failed", error);
         } finally {
@@ -594,8 +604,11 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     };
 
     const onUpdate = () => {
+      const currentNoteId = noteRef.current?.id;
+      if (typeof currentNoteId !== 'number') return;
+      
       clearTimeout(timer);
-      timer = setTimeout(handleSave, 1500); // 停笔 1.5 秒即存
+      timer = setTimeout(() => handleSave(currentNoteId), 1500); // 停笔 1.5 秒即存
     };
 
     editor.on('update', onUpdate);

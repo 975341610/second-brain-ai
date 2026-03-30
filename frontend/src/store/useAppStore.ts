@@ -399,8 +399,9 @@ export const useAppStore = create<AppState>((set, get) => ({
 
       // 只有在非静默保存（通常是手动点击保存或明确创建笔记）时，才可能更新 selectedNoteId
       // 如果是自动保存 (silent: true)，绝对不触碰当前选中的 ID，防止页面跳变
-      const isCurrentlyViewingThisNote = get().selectedNoteId === id;
-      const shouldUpdateSelection = isDraft || (!silent && (isCurrentlyViewingThisNote || !get().selectedNoteId));
+      const currentSelectedId = get().selectedNoteId;
+      const isCurrentlyViewingThisNote = currentSelectedId === id;
+      const shouldUpdateSelection = isDraft || (!silent && (isCurrentlyViewingThisNote || !currentSelectedId));
       
       // 更新 recentNoteIds，将旧 ID 替换为新 ID
       let recentNoteIds = get().recentNoteIds;
@@ -412,7 +413,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       
       set({ 
         notes, 
-        selectedNoteId: shouldUpdateSelection ? note.id : get().selectedNoteId, 
+        selectedNoteId: shouldUpdateSelection ? note.id : currentSelectedId, 
         recentNoteIds,
         selectedNoteIds,
         toast: silent ? get().toast : { id: Date.now(), tone: 'success', text: id && !isDraft ? '笔记已保存。' : '新笔记已创建。' } 
@@ -483,9 +484,14 @@ export const useAppStore = create<AppState>((set, get) => ({
     try {
       const note = await api.moveNote(noteId, { notebook_id: notebookId, position, parent_id: parentId });
       const notes = get().notes.filter((item) => item.id !== noteId);
-      notes.push(note);
-      notes.sort((a, b) => (a.notebook_id ?? 0) - (b.notebook_id ?? 0) || a.position - b.position);
-      set({ notes, selectedNoteId: note.id, selectedNoteIds: get().selectedNoteIds.filter((id) => id !== noteId), toast: { id: Date.now(), tone: 'success', text: '笔记位置已更新。' } });
+      const updatedNotes = [...notes, note];
+      updatedNotes.sort((a, b) => (a.notebook_id ?? 0) - (b.notebook_id ?? 0) || a.position - b.position);
+      set({ 
+        notes: updatedNotes, 
+        selectedNoteId: note.id, 
+        selectedNoteIds: get().selectedNoteIds.filter((id) => id !== noteId), 
+        toast: { id: Date.now(), tone: 'success', text: '笔记位置已更新。' } 
+      });
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `移动笔记失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
