@@ -529,73 +529,68 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     if (!editor || !note) return;
     
     let timer: ReturnType<typeof setTimeout>;
+    let isModified = false;
 
-    const handleSave = async (targetNoteId: number) => {
-      if (isUnmountedRef.current) return;
+    // Use closure variable 'note' which refers to the note of THIS render
+    const currentSessionNoteId = note.id;
+
+    const executeSave = async (isSync = false) => {
+      if (!isModified && !isSync) return;
       
-      // [关键修复] 严格校验当前编辑器正在编辑的笔记 ID
-      if (noteRef.current?.id !== targetNoteId) {
-        return;
-      }
-
-      // 防止同一篇笔记的并发保存，允许不同笔记的串行处理
-      if (isSavingRef.current === targetNoteId) {
-        timer = setTimeout(() => handleSave(targetNoteId), 1000);
-        return;
-      }
-
+      // Allow saving even if unmounted, just skip React state updates
       const currentContent = editor.getHTML();
       const currentText = editor.getText().trim();
       
-      const lastNote = noteRef.current;
-      if (!lastNote) return;
-
-      let newTitle = lastNote.title || '未命名笔记';
-      const isTitleEdited = lastNote.is_title_manually_edited || false;
+      let newTitle = note.title || '未命名笔记';
+      const isTitleEdited = note.is_title_manually_edited || false;
 
       if (!isTitleEdited && currentText) {
         const firstLine = currentText.split('\n')[0].trim();
         if (firstLine) newTitle = firstLine.slice(0, 100);
       }
 
-      if (currentContent === lastNote.content && newTitle === lastNote.title) {
+      if (currentContent === note.content && newTitle === note.title) {
+        isModified = false;
         return;
       }
 
-      isSavingRef.current = targetNoteId;
-      if (!isUnmountedRef.current && noteRef.current?.id === targetNoteId) setIsSaving(true);
+      isSavingRef.current = currentSessionNoteId;
+      if (!isUnmountedRef.current && noteRef.current?.id === currentSessionNoteId) setIsSaving(true);
       
       try {
-        if (noteRef.current?.id !== targetNoteId || isUnmountedRef.current) {
-          return;
-        }
-
         await onSaveRef.current({ 
-          id: targetNoteId, 
+          id: currentSessionNoteId, 
           content: currentContent, 
           title: newTitle, 
-          icon: lastNote.icon, 
+          icon: note.icon, 
           is_title_manually_edited: isTitleEdited,
           silent: true 
         });
 
-        if (!isUnmountedRef.current && noteRef.current?.id === targetNoteId) {
+        isModified = false; 
+        if (!isUnmountedRef.current && noteRef.current?.id === currentSessionNoteId) {
           setLastSavedAt(new Date().toLocaleTimeString());
         }
       } catch (error) {
         console.error("Auto-save failed", error);
       } finally {
-        if (isSavingRef.current === targetNoteId) isSavingRef.current = null;
-        if (!isUnmountedRef.current && noteRef.current?.id === targetNoteId) setIsSaving(false);
+        if (isSavingRef.current === currentSessionNoteId) isSavingRef.current = null;
+        if (!isUnmountedRef.current && noteRef.current?.id === currentSessionNoteId) setIsSaving(false);
       }
     };
 
+    const handleSave = async () => {
+      if (isSavingRef.current === currentSessionNoteId) {
+        timer = setTimeout(handleSave, 1000);
+        return;
+      }
+      await executeSave();
+    };
+
     const onUpdate = () => {
-      const currentNoteId = noteRef.current?.id;
-      if (typeof currentNoteId !== 'number') return;
-      
+      isModified = true;
       clearTimeout(timer);
-      timer = setTimeout(() => handleSave(currentNoteId), 1500); // 停笔 1.5 秒即存
+      timer = setTimeout(handleSave, 1500); 
     };
 
     editor.on('update', onUpdate);
@@ -603,6 +598,12 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     return () => {
       clearTimeout(timer);
       editor.off('update', onUpdate);
+      
+      // Cleanup happens BEFORE the next render's useEffect.
+      // So editor content is still the old one. We MUST save it!
+      if (isModified) {
+        executeSave(true).catch(console.error);
+      }
     };
   }, [editor, note?.id]); // 只依赖 note.id
 

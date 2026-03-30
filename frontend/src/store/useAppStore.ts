@@ -401,8 +401,9 @@ export const useAppStore = create<AppState>((set, get) => ({
       // 这里暂时保持原样，仅在 moveNote 中排序，平时按创建/更新时间倒序（note 已经在最前）
 
       const currentSelectedId = get().selectedNoteId;
-      // 只有在当前选中的正是被保存的笔记，或者是草稿转正时，才更新选中 ID
-      const shouldUpdateSelection = (currentSelectedId === id) || isDraft;
+      // 必须严格判断当前选中的是不是刚刚正在保存的这个草稿！如果是，才更新它的选中状态为正式 ID。
+      // 如果用户已经切走，绝不能强行把用户拉回来！
+      const shouldUpdateSelection = currentSelectedId === id;
       
       // 更新辅助状态
       let recentNoteIds = get().recentNoteIds;
@@ -533,40 +534,60 @@ export const useAppStore = create<AppState>((set, get) => ({
       
       if (realNoteIds.length > 0) {
         await api.bulkDeleteNotes({ note_ids: realNoteIds });
+        const [backendNotes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
+        const localDrafts = get().notes.filter(n => n.id < 0 && !notesToFilter.has(n.id));
+        const finalNotes = [...localDrafts, ...backendNotes.filter(n => !notesToFilter.has(n.id))];
+        
+        set({ notes: finalNotes, trash, selectedNoteIds: [], toast: { id: Date.now(), tone: 'success', text: '已批量移入垃圾桶。' } });
+        setCachedData(STORE_NOTES, finalNotes);
+      } else {
+        const finalNotes = get().notes.filter(n => !notesToFilter.has(n.id));
+        set({ notes: finalNotes, selectedNoteIds: [], toast: { id: Date.now(), tone: 'success', text: '草稿已批量移除。' } });
       }
-      
-      const [backendNotes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
-      
-      // 修复“删除连坐”：在合并后端数据时，保留未被删除的本地草稿
-      const localDrafts = get().notes.filter(n => n.id < 0 && !notesToFilter.has(n.id));
-      const finalNotes = [...localDrafts, ...backendNotes.filter(n => !notesToFilter.has(n.id))];
-      
-      set({ notes: finalNotes, trash, selectedNoteIds: [], toast: { id: Date.now(), tone: 'success', text: '已批量移入垃圾桶。' } });
-      setCachedData(STORE_NOTES, finalNotes);
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `批量删除失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
   },
   deleteNote: async (noteId) => {
     try {
-      if (noteId > 0) {
-        await api.deleteNote(noteId);
+      const getDescendantDraftIds = (parentId: number, notes: Note[]): number[] => {
+        const children = notes.filter(n => n.parent_id === parentId && n.id < 0);
+        let ids = children.map(c => c.id);
+        for (const child of children) {
+          ids = [...ids, ...getDescendantDraftIds(child.id, notes)];
+        }
+        return ids;
+      };
+
+      if (noteId < 0) {
+        // Purely local draft deletion
+        const allNotes = get().notes;
+        const idsToRemove = new Set([noteId, ...getDescendantDraftIds(noteId, allNotes)]);
+        
+        const finalNotes = allNotes.filter(n => !idsToRemove.has(n.id));
+        set({ 
+          notes: finalNotes, 
+          selectedNoteId: idsToRemove.has(get().selectedNoteId!) ? (finalNotes[0]?.id ?? null) : get().selectedNoteId, 
+          toast: { id: Date.now(), tone: 'success', text: '草稿已移除。' } 
+        });
+        return;
       }
+
+      await api.deleteNote(noteId);
       
       const [backendNotes, trash] = await Promise.all([api.listNotes(), api.getTrash()]);
       
-      // 简单直观：后端返回什么，前端就显示什么。
-      // 后端 repositories.py:192 已经处理了递归软删除，前端不需要重复计算子树。
-      // 只有对于负数 ID（尚未持久化的草稿），后端不知道它们，需要前端手动过滤。
-      // 修复“删除连坐”：在合并后端数据时，必须保留本地现有的其他草稿（负数 ID）
-      const localDrafts = get().notes.filter(n => n.id < 0 && n.id !== noteId);
+      const allNotes = get().notes;
+      const draftIdsToRemove = new Set(getDescendantDraftIds(noteId, allNotes));
+      
+      const localDrafts = allNotes.filter(n => n.id < 0 && n.id !== noteId && !draftIdsToRemove.has(n.id));
       const finalNotes = [...localDrafts, ...backendNotes];
       
       set({ 
         notes: finalNotes, 
         trash, 
         selectedNoteId: get().selectedNoteId === noteId ? finalNotes[0]?.id ?? null : get().selectedNoteId, 
-        toast: { id: Date.now(), tone: 'success', text: noteId < 0 ? '草稿已移除。' : '笔记已移入垃圾桶。' } 
+        toast: { id: Date.now(), tone: 'success', text: '笔记已移入垃圾桶。' } 
       });
       setCachedData(STORE_NOTES, finalNotes);
     } catch (error) {
