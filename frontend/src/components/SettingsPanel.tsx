@@ -1,4 +1,4 @@
-import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Image as ImageIcon, Upload, Palette } from 'lucide-react';
+import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Image as ImageIcon, Upload, Palette, Trash2, Check } from 'lucide-react';
 import { useEffect, useState, useRef, ChangeEvent } from 'react';
 import type { ModelConfig } from '../lib/types';
 import { api } from '../lib/api';
@@ -20,16 +20,37 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
   const [updateStatus, setUpdateStatus] = useState<'idle' | 'checking' | 'up-to-date' | 'pending' | 'updating' | 'success' | 'error'>('idle');
   const [updateOutput, setUpdateOutput] = useState('');
   const [isUploadingWallpaper, setIsUploadingWallpaper] = useState(false);
+  const [savedWallpapers, setSavedWallpapers] = useState<any[]>([]);
+  const [wallpaperPreviews, setWallpaperPreviews] = useState<Record<string, string>>({});
   const logContainerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const themes = [
     { id: 'default', name: '默认 (Reflect)', color: 'bg-[#fcfbf9]' },
-    { id: 'cyber', name: '赛博朋克', color: 'bg-[#00f3ff]' },
-    { id: 'p5', name: '女神异闻录 5', color: 'bg-[#d32f2f]' },
-    { id: 'zelda', name: '塞尔达', color: 'bg-[#00eeff]' },
-    { id: 'ff7', name: '最终幻想 7', color: 'bg-[#003da5]' },
+    { id: 'dark', name: '深色模式', color: 'bg-[#1a1a1a]' },
   ];
+
+  // 加载已保存壁纸列表
+  const loadWallpapers = async () => {
+    try {
+      const list = await wallpaperStore.listWallpapers();
+      setSavedWallpapers(list);
+      
+      // 生成预览
+      const previews: Record<string, string> = {};
+      for (const wp of list) {
+        const url = await wallpaperStore.resolveIdbUrl(`idb://${wp.id}`);
+        if (url) previews[wp.id] = url;
+      }
+      setWallpaperPreviews(previews);
+    } catch (e) {
+      console.error('Failed to load wallpapers', e);
+    }
+  };
+
+  useEffect(() => {
+    loadWallpapers();
+  }, []);
 
   useEffect(() => {
     setConfig(modelConfig);
@@ -127,7 +148,7 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
       const buffer = await file.arrayBuffer();
       const idbUrl = await wallpaperStore.setWallpaper(id, buffer, file.type, file.name);
       await updateUserWallpaper(idbUrl);
-      alert('壁纸已上传并保存到本地存储。');
+      await loadWallpapers();
     } catch (err: any) {
       alert('壁纸上传失败: ' + err.message);
     } finally {
@@ -137,6 +158,19 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
 
   const clearWallpaper = async () => {
     await updateUserWallpaper('');
+  };
+
+  const deleteWallpaper = async (id: string) => {
+    if (!confirm('确定要删除这张壁纸吗？')) return;
+    try {
+      await wallpaperStore.deleteWallpaper(id);
+      if (userStats?.wallpaper_url === `idb://${id}`) {
+        await updateUserWallpaper('');
+      }
+      await loadWallpapers();
+    } catch (e: any) {
+      alert('删除失败: ' + e.message);
+    }
   };
 
   return (
@@ -188,8 +222,44 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
               
               <div className="space-y-3">
                 <div className="text-xs text-stone-400 mb-1 flex items-center gap-2">
-                  <ImageIcon size={14} /> 自定义壁纸
+                  <ImageIcon size={14} /> 壁纸库 (Gallery)
                 </div>
+                
+                {savedWallpapers.length > 0 && (
+                  <div className="grid grid-cols-3 gap-2 mb-3">
+                    {savedWallpapers.map((wp) => (
+                      <div key={wp.id} className="group relative aspect-video rounded-xl overflow-hidden border border-stone-100 hover:border-stone-300 transition-all">
+                        {wp.type.startsWith('video') ? (
+                          <video src={wallpaperPreviews[wp.id]} className="w-full h-full object-cover" />
+                        ) : (
+                          <img src={wallpaperPreviews[wp.id]} className="w-full h-full object-cover" />
+                        )}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                          <button 
+                            onClick={() => updateUserWallpaper(`idb://${wp.id}`)}
+                            className="p-1.5 bg-white rounded-full text-stone-900 hover:scale-110 transition-transform"
+                            title="应用"
+                          >
+                            <Check size={14} />
+                          </button>
+                          <button 
+                            onClick={() => deleteWallpaper(wp.id)}
+                            className="p-1.5 bg-white rounded-full text-rose-600 hover:scale-110 transition-transform"
+                            title="删除"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        </div>
+                        {userStats?.wallpaper_url === `idb://${wp.id}` && (
+                          <div className="absolute top-1 right-1 bg-stone-900 text-white rounded-full p-0.5">
+                            <Check size={8} />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <input 
                   type="file" 
                   ref={fileInputRef} 
@@ -211,7 +281,7 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
                       onClick={clearWallpaper}
                       className="rounded-2xl border border-rose-200 px-4 py-3 text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors"
                     >
-                      清除
+                      清除当前壁纸
                     </button>
                   )}
                 </div>

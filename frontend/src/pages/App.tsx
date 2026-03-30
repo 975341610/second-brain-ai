@@ -152,23 +152,16 @@ export default function App() {
     {!isAuthenticated ? (
       <LoginPage onLogin={handleLogin} />
     ) : (
-      <main className="min-h-screen bg-reflect-bg text-reflect-text font-sans antialiased lg:flex lg:gap-0 relative">
+      <main className={`min-h-screen bg-reflect-bg text-reflect-text font-sans antialiased lg:flex lg:gap-0 relative ${userStats?.current_theme === 'dark' ? 'dark' : ''}`} data-theme={userStats?.current_theme}>
       {/* Theme Background Layer */}
       {wallpaperUrl && (
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
           {wallpaperUrl.includes('video') || wallpaperUrl.endsWith('.mp4') || wallpaperUrl.endsWith('.webm') ? (
-            <video src={wallpaperUrl} autoPlay muted loop className="wallpaper-video" />
+            <video src={wallpaperUrl} autoPlay muted loop className="wallpaper-video w-full h-full object-cover" />
           ) : (
-            <img src={wallpaperUrl} alt="Wallpaper" className="w-full h-full object-cover fixed" />
+            <img src={wallpaperUrl} alt="Wallpaper" className="w-full h-full object-cover" />
           )}
-          <div className="absolute inset-0 bg-black/10 backdrop-blur-[2px]" />
-        </div>
-      )}
-      
-      {userStats?.current_theme === 'zelda' && !wallpaperUrl && (
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <img src={hyruleSunset} alt="Hyrule Background" className="w-full h-full object-cover opacity-10 scale-105 fixed" />
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-reflect-bg/80 to-reflect-bg" />
+          <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]" />
         </div>
       )}
       
@@ -184,7 +177,7 @@ export default function App() {
       )}
 
       {/* Main Layout Container */}
-      <div className="flex-1 flex flex-col lg:flex-row h-screen overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row h-screen overflow-hidden relative z-10">
         {/* Mobile Navigation (Tabs) */}
         <div className="lg:hidden p-4 grid grid-cols-2 gap-2">
           {mobileTabs.map((tab) => {
@@ -207,7 +200,7 @@ export default function App() {
         {/* Sidebar Navigation */}
         <div className={`
           ${mobileTab === 'notes' || activePage !== 'notes' ? 'block' : 'hidden lg:block'} 
-          w-full lg:w-[320px] lg:border-r border-reflect-border/50 bg-reflect-sidebar/40 ${wallpaperUrl ? 'sidebar-bg-fix' : ''}
+          w-full lg:w-[320px] lg:border-r border-reflect-border/50 bg-reflect-sidebar/40 glass-panel ${wallpaperUrl ? 'sidebar-bg-fix' : ''}
         `}>
           <Sidebar
             activePage={activePage}
@@ -254,7 +247,7 @@ export default function App() {
 
         {/* Content Area */}
         <div className={`flex-1 overflow-auto bg-reflect-bg relative ${wallpaperUrl ? 'bg-transparent' : ''}`}>
-          <div className="max-w-5xl mx-auto px-6 py-8 h-full">
+          <div className="max-w-5xl mx-auto px-6 py-8 h-full glass-panel">
             {activePage === 'home' && <HomeDashboard 
               recentNotes={recentNotes} 
               tasks={tasks} 

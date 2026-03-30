@@ -12,82 +12,21 @@
   --reflect-muted: #8e8c89;
 }
 
-[data-theme="cyber"] {
+[data-theme="dark"] {
   color-scheme: dark;
-  --reflect-bg: #050505;
-  --reflect-sidebar: #0a0a0c;
-  --reflect-accent: #00f3ff;
-  --reflect-border: rgba(0, 243, 255, 0.2);
-  --reflect-text: #00f3ff;
-  --reflect-muted: #006666;
-  --neon-pink: #ff00ff;
-  --neon-blue: #00f3ff;
-  --neon-yellow: #fff200;
-  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px rgba(0, 243, 255, 0.5);
+  --reflect-bg: #121212;
+  --reflect-sidebar: #1a1a1a;
+  --reflect-accent: #a8a29e;
+  --reflect-border: #2e2e2e;
+  --reflect-text: #e5e5e5;
+  --reflect-muted: #737373;
 }
 
-[data-theme="cyber"] .glass-panel {
-  background: rgba(0, 20, 30, 0.4);
-  border-color: var(--reflect-accent);
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.15), inset 0 0 10px rgba(0, 243, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(200%);
-}
-
-[data-theme="cyber"] .sidebar-bg-fix {
-  background: rgba(5, 5, 8, 0.6);
-  border-right: 1px solid var(--reflect-accent);
-}
-
-[data-theme="cyber"] h1, [data-theme="cyber"] h2, [data-theme="cyber"] h3 {
-  color: var(--neon-pink);
-  text-shadow: 0 0 8px var(--neon-pink), 0 0 15px rgba(255, 0, 255, 0.3);
-}
-
-[data-theme="cyber"] button {
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.2s;
-}
-
-[data-theme="cyber"] .bg-reflect-text {
-  background-color: var(--neon-blue);
-  box-shadow: 0 0 15px var(--neon-blue);
-}
-
-[data-theme="p5"] {
-  color-scheme: dark;
-  --reflect-bg: #1a1a1a;
-  --reflect-sidebar: #000000;
-  --reflect-accent: #d32f2f;
-  --reflect-border: #333333;
-  --reflect-text: #ffffff;
-  --reflect-muted: #999999;
-}
-
-[data-theme="zelda"] {
-  color-scheme: dark;
-  --reflect-bg: #0a0f12;
-  --reflect-sidebar: #111b1d;
-  --reflect-accent: #00eeff;
-  --reflect-border: rgba(0, 238, 255, 0.15);
-  --reflect-text: #e0faff;
-  --reflect-muted: #55777a;
-}
-
-[data-theme="ff7"] {
-  color-scheme: dark;
-  --reflect-bg: #000000;
-  --reflect-sidebar: #0a0a0c;
-  --reflect-accent: #00f3ff;
-  --reflect-border: #1a1a1f;
-  --reflect-text: #e0e0e0;
-  --reflect-muted: #666666;
-  background-image: url('./assets/ui/midgar.webp');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
+.bg-macaron-pink { background-color: #ffd1dc; }
+.bg-macaron-blue { background-color: #b0e0e6; }
+.bg-macaron-green { background-color: #f0fff0; }
+.bg-macaron-yellow { background-color: #fffacd; }
+.bg-macaron-purple { background-color: #e6e6fa; }
 
 body {
   margin: 0;
