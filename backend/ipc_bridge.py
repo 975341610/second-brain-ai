@@ -211,6 +211,14 @@ def main():
             stats = repositories.update_user_wallpaper(db, params.get("wallpaper_url"))
             print(json.dumps({"exp": stats.exp, "level": stats.level, "wallpaper_url": stats.wallpaper_url}))
 
+        elif command == "system:version":
+            print(json.dumps({
+                "version": "0.5.5",
+                "git_commit": "7fb7e2f",
+                "build_time": "2026-03-31",
+                "executable": sys.executable
+            }))
+
         elif command == "bgm:list":
             from backend.config import get_settings
             settings = get_settings()
