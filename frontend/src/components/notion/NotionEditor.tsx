@@ -259,10 +259,8 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
         currentEditor.chain().focus().insertContentAt(currentPos, chunk).run();
         currentPos += chunk.length;
       });
-      onNotify?.('AI 生成完成', 'success');
     } catch (error) {
       console.error('AI streaming failed:', error);
-      onNotify?.('AI 生成失败，请检查网络或配置', 'error');
     } finally {
       setIsAIStreaming(false);
     }

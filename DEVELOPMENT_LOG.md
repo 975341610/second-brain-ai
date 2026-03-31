@@ -69,11 +69,11 @@
 ## 📦 提交与更新记录 (Commit & Update Log)
 - **2026-03-31 | Branch: `feature/local-first-architecture`**
   - `Commit: [Latest]`
-  - *更新了什么*: **深度重构架构脱节问题**。
-    1. 前端 API 全面转向 Electron IPC，移除 `fetch` 依赖。
-    2. 主进程引入 `ipc_bridge.py` 承载所有本地 CRUD 逻辑。
-    3. 修复了保存丢失父子关系、新建子页面导致父页面刷新、删除笔记不进 `.trash` 的 3 个核心 Bug。
-  - *解决了什么*: 真正实现了“Local-first”承诺，切断了前端与后端之间的网络不确定性，确保了数据一致性与极致的本地体验。
+  - *更新内容*: **深度诊断并修复了自动保存卡死与白屏 (React 崩溃) 问题**。
+    1. **IPC 链路闭环**: 在 `preload` 中暴露 `ipcInvoke`，并在主进程中实现了业务逻辑转发。
+    2. **性能重构**: 主进程接管了高频的 `notes:*` IPC 请求，并将其转发给常驻的 Python 后端（FastAPI），消除了每次保存都 `spawn` Python 进程的巨大开销。
+    3. **稳定性增强**: 在 `NotionEditor` 外层包裹了 `ErrorBoundary`，删除了所有阻断性的硬编码“连接失败”提示，确保即使后端瞬时繁忙，前端也不会白屏崩溃。
+  - *解决痛点*: 彻底解决了用户反馈的“长时间自动保存中”以及保存失败导致的白屏问题，实现了真正的本地化秒存体验。
 
 - **2026-03-31 | Branch: `fix/4-issues-integration`**
   - `Commit: 9258886`

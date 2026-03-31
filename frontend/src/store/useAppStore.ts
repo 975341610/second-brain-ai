@@ -284,15 +284,12 @@ export const useAppStore = create<AppState>((set, get) => ({
       
       if (isAuthError) {
         set({ appStatus: 'ERROR' });
-        set({ toast: { id: Date.now(), tone: 'error', text: '鉴权失败：请在“设置 -> 模型设置”中配置访问令牌' } });
       } else {
         // 其他网络错误，如果本地有缓存则仍然允许进入 READY
         if (get().notes.length > 0) {
           set({ appStatus: 'READY' });
-          set({ toast: { id: Date.now(), tone: 'info', text: '后端连接失败，当前正处于离线/缓存模式。' } });
         } else {
           set({ appStatus: 'ERROR' });
-          set({ toast: { id: Date.now(), tone: 'error', text: `初始化失败：${error instanceof Error ? error.message : '网络请求失败'}` } });
         }
       }
     } finally {
