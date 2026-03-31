@@ -69,6 +69,13 @@
 ## 📦 提交与更新记录 (Commit & Update Log)
 - **2026-03-31 | Branch: `feature/local-first-architecture`**
   - `Commit: [Latest]`
+  - *更新内容*: **优化了依赖安装流程，解决了前端依赖丢失问题**。
+    1. **自动依赖安装**: 在根目录 `package.json` 中增加了 `postinstall` 脚本，执行 `npm install` 时会自动安装 `frontend` 目录下的依赖。
+    2. **解决依赖缺失**: 修复了 `@tiptap/extension-collaboration` 等新引入依赖在本地环境拉取后运行报错的问题。
+  - *使用说明*: 之后只需 `git pull` 然后在根目录重新运行 `npm install` 即可自动完成所有依赖安装。
+
+- **2026-03-31 | Branch: `feature/local-first-architecture`**
+  - `Commit: a78dc6f`
   - *更新内容*: **深度诊断并修复了自动保存卡死与白屏 (React 崩溃) 问题**。
     1. **IPC 链路闭环**: 在 `preload` 中暴露 `ipcInvoke`，并在主进程中实现了业务逻辑转发。
     2. **性能重构**: 主进程接管了高频的 `notes:*` IPC 请求，并将其转发给常驻的 Python 后端（FastAPI），消除了每次保存都 `spawn` Python 进程的巨大开销。
