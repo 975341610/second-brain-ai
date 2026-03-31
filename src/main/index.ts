@@ -3,7 +3,8 @@ import { app, BrowserWindow, Tray, Menu, ipcMain, dialog, nativeImage } from 'el
 import path from 'path';
 import { autoUpdater } from 'electron-updater';
 import { SidecarManager } from './sidecar';
-import { spawn } from 'child_process';
+import { spawn, execSync } from 'child_process';
+import fs from 'fs';
 
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
@@ -28,6 +29,47 @@ const getBackendPath = () => {
 };
 
 const sidecar = new SidecarManager(getBackendPath(), isDev);
+
+// Helper to call Python bridge
+async function callPythonBridge(command: string, params: any = {}) {
+  return new Promise((resolve, reject) => {
+    const pythonExe = process.platform === 'win32' ? 'python' : 'python3';
+    const bridgePath = path.join(getBackendPath(), 'ipc_bridge.py');
+    const child = spawn(pythonExe, [bridgePath, command, JSON.stringify(params)], {
+      cwd: getBackendPath(),
+    });
+
+    let stdout = '';
+    let stderr = '';
+
+    child.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+
+    child.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+
+    child.on('close', (code) => {
+      if (code !== 0) {
+        log.error(`Python bridge exited with code ${code}: ${stderr}`);
+        reject(new Error(stderr || `Python bridge exited with code ${code}`));
+        return;
+      }
+      try {
+        const result = JSON.parse(stdout);
+        if (result.error) {
+          reject(new Error(result.error));
+        } else {
+          resolve(result);
+        }
+      } catch (e) {
+        log.error('Failed to parse Python bridge output:', stdout);
+        reject(new Error('Internal Error: Invalid output from bridge'));
+      }
+    });
+  });
+}
 
 // 初始化自动更新
 function setupAutoUpdater() {
@@ -94,6 +136,40 @@ function handleIPC() {
   ipcMain.on('window-unmaximize', () => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.unmaximize() });
   ipcMain.on('window-close', () => { app.quit(); });
   ipcMain.handle('window-is-maximized', () => { return (mainWindow && !mainWindow.isDestroyed()) ? mainWindow.isMaximized() : false });
+
+  // 📂 彻底切断 FastAPI 依赖，直接通过 IPC 调用 Python 逻辑
+  ipcMain.handle('notes:list', async () => await callPythonBridge('notes:list'));
+  ipcMain.handle('notebooks:list', async () => await callPythonBridge('notebooks:list'));
+  ipcMain.handle('notebooks:create', async (_, params) => await callPythonBridge('notebooks:create', params));
+  ipcMain.handle('notebooks:update', async (_, params) => await callPythonBridge('notebooks:update', params));
+  ipcMain.handle('notebooks:delete', async (_, params) => await callPythonBridge('notebooks:delete', params));
+  ipcMain.handle('notebooks:restore', async (_, params) => await callPythonBridge('notebooks:restore', params));
+  ipcMain.handle('notebooks:purge', async (_, params) => await callPythonBridge('notebooks:purge', params));
+  ipcMain.handle('notes:create', async (_, params) => await callPythonBridge('notes:create', params));
+  ipcMain.handle('notes:update', async (_, params) => await callPythonBridge('notes:update', params));
+  ipcMain.handle('notes:update-tags', async (_, params) => await callPythonBridge('notes:update-tags', params));
+  ipcMain.handle('notes:move', async (_, params) => await callPythonBridge('notes:move', params));
+  ipcMain.handle('notes:bulk-move', async (_, params) => await callPythonBridge('notes:bulk-move', params));
+  ipcMain.handle('notes:bulk-delete', async (_, params) => await callPythonBridge('notes:bulk-delete', params));
+  ipcMain.handle('notes:delete', async (_, params) => await callPythonBridge('notes:delete', params));
+  ipcMain.handle('notes:restore', async (_, params) => await callPythonBridge('notes:restore', params));
+  ipcMain.handle('notes:purge', async (_, params) => await callPythonBridge('notes:purge', params));
+  ipcMain.handle('trash:get', async () => await callPythonBridge('trash:get'));
+  ipcMain.handle('trash:purge', async () => await callPythonBridge('trash:purge'));
+  ipcMain.handle('tasks:list', async () => await callPythonBridge('tasks:list'));
+  ipcMain.handle('tasks:create', async (_, params) => await callPythonBridge('tasks:create', params));
+  ipcMain.handle('tasks:update', async (_, params) => await callPythonBridge('tasks:update', params));
+  ipcMain.handle('tasks:delete', async (_, params) => await callPythonBridge('tasks:delete', params));
+  ipcMain.handle('tasks:clear-completed', async () => await callPythonBridge('tasks:clear-completed'));
+  ipcMain.handle('ai:ask', async (_, params) => await callPythonBridge('ai:ask', params));
+  ipcMain.handle('config:get-model', async () => await callPythonBridge('config:get-model'));
+  ipcMain.handle('config:update-model', async (_, params) => await callPythonBridge('config:update-model', params));
+  ipcMain.handle('user:get-stats', async () => await callPythonBridge('user:get-stats'));
+  ipcMain.handle('user:list-achievements', async () => await callPythonBridge('user:list-achievements'));
+  ipcMain.handle('user:update-theme', async (_, params) => await callPythonBridge('user:update-theme', params));
+  ipcMain.handle('user:update-wallpaper', async (_, params) => await callPythonBridge('user:update-wallpaper', params));
+  ipcMain.handle('bgm:list', async () => await callPythonBridge('bgm:list'));
+  ipcMain.handle('system:version', async () => await callPythonBridge('system:version'));
 }
 
 function createTray() {

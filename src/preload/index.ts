@@ -10,6 +10,8 @@ contextBridge.exposeInMainWorld('electron', {
   downloadUpdate: () => ipcRenderer.invoke('download-update'),
   installUpdate: () => ipcRenderer.invoke('install-update'),
   installLocalUpdate: () => ipcRenderer.invoke('install-local-update'),
+  // Generic IPC invoke for all local operations
+  ipcInvoke: (channel: string, ...args: any[]) => ipcRenderer.invoke(channel, ...args),
   on: (channel: string, callback: (...args: any[]) => void) => {
     ipcRenderer.on(channel, (_, ...args) => callback(...args));
   }

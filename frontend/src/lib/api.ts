@@ -11,30 +11,31 @@ import type {
 } from './types';
 
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
-
-
-function getAuthHeaders(): Record<string, string> {
-  const token = localStorage.getItem('access_token');
-  return token ? { 'Authorization': `Bearer ${token}` } : {};
+declare global {
+  interface Window {
+    electron?: {
+      ipcInvoke: (channel: string, ...args: any[]) => Promise<any>;
+    };
+  }
 }
 
-async function request<T>(path: string, options?: RequestInit): Promise<T> {
+// Helper to call IPC or fallback to fetch
+async function invoke<T>(channel: string, path: string, options?: any): Promise<T> {
+  if (window.electron?.ipcInvoke) {
+    // 📂 彻底切换到 Electron IPC 进行本地直接 CRUD
+    return window.electron.ipcInvoke(channel, options?.body ? JSON.parse(options.body) : options?.params || options);
+  }
+  
+  // Fallback to FastAPI REST API (only if electron is not available)
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...getAuthHeaders(),
     ...(options?.headers as Record<string, string> || {}),
   };
-
   const response = await fetch(`${API_BASE}${path}`, {
     ...options,
     headers,
   });
-  if (response.status === 401) {
-    // 触发认证失败事件或清除 token
-    localStorage.removeItem('access_token');
-    window.dispatchEvent(new CustomEvent('unauthorized'));
-  }
   if (!response.ok) {
     const message = await response.text();
     throw new Error(message || 'Request failed');
@@ -43,89 +44,65 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 }
 
 export const api = {
-  listNotes: () => request<Note[]>('/notes'),
-  listNotebooks: () => request<Notebook[]>('/notebooks'),
-  createNotebook: (payload: { name: string; icon?: string }) => request<Notebook>('/notebooks', { method: 'POST', body: JSON.stringify(payload) }),
+  listNotes: () => invoke<Note[]>('notes:list', '/notes'),
+  listNotebooks: () => invoke<Notebook[]>('notebooks:list', '/notebooks'),
+  createNotebook: (payload: { name: string; icon?: string }) => 
+    invoke<Notebook>('notebooks:create', '/notebooks', { method: 'POST', body: JSON.stringify(payload) }),
   updateNotebook: (notebookId: number, payload: { name?: string; icon?: string }) =>
-    request<Notebook>(`/notebooks/${notebookId}`, { method: 'PATCH', body: JSON.stringify(payload) }),
-  deleteNotebook: (notebookId: number) => request(`/notebooks/${notebookId}`, { method: 'DELETE' }),
-  restoreNotebook: (notebookId: number) => request<Notebook>(`/notebooks/${notebookId}/restore`, { method: 'POST' }),
-  purgeNotebook: (notebookId: number) => request(`/notebooks/${notebookId}/purge`, { method: 'DELETE' }),
+    invoke<Notebook>('notebooks:update', `/notebooks/${notebookId}`, { params: { id: notebookId, ...payload } }),
+  deleteNotebook: (notebookId: number) => invoke('notebooks:delete', `/notebooks/${notebookId}`, { params: { id: notebookId } }),
+  restoreNotebook: (notebookId: number) => invoke<Notebook>('notebooks:restore', `/notebooks/${notebookId}/restore`, { params: { id: notebookId } }),
+  purgeNotebook: (notebookId: number) => invoke('notebooks:purge', `/notebooks/${notebookId}/purge`, { params: { id: notebookId } }),
   createNote: (payload: { title: string; content: string; notebook_id?: number | null; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; tags?: string[] }) =>
-    request<Note>('/notes', { method: 'POST', body: JSON.stringify(payload) }),
+    invoke<Note>('notes:create', '/notes', { method: 'POST', body: JSON.stringify(payload) }),
   updateNote: (noteId: number, payload: { title?: string; content?: string; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; tags?: string[] }) =>
-    request<Note>(`/notes/${noteId}`, { method: 'PUT', body: JSON.stringify(payload) }),
+    invoke<Note>('notes:update', `/notes/${noteId}`, { params: { id: noteId, ...payload } }),
   updateNoteTags: (noteId: number, tags: string[]) =>
-    request<Note>(`/notes/${noteId}/tags`, { method: 'PATCH', body: JSON.stringify(tags) }),
+    invoke<Note>('notes:update-tags', `/notes/${noteId}/tags`, { params: { id: noteId, tags } }),
   moveNote: (noteId: number, payload: { notebook_id?: number | null; position: number; parent_id?: number | null }) =>
-    request<Note>(`/notes/${noteId}/move`, { method: 'PATCH', body: JSON.stringify(payload) }),
+    invoke<Note>('notes:move', `/notes/${noteId}/move`, { params: { id: noteId, ...payload } }),
   bulkMoveNotes: (payload: { note_ids: number[]; notebook_id?: number | null; position: number; parent_id?: number | null }) =>
-    request<{ notes: Note[] }>('/notes/bulk-move', { method: 'POST', body: JSON.stringify(payload) }),
+    invoke<{ notes: Note[] }>('notes:bulk-move', '/notes/bulk-move', { method: 'POST', body: JSON.stringify(payload) }),
   bulkDeleteNotes: (payload: { note_ids: number[]; position?: number }) =>
-    request<{ notes: Note[] }>('/notes/bulk-delete', { method: 'POST', body: JSON.stringify(payload) }),
-  deleteNote: (noteId: number) => request(`/notes/${noteId}`, { method: 'DELETE' }),
+    invoke<{ notes: Note[] }>('notes:bulk-delete', '/notes/bulk-delete', { method: 'POST', body: JSON.stringify(payload) }),
+  deleteNote: (noteId: number) => invoke('notes:delete', `/notes/${noteId}`, { params: { id: noteId } }),
   listNotesFiltered: (propertyName: string, propertyValue: string) => 
-    request<Note[]>(`/notes?property_name=${encodeURIComponent(propertyName)}&property_value=${encodeURIComponent(propertyValue)}`),
-  createNoteProperty: (noteId: number, payload: { name: string; type: string; value: string }) =>
-    request<NoteProperty>(`/notes/${noteId}/properties`, { method: 'POST', body: JSON.stringify(payload) }),
-  updateNoteProperty: (noteId: number, propertyId: number, payload: { name?: string; type?: string; value?: string }) =>
-    request<NoteProperty>(`/notes/${noteId}/properties/${propertyId}`, { method: 'PATCH', body: JSON.stringify(payload) }),
-  deleteNoteProperty: (noteId: number, propertyId: number) =>
-    request(`/notes/${noteId}/properties/${propertyId}`, { method: 'DELETE' }),
-  restoreNote: (noteId: number) => request<Note>(`/notes/${noteId}/restore`, { method: 'POST' }),
-  purgeNote: (noteId: number) => request(`/notes/${noteId}/purge`, { method: 'DELETE' }),
-  purgeTrash: () => request('/trash/purge', { method: 'DELETE' }),
-  getTrash: () => request<TrashState>('/trash'),
-  listTasks: () => request<Task[]>('/tasks'),
+    invoke<Note[]>('notes:list-filtered', `/notes?property_name=${encodeURIComponent(propertyName)}&property_value=${encodeURIComponent(propertyValue)}`, { params: { propertyName, propertyValue } }),
+  restoreNote: (noteId: number) => invoke<Note>('notes:restore', `/notes/${noteId}/restore`, { params: { id: noteId } }),
+  purgeNote: (noteId: number) => invoke('notes:purge', `/notes/${noteId}/purge`, { params: { id: noteId } }),
+  purgeTrash: () => invoke('trash:purge', '/trash/purge'),
+  getTrash: () => invoke<TrashState>('trash:get', '/trash'),
+  listTasks: () => invoke<Task[]>('tasks:list', '/tasks'),
   createTask: (payload: { title: string; status?: string; priority?: string; task_type?: string; deadline?: string | null }) =>
-    request<Task>('/tasks', { method: 'POST', body: JSON.stringify(payload) }),
+    invoke<Task>('tasks:create', '/tasks', { method: 'POST', body: JSON.stringify(payload) }),
   updateTask: (taskId: number, payload: { title?: string; status?: string; priority?: string; task_type?: string; deadline?: string | null }) =>
-    request<Task>(`/tasks/${taskId}`, { method: 'PATCH', body: JSON.stringify(payload) }),
-  deleteTask: (taskId: number) => request(`/tasks/${taskId}`, { method: 'DELETE' }),
-  clearCompletedTasks: () => request('/tasks/clear-completed', { method: 'POST' }),
+    invoke<Task>('tasks:update', `/tasks/${taskId}`, { params: { id: taskId, ...payload } }),
+  deleteTask: (taskId: number) => invoke('tasks:delete', `/tasks/${taskId}`, { params: { id: taskId } }),
+  clearCompletedTasks: () => invoke('tasks:clear-completed', '/tasks/clear-completed'),
   ask: (payload: { question: string; mode: 'chat' | 'rag' | 'agent' }) =>
-    request<AskResponse>('/ask', { method: 'POST', body: JSON.stringify(payload) }),
-  runAgent: (goal: string) => request('/agent', { method: 'POST', body: JSON.stringify({ goal }) }),
-  getModelConfig: () => request<ModelConfig>('/model-config'),
+    invoke<AskResponse>('ai:ask', '/ask', { method: 'POST', body: JSON.stringify(payload) }),
+  getModelConfig: () => invoke<ModelConfig>('config:get-model', '/model-config'),
   updateModelConfig: (payload: ModelConfig) =>
-    request<ModelConfig>('/model-config', { method: 'POST', body: JSON.stringify(payload) }),
-  suggestTags: (content: string) => request<{ tags: string[] }>('/tags/suggest', { method: 'POST', body: JSON.stringify({ content }) }),
-  streamInlineAI: async (payload: { prompt: string; context?: string; action: string }, onChunk: (chunk: string) => void) => {
-    const response = await fetch(`${API_BASE}/ai/inline`, {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        ...getAuthHeaders(),
-      },
-      body: JSON.stringify(payload),
-    });
-    if (response.status === 401) {
-      localStorage.removeItem('access_token');
-      window.dispatchEvent(new CustomEvent('unauthorized'));
-    }
-    if (!response.ok) throw new Error(await response.text());
-    const reader = response.body?.getReader();
-    if (!reader) return;
-    const decoder = new TextDecoder();
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      onChunk(decoder.decode(value, { stream: true }));
-    }
-  },
+    invoke<ModelConfig>('config:update-model', '/model-config', { method: 'POST', body: JSON.stringify(payload) }),
+  
+  // Streaming AI and File uploads still use network requests (or we can wrap them later)
+  // For now, these are less critical than CRUD saving
   streamChat: async (payload: { question: string; mode: string }, onChunk: (chunk: string) => void) => {
+    if (window.electron?.ipcInvoke) {
+      // Use IPC for streaming if implemented
+      try {
+        await window.electron.ipcInvoke('ai:stream-chat', payload, (chunk: string) => onChunk(chunk));
+        return;
+      } catch (e) {
+        console.warn('IPC streaming failed, falling back to fetch', e);
+      }
+    }
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
     const response = await fetch(`${API_BASE}/chat`, {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        ...getAuthHeaders(),
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
-    if (response.status === 401) {
-      localStorage.removeItem('access_token');
-      window.dispatchEvent(new CustomEvent('unauthorized'));
-    }
     if (!response.ok) throw new Error(await response.text());
     const reader = response.body?.getReader();
     if (!reader) return;
@@ -137,75 +114,22 @@ export const api = {
     }
   },
   upload: async (files: File[]) => {
+    // Upload is complex via IPC without proper encoding, keep it for now or implement as FS copy
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
     const formData = new FormData();
     files.forEach((file) => formData.append('files', file));
     const response = await fetch(`${API_BASE}/upload`, { method: 'POST', body: formData });
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   },
-  uploadMedia: async (file: File) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    const response = await fetch(`${API_BASE}/media/upload`, { 
-      method: 'POST', 
-      body: formData 
-    });
-    if (!response.ok) throw new Error(await response.text());
-    return response.json() as Promise<{ url: string; name: string; size: number; type: string }>;
+  getUserStats: () => invoke<UserStats>('user:get-stats', '/user/stats'),
+  listUserAchievements: () => invoke<UserAchievement[]>('user:list-achievements', '/user/achievements'),
+  updateUserTheme: (theme: string) => invoke<UserStats>('user:update-theme', '/user/theme', { params: { theme } }),
+  updateUserWallpaper: (wallpaperUrl: string) => invoke<UserStats>('user:update-wallpaper', '/user/wallpaper', { params: { wallpaper_url: wallpaperUrl } }),
+  listBgm: () => invoke<string[]>('bgm:list', '/bgm/list'),
+  getBgmStreamUrl: (filename: string) => {
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
+    return `${API_BASE}/bgm/stream/${encodeURIComponent(filename)}`;
   },
-  uploadMediaChunked: async (file: File) => {
-    const CHUNK_SIZE = 512 * 1024; // 512KB chunks
-    const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
-
-    // 1. Init
-    const initForm = new FormData();
-    initForm.append('filename', file.name);
-    initForm.append('size', file.size.toString());
-    const initRes = await fetch(`${API_BASE}/media/upload/init`, { method: 'POST', body: initForm });
-    if (!initRes.ok) throw new Error("Init upload failed");
-    const { upload_id } = await initRes.json();
-
-    // 2. Upload chunks
-    for (let i = 0; i < totalChunks; i++) {
-      const start = i * CHUNK_SIZE;
-      const end = Math.min(start + CHUNK_SIZE, file.size);
-      const chunk = file.slice(start, end);
-      
-      const chunkForm = new FormData();
-      chunkForm.append('upload_id', upload_id);
-      chunkForm.append('chunk_index', i.toString());
-      chunkForm.append('file', chunk, file.name);
-
-      const chunkRes = await fetch(`${API_BASE}/media/upload/chunk`, { method: 'POST', body: chunkForm });
-      if (!chunkRes.ok) throw new Error(`Chunk ${i} upload failed`);
-    }
-
-    // 3. Complete
-    const completeForm = new FormData();
-    completeForm.append('upload_id', upload_id);
-    completeForm.append('filename', file.name);
-    completeForm.append('content_type', file.type);
-    const finalRes = await fetch(`${API_BASE}/media/upload/complete`, { method: 'POST', body: completeForm });
-    if (!finalRes.ok) throw new Error("Complete upload failed");
-    
-    return finalRes.json() as Promise<{ url: string; name: string; size: number; type: string }>;
-  },
-  // ============================================================
-  // 🖥️ 系统管理 API (Windows 窗口化增强)
-  // ============================================================
-  getSystemLogs: () => request<{ logs: string[] }>('/system/logs'),
-  switchDataPath: (dataPath: string) => request<{ status: string; message: string }>('/system/switch-data-path', {
-    method: 'POST',
-    body: JSON.stringify({ data_path: dataPath }),
-  }),
-  checkUpdate: () => request<{ status: string; output: string }>('/system/update', { method: 'POST' }),
-  performUpdate: () => request<{ status: string; output: string }>('/system/update?force=true', { method: 'POST' }),
-  getSystemVersion: () => request<{ version: string; git_commit?: string; build_time?: string; executable?: string }>('/system/version'),
-  restartApp: () => request<{ status: string; message: string }>('/system/restart', { method: 'POST' }),
-  getUserStats: () => request<UserStats>('/user/stats'),
-  listUserAchievements: () => request<UserAchievement[]>('/user/achievements'),
-  updateUserTheme: (theme: string) => request<UserStats>('/user/theme', { method: 'PATCH', body: JSON.stringify({ theme }) }),
-  updateUserWallpaper: (wallpaperUrl: string) => request<UserStats>('/user/wallpaper', { method: 'PATCH', body: JSON.stringify({ wallpaper_url: wallpaperUrl }) }),
-  listBgm: () => request<string[]>('/bgm/list'),
-  getBgmStreamUrl: (filename: string) => `${API_BASE}/bgm/stream/${encodeURIComponent(filename)}`,
+  getSystemVersion: () => invoke<{ version: string; git_commit?: string; build_time?: string; executable?: string }>('system:version', '/system/version'),
 };

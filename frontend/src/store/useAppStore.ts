@@ -372,46 +372,37 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ isSavingNote: true });
     try {
       const isDraft = typeof id === 'number' && id < 0;
+      const currentNote = get().notes.find((item) => item.id === id);
+      
       const note = !id || isDraft
         ? await api.createNote({
             title: title ?? '未命名笔记',
             content: content ?? '',
-            notebook_id: notebookId ?? get().notes.find((item) => item.id === id)?.notebook_id ?? get().notebooks[0]?.id ?? null,
-            parent_id: parent_id ?? get().notes.find((item) => item.id === id)?.parent_id ?? null,
+            notebook_id: notebookId ?? currentNote?.notebook_id ?? get().notebooks[0]?.id ?? null,
+            parent_id: parent_id ?? currentNote?.parent_id ?? null,
             icon: icon ?? '📝',
             is_title_manually_edited: is_title_manually_edited ?? false,
             tags,
           })
         : await api.updateNote(id, { 
-            title, 
-            content, 
-            icon, 
-            parent_id,
-            is_title_manually_edited,
-            tags
+            title: title ?? currentNote?.title, 
+            content: content ?? currentNote?.content, 
+            icon: icon ?? currentNote?.icon, 
+            parent_id: parent_id !== undefined ? parent_id : currentNote?.parent_id,
+            is_title_manually_edited: is_title_manually_edited ?? currentNote?.is_title_manually_edited,
+            tags: tags ?? currentNote?.tags
           });
       
       const currentNotes = get().notes;
-      
-      // 核心修复：状态合并逻辑重构
-      // 1. 移除旧的 ID (可能是草稿负数 ID，也可能是旧的正式 ID)
-      // 2. 移除任何已经存在的、与后端返回的新 ID 冲突的项
       const filteredNotes = currentNotes.filter((item) => item.id !== id && item.id !== note.id);
       
-      // 3. 处理子节点关联：如果父节点从草稿转正，更新所有子节点的 parent_id
       const finalNotes = isDraft && typeof id === 'number'
         ? [note, ...filteredNotes.map(n => n.parent_id === id ? { ...n, parent_id: note.id } : n)]
         : [note, ...filteredNotes];
-
-      // 4. 排序：确保顺序一致性（笔记本内按 position，笔记本间按 ID 或顺序）
-      // 这里暂时保持原样，仅在 moveNote 中排序，平时按创建/更新时间倒序（note 已经在最前）
-
+      
       const currentSelectedId = get().selectedNoteId;
-      // 必须严格判断当前选中的是不是刚刚正在保存的这个草稿！如果是，才更新它的选中状态为正式 ID。
-      // 如果用户已经切走，绝不能强行把用户拉回来！
       const shouldUpdateSelection = currentSelectedId === id;
       
-      // 更新辅助状态
       let recentNoteIds = get().recentNoteIds;
       let selectedNoteIds = get().selectedNoteIds;
       if (isDraft && typeof id === 'number') {
