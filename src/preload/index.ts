@@ -12,7 +12,12 @@ contextBridge.exposeInMainWorld('electron', {
   installLocalUpdate: () => ipcRenderer.invoke('install-local-update'),
   // Generic IPC invoke for all local operations
   ipcInvoke: (channel: string, ...args: any[]) => ipcRenderer.invoke(channel, ...args),
+  // --- SSOT API ---
+  watchNote: (noteId: number, path: string) => ipcRenderer.send('ssot:watch-note', { noteId, path }),
+  unwatchNote: (noteId: number) => ipcRenderer.send('ssot:unwatch-note', { noteId }),
   on: (channel: string, callback: (...args: any[]) => void) => {
-    ipcRenderer.on(channel, (_, ...args) => callback(...args));
+    const subscription = (_event: any, ...args: any[]) => callback(...args);
+    ipcRenderer.on(channel, subscription);
+    return () => ipcRenderer.removeListener(channel, subscription);
   }
 });

@@ -552,17 +552,20 @@ async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: B
         raise HTTPException(status_code=404, detail="Note not found")
     
     # 1. 快速更新基本信息
-    title = payload.title if payload.title is not None else existing.title
-    content = payload.content if payload.content is not None else existing.content
-    icon = payload.icon if payload.icon is not None else existing.icon
-    parent_id = payload.parent_id if payload.parent_id is not None else existing.parent_id
-    is_title_manually_edited = payload.is_title_manually_edited if payload.is_title_manually_edited is not None else (existing.is_title_manually_edited == 1)
-    tags = payload.tags
+    update_data = payload.model_dump(exclude_unset=True)
+    
+    title = update_data.get("title", existing.title)
+    content = update_data.get("content", existing.content)
+    icon = update_data.get("icon", existing.icon)
+    parent_id = update_data.get("parent_id", existing.parent_id)
+    is_title_manually_edited = update_data.get("is_title_manually_edited", (existing.is_title_manually_edited == 1))
+    tags = update_data.get("tags")
     
     # 同步更新数据库
     from backend.database import with_db_retry
     @with_db_retry(max_retries=3)
     def do_update():
+        # 注意：repositories.update_note 需要适配 parent_id 为 None 的情况
         return update_note(db, note_id, title, content, existing.summary, tags, icon, parent_id, is_title_manually_edited)
     
     note = do_update()

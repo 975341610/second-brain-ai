@@ -5,10 +5,12 @@ import { autoUpdater } from 'electron-updater';
 import { SidecarManager } from './sidecar';
 import { spawn, execSync } from 'child_process';
 import fs from 'fs';
+import { SSOTWatcher } from './fs-watcher';
 
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let tray: Tray | null = null;
+let ssotWatcher: SSOTWatcher | null = null;
 const isDev = !app.isPackaged;
 
 process.on('uncaughtException', (error) => {
@@ -134,7 +136,16 @@ function handleIPC() {
   ipcMain.on('window-minimize', () => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.minimize() });
   ipcMain.on('window-maximize', () => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.maximize() });
   ipcMain.on('window-unmaximize', () => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.unmaximize() });
-  ipcMain.on('window-close', () => { app.quit(); });
+  ipcMain.on('window-close', () => { 
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      // Windows 模式下，关闭窗口通常是隐藏到托盘
+      if (process.platform === 'win32') {
+        mainWindow.hide();
+      } else {
+        app.quit();
+      }
+    }
+  });
   ipcMain.handle('window-is-maximized', () => { return (mainWindow && !mainWindow.isDestroyed()) ? mainWindow.isMaximized() : false });
 
   // 📂 彻底切断 FastAPI 依赖，直接通过 IPC 调用 Python 逻辑
@@ -187,14 +198,26 @@ function createTray() {
     return;
   }
   const contextMenu = Menu.buildFromTemplate([
-    { label: '显示主界面', click: () => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.show() } },
+    { label: '显示主界面', click: () => { 
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.show();
+        mainWindow.focus();
+      }
+    }},
     { type: 'separator' },
     { label: '退出', click: () => {
+        app.isQuitting = true; // 标记正在退出，防止隐藏逻辑干扰
         sidecar.stop().then(() => app.quit());
     }}
   ]);
   tray.setToolTip('Second Brain AI');
   tray.setContextMenu(contextMenu);
+  tray.on('double-click', () => {
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  });
 }
 
 function createSplashWindow() {
@@ -276,7 +299,32 @@ function createWindow() {
   });
 
   mainWindow.on('closed', () => {
+    if (ssotWatcher) ssotWatcher.stopAll();
     mainWindow = null;
+  });
+
+  // --- Initialize Local-first SSOT Watcher ---
+  // 生产环境下使用 userData/data，开发环境下使用项目根目录/data
+  const notesDir = isDev 
+    ? path.join(app.getAppPath(), 'data')
+    : path.join(app.getPath('userData'), 'data');
+
+  // 确保目录存在
+  const fs = require('fs');
+  if (!fs.existsSync(notesDir)) {
+    fs.mkdirSync(notesDir, { recursive: true });
+  }
+
+  ssotWatcher = new SSOTWatcher(notesDir, mainWindow);
+  ssotWatcher.watchAll();
+  
+  // 暴露 IPC 接口用于监听特定文件
+  ipcMain.on('ssot:watch-note', (event, { noteId, path }) => {
+    if (ssotWatcher) ssotWatcher.watchNote(noteId, path);
+  });
+  
+  ipcMain.on('ssot:unwatch-note', (event, { noteId }) => {
+    if (ssotWatcher) ssotWatcher.unwatchNote(noteId);
   });
 }
 

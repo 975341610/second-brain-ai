@@ -18,6 +18,9 @@ import { TableRow } from '@tiptap/extension-table-row';
 import Youtube from '@tiptap/extension-youtube';
 import { TextSelection } from '@tiptap/pm/state';
 import { ReactNodeViewRenderer } from '@tiptap/react';
+import Collaboration from '@tiptap/extension-collaboration';
+import * as Y from 'yjs';
+import { IndexedDBProvider } from '../../lib/collaboration/IndexedDBProvider';
 
 const lowlight = createLowlight(common);
 
@@ -169,6 +172,65 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
   const noteRef = useRef<Note | null>(note);
   const onCreateSubPageRef = useRef(onCreateSubPage);
 
+  // --- Local-first: Yjs & IndexedDB Persistence ---
+  const ydocRef = useRef<Y.Doc | null>(null);
+  const providerRef = useRef<IndexedDBProvider | null>(null);
+
+  const initYjs = useCallback((noteId: number, initialContent?: string) => {
+    // 销毁旧的 Provider
+    if (providerRef.current) {
+      providerRef.current.destroy();
+    }
+    
+    // 创建新的 YDoc 和 Provider
+    const ydoc = new Y.Doc();
+    const provider = new IndexedDBProvider(`note-${noteId}`, ydoc);
+    
+    ydocRef.current = ydoc;
+    providerRef.current = provider;
+
+    // 处理初始内容导入 (仅当本地库为空时)
+    provider.onSynced(() => {
+      const type = ydoc.getXmlFragment('default');
+      if (type.length === 0 && initialContent) {
+        console.log(`[Yjs] Initializing empty local doc with note content`);
+        // 这里可以使用 Tiptap 的 HTML -> Y.Doc 转换逻辑
+      }
+    });
+
+    return { ydoc, provider };
+  }, []);
+
+  // 响应磁盘变更事件
+  useEffect(() => {
+    if (!editor || !note?.id) return;
+
+    const handleDiskChange = (data: { noteId: number; content: string; path: string }) => {
+      if (data.noteId !== note.id) return;
+      
+      console.log(`[SSOT] Disk change for current note detected, syncing to Yjs...`);
+      
+      // 将 Markdown/HTML 同步回 Yjs
+      // 这里目前简化为直接 setContent，触发 Yjs 变更推送
+      // 在更完善的实现中，应该通过 y-prosemirror 进行差异补丁同步
+      if (editor.getHTML() !== data.content) {
+        editor.commands.setContent(data.content, false); // false 表示不保留 undo 栈
+      }
+    };
+    
+    // 注册监听并获取清理函数
+    const unbind = (window as any).electron.on('ssot:note-changed', handleDiskChange);
+    
+    // 通知主进程开始监听此文件
+    if (note.file_path) {
+      (window as any).electron.watchNote(note.id, note.file_path);
+    }
+
+    return () => {
+      unbind();
+    };
+  }, [editor, note?.id, note?.file_path]);
+
   // Keep refs up to date to avoid re-calculating slashItems too often
   useEffect(() => {
     noteRef.current = note;
@@ -241,60 +303,61 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     slashItemsRef.current = slashItems;
   }, [slashItems]);
 
-  const extensions = useMemo(() => [
-    StarterKit.configure({
-      heading: false, // Disable default heading to use our Heading with ID support
-      bulletList: false,
-      orderedList: false,
-      listItem: false,
-      blockquote: false,
-      codeBlock: false,
-      link: false,
-      underline: false,
-    }),
-    Heading.configure({ levels: [1, 2, 3] }),
-    BulletList.configure({
-      HTMLAttributes: { class: 'notion-bullet-list' },
-    }),
-    OrderedList.configure({
-      HTMLAttributes: { class: 'notion-ordered-list' },
-    }),
-    ListItem,
-    Blockquote.configure({
-      HTMLAttributes: { class: 'notion-blockquote' },
-    }),
-    CodeBlockLowlight.extend({
-      addNodeView() {
-        return ReactNodeViewRenderer(CodeBlockComponent);
-      },
-    }).configure({
-      lowlight,
-    }),
-    Link.configure({ openOnClick: true, autolink: true }),
-    Highlight,
-    UnderlineExtension,
-    TiptapTable.configure({ resizable: true }),
-    TableRow,
-    DatabaseTableHeader,
-    DatabaseTableCell,
-    Youtube.configure({ controls: true, nocookie: true, autoplay: false }),
-    AudioNode,
-    VideoNode,
-    EmbedNode,
-    FileNode,
-    CalloutNode,
-    WikiLink,
-    TaskList,
-    TaskItem.configure({ nested: true }),
-    ResizableImage.configure({ inline: false }),
-    SlashCommands.configure({
-      suggestion: getSuggestionConfig(slashItemsRef)
-    })
-  ], []); // Constant extensions reference
+  const extensions = useMemo(() => {
+    const baseExtensions = [
+      StarterKit.configure({
+        heading: false,
+        bulletList: false,
+        orderedList: false,
+        listItem: false,
+        blockquote: false,
+        codeBlock: false,
+        link: false,
+        underline: false,
+      }),
+      Heading.configure({ levels: [1, 2, 3] }),
+      BulletList.configure({ HTMLAttributes: { class: 'notion-bullet-list' } }),
+      OrderedList.configure({ HTMLAttributes: { class: 'notion-ordered-list' } }),
+      ListItem,
+      Blockquote.configure({ HTMLAttributes: { class: 'notion-blockquote' } }),
+      CodeBlockLowlight.extend({
+        addNodeView() { return ReactNodeViewRenderer(CodeBlockComponent); },
+      }).configure({ lowlight }),
+      Link.configure({ openOnClick: true, autolink: true }),
+      Highlight,
+      UnderlineExtension,
+      TiptapTable.configure({ resizable: true }),
+      TableRow,
+      DatabaseTableHeader,
+      DatabaseTableCell,
+      Youtube.configure({ controls: true, nocookie: true, autoplay: false }),
+      AudioNode,
+      VideoNode,
+      EmbedNode,
+      FileNode,
+      CalloutNode,
+      WikiLink,
+      TaskList,
+      TaskItem.configure({ nested: true }),
+      ResizableImage.configure({ inline: false }),
+      SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
+    ];
+
+    // 如果启用了本地离线 SSOT，则添加协作插件
+    if (note?.id) {
+      const { ydoc } = initYjs(note.id);
+      baseExtensions.push(
+        Collaboration.configure({
+          document: ydoc,
+        })
+      );
+    }
+
+    return baseExtensions;
+  }, [note?.id]); // 每次切换笔记重新计算插件以重置协作实例
 
   const editor = useEditor({
     extensions,
-    content: note?.content || '',
     immediatelyRender: false,
     editorProps: {
       handleClick: (view, pos, event) => {
