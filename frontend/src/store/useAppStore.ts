@@ -147,7 +147,7 @@ type AppState = {
   updateUserTheme: (theme: string) => Promise<void>;
   updateUserWallpaper: (wallpaperUrl: string) => Promise<void>;
   selectNote: (noteId: number) => void;
-    createDraftNote: (notebookId?: number | null, parentId?: number | null) => void;
+    createDraftNote: (notebookId?: number | null, parentId?: number | null, silent?: boolean) => void;
     saveNote: (payload: { id?: number; title?: string; content?: string; notebookId?: number | null; parent_id?: number | null; icon?: string; is_title_manually_edited?: boolean; tags?: string[]; silent?: boolean }) => Promise<void>;
     updateNoteTags: (noteId: number, tags: string[]) => Promise<void>;
     createNotebook: (name: string) => Promise<void>;
@@ -339,7 +339,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
   selectNote: (selectedNoteId) => set((state) => ({ selectedNoteId, recentNoteIds: [selectedNoteId, ...state.recentNoteIds.filter((id) => id !== selectedNoteId)].slice(0, 8) })),
-  createDraftNote: (notebookId, parentId) => {
+  createDraftNote: (notebookId, parentId, silent) => {
     const targetNotebookId = notebookId ?? get().notebooks[0]?.id ?? null;
     // 使用绝对唯一的负数 ID：时间戳(ms) + 6位随机数
     // 负数 ID 仅用于前端草稿标识，转正后会被后端正数 ID 替换
@@ -360,7 +360,13 @@ export const useAppStore = create<AppState>((set, get) => ({
       created_at: new Date().toISOString(),
       is_draft: true,
     };
-    set({ notes: [draft, ...get().notes], selectedNoteId: draftId, recentNoteIds: [draftId, ...get().recentNoteIds].slice(0, 8) });
+    
+    const nextNotes = [draft, ...get().notes];
+    if (silent) {
+      set({ notes: nextNotes });
+    } else {
+      set({ notes: nextNotes, selectedNoteId: draftId, recentNoteIds: [draftId, ...get().recentNoteIds].slice(0, 8) });
+    }
   },
   saveNote: async ({ id, title, content, notebookId, parent_id, icon, is_title_manually_edited, tags, silent }) => {
     set({ isSavingNote: true });
@@ -380,7 +386,7 @@ export const useAppStore = create<AppState>((set, get) => ({
             title, 
             content, 
             icon, 
-            parent_id: parent_id ?? undefined,
+            parent_id,
             is_title_manually_edited,
             tags
           });

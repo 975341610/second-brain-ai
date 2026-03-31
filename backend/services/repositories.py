@@ -136,7 +136,8 @@ def update_note(db: Session, note_id: int, title: str | None = None, content: st
     if icon is not None and note.icon != icon:
         note.icon = icon
         changed = True
-    if parent_id is not None and note.parent_id != parent_id:
+    # parent_id 允许为 None 以清空父节点关联
+    if note.parent_id != parent_id:
         note.parent_id = parent_id
         changed = True
     if is_title_manually_edited is not None:
@@ -202,6 +203,36 @@ def soft_delete_note(db: Session, note_id: int) -> Note | None:
     
     db.commit()
     db.refresh(note)
+    
+    # 📂 局部架构特性：将软删除的笔记以 .md 文件的形式移动到 .trash 目录
+    try:
+        from backend.config import get_settings
+        settings = get_settings()
+        trash_dir = settings.data_root / ".trash"
+        trash_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 这里的 .md 文件名使用 note_{id}.md，防止 title 重名
+        file_path = trash_dir / f"note_{note.id}.md"
+        
+        # 将笔记完整内容（带 Frontmatter）写入 .trash
+        front_matter = f"---\nid: {note.id}\ntitle: {note.title}\ndeleted_at: {now.isoformat()}\n---\n\n"
+        file_path.write_text(front_matter + note.content, encoding="utf-8")
+        
+        # 对子笔记也进行同样的导出操作
+        def export_children_to_trash(parent_id: int):
+            from sqlalchemy import select
+            children = list(db.scalars(select(Note).where(Note.parent_id == parent_id)))
+            for child in children:
+                child_path = trash_dir / f"note_{child.id}.md"
+                child_front_matter = f"---\nid: {child.id}\ntitle: {child.title}\ndeleted_at: {now.isoformat()}\n---\n\n"
+                child_path.write_text(child_front_matter + child.content, encoding="utf-8")
+                export_children_to_trash(child.id)
+        
+        export_children_to_trash(note_id)
+        
+    except Exception as e:
+        print(f"[!] Failed to export soft-deleted note(s) to .trash: {e}")
+        
     return note
 
 

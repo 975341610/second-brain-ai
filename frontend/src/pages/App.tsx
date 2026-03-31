@@ -236,6 +236,7 @@ export default function App() {
                 content: note.content, 
                 icon: payload.icon ?? note.icon,
                 tags: payload.tags,
+                parent_id: note.parent_id,
                 is_title_manually_edited: payload.title !== undefined ? true : note.is_title_manually_edited
               });
             }}
@@ -299,7 +300,7 @@ export default function App() {
                   isSaving={isSavingNote} 
                   onSave={saveNote} 
                   onUpdateTags={updateNoteTags}
-                  onCreateSubPage={(parentId) => createDraftNote(selectedNote?.notebook_id, parentId)}
+                  onCreateSubPage={(parentId) => createDraftNote(selectedNote?.notebook_id, parentId, true)}
                   onSelectNote={(noteId) => selectNote(noteId)}
                   onNotify={notify}
                   outline={outline} 
