@@ -27,7 +27,7 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
     setLocalTags(note.tags || []);
   }, [note.id, note.tags]);
 
-  const locationValue = note.properties.find(p => p.name === 'Location' || p.name === '地点')?.value || '';
+  const locationValue = (note.properties || []).find(p => p.name === 'Location' || p.name === '地点')?.value || '';
 
   const handleSuggestTags = async () => {
     setIsSuggesting(true);
