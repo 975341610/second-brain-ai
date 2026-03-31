@@ -145,7 +145,7 @@ export default function App() {
 
   const selectedNote = useMemo(() => notes.find((note) => note.id === selectedNoteId) || null, [notes, selectedNoteId]);
   const recentNotes = useMemo(() => recentNoteIds.map((id) => notes.find((note) => note.id === id)).filter(Boolean) as typeof notes, [recentNoteIds, notes]);
-  const relatedNotes = useMemo(() => notes.filter((note) => selectedNote?.links.includes(note.id)).slice(0, 5), [notes, selectedNote]);
+  const relatedNotes = useMemo(() => notes.filter((note) => selectedNote?.links?.includes(note.id)).slice(0, 5), [notes, selectedNote]);
   const outline = useMemo(() => extractOutline(selectedNote?.content || ''), [selectedNote?.content]);
   const references = useMemo(() => extractReferences(selectedNote?.content || ''), [selectedNote?.content]);
   const toastIcon = toast?.tone === 'success' ? <CheckCircle2 size={16} /> : toast?.tone === 'error' ? <XCircle size={16} /> : <Info size={16} />;
