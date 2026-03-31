@@ -69,6 +69,17 @@
 ## 📦 提交与更新记录 (Commit & Update Log)
 - **2026-03-31 | Branch: `feature/local-first-architecture`**
   - `Commit: [Latest]`
+  - *更新内容*: **执行全面的依赖清理与一键安装脚本构建**。
+    1. **依赖统一与修复**: 统一了 `frontend` 中所有 Tiptap 相关包至 `^2.11.5` 稳定版本，修复了版本混用导致的 `peerDependency` 冲突；降级 `vite` 至 `^5.1.4` 以保持架构一致性。
+    2. **显式核心包补全**: 补齐了 `y-protocols`, `@tiptap/y-tiptap`, `@tiptap/extension-node-range` 等缺失的底层依赖。
+    3. **一键式工程化脚本**: 
+       - 新增 `npm run bootstrap`: 跨平台一键清理 `node_modules` 并重新安装。
+       - 增强 `postinstall`: 自动使用 `--legacy-peer-deps` 顺滑安装前端依赖。
+       - 新增 `npm run clean`: 基于 Node.js 的跨平台目录清理脚本。
+  - *解决痛点*: 彻底解决了用户在本地环境安装依赖时频繁遇到的冲突与“Could not resolve”报错，实现了真正的一键开发环境搭建。
+
+- **2026-03-31 | Branch: `feature/local-first-architecture`**
+  - `Commit: 0bb7643`
   - *更新内容*: **优化了依赖安装流程，解决了前端依赖丢失问题**。
     1. **自动依赖安装**: 在根目录 `package.json` 中增加了 `postinstall` 脚本，执行 `npm install` 时会自动安装 `frontend` 目录下的依赖。
     2. **解决依赖缺失**: 修复了 `@tiptap/extension-collaboration` 等新引入依赖在本地环境拉取后运行报错的问题。
