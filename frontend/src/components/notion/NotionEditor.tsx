@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { EditorContent, useEditor } from '@tiptap/react';
-import { FloatingMenu, BubbleMenu } from '@tiptap/react/menus';
+import { EditorContent, useEditor, FloatingMenu, BubbleMenu, ReactNodeViewRenderer } from '@tiptap/react';
 import DragHandle from '@tiptap/extension-drag-handle-react';
 import StarterKit from '@tiptap/starter-kit';
 import Highlight from '@tiptap/extension-highlight';
@@ -17,8 +16,8 @@ import { Table as TiptapTable } from '@tiptap/extension-table';
 import { TableRow } from '@tiptap/extension-table-row';
 import Youtube from '@tiptap/extension-youtube';
 import { TextSelection } from '@tiptap/pm/state';
-import { ReactNodeViewRenderer } from '@tiptap/react';
-import Collaboration from '@tiptap/extension-collaboration';
+// 暂时移除协作插件以保证核心稳定性
+// import Collaboration from '@tiptap/extension-collaboration';
 import * as Y from 'yjs';
 import { IndexedDBProvider } from '../../lib/collaboration/IndexedDBProvider';
 
@@ -207,8 +206,9 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     ];
 
     if (note?.id) {
-      const { ydoc } = initYjs(note.id);
-      baseExtensions.push(Collaboration.configure({ document: ydoc }));
+      // 暂时移除协作逻辑以稳定核心启动过程
+      // const { ydoc } = initYjs(note.id);
+      // baseExtensions.push(Collaboration.configure({ document: ydoc }));
     }
     return baseExtensions;
   }, [note?.id, initYjs]);
