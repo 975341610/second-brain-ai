@@ -926,6 +926,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
           <EditorContent editor={editor} className="relative z-0" />
         </div>
       </div>
+    </div>
         
       {isAIStreaming && (
         <div className="fixed bottom-12 right-12 z-50 flex items-center gap-3 rounded-full bg-stone-900 px-6 py-3 text-white shadow-2xl animate-pulse">
