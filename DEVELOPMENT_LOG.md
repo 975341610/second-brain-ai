@@ -11,13 +11,22 @@
 ## 📋 需求追踪 (Requirements)
 
 ### 待办 / 进行中 (Pending / In Progress)
-- [ ] **Phase 4: 桌面究极体改造** (Electron 重构，独立桌面窗口，系统托盘)
+- [ ] **架构转向：Obsidian/Typora 风格（纯本地文件 SSOT + 数据同步）**（核心功能已实现，[方案文档](https://bytedance.larkoffice.com/docx/SwqEduxjho8b7zx0jAscKWPkntd)）
+- [ ] **Phase 4: 桌面究极体改造** (Electron 重构，独立桌面窗口，系统托盘 - 已完成 MVP 适配)
 - [ ] **全站 UI & 布局重构** (参考 Awwwards、Linear 质感)
 - [ ] **互动级动态壁纸系统** (WebGL/Three.js，环境感知)
 - [ ] **万物皆可拖拽** (自由调整文档/文本/图片位置)
 - [ ] **飞书级表格系统** (多维属性增强)
+- [x] **[Windows MVP] 系统托盘与本地路径优化** (已完成)
 
 ### 待确认 (Pending User Confirmation)
+- [ ] **[架构迁移] 纯本地文件优先 (Local-first) SSOT 闭环实现**
+  - *更新内容*: 
+    1. 增强 `SSOTWatcher`：支持磁盘变更内容实时推送到编辑器。
+    2. `NotionEditor` 适配：响应 `ssot:note-changed` 事件，实现与第三方编辑器（Obsidian/Typora）的协同。
+    3. `preload` 安全增强：优化 IPC 事件绑定，支持自动清理监听。
+    4. Windows 适配：本地存储路径迁移至 `appData`，完善系统托盘双击恢复与关闭隐藏逻辑。
+  - *当前进度*: 代码已就绪，**[待老大确认测试]**。
 - [ ] **[Bug修复] 基础联调与多端同步前置问题修复** (当前所在分支 `fix/4-issues-integration`)
 
 ### 已完成 (Completed)
@@ -47,8 +56,55 @@
 ---
 
 ## 📦 提交与更新记录 (Commit & Update Log)
+- **2026-03-31 | Branch: `fix/4-issues-integration`**
+  - `Commit: 9258886`
+  - *更新了什么*: 恢复了毛玻璃面板 UI、基于 IndexedDB 的壁纸存储以及赛博朋克主题。
+  - *解决了什么*: 提升了 UI 质感与个性化体验，确保壁纸数据在本地持久化。
+
+- **2026-03-31 | Branch: `feature/local-first-architecture-poc`**
+  - `Commit: N/A` (本地 PoC 阶段)
+  - *更新了什么*:
+    1. **前端持久化层**: 引入 `yjs` + `y-indexeddb`，在 `NotionEditor` 中为每篇笔记开启独立的 CRDT 状态与 IndexedDB 本地存储。
+    2. **主进程 SSOT 框架**: 实现 `SSOTWatcher` (Node.js 原生 API)，监听本地 `data/` 目录下的 `.md` 文件变更，并通过 IPC 同步至渲染进程。
+    3. **IPC 安全桥接**: 更新 `preload` 与 `index.ts`，暴露 `watchNote` 等本地优先核心接口。
+  - *解决了什么*: 打通了“本地文件监听 -> 渲染进程协作”的 SSOT (Single Source of Truth) 最小可行性闭环，为纯本地文件优先架构奠定基础。
+
+- **2026-03-31 | Branch: `feature/local-first-architecture`**
+
+  - `Commit: N/A`
+  - *更新了什么*: 交付了《纯本地文件优先架构迁移方案与 Windows MVP 任务拆解》([文档链接](https://bytedance.larkoffice.com/docx/SwqEduxjho8b7zx0jAscKWPkntd))。
+  - *解决了什么*: 明确了 Local-first 架构的总体设计、技术选型、演进路径与 Windows 客户端 MVP 的具体任务。本次无代码变更，未推送远程。
 
 - **2026-03-30 | Branch: `fix/4-issues-integration`**
   - `Commit: c81a9fe`
   - *更新了什么*: 修复编辑器 `NotionEditor.tsx` 在防抖保存和快捷键保存时遗漏 `parent_id` 的问题。
   - *解决了什么*: 防止笔记在更新内容时，其父级层级关系被错误重置（移出到根目录）。
+
+---
+
+## 🧪 架构收尾检查与测试清单 (Test Checklist)
+
+针对 `feature/local-first-architecture` 架构，请务必进行以下验收测试：
+
+### 1. 离线/断网表现 (Offline-First Ready)
+- [ ] **秒开验证**：断开网络启动应用，编辑器应立即显示上一次的内容（由 IndexedDB 渲染），不应出现长时间 Loading 或白屏。
+- [ ] **数据持久化**：在断网状态下修改内容并关闭应用，重新打开后修改应依然存在。
+- [ ] **存储位置检查**：验证本地配置文件和笔记是否正确存储在 Windows 的 `%APPDATA%\SecondBrainAI` 目录下。
+
+### 2. 多编辑器协同 (External Watcher / SSOT)
+- [ ] **双向同步逻辑**：
+  - 使用外部编辑器（Obsidian/VSCode）修改 `.md` 文件并保存，SecondBrainAI 编辑器应在 1s 内自动刷新。
+  - 在 SecondBrainAI 修改并失去焦点后，检查本地 `.md` 文件内容是否同步更新。
+- [ ] **覆盖与冲突**：模拟同时修改同一行，验证 Yjs 的 CRDT 合并逻辑是否生效（不应导致文件内容乱码或丢失）。
+- [ ] **文件删除处理**：外部物理删除文件后，应用应能正确处理 UI 状态（如提示文件已丢失或从列表移除）。
+
+### 3. IPC 与资源清理 (Resource Leak Prevention)
+- [ ] **Watcher 销毁验证**：快速切换工作区文件夹，通过任务管理器观察进程，确保旧的 `chokidar` 监听器已释放。
+- [ ] **Sidecar 进程管理**：退出应用后，检查后台是否有残留的 Python (Backend) 或 Node (Watcher) 进程。
+- [ ] **内存占用监控**：频繁编辑大型文档，观察渲染进程内存，确保 Yjs 历史记录（UndoManager）没有导致内存持续攀升。
+
+### 4. Windows 托盘体验 (UX/DX)
+- [ ] **关闭到托盘**：点击窗口关闭按钮（X），窗口应隐藏至托盘。双击托盘图标或通过右键菜单“显示窗口”应能瞬间恢复。
+- [ ] **彻底退出**：托盘右键选择“退出”，应用及所有关联 Sidecar 进程应全部正常关闭。
+- [ ] **多开拦截**：应用已运行时，再次双击桌面快捷方式，应直接唤起已有的窗口，而不是启动第二个进程。
+
