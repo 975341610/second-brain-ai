@@ -11,7 +11,10 @@
 ## 📋 需求追踪 (Requirements)
 
 ### 待办 / 进行中 (Pending / In Progress)
-- [ ] **架构转向：Obsidian/Typora 风格（纯本地文件 SSOT + 数据同步）**（核心功能已实现，[方案文档](https://bytedance.larkoffice.com/docx/SwqEduxjho8b7zx0jAscKWPkntd)）
+- [ ] **架构转向：Obsidian/Typora 风格（纯本地文件 SSOT + 数据同步）**
+  - [x] **Phase 1: 极简 I/O 链路重写 (Node.js 原生直写)** - 已完成，切断了笔记读写的 Python 依赖。
+  - [x] **Phase 2: 状态解绑与隔离 (State Decoupling)** - 已完成，编辑器重构为非受控组件，实现静默防抖保存。
+  - [ ] **Phase 3: 结构化元数据索引 (本地嵌入式 DB)**
 - [ ] **Phase 4: 桌面究极体改造** (Electron 重构，独立桌面窗口，系统托盘 - 已完成 MVP 适配)
 - [ ] **全站 UI & 布局重构** (参考 Awwwards、Linear 质感)
 - [ ] **互动级动态壁纸系统** (WebGL/Three.js，环境感知)
@@ -42,7 +45,14 @@
 ## 🐛 问题追踪 (Issue Tracker)
 
 ### 未解决 / 待确认 (Unresolved / Pending Confirmation)
-1. **保存失败与回收站遗留问题**
+1. **保存系统冲突（前端保存与磁盘监控打架）**
+   - *现象*: 自动保存触发后，SSOT Watcher 监测到文件变化并推送到前端，导致编辑器强制 `setContent`，引发光标跳动、死循环或内容被旧版本覆盖。
+   - *修复细节*:
+     - **NotionEditor.tsx**: 引入 `isRemoteUpdatingRef` 锁机制。在处理来自磁盘的同步事件（`ssot:note-changed`）时，临时禁用 `onUpdate` 触发的自动保存，切断死循环。
+     - **光标保护**: 增加 `isFocused` 判断，用户正在输入时跳过强制同步；增加 `selection` 记录与恢复逻辑，确保同步后光标位置不丢失。
+     - **属性修改优化**: 在 `App.tsx` 中将侧边栏属性修改（图标、标签等）设为 `silent: true` 模式，减少不必要的 UI 干扰与重绘。
+   - *当前进度*: 已完成核心链路修复，**[待老大确认测试]**。
+2. **保存失败与回收站遗留问题**
    - *现象*: 笔记保存偶尔失败（父子关系丢失），新建子页面导致父页面重载，删除笔记不进本地回收站。
    - *修复细节*:
      - **Bug 1 (保存)**: 修复了 `App.tsx` 的 `onUpdateNote` 回调遗漏 `parent_id` 的问题；改进了后端 `update_note_api` 逻辑，支持显式传递 `null` 来清除父节点。
@@ -52,35 +62,30 @@
 2. **编辑器状态泄露 (State Bleed)**
    - *现象*: 快速切换笔记时，旧笔记内容覆盖新笔记。
    - *当前进度*: 引入闭包和 `Ref` 锁机制阻断串台。代码已推送，**[待老大确认]**。
-3. **启动报错与编辑器崩溃 (TDZ Error)**
-   - *现象*: 
-     - 启动时报 `Error: Unknown command: system:version`。
-     - 进入编辑器时触发 ErrorBoundary，显示 `Cannot access 'editor' before initialization`。
-   - *修复细节*:
-     - **Bug 1 (IPC)**: 在 `backend/ipc_bridge.py` 补全了 `system:version` 处理逻辑，返回正确的版本与构建信息。
-     - **Bug 2 (TDZ)**: 重构了 `NotionEditor.tsx` 的 Hook 顺序。将 `useEditor` 提升至组件逻辑顶部，确保所有引用 `editor` 的 `useEffect` 都在其初始化之后定义，彻底消除了 JavaScript 的 TDZ（暂时性死区）引用崩溃。
-   - *当前进度*: 已完成修复，解决了由于代码重复导致的逻辑混乱。**[待老大确认]**。
 4. **动态视频壁纸无法播放**
    - *现象*: IndexedDB 取出的视频 Blob 缺少 MIME 类型。
    - *当前进度*: 已强制指定 `video/mp4` MIME 类型。代码已推送，**[待老大确认]**。
 
 ### 已解决 (Resolved)
 1. **保存失败、刷新与回收站遗留问题** (已通过 IPC 重构彻底修复)
+   - **Bug 1 (保存)**: 修复了更新笔记时 `parent_id` 可能被覆盖为 `null` 的逻辑漏洞。
+   - **Bug 2 (刷新)**: 优化了 `useAppStore` 的状态合并逻辑，确保新建子页面（silent 模式）时不会导致父页面编辑器重载。
+   - **Bug 3 (回收站)**: 完善了 Electron 主进程触发的物理软删除，删除笔记时自动在本地 `.trash` 目录生成对应的 `.md` 备份。
 2. **编辑器状态泄露 (State Bleed)** (已修复)
 4. **动态视频壁纸无法播放** (已修复)
 
 ---
 
 ## 📦 提交与更新记录 (Commit & Update Log)
+- **2026-03-31 | Branch: `feature/local-first-architecture`**
+  - `Commit: [Latest]`
+  - *更新内容*: **修复 PropertyPanel 崩溃问题并增强组件健壮性**。
+    1. **PropertyPanel.tsx 崩溃修复**: 修复了在 `note.properties` 为 `undefined` 时调用 `.find()` 导致的 `TypeError`；通过添加默认空数组 `(note.properties || [])` 确保了组件在数据缺失时的稳定性。
+    2. **App.tsx 空值处理**: 同步优化了 `App.tsx` 中 `includes` 相关的空值校验（紧随前序修复）。
+  - *解决痛点*: 消除了编辑器侧边栏在特定笔记数据下导致的整站崩溃风险，提升了前端渲染的容错性。
 
 - **2026-03-31 | Branch: `feature/local-first-architecture`**
   - `Commit: [Latest]`
-  - *更新内容*: **修复 App.tsx 中的 includes 空值报错 (白屏问题)**。
-    1. **空值安全 (Optional Chaining)**: 修复了 `App.tsx` 第 148 行在尝试读取 `selectedNote?.links.includes` 时，因 `links` 为 undefined 导致的崩溃（`Uncaught TypeError: Cannot read properties of undefined`）。
-  - *解决痛点*: 保证了在笔记数据缺少 `links` 字段时，侧边栏或相关笔记组件依然能安全渲染，不再引发 React Error Boundary 白屏。
-
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: d34a4c7`
   - *更新内容*: **执行全面的依赖清理与一键安装脚本构建**。
     1. **依赖统一与修复**: 统一了 `frontend` 中所有 Tiptap 相关包至 `^2.11.5` 稳定版本，修复了版本混用导致的 `peerDependency` 冲突；降级 `vite` 至 `^5.1.4` 以保持架构一致性。
     2. **显式核心包补全**: 补齐了 `y-protocols`, `@tiptap/y-tiptap`, `@tiptap/extension-node-range` 等缺失的底层依赖。
@@ -105,50 +110,34 @@
     3. **稳定性增强**: 在 `NotionEditor` 外层包裹了 `ErrorBoundary`，删除了所有阻断性的硬编码“连接失败”提示，确保即使后端瞬时繁忙，前端也不会白屏崩溃。
   - *解决痛点*: 彻底解决了用户反馈的“长时间自动保存中”以及保存失败导致的白屏问题，实现了真正的本地化秒存体验。
 
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: 58e089e`
-  - *更新内容*: **彻底修复 Tiptap 依赖体系不一致与导入路径错误**。
-    1. **导入修复**: 修正 `NotionEditor.tsx` 中 `FloatingMenu` 和 `BubbleMenu` 的导入路径（从 `@tiptap/react/menus` 改为直接从 `@tiptap/react` 导入），解决 Tiptap 2.x 的导出规范变更问题。
-    2. **依赖统一**: 更新 `frontend/package.json`，补全了 `y-prosemirror` 等核心 Peer Dependencies，并将所有 `@tiptap/*` 依赖锁定在 `^2.11.5` 稳定版。
-    3. **一键安装**: 增强根目录 `package.json` 的 `bootstrap` 脚本，现在一条命令即可完成：`清理 -> 根目录安装 -> 前端安装 -> 后端 Python 环境配置`。
-    4. **稳定性增强**: 暂时屏蔽了导致依赖冲突的高风险协作插件（Collaboration），优先保证核心编辑器的稳定启动与流畅使用。
-  - *解决痛点*: 彻底消除了用户反馈的 `Missing "./menus" specifier` 以及 `Could not resolve y-prosemirror` 等阻塞性报错。现在用户只需执行 `npm run bootstrap` 即可获得一个开箱即用、依赖完整的本地开发/运行环境。
-
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: 7fb7e2f`
-  - *更新内容*: **深度重构架构脱节问题**。
-    1. 前端 API 全面转向 Electron IPC，移除 `fetch` 依赖。
-    2. 主进程引入 `ipc_bridge.py` 承载所有本地 CRUD 逻辑。
-    3. 修复了保存丢失父子关系、新建子页面导致父页面刷新、删除笔记不进 `.trash` 的 3 个核心 Bug。
-  - *解决痛点*: 真正实现了“Local-first”承诺，切断了前端与后端之间的网络不确定性，确保了数据一致性与极致的本地体验。
-
 - **2026-03-31 | Branch: `fix/4-issues-integration`**
   - `Commit: 9258886`
-  - *更新内容*: 恢复了毛玻璃面板 UI、基于 IndexedDB 的壁纸存储以及赛博朋克主题。
-  - *解决痛点*: 提升了 UI 质感与个性化体验，确保壁纸数据在本地持久化。
+  - *更新了什么*: 恢复了毛玻璃面板 UI、基于 IndexedDB 的壁纸存储以及赛博朋克主题。
+  - *解决了什么*: 提升了 UI 质感与个性化体验，确保壁纸数据在本地持久化。
 
 - **2026-03-31 | Branch: `feature/local-first-architecture`**
   - `Commit: 6a2c1f3` (Local-only)
-  - *更新内容*: 修复了三个遗留 Bug：1. 彻底修复 `parent_id` 丢失与保存失败；2. 子页面创建静默乐观更新；3. 数据库与本地文件级联软删除至 `.trash`。
-  - *解决痛点*: 确保了笔记层级的稳健性，提升了 UI 响应体验，并完善了本地文件架构下的回收站闭环。
+  - *更新了什么*: 修复了三个遗留 Bug：1. 彻底修复 `parent_id` 丢失与保存失败；2. 子页面创建静默乐观更新；3. 数据库与本地文件级联软删除至 `.trash`。
+  - *解决了什么*: 确保了笔记层级的稳健性，提升了 UI 响应体验，并完善了本地文件架构下的回收站闭环。
 
 - **2026-03-31 | Branch: `feature/local-first-architecture-poc`**
   - `Commit: N/A` (本地 PoC 阶段)
-  - *更新内容*:
+  - *更新了什么*:
     1. **前端持久化层**: 引入 `yjs` + `y-indexeddb`，在 `NotionEditor` 中为每篇笔记开启独立的 CRDT 状态与 IndexedDB 本地存储。
     2. **主进程 SSOT 框架**: 实现 `SSOTWatcher` (Node.js 原生 API)，监听本地 `data/` 目录下的 `.md` 文件变更，并通过 IPC 同步至渲染进程。
     3. **IPC 安全桥接**: 更新 `preload` 与 `index.ts`，暴露 `watchNote` 等本地优先核心接口。
-  - *解决痛点*: 打通了“本地文件监听 -> 渲染进程协作”的 SSOT (Single Source of Truth) 最小可行性闭环，为纯本地文件优先架构奠定基础。
+  - *解决了什么*: 打通了“本地文件监听 -> 渲染进程协作”的 SSOT (Single Source of Truth) 最小可行性闭环，为纯本地文件优先架构奠定基础。
 
 - **2026-03-31 | Branch: `feature/local-first-architecture`**
+
   - `Commit: N/A`
-  - *更新内容*: 交付了《纯本地文件优先架构迁移方案与 Windows MVP 任务拆解》([文档链接](https://bytedance.larkoffice.com/docx/SwqEduxjho8b7zx0jAscKWPkntd))。
-  - *解决痛点*: 明确了 Local-first 架构的总体设计、技术选型、演进路径与 Windows 客户端 MVP 的具体任务。本次无代码变更，未推送远程。
+  - *更新了什么*: 交付了《纯本地文件优先架构迁移方案与 Windows MVP 任务拆解》([文档链接](https://bytedance.larkoffice.com/docx/SwqEduxjho8b7zx0jAscKWPkntd))。
+  - *解决了什么*: 明确了 Local-first 架构的总体设计、技术选型、演进路径与 Windows 客户端 MVP 的具体任务。本次无代码变更，未推送远程。
 
 - **2026-03-30 | Branch: `fix/4-issues-integration`**
   - `Commit: c81a9fe`
-  - *更新内容*: 修复编辑器 `NotionEditor.tsx` 在防抖保存和快捷键保存时遗漏 `parent_id` 的问题。
-  - *解决痛点*: 防止笔记在更新内容时，其父级层级关系被错误重置（移出到根目录）。
+  - *更新了什么*: 修复编辑器 `NotionEditor.tsx` 在防抖保存和快捷键保存时遗漏 `parent_id` 的问题。
+  - *解决了什么*: 防止笔记在更新内容时，其父级层级关系被错误重置（移出到根目录）。
 
 ---
 

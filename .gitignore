@@ -1,6 +1,4 @@
 .venv/
-backend/venv/
-*.log
 .worktrees/
 __pycache__/
 *.pyc

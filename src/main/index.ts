@@ -6,11 +6,13 @@ import { SidecarManager } from './sidecar';
 import { spawn, execSync } from 'child_process';
 import fs from 'fs';
 import { SSOTWatcher } from './fs-watcher';
+import { FSBridge } from './fs_bridge';
 
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let tray: Tray | null = null;
 let ssotWatcher: SSOTWatcher | null = null;
+let fsBridge: FSBridge | null = null;
 const isDev = !app.isPackaged;
 
 process.on('uncaughtException', (error) => {
@@ -316,6 +318,7 @@ function createWindow() {
   }
 
   ssotWatcher = new SSOTWatcher(notesDir, mainWindow);
+  fsBridge = new FSBridge(notesDir, ssotWatcher);
   ssotWatcher.watchAll();
   
   // 暴露 IPC 接口用于监听特定文件
