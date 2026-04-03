@@ -235,29 +235,30 @@ export const useAppStore = create<AppState>((set, get) => ({
       });
     }
 
-    set({ loading: true, appStatus: 'LOADING_BACKEND' });
     try {
-      // 1. 检查后端版本（作为可用性检查）
-      // 这里的 API 现在已被后端豁免认证，应该始终能通
-      const versionData = await api.getSystemVersion();
-      set({ appStatus: 'LOADING_FRONTEND' });
+      // 1. 尝试并行加载所有数据
+      // 注意：在 local-first 架构下，即使后端连接失败，我们也应该允许进入 READY 状态
+      const versionPromise = api.getSystemVersion().catch(err => {
+        console.warn('Failed to get system version:', err);
+        return { version: get().appVersion, git_commit: 'unknown', build_time: 'unknown', executable: 'unknown' };
+      });
 
-      // 2. 并行加载所有数据
-      const [notes, notebooks, tasks, modelConfig, trash, userStats, userAchievements, bgmTracks] = await Promise.all([
-        api.listNotes(),
-        api.listNotebooks(),
-        api.listTasks(),
-        api.getModelConfig(),
-        api.getTrash(),
-        api.getUserStats(),
-        api.listUserAchievements(),
-        api.listBgm(),
+      const [versionData, notes, notebooks, tasks, modelConfig, trash, userStats, userAchievements, bgmTracks] = await Promise.all([
+        versionPromise,
+        api.listNotes().catch(e => { console.warn('listNotes failed:', e); return get().notes; }),
+        api.listNotebooks().catch(e => { console.warn('listNotebooks failed:', e); return get().notebooks; }),
+        api.listTasks().catch(e => { console.warn('listTasks failed:', e); return get().tasks; }),
+        api.getModelConfig().catch(e => { console.warn('getModelConfig failed:', e); return get().modelConfig; }),
+        api.getTrash().catch(e => { console.warn('getTrash failed:', e); return get().trash; }),
+        api.getUserStats().catch(e => { console.warn('getUserStats failed:', e); return get().userStats; }),
+        api.listUserAchievements().catch(e => { console.warn('listUserAchievements failed:', e); return get().userAchievements; }),
+        api.listBgm().catch(e => { console.warn('listBgm failed:', e); return []; }),
       ]);
 
-      // 异步更新缓存
-      setCachedData(STORE_NOTES, notes);
-      setCachedData(STORE_NOTEBOOKS, notebooks);
-      setCachedData(STORE_TASKS, tasks);
+      // 异步更新缓存（如果有新数据）
+      if (notes.length > 0) setCachedData(STORE_NOTES, notes);
+      if (notebooks.length > 0) setCachedData(STORE_NOTEBOOKS, notebooks);
+      if (tasks.length > 0) setCachedData(STORE_TASKS, tasks);
 
       set({
         notes,
@@ -277,21 +278,8 @@ export const useAppStore = create<AppState>((set, get) => ({
         appStatus: 'READY'
       });
     } catch (error) {
-      console.warn('Network request failed during initialization:', error);
-      
-      // 如果是 401 错误，或者是由于没有配置 Token 导致的失败
-      const isAuthError = error instanceof Error && (error.message.includes('Unauthorized') || error.message.includes('401'));
-      
-      if (isAuthError) {
-        set({ appStatus: 'ERROR' });
-      } else {
-        // 其他网络错误，如果本地有缓存则仍然允许进入 READY
-        if (get().notes.length > 0) {
-          set({ appStatus: 'READY' });
-        } else {
-          set({ appStatus: 'ERROR' });
-        }
-      }
+      console.warn('Critical error during initialization, falling back to cached data:', error);
+      set({ appStatus: 'READY' });
     } finally {
       set({ loading: false });
     }

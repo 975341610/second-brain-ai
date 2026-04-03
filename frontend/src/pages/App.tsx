@@ -30,7 +30,8 @@ function extractReferences(content: string): string[] {
 }
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getItem('access_token'));
+  // 彻底移除任何等待 isBackendReady 或通过 HTTP 请求 Python 后端的逻辑。只要前端加载完毕，就直接渲染编辑器，不再等待后端。
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [mobileTab, setMobileTab] = useState<'notes' | 'editor'>('editor');
   const [activePage, setActivePage] = useState<'home' | 'notes' | 'settings' | 'database'>('home');
   const [showAssistantCard, setShowAssistantCard] = useState(false);
@@ -158,10 +159,7 @@ export default function App() {
   return (
     <>
     <SplashScreen />
-    {!isAuthenticated ? (
-      <LoginPage onLogin={handleLogin} />
-    ) : (
-      <main className={`min-h-screen text-reflect-text font-sans antialiased lg:flex lg:gap-0 relative ${userStats?.current_theme === 'dark' ? 'dark' : ''} ${wallpaperUrl ? 'bg-transparent' : 'bg-reflect-bg'}`} data-theme={userStats?.current_theme}>
+    <main className={`min-h-screen text-reflect-text font-sans antialiased lg:flex lg:gap-0 relative ${userStats?.current_theme === 'dark' ? 'dark' : ''} ${wallpaperUrl ? 'bg-transparent' : 'bg-reflect-bg'}`} data-theme={userStats?.current_theme}>
       {/* Theme Background Layer */}
       {wallpaperUrl && (
         <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
@@ -295,6 +293,7 @@ export default function App() {
             {activePage === 'notes' && (
               <div className={`${mobileTab === 'editor' ? 'block' : 'hidden lg:block'} h-full`}>
                 <EditorPanel 
+                  key={selectedNoteId}
                   note={selectedNote} 
                   notes={notes}
                   isSaving={isSavingNote} 
@@ -331,7 +330,6 @@ export default function App() {
         </>
       )}
     </main>
-    )}
     <div className="fixed bottom-4 left-4 z-50 text-[10px] text-stone-400 font-mono pointer-events-auto opacity-30 hover:opacity-100 transition-opacity max-w-[400px] truncate" title={`${appVersion} | ${gitCommit}\n${exePath}`}>
       {appVersion} ({gitCommit})
     </div>

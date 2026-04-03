@@ -23,10 +23,17 @@ declare global {
 async function invoke<T>(channel: string, path: string, options?: any): Promise<T> {
   if (window.electron?.ipcInvoke) {
     // 📂 彻底切换到 Electron IPC 进行本地直接 CRUD
-    return window.electron.ipcInvoke(channel, options?.body ? JSON.parse(options.body) : options?.params || options);
+    // 坚决不使用 fetch 向本地 Python 后端发起 HTTP 请求
+    try {
+      const payload = options?.body ? JSON.parse(options.body) : options?.params || options;
+      return await window.electron.ipcInvoke(channel, payload);
+    } catch (e) {
+      console.error(`IPC call to ${channel} failed:`, e);
+      throw e; // 在 Electron 环境下，IPC 失败就不再回退到 fetch，防止违反离线优先原则
+    }
   }
   
-  // Fallback to FastAPI REST API (only if electron is not available)
+  // Fallback to FastAPI REST API (only if electron is not available, e.g. web preview)
   const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -81,6 +88,26 @@ export const api = {
   clearCompletedTasks: () => invoke('tasks:clear-completed', '/tasks/clear-completed'),
   ask: (payload: { question: string; mode: 'chat' | 'rag' | 'agent' }) =>
     invoke<AskResponse>('ai:ask', '/ask', { method: 'POST', body: JSON.stringify(payload) }),
+  streamInlineAI: async (payload: { prompt: string; context: string; action: string }, onChunk: (chunk: string) => void) => {
+    if (window.electron?.ipcInvoke) {
+      return window.electron.ipcInvoke('ai:stream-inline', payload, (chunk: string) => onChunk(chunk));
+    }
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
+    const response = await fetch(`${API_BASE}/inline-ai`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) throw new Error(await response.text());
+    const reader = response.body?.getReader();
+    if (!reader) return;
+    const decoder = new TextDecoder();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      onChunk(decoder.decode(value, { stream: true }));
+    }
+  },
   getModelConfig: () => invoke<ModelConfig>('config:get-model', '/model-config'),
   updateModelConfig: (payload: ModelConfig) =>
     invoke<ModelConfig>('config:update-model', '/model-config', { method: 'POST', body: JSON.stringify(payload) }),
