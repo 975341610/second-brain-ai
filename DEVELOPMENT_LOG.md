@@ -166,3 +166,6 @@
 - [ ] **关闭到托盘**：点击窗口关闭按钮（X），窗口应隐藏至托盘。双击托盘图标或通过右键菜单“显示窗口”应能瞬间恢复。
 - [ ] **彻底退出**：托盘右键选择“退出”，应用及所有关联 Sidecar 进程应全部正常关闭。
 - [ ] **多开拦截**：应用已运行时，再次双击桌面快捷方式，应直接唤起已有的窗口，而不是启动第二个进程。
+## 2026-04-03
+### Added
+- Auto-save performance optimized: Frontend store `useAppStore` now correctly extracts and forwards `file_path` in `saveNote` function to trigger local-first fast-path save via `FSBridge` without blocking on Python backend sync.

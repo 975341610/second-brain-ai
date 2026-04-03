@@ -375,7 +375,8 @@ export const useAppStore = create<AppState>((set, get) => ({
             icon: icon ?? currentNote?.icon, 
             parent_id: parent_id !== undefined ? parent_id : currentNote?.parent_id,
             is_title_manually_edited: is_title_manually_edited ?? currentNote?.is_title_manually_edited,
-            tags: tags ?? currentNote?.tags
+            tags: tags ?? currentNote?.tags,
+            file_path: currentNote?.file_path
           });
       
       const currentNotes = get().notes;

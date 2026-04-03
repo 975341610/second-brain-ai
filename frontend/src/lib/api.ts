@@ -62,7 +62,7 @@ export const api = {
   purgeNotebook: (notebookId: number) => invoke('notebooks:purge', `/notebooks/${notebookId}/purge`, { params: { id: notebookId } }),
   createNote: (payload: { title: string; content: string; notebook_id?: number | null; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; tags?: string[] }) =>
     invoke<Note>('notes:create', '/notes', { method: 'POST', body: JSON.stringify(payload) }),
-  updateNote: (noteId: number, payload: { title?: string; content?: string; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; tags?: string[] }) =>
+  updateNote: (noteId: number, payload: { title?: string; content?: string; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; tags?: string[], file_path?: string }) =>
     invoke<Note>('notes:update', `/notes/${noteId}`, { params: { id: noteId, ...payload } }),
   updateNoteTags: (noteId: number, tags: string[]) =>
     invoke<Note>('notes:update-tags', `/notes/${noteId}/tags`, { params: { id: noteId, tags } }),
