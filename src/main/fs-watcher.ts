@@ -10,10 +10,21 @@ export class SSOTWatcher {
   private notesDir: string;
   private mainWindow: BrowserWindow;
   private activeWatchers: Map<string, any> = new Map();
+  private internalWriteTimestamps: Map<string, number> = new Map(); // 文件路径 -> 时间戳
 
   constructor(notesDir: string, mainWindow: BrowserWindow) {
     this.notesDir = notesDir;
     this.mainWindow = mainWindow;
+  }
+
+  /**
+   * 记录一次内部写入，用于过滤监听器
+   */
+  public recordInternalWrite(filePath: string) {
+    const absolutePath = path.isAbsolute(filePath) 
+      ? filePath 
+      : path.join(this.notesDir, filePath);
+    this.internalWriteTimestamps.set(absolutePath, Date.now());
   }
 
   /**
@@ -51,6 +62,13 @@ export class SSOTWatcher {
 
     watchFile(absolutePath, { interval: 1000 }, (curr: Stats, prev: Stats) => {
       if (curr.mtime !== prev.mtime) {
+        // 检查是否是刚发生的内部写入，如果是则静默忽略 (5秒宽限期)
+        const lastInternalWrite = this.internalWriteTimestamps.get(absolutePath);
+        if (lastInternalWrite && Date.now() - lastInternalWrite < 5000) {
+          console.log(`[SSOT] Ignoring internal write for: ${absolutePath}`);
+          return;
+        }
+
         console.log(`[SSOT] Note content changed on disk: ${absolutePath}`);
         try {
           // 直接读取内容发送，减少渲染进程的一次读取开销
