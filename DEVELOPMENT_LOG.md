@@ -172,3 +172,6 @@
 ## 2026-04-03
 ### Added
 - Local-first architecture optimization: Refactored `sidecar.ts` to resolve the startup promise immediately upon spawning the Python backend process, unblocking the frontend splash screen and eliminating the long initial delay caused by backend health checks.
+## 2026-04-03
+### Fixed
+- Critical bug in local-first auto-save fast-path: The Python backend does not return `file_path` in the note schema because it stores notes primarily in SQLite. Thus, the frontend's `currentNote.file_path` was always undefined, causing `index.ts` to silently skip the Node.js fast-path and fall back to the slow Python backend on every keystroke. Added a default fallback `note_${id}.md` directly in the IPC handler so the Node.js native save executes unconditionally.

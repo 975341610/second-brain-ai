@@ -184,10 +184,11 @@ function handleIPC() {
   
   // local-first: try native node fs bridge first for updates, fallback to python
   ipcMain.handle('notes:update', async (_, params) => {
-    // If we have a file_path, try to write it directly for speed
-    if (fsBridge && params.file_path) {
+    // Local-first: always write directly to Node fsBridge for speed.
+    const filePath = params.file_path || `note_${params.id}.md`;
+    if (fsBridge) {
       try {
-        log.info(`[FSBridge] Fast native save for note ${params.id}`);
+        log.info(`[FSBridge] Fast native save for note ${params.id} at ${filePath}`);
         
         // Fast write to local file system
         await fsBridge.updateNote({
@@ -205,7 +206,7 @@ function handleIPC() {
                 updated_at: new Date().toISOString()
             },
             silent: true
-        }, params.file_path);
+        }, filePath);
 
         // We still need to update the DB, so we dispatch to Python asynchronously without blocking UI!
         // The python process will be spawned, but the UI gets an immediate response
@@ -221,7 +222,7 @@ function handleIPC() {
           parent_id: params.parent_id,
           icon: params.icon,
           is_title_manually_edited: params.is_title_manually_edited,
-          file_path: params.file_path
+          file_path: filePath
         };
       } catch (e) {
         log.error('[FSBridge] Fast save failed, falling back to python', e);
