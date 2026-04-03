@@ -355,18 +355,16 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
     };
   }, [editor, note?.id, note?.file_path]);
 
-  // Sync with Note content
+  // --- Local-first: Sync with Note content ---
   useEffect(() => {
     if (!editor || !note) return;
     
-    const isDraftPromotion = typeof lastSyncedNoteIdRef.current === 'number' && 
-                             lastSyncedNoteIdRef.current < 0 && 
-                             note.id > 0;
-                             
-    if (lastSyncedNoteIdRef.current === note.id || isDraftPromotion) {
-      lastSyncedNoteIdRef.current = note.id;
+    // 如果是相同的笔记，且编辑器已经有内容，则不强制 setContent，防止丢失正在输入的内容
+    if (lastSyncedNoteIdRef.current === note.id && editor.getHTML() !== '<p></p>') {
       return;
     }
+    
+    console.log(`[NotionEditor] Note changed to ${note.id}, updating content...`);
 
     let content = note.content || '<p></p>';
     if (content.includes('src="blob:')) {
@@ -378,7 +376,8 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
       content = doc.body.innerHTML;
     }
     
-    editor.commands.setContent(content);
+    // 强制更新编辑器内容，解决切换笔记显示空白的问题
+    editor.commands.setContent(content, false);
     lastSyncedNoteIdRef.current = note.id;
     setLastSavedAt(new Date().toLocaleTimeString());
     

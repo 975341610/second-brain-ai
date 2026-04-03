@@ -14,8 +14,9 @@
 - [ ] **架构转向：Obsidian/Typora 风格（纯本地文件 SSOT + 数据同步）**
   - [x] **Phase 1: 极简 I/O 链路重写 (Node.js 原生直写)** - 已完成，切断了笔记读写的 Python 依赖。
   - [x] **Phase 2: 状态解绑与隔离 (State Decoupling)** - 已完成，编辑器重构为非受控组件，实现静默防抖保存。
-  - [ ] **Phase 3: 结构化元数据索引 (本地嵌入式 DB)**
-- [ ] **Phase 4: 桌面究极体改造** (Electron 重构，独立桌面窗口，系统托盘 - 已完成 MVP 适配)
+  - [x] **Phase 3: 彻底离线化改造 (Offline-first & No-blocking)** - 已完成，移除启动阻塞与 fetch 依赖。
+  - [ ] **Phase 4: 结构化元数据索引 (本地嵌入式 DB)**
+- [ ] **Phase 5: 桌面究极体改造** (Electron 重构，独立桌面窗口，系统托盘 - 已完成 MVP 适配)
 - [ ] **全站 UI & 布局重构** (参考 Awwwards、Linear 质感)
 - [ ] **互动级动态壁纸系统** (WebGL/Three.js，环境感知)
 - [ ] **万物皆可拖拽** (自由调整文档/文本/图片位置)
@@ -77,6 +78,15 @@
 ---
 
 ## 📦 提交与更新记录 (Commit & Update Log)
+- **2026-04-03 | Branch: `feature/local-first-architecture`**
+  - `Commit: [Latest]`
+  - *更新内容*: **离线架构彻底改造 (Phase 3 闭环)**。
+    1. **移除启动阻塞 (App.tsx & useAppStore.ts)**: 彻底移除登录检查与 `SplashScreen` 阻塞。优化 `loadInitialData` 为容错并行加载，即使后端离线也直接进入 `READY` 状态渲染编辑器，实现“秒开”。
+    2. **修复保存逻辑 (api.ts)**: 强制 IPC 调用，禁止在 Electron 下回退到 `fetch` 访问 Python 后端。
+    3. **修复笔记切换空白 (App.tsx & NotionEditor.tsx)**: 通过 `key={selectedNoteId}` 强制编辑器重新挂载，并优化 `useEffect` 内容同步逻辑。
+    4. **AI 接口补全**: 在 `api.ts` 中新增了 `streamInlineAI` 的 IPC 调用支持。
+  - *解决痛点*: 实现了纯离线使用能力，消除了启动过程中的各种“请求后端失败”带来的阻塞感，解决了多处 UI 状态不一致的问题。
+
 - **2026-03-31 | Branch: `feature/local-first-architecture`**
   - `Commit: [Latest]`
   - *更新内容*: **修复 PropertyPanel 崩溃问题并增强组件健壮性**。
