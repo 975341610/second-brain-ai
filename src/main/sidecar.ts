@@ -72,23 +72,9 @@ export class SidecarManager {
       });
     }
 
-    return new Promise((resolve, reject) => {
-      this.process?.on('spawn', () => {
-        log.info('Backend process spawned successfully');
-        // 等待后端启动就绪 (简单轮询健康检查)
-        this.waitForBackendReady().then(resolve).catch(reject);
-      });
-
-      this.process?.on('error', (err) => {
-        log.error('Backend process emitted error event:', err);
-        log.error('Backend process failed to start:', err);
-        reject(err);
-      });
-
-      this.process?.on('exit', (code, signal) => {
-        log.warn(`Backend process exited with code ${code} and signal ${signal}`);
-      });
-    });
+    // Resolve immediately rather than waiting for python to boot up
+    log.info('Backend process spawned, resolving start promise immediately for fast startup');
+    return Promise.resolve();
   }
 
   private async waitForBackendReady(retries = 10): Promise<void> {

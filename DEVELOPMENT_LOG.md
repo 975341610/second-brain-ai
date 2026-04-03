@@ -169,3 +169,6 @@
 ## 2026-04-03
 ### Added
 - Auto-save performance optimized: Frontend store `useAppStore` now correctly extracts and forwards `file_path` in `saveNote` function to trigger local-first fast-path save via `FSBridge` without blocking on Python backend sync.
+## 2026-04-03
+### Added
+- Local-first architecture optimization: Refactored `sidecar.ts` to resolve the startup promise immediately upon spawning the Python backend process, unblocking the frontend splash screen and eliminating the long initial delay caused by backend health checks.
