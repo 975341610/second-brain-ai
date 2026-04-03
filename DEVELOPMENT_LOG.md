@@ -175,3 +175,6 @@
 ## 2026-04-03
 ### Fixed
 - Critical bug in local-first auto-save fast-path: The Python backend does not return `file_path` in the note schema because it stores notes primarily in SQLite. Thus, the frontend's `currentNote.file_path` was always undefined, causing `index.ts` to silently skip the Node.js fast-path and fall back to the slow Python backend on every keystroke. Added a default fallback `note_${id}.md` directly in the IPC handler so the Node.js native save executes unconditionally.
+## 2026-04-03
+### Fixed
+- Addressed React crash (`TypeError: Cannot read properties of undefined (reading 'length')` in `Sidebar.tsx`) occurring when the application boots locally and the Python IPC backend fails to return a valid `TrashState` or `UserStats` object. Now gracefully handles missing objects by providing default empty arrays/objects.

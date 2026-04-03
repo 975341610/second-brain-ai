@@ -78,7 +78,11 @@ export const api = {
   restoreNote: (noteId: number) => invoke<Note>('notes:restore', `/notes/${noteId}/restore`, { params: { id: noteId } }),
   purgeNote: (noteId: number) => invoke('notes:purge', `/notes/${noteId}/purge`, { params: { id: noteId } }),
   purgeTrash: () => invoke('trash:purge', '/trash/purge'),
-  getTrash: () => invoke<TrashState>('trash:get', '/trash'),
+  getTrash: async () => {
+    const res = await invoke<any>('trash:get', '/trash');
+    if (!res || Array.isArray(res)) return { notes: [], notebooks: [] };
+    return res as TrashState;
+  },
   listTasks: () => invoke<Task[]>('tasks:list', '/tasks'),
   createTask: (payload: { title: string; status?: string; priority?: string; task_type?: string; deadline?: string | null }) =>
     invoke<Task>('tasks:create', '/tasks', { method: 'POST', body: JSON.stringify(payload) }),
@@ -149,7 +153,11 @@ export const api = {
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   },
-  getUserStats: () => invoke<UserStats>('user:get-stats', '/user/stats'),
+  getUserStats: async () => {
+    const res = await invoke<any>('user:get-stats', '/user/stats');
+    if (!res || Array.isArray(res)) return { exp: 0, level: 1, total_captures: 0, current_theme: 'dark' };
+    return res as UserStats;
+  },
   listUserAchievements: () => invoke<UserAchievement[]>('user:list-achievements', '/user/achievements'),
   updateUserTheme: (theme: string) => invoke<UserStats>('user:update-theme', '/user/theme', { params: { theme } }),
   updateUserWallpaper: (wallpaperUrl: string) => invoke<UserStats>('user:update-wallpaper', '/user/wallpaper', { params: { wallpaper_url: wallpaperUrl } }),

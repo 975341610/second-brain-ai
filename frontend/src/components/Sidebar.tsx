@@ -529,14 +529,14 @@ export function Sidebar({
           <div className="mx-2 mt-2 p-2 bg-reflect-sidebar/50 rounded-lg border border-reflect-border/50 text-[11px] space-y-2">
             <div className="flex items-center justify-between px-1 mb-1">
               <span className="text-[10px] font-bold uppercase tracking-wider opacity-40">笔记</span>
-              {trash.notes.length > 0 && (
+              {(trash?.notes || []).length > 0 && (
                 <button onClick={() => onPurgeTrash()} className="text-rose-600 hover:opacity-70 transition-opacity font-bold">清空全部</button>
               )}
             </div>
-            {trash.notes.length === 0 && trash.notebooks.length === 0 && (
+            {(trash?.notes || []).length === 0 && (trash?.notebooks || []).length === 0 && (
               <div className="text-reflect-muted opacity-50 text-center py-2">空</div>
             )}
-            {trash.notes.map(note => (
+            {(trash?.notes || []).map(note => (
               <div key={note.id} className="flex items-center justify-between group px-1">
                 <span className="truncate opacity-70 flex-1 mr-2">{note.title}</span>
                 <div className="flex items-center gap-2">
