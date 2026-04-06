@@ -26,6 +26,7 @@ interface PropertyPanelProps {
   note: Note;
   onUpdate: (updatedFields: Partial<Note>) => void;
   onUpdateTags?: (noteId: number, tags: string[]) => Promise<void>;
+  onFlushSave?: (updates: Partial<Note>) => void;
 }
 
 const WEATHER_OPTIONS = [
@@ -174,29 +175,32 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
     setIsFocused(false);
   };
 
-  // 在修改属性时，不只更新本地 properties，也将天气和心情的 local 状态马上更新
-  // 防止下一次渲染拿到的还是旧的 weatherValue
   const handleUpdateProperty = async (propName: string, value: string) => {
     try {
-      const properties = localProperties;
-      const targetProp = properties.find(p => p.name === propName || (propName === 'Weather' && p.name === '天气') || (propName === 'Mood' && p.name === '心情'));
+      const properties = [...localProperties];
+      const targetPropIdx = properties.findIndex(p => p.name === propName || (propName === 'Weather' && p.name === '天气') || (propName === 'Mood' && p.name === '心情'));
       
       if (propName === 'Weather') setLocalWeather(value);
       if (propName === 'Mood') setLocalMood(value);
       
-      if (targetProp) {
-        const updatedProp = await api.updateNoteProperty(note.id, targetProp.id, { value });
-        const newProps = properties.map(p => p.id === targetProp.id ? updatedProp : p);
-        setLocalProperties(newProps);
-        onUpdate({ properties: newProps });
+      let newProps;
+      if (targetPropIdx > -1) {
+        newProps = properties.map((p, idx) => idx === targetPropIdx ? { ...p, value } : p);
       } else {
-        const newProp = await api.createNoteProperty(note.id, {
+        newProps = [...properties, {
           name: propName,
           type: propName === 'Location' ? 'text' : 'select',
           value: value
-        });
-        const newProps = [...properties, newProp];
-        setLocalProperties(newProps);
+        } as any];
+      }
+      
+      setLocalProperties(newProps);
+      
+      // 如果有 onFlushSave，则立即触发全量保存（合并最新内容，彻底解决覆盖问题）
+      if (onFlushSave) {
+        onFlushSave({ properties: newProps });
+      } else {
+        // Fallback: 如果没有 onFlushSave，仅更新本地状态由 editor 自动保存触发
         onUpdate({ properties: newProps });
       }
     } catch (error) {

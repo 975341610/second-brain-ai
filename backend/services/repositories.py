@@ -113,7 +113,9 @@ def create_note(db: Session, title: str, content: str, summary: str, tags: list[
     return note
 
 
-def update_note(db: Session, note_id: int, title: str | None = None, content: str | None = None, summary: str | None = None, tags: list[str] | None = None, icon: str | None = None, parent_id: int | None = None, is_title_manually_edited: bool | None = None, is_folder: bool | None = None) -> Note | None:
+from backend.models.schemas import NotePropertyBase
+
+def update_note(db: Session, note_id: int, title: str | None = None, content: str | None = None, summary: str | None = None, tags: list[str] | None = None, icon: str | None = None, parent_id: int | None = None, is_title_manually_edited: bool | None = None, is_folder: bool | None = None, properties: list[NotePropertyBase] | None = None) -> Note | None:
     note = db.get(Note, note_id)
     if not note:
         return None
@@ -151,6 +153,28 @@ def update_note(db: Session, note_id: int, title: str | None = None, content: st
         if note.is_folder != val:
             note.is_folder = val
             changed = True
+    
+    # 全量更新/同步属性 (如果传入)
+    if properties is not None:
+        # 获取现有属性进行对比或全量刷新
+        current_props = {p.name: p for p in note.properties}
+        for p_data in properties:
+            # 兼容 dict 或 Pydantic 对象
+            p_name = p_data.get("name") if isinstance(p_data, dict) else p_data.name
+            p_value = p_data.get("value") if isinstance(p_data, dict) else p_data.value
+            p_type = p_data.get("type") if isinstance(p_data, dict) else p_data.type
+            
+            if p_name in current_props:
+                prop = current_props[p_name]
+                if prop.value != p_value or prop.type != p_type:
+                    prop.value = p_value
+                    prop.type = p_type
+                    db.add(prop)
+                    changed = True
+            else:
+                new_prop = NoteProperty(note_id=note_id, name=p_name, type=p_type, value=p_value)
+                db.add(new_prop)
+                changed = True
     
     if changed:
         db.add(note)

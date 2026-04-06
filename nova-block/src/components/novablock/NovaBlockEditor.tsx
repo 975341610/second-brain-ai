@@ -324,13 +324,14 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   }, [extensions, updateOutline]);
 
   // 保存逻辑
-  const handleSave = async (content?: string) => {
+  const handleSave = async (content?: string, updates?: Partial<Note>) => {
     const currentNote = latestNoteRef.current;
     if (!currentNote) return;
     setIsSaving(true);
     try {
       const html = content || editor?.getHTML() || '';
-      const payloadToSave = { ...currentNote, content: html };
+      // 合并最新的编辑器内容和传入的增量更新 (如天气、心情)
+      const payloadToSave = { ...currentNote, ...updates, content: html };
       await onSave(payloadToSave);
       // 同时更新 latestNoteRef 防止马上下一次输入时拿到旧数据
       latestNoteRef.current = payloadToSave;
@@ -345,14 +346,18 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   };
 
   // 自动保存 (debounce)
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {
     if (!isDirty || isSaving) return;
     
-    const timer = setTimeout(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
       handleSave();
     }, 3000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
   }, [isDirty, isSaving]);
 
   const [blockMenuPos, setBlockMenuPos] = useState({ top: 0, bottom: 'auto' });
@@ -519,7 +524,11 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                       onSave(payload);
                       latestNoteRef.current = { ...currentNote, ...updated };
                     }
-                  }} 
+                  }}
+                  onFlushSave={(updates) => {
+                    if (timerRef.current) clearTimeout(timerRef.current);
+                    handleSave(editor?.getHTML(), updates);
+                  }}
                 />
               </div>
             )}

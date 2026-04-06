@@ -578,7 +578,7 @@ async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: B
     if not existing:
         raise HTTPException(status_code=404, detail="Note not found")
     
-    # 1. 快速更新基本信息
+    # 1. 快速更新基本信息 (主流程只做极速的存储操作)
     update_data = payload.model_dump(exclude_unset=True)
     
     title = update_data.get("title", existing.title)
@@ -587,17 +587,17 @@ async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: B
     parent_id = update_data.get("parent_id", existing.parent_id)
     is_title_manually_edited = update_data.get("is_title_manually_edited", (existing.is_title_manually_edited == 1))
     tags = update_data.get("tags")
+    properties = update_data.get("properties")
     
-    # 同步更新数据库
+    # 同步更新数据库：仅更新用户直接修改的核心字段
     from backend.database import with_db_retry
     @with_db_retry(max_retries=3)
-    def do_update():
-        # 注意：repositories.update_note 需要适配 parent_id 为 None 的情况
-        return update_note(db, note_id, title, content, existing.summary, tags, icon, parent_id, is_title_manually_edited)
+    def do_quick_update():
+        return update_note(db, note_id, title, content, existing.summary, tags, icon, parent_id, is_title_manually_edited, properties=properties)
     
-    note = do_update()
+    note = do_quick_update()
     
-    # 2. 异步执行 AI 后台任务
+    # 2. 异步执行耗时的 AI 处理 (摘要、向量化、自动链接)
     background_tasks.add_task(
         background_index_note,
         note.id, title, content,

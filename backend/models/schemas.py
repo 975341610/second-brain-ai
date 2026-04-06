@@ -50,6 +50,7 @@ class NoteUpdate(BaseModel):
     is_folder: bool | None = None
     is_title_manually_edited: bool | None = None
     tags: list[str] | None = None
+    properties: list[NotePropertyBase] | None = None
 
 
 class NoteMovePayload(BaseModel):
