@@ -23,10 +23,7 @@ const viteConfig = defineConfig({
           clientPort: Number(process.env.HMR_CLIENT_PORT),
           protocol: process.env.HMR_PROTOCOL || 'wss',
         }
-      : {
-          protocol: 'wss',
-          clientPort: 443
-        },
+      : true,
   },
 })
 
