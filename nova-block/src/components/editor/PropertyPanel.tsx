@@ -45,7 +45,7 @@ const MOOD_OPTIONS = [
   { value: 'energetic', icon: Zap, label: '充满活力' },
 ];
 
-export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, onUpdateTags }) => {
+export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, onUpdateTags, onFlushSave }) => {
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [suggestedTags, setSuggestedTags] = useState<string[]>([]);
   const [isSuggestionsExpanded, setIsSuggestionsExpanded] = useState(false);
@@ -197,7 +197,7 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
       setLocalProperties(newProps);
       
       // 如果有 onFlushSave，则立即触发全量保存（合并最新内容，彻底解决覆盖问题）
-      if (onFlushSave) {
+      if (typeof onFlushSave === 'function') {
         onFlushSave({ properties: newProps });
       } else {
         // Fallback: 如果没有 onFlushSave，仅更新本地状态由 editor 自动保存触发
