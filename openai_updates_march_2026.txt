@@ -1,0 +1,379 @@
+ChatGPT New Features 2026: What's Changed & What's New
+
+This website uses cookies
+
+Read our [Privacy policy](https://www.beehiiv.com/privacy) and [Terms of use](https://www.beehiiv.com/tou) for more information.
+
+AcceptCustomizeDecline
+
+[![web_image](https://media.beehiiv.com/cdn-cgi/image/format=auto,onerror=redirect/uploads/publication/logo/dfe496a5-8e83-4075-844e-4a2835e3dae0/logo-new.png)](https://aibusinessweekly.net/)
+
+Search
+
+[Sponsor AI Business Weekly](https://aibusinessweekly.net/sponsor-ai-business-weekly)
+
+Categories
+
+Login
+
+Sign Up
+
+* [Home](https://aibusinessweekly.net/)
+* [Posts](https://aibusinessweekly.net/archive)
+* ChatGPT New Features 2026: Everything That Changed and What's Coming
+
+ChatGPT New Features 2026: Everything That Changed and What's Coming
+====================================================================
+
+GPT-5 through GPT-5.4, Codex, Deep Research, Record Mode, Shopping, Interactive Learning - every significant ChatGPT update in 2026 explained for business users
+
+[Sameer Khan](https://aibusinessweekly.net/authors/sameer-khan)
+
+Mar 26, 2026
+
+**Last Updated: March 23, 2026**
+
+From GPT-4 to GPT-5.4 in Under a Year
+-------------------------------------
+
+If you last seriously evaluated ChatGPT in 2024, you are using a mental model of the product that is roughly two major generations out of date. OpenAI has shipped more meaningful product changes in the twelve months leading up to March 2026 than in the three years before it combined - and the pace is still accelerating.
+
+The most important thing to understand about ChatGPT in 2026 is that the GPT-4 era is over. The current lineup runs on the GPT-5 family, with GPT-5.4 as the current frontier model as of March 2026. The o3 reasoning model family continues to exist separately for complex reasoning tasks, but the everyday ChatGPT experience is now built on models that make GPT-4o look like a previous generation - not a peer.
+
+After four years watching enterprise teams implement AI tools, the gap I see most often is between what people think ChatGPT can do based on their last evaluation and what it actually does now. This guide covers every significant ChatGPT update in 2026 chronologically, explains what each change means practically for business users, and cuts through OpenAI's changelog language to tell you what actually matters for getting work done.
+
+🎯
+*Before you read on - we put together a free 2026 AI Tools Cheat Sheet covering the tools business leaders are actually using right now. Get it instantly when you subscribe to AI Business Weekly.*
+
+[*Get the Free Cheat Sheet*](https://aibusinessweekly.net/)
+
+Table of Contents
+-----------------
+
+* [From GPT-4 to GPT-5.4 in Under a Year](https://aibusinessweekly.net/p/chatgpt-new-features-2026#from-gpt-4-to-gpt-54-in-under-a-yea)
+* [Common Misconceptions About ChatGPT in 2026](https://aibusinessweekly.net/p/chatgpt-new-features-2026#common-misconceptions-about-chat-gp)
+* [The GPT-5 Model Family Explained](https://aibusinessweekly.net/p/chatgpt-new-features-2026#the-gpt-5-model-family-explained)
+* [How the Models Actually Work Differently](https://aibusinessweekly.net/p/chatgpt-new-features-2026#how-the-models-actually-work-differ)
+* [Major New Features in 2026](https://aibusinessweekly.net/p/chatgpt-new-features-2026#major-new-features-in-2026)
+* [Codex: ChatGPT's Agentic Coding Tool](https://aibusinessweekly.net/p/chatgpt-new-features-2026#codex-chat-gp-ts-agentic-coding-too)
+* [Deep Research: What Changed](https://aibusinessweekly.net/p/chatgpt-new-features-2026#deep-research-what-changed)
+* [Record Mode and Voice Updates](https://aibusinessweekly.net/p/chatgpt-new-features-2026#record-mode-and-voice-updates)
+* [Memory and Personalization](https://aibusinessweekly.net/p/chatgpt-new-features-2026#memory-and-personalization)
+* [What This Means for Business Teams](https://aibusinessweekly.net/p/chatgpt-new-features-2026#what-this-means-for-business-teams)
+* [Related Articles](https://aibusinessweekly.net/p/chatgpt-new-features-2026#related-articles)
+* [Frequently Asked Questions](https://aibusinessweekly.net/p/chatgpt-new-features-2026#frequently-asked-questions)
+* [Conclusion](https://aibusinessweekly.net/p/chatgpt-new-features-2026#conclusion)
+
+Common Misconceptions About ChatGPT in 2026
+-------------------------------------------
+
+Three misconceptions are worth clearing up before the feature breakdown, because they affect how professionals evaluate what they are actually looking at.
+
+**Misconception 1: ChatGPT still runs on GPT-4.**
+GPT-4 and GPT-4o are no longer the current models. ChatGPT runs on the GPT-5 family - GPT-5 launched August 2025, with iterative updates through GPT-5.4 as of March 2026. GPT-5.1 models were deprecated on March 11, 2026, with existing conversations automatically routed to GPT-5.3 or GPT-5.4 equivalents. Anyone comparing ChatGPT to competitors using GPT-4-era benchmarks or experiences is comparing against a product that no longer exists.
+
+**Misconception 2: The model names indicate major discontinuous releases.**
+GPT-5.1, 5.2, 5.3, 5.4 are iterative improvements within the GPT-5 family, not entirely different products. Each iteration improves specific capabilities - better instruction following, improved tone, stronger coding, faster reasoning - without fundamentally changing how you use the platform. The naming cadence reflects OpenAI's shift toward continuous model improvement rather than discrete annual releases.
+
+**Misconception 3: ChatGPT is still just a chatbot.**
+The current ChatGPT is a platform that includes agentic coding through Codex, deep multi-source research through Deep Research, meeting transcription and summarization through Record Mode, memory that persists context across sessions, shopping assistance, interactive learning modules, and 60-plus application connectors including Google Drive, Slack, GitHub, and Salesforce. "Just a chatbot" is a fair description of the 2022 product - not the 2026 one.
+
+The GPT-5 Model Family Explained
+--------------------------------
+
+Understanding which model is doing what in ChatGPT in 2026 requires a brief orientation to the model naming structure. OpenAI now publishes detailed release notes at their official help center, and the cadence is notably faster than before.
+
+**GPT-5 (Base, launched August 2025):**
+[OpenAI's GPT-5 announcement described it as their strongest model to date across writing, coding, and health queries](https://openai.com/index/introducing-gpt-5/?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+, with meaningful improvements over GPT-4o in reducing hallucinations, improving instruction following, and minimizing sycophancy. GPT-5 became the foundation for the entire 2025-2026 model family.
+
+**GPT-5.1 (deprecated March 11, 2026):**
+The first iterative update to GPT-5. Now retired - existing conversations automatically routed to GPT-5.3 Instant equivalents.
+
+**GPT-5.2:**
+Improved professional knowledge work capabilities with better spreadsheet creation, tool use, and longer context retrieval. The changelog note that GPT-5.2 Instant improved "response style with more measured and grounded tone" reflects a pattern throughout this model family - OpenAI actively tuning personality and tone alongside capability.
+
+**GPT-5.3 Instant + GPT-5.3 Codex:**
+GPT-5.3 Instant handles everyday conversational and work tasks. GPT-5.3 Codex is specifically optimized for agentic coding - described by OpenAI as combining Codex and GPT-5 training stacks in a single model, approximately 25% faster than previous versions. The Codex model launch signals OpenAI's commitment to competing directly with Claude Code and GitHub Copilot in the agentic coding space.
+
+**GPT-5.4 (current frontier, March 2026):**
+[GPT-5.4 brings together reasoning, coding, and agentic workflow capabilities into a single frontier model](https://help.openai.com/en/articles/9624314-model-release-notes?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+, incorporating the coding capabilities of GPT-5.3 Codex while improving performance across professional tasks involving spreadsheets, presentations, and documents. GPT-5.4 Thinking now shows an upfront plan of its reasoning process before generating responses - allowing users to see and redirect the model's approach mid-response.
+
+**GPT-5.4 mini:**
+The cost-efficient version of GPT-5.4, available to Free and Go users through the Thinking feature and as a rate-limit fallback for paid plans. Not selectable directly in the model picker but active as a fallback during peak usage.
+
+How the Models Actually Work Differently
+----------------------------------------
+
+The most practically useful thing to understand about the GPT-5 family for business users is how the Instant and Thinking variants work differently - because the right choice between them changes based on task type.
+
+**Instant variants (GPT-5.2 Instant, 5.3 Instant)**
+are optimized for speed and conversational quality on everyday tasks - emails, summaries, analysis, writing, quick research, and standard business questions. They respond quickly and are tuned for professional tone and quality on the tasks that represent most knowledge worker usage throughout a day.
+
+**Thinking variants (GPT-5.4 Thinking)**
+use extended reasoning before responding - the model works through intermediate steps before generating an answer, similar to the o3 architecture but integrated into the main ChatGPT experience rather than a separate model. GPT-5.4 Thinking now shows users an upfront thinking plan, making the reasoning process transparent and adjustable. This variant is most valuable for complex analysis, multi-step problem solving, and tasks where getting the right answer matters more than getting a fast one.
+
+The practical implication: most business tasks are well-served by Instant variants. Switching to Thinking for complex analysis, financial modeling, or technical problem-solving - and back to Instant for writing and communication - produces better results than defaulting to one mode for everything. Our
+[ChatGPT plans guide](https://aibusinessweekly.net/p/chatgpt-enterprise-vs-plus)
+covers which plan tiers give access to which model variants.
+
+Major New Features in 2026
+--------------------------
+
+Beyond model upgrades, these are the product features that have materially changed how ChatGPT works for business users in 2026.
+
+**Projects with 40-File Support:**
+ChatGPT Projects now support up to 40 uploaded files, up from 20. Projects let teams create focused workspaces with specific instructions, uploaded context, and shared history. For business teams using ChatGPT for specific recurring workflows - quarterly reporting, contract review, competitive analysis - Projects provide persistent context that eliminates the constant re-establishment of background information that plagued earlier ChatGPT use.
+
+**File Library:**
+[OpenAI's changelog confirms a persistent File Library](https://help.openai.com/en/articles/6825453-chatgpt-release-notes?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+for Plus, Pro, and Business users - a centralized place to store and reuse files across conversations. Files remain available until you delete them. Previously, every new conversation required re-uploading documents. For users who regularly work with the same reports, templates, or reference documents, this eliminates significant workflow friction.
+
+**60-Plus Application Connectors:**
+ChatGPT now connects to Google Drive, Microsoft SharePoint, Outlook, Teams, GitHub, Slack, Notion, Salesforce, and dozens more through an expanding connector ecosystem. Write actions - creating documents, drafting emails, updating spreadsheets - are available but remain disabled by default for Business and Enterprise plans until workspace admins enable them. This shift from "AI that advises on actions" to "AI that takes actions" is the most significant architectural change in ChatGPT's enterprise positioning.
+
+**Interactive Learning Modules:**
+ChatGPT can now present interactive visual modules for math and science topics, letting users adjust variables in real time and see how changes affect graphs and outcomes. Launched with 70-plus topics, the feature is designed to support students and professionals learning quantitative concepts. For enterprise teams running training programs or onboarding workflows involving technical content, this changes what ChatGPT can do in educational contexts.
+
+**Shopping Features:**
+ChatGPT's shopping capabilities have expanded significantly - product results are more visually rich, users can compare products side-by-side with price and review data, and the Agentic Commerce Protocol (ACP) enables direct purchasing workflows. For marketing teams tracking competitive pricing or product managers monitoring the market, the improved product data coverage and freshness is practically useful beyond the consumer shopping use case.
+
+💡
+*Finding this helpful? Get bite-sized AI news and practical business insights like this delivered free every morning at 7 AM EST.*
+
+[*Subscribe Free*](https://aibusinessweekly.net/)
+
+Codex: ChatGPT's Agentic Coding Tool
+------------------------------------
+
+Codex deserves dedicated attention because it represents OpenAI's most direct response to the Claude Code threat - and it has shipped a significant number of updates in a compressed timeframe.
+
+**What Codex is:**
+An agentic coding tool integrated into ChatGPT that can work across your terminal, IDE, the web, GitHub, and the ChatGPT iOS app. Where earlier AI coding tools provided suggestions within a single file, Codex can manage multi-file changes, run in cloud environments to execute tasks asynchronously, and review pull requests automatically.
+
+**Key Codex updates in 2026:**
+
+* IDE Extension for VS Code, Cursor, and VS Code forks - bringing Codex into the editor rather than requiring context switches
+* Sign in with ChatGPT - eliminating API key setup for developer access
+* Seamless local-to-cloud handoff - start work locally, delegate to cloud for async execution without losing state
+* Automatic PR review in GitHub - set Codex to review new pull requests in a repository automatically, or mention @codex in PRs
+* Codex for Students - verified university students in the US and Canada can access $100 in credits
+
+The Codex product line has its own dedicated site at
+[developers.openai.com/codex](https://developers.openai.com/codex?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+, reflecting OpenAI's positioning of it as a platform rather than just a feature.
+[According to OpenAI's release notes, GPT-5.3 Codex is OpenAI's most capable agentic coding model](https://help.openai.com/en/articles/9624314-model-release-notes?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+- combining Codex and GPT-5 training stacks with 25% faster performance than previous versions.
+
+For context on how Codex compares to dedicated AI coding tools, our
+[AI coding tools guide](https://aibusinessweekly.net/p/ai-coding-tools)
+covers the full competitive landscape.
+
+Deep Research: What Changed
+---------------------------
+
+Deep Research - ChatGPT's multi-source research synthesis feature - has been one of the highest-value additions to the platform for professional users, and it has evolved significantly in 2026.
+
+**The legacy mode is being retired:**
+[OpenAI's changelog confirms the legacy deep research mode is being removed on March 26, 2026](https://help.openai.com/en/articles/6825453-chatgpt-release-notes?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+. The current Deep Research experience continues unchanged - historical conversations and results remain accessible. This deprecation is primarily relevant to teams that had workflows specifically using the legacy mode's particular output structure.
+
+**What the current Deep Research does:**
+Deep Research takes a complex research question and automatically conducts multi-source research across the web, synthesizing findings into a comprehensive cited report. The process takes longer than a standard response - typically several minutes - but produces research that would otherwise require hours of manual work. For competitive intelligence, market research, regulatory analysis, and any question requiring synthesis across multiple authoritative sources, this feature consistently produces more comprehensive results than standard ChatGPT queries.
+
+**Model upgrades for Deep Research:**
+Enterprise and Edu users have been migrated to GPT-5.2 for Deep Research workloads, with research noting clearer improvements in synthesizing complex, multi-source information.
+
+Record Mode and Voice Updates
+-----------------------------
+
+Two significant changes to how ChatGPT handles audio and voice in 2026.
+
+**Record Mode:**
+ChatGPT can now capture meetings, brainstorms, or voice notes and transcribe, summarize, and turn them into actionable outputs - follow-up tasks, project plans, or code. For Business and Enterprise users, admins can turn Record Mode off from Admin Settings to address any compliance concerns about meeting transcription. This feature directly addresses one of the most common practical AI use cases for knowledge workers - turning the unstructured output of meetings into structured, actionable information.
+
+**Voice experience consolidation:**
+OpenAI retired the Voice experience in the macOS desktop app in January 2026, consolidating voice interaction to
+[chatgpt.com](https://chatgpt.com/?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+, iOS, Android, and Windows. The change was described as enabling focus on more unified voice experiences. For Mac users who relied on the desktop voice feature, this requires moving to the web or mobile app for voice interaction.
+
+**Advanced audio mode:**
+Advanced Voice Mode with video and screen sharing remains available on Plus and higher plans - enabling real-time visual demonstrations and live video interaction alongside voice. For enterprise teams using ChatGPT for training, customer-facing demos, or complex technical explanations requiring visual context, this capability is meaningfully different from text-only workflows.
+
+Memory and Personalization
+--------------------------
+
+Memory in ChatGPT - the ability to retain useful context between separate conversations - has matured significantly and is now an active workflow tool rather than a novelty.
+
+**What Memory does in 2026:**
+ChatGPT automatically builds a memory of relevant information from your conversations - your role, recurring topics you work on, preferences you express, and context that helps it give better responses in future sessions. You can view, edit, and delete any memory, and turn the feature off entirely. Memory is separate from the files in your Library - it stores semantic context rather than documents.
+
+**Memory for team consistency:**
+[Gend.co](https://gend.co/?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+['s 2026 ChatGPT feature guide notes](https://www.gend.co/blog/chatgpt-2026-latest-features?utm_campaign=chatgpt-new-features-2026-everything-that-changed-and-what-s-coming&utm_medium=referral&utm_source=aibusinessweekly.net)
+that for business teams, Memory creates more consistent outputs and reduces repetition - the model develops ongoing context about your organization, workflows, and preferences rather than starting fresh with each conversation. For teams that have been frustrated by ChatGPT's lack of institutional memory, this is the feature that addresses that friction most directly.
+
+**Personalization in Projects:**
+Within Projects, instructions and context persist across all conversations in that project - providing team-level context separate from individual memory. A Project configured for quarterly earnings analysis carries all relevant company context, formatting preferences, and analytical frameworks without re-establishing them each session.
+
+What This Means for Business Teams
+----------------------------------
+
+The aggregate picture of ChatGPT in March 2026 is a platform that has crossed from productivity tool to workflow infrastructure for many organizations. The combination of GPT-5.4's capabilities, persistent Memory, Projects with file support, 60-plus application connectors, Record Mode, Codex for agentic coding, and Deep Research for multi-source synthesis covers workflows that would have required four or five separate specialized tools in 2024.
+
+The practical implication for teams that last evaluated ChatGPT seriously in 2024 is that a re-evaluation is overdue. The competitive comparison has shifted significantly - not just in model quality but in what the platform can do across an organization's daily workflows.
+
+The equally practical implication is that not everything has changed. ChatGPT still requires verification of factual claims. Memory is imperfect and requires review. Agentic features like write actions require governance frameworks before enabling for large teams. The improvements are real and substantial - but the appropriate posture of human oversight for AI-generated outputs has not changed.
+
+For a complete breakdown of which ChatGPT plan provides access to which of these features, our
+[ChatGPT plans guide](https://aibusinessweekly.net/p/chatgpt-enterprise-vs-plus)
+covers the full tier comparison. For context on how ChatGPT's 2026 feature set compares to Claude and Gemini across specific business workflows, our
+[ChatGPT vs Claude comparison](https://aibusinessweekly.net/p/chatgpt-vs-claude)
+covers the current competitive picture.
+
+Related Articles
+----------------
+
+[**What is ChatGPT? Complete Guide 2026**](https://aibusinessweekly.net/p/what-is-chatgpt)
+The full ChatGPT background - how it works, model history, and capabilities overview that provides context for all these 2026 updates.
+
+[**ChatGPT Plans Compared 2026: Free vs Plus vs Enterprise**](https://aibusinessweekly.net/p/chatgpt-enterprise-vs-plus)
+Which plan gets you access to which GPT-5 model variants, Codex, Deep Research, and the new 2026 features covered in this article.
+
+[**OpenAI Statistics 2026: Users, Revenue & Growth**](https://aibusinessweekly.net/p/openai-statistics)
+The business context for ChatGPT's 2026 development - 800M weekly users, $29B projected revenue, and the competitive pressure driving this pace of updates.
+
+[**ChatGPT vs Claude: Which AI Is Better for Business in 2026?**](https://aibusinessweekly.net/p/chatgpt-vs-claude)
+How ChatGPT's 2026 updates affect the head-to-head comparison with Anthropic's Claude for specific business workflows.
+
+[**AI Coding Tools 2026: Ranked & Compared**](https://aibusinessweekly.net/p/ai-coding-tools)
+Where Codex sits in the AI coding landscape alongside Claude Code, GitHub Copilot, Cursor, and Windsurf.
+
+Frequently Asked Questions
+--------------------------
+
+**What is the current ChatGPT model in 2026?**
+The current frontier ChatGPT model is GPT-5.4, released in early March 2026. It combines reasoning, coding, and agentic workflow capabilities from the GPT-5 family with the coding capabilities of GPT-5.3 Codex. GPT-5.4 Thinking shows users an upfront reasoning plan before generating responses. GPT-5.3 Instant handles everyday conversational and work tasks. GPT-5.1 models were deprecated on March 11, 2026. The separate o3 reasoning model family continues to exist for specialized high-compute reasoning tasks.
+
+**What is GPT-5 and how is it different from GPT-4?**
+GPT-5 launched August 2025 as OpenAI's flagship replacement for GPT-4o. It demonstrates meaningful improvements in reducing hallucinations, improving instruction following, minimizing sycophancy, and performing better on coding, writing, and health-related tasks. The GPT-5 family uses iterative versioning (5.1, 5.2, 5.3, 5.4) rather than discrete annual releases. GPT-5 and its successors have largely replaced GPT-4 throughout ChatGPT - users no longer encounter GPT-4o as the default model.
+
+**What is ChatGPT Codex in 2026?**
+Codex is OpenAI's agentic coding tool integrated into ChatGPT, powered by GPT-5.3 Codex - a model combining Codex and GPT-5 training stacks. It works across your terminal, IDE (VS Code, Cursor, VS Code forks), the web, GitHub, and the ChatGPT iOS app. Codex can manage multi-file code changes, execute tasks asynchronously in the cloud, automatically review pull requests in GitHub, and maintain state as work moves between local and cloud environments. It competes directly with Claude Code and GitHub Copilot in the agentic coding space.
+
+**What is ChatGPT Deep Research and what changed in 2026?**
+Deep Research is ChatGPT's feature for conducting multi-source research and synthesizing findings into comprehensive cited reports. It automatically searches across multiple web sources and produces research synthesis that would otherwise require hours of manual work. In 2026, the legacy Deep Research mode is being deprecated on March 26, 2026, with the current experience continuing unchanged. Enterprise users have been migrated to GPT-5.2 for Deep Research workloads, with improved complex source synthesis.
+
+**What is ChatGPT Record Mode?**
+Record Mode allows ChatGPT to capture meetings, brainstorms, or voice notes and automatically transcribe, summarize, and convert them into structured outputs including follow-up tasks, project plans, or code. It is available on Business and Enterprise plans, with workspace admins able to disable it from Admin Settings. Record Mode addresses one of the most practically valuable AI use cases for knowledge workers - automatically converting unstructured meeting content into actionable structured information.
+
+**What is the ChatGPT Go plan?**
+ChatGPT Go is a new lower-cost plan at $8 per month designed for regular users who need more than the free tier provides but do not require full professional features. Go is ad-supported - OpenAI tests contextual advertising in the chat interface on this plan to subsidize the lower price. It provides higher usage limits than the free tier and access to core ChatGPT capabilities. Go is not appropriate for professional business use involving sensitive data.
+
+**How does ChatGPT Memory work in 2026?**
+ChatGPT automatically builds memory of relevant context from your conversations - your professional role, recurring projects, stated preferences, and information that helps generate better responses over time. Memory persists across separate conversations, creating continuity that reduces the need to re-establish context each session. You can view all stored memories, edit or delete individual items, and turn Memory off entirely. Memory is currently available for Plus, Pro, and Business users. For teams, Memory creates more consistent outputs and reduces repetitive context-setting across the organization.
+
+**What application connectors does ChatGPT support in 2026?**
+ChatGPT supports 60-plus application connectors including Google Drive, Google Docs, Google Sheets, Microsoft Outlook, Microsoft SharePoint, Microsoft Teams, GitHub, Slack, Notion, and Salesforce. Read actions (viewing content from connected apps) are enabled by default when connectors are set up. Write actions (creating documents, drafting emails, updating spreadsheets) are available but disabled by default for Business and Enterprise plans - workspace admins must enable them from settings after reviewing the action types. The connector ecosystem is expanding continuously through 2026.
+
+**What is new in ChatGPT in 2026?**
+The most significant ChatGPT changes in 2026 include: the GPT-5 model family replacing GPT-4 (now on GPT-5.4 as of March 2026); Codex for agentic coding across IDEs, GitHub, and cloud environments; 60-plus application connectors including write actions for Google and Microsoft apps; File Library for persistent document access across conversations; Record Mode for meeting transcription and summarization; Memory for persistent context across sessions; Projects supporting up to 40 files; interactive learning modules for math and science; and improved shopping features with side-by-side product comparison.
+
+**What ChatGPT model is available in 2026?**
+ChatGPT currently runs on the GPT-5 model family as of March 2026. The active models are GPT-5.4 Thinking (frontier reasoning model, shows upfront thinking plan), GPT-5.4 mini (cost-efficient reasoning fallback), GPT-5.3 Instant (everyday tasks), and GPT-5.3 Codex (agentic coding). GPT-5.1 models were deprecated on March 11, 2026. The separate o3 and o4-mini reasoning models continue to exist for specialized high-compute tasks. GPT-4 and GPT-4o are no longer the current models.
+
+**What is ChatGPT Codex and how does it work?**
+ChatGPT Codex is an agentic AI coding tool powered by GPT-5.3 Codex. It integrates into VS Code, Cursor, and other VS Code forks via an IDE extension, and works in your terminal, GitHub, and the ChatGPT iOS app. Codex can manage multi-file code changes, automatically review pull requests (set it to auto-review new PRs or @mention it in PRs), execute tasks asynchronously in the cloud, and maintain state as work moves between local and cloud environments. It is OpenAI's direct competitor to Claude Code and GitHub Copilot for agentic software development.
+
+**What is ChatGPT Deep Research in 2026?**
+ChatGPT Deep Research is a feature that automatically researches complex questions across multiple web sources and synthesizes findings into comprehensive, cited reports. It takes several minutes but produces research quality equivalent to hours of manual work. The legacy Deep Research mode is being retired March 26, 2026, with the current experience continuing. Enterprise users have been upgraded to GPT-5.2 for Deep Research workloads. Deep Research is available on Plus, Pro, Business, and Enterprise plans.
+
+**How does ChatGPT Memory work?**
+ChatGPT Memory automatically stores useful context from conversations - your professional role, recurring topics, stated preferences - and applies it in future sessions to generate more relevant responses. Memory persists across separate conversations, creating continuity without requiring context re-establishment. You can view, edit, and delete any stored memory, or turn Memory off entirely from settings. Memory is available on Plus, Pro, and Business plans. Within Projects, separate persistent instructions apply at the team level in addition to individual Memory.
+
+**What are ChatGPT application connectors in 2026?**
+ChatGPT supports 60-plus application connectors that bring data from external tools into conversations and enable actions in those tools. Supported apps include Google Drive, Google Docs, Google Sheets, Outlook, SharePoint, Teams, GitHub, Slack, Notion, and Salesforce. Read connectors (viewing content) can be enabled by users. Write actions (creating documents, sending emails, updating data) are available for Business and Enterprise plans but disabled by default - workspace admins must review and enable specific write actions in settings before they become available to users.
+
+Conclusion
+----------
+
+The pace of ChatGPT development in 2026 has made any mental model formed in 2024 obsolete. GPT-5.4 is not an incremental improvement on GPT-4o - it is a meaningfully different capability level. Codex is not a chatbot that writes code suggestions - it is an agentic developer that manages repositories, reviews PRs, and operates across your entire development environment. Deep Research is not a search wrapper - it is a research synthesis tool that produces professional-quality reports autonomously.
+
+For business teams that last seriously evaluated ChatGPT in 2024, the practical recommendation is to schedule a two-week structured re-evaluation focused on the specific workflows that felt inadequate at your last assessment. In most cases, at least two or three of those limitations have been directly addressed.
+
+The organizations building genuine competitive advantage with AI are the ones updating their evaluation cycles to match OpenAI's release cadence - not the ones making platform decisions based on annual reviews.
+
+📨
+*Don't miss tomorrow's edition. Subscribe free to AI Business Weekly and get our 2026 AI Tools Cheat Sheet instantly - bite-sized AI news every morning, zero hype.*
+
+[*Subscribe Free*](https://aibusinessweekly.net/)
+
+### Keep Reading
+
+[[AI News & Daily Updates](https://aibusinessweekly.net/t/ai-news-daily-updates)
+
+Mar 29, 2026
+
+•
+
+4 min read
+
+### Eli Lilly Signs $2.75 Billion AI Drug Deal With Insilico Medicine, Including Rights to a GLP-1 Diabetes Candidate Discovered by Generative AI
+
+The deal gives Lilly exclusive worldwide rights to develop and commercialize preclinical AI-discovered drug candidates, with $115 million upfront and milestones that could reach $2.75 billion plus tiered royalties
+
+Sameer Khan](https://aibusinessweekly.net/p/eli-lilly-insilico-medicine-ai-drug-deal-2-75-billion)
+
+[[AI News & Daily Updates](https://aibusinessweekly.net/t/ai-news-daily-updates)
+
+Mar 29, 2026
+
+•
+
+4 min read
+
+### Core Scientific Secures $1 Billion Led by JPMorgan to Accelerate Pivot From Bitcoin Mining to AI Data Center Infrastructure
+
+The company that emerged from Chapter 11 bankruptcy in January 2024 is now transforming its mining sites into high-density AI colocation facilities with $533 million in available liquidity and major institutional backing
+
+Sameer Khan](https://aibusinessweekly.net/p/core-scientific-1-billion-funding-ai-data-center-bitcoin-mining)
+
+[[AI News & Daily Updates](https://aibusinessweekly.net/t/ai-news-daily-updates)
+
+Mar 29, 2026
+
+•
+
+5 min read
+
+### Bluesky Launches Attie, an AI App Powered by Claude That Lets Anyone Build Their Own Social Media Algorithm Without Writing Code
+
+Built by former CEO Jay Graber's new team on the AT Protocol, Attie uses natural language to create custom feeds - and represents Bluesky's first standalone product outside its core social network
+
+Sameer Khan](https://aibusinessweekly.net/p/bluesky-attie-ai-app-custom-feeds-claude-at-protocol)
+
+View more
+
+#### AI Business Weekly
+
+###### Stay ahead of the curve—subscribe to AI Business Weekly and get the latest AI insights, tools, and business breakthroughs delivered every week
+
+SUBSCRIBE
+
+© 2026 AI Business Weekly.
+
+[Report abuse](https://www.beehiiv.com/report_abuse?utm_source=ai_business_weekly)[Privacy policy](https://beehiiv.com/privacy?utm_source=ai_business_weekly)[Terms of use](https://beehiiv.com/tou?utm_source=ai_business_weekly)
+
+[Powered by beehiiv](https://www.beehiiv.com/?utm_source=ai_business_weekly&utm_medium=footer)
+
+[AI Knowledge Hub](https://aibusinessweekly.net/t/ai-knowledge-hub)[AI News & Updates](https://aibusinessweekly.net/t/ai-news-daily-updates)[AI Business Weekly Newsletter](https://aibusinessweekly.net/t/ai-business-weekly-newsletter)
+IFRAME https://platform.twitter.com/widgets/widget_iframe.2f70fb173b9000da126c79afe2098f02.html?origin=https%3A%2F%2Faibusinessweekly.net:
+Twitter Widget Iframe
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+
+# Reference
+- [170] [ChatGPT New Features 2026: What's Changed & What's New](https://aibusinessweekly.net/p/chatgpt-new-features-2026)

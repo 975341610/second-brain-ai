@@ -122,6 +122,10 @@ def run_migrations() -> None:
             connection.execute(text("ALTER TABLE notes ADD COLUMN deleted_at DATETIME"))
         if "is_title_manually_edited" not in note_columns:
             connection.execute(text("ALTER TABLE notes ADD COLUMN is_title_manually_edited INTEGER DEFAULT 0"))
+        if "is_folder" not in note_columns:
+            connection.execute(text("ALTER TABLE notes ADD COLUMN is_folder INTEGER DEFAULT 0"))
+        if "parent_id" not in note_columns:
+            connection.execute(text("ALTER TABLE notes ADD COLUMN parent_id INTEGER REFERENCES notes(id) ON DELETE SET NULL"))
         task_columns = {column["name"] for column in inspector.get_columns("tasks")} if "tasks" in inspector.get_table_names() else set()
         if "priority" not in task_columns:
             connection.execute(text("ALTER TABLE tasks ADD COLUMN priority VARCHAR(20) DEFAULT 'medium'"))

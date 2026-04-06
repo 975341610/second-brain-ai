@@ -1,0 +1,61 @@
+Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+INFO:     Started server process [4044162]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     fdbd:dc07:fe:4005::2566:0 - "POST /api/model-config HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 5 is greater than number of elements in index 0, updating n_results = 0
+INFO:     fdbd:dc07:fe:4005::2051:0 - "POST /api/chat HTTP/1.1" 200 OK
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2276:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Number of requested results 5 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::205f:0 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::205f:0 - "GET / HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::263a:0 - "GET /assets/index-DpsN5L9z.js HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::256f:0 - "GET /assets/index-BXf7lUv6.css HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::207c:0 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2256:0 - "GET /api/notebooks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::275f:0 - "GET /api/tasks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2164:0 - "GET /api/model-config HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::265d:0 - "GET /api/trash HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2160:0 - "GET /favicon.svg HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2697:0 - "POST /api/ai/inline HTTP/1.1" 200 OK
+Failed to send telemetry event CollectionDeleteEvent: capture() takes 1 positional argument but 3 were given
+Number of requested results 6 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2378:0 - "PUT /api/notes/2 HTTP/1.1" 200 OK
+Number of requested results 5 is greater than number of elements in index 1, updating n_results = 1
+INFO:     fdbd:dc07:fe:4005::2674:0 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2049:0 - "GET / HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2388:0 - "GET /assets/index-DpsN5L9z.js HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::215a:0 - "GET /assets/index-BXf7lUv6.css HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2581:0 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::247d:0 - "GET /api/notebooks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2347:0 - "GET /api/tasks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::217e:0 - "GET /api/model-config HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::277a:0 - "GET /api/trash HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2086:0 - "GET /favicon.svg HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::245b:0 - "GET / HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2774:0 - "GET /assets/index-DpsN5L9z.js HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::216e:0 - "GET /assets/index-BXf7lUv6.css HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2080:0 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2775:0 - "GET /api/notebooks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::217b:0 - "GET /api/tasks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2762:0 - "GET /api/model-config HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::265d:0 - "GET /favicon.svg HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::206f:0 - "GET /api/trash HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2695:0 - "GET / HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2051:0 - "GET /assets/index-DpsN5L9z.js HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2775:0 - "GET /assets/index-BXf7lUv6.css HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::205c:0 - "GET /api/notes HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2740:0 - "GET /api/notebooks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2365:0 - "GET /api/tasks HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2170:0 - "GET /api/model-config HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::246e:0 - "GET /favicon.svg HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2661:0 - "GET /api/trash HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4044162]

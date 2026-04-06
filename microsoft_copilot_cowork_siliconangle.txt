@@ -1,0 +1,564 @@
+Microsoft accelerates agentic automation with Copilot Cowork for complex workflows - SiliconANGLE
+
+
+
+
+
+
+
+
+
+­
+
+
+
+
+
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/SA-web-logo-300x58.png)](https://siliconangle.com)
+
+[the voice of enterprise and emerging tech]
+
+* *search*
+* OUR NETWORK
+* [![web_image](https://s3.us-west-2.amazonaws.com/cube365-prod/related-content/e810e50d-1091-4ce3-9cc2-0232848a8d60.png)](https://www.thecube.net)
+* [![web_image](https://s3.us-west-2.amazonaws.com/cube365-prod/related-content/04ae65c6-92d8-4203-904e-2ee935b71f1f.png)](https://thecuberesearch.com)
+
+*menu*
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/SA-web-logo-300x58.png)](https://siliconangle.com)
+
+* *account\_circle*
+
+* *search*
+
+* [Home](http://siliconangle.com "Home")
+* [TechForward Awards](https://siliconangle.com/awards/ "TechForward Awards")
+* [Cloud](https://siliconangle.com/category/cloud "Cloud") 
+  + [Cloud Native](https://siliconangle.com/category/cloud/cloud-native-3/ "Cloud Native")
+* [AI](https://siliconangle.com/category/ai "AI")
+* [Security](https://siliconangle.com/category/security "Security")
+* [Infra](https://siliconangle.com/category/infrastructure "Infra")
+* [Blockchain](https://siliconangle.com/category/blockchain "Blockchain")
+* [Big Data](https://siliconangle.com/category/big-data "Big Data")
+* [Emerging Tech](https://siliconangle.com/category/emerging-tech "Emerging Tech")
+* [Policy](https://siliconangle.com/category/policy "Policy")
+* [Apps](https://siliconangle.com/category/apps-2 "Apps")
+* [Iot](https://siliconangle.com/category/iot "Iot")
+* [Women In Tech](https://siliconangle.com/category/women-in-tech "Women In Tech")
+* [theCUBE Research](https://siliconangle.com/category/wikibon "theCUBE Research")
+* [Special Reports](https://siliconangle.com/special-reports "Special Reports")
+* [Video Exclusives](https://siliconangle.com/tag/video-exclusive "Video Exclusives")
+* [CUBE SPECIAL FEATURES](https://siliconangle.com/people/ "CUBE SPECIAL FEATURES")
+* [RECENT CUBE EVENTS](https://siliconangle.com/events "RECENT CUBE EVENTS")
+* [AWARDS](https://www.thecube.net/awards "AWARDS")
+More *expand\_more*
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_banner_watch_now_on_demand-7.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod_SAM_banner_1.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-4.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-3.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-2.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-5.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-4.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_banner_watch_now_on_demand-7.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod_SAM_banner_1.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-4.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-3.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-2.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-5.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-4.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_banner_watch_now_on_demand-7.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+prev
+
+next
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/share.png)
+
+SHARE
+
+UPDATED 09:00 EDT/
+MARCH 30 2026
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Screenshot-from-2026-03-30-08-21-57.png)
+
+ AI
+
+### Microsoft accelerates agentic automation with Copilot Cowork for complex workflows
+
+by [Mike Wheatley](https://siliconangle.com/author/mikewheatley/)
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/share.png)
+
+SHARE
+
+[Microsoft Corp.](https://www.microsoft.com/) is moving closer to delivering on its vision of autonomous artificial intelligence agents that can do more than just chat.
+
+Today it has announced the launch of Copilot Cowork, a new capability within the Microsoft 365 platform that can handle “long-running, multistep tasks” that could previously be done only with constant human oversight.
+
+Copilot Cowork was announced in a [blog post](https://www.microsoft.com/en-us/microsoft-365/blog/2026/03/30/copilot-cowork-now-available-in-frontier/) by Jared Spataro, Microsoft’s chief marketing officer for AI at Work. He said the new capability is being made available through the company’s Frontier program, which lets enterprises test cutting-edge AI features before they’re released more broadly.
+
+Microsoft’s Copilot tool has been around for a couple of years already, but until now it has mostly been focused on generative tasks, such as summarizing emails or drafting the text of an email or blog post. Copilot Cowork, on the other hand, is built for delegation, so instead of having humans perform every step in a complex workflow, someone can now describe their desired outcome and let AI complete all of those tasks autonomously.
+
+Spataro said users simply tell Copilot Cowork what they’re trying to accomplish, and it will then go ahead and create a plan before immediately carrying out the necessary tasks to achieve that goal, reasoning across various Microsoft 365 applications and files. Human oversight is still present, though. As it’s working, humans will be able to monitor the agent’s progress, and step in to “steer” it in the right direction should it go off track, Spataro said.
+
+The system is grounded in the [Work IQ framework](https://techcommunity.microsoft.com/blog/microsoft365copilotblog/a-closer-look-at-work-iq/4499789) that’s designed to teach Copilot about the specific context of an organization’s data while ensuring its security and governance protocols are followed. Spataro said Copilot Cowork is all about making work more efficient, eliminating the need for humans to keep jumping from one application to another.
+
+Even a relatively simple task such as completing a monthly budget review will require a human to constantly switch between platforms such as Excel, Outlook, Teams and SharePoint. It’s necessary to gather the required data and coordinate with colleagues, before compiling everything into a report.
+
+Copilot Cowork eliminates all of this hassle. It acts as an “orchestrator,” performing tasks such as daily briefings and calendar management without needing to be prompted to complete each individual step.
+
+Barton Warner, senior vice president of enterprise technology at Capital Group Companies Inc., an early adopter, said Copilot Cowork is about taking real action, rather than generating content and answers. “It’s connecting steps, coordinating tasks and following through across everyday workflows,” he explained.
+
+### Multi-model research
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Screenshot-from-2026-03-30-08-19-48.png)
+
+One of Copilot Cowork’s biggest strengths is its multi-model approach, integrating with both OpenAI Group PBC’s GPT models and Anthropic PBC’s Claude. This can be seen in the company’s newly enhanced “Researcher” agent, which now taps into both AI models via a new “critique” layer.
+
+The way it works is that OpenAI’s GPT model will draft a response, which is then reviewed by Claude for accuracy and to ensure its citations are correct. Spataro said this combination has improved the Researcher agent’s score on the DRACO benchmark by 13.8%.
+
+In addition, it’s possible to reverse the roles, so that Claude drafts the response and GPT does the fact checking. Then, with the new “model council” feature, users can compare the results of each model to see where they agree, where they diverge and where they come up with unique outputs. It’s much like having multiple researchers working on the same project.
+
+By allowing different models to perform distinct roles, with one for drafting a response and one for critiquing, Microsoft is trying to build a more resilient system that reduces the “hallucinations” that have plagued early AI systems. By allowing humans to cross-reference the work of different AIs, enterprises can potentially scale up AI automation with greater trust.
+
+##### Images: Microsoft
+
+---
+
+A message from John Furrier, co-founder of SiliconANGLE:
+========================================================
+
+Support our mission to keep content open and free by engaging with theCUBE community. **Join theCUBE’s Alumni Trust Network**, where technology leaders connect, share intelligence and create opportunities.
+
+* **15M+ viewers of theCUBE videos**, powering conversations across AI, cloud, cybersecurity and more
+* **11.4k+ theCUBE alumni** — Connect with more than 11,400 tech and business leaders shaping the future through a unique trusted-based network.
+
+**About SiliconANGLE Media**
+
+SiliconANGLE Media is a recognized leader in digital media innovation, uniting breakthrough technology, strategic insights and real-time audience engagement. As the parent company of [SiliconANGLE](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fsiliconangle.com%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=SiliconANGLE&index=9&md5=646b1b564e2259100a2b8638aab0a552), [theCUBE Network](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fwww.thecube.net%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=theCUBE+Network&index=10&md5=7de2a85f95ab4a4a495cede20b8cb1da), [theCUBE Research](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fthecuberesearch.com%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=theCUBE+Research&index=11&md5=7bb33676722925eb57d588ec343e4f6f), [CUBE365](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fwww.cube365.net%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=CUBE365&index=12&md5=d310fb35919714e66ad8d42c9c0c1bc6), [theCUBE AI](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fwww.thecubeai.com%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=theCUBE+AI&index=13&md5=b8b98472f8071b23ebb10ab9a8dd0683) and theCUBE SuperStudios — with flagship locations in Silicon Valley and the New York Stock Exchange — SiliconANGLE Media operates at the intersection of media, technology and AI.
+
+Founded by tech visionaries John Furrier and Dave Vellante, SiliconANGLE Media has built a dynamic ecosystem of industry-leading digital media brands that reach 15+ million elite tech professionals. Our new proprietary theCUBE AI Video Cloud is breaking ground in audience interaction, leveraging theCUBEai.com neural network to help technology companies make data-driven decisions and stay at the forefront of industry conversations.
+
+
+
+
+
+##### LATEST STORIES
+
+---
+
+* [Rebellions lands $400M in funding to lead the South Korean revolt against Nvidia chips](https://siliconangle.com/2026/03/30/rebellions-inc-lands-400m-funding-lead-south-korean-revolt-nvidia-chips/)
+
+* [OpenAI Codex vulnerability enabled GitHub token theft via command injection, report finds](https://siliconangle.com/2026/03/30/openai-codex-vulnerability-enabled-github-token-theft-via-command-injection-report-finds/)
+
+* [![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Huskeys-founders-300x200.jpg)](https://siliconangle.com/2026/03/30/huskeys-launches-8m-modernize-waf-security-edge-security-management/)
+
+  [Huskeys launches with $8M to modernize WAF security with Edge Security Management](https://siliconangle.com/2026/03/30/huskeys-launches-8m-modernize-waf-security-edge-security-management/)
+
+* [Sycamore raises $65M from Silicon Valley heavyweights to build governance layer for enterprise AI agents](https://siliconangle.com/2026/03/30/sycamore-raises-65m-silicon-valley-heavyweights-build-governance-layer-enterprise-ai-agents/)
+
+* [On theCUBE Pod: RSAC raises alarms over open-source agents and KubeCon’s role changes in the wake of AI](https://siliconangle.com/2026/03/30/machine-identities-ai-rsac-thecubepod/)
+
+* [Microsoft accelerates agentic automation with Copilot Cowork for complex workflows](https://siliconangle.com/2026/03/30/microsoft-accelerates-agentic-automation-copilot-cowork-complex-workflows/)
+
+* [Rebellions lands $400M in funding to lead the South Korean revolt against Nvidia chips](https://siliconangle.com/2026/03/30/rebellions-inc-lands-400m-funding-lead-south-korean-revolt-nvidia-chips/)
+
+* [OpenAI Codex vulnerability enabled GitHub token theft via command injection, report finds](https://siliconangle.com/2026/03/30/openai-codex-vulnerability-enabled-github-token-theft-via-command-injection-report-finds/)
+
+* [![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Huskeys-founders-300x200.jpg)](https://siliconangle.com/2026/03/30/huskeys-launches-8m-modernize-waf-security-edge-security-management/)
+
+  [Huskeys launches with $8M to modernize WAF security with Edge Security Management](https://siliconangle.com/2026/03/30/huskeys-launches-8m-modernize-waf-security-edge-security-management/)
+
+* [Sycamore raises $65M from Silicon Valley heavyweights to build governance layer for enterprise AI agents](https://siliconangle.com/2026/03/30/sycamore-raises-65m-silicon-valley-heavyweights-build-governance-layer-enterprise-ai-agents/)
+
+* [On theCUBE Pod: RSAC raises alarms over open-source agents and KubeCon’s role changes in the wake of AI](https://siliconangle.com/2026/03/30/machine-identities-ai-rsac-thecubepod/)
+
+* [Microsoft accelerates agentic automation with Copilot Cowork for complex workflows](https://siliconangle.com/2026/03/30/microsoft-accelerates-agentic-automation-copilot-cowork-complex-workflows/)
+
+prev
+
+next
+
+##### LATEST STORIES
+
+---
+
+* [Sycamore raises $65M from Silicon Valley heavyweights to build governance layer for enterprise AI agents](https://siliconangle.com/2026/03/30/sycamore-raises-65m-silicon-valley-heavyweights-build-governance-layer-enterprise-ai-agents/)
+
+  AI
+   - BY [MIKE WHEATLEY](https://siliconangle.com/author/mikewheatley/) . 2 HOURS AGO
+* [On theCUBE Pod: RSAC raises alarms over open-source agents and KubeCon’s role changes in the wake of AI](https://siliconangle.com/2026/03/30/machine-identities-ai-rsac-thecubepod/)
+
+  AI
+   - BY [DEVONY HOF](https://siliconangle.com/author/devonyhof/) . 2 HOURS AGO
+* [Microsoft accelerates agentic automation with Copilot Cowork for complex workflows](https://siliconangle.com/2026/03/30/microsoft-accelerates-agentic-automation-copilot-cowork-complex-workflows/)
+
+  AI
+   - BY [MIKE WHEATLEY](https://siliconangle.com/author/mikewheatley/) . 4 HOURS AGO
+* [Rebellions lands $400M in funding to lead the South Korean revolt against Nvidia chips](https://siliconangle.com/2026/03/30/rebellions-inc-lands-400m-funding-lead-south-korean-revolt-nvidia-chips/)
+
+  INFRA
+   - BY [MIKE WHEATLEY](https://siliconangle.com/author/mikewheatley/) . 4 HOURS AGO
+* [OpenAI Codex vulnerability enabled GitHub token theft via command injection, report finds](https://siliconangle.com/2026/03/30/openai-codex-vulnerability-enabled-github-token-theft-via-command-injection-report-finds/)
+
+  SECURITY
+   - BY [DUNCAN RILEY](https://siliconangle.com/author/duncanriley/) . 4 HOURS AGO
+* [![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Huskeys-founders-300x200.jpg)](https://siliconangle.com/2026/03/30/huskeys-launches-8m-modernize-waf-security-edge-security-management/)
+
+  [Huskeys launches with $8M to modernize WAF security with Edge Security Management](https://siliconangle.com/2026/03/30/huskeys-launches-8m-modernize-waf-security-edge-security-management/)
+
+  SECURITY
+   - BY [DUNCAN RILEY](https://siliconangle.com/author/duncanriley/) . 5 HOURS AGO
+
+
+
+##### [CUBE EVENT COVERAGE](https://siliconangle.com/category/cube-event-coverage/)*help\_outline*
+
+---
+
+##### [LATEST FROM THECUBE](https://siliconangle.com/category/cube-event-coverage/)
+
+---
+
+[Companies face a critical balancing act between AI growth and infrastructure simplification, says Red Hat](https://siliconangle.com/2026/03/30/enterprise-platform-simplification-ai-expansion-kubeconeu/)
+
+[Inside what the modern virtualization boom means for enterprise infrastructure](https://siliconangle.com/2026/03/30/modern-virtualization-bridging-vms-kubernetes-kubeconeu/)
+
+[KubeVirt gains serious backing as CNCF graduation comes into view](https://siliconangle.com/2026/03/30/kubernetes-virtualization-approaches-cncf-graduation-kubeconeu/)
+
+[On theCUBE Pod: RSAC raises alarms over open-source agents and KubeCon’s role changes in the wake of AI](https://siliconangle.com/2026/03/30/machine-identities-ai-rsac-thecubepod/)
+
+[What to expect at Qlik Connect: Join theCUBE April 14](https://siliconangle.com/2026/03/27/thecube-coverage-qlik-connect-decision-intelligence-qlikconnect/)
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/dave-breaking-analysis.png)
+
+[DIVE INTO DAVE VELLANTE’S BREAKING ANALYSIS SERIES](https://siliconangle.com/tag/breaking-analysis/)
+
+*help\_outline*
+
+---
+
+[The agentic AI gap: Vendors sprint, enterprises crawl](https://siliconangle.com/2026/03/28/agentic-ai-gap-vendors-sprint-enterprises-crawl/)
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Gemini_Generated_Image_sqae07sqae07sqae-2048x1143.png)
+
+[RSAC 2026: AI hype meets operating model reality](https://siliconangle.com/2026/03/21/rsac-2026-preview-ai-hype-meets-operating-model-reality/)
+
+[Telcos' last chance: Why the edge becomes hyperconverged](https://siliconangle.com/2026/03/06/telcos-last-chance-edge-becomes-hyperconverged/)
+
+[Satya's sacrifice: Why agents threaten Office and how Microsoft responds](https://siliconangle.com/2026/02/28/satyas-sacrifice-agents-threaten-office-microsoft-responds/)
+
+[TheCUBE Research 2026 predictions: The year of enterprise ROI](https://siliconangle.com/2026/02/15/thecube-research-2026-predictions-year-enterprise-roi/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-2.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-1.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-2.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-1.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+prev
+
+next
+
+##### Sign Up for Our Weekly Newsletter
+
+---
+
+[SUBSCRIBE](https://siliconangle.com/newsletter)
+
+##### [UPCOMING CUBE EVENTS](https://www.thecube.net/events)
+
+---
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/7a3a1c46-7fa4-4567-8d75-bd43788f542f.webp)](https://www.thecube.net/events/nutanix/nutanix-next-2026)
+
+[##### Nutanix .NEXT 2026](https://www.thecube.net/events/nutanix/nutanix-next-2026)[Apr 08-09](https://www.thecube.net/events/nutanix/nutanix-next-2026)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/6e893384-9bb1-4879-9dc0-7fa80624eae7.webp)](https://www.thecube.net/events/qlik/qlik-connect-2026)
+
+[##### Qlik Connect 2026](https://www.thecube.net/events/qlik/qlik-connect-2026)[Apr 14-15](https://www.thecube.net/events/qlik/qlik-connect-2026)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/856c8874-98bb-4d98-b723-32731c2586f9.webp)](https://www.thecube.net/events/hpe/world-quantum-day)
+
+[##### HPE World Quantum Day](https://www.thecube.net/events/hpe/world-quantum-day)[Apr 15](https://www.thecube.net/events/hpe/world-quantum-day)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/5e6400d0-8729-47e4-95d9-1c69c62ddf11.webp)](https://www.thecube.net/events/google/google-cloud-next-2026)
+
+[##### Google Cloud Next 2026](https://www.thecube.net/events/google/google-cloud-next-2026)[Apr 23-25](https://www.thecube.net/events/google/google-cloud-next-2026)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/b017b935-38cf-4594-95c6-bcd3272dc1fa.webp)](https://www.thecube.net/events/red-hat/red-hat-summit-2026)
+
+[##### Red Hat Summit 2026](https://www.thecube.net/events/red-hat/red-hat-summit-2026)[May 13-15](https://www.thecube.net/events/red-hat/red-hat-summit-2026)
+
+SEE MORE
+
+[##### RECENT CUBE EVENTS](https://siliconangle.com/events)
+
+---
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/KubeCon.png)](https://siliconangle.com/tag/kubeconeu26eventpage/)
+
+[##### KubeCon + CloudNativeCon EU 2026](https://siliconangle.com/tag/kubeconeu26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/RSAC-Image.jpg)](https://siliconangle.com/tag/rsac26eventpage/)
+
+[##### RSAC 2026 Conference](https://siliconangle.com/tag/rsac26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/Nvidia-GTC.jpg)](https://siliconangle.com/tag/nvidiagtcai26eventpage/)
+
+[##### Nvidia GTC 2026](https://siliconangle.com/tag/nvidiagtcai26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Google-Cloud-AI-Agents-in-Action-Series.png)](https://siliconangle.com/tag/googlecloudaiagentsinaction25eventpage/)
+
+[##### Google Cloud AI Agents in Action Series 2025/2026](https://siliconangle.com/tag/googlecloudaiagentsinaction25eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/MWC-Barcelona-Hero-March-2026.png)](https://siliconangle.com/tag/mwc26eventpage/)
+
+[##### MWC Barcelona 2026](https://siliconangle.com/tag/mwc26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/favicon-SA.png)](https://siliconangle.com)
+
+* + [PRIVACY POLICY](https://siliconangle.com/privacy-policy/)
+  + [TERMS](https://siliconangle.com/terms-of-use/)
+  + [ABOUT US](https://siliconangle.com/about-us/)
+  + [CONTACT US](https://siliconangle.com/2026/03/30/microsoft-accelerates-agentic-automation-copilot-cowork-complex-workflows/)
+  + [Send us a News tip](https://siliconangle.com/2026/03/30/microsoft-accelerates-agentic-automation-copilot-cowork-complex-workflows/)
+  + [BRAND GUIDELINES](https://siliconangle.com/brand-guidelines/)
+* 2026 SiliconANGLE Media Inc. All rights reserved.
+
+* ##### JOIN OUR COMMUNITY
+
+  + ![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/cube_footer.png)
+
+    [theCUBE](https://twitter.com/thecube)
+  + [theCUBE Research](https://x.com/theCUBEresearch)
+
+×
+
+### Send us a News Tip
+
+* Name\*
+
+  First
+  Last
+* Type of Pitch\*
+
+  Consumer or Enterprise?EnterpriseStartup NewsEmerging Technology
+* Email\*
+* What's your story?\*
+* File
+* Name
+
+  This field is for validation purposes and should be left unchanged.
+
+×
+[![web_image](https://s3.us-west-2.amazonaws.com/cube365-prod/related-content/ba8c110e-cedf-4670-929d-e2ecca19ae3c.png)](https://aws.events.cube365.net/startup/s2e1?utm_source=siliconangle&utm_medium=banner&utm_campaign=showcase_campaign)
+
+×
+
+#### SIGN IN
+
+...
+
+Remember me
+
+LOGIN
+
+[Forgot Password?](https://siliconangle.com/wp-login.php?action=lostpassword&redirect_to=https%3A%2F%2Fsiliconangle.com%2F2026%2F03%2F30%2Fmicrosoft-accelerates-agentic-automation-copilot-cowork-complex-workflows%2F)
+
+##### OR
+
+#### New User? SIGN UP
+
+Continue with Email
+
+...
+
+...
+
+×
+
+#### SIGN UP
+
+Continue with Email
+
+...
+
+...
+
+×
+
+##### Bio
+
+##### Ethics Statement
+
+×
+
+### EXTRACT THE SIGNAL FROM THE NOISE
+
+Like Free Content? Subscribe to follow.
+
+Subscribe
+
+CONTACT US
+
+×
+
+Click here to inquire about guest posts
+
+Click here for all other inquiries
+
+CONTACT US
+
+×
+
+* NAME OF INDIVIDUAL\*
+* NAME OF COMPANY\*
+* EMAIL\*
+* COMMENTS\*
+
+CONTACT US
+
+×
+
+* NAME OF INDIVIDUAL\*
+* NAME OF COMPANY\*
+* EMAIL\*
+* COMMENTS\*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Cookies
+
+We employ the use of cookies. [Find out more.](https://siliconangle.com/terms-of-use/)
+GOT IT!
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+IFRAME https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&co=aHR0cHM6Ly9zaWxpY29uYW5nbGUuY29tOjQ0Mw..&hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&size=normal&anchor-ms=20000&execute-ms=30000&cb=r08dl7aha38i:
+reCAPTCHA
+
+
+
+
+Recaptcha 要求验证.
+
+进行人机身份验证
+
+reCAPTCHA
+
+[隐私权](https://www.google.com/intl/zh-CN/policies/privacy/)-
+[使用条款](https://www.google.com/intl/zh-CN/policies/terms/)
+IFRAME https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&co=aHR0cHM6Ly9zaWxpY29uYW5nbGUuY29tOjQ0Mw..&hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&size=normal&anchor-ms=20000&execute-ms=30000&cb=qjmarq12vgwb:
+reCAPTCHA
+
+
+
+
+Recaptcha 要求验证.
+
+进行人机身份验证
+
+reCAPTCHA
+
+[隐私权](https://www.google.com/intl/zh-CN/policies/privacy/)-
+[使用条款](https://www.google.com/intl/zh-CN/policies/terms/)
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+IFRAME https://www.google.com/recaptcha/api2/bframe?hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&bft=0dAFcWeA6-5wEKSz2tZEyGuCFoYrccnODGyrUm0xAkxlSsaN5UtwooUmi_i52_rVlOFq5_ffT8FoflmVKVVoGfwGsd4DzNa5g0UQ:
+reCAPTCHA
+IFRAME about:blank:
+
+IFRAME https://www.google.com/recaptcha/api2/bframe?hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&bft=0dAFcWeA4FAt6TKgrURtYW9QiSApRW1NcagMEdumvzNDRNG9QT4X_5fHfRTTQD3WkJwI8UVsXcZk_dxZNtI9pR80r32TP6Bv9s7Q:
+reCAPTCHA
+
+# Reference
+- [140] [Microsoft accelerates agentic automation with Copilot Cowork for complex workflows - SiliconANGLE](https://siliconangle.com/2026/03/30/microsoft-accelerates-agentic-automation-copilot-cowork-complex-workflows/)

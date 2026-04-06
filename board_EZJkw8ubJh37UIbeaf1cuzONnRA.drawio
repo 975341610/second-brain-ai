@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"></mxCell>
+        <mxCell id="1" parent="0"></mxCell>
+        <mxCell id="o1:1" value="通用云端与外部服务" style="align=center;fillColor=#ffffde;fontSize=16;html=1;rounded=1;strokeColor=#c2c262;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="383.5" y="486.9" width="700.5" height="274.8" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:2" value="路线 B: 纯前端 IndexedDB 方案" style="align=center;fillColor=#ffffde;fontSize=16;html=1;rounded=1;strokeColor=#c2c262;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1104.0" y="167.6" width="592.5" height="451.8" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:3" value="路线 A: Python + Electron 方案" style="align=center;fillColor=#ffffde;fontSize=16;html=1;rounded=1;strokeColor=#c2c262;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="8.0" y="8.0" width="975.0" height="401.6" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:4" value="多端同步与冲突解决&#xA;(CRDT/事件日志)" style="align=center;fillColor=#ccffff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="40.0" y="30.0" width="162.0" height="72.5" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:5" value="用户认证与设备管理" style="align=center;fillColor=#ccffff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="40.0" y="192.5" width="162.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:6" value="安全外网访问&#xA;(Cloudflare/Tailscale)" style="align=center;fillColor=#ccffff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="262.0" y="30.0" width="176.5" height="72.5" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:7" value="端到端加密密钥服务" style="align=center;fillColor=#ccffff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="498.5" y="40.1" width="162.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:8" value="Electron 客户端 / Web 浏览器" style="align=center;fillColor=#ccccff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:2" vertex="1">
+          <mxGeometry x="193.2" y="30.0" width="221.6" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:9" value="IndexedDB" style="align=center;fillColor=#ffeeff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:2" vertex="1">
+          <mxGeometry x="424.0" y="159.6" width="107.3" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:10" value="WASM 模块&#xA;(eg. sql.js-sqlite, Nomic)" style="align=center;fillColor=#ffeeff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:2" vertex="1">
+          <mxGeometry x="342.2" y="349.3" width="192.2" height="72.5" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:11" value="多端同步服务" style="align=center;fillColor=#e1eaff;fontSize=14;html=1;rounded=1;strokeColor=#4e83fd;strokeWidth=2.0;verticalAlign=middle;" parent="o1:2" vertex="1">
+          <mxGeometry x="40.0" y="159.6" width="120.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:12" value="Electron 客户端" style="align=center;fillColor=#ccccff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="437.7" y="30.0" width="136.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:13" value="Python 后端进程" style="align=center;fillColor=#ff99ff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="320.1" y="189.6" width="142.1" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:14" value="SQLite 数据库" style="align=center;fillColor=#ffeeff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="40.0" y="319.3" width="124.3" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:15" value="ChromaDB 向量库" style="align=center;fillColor=#ffeeff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="224.3" y="319.3" width="152.2" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:16" value="多端同步服务" style="align=center;fillColor=#ff99ff;fontSize=14;html=1;rounded=1;strokeColor=#333333;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="436.5" y="319.3" width="120.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:1" value="IPC" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.16;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:12" target="o1:13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="456.1" y="96.7"></mxPoint>
+              <mxPoint x="410.5" y="129.0"></mxPoint>
+              <mxPoint x="399.1" y="166.4"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:2" value="读写" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.02;exitX=0.00;exitY=0.80;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:13" target="o1:14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="291.8" y="247.9"></mxPoint>
+              <mxPoint x="146.5" y="287.1"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:3" value="读写" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.02;exitX=0.24;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:13" target="o1:15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="353.5" y="256.4"></mxPoint>
+              <mxPoint x="317.4" y="288.8"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:4" value="API" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.02;exitX=0.80;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:13" target="o1:16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="452.1" y="256.4"></mxPoint>
+              <mxPoint x="494.0" y="288.8"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:5" value="读写" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.02;exitX=0.82;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:8" target="o1:9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1495.3" y="256.4"></mxPoint>
+              <mxPoint x="1564.4" y="288.8"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:6" value="调用" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.26;entryY=0.01;exitX=0.59;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:8" target="o1:10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1433.1" y="256.4"></mxPoint>
+              <mxPoint x="1453.0" y="293.0"></mxPoint>
+              <mxPoint x="1458.0" y="352.0"></mxPoint>
+              <mxPoint x="1458.0" y="406.7"></mxPoint>
+              <mxPoint x="1458.0" y="448.3"></mxPoint>
+              <mxPoint x="1464.5" y="485.6"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:7" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.61;entryY=0.01;exitX=0.50;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:9" target="o1:10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1581.6" y="384.6"></mxPoint>
+              <mxPoint x="1581.6" y="411.0"></mxPoint>
+              <mxPoint x="1581.6" y="448.3"></mxPoint>
+              <mxPoint x="1578.6" y="485.6"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:8" value="API" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.02;exitX=0.13;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:8" target="o1:11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1305.4" y="256.4"></mxPoint>
+              <mxPoint x="1224.3" y="288.8"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:9" value="数据同步" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:16" target="o1:4">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:10" value="数据同步" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.99;entryY=0.40;exitX=0.50;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:11" target="o1:4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1204.0" y="384.6"></mxPoint>
+              <mxPoint x="1204.0" y="411.0"></mxPoint>
+              <mxPoint x="1204.0" y="448.3"></mxPoint>
+              <mxPoint x="1100.7" y="490.3"></mxPoint>
+              <mxPoint x="687.7" y="535.9"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:11" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:4" target="o1:5">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:12" value="安全隧道" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.00;exitX=1.00;exitY=0.88;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:12" target="o1:6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="607.1" y="91.6"></mxPoint>
+              <mxPoint x="708.4" y="127.9"></mxPoint>
+              <mxPoint x="733.7" y="170.6"></mxPoint>
+              <mxPoint x="733.7" y="225.2"></mxPoint>
+              <mxPoint x="733.7" y="288.6"></mxPoint>
+              <mxPoint x="733.7" y="352.0"></mxPoint>
+              <mxPoint x="733.7" y="406.7"></mxPoint>
+              <mxPoint x="733.7" y="448.3"></mxPoint>
+              <mxPoint x="733.7" y="485.7"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:13" value="安全隧道" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.99;entryY=0.37;exitX=0.39;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:8" target="o1:6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1376.8" y="256.4"></mxPoint>
+              <mxPoint x="1352.2" y="293.0"></mxPoint>
+              <mxPoint x="1346.0" y="352.0"></mxPoint>
+              <mxPoint x="1346.0" y="406.7"></mxPoint>
+              <mxPoint x="1346.0" y="448.3"></mxPoint>
+              <mxPoint x="1258.5" y="490.0"></mxPoint>
+              <mxPoint x="908.5" y="534.3"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:14" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.00;exitX=1.00;exitY=0.66;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:13" target="o1:7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="552.3" y="241.4"></mxPoint>
+              <mxPoint x="880.9" y="290.0"></mxPoint>
+              <mxPoint x="963.0" y="352.0"></mxPoint>
+              <mxPoint x="963.0" y="406.7"></mxPoint>
+              <mxPoint x="963.0" y="448.3"></mxPoint>
+              <mxPoint x="963.0" y="487.4"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:15" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.99;entryY=0.27;exitX=0.50;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:8" target="o1:7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1408.0" y="256.4"></mxPoint>
+              <mxPoint x="1408.0" y="293.0"></mxPoint>
+              <mxPoint x="1408.0" y="352.0"></mxPoint>
+              <mxPoint x="1408.0" y="406.7"></mxPoint>
+              <mxPoint x="1408.0" y="448.3"></mxPoint>
+              <mxPoint x="1347.2" y="489.6"></mxPoint>
+              <mxPoint x="1103.8" y="532.2"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

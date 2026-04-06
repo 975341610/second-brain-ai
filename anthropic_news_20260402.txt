@@ -1,0 +1,199 @@
+Newsroom \ Anthropic
+
+[Skip to main content](https://www.anthropic.com/news#main-content)[Skip to footer](https://www.anthropic.com/news#footer)
+
+[](https://www.anthropic.com/)
+
+* [Research](https://www.anthropic.com/research)
+* [Economic Futures](https://www.anthropic.com/economic-futures)
+* Commitments
+* Learn
+* [News](https://www.anthropic.com/news)
+
+[Try Claude](https://claude.ai/)
+
+Newsroom
+========
+
+* Press inquires
+  [press@anthropic.com](mailto:press@anthropic.com)
+* Non-media inquiries
+  [support@anthropic.com](mailto:support@anthropic.com)
+* Media assets
+  [Download press kit](https://anthropic.com/press-kit)
+
+![web_image](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Fa9200829eaf63ae342ede66e46d7439367a705bc-1920x1080.png&w=3840&q=75)
+
+[What 81,000 people want from AI
+-------------------------------
+
+[Mar 18, 2026
+
+We invited Claude.ai users to share how they use AI, what they dream it could make possible, and what they fear it might do. Nearly 81,000 people participated—the largest and most multilingual qualitative study of its kind. Here's what we found.](https://www.anthropic.com/81k-interviews)](https://www.anthropic.com/81k-interviews)
+
+[Product
+Feb 17, 2026
+
+#### Introducing Claude Sonnet 4.6
+
+Sonnet 4.6 delivers frontier performance across coding, agents, and professional work at scale.](https://www.anthropic.com/news/claude-sonnet-4-6)[Announcements
+Feb 5, 2026
+
+#### Introducing Claude Opus 4.6
+
+We’re upgrading our smartest model. Across agentic coding, computer use, tool use, search, and finance, Opus 4.6 is an industry-leading model, often by wide margin.](https://www.anthropic.com/news/claude-opus-4-6)[Announcements
+Feb 4, 2026
+
+#### Claude is a space to think
+
+We’ve made a choice: Claude will remain ad-free. We explain why advertising incentives are incompatible with a genuinely helpful AI assistant, and how we plan to expand access without compromising user trust.](https://www.anthropic.com/news/claude-is-a-space-to-think)[Announcements
+Jan 30, 2026
+
+#### Claude on Mars
+
+The first AI-assisted drive on another planet. Claude helped NASA’s Perseverance rover travel four hundred meters on Mars.](https://www.anthropic.com/mars)
+
+News
+----
+
+Search
+
+Date
+Category
+Title
+
+* [Mar 31, 2026Announcements
+
+  Australian government and Anthropic sign MOU for AI safety and research](https://www.anthropic.com/news/australia-MOU)
+* [Mar 12, 2026Announcements
+
+  Anthropic invests $100 million into the Claude Partner Network](https://www.anthropic.com/news/claude-partner-network)
+* [Mar 11, 2026Announcements
+
+  Introducing The Anthropic Institute](https://www.anthropic.com/news/the-anthropic-institute)
+* [Mar 10, 2026Announcements
+
+  Sydney will become Anthropic’s fourth office in Asia-Pacific](https://www.anthropic.com/news/sydney-fourth-office-asia-pacific)
+* [Mar 6, 2026Policy
+
+  Partnering with Mozilla to improve Firefox’s security](https://www.anthropic.com/news/mozilla-firefox-security)
+* [Mar 5, 2026Announcements
+
+  Where things stand with the Department of War](https://www.anthropic.com/news/where-stand-department-war)
+* [Feb 27, 2026Announcements
+
+  Statement on the comments from Secretary of War Pete Hegseth](https://www.anthropic.com/news/statement-comments-secretary-war)
+* [Feb 26, 2026Announcements
+
+  Statement from Dario Amodei on our discussions with the Department of War](https://www.anthropic.com/news/statement-department-of-war)
+* [Feb 25, 2026Announcements
+
+  Anthropic acquires Vercept to advance Claude's computer use capabilities](https://www.anthropic.com/news/acquires-vercept)
+* [Feb 24, 2026Policy
+
+  Anthropic’s Responsible Scaling Policy: Version 3.0](https://www.anthropic.com/news/responsible-scaling-policy-v3)
+
+[See more](https://www.anthropic.com/news)
+
+![web_image](https://www-cdn.anthropic.com/images/4zrzovbb/website/5f455d24ea80569b34eb4347f06152d8a5508722-1000x1000.svg)
+
+### Products
+
+* [Claude](https://claude.com/product/overview)
+* [Claude Code](https://claude.com/product/claude-code)
+* [Claude Code Enterprise](https://claude.com/product/claude-code/enterprise)
+* [Claude Cowork](https://claude.com/product/cowork)
+* [Claude for Chrome](https://claude.com/chrome)
+* [Claude for Excel](https://claude.com/claude-for-excel)
+* [Claude for PowerPoint](https://claude.com/claude-for-powerpoint)
+* [Claude for Slack](https://claude.com/claude-for-slack)
+* [Skills](https://www.claude.com/skills)
+* [Max plan](https://claude.com/pricing/max)
+* [Team plan](https://claude.com/pricing/team)
+* [Enterprise plan](https://claude.com/pricing/enterprise)
+* [Download app](https://claude.ai/download)
+* [Pricing](https://claude.com/pricing)
+* [Log in to Claude](https://claude.ai/)
+
+### Models
+
+* [Opus](https://www.anthropic.com/claude/opus)
+* [Sonnet](https://www.anthropic.com/claude/sonnet)
+* [Haiku](https://www.anthropic.com/claude/haiku)
+
+### Solutions
+
+* [AI agents](https://claude.com/solutions/agents)
+* [Claude Code Security](https://claude.com/solutions/claude-code-security)
+* [Code modernization](https://claude.com/solutions/code-modernization)
+* [Coding](https://claude.com/solutions/coding)
+* [Customer support](https://claude.com/solutions/customer-support)
+* [Education](https://claude.com/solutions/education)
+* [Financial services](https://claude.com/solutions/financial-services)
+* [Government](https://claude.com/solutions/government)
+* [Healthcare](https://claude.com/solutions/healthcare)
+* [Life sciences](https://claude.com/solutions/life-sciences)
+* [Nonprofits](https://claude.com/solutions/nonprofits)
+
+### Claude Platform
+
+* [Overview](https://claude.com/platform/api)
+* [Developer docs](https://platform.claude.com/docs)
+* [Pricing](https://claude.com/pricing#api)
+* [Marketplace](https://claude.com/platform/marketplace)
+* [Regional compliance](https://claude.com/regional-compliance)
+* [Amazon Bedrock](https://claude.com/partners/amazon-bedrock)
+* [Google Cloud’s Vertex AI](https://claude.com/partners/google-cloud-vertex-ai)
+* [Microsoft Foundry](https://claude.com/partners/microsoft-foundry)
+* [Console login](https://platform.claude.com/)
+
+### Resources
+
+* [Blog](https://claude.com/blog)
+* [Claude partner network](https://claude.com/partners)
+* [Community](https://claude.com/community)
+* [Connectors](https://claude.com/connectors)
+* [Courses](https://www.anthropic.com/learn)
+* [Customer stories](https://claude.com/customers)
+* [Engineering at Anthropic](https://www.anthropic.com/engineering)
+* [Events](https://www.anthropic.com/events)
+* [Inside Claude Code](https://www.anthropic.com/product/claude-code)
+* [Inside Cowork](https://www.anthropic.com/product/claude-cowork)
+* [Plugins](https://claude.com/plugins)
+* [Powered by Claude](https://claude.com/partners/powered-by-claude)
+* [Service partners](https://claude.com/partners/services)
+* [Startups program](https://claude.com/programs/startups)
+* [Tutorials](https://claude.com/resources/tutorials)
+* [Use cases](https://claude.com/resources/use-cases)
+
+### Company
+
+* [Anthropic](https://www.anthropic.com/company)
+* [Careers](https://www.anthropic.com/careers)
+* [Economic Futures](https://www.anthropic.com/economic-index)
+* [Research](https://www.anthropic.com/research)
+* [News](https://www.anthropic.com/news)
+* [Claude’s Constitution](https://www.anthropic.com/constitution)
+* [Responsible Scaling Policy](https://www.anthropic.com/news/announcing-our-updated-responsible-scaling-policy)
+* [Security and compliance](https://trust.anthropic.com/)
+* [Transparency](https://www.anthropic.com/transparency)
+
+### Help and security
+
+* [Availability](https://www.anthropic.com/supported-countries)
+* [Status](https://status.anthropic.com/)
+* [Support center](https://support.claude.com/en/)
+
+### Terms and policies
+
+Privacy choices* [Privacy policy](https://www.anthropic.com/legal/privacy)
+* [Consumer health data privacy policy](https://www.anthropic.com/legal/consumer-health-data-privacy-policy)
+* [Responsible disclosure policy](https://www.anthropic.com/responsible-disclosure-policy)
+* [Terms of service: Commercial](https://www.anthropic.com/legal/commercial-terms)
+* [Terms of service: Consumer](https://www.anthropic.com/legal/consumer-terms)
+* [Usage policy](https://www.anthropic.com/legal/aup)
+
+© 2026 Anthropic PBC
+
+# Reference
+- [108] [Anthropic](https://www.anthropic.com/news)

@@ -1,0 +1,530 @@
+ci: add github actions workflow for windows build · 975341610/second-brain-ai@8da9063 · GitHub
+
+
+
+[Skip to content](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/job/68994882806#start-of-content)
+
+
+
+
+
+
+
+
+
+
+
+Navigation Menu
+---------------
+
+Toggle navigation
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2F975341610%2Fsecond-brain-ai%2Factions%2Fruns%2F23681816889%2Fjob%2F68994882806)
+
+Appearance settings
+
+* Platform
+
+  + AI CODE CREATION
+    - [GitHub Copilot
+      Write better code with AI](https://github.com/features/copilot)
+    - [GitHub Spark
+      Build and deploy intelligent apps](https://github.com/features/spark)
+    - [GitHub Models
+      Manage and compare prompts](https://github.com/features/models)
+    - [MCP RegistryNew
+      Integrate external tools](https://github.com/mcp)
+  + DEVELOPER WORKFLOWS
+    - [Actions
+      Automate any workflow](https://github.com/features/actions)
+    - [Codespaces
+      Instant dev environments](https://github.com/features/codespaces)
+    - [Issues
+      Plan and track work](https://github.com/features/issues)
+    - [Code Review
+      Manage code changes](https://github.com/features/code-review)
+  + APPLICATION SECURITY
+    - [GitHub Advanced Security
+      Find and fix vulnerabilities](https://github.com/security/advanced-security)
+    - [Code security
+      Secure your code as you build](https://github.com/security/advanced-security/code-security)
+    - [Secret protection
+      Stop leaks before they start](https://github.com/security/advanced-security/secret-protection)
+  + EXPLORE
+    - [Why GitHub](https://github.com/why-github)
+    - [Documentation](https://docs.github.com)
+    - [Blog](https://github.blog)
+    - [Changelog](https://github.blog/changelog)
+    - [Marketplace](https://github.com/marketplace)
+
+  [View all features](https://github.com/features)
+* Solutions
+
+  + BY COMPANY SIZE
+    - [Enterprises](https://github.com/enterprise)
+    - [Small and medium teams](https://github.com/team)
+    - [Startups](https://github.com/enterprise/startups)
+    - [Nonprofits](https://github.com/solutions/industry/nonprofits)
+  + BY USE CASE
+    - [App Modernization](https://github.com/solutions/use-case/app-modernization)
+    - [DevSecOps](https://github.com/solutions/use-case/devsecops)
+    - [DevOps](https://github.com/solutions/use-case/devops)
+    - [CI/CD](https://github.com/solutions/use-case/ci-cd)
+    - [View all use cases](https://github.com/solutions/use-case)
+  + BY INDUSTRY
+    - [Healthcare](https://github.com/solutions/industry/healthcare)
+    - [Financial services](https://github.com/solutions/industry/financial-services)
+    - [Manufacturing](https://github.com/solutions/industry/manufacturing)
+    - [Government](https://github.com/solutions/industry/government)
+    - [View all industries](https://github.com/solutions/industry)
+
+  [View all solutions](https://github.com/solutions)
+* Resources
+
+  + EXPLORE BY TOPIC
+    - [AI](https://github.com/resources/articles?topic=ai)
+    - [Software Development](https://github.com/resources/articles?topic=software-development)
+    - [DevOps](https://github.com/resources/articles?topic=devops)
+    - [Security](https://github.com/resources/articles?topic=security)
+    - [View all topics](https://github.com/resources/articles)
+  + EXPLORE BY TYPE
+    - [Customer stories](https://github.com/customer-stories)
+    - [Events & webinars](https://github.com/resources/events)
+    - [Ebooks & reports](https://github.com/resources/whitepapers)
+    - [Business insights](https://github.com/solutions/executive-insights)
+    - [GitHub Skills](https://skills.github.com)
+  + SUPPORT & SERVICES
+    - [Documentation](https://docs.github.com)
+    - [Customer support](https://support.github.com)
+    - [Community forum](https://github.com/orgs/community/discussions)
+    - [Trust center](https://github.com/trust-center)
+    - [Partners](https://github.com/partners)
+
+  [View all resources](https://github.com/resources)
+* Open Source
+
+  + COMMUNITY
+    - [GitHub Sponsors
+      Fund open source developers](https://github.com/sponsors)
+  + PROGRAMS
+    - [Security Lab](https://securitylab.github.com)
+    - [Maintainer Community](https://maintainers.github.com)
+    - [Accelerator](https://github.com/accelerator)
+    - [GitHub Stars](https://stars.github.com)
+    - [Archive Program](https://archiveprogram.github.com)
+  + REPOSITORIES
+    - [Topics](https://github.com/topics)
+    - [Trending](https://github.com/trending)
+    - [Collections](https://github.com/collections)
+* Enterprise
+
+  + ENTERPRISE SOLUTIONS
+    - [Enterprise platform
+      AI-powered developer platform](https://github.com/enterprise)
+  + AVAILABLE ADD-ONS
+    - [GitHub Advanced Security
+      Enterprise-grade security features](https://github.com/security/advanced-security)
+    - [Copilot for Business
+      Enterprise-grade AI features](https://github.com/features/copilot/copilot-business)
+    - [Premium Support
+      Enterprise-grade 24/7 support](https://github.com/premium-support)
+* [Pricing](https://github.com/pricing)
+
+Search or jump to...
+
+
+Search code, repositories, users, issues, pull requests...
+==========================================================
+
+Search
+
+Clear
+
+[Search syntax tips](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax)
+
+Provide feedback
+================
+
+We read every piece of feedback, and take your input very seriously.
+
+
+Include my email address so I can be contacted
+
+Cancel
+ Submit feedback
+
+
+
+
+
+Saved searches
+==============
+
+Use saved searches to filter your results more quickly
+------------------------------------------------------
+
+Name
+
+Query
+
+To see all available qualifiers, see our [documentation](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax).
+
+Cancel
+ Create saved search
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2F975341610%2Fsecond-brain-ai%2Factions%2Fruns%2F23681816889%2Fjob%2F68994882806)
+
+[Sign up](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Factions%2Fjob%2Findex&source=header-repo&source_repo=975341610%2Fsecond-brain-ai)
+
+Appearance settings
+
+Resetting focus
+
+You signed in with another tab or window. Reload to refresh your session.
+You signed out in another tab or window. Reload to refresh your session.
+You switched accounts on another tab or window. Reload to refresh your session.
+ 
+Dismiss alert
+
+{{ message }}
+
+[975341610](https://github.com/975341610)
+/
+**[second-brain-ai](https://github.com/975341610/second-brain-ai)**
+Public
+
+* [Notifications](https://github.com/login?return_to=%2F975341610%2Fsecond-brain-ai) You must be signed in to change notification settings
+* [Fork
+  0](https://github.com/login?return_to=%2F975341610%2Fsecond-brain-ai)
+* [Star
+   0](https://github.com/login?return_to=%2F975341610%2Fsecond-brain-ai)
+
+* [Code](https://github.com/975341610/second-brain-ai)
+* [Issues
+  0](https://github.com/975341610/second-brain-ai/issues)
+* [Pull requests
+  0](https://github.com/975341610/second-brain-ai/pulls)
+* [Actions](https://github.com/975341610/second-brain-ai/actions)
+* [Projects](https://github.com/975341610/second-brain-ai/projects)
+* [Security
+  0](https://github.com/975341610/second-brain-ai/security)
+* [Insights](https://github.com/975341610/second-brain-ai/pulse)
+
+Additional navigation options
+
+
+* [Code](https://github.com/975341610/second-brain-ai)
+* [Issues](https://github.com/975341610/second-brain-ai/issues)
+* [Pull requests](https://github.com/975341610/second-brain-ai/pulls)
+* [Actions](https://github.com/975341610/second-brain-ai/actions)
+* [Projects](https://github.com/975341610/second-brain-ai/projects)
+* [Security](https://github.com/975341610/second-brain-ai/security)
+* [Insights](https://github.com/975341610/second-brain-ai/pulse)
+
+[Windows Package](https://github.com/975341610/second-brain-ai/actions/workflows/windows-package.yml)
+
+ci: add github actions workflow for windows build
+#99
+=====================================================
+
+[Sign in to view logs](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2F975341610%2Fsecond-brain-ai%2Factions%2Fruns%2F23681816889%2Fjob%2F68994882806)
+
+* [Sign in to view logs](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2F975341610%2Fsecond-brain-ai%2Factions%2Fruns%2F23681816889%2Fjob%2F68994882806)
+
+build-windows
+-------------
+
+
+
+ci: add github actions workflow for windows build
+=================================================
+
+ci: add github actions workflow for windows build#99
+----------------------------------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+* [Summary](https://github.com/975341610/second-brain-ai/actions/runs/23681816889)
+
+#### All jobs
+
+Filter by job status
+
+* + [build-windows](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/job/68994882806)
+* ### Run details
+
+  + [Usage](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/usage)
+  + [Workflow file](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/workflow)
+
+[Usage](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/usage)[Workflow file](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/workflow)
+
+Annotations
+-----------
+
+1 error and 1 warning
+
+|  |
+| --- |
+| [**Build frontend**](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/job/68994882806#annotation:7:17) Process completed with exit code 1. Show more Show less |
+| [**Complete job**](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/job/68994882806#annotation:31:2) Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the runner on September 16th, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE\_JAVASCRIPT\_ACTIONS\_TO\_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS\_ALLOW\_USE\_UNSECURE\_NODE\_VERSION=true. For more information see: <https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/> Show more Show less |
+
+#### build-windows
+
+[build-windows](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/job/68994882806#logs)
+
+failed
+Mar 28, 2026 in 1m 38s
+
+Set up job
+
+2s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Checkout
+
+6s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Setup Node.js
+
+4s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Setup Python
+
+1s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Install Inno Setup
+
+4s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Install frontend dependencies
+
+1m 16s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Build frontend
+
+1s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Install backend build dependencies
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Stage frontend bundle and metadata
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Build desktop executable
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Prepare portable app folder
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Build Setup.exe
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Archive portable app
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Upload workflow artifacts
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Publish tag release assets
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Post Setup Python
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Post Setup Node.js
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Post Checkout
+
+2s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+
+
+
+
+Complete job
+
+0s
+
+Error:
+
+This step has been truncated due to its large size. View the raw logs from the  menu once
+the workflow run has completed.
+
+Loading
+
+#### Re-running jobs...
+
+You can’t perform that action at this time.
+
+# Reference
+- [83] [ci: add github actions workflow for windows build · 975341610/second-brain-ai@8da9063 · GitHub](https://github.com/975341610/second-brain-ai/actions/runs/23681816889/job/68994882806)

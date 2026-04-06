@@ -24,6 +24,7 @@ def note_to_dict(note):
         "parent_id": note.parent_id,
         "position": note.position,
         "icon": note.icon,
+        "is_folder": bool(note.is_folder),
         "is_title_manually_edited": bool(note.is_title_manually_edited),
         "created_at": note.created_at.isoformat() if note.created_at else None,
         "deleted_at": note.deleted_at.isoformat() if note.deleted_at else None,
@@ -79,13 +80,29 @@ def main():
                 notebook_id=params.get("notebook_id"),
                 icon=params.get("icon", "📝"),
                 parent_id=params.get("parent_id"),
+                is_folder=params.get("is_folder", False),
                 is_title_manually_edited=params.get("is_title_manually_edited", False)
+            )
+            print(json.dumps(note_to_dict(note)))
+
+        elif command == "folders:create":
+            note = repositories.create_note(
+                db, 
+                title=params.get("title", "新建文件夹"),
+                content="",
+                summary="",
+                tags=params.get("tags"),
+                notebook_id=params.get("notebook_id"),
+                icon=params.get("icon", "📂"),
+                parent_id=params.get("parent_id"),
+                is_folder=True,
+                is_title_manually_edited=False
             )
             print(json.dumps(note_to_dict(note)))
 
         elif command == "notes:update":
             # Only pass keys that are explicitly in params to avoid overwriting with None
-            update_keys = ["title", "content", "tags", "icon", "parent_id", "is_title_manually_edited"]
+            update_keys = ["title", "content", "tags", "icon", "parent_id", "is_folder", "is_title_manually_edited"]
             kwargs = {k: params[k] for k in update_keys if k in params}
             note = repositories.update_note(
                 db,

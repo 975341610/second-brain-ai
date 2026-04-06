@@ -1,225 +1,27 @@
-# Second Brain AI
+# Second Brain AI (NovaBlock)
 
-Production-style MVP for a local-first AI second brain with notes, RAG search, card links, TODO planning, and multi-model configuration.
+现代化、本地优先的 AI 第二大脑与块级编辑器 (Block-based Editor)。
 
-## Stack
+## 项目简介
+Second Brain AI 旨在打造一个极致丝滑、极简主义且功能强大的个人知识管理系统。它结合了 Notion 式的块级编辑体验与 AI 驱动的深度洞察，支持本地存储与多种 AI 模型配置。
 
-- Frontend: React + TypeScript + TailwindCSS + Zustand
-- Backend: FastAPI + SQLAlchemy
-- Storage: SQLite + local Chroma vector store
-- AI: OpenClaw-compatible API by default, with OpenAI/Claude-compatible base URL support and offline fallback
+## 核心特性
+- **块级编辑器基础框架**：基于 Tiptap 构建，提供类似 Notion 的块级操作体验，支持多种内容块流式插入 (Tiptap based, 类似 Notion 体验)。
+- **万物皆可拖拽 (Drag & Drop)**：支持块级别的自由拖拽重排，以及从系统资源管理器直接拖入文件进行上传。
+- **折叠标题功能 (Collapsible Headings)**：支持 H1-H3 标题的折叠与展开，帮助管理长文档结构，配合智能生成的唯一 ID 确保 TOC 锚点跳转。
+- **全局媒体与文件处理**：支持图片、视频、音频及通用文件的全局拖拽上传。集成系统默认程序打开功能，实现本地文件联动。
+- **拍立得 (Polaroid) 风格媒体卡片**：上线现代化、高颜值的多媒体卡片 UI。具备优雅的悬浮微交互 (Hover Micro-interactions)、精致阴影与圆角设计，提升整体视觉体验。
+- **环境自适应动态路由 (`getApiBase`)**：自动识别本地 `0.0.0.0` 环境与云端 `strato-https-proxy` 环境，动态切换 API 基础路径，确保在不同部署环境下皆能正常通信。
 
-## Features
+## 技术栈
+- **前端**：React + TypeScript + Tiptap + TailwindCSS + Framer Motion
+- **后端**：FastAPI + SQLAlchemy + SQLite
+- **AI**：支持多种兼容接口（OpenAI/Claude 等）
 
-- Import `.txt`, `.md`, `.pdf` documents
-- Auto chunking, embeddings, summaries, tags, and related-card links
-- RAG-based answers with source citations
-- AI agent planning with `search_knowledge`, `create_task`, and `list_tasks`
-- TODO board with manual edits and status transitions
-- Local-first persistence and offline-safe responses when no API key is configured
-- Model configuration UI for provider, base URL, API key, and model name
-
-## Versions
-
-- `v0.5.4`: (Current) fix: remove table row drag UX and bump version.
-- `v0.5.3`: fix: AI SSL certificate verification, robust import validation, and elegant table row drag UX.
-- `v0.5.2`: Diagnostic fixes for update persistence, taskkill integration, and robocopy verification.
-- `v0.5.1`: Robust AI stream parsing, Table TDD fixes, and improved fast update logic.
-- `v0.5.0`: Initial system fix release.
-
-## Project Structure
-
-```text
-second-brain-ai/
-├── backend/
-│   ├── api/
-│   ├── agent/
-│   ├── models/
-│   ├── rag/
-│   ├── services/
-│   ├── data/sample_docs/
-│   ├── main.py
-│   └── requirements.txt
-├── frontend/
-│   ├── src/components/
-│   ├── src/lib/
-│   ├── src/pages/
-│   └── src/store/
-└── README.md
-```
-
-## Quick Start
-
-### 1. Backend
-
-```bash
-cd /home/cai/second-brain-ai
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r backend/requirements.txt
-cp .env.example .env
-uvicorn backend.main:app --reload
-```
-
-Backend runs at `http://127.0.0.1:8000`.
-
-### 2. Frontend
-
-```bash
-cd /home/cai/second-brain-ai/frontend
-npm install
-cp .env.example .env
-npm run dev
-```
-
-Frontend runs at `http://127.0.0.1:5173`.
-
-### 3. Stable Local Web
-
-If you want a more stable local preview without relying on the Vite dev server, use the backend-served build:
-
-```bash
-cd /home/cai/second-brain-ai
-./run_local_web.sh
-```
-
-Then open:
-
-```text
-http://127.0.0.1:8000
-```
-
-This mode builds the frontend once, serves it from FastAPI, and is more stable for long manual testing sessions.
-
-## Default Model Behavior
-
-- Default provider: `openclaw`
-- Default model: `glm-4.7-flash`
-- If no API key is configured, the app falls back to deterministic local embeddings, local summaries, local tag extraction, and citation-grounded template answers
-
-## API Endpoints
-
-- `POST /api/upload`
-- `POST /api/ask`
-- `POST /api/search`
-- `GET /api/notes`
-- `POST /api/notes`
-- `PUT /api/notes/{id}`
-- `GET /api/tasks`
-- `POST /api/tasks`
-- `PATCH /api/tasks/{id}`
-- `POST /api/agent`
-- `GET /api/model-config`
-- `POST /api/model-config`
-
-## Example Data
-
-Sample documents are created automatically in `backend/data/sample_docs/` on first backend startup.
-
-- `product_strategy.md`
-- `weekly_review.txt`
-
-Sample tasks are also seeded into SQLite on first startup.
-
-## Notes on Architecture
-
-- SQLite stores notes, links, tasks, and model configuration
-- Chroma stores chunk vectors for semantic retrieval
-- Note cards are generated from imported or created content
-- Card links are built from cosine similarity between note-level embeddings
-- RAG results are reranked with a simple lexical overlap boost before answer generation
-- Agent mode searches knowledge first, generates a plan, and creates TODO items automatically
-
-## Offline Fallback
-
-Without a remote model API:
-
-- embeddings use deterministic local hashing vectors
-- summaries use first-sentence extraction
-- tags use keyword frequency
-- answers use retrieved note excerpts and citations
-- planning uses heuristic task generation
-
-## Suggested Next Steps
-
-1. Add authentication and workspace separation
-2. Add streaming chat responses
-3. Add background ingestion jobs for large PDF batches
-4. Add richer graph visualization for note links
-
-## Windows EXE Packaging
-
-This repo now includes a one-click Windows packaging path that builds the frontend, bundles the FastAPI app, and outputs both a portable desktop executable and an installer `Setup.exe`.
-
-Files:
-
-- `one_click_install.bat`
-- `setup_build_env.bat`
-- `build_windows.bat`
-- `second_brain_ai.spec`
-- `installer.iss`
-- `backend/desktop.py`
-- `windows/Start SecondBrainAI.bat`
-- `windows/README-Windows.txt`
-- `.github/workflows/windows-package.yml`
-
-What the EXE does:
-
-- starts the local backend on `http://127.0.0.1:8765`
-- serves the built frontend from the same process
-- opens the browser automatically
-- stores SQLite and Chroma data beside the EXE in `data/`
-- can be distributed either as a portable folder or installed by `Setup.exe`
-
-Build on Windows:
-
-```bat
-cd C:\path\to\second-brain-ai
-one_click_install.bat
-```
-
-Or step by step:
-
-```bat
-cd C:\path\to\second-brain-ai
-setup_build_env.bat
-build_windows.bat
-```
-
-Double-click build:
-
-- open the project folder in Windows Explorer
-- double-click `one_click_install.bat`
-- wait for the script to finish
-- run installer: `C:\AI\Setup.exe`
-- or run portable app: `C:\AI\SecondBrainAI\Start SecondBrainAI.bat`
-
-Output path:
-
-```text
-C:\AI\SecondBrainAI\SecondBrainAI.exe
-C:\AI\Setup.exe
-```
-
-Notes:
-
-- the EXE must be built on Windows to produce a real Windows `.exe`
-- `Setup.exe` requires Inno Setup 6 on the Windows build machine
-- the installer uses a per-user install path, so admin rights are not required
-- this Linux environment can prepare the packaging files, but cannot emit a native Windows executable directly into `C:\AI`
-
-## GitHub Actions Auto Build
-
-This repo now includes a Windows CI pipeline at `.github/workflows/windows-package.yml`.
-
-- every push builds `Setup.exe`
-- every push uploads downloadable workflow artifacts
-- every `v*` tag also publishes `Setup.exe` and the portable zip to a GitHub Release
-
-How to use:
-
-1. push the repo to GitHub
-2. open the `Actions` tab and enable workflows if needed
-3. push any commit to trigger a Windows build
-4. download artifacts from the workflow run
-5. create a tag like `v1.0.0` to get release assets automatically
+## 更新日志
+### v0.01 (2026-04-06)
+- **Initial Release**: 项目初始脚手架搭建完成，发布 v0.01。
+- **Editor**: 实现基于 Tiptap 的块级编辑器核心逻辑与基础框架。
+- **UI/UX**: 彻底重构并上线“拍立得”风格多媒体卡片 UI。
+- **Fix**: 修复云端代理环境下的图片上传 500 错误。
+- **Feature**: 实现跨环境自适应 API 路由逻辑 (`getApiBase`)。

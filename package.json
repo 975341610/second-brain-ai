@@ -15,14 +15,25 @@
     "postinstall": "cd frontend && npm install --legacy-peer-deps",
     "bootstrap": "npm run clean && npm install --legacy-peer-deps && cd frontend && npm install --legacy-peer-deps && cd .. && pip install -r backend/requirements.txt",
     "clean": "node -e \"const fs = require('fs'); ['node_modules', 'frontend/node_modules', 'package-lock.json', 'frontend/package-lock.json', 'dist', 'out'].forEach(p => { if (fs.existsSync(p)) fs.rmSync(p, {recursive: true, force: true}) })\"",
+    "test:unit": "vitest run tests/unit",
     "build:electron": "electron-vite build",
     "copy:frontend": "node scripts/copy_frontend.js",
     "build:builder": "electron-builder --win"
   },
   "dependencies": {
+    "@tiptap/extension-code-block-lowlight": "^3.22.1",
+    "@tiptap/extension-highlight": "^3.22.1",
+    "@tiptap/extension-table": "^3.22.1",
+    "@tiptap/extension-table-cell": "^3.22.1",
+    "@tiptap/extension-table-header": "^3.22.1",
+    "@tiptap/extension-table-row": "^3.22.1",
+    "@types/katex": "^0.16.8",
     "axios": "^1.6.7",
     "electron-log": "^5.0.0",
     "electron-updater": "^6.1.8",
+    "katex": "^0.16.44",
+    "lowlight": "^3.3.0",
+    "lucide-react": "^1.7.0",
     "tree-kill": "^1.2.2"
   },
   "devDependencies": {
@@ -31,7 +42,8 @@
     "electron-builder": "^24.9.1",
     "electron-vite": "^2.0.0",
     "typescript": "^5.3.0",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vitest": "^1.3.1"
   },
   "build": {
     "appId": "com.secondbrain.ai",

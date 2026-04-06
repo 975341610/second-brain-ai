@@ -1,0 +1,416 @@
+Anthropic Claude Code AI memory exposed: Claude Code source code leak: Did Anthropic just expose its AI secrets, hidden models, and undercover coding strategy to the world? - The Economic Times
+
+Your Privacy is Important to us
+-------------------------------
+
+We encourage you to review our [Terms of Service](https://www.indiatimes.com/termsandcondition "Terms of Service"), and [Privacy Policy](https://m.economictimes.com/privacypolicy.cms "Privacy Policy").  
+  
+By continuing, you agree to the Terms listed here. In case you want to opt out, please click "Do Not Sell or Share My Personal Information" link in the footer of this page.
+
+Continue
+
+Opt out of the sale or sharing of personal information
+------------------------------------------------------
+
+We won't sell or share your personal information to inform the ads you see. You may still see interest-based ads if your information is sold or shared by other companies or was sold or shared previously.
+
+DismissOpt out
+
+Do Not Sell or Share My Personal Information
+
+[![web_image](https://m.economictimes.com/photo/msid-74726259,quality-100/et-logo.jpg)](https://m.economictimes.com/)[![web_image](https://m.economictimes.com/photo/95352132.cms)](https://m.economictimes.com/login.cms)
+
+[Today’s News](https://m.economictimes.com/)[Quick Reads](https://m.economictimes.com/quickreads/99717008)[E-Paper](https://m.economictimes.com/print_edition)[Stock](https://m.economictimes.com/markets/stocks)[Recos](https://m.economictimes.com/markets/stocks/recos)[Stream](https://m.economictimes.com/etmarkets-livestream)
+
+[US News](https://m.economictimes.com/news/international/us)
+
+ [Read on App](https://etnews.sng.link/Ey2lz/1281?utm_medium=AMP&utm_source=floating_amp_articleshow&utm_campaign=floating_amp_articleshow&pcn=viewInApp&_smtype=3&_dl=https://m.economictimes.com/news/international/us/claude-code-source-code-leak-did-anthropic-just-expose-its-ai-secrets-hidden-models-and-undercover-coding-strategy-to-the-world/articleshow/129930888.cms) 
+
+Claude Code source code leak: Did Anthropic just expose its AI secrets, hidden models, and undercover coding strategy to the world?
+===================================================================================================================================
+
+![web_image](https://m.economictimes.com/thumb/height-450,width-600,imgsize-10974,msid-129930918/claude-code-source-code-leak-did-anthropic-just-expose-its-ai-secrets-hidden-models-and-undercover-coding-strategy-to-the-world.jpg)
+
+Agencies
+
+Claude Code leak how Anthropic’s AI agent exposed 2.5 billion dollar enterprise secrets on March 31 2026
+
+Synopsis
+
+Claude Code, Anthropic’s top AI agent, just suffered a major source code leak. Version 2.1.88 exposed 512,000 lines of TypeScript, revealing memory architecture, orchestration logic, and 44 hidden features. The AI platform alone drives $2.5 billion in annual revenue, with 80% from enterprise clients. Competitors can now study background agents, autonomous daemons, and persistent memory systems. Security risks spike as malicious actors may exploit exposed Hooks and npm dependencies. Users must migrate to Anthropic’s native installer, audit API keys, and inspect local repositories.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+By [Piyush Shukla](https://m.economictimes.com/etreporter/author-piyush-shukla-479269982.cms), Global Desk
+
+Mar 31, 2026, 09:30:00 PM IST
+
+[![web_image](https://img.etimg.com/photo/124385886.cms)](https://www.google.com/preferences/source?q=economictimes "Google preferences in ET")
+
+[Follow us
+
+![web_image](https://m.economictimes.com/photo/msid-104857408,quality-100/et-amp-whatsup.jpg)](https://www.whatsapp.com/channel/0029Vb6dOI1EKyZPPqpH7I0y "Follow us")
+
+**[Claude Code](https://economictimes.indiatimes.com/topic/claude-code) source code leak:** Anthropic’s Claude Code has just faced one of the most consequential leaks in AI history. On March 31, 2026, version 2.1.88 of the @anthropic-ai/claude-code npm package accidentally included a 59.8 MB JavaScript source map file, revealing the internal workings of the agentic AI platform. Within hours, thousands of developers mirrored the ~512,000-line [TypeScript](https://economictimes.indiatimes.com/topic/typescript) codebase on GitHub, dissecting features and memory architecture previously known only to Anthropic engineers.  
+  
+
+ADVERTISEMENT
+
+[Claude](https://economictimes.indiatimes.com/topic/claude) Code alone contributes an annualized recurring revenue (ARR) of $2.5 billion, a figure that has more than doubled since January 2026. Enterprise clients account for 80% of this revenue, meaning the leak has handed competitors a literal blueprint for constructing high-agency, commercially viable AI agents. The exposed source code reveals not only unshipped features but also Anthropic’s internal model roadmap, memory management, and orchestration logic, raising both strategic and security concerns for users and developers alike.  
+  
+
+Claude Code leak shock: Has Anthropic accidentally revealed its secret AI models?
+---------------------------------------------------------------------------------
+
+The leak originated from a source map included in the npm release. Source maps translate minified code back to its original, human-readable form, providing a debugging tool for developers. However, in this case, it inadvertently exposed the full internal implementation of Claude Code. By early morning ET, the leak was publicized by Chaofan Shou, an intern at Solayer Labs, leading to rapid duplication and analysis across the internet.  
+  
+For Anthropic, the timing of this leak is particularly critical. Claude Code is central to the company’s $19 billion annualized revenue run-rate. Competitors—from large AI firms to nimble startups like Cursor—now have access to advanced agentic memory structures, autonomous daemons, and orchestration patterns that previously required years of R&D to replicate.
+
+### Explore More Stories
+
+* [What is conversion therapy, why was it banned in Colorado and what does Supreme Court ruling say? Supreme Court conversion therapy case explained](https://m.economictimes.com/news/international/us/what-is-conversion-therapy-why-was-it-banned-in-colorado-and-what-does-supreme-court-ruling-say-supreme-court-conversion-therapy-case-explained/articleshow/129930580.cms "What is conversion therapy, why was it banned in Colorado and what does Supreme Court ruling say? Supreme Court conversion therapy case explained")
+
+  [![web_image](https://img.etimg.com/photo/129930580.cms)](https://m.economictimes.com/news/international/us/what-is-conversion-therapy-why-was-it-banned-in-colorado-and-what-does-supreme-court-ruling-say-supreme-court-conversion-therapy-case-explained/articleshow/129930580.cms "What is conversion therapy, why was it banned in Colorado and what does Supreme Court ruling say? Supreme Court conversion therapy case explained")
+* [What is driving Oracle stock (ORCL) higher today despite layoffs? Oracle stock making big moves today as AI strategy and cloud growth boost ORCL shares](https://m.economictimes.com/news/international/us/what-is-driving-oracle-stock-orcl-higher-today-despite-layoffs-oracle-stock-making-big-moves-today-as-ai-strategy-and-cloud-growth-boost-orcl-shares/articleshow/129930301.cms "What is driving Oracle stock (ORCL) higher today despite layoffs? Oracle stock making big moves today as AI strategy and cloud growth boost ORCL shares")
+
+  [![web_image](https://img.etimg.com/photo/129930301.cms)](https://m.economictimes.com/news/international/us/what-is-driving-oracle-stock-orcl-higher-today-despite-layoffs-oracle-stock-making-big-moves-today-as-ai-strategy-and-cloud-growth-boost-orcl-shares/articleshow/129930301.cms "What is driving Oracle stock (ORCL) higher today despite layoffs? Oracle stock making big moves today as AI strategy and cloud growth boost ORCL shares")
+* [Tax season surprise: What’s causing smaller refunds for some Americans in 2026](https://m.economictimes.com/news/international/us/tax-season-surprise-whats-causing-smaller-refunds-for-some-americans-in-2026/articleshow/129930098.cms "Tax season surprise: What’s causing smaller refunds for some Americans in 2026")
+
+  [![web_image](https://img.etimg.com/photo/129930098.cms)](https://m.economictimes.com/news/international/us/tax-season-surprise-whats-causing-smaller-refunds-for-some-americans-in-2026/articleshow/129930098.cms "Tax season surprise: What’s causing smaller refunds for some Americans in 2026")
+* [NASA’s Artemis II is coming: The space jargon cheat sheet you need before NASA’s moon mission](https://m.economictimes.com/news/international/us/nasas-artemis-ii-is-coming-the-space-jargon-cheat-sheet-you-need-before-nasas-moon-mission/articleshow/129929047.cms "NASA’s Artemis II is coming: The space jargon cheat sheet you need before NASA’s moon mission")
+
+  [![web_image](https://img.etimg.com/photo/129929047.cms)](https://m.economictimes.com/news/international/us/nasas-artemis-ii-is-coming-the-space-jargon-cheat-sheet-you-need-before-nasas-moon-mission/articleshow/129929047.cms "NASA’s Artemis II is coming: The space jargon cheat sheet you need before NASA’s moon mission")
+* [Quote of the Day by Miuccia Prada: ‘If you ask, do you like strong men or weak men, I’d say…’ Italian fashion icon’s bold take on freedom and choice](https://m.economictimes.com/news/international/us/quote-of-the-day-by-miuccia-prada-if-you-ask-do-you-like-strong-men-or-weak-men-id-say-italian-fashion-icons-bold-take-on-freedom-and-choice/articleshow/129929866.cms "Quote of the Day by Miuccia Prada: ‘If you ask, do you like strong men or weak men, I’d say…’ Italian fashion icon’s bold take on freedom and choice")
+
+  [![web_image](https://img.etimg.com/photo/129929866.cms)](https://m.economictimes.com/news/international/us/quote-of-the-day-by-miuccia-prada-if-you-ask-do-you-like-strong-men-or-weak-men-id-say-italian-fashion-icons-bold-take-on-freedom-and-choice/articleshow/129929866.cms "Quote of the Day by Miuccia Prada: ‘If you ask, do you like strong men or weak men, I’d say…’ Italian fashion icon’s bold take on freedom and choice")
+* [Why is US stock market surging big today? Dow Jones, S&P 500, Nasdaq rise despite Iran war and oil price shock - Tesla, Oracle and Nvidia on the move](https://m.economictimes.com/news/international/us/why-is-us-stock-market-surging-big-today-dow-jones-sp-500-nasdaq-rise-despite-iran-war-and-oil-price-shock-tesla-oracle-and-nvidia-on-the-move/articleshow/129929827.cms "Why is US stock market surging big today? Dow Jones, S&P 500, Nasdaq rise despite Iran war and oil price shock - Tesla, Oracle and Nvidia on the move")
+
+  [![web_image](https://img.etimg.com/photo/129929827.cms)](https://m.economictimes.com/news/international/us/why-is-us-stock-market-surging-big-today-dow-jones-sp-500-nasdaq-rise-despite-iran-war-and-oil-price-shock-tesla-oracle-and-nvidia-on-the-move/articleshow/129929827.cms "Why is US stock market surging big today? Dow Jones, S&P 500, Nasdaq rise despite Iran war and oil price shock - Tesla, Oracle and Nvidia on the move")
+* [Switching jobs? What happens to your 401(k), and why Roth accounts work differently](https://m.economictimes.com/news/international/us/switching-jobs-what-happens-to-your-401k-and-why-roth-accounts-work-differently/articleshow/129928788.cms "Switching jobs? What happens to your 401(k), and why Roth accounts work differently")
+* [Taylor Swift releases “Elizabeth Taylor” music video honoring hollywood legend — Here’s where to watch](https://m.economictimes.com/news/international/us/taylor-swift-releases-elizabeth-taylor-music-video-honoring-hollywood-legend/articleshow/129928601.cms "Taylor Swift releases “Elizabeth Taylor” music video honoring hollywood legend — Here’s where to watch")
+* [Oracle Layoffs: Thousands being fired via email without warning—here's what lead to the global restructuring](https://m.economictimes.com/news/international/us/oracle-layoffs-thousands-being-fired-via-email-without-warningheres-what-lead-to-the-global-restructuring/articleshow/129928398.cms "Oracle Layoffs: Thousands being fired via email without warning—here's what lead to the global restructuring")
+* [What is Kharg Island? Iran’s vital oil hub at center of Trump’s explosive threat - Global fuel price shock already leading to a sharp rise](https://m.economictimes.com/news/international/us/what-is-kharg-island-irans-vital-oil-hub-at-center-of-trumps-explosive-threat-global-fuel-price-shock-already-leading-to-a-sharp-rise/articleshow/129925298.cms "What is Kharg Island? Iran’s vital oil hub at center of Trump’s explosive threat - Global fuel price shock already leading to a sharp rise")
+* [High earners are saving $80,000 in taxes — here’s the 401(k) trick they use](https://m.economictimes.com/news/international/us/high-earners-are-saving-80000-in-taxes-heres-the-401k-trick-they-use/articleshow/129927134.cms "High earners are saving $80,000 in taxes — here’s the 401(k) trick they use")
+* [Who killed Charlie Kirk? Big twist as bullet doesn't match suspect Tyler Robinson’s rifle](https://m.economictimes.com/news/international/us/who-killed-charlie-kirk-big-twist-as-bullet-doesnt-match-suspect-tyler-robinsons-rifle/articleshow/129926222.cms "Who killed Charlie Kirk? Big twist as bullet doesn't match suspect Tyler Robinson’s rifle")
+* [3 minutes, 3 masterpieces gone 5 months after Louvre robbery — inside the daring art heist that stunned experts](https://m.economictimes.com/news/international/us/3-minutes-3-masterpieces-gone-5-months-after-louvre-robbery-inside-the-daring-art-heist-that-stunned-experts/articleshow/129925817.cms "3 minutes, 3 masterpieces gone 5 months after Louvre robbery — inside the daring art heist that stunned experts")
+
+  
+  
+
+What technical secrets did the leak reveal about Claude code?
+-------------------------------------------------------------
+
+Developers examining the source discovered a sophisticated, three-layer memory architecture designed to prevent context entropy, a common issue where long-running AI sessions produce hallucinations or contradictions. This “Self-Healing Memory” relies on a lightweight index (MEMORY.md) containing pointers to distributed topic files, avoiding unnecessary context bloat. Updates follow a “Strict Write Discipline,” ensuring only successfully written changes are reflected in memory.  
+  
+Another critical feature revealed is **KAIROS**, a background daemon mode that allows Claude Code to autonomously consolidate memory, merge observations, and maintain context integrity while users are idle. The source also shows forks of subagents handling maintenance tasks to protect the main agent’s workflow, enabling smooth, always-on AI performance.  
+
+ADVERTISEMENT
+
+  
+
+What does the leak mean for competitors and builders?
+-----------------------------------------------------
+
+The exposed blueprint offers unparalleled insights for rival developers. With 2,500+ lines of bash validation logic, multi-agent orchestration strategies, and detailed memory systems, competitors can now accelerate the development of Claude-like agents without the original R&D costs.  
+  
+Additionally, internal model codenames such as **Capybara**, **Fennec**, and **Numbat** were revealed, along with performance metrics. For instance, Capybara v8 shows a 29–30% false claims rate, up from 16.7% in v4. Such data allows competitors to benchmark agentic performance ceilings and understand current limitations in handling assertiveness and refactor logic.  
+
+ADVERTISEMENT
+
+  
+
+What are the security risks for Claude code users?
+--------------------------------------------------
+
+Beyond strategic exposure, the leak poses heightened security risks. The source details Hooks and MCP server orchestration logic, enabling attackers to potentially design malicious repositories to bypass prompts or exfiltrate data. A concurrent supply-chain attack on the axios npm package further exacerbates the risk. Users updating Claude Code via npm between 00:21 and 03:29 UTC on March 31, 2026, may have pulled malicious versions containing [Remote Access Trojans](https://economictimes.indiatimes.com/topic/remote-access-trojans) (RATs).  
+  
+Mitigation steps include auditing package-lock.json, yarn.lock, or bun.lock for compromised versions, migrating to Anthropic’s Native Installer for secure binary updates, and rotating API keys. Enterprises should adopt a zero-trust posture, inspecting all hooks and configurations before running Claude Code in unfamiliar repositories.  
+
+ADVERTISEMENT
+
+  
+
+How can users safely continue using Claude code?
+------------------------------------------------
+
+Anthropic recommends abandoning the npm version entirely in favor of the native installer, which provides auto-updates and removes reliance on volatile dependency chains. Users should uninstall version 2.1.88 and revert to a verified safe version such as 2.1.86 if npm remains necessary.  
+  
+Additionally, monitoring API usage for anomalies and ensuring local machines are free from potential RAT infections are essential. While cloud-stored data remains secure, local environments are now more vulnerable due to public access to Claude Code’s orchestration and memory logic.  
+  
+
+ADVERTISEMENT
+
+What features of Claude code were hidden until the leak?
+--------------------------------------------------------
+
+The source code revealed 44 feature flags, including fully built but unreleased features:  
+  
+
+* Persistent background agents running 24/7 with GitHub integration
+* Multi-agent orchestration with restricted worker Claudes
+* Cron scheduling with external webhooks
+* Full voice command mode with its own CLI
+* Actual browser control via Playwright
+* Sleep and self-resume capabilities for agents
+* Persistent session memory without external storage
+
+These features indicate that Anthropic’s roadmap was ahead of public releases, with most capabilities already implemented and ready for bi-weekly rollout.  
+  
+
+Why the Claude code leak could change the AI market
+---------------------------------------------------
+
+The leak effectively levels the playing field for agentic AI development. Competitors now have access to a mature, multi-threaded operating system for autonomous software agents, including memory management, orchestration, and background task handling. Enterprises and developers studying the leak can shortcut years of R&D and launch Claude-like solutions at a fraction of the cost.  
+  
+For Anthropic, the exposure is both a financial and strategic concern, but for the broader AI ecosystem, the leak accelerates innovation, providing a public benchmark for agentic AI capabilities and risks.  
+  
+
+FAQs:
+-----
+
+**1. What exactly was exposed in the Claude Code leak and why does it matter?** The Claude Code leak revealed the entire internal source code of Anthropic’s agentic AI, including memory architecture, orchestration logic, and 44 unshipped feature flags. This exposure provides competitors a detailed blueprint for building autonomous AI agents while also increasing security risks for existing users. Enterprises now face the possibility of malicious repositories exploiting the exact hooks and background processes detailed in the leaked code.  
+  
+**2. How can Claude Code users protect themselves after the source code leak?** Users should immediately uninstall the leaked version 2.1.88, migrate to Anthropic’s native installer, and audit all npm dependencies for compromised packages like axios 1.14.1. Implementing a zero-trust posture, rotating API keys, and monitoring for suspicious activity ensures continued security. These measures safeguard local environments while leveraging Claude Code’s official updates for safe background and autonomous operations.
+
+Continue Reading
+
+  
+  
+*(You can now subscribe to our [Economic Times WhatsApp channel](https://www.whatsapp.com/channel/0029Vb6dOI1EKyZPPqpH7I0y))*
+
+#### READ MORE ON
+
+[Anthropic Claude Code AI memory exposed](https://economictimes.indiatimes.com/topic/anthropic-claude-code-ai-memory-exposed)[claude](https://economictimes.indiatimes.com/topic/claude)[claude code](https://economictimes.indiatimes.com/topic/claude-code)[typescript](https://economictimes.indiatimes.com/topic/typescript)[strict write discipline](https://economictimes.indiatimes.com/topic/strict-write-discipline)[remote access trojans](https://economictimes.indiatimes.com/topic/remote-access-trojans)
+
+(Catch all the [US News](https://m.economictimes.com/news/international/us), [UK News](https://m.economictimes.com/news/international/uk), [Canada News](https://m.economictimes.com/news/international/canada), International Breaking News Events, and Latest News Updates on The Economic Times.)
+
+Download The Economic Times News App to get Daily [International News](https://m.economictimes.com/news/international) Updates.
+ More
+ Less
+
+### NEXT READ
+
+* [What is conversion therapy, why was it banned in Colorado and what does Supreme Court ruling say? Supreme Court conversion therapy case explained](https://m.economictimes.com/news/international/us/what-is-conversion-therapy-why-was-it-banned-in-colorado-and-what-does-supreme-court-ruling-say-supreme-court-conversion-therapy-case-explained/articleshow/129930580.cms "What is conversion therapy, why was it banned in Colorado and what does Supreme Court ruling say? Supreme Court conversion therapy case explained")
+* [What is driving Oracle stock (ORCL) higher today despite layoffs? Oracle stock making big moves today as AI strategy and cloud growth boost ORCL shares](https://m.economictimes.com/news/international/us/what-is-driving-oracle-stock-orcl-higher-today-despite-layoffs-oracle-stock-making-big-moves-today-as-ai-strategy-and-cloud-growth-boost-orcl-shares/articleshow/129930301.cms "What is driving Oracle stock (ORCL) higher today despite layoffs? Oracle stock making big moves today as AI strategy and cloud growth boost ORCL shares")
+* [Tax season surprise: What’s causing smaller refunds for some Americans in 2026](https://m.economictimes.com/news/international/us/tax-season-surprise-whats-causing-smaller-refunds-for-some-americans-in-2026/articleshow/129930098.cms "Tax season surprise: What’s causing smaller refunds for some Americans in 2026")
+* [NASA’s Artemis II is coming: The space jargon cheat sheet you need before NASA’s moon mission](https://m.economictimes.com/news/international/us/nasas-artemis-ii-is-coming-the-space-jargon-cheat-sheet-you-need-before-nasas-moon-mission/articleshow/129929047.cms "NASA’s Artemis II is coming: The space jargon cheat sheet you need before NASA’s moon mission")
+* [Quote of the Day by Miuccia Prada: ‘If you ask, do you like strong men or weak men, I’d say…’ Italian fashion icon’s bold take on freedom and choice](https://m.economictimes.com/news/international/us/quote-of-the-day-by-miuccia-prada-if-you-ask-do-you-like-strong-men-or-weak-men-id-say-italian-fashion-icons-bold-take-on-freedom-and-choice/articleshow/129929866.cms "Quote of the Day by Miuccia Prada: ‘If you ask, do you like strong men or weak men, I’d say…’ Italian fashion icon’s bold take on freedom and choice")
+* [Why is US stock market surging big today? Dow Jones, S&P 500, Nasdaq rise despite Iran war and oil price shock - Tesla, Oracle and Nvidia on the move](https://m.economictimes.com/news/international/us/why-is-us-stock-market-surging-big-today-dow-jones-sp-500-nasdaq-rise-despite-iran-war-and-oil-price-shock-tesla-oracle-and-nvidia-on-the-move/articleshow/129929827.cms "Why is US stock market surging big today? Dow Jones, S&P 500, Nasdaq rise despite Iran war and oil price shock - Tesla, Oracle and Nvidia on the move")
+* [Switching jobs? What happens to your 401(k), and why Roth accounts work differently](https://m.economictimes.com/news/international/us/switching-jobs-what-happens-to-your-401k-and-why-roth-accounts-work-differently/articleshow/129928788.cms "Switching jobs? What happens to your 401(k), and why Roth accounts work differently")
+* [Taylor Swift releases “Elizabeth Taylor” music video honoring hollywood legend — Here’s where to watch](https://m.economictimes.com/news/international/us/taylor-swift-releases-elizabeth-taylor-music-video-honoring-hollywood-legend/articleshow/129928601.cms "Taylor Swift releases “Elizabeth Taylor” music video honoring hollywood legend — Here’s where to watch")
+* [Oracle Layoffs: Thousands being fired via email without warning—here's what lead to the global restructuring](https://m.economictimes.com/news/international/us/oracle-layoffs-thousands-being-fired-via-email-without-warningheres-what-lead-to-the-global-restructuring/articleshow/129928398.cms "Oracle Layoffs: Thousands being fired via email without warning—here's what lead to the global restructuring")
+* [What is Kharg Island? Iran’s vital oil hub at center of Trump’s explosive threat - Global fuel price shock already leading to a sharp rise](https://m.economictimes.com/news/international/us/what-is-kharg-island-irans-vital-oil-hub-at-center-of-trumps-explosive-threat-global-fuel-price-shock-already-leading-to-a-sharp-rise/articleshow/129925298.cms "What is Kharg Island? Iran’s vital oil hub at center of Trump’s explosive threat - Global fuel price shock already leading to a sharp rise")
+
+[Protect your family with a simple financial system. Join our Free Awareness Session.](https://economictimes.indiatimes.com/masterclass/financial-freedom-awareness?utm_source=mweb_hp_feed?source=et_amp&frmapp=yes "Protect your family with a simple financial system. Join our Free Awareness Session.")
+
+X
+
+[Business News](https://m.economictimes.com/ "The Economic Times")
+›
+[News](https://m.economictimes.com/news "News")
+›
+[International](https://m.economictimes.com/news/international "International")
+›
+[US News](https://m.economictimes.com/news/international/us "US News")
+›
+Claude Code source code leak: Did Anthropic just expose its AI secrets, hidden models, and undercover coding strategy to the world?
+
+Popular Categories
+------------------
+
+* [India](https://m.economictimes.com/news/india "India")
+* [Economy](https://m.economictimes.com/news/economy "Economy")
+* [Politics](https://m.economictimes.com/news/politics "Politics")
+* [Newsblogs](https://m.economictimes.com/news/newsblogs "Newsblogs")
+* [Elections](https://m.economictimes.com/news/elections "Elections")
+* [Sports](https://m.economictimes.com/news/sports/amp_articlelist/26407562.cms "Sports")
+* [IPL 2026](https://m.economictimes.com/news/ipl "IPL 2026")
+* [Science](https://m.economictimes.com/news/science/amp_articlelist/39872847.cms "Science")
+* [Defence](https://m.economictimes.com/news/defence "Defence")
+* [International](https://m.economictimes.com/news/international/amp_articlelist/858478126.cms "International")
+* [ET Explains](https://m.economictimes.com/news/et-explains/amp_articlelist/64552206.cms "ET Explains")
+* [Company](https://m.economictimes.com/news/company/amp_articlelist/2143429.cms "Company")
+* [Industry](https://m.economictimes.com/industry/amp_articlelist/13352306.cms "Industry")
+* [Trending](https://m.economictimes.com/news/new-updates "Trending")
+* [Decoded](https://m.economictimes.com/news/how-to "Decoded")
+* [Morning Brief Podcast](https://m.economictimes.com/amp_podcast "Morning Brief Podcast")
+* [ET Evoke](https://m.economictimes.com/et-evoke "ET Evoke")
+* [Bengaluru News](https://m.economictimes.com/news/bengaluru-news "Bengaluru News")
+* [Pune News](https://m.economictimes.com/news/pune-news "Pune News")
+* [Mumbai News](https://m.economictimes.com/news/mumbai-news "Mumbai News")
+* [Videos](https://m.economictimes.com/multimedia/type-video.cms "Videos")
+* [Latest News](https://m.economictimes.com/etlatestnews.cms "Latest News")
+
+Hot on Web
+----------
+
+* [Horoscope Today, 1 April, 2026](https://m.economictimes.com/astrology/horoscope/horoscope-today-1-april-2026-purposeful-decisions-strong-commitments-career-clarity-for-all-zodiac-signs/articleshow/129930408.cms "Horoscope Today, 1 April, 2026")
+* [Dow Jones US Stock Market Today](https://m.economictimes.com/markets/us-stocks/news/us-stock-market-live-dow-jones-sp-500-nasdaq-trump-us-iran-israel-war-crude-brent-oil-meta-google-mu-stock-price-news/liveblog/129925432.cms "Dow Jones US Stock Market Today")
+* [Horoscope Tomorrow, 1 April 2026](https://m.economictimes.com/astrology/horoscope/horoscope-tomorrow-1-april-2026-major-career-moves-financial-clarity-relationship-shifts-await/articleshow/129917258.cms "Horoscope Tomorrow, 1 April 2026")
+* [22k Gold Rate Today](https://m.economictimes.com/wealth/invest/22k-gold-rate-today-check-22k-24k-gold-prices-march-30-2026-on-tanishq-malabar-gold-diamonds-joyalukkas-and-ibja/articleshow/129896445.cms "22k Gold Rate Today")
+* [IRB Infrastructure share price](https://m.economictimes.com/markets/stocks/news/did-irb-infrastructure-shares-really-crash-50-heres-why-you-should-ignore-the-massive-plunge/articleshow/129891969.cms "IRB Infrastructure share price")
+* [Sensex Today Live Updates](https://m.economictimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-ntpc-nhpc-share-price-30-march-2026/liveblog/129889859.cms "Sensex Today Live Updates")
+* [Gold Silver Rate Today Live Updates](https://m.economictimes.com/markets/stocks/live-blog/gold-rate-silver-price-today-live-updates-mcx-gold-18k-22k-24k-rate-iran-israel-us-war-latest-news/liveblog/129890529.cms "Gold Silver Rate Today Live Updates")
+* [Sensex Today Live Updates](https://m.economictimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-kotak-bank-adani-green-share-price-25-march-2026/liveblog/129789679.cms "Sensex Today Live Updates")
+* [Eid Mubarak Wishes](https://m.economictimes.com/news/international/us/eidmubarak-2026-wishes-whatsapp-status-facebook-messages-instagram-captions-images-eid-al-fitr/articleshow/129702609.cms "Eid Mubarak Wishes")
+* [HRA exemption in Income Tax Rules 2026](https://m.economictimes.com/wealth/tax/good-news-for-salaried-employees-in-these-cities-as-they-can-get-higher-hra-exemption-disclosure-of-relationship-with-landlord-a-must-as-income-tax-rules-2026-notified/articleshow/129694442.cms "HRA exemption in Income Tax Rules 2026")
+* [HDFC Bank Share Price](https://m.economictimes.com/markets/stocks/news/hdfc-bank-shares-in-focus-as-atanu-chakraborty-quits-says-certain-values-didnt-align-adrs-tumble-7/articleshow/129669233.cms "HDFC Bank Share Price")
+* [8th Pay Commission Salary Hike](https://m.economictimes.com/wealth/save/8th-pay-commission-implementation-date-employee-body-aituc-wants-salary-pension-other-allowance-revisions-from-this-date/articleshow/129604712.cms "8th Pay Commission Salary Hike")
+* [Oscars 2026 Best Actor Winner](https://m.economictimes.com/magazines/panache/oscars-2026-best-actor-category-award-michael-b-jordan-wins-for-sinners-beats-timothe-chalamet-in-tight-race/articleshow/129599124.cms "Oscars 2026 Best Actor Winner")
+* [Oscars 2026 full winners list live updates](https://m.economictimes.com/us/news/oscars-2026-winners-list-live-updates-best-picture-actor-actress-supporting-actor-actress-director-academy-awards/articleshow/129597868.cms "Oscars 2026 full winners list live updates")
+* [Election dates 2026](https://m.economictimes.com/news/politics-and-nation/assembly-elections-2026-dates-west-bengal-tamil-nadu-kerala-assam-puducherry-poll-schedule-voting-counting-timeline/articleshow/129588336.cms "Election dates 2026")
+* [Kerala Election Date 2026](https://m.economictimes.com/news/elections/assembly-elections/kerala/kerala-election-date-2026-election-commission-announces-kerala-assembly-poll-schedule-voting-to-be-held-on-april-9-results-on-may-4/articleshow/129586795.cms "Kerala Election Date 2026")
+* [Puducherry election date 2026](https://m.economictimes.com/news/elections/assembly-elections/puducherry/puducherry-election-2026-date-check-full-poll-schedule-result-voting-counting-details-dmk-aiadmk-bjp-inc/articleshow/129587721.cms "Puducherry election date 2026")
+* [Assam Election Date 2026](https://m.economictimes.com/news/elections/assembly-elections/assam/assam-election-2026-result-date-when-will-votes-be-counted-in-assembly-polls-set-on-april-9-counting-on-may-4/articleshow/129588073.cms "Assam Election Date 2026")
+
+In Case you missed it
+---------------------
+
+* [Oscar Winners 2026 Full List](https://m.economictimes.com/magazines/panache/oscars-2026-best-actor-best-actress-and-best-picture-winners-of-98th-academy-awards-priyanka-chopra-india/articleshow/129597951.cms "Oscar Winners 2026 Full List")
+* [AI Impact Summit 2026 Live Updates](https://m.economictimes.com/news/newsblogs/breaking-news-live-updates-india-ai-summit-pm-modi-donald-trump-us-india-trade-deal-ukraine-russia-war-israel-hamas-february-16-2026/liveblog/128403082.cms "AI Impact Summit 2026 Live Updates")
+* [Income Tax 2026 Live](https://m.economictimes.com/wealth/tax/income-tax-union-budget-2026-live-updates-standard-deduction-hike-income-tax-slab-changes-nirmala-sitharaman-tax-relief-feb-1/liveblog/127830262.cms "Income Tax 2026 Live")
+* [Silver Rate Today Live](https://m.economictimes.com/markets/stocks/live-blog/mcx-gold-silver-price-today-live-updates-gold-rate-silver-rate-record-high-buy-or-sell-global-tension-trump-latest-news/liveblog/127790594.cms "Silver Rate Today Live")
+
+Top Searched Companies
+----------------------
+
+* [IRFC share price](https://m.economictimes.com/indian-railway-finance-corporation-ltd/stocks/companyid-12523.cms "IRFC share price")
+* [Suzlon share price](https://m.economictimes.com/suzlon-energy-ltd/stocks/companyid-1209.cms "Suzlon share price")
+* [IREDA share price](https://m.economictimes.com/indian-renewable-energy-development-agency-ltd/stocks/companyid-4517.cms "IREDA share price")
+* [TATA Motors share price](https://m.economictimes.com/tata-motors-ltd/stocks/companyid-12934.cms "TATA Motors share price")
+* [Yes bank share price](https://m.economictimes.com/yes-bank-ltd/stocks/companyid-16552.cms "Yes bank share price")
+* [HDFC Bank share price](https://m.economictimes.com/hdfc-bank-ltd/stocks/companyid-9195.cms "HDFC Bank share price")
+* [NHPC share price](https://m.economictimes.com/nhpc-ltd/stocks/companyid-12536.cms "NHPC share price")
+* [RVNL share price](https://m.economictimes.com/rail-vikas-nigam-ltd/stocks/companyid-18466.cms "RVNL share price")
+* [SBI share price](https://m.economictimes.com/state-bank-of-india/stocks/companyid-11984.cms "SBI share price")
+* [Tata power share price](https://m.economictimes.com/tata-power-company-ltd/stocks/companyid-12918.cms "Tata power share price")
+* [Tata steel share price](https://m.economictimes.com/tata-steel-ltd/stocks/companyid-12902.cms "Tata steel share price")
+* [Adani power share price](https://m.economictimes.com/adani-power-ltd/stocks/companyid-23479.cms "Adani power share price")
+* [Paytm share price](https://m.economictimes.com/one97-communications-ltd/stocks/companyid-2017785.cms "Paytm share price")
+* [PNB share price](https://m.economictimes.com/punjab-national-bank/stocks/companyid-11585.cms "PNB share price")
+* [Zomato share price](https://m.economictimes.com/zomato-ltd/stocks/companyid-57948.cms "Zomato share price")
+* [BEL share price](https://m.economictimes.com/bharat-electronics-ltd/stocks/companyid-11945.cms "BEL share price")
+* [BHEL share price](https://m.economictimes.com/bharat-heavy-electricals-ltd/stocks/companyid-11831.cms "BHEL share price")
+* [Infosys share price](https://m.economictimes.com/infosys-ltd/stocks/companyid-10960.cms "Infosys share price")
+* [IRCTC share price](https://m.economictimes.com/indian-railway-catering-tourism-corporation-ltd/stocks/companyid-16705.cms "IRCTC share price")
+* [ITC share price](https://m.economictimes.com/itc-ltd/stocks/companyid-13554.cms "ITC share price")
+* [JIO finance share price](https://m.economictimes.com/jio-financial-services-ltd/stocks/companyid-14555.cms "JIO finance share price")
+* [LIC share price](https://m.economictimes.com/life-insurance-corporation-of-india/stocks/companyid-5050.cms "LIC share price")
+* [Reliance share price](https://m.economictimes.com/reliance-industries-ltd/stocks/companyid-13215.cms "Reliance share price")
+* [HAL share price](https://m.economictimes.com/hindustan-aeronautics-ltd/stocks/companyid-9206.cms "HAL share price")
+* [JP Power share price](https://m.economictimes.com/jaiprakash-power-ventures-ltd/stocks/companyid-1513.cms "JP Power share price")
+* [NBCC share price](https://m.economictimes.com/nbcc-india-ltd/stocks/companyid-4531.cms "NBCC share price")
+* [TCS share price](https://m.economictimes.com/tata-consultancy-services-ltd/stocks/companyid-8345.cms "TCS share price")
+* [Vedanta share price](https://m.economictimes.com/vedanta-ltd/stocks/companyid-13111.cms "Vedanta share price")
+* [Wipro share price](https://m.economictimes.com/wipro-ltd/stocks/companyid-12799.cms "Wipro share price")
+* [IOC share price](https://m.economictimes.com/indian-oil-corporation-ltd/stocks/companyid-11924.cms "IOC share price")
+* [Ircon share price](https://m.economictimes.com/ircon-international-ltd/stocks/companyid-11980.cms "Ircon share price")
+* [SAIL share price](https://m.economictimes.com/steel-authority-of-india-sail-ltd/stocks/companyid-11974.cms "SAIL share price")
+* [SJVN share price](https://m.economictimes.com/sjvn-ltd/stocks/companyid-18460.cms "SJVN share price")
+* [GAIL share price](https://m.economictimes.com/gail-india-ltd/stocks/companyid-4845.cms "GAIL share price")
+* [HUDCO share price](https://m.economictimes.com/housing-and-urban-development-corporation-ltd/stocks/companyid-4516.cms "HUDCO share price")
+* [REC share price](https://m.economictimes.com/rec-ltd/stocks/companyid-4616.cms "REC share price")
+* [Reliance Power share price](https://m.economictimes.com/reliance-power-ltd/stocks/companyid-4422.cms "Reliance Power share price")
+* [Tata Technologies share price](https://m.economictimes.com/tata-technologies-ltd/stocks/companyid-4612.cms "Tata Technologies share price")
+* [Vodafone idea share price](https://m.economictimes.com/vodafone-idea-ltd/stocks/companyid-3154.cms "Vodafone idea share price")
+* [Adani Enterprises share price](https://m.economictimes.com/adani-enterprises-ltd/stocks/companyid-9074.cms "Adani Enterprises share price")
+* [Adani Green share price](https://m.economictimes.com/adani-green-energy-ltd/stocks/companyid-64847.cms "Adani Green share price")
+* [Adani Port share price](https://m.economictimes.com/adani-ports-special-economic-zone-ltd/stocks/companyid-20316.cms "Adani Port share price")
+* [Ashok Leyland share price](https://m.economictimes.com/ashok-leyland-ltd/stocks/companyid-14041.cms "Ashok Leyland share price")
+* [Bank of Baroda share price](https://m.economictimes.com/bank-of-baroda/stocks/companyid-12040.cms "Bank of Baroda share price")
+* [BSE share price](https://m.economictimes.com/bse-ltd/stocks/companyid-2809.cms "BSE share price")
+* [Canara Bank share price](https://m.economictimes.com/canara-bank/stocks/companyid-9218.cms "Canara Bank share price")
+* [CDSL share price](https://m.economictimes.com/central-depository-services-india-ltd/stocks/companyid-4259.cms "CDSL share price")
+* [Coal India share price](https://m.economictimes.com/coal-india-ltd/stocks/companyid-11822.cms "Coal India share price")
+* [HFCL share price](https://m.economictimes.com/hfcl-ltd/stocks/companyid-13649.cms "HFCL share price")
+* [IDFC First Bank share price](https://m.economictimes.com/idfc-first-bank-ltd/stocks/companyid-62245.cms "IDFC First Bank share price")
+
+Latest News
+-----------
+
+[Why is US stock market surging big today? Dow Jones, S&P 500, Nasdaq rise despite Iran war and oil price shock - Tesla, Oracle and Nvidia on the move](https://m.economictimes.com/news/international/us/why-is-us-stock-market-surging-big-today-dow-jones-sp-500-nasdaq-rise-despite-iran-war-and-oil-price-shock-tesla-oracle-and-nvidia-on-the-move/articleshow/129929827.cms)
+
+[Quote of the Day by Miuccia Prada: ‘If you ask, do you like strong men or weak men, I’d say…’ Italian fashion icon’s bold take on freedom and choice](https://m.economictimes.com/news/international/us/quote-of-the-day-by-miuccia-prada-if-you-ask-do-you-like-strong-men-or-weak-men-id-say-italian-fashion-icons-bold-take-on-freedom-and-choice/articleshow/129929866.cms)
+
+[NASA’s Artemis II is coming: The space jargon cheat sheet you need before NASA’s moon mission](https://m.economictimes.com/news/international/us/nasas-artemis-ii-is-coming-the-space-jargon-cheat-sheet-you-need-before-nasas-moon-mission/articleshow/129929047.cms)
+
+[US tariffs drag India apparel export growth to modest 1.5%: ICRA](https://m.economictimes.com/news/economy/foreign-trade/us-tariffs-drag-india-apparel-export-growth-to-modest-1-5-icra/articleshow/129930225.cms)
+
+[Tax season surprise: What’s causing smaller refunds for some Americans in 2026](https://m.economictimes.com/news/international/us/tax-season-surprise-whats-causing-smaller-refunds-for-some-americans-in-2026/articleshow/129930098.cms)
+
+[US Stocks: Apellis shares double on Biogen's $5.6 billion buyout plan](https://m.economictimes.com/markets/us-stocks/news/us-stocks-apellis-shares-double-on-biogens-5-6-billion-buyout-plan/articleshow/129930322.cms)
+
+[India's first Iranian oil cargo since 2019 headed to Gujarat coast](https://m.economictimes.com/news/india/indias-first-iranian-oil-cargo-since-2019-headed-to-gujarat-coast/articleshow/129930218.cms)
+
+[What is driving Oracle stock (ORCL) higher today despite layoffs? Oracle stock making big moves today as AI strategy and cloud growth boost ORCL shares](https://m.economictimes.com/news/international/us/what-is-driving-oracle-stock-orcl-higher-today-despite-layoffs-oracle-stock-making-big-moves-today-as-ai-strategy-and-cloud-growth-boost-orcl-shares/articleshow/129930301.cms)
+
+[Oracle begins new round of layoffs amid rising AI, data centre spends; Indian employees also impacted](https://m.economictimes.com/tech/technology/oracle-begins-new-round-of-layoffs-amid-rising-ai-data-centre-spends-indian-employees-also-impacted/articleshow/129930464.cms)
+
+[RBI extends export credit window to June 30 amid West Asia disruptions](https://m.economictimes.com/industry/banking/finance/banking/rbi-extends-export-credit-window-to-june-30-amid-west-asia-disruptions/articleshow/129930362.cms)
+
+[Horoscope Today, 1 April, 2026: Purposeful Decisions, Strong Commitments & Career Clarity for All Zodiac Signs](https://m.economictimes.com/astrology/horoscope/horoscope-today-1-april-2026-purposeful-decisions-strong-commitments-career-clarity-for-all-zodiac-signs/articleshow/129930408.cms)
+
+[Can IIT Bombay’s leaf-to-gas technology help tackle India’s LPG crisis? Know how it works](https://m.economictimes.com/news/new-updates/can-iit-bombays-leaf-to-gas-technology-help-tackle-indias-lpg-crisis-know-how-it-works/articleshow/129930068.cms)
+
+[US Stocks: Nvidia bets $2 billion on Marvell as rising AI adoption fuels competition; shares rise](https://m.economictimes.com/markets/us-stocks/news/us-stocks-nvidia-bets-2-billion-on-marvell-as-rising-ai-adoption-fuels-competition-shares-rise/articleshow/129930476.cms)
+
+[Is maida good or bad for health? Delhi nutritionist explains what happens if you stop eating it for 2 weeks](https://m.economictimes.com/magazines/panache/is-maida-good-or-bad-for-health-delhi-nutritionist-explains-what-happens-if-you-stop-eating-it-for-2-weeks/articleshow/129930623.cms)
+
+[Microsoft, Google, ⁠Apple and other US companies under threat: Iran says will target these cos in region](https://m.economictimes.com/news/international/world-news/microsoft-google-apple-and-other-us-companies-under-threat-iran-says-will-target-these-cos-in-region/articleshow/129930569.cms)
+
+### Download ET APP
+
+### Follow us on
+
+[Powered by
+
+#### become a member](https://m.economictimes.com/prime/?utm_source=economictimes.indiatimes.com&utm_medium=footer&utm_campaign=ETPrimedistribution)
+
+[Terms of Use & Grievance Redressal Policy](https://m.economictimes.com/termsofuse.cms)  
+[DNPA Code of Ethics](https://m.economictimes.com/codeofconduct.cms)|[Privacy Policy](https://m.economictimes.com/privacypolicy.cms)|
+[Archive](https://m.economictimes.com/archive.cms)|
+[Delete Data](https://economictimes.indiatimes.com/feeds/gdprform.cms)|
+[Feedback](https://m.economictimes.com/contactus.cms)
+|
+
+Copyright © 2026 Bennett, Coleman & Co. Ltd. All rights reserved. For reprint rights:  
+[Times Syndication Service](https://timescontent.timesgroup.com/)
+
+Do Not Sell My Personal Information
+
+X
+
+* [Home](https://m.economictimes.com/)
+* [ETPrime](https://m.economictimes.com/prime)
+* [Markets](https://m.economictimes.com/markets)
+* [Today's Paper](https://epaper.indiatimes.com/timesepaper/publication-the-economic-times,city-delhi.cms)
+* [Market Data](https://m.economictimes.com/markets/live-coverage)
+* [IPO](https://m.economictimes.com/markets/ipo)
+* [News](https://m.economictimes.com/news)
+* [Industry](https://m.economictimes.com/industry)
+* [SME](https://m.economictimes.com/small-biz)
+* [Politics](https://m.economictimes.com/news/politics-nation)
+* [Wealth](https://m.economictimes.com/personal-finance)
+* [Mutual Funds](https://m.economictimes.com/mutual-funds)
+* [Tech](https://m.economictimes.com/tech)
+* [AI](https://ai.economictimes.com/)
+* [Careers](https://m.economictimes.com/jobs)
+* [Opinion](https://m.economictimes.com/opinion)
+* [NRI](https://m.economictimes.com/nri)
+* [Panache](https://m.economictimes.com/panache)
+* [Wealth Edition](https://epaper.indiatimes.com/wealth_edition.cms)
+* [Portfolio](https://m.economictimes.com/pf_portfoliohome.cms)
+
+X
+
+### Popular News
+
+* [Quote of the day by Henry Ford: 'A poor man is not the one without a cent. A poor man is...' Timeless lessons on success, business and education by revolutionary American industrialist](https://m.economictimes.com/news/international/us/quote-of-the-day-by-henry-ford-a-poor-man-is-not-the-one-without-a-cent-a-poor-man-is-timeless-lessons-on-success-business-and-education-by-revolutionary-american-industrialist/amp_articleshow/129856797.cms)
+* [Quote of the Day by Anne Hathaway: ‘You cannot live your life to please others. The…’ Powerful words on owning your choices by The Devil Wears Prada star](https://m.economictimes.com/news/international/us/quote-of-the-day-by-anne-hathaway-you-cannot-live-your-life-to-please-others-the-powerful-words-on-owning-your-choices-by-the-devil-wears-prada-star/amp_articleshow/129879428.cms)
+* [Kerala Summer Bumper BR-108 lottery result out today, 28-03-2026; Check ₹10 crore first prize winner and complete list here](https://m.economictimes.com/news/new-updates/kerala-summer-bumper-br-108-lottery-result-out-today-28-03-2026-check-10-crore-first-prize-winner-and-complete-list-here/amp_articleshow/129860633.cms)
+* [Quote of the day by Sylvester Stallone: 'I believe there’s an inner power that makes winners or losers. And the winners are the ones who...' Life lessons on success and happiness by Rocky, Rambo and The Expendables series actor](https://m.economictimes.com/news/international/us/quote-of-the-day-by-sylvester-stallone-i-believe-theres-an-inner-power-that-makes-winners-or-losers-and-the-winners-are-the-ones-who-life-lessons-on-success-and-happiness-by-rocky-rambo-and-the-expendables-series-actor/amp_articleshow/129854466.cms)
+* [Quote of the day by Clint Eastwood: 'You can't stop everything from happening. But we've gotten to a point where we're...' - lessons on life, humor and embracing uncertainty by The Man with No Name in Sergio Leone's Dollars Trilogy of Italian Spaghetti Western films](https://m.economictimes.com/news/international/us/quote-of-the-day-march-31-quote-of-the-day-by-clint-eastwood-you-cant-stop-everything-from-happening-but-weve-gotten-to-a-point-where-were-lessons-on-life-humor-and-embracing-uncertainty-by-the-man-with-no-name-in-sergio-leones-dollars-trilogy-of-italian-spaghetti-western-films/amp_articleshow/129911711.cms)
+IFRAME https://prebid.timesofindia.com/static/load-cookie.html#amp=1:
+Cookie Sync
+
+# Reference
+- [116] [Claude Code source code leak: Did Anthropic just expose its AI secrets, hidden models, and undercover coding strategy to the world?](https://m.economictimes.com/news/international/us/claude-code-source-code-leak-did-anthropic-just-expose-its-ai-secrets-hidden-models-and-undercover-coding-strategy-to-the-world/amp_articleshow/129930888.cms)

@@ -20,3 +20,7 @@ node_modules/
 dist/
 out/
 package-lock.json
+.pnpm-store/
+.aime/
+*.zip
+*.mp4

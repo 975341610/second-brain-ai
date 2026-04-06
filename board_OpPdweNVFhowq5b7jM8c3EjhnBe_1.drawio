@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"></mxCell>
+        <mxCell id="1" parent="0"></mxCell>
+        <mxCell id="o1:1" value="Electron 打包流程" style="align=center;fillColor=#ffffde;fontSize=16;html=1;rounded=1;strokeColor=#c2c262;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="27.8" y="1159.6" width="419.9" height="336.8" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:2" value="Python 后端打包 (PyInstaller/Nuitka)" style="align=center;fillColor=#ffffde;fontSize=16;html=1;rounded=1;strokeColor=#c2c262;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="207.0" y="875.0" width="295.0" height="224.5" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:3" value="并行处理" style="align=center;fillColor=#ffffde;fontSize=16;html=1;rounded=1;strokeColor=#c2c262;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="8.0" y="515.1" width="471.9" height="299.9" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:4" value="4-Electron 打包 (electron-builder)" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="88.3" y="30.0" width="253.3" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:5" value="整合前端产物与后端 .exe" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="119.2" y="142.3" width="191.5" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:6" value="生成 NSIS 安装包" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="143.4" y="254.5" width="143.2" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:7" value="生成单文件可执行程序 (.exe)" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:2" vertex="1">
+          <mxGeometry x="40.0" y="30.0" width="215.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:8" value="放置到 Electron 指定目录" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:2" vertex="1">
+          <mxGeometry x="49.9" y="142.3" width="195.1" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:9" value="打包策略选择" style="align=center;fillColor=#fef1ce;fontSize=14;html=1;rhombus;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="147.8" y="30.0" width="174.0" height="110.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:10" value="3a. 打包 Python 后端" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="262.5" y="217.6" width="167.9" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:11" value="3b. 构建 React 前端" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="43.8" y="217.6" width="158.7" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:12" value="代码提交到 Git 仓库" style="align=center;fillColor=#eae2fe;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="163.3" y="8.0" width="159.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:13" value="触发 CI/CD 流水线" style="align=center;fillColor=#fef1ce;fontSize=14;html=1;rhombus;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="141.1" y="120.3" width="203.4" height="110.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:14" value="1-安装依赖 (npm/yarn)" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="151.8" y="290.5" width="182.0" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:15" value="2-代码质量检查 (Lint &amp; Test)" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="135.7" y="402.8" width="214.2" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:16" value="5-代码签名 (Code Signing)" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="141.2" y="1556.4" width="203.1" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:17" value="6-上传到软件仓库/更新服务器" style="align=center;fillColor=#f0f4fc;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="131.8" y="1668.6" width="222.1" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:18" value="发布 Release" style="align=center;fillColor=#eae2fe;fontSize=14;html=1;rounded=1;strokeColor=#000000;strokeWidth=2.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="184.0" y="1780.9" width="117.7" height="52.3" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:1" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:12" target="o1:13">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:2" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:13" target="o1:14">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:3" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:14" target="o1:15">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:4" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:15" target="o1:9">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:5" value="方案 A: 本地后端" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.02;exitX=0.71;exitY=0.79;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:9" target="o1:10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="292.6" y="642.1"></mxPoint>
+              <mxPoint x="342.1" y="690.3"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:6" value="方案 B: 纯前端" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.50;entryY=0.02;exitX=0.29;exitY=0.79;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:9" target="o1:11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="193.0" y="642.1"></mxPoint>
+              <mxPoint x="143.5" y="690.3"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:7" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:10" target="o1:7">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:8" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:7" target="o1:8">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:9" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.30;entryY=0.01;exitX=0.50;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:11" target="o1:4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="131.2" y="790.0"></mxPoint>
+              <mxPoint x="131.2" y="815.0"></mxPoint>
+              <mxPoint x="131.2" y="845.0"></mxPoint>
+              <mxPoint x="131.2" y="879.4"></mxPoint>
+              <mxPoint x="131.2" y="931.1"></mxPoint>
+              <mxPoint x="131.2" y="987.3"></mxPoint>
+              <mxPoint x="131.2" y="1043.4"></mxPoint>
+              <mxPoint x="131.2" y="1095.2"></mxPoint>
+              <mxPoint x="131.2" y="1129.6"></mxPoint>
+              <mxPoint x="141.3" y="1159.6"></mxPoint>
+              <mxPoint x="181.6" y="1184.9"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:10" style="curved=1;edgeStyle=orthogonalEdgeStyle;endArrow=classic;entryX=0.70;entryY=0.01;exitX=0.50;exitY=1.00;larkCurveType=through_points;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:8" target="o1:4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="354.4" y="1074.6"></mxPoint>
+              <mxPoint x="354.4" y="1099.6"></mxPoint>
+              <mxPoint x="354.4" y="1129.6"></mxPoint>
+              <mxPoint x="344.3" y="1159.6"></mxPoint>
+              <mxPoint x="304.0" y="1184.9"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:11" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:4" target="o1:5">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:12" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:5" target="o1:6">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:13" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:6" target="o1:16">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:14" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:16" target="o1:17">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:15" style="endArrow=classic;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:17" target="o1:18">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

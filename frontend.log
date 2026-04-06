@@ -1,0 +1,83 @@
+
+> second-brain-ai-frontend@0.5.4 dev
+> vite --host 0.0.0.0
+
+
+  VITE v5.4.21  ready in 185 ms
+
+  ➜  Local:   http://localhost:5173/
+3:58:49 PM [vite] Pre-transform error: Duplicate declaration "cn"
+  140 |
+  141 | // Helper for class merging if not found in project
+> 142 | function cn(...classes: (string | boolean | undefined)[]) {
+      |          ^^
+  143 |   return classes.filter(Boolean).join(' ');
+  144 | }
+  145 |
+3:58:49 PM [vite] Pre-transform error: Failed to resolve import "./novablock/NovaBlockEditor" from "src/components/EditorPanel.tsx". Does the file exist?
+3:58:49 PM [vite] Internal server error: Failed to resolve import "./novablock/NovaBlockEditor" from "src/components/EditorPanel.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/src/components/EditorPanel.tsx:1:32
+  15 |    window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+  16 |  }
+  17 |  import { NovaBlockEditor } from "./novablock/NovaBlockEditor";
+     |                                   ^
+  18 |  import { ErrorBoundary } from "./ErrorBoundary";
+  19 |  export function EditorPanel(props) {
+      at TransformPluginContext._formatError (file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49258:41)
+      at TransformPluginContext.error (file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49253:16)
+      at normalizeUrl (file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64307:23)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64439:39
+      at async Promise.all (index 3)
+      at async TransformPluginContext.transform (file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64366:7)
+      at async PluginContainer.transform (file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49099:18)
+      at async loadAndTransform (file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:51978:27)
+      at async viteTransformMiddleware (file:///workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:62106:24)
+3:58:49 PM [vite] Internal server error: Duplicate declaration "cn"
+  140 |
+  141 | // Helper for class merging if not found in project
+> 142 | function cn(...classes: (string | boolean | undefined)[]) {
+      |          ^^
+  143 |   return classes.filter(Boolean).join(' ');
+  144 | }
+  145 |
+  Plugin: vite:react-babel
+  File: /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/src/components/TableOfContents.tsx
+      at File.buildCodeFrameError (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/core/lib/transformation/file/file.js:189:12)
+      at Scope.checkBlockScopedCollisions (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/scope/index.js:433:27)
+      at Scope.registerBinding (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/scope/index.js:530:16)
+      at Scope.registerDeclaration (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/scope/index.js:475:12)
+      at Object.BlockScoped (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/scope/index.js:276:12)
+      at Object.newFn (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/visitors.js:203:17)
+      at NodePath._call (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/path/context.js:50:20)
+      at NodePath.call (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/path/context.js:40:18)
+      at NodePath.visit (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/path/context.js:87:31)
+      at TraversalContext.visitQueue (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/context.js:96:16)
+      at TraversalContext.visitMultiple (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/context.js:68:17)
+      at TraversalContext.visit (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/context.js:117:19)
+      at traverseNode (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/traverse-node.js:130:17)
+      at traverse (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/index.js:53:34)
+      at NodePath.traverse (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/path/index.js:120:24)
+      at Scope.crawl (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/scope/index.js:695:10)
+      at Scope.init (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/scope/index.js:661:12)
+      at NodePath.setScope (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/path/context.js:139:55)
+      at NodePath.setContext (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/traverse/lib/path/context.js:151:12)
+      at new File (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/core/lib/transformation/file/file.js:80:8)
+      at normalizeFile (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:96:10)
+      at normalizeFile.next (<anonymous>)
+      at run (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:261:32)
+      at /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:223:11)
+      at /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:189:28
+      at /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+      at /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:113:33
+      at step (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:287:14)
+      at /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:273:13
+      at async.call.result.err.err (/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend/node_modules/gensync/index.js:223:11)
+4:00:45 PM [vite] hmr update /src/pages/App.tsx, /src/styles.css
+4:01:06 PM [vite] hmr update /src/pages/App.tsx, /src/styles.css

@@ -1,4 +1,4 @@
-import { NotionEditor } from './notion/NotionEditor';
+// import { NovaBlockEditor } from './novablock/NovaBlockEditor';
 import { ErrorBoundary } from './ErrorBoundary';
 import type { Note } from '../lib/types';
 
@@ -17,21 +17,14 @@ type EditorPanelProps = {
 };
 
 export function EditorPanel(props: EditorPanelProps) {
-  // Directly delegate to the new NotionEditor which now contains the modularized components
+  // Directly delegate to the new NovaBlockEditor for Sprint 3
   return (
     <ErrorBoundary>
-      <NotionEditor 
+      {/* <NovaBlockEditor 
         note={props.note}
-        notes={props.notes}
         onSave={props.onSave}
-        onUpdateTags={props.onUpdateTags}
-        onCreateSubPage={props.onCreateSubPage}
-        onSelectNote={props.onSelectNote}
         onNotify={props.onNotify}
-        outline={props.outline}
-        references={props.references}
-        relatedNotes={props.relatedNotes}
-      />
+      /> */}
     </ErrorBoundary>
   );
 }

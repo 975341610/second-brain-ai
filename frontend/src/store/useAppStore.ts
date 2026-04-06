@@ -147,8 +147,9 @@ type AppState = {
   updateUserTheme: (theme: string) => Promise<void>;
   updateUserWallpaper: (wallpaperUrl: string) => Promise<void>;
   selectNote: (noteId: number) => void;
-    createDraftNote: (notebookId?: number | null, parentId?: number | null, silent?: boolean) => void;
-    saveNote: (payload: { id?: number; title?: string; content?: string; notebookId?: number | null; parent_id?: number | null; icon?: string; is_title_manually_edited?: boolean; tags?: string[]; silent?: boolean }) => Promise<void>;
+    createDraftNote: (notebookId?: number | null, parentId?: number | null, silent?: boolean, isFolder?: boolean) => void;
+    saveNote: (payload: { id?: number; title?: string; content?: string; notebookId?: number | null; parent_id?: number | null; icon?: string; is_title_manually_edited?: boolean; is_folder?: boolean; tags?: string[]; silent?: boolean }) => Promise<void>;
+    createFolder: (notebookId: number, parentId?: number | null) => Promise<void>;
     updateNoteTags: (noteId: number, tags: string[]) => Promise<void>;
     createNotebook: (name: string) => Promise<void>;
     updateNotebook: (notebookId: number, payload: { name?: string; icon?: string }) => Promise<void>;
@@ -255,15 +256,21 @@ export const useAppStore = create<AppState>((set, get) => ({
         api.listBgm().catch(e => { console.warn('listBgm failed:', e); return []; }),
       ]);
 
-      // 异步更新缓存（如果有新数据）
-      if (notes.length > 0) setCachedData(STORE_NOTES, notes);
-      if (notebooks.length > 0) setCachedData(STORE_NOTEBOOKS, notebooks);
-      if (tasks.length > 0) setCachedData(STORE_TASKS, tasks);
+      // 异步更新缓存（只有当获取到有效数据时才更新，防止空数据覆盖缓存）
+      if (notes && notes.length > 0) {
+        setCachedData(STORE_NOTES, notes);
+      }
+      if (notebooks && notebooks.length > 0) {
+        setCachedData(STORE_NOTEBOOKS, notebooks);
+      }
+      if (tasks && tasks.length > 0) {
+        setCachedData(STORE_TASKS, tasks);
+      }
 
       set({
-        notes,
-        notebooks,
-        tasks,
+        notes: (notes && notes.length > 0) ? notes : get().notes,
+        notebooks: (notebooks && notebooks.length > 0) ? notebooks : get().notebooks,
+        tasks: (tasks && tasks.length > 0) ? tasks : get().tasks,
         trash,
         modelConfig,
         userStats,
@@ -272,7 +279,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         gitCommit: versionData?.git_commit || 'unknown',
         buildTime: versionData?.build_time || 'unknown',
         exePath: versionData?.executable || 'unknown',
-        selectedNoteId: get().selectedNoteId || notes[0]?.id || null,
+        selectedNoteId: get().selectedNoteId || (notes && notes.length > 0 ? notes[0].id : null),
         assistant: latestAssistantFromSession(get().chatSessions.find((session) => session.id === get().activeChatSessionId)),
         bgm: { ...get().bgm, tracks: bgmTracks },
         appStatus: 'READY'
@@ -324,18 +331,19 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
   selectNote: (selectedNoteId) => set((state) => ({ selectedNoteId, recentNoteIds: [selectedNoteId, ...state.recentNoteIds.filter((id) => id !== selectedNoteId)].slice(0, 8) })),
-  createDraftNote: (notebookId, parentId, silent) => {
+  createDraftNote: (notebookId, parentId, silent, isFolder) => {
     const targetNotebookId = notebookId ?? get().notebooks[0]?.id ?? null;
     // 使用绝对唯一的负数 ID：时间戳(ms) + 6位随机数
     // 负数 ID 仅用于前端草稿标识，转正后会被后端正数 ID 替换
     const draftId = -(Date.now() * 1000 + Math.floor(Math.random() * 1000000));
     const draft: Note = {
       id: draftId,
-      title: '未命名笔记',
-      icon: '📝',
-      content: '<h1></h1><p></p>',
-      summary: '新建草稿',
+      title: isFolder ? '新建文件夹' : '未命名笔记',
+      icon: isFolder ? '📂' : '📝',
+      content: isFolder ? '' : '<h1></h1><p></p>',
+      summary: isFolder ? '新建文件夹草稿' : '新建笔记草稿',
       is_title_manually_edited: false,
+      is_folder: isFolder,
       tags: [],
       properties: [],
       links: [],
@@ -350,10 +358,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (silent) {
       set({ notes: nextNotes });
     } else {
-      set({ notes: nextNotes, selectedNoteId: draftId, recentNoteIds: [draftId, ...get().recentNoteIds].slice(0, 8) });
+      set({ notes: nextNotes, selectedNoteId: isFolder ? get().selectedNoteId : draftId, recentNoteIds: isFolder ? get().recentNoteIds : [draftId, ...get().recentNoteIds].slice(0, 8) });
     }
   },
-  saveNote: async ({ id, title, content, notebookId, parent_id, icon, is_title_manually_edited, tags, silent }) => {
+  saveNote: async ({ id, title, content, notebookId, parent_id, icon, is_title_manually_edited, is_folder, tags, silent }) => {
     set({ isSavingNote: true });
     try {
       const isDraft = typeof id === 'number' && id < 0;
@@ -367,6 +375,7 @@ export const useAppStore = create<AppState>((set, get) => ({
             parent_id: parent_id ?? currentNote?.parent_id ?? null,
             icon: icon ?? '📝',
             is_title_manually_edited: is_title_manually_edited ?? false,
+            is_folder: is_folder ?? currentNote?.is_folder ?? false,
             tags,
           })
         : await api.updateNote(id, { 
@@ -375,6 +384,7 @@ export const useAppStore = create<AppState>((set, get) => ({
             icon: icon ?? currentNote?.icon, 
             parent_id: parent_id !== undefined ? parent_id : currentNote?.parent_id,
             is_title_manually_edited: is_title_manually_edited ?? currentNote?.is_title_manually_edited,
+            is_folder: is_folder !== undefined ? is_folder : currentNote?.is_folder,
             tags: tags ?? currentNote?.tags,
             file_path: currentNote?.file_path
           });
@@ -409,6 +419,18 @@ export const useAppStore = create<AppState>((set, get) => ({
       set({ toast: { id: Date.now(), tone: 'error', text: `保存失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     } finally {
       set({ isSavingNote: false });
+    }
+  },
+  createFolder: async (notebookId, parentId) => {
+    try {
+      const folder = await api.createFolder({
+        title: '新建文件夹',
+        notebook_id: notebookId,
+        parent_id: parentId,
+      });
+      set({ notes: [folder, ...get().notes], toast: { id: Date.now(), tone: 'success', text: '文件夹已创建。' } });
+    } catch (error) {
+      set({ toast: { id: Date.now(), tone: 'error', text: `创建文件夹失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
   },
   updateNoteTags: async (noteId, tags) => {

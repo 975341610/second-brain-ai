@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"></mxCell>
+        <mxCell id="1" parent="0"></mxCell>
+        <mxCell id="t1:2" style="fillColor=none;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-60.0" y="-50.0" width="761.0" height="1277.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:1" value="用户/前端" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="66.0" y="50.0" width="108.0" height="1277.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:2" value="Aime-Next 服务" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="324.5" y="50.0" width="191.0" height="1277.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:3" value="飞书开放平台" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="679.0" y="50.0" width="142.0" height="1277.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:1" value="[权限不足或未授权]" style="align=left;fillColor=#eff0f1;fontSize=14;fontStyle=1;height=20;html=1;shape=umlFrame;strokeColor=#bbbfc4;strokeWidth=2.0;verticalAlign=top;whiteSpace=wrap;width=20;" parent="t1:2" vertex="1">
+          <mxGeometry x="60.0" y="324.0" width="405.0" height="276.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:1" value="[权限齐全]" style="align=center;fillColor=none;fontSize=14;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="68.0" y="503.0" width="66.6" height="24.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:1" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:2" vertex="1">
+          <mxGeometry x="80.5" y="139.0" width="30.0" height="391.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:2" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:2" vertex="1">
+          <mxGeometry x="80.5" y="757.0" width="30.0" height="505.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:3" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:3" vertex="1">
+          <mxGeometry x="56.0" y="639.0" width="30.0" height="118.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:4" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:3" vertex="1">
+          <mxGeometry x="56.0" y="1024.0" width="30.0" height="89.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:1" value="1. 调用 GET /open-apis/v1/tasks/precheck" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="54.0" y="139.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="339.0" y="139.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:2" value="5. (若未授权) 跳转至飞书 OAuth 授权页" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="54.0" y="639.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="669.0" y="639.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:4" value="2. 检查空间权限" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110.5" y="154.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="110.5" y="199.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-94.0" y="154.0"></mxPoint>
+              <mxPoint x="-94.0" y="199.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:12" value="6. 用户同意授权，重定向至 Aime 回调 URL (带 code 和 state)" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:3" edge="1" source="s1:3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-244.0" y="757.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:5" value="3. 检查 Lark 授权状态" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110.5" y="214.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="110.5" y="259.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-94.0" y="214.0"></mxPoint>
+              <mxPoint x="-94.0" y="259.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:13" value="9. 返回 user_access_token" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:3" edge="1" source="s1:4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-244.0" y="1113.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:14" style="endArrow=none;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="t1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.0" y="445.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="405.0" y="445.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:6" value="4a. 返回审批申请 URL 或飞书 OAuth URL" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80.5" y="430.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="-204.5" y="430.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:7" value="4b. 返回均已授权" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1" source="s1:1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-204.5" y="530.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:8" value="7. 校验 state 安全性与重定向目标 host" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110.5" y="861.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="110.5" y="935.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-94.0" y="861.0"></mxPoint>
+              <mxPoint x="-94.0" y="935.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:9" value="8. 使用 code 换取 user_access_token" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110.5" y="1024.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="410.5" y="1024.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:10" value="10. 存储/更新用户 token" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110.5" y="1128.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="110.5" y="1173.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-94.0" y="1128.0"></mxPoint>
+              <mxPoint x="-94.0" y="1173.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:11" value="11. 302/307 重定向至 state.next (业务页面)" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1" source="s1:2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-204.5" y="1262.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

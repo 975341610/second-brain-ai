@@ -1,0 +1,1238 @@
+Quick Start | Editor Kit Docs
+
+
+
+
+[Skip to main content](https://editor-kit.web.bytedance.net/docs/quick-start/#docusaurus_skipToContent_fallback)
+
+[![web_image](https://editor-kit.web.bytedance.net/img/logo.svg?t=20210604)
+
+**editor-kit**](https://editor-kit.web.bytedance.net/)
+
+[Docs](https://editor-kit.web.bytedance.net/docs)[Playground](https://editor-kit.web.bytedance.net/playground)[Compare](https://editor-kit.web.bytedance.net/compare)
+
+`ctrl``K`
+
+* [Getting Started](https://editor-kit.web.bytedance.net/docs/quick-start/)
+
+  + [Introduction](https://editor-kit.web.bytedance.net/docs/)
+  + [Quick Start](https://editor-kit.web.bytedance.net/docs/quick-start)
+  + [Step-by-Step Guide](https://editor-kit.web.bytedance.net/docs/step-by-step-guide)
+* [Main Concepts](https://editor-kit.web.bytedance.net/docs/quick-start/)
+* [Advanced Topics](https://editor-kit.web.bytedance.net/docs/quick-start/)
+* [API Reference](https://editor-kit.web.bytedance.net/docs/quick-start/)
+* [Plugins](https://editor-kit.web.bytedance.net/docs/quick-start/)
+* [Performance](https://editor-kit.web.bytedance.net/docs/quick-start/)
+* [More](https://editor-kit.web.bytedance.net/docs/quick-start/)
+* [Migrating](https://editor-kit.web.bytedance.net/docs/quick-start/)
+
+* Getting Started
+* Quick Start
+
+On this page
+
+Quick Start
+===========
+
+tip
+
+开始使用前的提示
+
+1. 所有 `@editor-kit/` 和 `@adit/` 开头的包版本需要保持一致，升级版本时需要统一更新版本。
+2. 包版本后缀名除了 alpha、rc 以外的均为测试版本，原则上不建议使用测试版本作为线上环境使用的版本。
+3. 建议定期进行版本更新，以便及时体验到新 Feature 以及异常修复，减少与最新版本差距过大导致的不必要异常。
+
+Installation
+============
+
+Mini Demo[​](https://editor-kit.web.bytedance.net/docs/quick-start/#mini-demo "Direct link to Mini Demo")
+---------------------------------------------------------------------------------------------------------
+
+以下 Demo 为 Full 版本，配置了基础插件和 schema，业务方可以按需参考下面**具体配置**章节中的内容，根据业务需要进行配置。
+
+> 完整 Demo 见 [Playground](https://editor-kit.web.bytedance.net/playground)
+
+安装依赖[​](https://editor-kit.web.bytedance.net/docs/quick-start/#安装依赖 "Direct link to 安装依赖")
+------------------------------------------------------------------------------------------
+
+```
+yarn add
+@
+editor
+-
+kit
+/
+core
+@
+editor
+-
+kit
+/
+plugins
+
+```
+
+核心配置[​](https://editor-kit.web.bytedance.net/docs/quick-start/#核心配置 "Direct link to 核心配置")
+------------------------------------------------------------------------------------------
+
+### 1. 按需引入样式[​](https://editor-kit.web.bytedance.net/docs/quick-start/#1-按需引入样式 "Direct link to 1. 按需引入样式")
+
+editor-kit 对样式文件进行分离，业务方可以按需引入需要的样式文件。
+
+样式文件列表可查看文档：[Editor-Kit 样式分离技术方案和目录规范](https://bytedance.feishu.cn/docx/doxcnnuS0sBNnFznVlDG3BMlPOc)
+
+背景：[Editor-Kit 4.x 版本升级到 Lite 版本方案 - 引入样式](https://bytedance.feishu.cn/docx/doxcnvG8JCde3eKJHqehzyZWUTe#doxcnk8Ysi6maYUgaoHRJW3jk3e)
+
+```
+// 默认样式
+import
+'@editor-kit/core/dist/style/index.css'
+;
+// Align 插件默认样式
+import
+'@editor-kit/plugins/dist/align/style/index.css'
+;
+// Table 插件默认样式
+import
+'@editor-kit/plugins/dist/table/style/index.css'
+;
+import
+'@editor-kit/plugins/dist/table-ui/style/index.css'
+;
+// Checkbox 插件默认样式
+import
+'@editor-kit/plugins/dist/checkbox/style/index.css'
+;
+// Heading 标题插件默认样式
+import
+'@editor-kit/plugins/dist/heading/style/index.css'
+;
+// Hyperlinks 超链接插件默认样式
+import
+'@editor-kit/plugins/dist/hyperlinks/style/index.css'
+;
+// Image 图片插件默认样式
+import
+'@editor-kit/plugins/dist/image/style/index.css'
+;
+// Inline-code 内联代码插件默认样式
+import
+'@editor-kit/plugins/dist/inline-code/style/index.css'
+;
+// SmartCorrection 语法纠错插件默认样式
+import
+'@editor-kit/plugins/dist/smart-correction/style/index.css'
+;
+// 工具栏插件默认样式
+import
+'@editor-kit/plugins/dist/toolbar/style/index.css'
+;
+// Equation 公式插件默认样式 (暂不分离)
+import
+'@editor-kit/plugins/dist/equation/style/index.css'
+;
+
+```
+
+### 2. 依赖注入[​](https://editor-kit.web.bytedance.net/docs/quick-start/#2-依赖注入 "Direct link to 2. 依赖注入")
+
+editor-kit 对核心模块进行抽象，其中核心模块通过依赖注入的方式设置，依赖配置目前分成 lite 版本和 full 版本。
+
+背景：[Editor-Kit 4.x 版本升级到 Lite 版本方案 - 依赖注入](https://bytedance.feishu.cn/docx/doxcnvG8JCde3eKJHqehzyZWUTe#doxcn6YIiois8YieCAlv1UIXrkf)
+
+```
+// 以下为 full 版本配置依赖
+import
+{
+ContentState
+,
+ZoneState
+,
+Range
+,
+UndoModule
+,
+InputModel
+,
+}
+from
+'@editor-kit/core'
+;
+// 以下为 lite 版本配置依赖
+import
+{
+Range
+,
+ContentState
+,
+EditorComponent
+,
+ZoneState
+,
+// 如果不希望 editor-kit 默认处理回车事件，可以使用 lite 版本的 InputModel，且不会默认生成 lmkr
+// InputModel,
+// 如果不希望 editor-kit 默认处理 undo/redo，可以使用lite 版本的 UndoModule（空）
+// UndoModule,
+}
+from
+'@editor-kit/lite'
+;
+const
+modules
+:
+Modules
+=
+{
+[
+MODULE_KEYS
+.
+ContentState
+]
+:
+ContentState
+,
+[
+MODULE_KEYS
+.
+ZoneState
+]
+:
+ZoneState
+,
+[
+MODULE_KEYS
+.
+Range
+]
+:
+Range
+,
+[
+MODULE_KEYS
+.
+UndoModule
+]
+:
+UndoModule
+,
+[
+MODULE_KEYS
+.
+InputModel
+]
+:
+InputModel
+,
+}
+;
+render
+(
+)
+{
+return
+(
+<
+EditorComponent
+// ...
+modules
+=
+{
+modules
+}
+// ...
+/
+>
+)
+;
+}
+
+```
+
+### 3. schema 配置[​](https://editor-kit.web.bytedance.net/docs/quick-start/#3-schema-配置 "Direct link to 3. schema 配置")
+
+schema 作用可以参考[Advance Topic Schema 章节](https://editor-kit.web.bytedance.net/docs/topic-schema)
+
+schema 配置可以参考[插件仓库 scheme 配置文件](https://code.byted.org/ee/editor-kit-plugins/blob/master/demo/src/config/schema.ts)
+
+```
+import
+schema
+from
+'../config/schema'
+;
+render
+(
+)
+{
+return
+(
+<
+EditorComponent
+// ...
+modules
+=
+{
+modules
+}
+// ...
+/
+>
+)
+;
+}
+
+```
+
+### 4. 引入插件[​](https://editor-kit.web.bytedance.net/docs/quick-start/#4-引入插件 "Direct link to 4. 引入插件")
+
+editor-kit 基于插件体系实现各种功能，了解插件体系可查看[Advance Topic Plugins 章节](https://editor-kit.web.bytedance.net/docs/topic-plugins)
+
+```
+import
+{
+// ...
+Editor
+,
+TextNodeDeserializer
+,
+BlockElementDeserializer
+,
+IPlugin
+,
+}
+from
+'@editor-kit/core'
+;
+import
+{
+PlainTextHandler
+}
+from
+'@editor-kit/plugins'
+;
+// ...
+const
+registerPlugin
+=
+(
+editor
+:
+Editor
+)
+:
+IPlugin
+[
+]
+=>
+{
+// 提示：支持外部复制粘贴内容需要配置以下三个插件：
+// 有特别需求的业务方可参考插件源码二次开发，其余场景默认引入即可
+return
+[
+new
+TextNodeDeserializer
+(
+)
+,
+new
+BlockElementDeserializer
+(
+)
+,
+new
+PlainTextHandler
+(
+)
+,
+]
+}
+<
+EditorComponent
+// ...
+register
+=
+{
+registerPlugin
+}
+// ...
+/>
+
+```
+
+Full Version[​](https://editor-kit.web.bytedance.net/docs/quick-start/#full-version "Direct link to Full Version")
+------------------------------------------------------------------------------------------------------------------
+
+### Usage[​](https://editor-kit.web.bytedance.net/docs/quick-start/#usage "Direct link to Usage")
+
+完整 Demo 见 [Playground](https://editor-kit.web.bytedance.net/playground)
+
+```
+import
+*
+as
+React
+from
+'react'
+;
+import
+{
+ContentState
+,
+ZoneState
+,
+Range
+,
+UndoModule
+,
+InputModel
+,
+EditorComponent
+,
+Editor
+,
+BlockElementDeserializer
+,
+TextNodeDeserializer
+,
+}
+from
+'@editor-kit/core'
+;
+import
+{
+Bold
+,
+Italic
+,
+Underline
+,
+Strikethrough
+}
+from
+'@editor-kit/plugins'
+;
+// 配置依赖 full 版本
+const
+modules
+:
+Modules
+=
+{
+[
+MODULE_KEYS
+.
+ContentState
+]
+:
+ContentState
+,
+[
+MODULE_KEYS
+.
+ZoneState
+]
+:
+ZoneState
+,
+[
+MODULE_KEYS
+.
+Range
+]
+:
+Range
+,
+[
+MODULE_KEYS
+.
+UndoModule
+]
+:
+UndoModule
+,
+[
+MODULE_KEYS
+.
+InputModel
+]
+:
+InputModel
+,
+}
+;
+function
+handleError
+(
+{
+level
+,
+message
+,
+e
+}
+:
+{
+level
+:
+ERROR_LEVEL
+;
+message
+:
+string
+;
+e
+:
+Error
+}
+)
+{
+console
+.
+error
+(
+{
+level
+,
+message
+,
+e
+}
+)
+;
+}
+class
+App
+extends
+React
+.
+Component
+<
+{
+}
+,
+{
+}
+>
+{
+register
+(
+editor
+:
+Editor
+)
+{
+return
+[
+// 提示：支持外部复制粘贴内容需要配置以下两个插件：
+// BlockElementDeserializer TextNodeDeserializer
+// 有特别需求的业务方可参考插件源码二次开发，其余场景默认引入即可
+new
+BlockElementDeserializer
+(
+)
+,
+// HTML 反序列化对块级节点的默认处理逻辑，比如 div、li 节点需要换行，span 不换行
+new
+TextNodeDeserializer
+(
+)
+,
+// HTML 反序列化对文本节点的默认处理逻辑，比如空格、换行等字符的处理
+new
+Bold
+(
+{
+editor
+}
+)
+,
+new
+Italic
+(
+{
+editor
+}
+)
+,
+new
+Underline
+(
+{
+editor
+}
+)
+,
+new
+Strikethrough
+(
+{
+editor
+}
+)
+,
+]
+;
+}
+handleInit
+(
+editor
+:
+Editor
+)
+{
+console
+.
+log
+(
+editor
+)
+;
+editor
+.
+clipboard
+.
+setCanInternalPasteWhitelist
+(
+[
+'lark_docs'
+,
+'lark_sheet'
+]
+)
+;
+}
+render
+(
+)
+{
+return
+(
+<
+EditorComponent
+businessKey
+=
+"doc_sdk_demo"
+editable
+placeholder
+=
+"请输入内容"
+register
+=
+{
+this
+.
+register
+}
+onInit
+=
+{
+this
+.
+handleInit
+}
+onError
+=
+{
+handleError
+}
+/
+>
+)
+;
+}
+}
+
+```
+
+Lite Version[​](https://editor-kit.web.bytedance.net/docs/quick-start/#lite-version "Direct link to Lite Version")
+------------------------------------------------------------------------------------------------------------------
+
+* Editor-kit 抽象了内核更轻、配置性更强、多实例性能更优更稳定的新版编辑器，不同业务可以基于新版 editor-kit 灵活组合出一个更适合自己的最小编辑器。目前已经完成在新版飞书文档 DocX 及其相关 Block 完成接入（包括飞书任务 block、公式 block、OKR block 等）
+* @editor-kit/lite 会提供 Lite 版本的核心模块，如 EditorComponent、ContentState、ZoneState、Range、ZoneDelta 等。未来随着不断优化，每个核心模块都可能有更灵活的 Lite 版本。
+* <4.25.0 的业务方 升级时可参考文档 [Editor-Kit 4.x 版本升级到 Lite 版本方案](https://bytedance.feishu.cn/docx/doxcnvG8JCde3eKJHqehzyZWUTe)
+
+### Usage[​](https://editor-kit.web.bytedance.net/docs/quick-start/#usage-1 "Direct link to Usage")
+
+```
+import
+*
+as
+React
+from
+'react'
+;
+import
+{
+Editor
+,
+BlockElementDeserializer
+,
+TextNodeDeserializer
+,
+}
+from
+'@editor-kit/core'
+;
+// 和 Full 版本有所区别，Lite 版本 Modules 依赖从 @editor-kit/lite 引入
+import
+{
+EditorComponent
+,
+ContentState
+,
+Range
+,
+ZoneState
+,
+InputModel
+,
+}
+from
+'@editor-kit/lite'
+;
+import
+{
+Bold
+,
+Italic
+,
+Underline
+,
+Strikethrough
+}
+from
+'@editor-kit/plugins'
+;
+// 配置依赖 lite 版本
+const
+modules
+:
+Modules
+=
+{
+[
+MODULE_KEYS
+.
+ContentState
+]
+:
+ContentState
+,
+[
+MODULE_KEYS
+.
+ZoneState
+]
+:
+ZoneState
+,
+[
+MODULE_KEYS
+.
+Range
+]
+:
+Range
+,
+[
+MODULE_KEYS
+.
+UndoModule
+]
+:
+UndoModule
+,
+[
+MODULE_KEYS
+.
+InputModel
+]
+:
+InputModel
+,
+}
+;
+function
+handleError
+(
+{
+level
+,
+message
+,
+e
+}
+:
+{
+level
+:
+ERROR_LEVEL
+;
+message
+:
+string
+;
+e
+:
+Error
+}
+)
+{
+console
+.
+error
+(
+{
+level
+,
+message
+,
+e
+}
+)
+;
+}
+class
+App
+extends
+React
+.
+Component
+<
+{
+}
+,
+{
+}
+>
+{
+register
+(
+editor
+:
+Editor
+)
+{
+return
+[
+// 提示：支持外部复制粘贴内容需要配置以下两个插件：
+// BlockElementDeserializer TextNodeDeserializer
+// 有特别需求的业务方可参考插件源码二次开发，其余场景默认引入即可
+new
+BlockElementDeserializer
+(
+)
+,
+// HTML 反序列化对块级节点的默认处理逻辑，比如 div、li 节点需要换行，span 不换行
+new
+TextNodeDeserializer
+(
+)
+,
+// HTML 反序列化对文本节点的默认处理逻辑，比如空格、换行等字符的处理
+new
+Bold
+(
+{
+editor
+}
+)
+,
+new
+Italic
+(
+{
+editor
+}
+)
+,
+new
+Underline
+(
+{
+editor
+}
+)
+,
+new
+Strikethrough
+(
+{
+editor
+}
+)
+]
+;
+}
+handleInit
+(
+editor
+:
+Editor
+)
+{
+console
+.
+log
+(
+editor
+)
+;
+editor
+.
+clipboard
+.
+setCanInternalPasteWhitelist
+(
+[
+'lark_docs'
+,
+'lark_sheet'
+]
+)
+;
+}
+render
+(
+)
+{
+return
+(
+<
+EditorComponent
+businessKey
+=
+"doc_sdk_demo"
+editable
+copyable
+placeholder
+=
+"请输入内容"
+register
+=
+{
+this
+.
+register
+}
+onInit
+=
+{
+this
+.
+handleInit
+}
+onError
+=
+{
+handleError
+}
+/
+>
+<
+EditorComponent
+editable
+copyable
+businessKey
+=
+"doc_sdk_demo"
+register
+=
+{
+this
+.
+register
+}
+onInit
+=
+{
+this
+.
+handleInit
+}
+placeholder
+=
+"请输入内容…"
+debounceFlush
+=
+{
+100
+}
+onError
+=
+{
+handleError
+}
+modules
+=
+{
+modules
+}
+{
+...
+this
+.
+props
+}
+/
+>
+)
+;
+}
+}
+
+```
+
+对于一些富文本场景相对简单，只需要引入一个富文本组件，提供输入、提交功能的业务来说，基础的 API 可以满足需求了。但如果是除此之外需要扩展插件，则需要参考后面的章节。
+
+EditorComponent Props[​](https://editor-kit.web.bytedance.net/docs/quick-start/#editorcomponent-props "Direct link to EditorComponent Props")
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+```
+export
+interface
+IEditorComponentProps
+{
+// 编辑器容器添加额外的 class name
+className
+?
+:
+string
+;
+// 业务 key，用于区分接入的业务方
+businessKey
+:
+string
+;
+// 依赖注入 modules
+modules
+:
+Modules
+;
+// 传入 contentState
+contentState
+?
+:
+IContentState
+;
+// 文档范式，规定了文档结构规则
+schema
+?
+:
+ISchema
+;
+// 编辑器初始化完毕回调
+onInit
+?
+:
+(
+editor
+:
+Editor
+)
+=>
+void
+;
+// 编辑器容器样式
+style
+?
+:
+React
+.
+CSSProperties
+;
+// 是否自定义滚动容器 boolean: lite 默认不加 scroller 需要传入 true
+scroller
+?
+:
+HTMLElement
+|
+Window
+|
+boolean
+;
+// 空文档占位符
+placeholder
+?
+:
+string
+;
+// 文档初始数据
+initData
+?
+:
+ZoneDelta
+|
+DeltaSet
+;
+// 文档是否可以复制
+copyable
+?
+:
+boolean
+;
+// 文档是否可以编辑
+editable
+?
+:
+boolean
+;
+// 插件注册
+register
+?
+:
+(
+editor
+:
+Editor
+)
+=>
+IPlugin
+[
+]
+;
+// 编辑器打印日志函数，如不想控制台看到编辑器日志，可传空函数
+onLog
+?
+(
+message
+?
+:
+any
+,
+...
+optionalParams
+:
+any
+[
+]
+)
+:
+void
+;
+// 错误回调
+onError
+?
+:
+(
+ctx
+:
+{
+level
+:
+ERROR_LEVEL
+;
+e
+:
+Error
+;
+message
+:
+string
+}
+)
+=>
+void
+;
+// 是否使用 debounce 收集脏区以提高性能
+debounceFlush
+?
+:
+number
+;
+// 国际化翻译，默认使用自带英文
+i18n
+?
+:
+Record
+<
+string
+,
+string
+>
+;
+// 是否启用浏览器的语法纠错
+spellCheck
+?
+:
+boolean
+;
+// 是否开启自动补全，针对移动端
+autoCorrect
+?
+:
+boolean
+;
+// 内部使用，在 new Editor 之后，协同模块需要同步绑定一些事件
+_onInitData
+?
+:
+(
+editor
+:
+Editor
+)
+=>
+void
+;
+// 应用到每一行的 dir
+dir
+?
+:
+'ltr'
+|
+'rtl'
+|
+'auto'
+;
+// hack：解决 Mac 自带中文输入法输入 easy 时 blur 的问题
+hackMacCompositionInput
+?
+:
+boolean
+;
+// 事件代理
+eventDelegator
+?
+:
+INativeEventDelegator
+;
+// 需要监听的原生事件，在一些业务场景里面，如 docx 不需要监听 copy/cut/paste 事件
+listenEvents
+?
+:
+string
+[
+]
+;
+}
+
+```
+
+[Edit this page](lark://client/chat/6922342832824959004)
+
+[Previous
+
+Introduction](https://editor-kit.web.bytedance.net/docs/)[Next
+
+Step-by-Step Guide](https://editor-kit.web.bytedance.net/docs/step-by-step-guide)
+
+* [Mini Demo](https://editor-kit.web.bytedance.net/docs/quick-start/#mini-demo)
+* [安装依赖](https://editor-kit.web.bytedance.net/docs/quick-start/#安装依赖)
+* [核心配置](https://editor-kit.web.bytedance.net/docs/quick-start/#核心配置)
+  + [1. 按需引入样式](https://editor-kit.web.bytedance.net/docs/quick-start/#1-按需引入样式)
+  + [2. 依赖注入](https://editor-kit.web.bytedance.net/docs/quick-start/#2-依赖注入)
+  + [3. schema 配置](https://editor-kit.web.bytedance.net/docs/quick-start/#3-schema-配置)
+  + [4. 引入插件](https://editor-kit.web.bytedance.net/docs/quick-start/#4-引入插件)
+* [Full Version](https://editor-kit.web.bytedance.net/docs/quick-start/#full-version)
+  + [Usage](https://editor-kit.web.bytedance.net/docs/quick-start/#usage)
+* [Lite Version](https://editor-kit.web.bytedance.net/docs/quick-start/#lite-version)
+  + [Usage](https://editor-kit.web.bytedance.net/docs/quick-start/#usage-1)
+* [EditorComponent Props](https://editor-kit.web.bytedance.net/docs/quick-start/#editorcomponent-props)
+
+Copyright © 2023 Bytedance, Inc.
+IFRAME https://webide.bytedance.net/embed/8l9v1409?autoresize=1&expanddevtools=1&fontsize=14&hidenavigation=1&theme=dark:
+404
+
+# Reference
+- [52] [Quick Start | Editor Kit Docs](https://editor-kit.web.bytedance.net/docs/quick-start/)

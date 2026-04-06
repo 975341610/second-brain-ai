@@ -1,0 +1,4656 @@
+Full-Screen Screenshot: ![](/tmp/webpage_images/greasyfork_script_code_full_screen_screenshot.png)
+2026最新可用-百度网盘SVIP高速解析直链的不限速下载助手-文武PanDownload - 源代码
+
+
+
+
+[Greasy Fork](https://greasyfork.org/zh-CN)
+===========================================
+
+[登录](https://greasyfork.org/zh-CN/users/sign_in?return_to=%2Fzh-CN%2Fscripts%2F518023-2026%25E6%259C%2580%25E6%2596%25B0%25E5%258F%25AF%25E7%2594%25A8-%25E7%2599%25BE%25E5%25BA%25A6%25E7%25BD%2591%25E7%259B%2598svip%25E9%25AB%2598%25E9%2580%259F%25E8%25A7%25A3%25E6%259E%2590%25E7%259B%25B4%25E9%2593%25BE%25E7%259A%2584%25E4%25B8%258D%25E9%2599%2590%25E9%2580%259F%25E4%25B8%258B%25E8%25BD%25BD%25E5%258A%25A9%25E6%2589%258B-%25E6%2596%2587%25E6%25AD%25A6pandownload%2Fcode)
+
+
+
+阿拉伯语 (ar)
+
+白俄罗斯语 (be)
+
+保加利亚语 (bg)
+
+波兰语 (pl)
+
+朝鲜语 (ko)
+
+丹麦语 (da)
+
+德语 (de)
+
+俄语 (ru)
+
+法语 (fr)
+
+法语 (加拿大) (fr-CA)
+
+芬兰语 (fi)
+
+格鲁吉亚语 (ka)
+
+汉语 (台湾) (zh-TW)
+
+汉语 (中国) (zh-CN)
+
+荷兰语 (nl)
+
+捷克语 (cs)
+
+克罗地亚语 (hr)
+
+罗马尼亚语 (ro)
+
+马拉提语 (mr)
+
+挪威布克莫尔语 (nb)
+
+葡萄牙语 (巴西) (pt-BR)
+
+日语 (ja)
+
+瑞典语 (sv)
+
+塞尔维亚语 (sr)
+
+世界语 (eo)
+
+斯洛伐克语 (sk)
+
+泰语 (th)
+
+土耳其语 (tr)
+
+维吾尔语 (ug)
+
+乌克兰语 (uk)
+
+西班牙语 (es)
+
+西班牙语 (es-419)
+
+希伯来语 (he)
+
+现代希腊语 (el)
+
+匈牙利语 (hu)
+
+意大利语 (it)
+
+印尼语 (id)
+
+英语 (en)
+
+越南语 (vi)
+
+کوردیی ناوەندی (ckb)
+Help us translate!
+
+- [脚本](https://greasyfork.org/zh-CN/scripts)
+- [论坛](https://greasyfork.org/zh-CN/discussions)
+- [帮助](https://greasyfork.org/zh-CN/help)
+- [更多](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/code)
+  - [高级搜索](https://greasyfork.org/zh-CN/search)
+  - [用户列表](https://greasyfork.org/zh-CN/users)
+  - [库](https://greasyfork.org/zh-CN/scripts/libraries)
+  - [管理日志](https://greasyfork.org/zh-CN/moderator_actions)
+
+☰
+
+- [脚本](https://greasyfork.org/zh-CN/scripts)
+- [论坛](https://greasyfork.org/zh-CN/discussions)
+- [帮助](https://greasyfork.org/zh-CN/help)
+- [高级搜索](https://greasyfork.org/zh-CN/search)
+- [用户列表](https://greasyfork.org/zh-CN/users)
+- [库](https://greasyfork.org/zh-CN/scripts/libraries)
+- [管理日志](https://greasyfork.org/zh-CN/moderator_actions)
+- [登录](https://greasyfork.org/zh-CN/users/sign_in?return_to=%2Fzh-CN%2Fscripts%2F518023-2026%25E6%259C%2580%25E6%2596%25B0%25E5%258F%25AF%25E7%2594%25A8-%25E7%2599%25BE%25E5%25BA%25A6%25E7%25BD%2591%25E7%259B%2598svip%25E9%25AB%2598%25E9%2580%259F%25E8%25A7%25A3%25E6%259E%2590%25E7%259B%25B4%25E9%2593%25BE%25E7%259A%2584%25E4%25B8%258D%25E9%2599%2590%25E9%2580%259F%25E4%25B8%258B%25E8%25BD%25BD%25E5%258A%25A9%25E6%2589%258B-%25E6%2596%2587%25E6%25AD%25A6pandownload%2Fcode)
+- 阿拉伯语 (ar)
+
+  白俄罗斯语 (be)
+
+  保加利亚语 (bg)
+
+  波兰语 (pl)
+
+  朝鲜语 (ko)
+
+  丹麦语 (da)
+
+  德语 (de)
+
+  俄语 (ru)
+
+  法语 (fr)
+
+  法语 (加拿大) (fr-CA)
+
+  芬兰语 (fi)
+
+  格鲁吉亚语 (ka)
+
+  汉语 (台湾) (zh-TW)
+
+  汉语 (中国) (zh-CN)
+
+  荷兰语 (nl)
+
+  捷克语 (cs)
+
+  克罗地亚语 (hr)
+
+  罗马尼亚语 (ro)
+
+  马拉提语 (mr)
+
+  挪威布克莫尔语 (nb)
+
+  葡萄牙语 (巴西) (pt-BR)
+
+  日语 (ja)
+
+  瑞典语 (sv)
+
+  塞尔维亚语 (sr)
+
+  世界语 (eo)
+
+  斯洛伐克语 (sk)
+
+  泰语 (th)
+
+  土耳其语 (tr)
+
+  维吾尔语 (ug)
+
+  乌克兰语 (uk)
+
+  西班牙语 (es)
+
+  西班牙语 (es-419)
+
+  希伯来语 (he)
+
+  现代希腊语 (el)
+
+  匈牙利语 (hu)
+
+  意大利语 (it)
+
+  印尼语 (id)
+
+  英语 (en)
+
+  越南语 (vi)
+
+  کوردیی ناوەندی (ckb)
+  Help us translate!
+
+* [信息](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload)
+* 代码
+* [历史](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/versions)
+* [反馈（81）](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/feedback)
+* [统计](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/stats)
+
+2026最新可用-百度网盘SVIP高速解析直链的不限速下载助手-文武PanDownload
+---------------------------------------------
+
+2026年2月持续更新可用，不限制速度的百度网盘SVIP解析高速直链的脚本助手，无视黑号，100%可用，不限制文件大小，下载速度最快可达10M+/s，支持 Gopeed（一键解析）、IDM、NDM 等多线程极速下载工具，支持 Google Chrome、Microsoft Edge、Firefox 等浏览器。
+
+[安装此脚本](https://update.greasyfork.org/scripts/518023/2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98SVIP%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6PanDownload.user.js)[?](https://greasyfork.org/zh-CN/help/installing-user-scripts "如何安装")
+
+### 此脚本含有负面功能
+
+
+
+在您安装前，Greasy Fork 希望您知道此脚本声明其包含了一些负面功能。这些功能也许会使脚本作者获利，而不能给您带来任何直接的金钱收益。
+
+此脚本会在您访问的网站中**插入广告**。
+
+您只有在**参与某些事**后才能使用脚本的全部功能，如加入某群组、订阅某频道或在某页点赞等。
+
+作者可从这份脚本**获得佣金**，例如通过修改链接地址或提供优惠券代码以包含推荐或附属代码。
+
+
+取消
+安装此脚本
+
+
+
+### 如何安装
+
+
+
+您需要先安装一款用户脚本管理器扩展，例如 [Tampermonkey 篡改猴](https://addons.mozilla.org/firefox/addon/tampermonkey/)、[Greasemonkey 油猴子](https://addons.mozilla.org/firefox/addon/greasemonkey/) 或 [Violentmonkey 暴力猴](https://addons.mozilla.org/firefox/addon/violentmonkey/)，才能安装此脚本。
+
+您需要先安装一款用户脚本管理器扩展，例如 [Tampermonkey 篡改猴](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)，才能安装此脚本。
+
+您需要先安装一款用户脚本管理器扩展，例如 [Tampermonkey 篡改猴](https://addons.opera.com/extensions/details/tampermonkey-beta/) 或 [Violentmonkey 暴力猴](https://violentmonkey.github.io/get-it/)，才能安装此脚本。
+
+您需要先安装一款用户脚本管理器扩展，例如 [Tampermonkey 篡改猴](https://www.tampermonkey.net/?browser=safari) 或 [Userscripts](https://apps.apple.com/app/userscripts/id1463298887) ，才能安装此脚本。
+
+您需要先安装一款用户脚本管理器扩展，例如 [Tampermonkey 篡改猴](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)，才能安装此脚本。
+
+您需要先安装一款用户脚本管理器扩展后才能安装此脚本。
+
+[（我已经安装了用户脚本管理器，让我安装！）](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/code)
+
+
+
+确定
+
+
+
+### 如何安装
+
+
+
+您需要先安装一款用户样式管理器扩展，比如 [Stylus](https://addons.mozilla.org/firefox/addon/styl-us/)，才能安装此样式。
+
+您需要先安装一款用户样式管理器扩展，比如 [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne)，才能安装此样式。
+
+您需要先安装一款用户样式管理器扩展，比如 [Stylus](https://addons.opera.com/extensions/details/stylus/)，才能安装此样式。
+
+您需要先安装一款用户样式管理器扩展后才能安装此样式。
+
+您需要先安装一款用户样式管理器扩展后才能安装此样式。
+
+您需要先安装一款用户样式管理器扩展后才能安装此样式。
+
+[（我已经安装了用户样式管理器，让我安装！）](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/code)
+
+
+
+确定
+
+[访问作者的支持站点](https://shop.wangdu.site/buy/23)，[提供反馈或发表评价](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/feedback#post-discussion)，或[举报此脚本](https://greasyfork.org/zh-CN/reports/new?item_class=script&item_id=518023)。
+
+<iframe id="google\_ads\_frame0">
+
+换行
+
+```
+
+
+1. // ==UserScript==
+2. // @name              2026最新可用-百度网盘SVIP高速解析直链的不限速下载助手-文武PanDownload
+3. // @namespace         https://github.com/dongyubin/Baidu-VIP
+4. // @version           8.16
+5. // @description       2026年2月持续更新可用，不限制速度的百度网盘SVIP解析高速直链的脚本助手，无视黑号，100%可用，不限制文件大小，下载速度最快可达10M+/s，支持 Gopeed（一键解析）、IDM、NDM 等多线程极速下载工具，支持 Google Chrome、Microsoft Edge、Firefox 等浏览器。
+6. // @author            dongyubin
+7. // @homepage          https://shop.wangdu.site/buy/23
+8. // @supportURL        https://shop.wangdu.site/buy/23
+9. // @license           MIT
+10. // @icon              https://fk.wangdu.site/uploads/images/6e798005b00ce678782af4e6931f4374.png
+11. // @resource          layuiCSS https://cdnjs.cloudflare.com/ajax/libs/layui/2.9.20/css/layui.min.css
+12. // @require           https://cdnjs.cloudflare.com/ajax/libs/layui/2.9.20/layui.min.js
+13. // @require           https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js
+14. // @match             *://pan.baidu.com/*
+15. // @match             *://yun.baidu.com/*
+16. // @match             *://pan.baidu.com/disk/home*
+17. // @match             *://yun.baidu.com/disk/home*
+18. // @match             *://pan.baidu.com/disk/timeline*
+19. // @match             *://yun.baidu.com/disk/timeline*
+20. // @match             *://pan.baidu.com/disk/main*
+21. // @match             *://yun.baidu.com/disk/main*
+22. // @match             *://pan.baidu.com/disk/base*
+23. // @match             *://yun.baidu.com/disk/base*
+24. // @match             *://pan.baidu.com/s/*
+25. // @match             *://yun.baidu.com/s/*
+26. // @match             *://pan.baidu.com/aipan/*
+27. // @match             *://yun.baidu.com/aipan/*
+28. // @match             *://pan.baidu.com/share/*
+29. // @match             *://yun.baidu.com/share/*
+30. // @match             *://openapi.baidu.com/*
+31. // @connect           api.gssource.com
+32. // @connect           baidu.com
+33. // @connect           *
+34. // @connect           127.0.0.1
+35. // @grant             GM_cookie
+36. // @grant             GM_addStyle
+37. // @grant             GM_getResourceText
+38. // @grant             GM_xmlhttpRequest
+39. // @grant             GM_setClipboard
+40. // @grant             GM_notification
+41. // @grant             GM_info
+42. // @grant             GM_getValue
+43. // @grant             GM_setValue
+44. // @grant             GM_deleteValue
+45. // @antifeature       ads
+46. // @antifeature       membership
+47. // @antifeature       referral-link
+48. // ==/UserScript==
+49. (
+    function
+    ()
+    {
+50. 'use strict'
+    ;
+51. const
+    layuiCss
+    =
+    GM_getResourceText
+    (
+    'layuiCSS'
+    );
+52. GM_addStyle
+    (
+    layuiCss
+    +
+    `
+53. .
+    layui
+    -
+    icon
+    -
+    close
+    :
+    before
+    {
+54. content
+    :
+    "x"
+    !
+    important
+    ;
+55. }
+56. li
+    {
+57. list
+    -
+    style
+    :
+    normal
+    !
+    important
+    ;
+58. }
+59. `);
+60. let
+    randomNum
+    =
+    Math
+    .
+    floor
+    (
+    Math
+    .
+    random
+    ()
+    *
+    9999
+    );
+61. const
+    wwConfig
+    =
+    {
+62. mainUrl
+    :
+    'https://api.gssource.com'
+    ,
+63. vipUrl
+    :
+    'https://vipan.wangdu.site/login.php'
+    ,
+64. bdPassword
+    :
+    '1234'
+    ,
+65. titleName
+    :
+    '文武PanDownload'
+    ,
+66. goPeedTaskUrl
+    :
+    'http://127.0.0.1:9999/api/v1/tasks'
+    ,
+67. one_parse
+    :
+    {
+68. code
+    :
+    `
+    $
+    {
+    randomNum
+    }`,
+69. version
+    :
+    '1.0.9'
+70. },
+71. wx_parse
+    :
+    {
+72. version
+    :
+    "1.0.9"
+73. },
+74. gopeed
+    :
+    {
+75. name
+    :
+    'GoPeed'
+    ,
+76. url
+    :
+    'https://pan.quark.cn/s/7babffa3960d'
+77. },
+78. ndm
+    :
+    {
+79. name
+    :
+    'NDM'
+    ,
+80. url
+    :
+    'https://neatdownloadmanager.com/index.php/en/'
+81. },
+82. idm
+    :
+    {
+83. name
+    :
+    'IDM'
+    ,
+84. url
+    :
+    'https://www.wangdu.site/software/tools/380.html'
+85. },
+86. pandown
+    :
+    {
+87. month
+    :
+    'https://fk.wwkejishe.top/buy/23'
+    ,
+88. quarter
+    :
+    'https://fk.wwkejishe.top/buy/24'
+    ,
+89. halfYear
+    :
+    'https://fk.wwkejishe.top/buy/25'
+    ,
+90. year
+    :
+    'https://fk.wwkejishe.top/buy/26'
+    ,
+91. life
+    :
+    'https://fk.wwkejishe.top/buy/27'
+92. },
+93. liulanqi
+    :
+    {
+94. chrome
+    :
+    'https://www.google.cn/intl/zh-CN/chrome/'
+95. },
+96. monthCard
+    :
+    'http://vip.jiufei.com/lin/GI5LG4?refer=1661'
+    ,
+97. wechatCode
+    :
+    '验证码'
+    ,
+98. debug_link
+    :
+    'https://github.com/dongyubin/Baidu-VIP/issues'
+    ,
+99. help_document
+    :
+    'https://help.wwkejishe.top/baidu/baidu-wangpan-download'
+    ,
+100. help_document_backup
+     :
+     'https://wwkejishe.feishu.cn/wiki/XDY7w9XjSiGY5ZkuZxLcmxSCnYC?from=from_copylink'
+101. };
+102. const
+     danger_info
+     =
+     `
+103. <
+     div style
+     =
+     "background: linear-gradient(90deg,#fffaf0,#ffffff);border-left:4px solid #ff9800;padding:16px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06);color:#333;"
+     >
+104. <
+     div style
+     =
+     "display:flex;align-items:center;gap:12px;margin-bottom:8px;"
+     >
+105. <
+     div style
+     =
+     "font-size:22px;"
+     >⚠️</
+     div
+     >
+106. <
+     div style
+     =
+     "font-weight:700;font-size:16px;"
+     >重要提示：必须搭配
+     <
+     a href
+     =
+     "${wwConfig.gopeed.url}"
+     target
+     =
+     "_blank"
+     style
+     =
+     "color:#409eff;text-decoration:none;"
+     >
+     $
+     {
+     wwConfig
+     .
+     gopeed
+     .
+     name
+     }<
+     /a> 下载器使用</
+     div
+     >
+107. </
+     div
+     >
+108. <
+     div style
+     =
+     "color:#666;margin-bottom:8px;"
+     >（否则无法下载）
+     <
+     a href
+     =
+     "${wwConfig.help_document}"
+     target
+     =
+     "_blank"
+     style
+     =
+     "color:#409eff;text-decoration:none;margin-left:8px;"
+     >查看
+     Gopeed
+     配置教程<
+     /a>（<a href="${wwConfig.help_document_backup}" target="_blank" style="color:#409eff;text-decoration:none;">备用教程</
+     a
+     >）
+109. </
+     div
+     >
+110. <
+     div style
+     =
+     "text-align:center;margin:12px 0;"
+     >
+111. <
+     a href
+     =
+     "${wwConfig.liulanqi.chrome}"
+     target
+     =
+     "_blank"
+     style
+     =
+     "display:inline-block;background:#fff0f0;color:#d9534f;padding:6px 10px;border-radius:20px;text-decoration:none;font-weight:700;margin-right:8px;"
+     >推荐：
+     Google
+     Chrome
+     </
+     a
+     >
+112. <
+     a href
+     =
+     "https://violentmonkey.github.io/"
+     target
+     =
+     "_blank"
+     style
+     =
+     "display:inline-block;background:#f0f8ff;color:#0275d8;padding:6px 10px;border-radius:20px;text-decoration:none;font-weight:700;"
+     >配合：
+     Violentmonkey
+     </
+     a
+     >
+113. </
+     div
+     >
+114. <
+     p style
+     =
+     "margin:8px 0;color:#666;"
+     >部分校园网可能不支持解析。如遇问题，请先切换网络或使用下方方法。</
+     p
+     >
+115. <
+     div style
+     =
+     "margin-top:8px;"
+     >
+116. <
+     a href
+     =
+     "https://help.wwkejishe.top/baidu/baidu-wangpan-download"
+     target
+     =
+     "_blank"
+     style
+     =
+     "color:#ff4d4f;font-weight:800;text-decoration:none;"
+     >查看百度网盘稳定解析方式</
+     a
+     >
+117. </
+     div
+     >
+118. <
+     div style
+     =
+     "margin-top:10px;color:#666;font-size:13px;"
+     >无法获取验证码？尝试切换网络或使用
+     <
+     a href
+     =
+     "https://www.wangdu.site/software/tools/948.html"
+     target
+     =
+     "_blank"
+     style
+     =
+     "color:#2db7f5;font-weight:700;"
+     >免广告获取验证码<
+     /a></
+     div
+     >
+119. </
+     div
+     >
+120. `;
+
+122. const
+     pandownload_info
+     =
+     `<
+     li
+     >
+123. <
+     a href
+     =
+     "https://pandown.wangdu.site/vip/login"
+     target
+     =
+     "_blank"
+124. style
+     =
+     "color: #007bff; text-decoration: none;"
+     >
+     Pandownload
+     </
+     a
+     >会员卡：
+125. <
+     a href
+     =
+     "`+ wwConfig.pandown.month + `"
+     target
+     =
+     "_blank"
+126. style
+     =
+     "color: #007bff; text-decoration: none;"
+     >月卡</
+     a
+     >、
+127. <
+     a href
+     =
+     "`+ wwConfig.pandown.quarter + `"
+     target
+     =
+     "_blank"
+128. style
+     =
+     "color: #007bff; text-decoration: none;"
+     >季卡</
+     a
+     >、
+129. <
+     a href
+     =
+     "`+ wwConfig.pandown.halfYear + `"
+     target
+     =
+     "_blank"
+130. style
+     =
+     "color: #007bff; text-decoration: none;"
+     >半年卡</
+     a
+     >、
+131. <
+     a href
+     =
+     "`+ wwConfig.pandown.year + `"
+     target
+     =
+     "_blank"
+132. style
+     =
+     "color: #007bff; text-decoration: none;"
+     >年卡</
+     a
+     >、
+133. <
+     a href
+     =
+     "`+ wwConfig.pandown.life + `"
+     target
+     =
+     "_blank"
+134. style
+     =
+     "color: #007bff; text-decoration: none;"
+     >永久卡</
+     a
+     >
+135. </
+     li
+     >`;
+136. const
+     free_tab_info
+     =
+     `<
+     div
+     class
+     =
+     "layui-tab-item"
+     >
+137. <
+     div
+     class
+     =
+     "layui-form"
+     lay
+     -
+     filter
+     =
+     "filter-test-layer"
+138. style
+     =
+     "margin: 16px auto 0; background-color: #fff; border-radius: 8px; padding: 20px;"
+     >
+139. <
+     div
+     class
+     =
+     "demo-send-container"
+     >
+140. <
+     div
+     class
+     =
+     "layui-text"
+     >
+141. <
+     p
+     >插件解析免费
+     <
+     span style
+     =
+     "font-weight:600;"
+     >
+     2
+     <
+     /span> 次</
+     p
+     >
+142. <
+     p
+     >（提示：解析次数已达上限，代表失效，静等更新。）</
+     p
+     >
+143. <
+     p
+     >如果失效，请使用<
+     strong
+     >验证码解析<
+     /strong></
+     p
+     >
+144. `+
+     danger_info
+     +
+     `
+145. </
+     div
+     >
+146. <
+     div
+     class
+     =
+     "layui-btn-container"
+     >
+147. <
+     button style
+     =
+     "margin-top:30px; border-radius: 8px;"
+     id
+     =
+     "gopeedSetBtn"
+148. class
+     =
+     "layui-btn layui-btn-fluid layui-bg-red"
+     lay
+     -
+     submit lay
+     -
+     filter
+     =
+     "gopeed-set"
+     >
+     1
+     ️⃣
+149. Gopeed
+     设置教程</
+     button
+     >
+150. <!--
+151. <
+     button style
+     =
+     "margin-top:10px; border-radius: 8px;"
+     id
+     =
+     "copyUaBtn"
+152. class
+     =
+     "layui-btn layui-btn-fluid layui-bg-orange"
+     lay
+     -
+     submit lay
+     -
+     filter
+     =
+     "copy-ua"
+     >
+     2
+     ️⃣
+153. 复制
+     User
+     -
+     Agent
+     </
+     button
+     >
+154. -->
+155. <
+     button style
+     =
+     "margin-left:0;margin-top:10px; border-radius: 8px;"
+     id
+     =
+     "parseBtn"
+156. class
+     =
+     "layui-btn layui-btn-fluid"
+     lay
+     -
+     submit lay
+     -
+     filter
+     =
+     "demo-send"
+     >
+     2
+     ️⃣
+     发送到
+     Gopeed
+     </
+     button
+     >
+157. </
+     div
+     >
+158. </
+     div
+     >
+159. </
+     div
+     >
+160. </
+     div
+     >`
+
+162. layui
+     .
+     use
+     ([
+     'layer'
+     ],
+     async
+     function
+     ()
+     {
+163. var
+     layer
+     =
+     layui
+     .
+     layer
+     ,
+164. $
+     =
+     layui
+     .
+     $
+     ;
+165. var
+     form
+     =
+     layui
+     .
+     form
+     ;
+166. if
+     (
+     location
+     .
+     href
+     .
+     startsWith
+     (
+     'https://pan.baidu.com/s/'
+     ))
+     {
+167. $
+     (
+     '.x-button-box'
+     ).
+     prepend
+     (
+168. '<a class="g-button" id="downbtn_share" style="background-color: #6800ff;color: #fff;border:none;"  href="javascript:;" ><span class="g-button-right"><em style="top:0;" class="icon icon-download" title=""></em><lable class="text" style="width: auto;">'
+     +
+169. wwConfig
+     .
+     titleName
+     +
+170. '</lable></span></a>'
+171. );
+172. }
+     else
+     {
+173. if
+     (
+     $
+     (
+     '.tcuLAu'
+     ).
+     is
+     (
+     '*'
+     ))
+     {
+174. $
+     (
+     '.tcuLAu'
+     ).
+     prepend
+     (
+175. '<span class="g-dropdown-button"><a id="downbtn_main"  style=" margin-right: 10px;color: #fff;background-color: #fc5531;border:none;" id="downbtn_main" class="g-button" ><span class="g-button-right"><em style="top:0;" class="icon icon-download" ></em><lable class="text" style="width: auto;">'
+     +
+176. wwConfig
+     .
+     titleName
+     +
+177. '</lable></span></a></span>'
+178. );
+179. }
+     else
+     {
+180. $
+     (
+     '.wp-s-agile-tool-bar__header.is-header-tool'
+     ).
+     prepend
+     (
+181. '<div class="wp-s-agile-tool-bar__h-group"><button style=" margin-right: 10px;color: #fff;background-color: #ff436a;border:none;" id="downbtn_main" class="u-button nd-file-list-toolbar-action-item" ><i style="top:0;" class="iconfont icon-download"></i> <lable>'
+     +
+182. wwConfig
+     .
+     titleName
+     +
+183. '</lable></button></div>'
+184. );
+185. }
+186. }
+187. $
+     (
+     '#downbtn_share'
+     ).
+     click
+     (
+     function
+     ()
+     {
+188. swal
+     ({
+189. title
+     :
+     '提示'
+     ,
+190. text
+     :
+     '请先保存到自己的网盘后，在网盘里解析下载!'
+     ,
+191. icon
+     :
+     'warning'
+     ,
+192. });
+193. return
+     false
+     ;
+194. });
+195. $
+     (
+     '#downbtn_main'
+     ).
+     click
+     (
+     function
+     ()
+     {
+196. let
+     select
+     =
+     selectList
+     ();
+197. let
+     selected
+     =
+     Object
+     .
+     keys
+     (
+     select
+     );
+198. if
+     (
+     selected
+     .
+     length
+     ==
+     0
+     )
+     {
+199. swal
+     ({
+200. text
+     :
+     '请先选择一个文件'
+     ,
+201. icon
+     :
+     'warning'
+     ,
+202. });
+203. return
+     false
+     ;
+204. }
+     else
+     if
+     (
+     selected
+     .
+     length
+     >
+     1
+     )
+     {
+205. swal
+     ({
+206. text
+     :
+     '目前仅支持单个文件解析'
+     ,
+207. icon
+     :
+     'warning'
+     ,
+208. });
+209. return
+     false
+     ;
+210. }
+     else
+     if
+     (
+     select
+     [
+     selected
+     [
+     0
+     ]].
+     isdir
+     ==
+     1
+     )
+     {
+211. swal
+     ({
+212. text
+     :
+     '目前不支持文件夹解析'
+     ,
+213. icon
+     :
+     'warning'
+     ,
+214. });
+215. return
+     false
+     ;
+216. }
+
+218. const
+     openInfoLayer
+     =
+     layer
+     .
+     open
+     ({
+219. type
+     :
+     1
+     ,
+220. area
+     :
+     [
+     '550px'
+     ,
+     'auto'
+     ],
+221. title
+     :
+     '提示'
+     ,
+222. type
+     :
+     1
+     ,
+223. shade
+     :
+     0.6
+     ,
+224. shadeClose
+     :
+     true
+     ,
+225. anim
+     :
+     0
+     ,
+226. content
+     :
+     `
+227. <
+     div
+     class
+     =
+     "layui-tab layui-tab-brief"
+     style
+     =
+     "background-color: #f8f8f8; border-radius: 8px;"
+     >
+228. <
+     ul
+     class
+     =
+     "layui-tab-title"
+     style
+     =
+     "background-color: #fff; border-bottom: 1px solid #e6e6e6;"
+     >
+229. <
+     li
+     class
+     =
+     "layui-this"
+     >验证码解析</
+     li
+     >
+230. <
+     li
+     >免费解析</
+     li
+     >
+231. <
+     li
+     >防止失联</
+     li
+     >
+232. <
+     li
+     >常见问题反馈</
+     li
+     >
+233. </
+     ul
+     >
+234. <
+     div
+     class
+     =
+     "layui-tab-content"
+     style
+     =
+     "padding: 20px;"
+     >
+235. <
+     div
+     class
+     =
+     "layui-tab-item layui-show"
+     style
+     =
+     "background-color: #fff; border-radius: 8px; padding: 20px;text-align: center;"
+     >
+236. `+
+     danger_info
+     +
+     `
+237. <
+     div
+     >
+238. <
+     img src
+     =
+     "https://vipan.wangdu.site/wxgzh.webp"
+     style
+     =
+     "width:200px;height:200px;"
+     alt
+     =
+     "微信公众号"
+     >
+239. </
+     div
+     >
+240. <
+     h2
+     class
+     =
+     "h2"
+     style
+     =
+     "margin-top: 10px;"
+     >微信扫描二维码，发送关键词：验证码</
+     h2
+     >
+241. <
+     p
+     >
+242. 免费不易，获取验证码需要看广告，希望理解。
+243. </
+     p
+     >
+244. <
+     div
+     class
+     =
+     "layui-input-group"
+     >
+245. <
+     div
+     class
+     =
+     "layui-input-split layui-input-prefix"
+     >微信口令验证码：</
+     div
+     >
+246. <
+     input type
+     =
+     "text"
+     name
+     =
+     "captcha"
+     id
+     =
+     "captcha"
+     value
+     =
+     ""
+     lay
+     -
+     verify
+     =
+     "required"
+     placeholder
+     =
+     "请填写口令获取的验证码"
+247. lay
+     -
+     reqtext
+     =
+     "请填写验证码"
+     autocomplete
+     =
+     "off"
+     class
+     =
+     "layui-input"
+     lay
+     -
+     affix
+     =
+     "clear"
+     >
+248. </
+     div
+     >
+249. <!--<
+     div id
+     =
+     "captchaContainer"
+     style
+     =
+     "margin:20px 0"
+     ></
+     div
+     >
+250. <
+     button style
+     =
+     "margin-top:30px; border-radius: 8px;"
+     id
+     =
+     "copyWechatBtn"
+251. class
+     =
+     "layui-btn layui-btn-fluid layui-bg-red"
+     lay
+     -
+     submit lay
+     -
+     filter
+     =
+     "gopeed-set"
+     >
+     1
+     ️⃣
+252. 复制微信口令</
+     button
+     >
+253. <
+     button style
+     =
+     "margin-left:0;margin-top:10px; border-radius: 8px;"
+     id
+     =
+     "parseWxBtn"
+254. class
+     =
+     "layui-btn layui-btn-fluid"
+     lay
+     -
+     submit lay
+     -
+     filter
+     =
+     "demo-wx-send"
+     >
+     2
+     ️⃣
+     发送到
+     Gopeed
+     </
+     button
+     >
+     -->
+255. <
+     button style
+     =
+     "margin-left:0;margin-top:10px; border-radius: 8px;"
+     class
+     =
+     "layui-btn layui-btn-fluid"
+     id
+     =
+     "submitStableCaptcha"
+     >发送到
+     Gopeed
+     </
+     button
+     >
+256. <
+     button style
+     =
+     "margin-left:0;margin-top:10px; border-radius: 8px;"
+     class
+     =
+     "layui-btn layui-btn-fluid"
+     id
+     =
+     "clearCache"
+     >清理缓存</
+     button
+     >
+257. </
+     div
+     >
+258. `+
+     free_tab_info
+     +`
+259. <
+     div
+     class
+     =
+     "layui-tab-item"
+     style
+     =
+     "background-color: #fff; border-radius: 8px; padding: 20px;text-align: center;"
+     >
+260. <
+     div
+     >
+261. <
+     img src
+     =
+     "https://vipan.wangdu.site/wxgzh.webp"
+     style
+     =
+     "width:240px;height:240px;"
+     alt
+     =
+     "微信公众号"
+     >
+262. </
+     div
+     >
+263. <
+     h2
+     class
+     =
+     "h2"
+     style
+     =
+     "margin-top: 10px;"
+     >扫一扫，不失联</
+     h2
+     >
+264. <
+     h3
+     class
+     =
+     "h2"
+     style
+     =
+     "margin-top: 10px;"
+     >众所周知，脚本不可能每时每刻都能用。关注不迷路
+     ~</
+     h3
+     >
+265. </
+     div
+     >
+266. <
+     div
+     class
+     =
+     "layui-tab-item"
+     style
+     =
+     "background-color: #fff; border-radius: 8px; padding: 20px;"
+     >
+267. <
+     p
+     class
+     =
+     "layui-text"
+     >
+268. 常见问题文档：
+     <
+     a style
+     =
+     "color:red;"
+     target
+     =
+     "_blank"
+269. href
+     =
+     "`+ wwConfig.help_document + `"
+     >点击查看常见问题</
+     a
+     >（能够解决
+     80
+     %的问题）
+270. </
+     p
+     >
+271. <
+     p
+     >
+272. 好用的话，请给个好评，带上截图就更好了！<
+     a href
+     =
+     "https://greasyfork.org/zh-CN/scripts/518023-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/feedback"
+     target
+     =
+     "_blank"
+     style
+     =
+     "color: #007bff; text-decoration: none;"
+     >点击前往</
+     a
+     >
+273. </
+     p
+     >
+274. <
+     p
+     class
+     =
+     "layui-text"
+     >
+275. 有问题请带图反馈，我会尽快修复！
+276. </
+     p
+     >
+277. <
+     h2
+     >常见问题</
+     h2
+     >
+278. <
+     p
+     class
+     =
+     "layui-text"
+     >
+279. 1
+     、
+     Edge
+     浏览器
+     一直显示解析中
+     /
+     无法发送到
+     gopeed
+     /
+     多次提示：验证码错误<
+     br
+     />
+280. 答：尝试使用
+     <
+     a style
+     =
+     "color:red;"
+     target
+     =
+     "_blank"
+281. href
+     =
+     "`+ wwConfig.liulanqi.chrome + `"
+     >
+     Google
+     Chrome
+     浏览器</
+     a
+     >
+282. </
+     p
+     >
+283. <
+     p
+     class
+     =
+     "layui-text"
+     >
+284. 2
+     、
+     提示：免费次数已用完<
+     br
+     />
+285. 答：请明天再试，第二天重置次数
+286. </
+     p
+     >
+287. <
+     p
+     class
+     =
+     "layui-text"
+     >
+288. 3
+     、
+     无法获取验证码<
+     br
+     />
+289. 答：切换网络试试
+290. </
+     p
+     >
+291. <
+     div
+     class
+     =
+     "layui-btn-container"
+     >
+292. <
+     button style
+     =
+     "margin-top:10px; border-radius: 8px;"
+     id
+     =
+     "goIssues"
+293. class
+     =
+     "layui-btn layui-btn-fluid layui-bg-red"
+     lay
+     -
+     submit lay
+     -
+     filter
+     =
+     "gopeed-set"
+     >点击前往提交
+     issues
+     </
+     button
+     >
+294. </
+     div
+     >
+295. </
+     div
+     >
+296. </
+     div
+     >
+297. </
+     div
+     >
+298. `,
+299. success
+     :
+     function
+     ()
+     {
+300. // 对弹层中的表单进行初始化渲染
+301. form
+     .
+     render
+     ();
+302. // 初始化稳定解析标签页的验证码
+303. // loadStableCaptcha();
+304. // let token = GM_getValue('token');
+305. // if (!token) {
+306. //   $('#captchaContainer').html(`<div class="layui-col-xs7">
+307. //   <div class="layui-input-wrap">
+308. //     <input type="text" id="stableCaptcha" placeholder="输入图片验证码" class="layui-input">
+309. //   </div>
+310. // </div>
+311. // <div class="layui-col-xs5">
+312. //   <div style="margin-left: 10px;">
+313. //     <img id="captchaImage" style="border:1px solid #ddd;margin-bottom:10px;height:40px;cursor:pointer;">
+314. //   </div>
+315. // </div>`);
+316. // }
+317. // 表单提交事件
+318. form
+     .
+     on
+     (
+     'submit(demo-send)'
+     ,
+     async
+     function
+     (
+     data
+     )
+     {
+319. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>正在发送中,请稍后...</p>'
+     );
+320. let
+     testDown
+     =
+     await
+     testSendToGopeed
+     ();
+321. if
+     (!
+     testDown
+     )
+     {
+322. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+323. gospeedDownload
+     ();
+324. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+325. return
+     ;
+326. }
+327. let
+     one_url
+     =
+     wwConfig
+     .
+     mainUrl
+     +
+     '/wp/getPcCodeNum'
+     ;
+328. share_one_baidu
+     (
+     openInfoLayer
+     ,
+     one_url
+     ,
+     wwConfig
+     .
+     one_parse
+     .
+     code
+     ,
+     wwConfig
+     .
+     one_parse
+     .
+     version
+     ,
+     3
+     );
+329. });
+
+331. $
+     (
+     '#parseWxBtn'
+     ).
+     on
+     (
+     'click'
+     ,
+     async
+     function
+     ()
+     {
+332. let
+     captchaStr
+     =
+     $
+     (
+     '#captcha'
+     ).
+     val
+     ();
+333. if
+     (
+     captchaStr
+     )
+     {
+334. let
+     lastCaptcha
+     =
+     GM_getValue
+     (
+     'lastCaptcha'
+     ,
+     ''
+     );
+335. if
+     (
+     captchaStr
+     ===
+     lastCaptcha
+     )
+     {
+336. layer
+     .
+     msg
+     (
+     '验证码已使用，请获取新的验证码'
+     );
+337. return
+     ;
+338. }
+339. GM_setValue
+     (
+     'lastCaptcha'
+     ,
+     captchaStr
+     );
+340. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>正在发送中,请稍后...</p>'
+     );
+341. let
+     testDown
+     =
+     await
+     testSendToGopeed
+     ();
+342. if
+     (!
+     testDown
+     )
+     {
+343. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+344. gospeedDownload
+     ();
+345. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+346. return
+     ;
+347. }
+348. let
+     one_url
+     =
+     wwConfig
+     .
+     mainUrl
+     +
+     '/wp/getPcCodeNum'
+     ;
+349. share_one_baidu
+     (
+     openInfoLayer
+     ,
+     one_url
+     ,
+     captchaStr
+     ,
+     wwConfig
+     .
+     wx_parse
+     .
+     version
+     ,
+     2
+     );
+350. }
+     else
+     {
+351. layer
+     .
+     msg
+     (
+     '请输入验证码'
+     );
+352. }
+353. });
+
+355. // 复制 User-Agent 按钮的事件处理
+356. $
+     (
+     '#copyUaBtn'
+     ).
+     on
+     (
+     'click'
+     ,
+     function
+     ()
+     {
+357. copy_text
+     (
+     wwConfig
+     .
+     ua
+     ,
+     'User-Agent'
+     );
+358. });
+359. $
+     (
+     '#copyWechatBtn'
+     ).
+     on
+     (
+     'click'
+     ,
+     function
+     ()
+     {
+360. copy_text
+     (
+     wwConfig
+     .
+     wechatCode
+     ,
+     '微信口令'
+     );
+361. })
+362. $
+     (
+     '#gopeedSetBtn'
+     ).
+     on
+     (
+     'click'
+     ,
+     function
+     ()
+     {
+363. openUrl
+     (
+     wwConfig
+     .
+     help_document
+     );
+364. })
+365. $
+     (
+     '#goIssues'
+     ).
+     on
+     (
+     'click'
+     ,
+     function
+     ()
+     {
+366. openUrl
+     (
+     wwConfig
+     .
+     debug_link
+     );
+367. })
+
+369. $
+     (
+     '#clearCache'
+     ).
+     on
+     (
+     'click'
+     ,
+     function
+     ()
+     {
+370. GM_deleteValue
+     (
+     'token'
+     );
+371. layer
+     .
+     msg
+     (
+     '已清除缓存'
+     );
+372. window
+     .
+     location
+     .
+     reload
+     ();
+373. })
+
+375. // $('#captchaImage').on('click', function () {
+376. //   loadStableCaptcha();
+377. // })
+
+379. $
+     (
+     '#submitStableCaptcha'
+     ).
+     on
+     (
+     'click'
+     ,
+     async
+     function
+     ()
+     {
+380. let
+     captchaStr
+     =
+     $
+     (
+     '#captcha'
+     ).
+     val
+     ();
+381. // 图片验证码
+382. // let code = $('#stableCaptcha').val();
+383. // let token = GM_getValue('token');
+384. // if (!token) {
+385. //   if (!code) {
+386. //     layer.msg('图片验证码不能为空！');
+387. //     return;
+388. //   }
+389. // }
+390. if
+     (
+     captchaStr
+     )
+     {
+391. let
+     lastCaptcha
+     =
+     GM_getValue
+     (
+     'lastCaptcha'
+     ,
+     ''
+     );
+392. if
+     (
+     captchaStr
+     ===
+     lastCaptcha
+     )
+     {
+393. layer
+     .
+     msg
+     (
+     '口令验证码已使用，请获取新的验证码'
+     );
+394. return
+     ;
+395. }
+396. GM_setValue
+     (
+     'lastCaptcha'
+     ,
+     captchaStr
+     );
+
+398. // $('#parseWxBtn').html('<p>正在发送中,请稍后...</p>');
+399. // let testDown = await testSendToGopeed();
+400. // if (!testDown) {
+401. //   layer.close(openInfoLayer);
+402. //   gospeedDownload();
+403. //   $('#parseWxBtn').html('<p>发送到Gopeed</p>');
+404. //   return;
+405. // }
+406. let
+     one_url
+     =
+     wwConfig
+     .
+     mainUrl
+     +
+     '/wp/getPcCodeNum'
+     ;
+407. // if (wwConfig.token) {
+408. //   share_one_baidu(openInfoLayer, one_url, captchaStr, wwConfig.wx_parse.version, 3);
+409. // } else {
+410. // let uuid = GM_getValue('captcha_uuid');
+411. GM_xmlhttpRequest
+     ({
+412. method
+     :
+     'POST'
+     ,
+413. url
+     :
+     `
+     $
+     {
+     wwConfig
+     .
+     vipUrl
+     }`,
+414. headers
+     :
+     {
+415. 'Content-Type'
+     :
+     'application/json'
+     ,
+416. },
+417. // data: JSON.stringify({
+418. //   code: code,
+419. //   uuid: uuid
+420. // }),
+421. onload
+     :
+     function
+     (
+     response
+     )
+     {
+422. // console.log(response);
+423. const
+     data
+     =
+     JSON
+     .
+     parse
+     (
+     response
+     .
+     responseText
+     );
+
+425. if
+     (
+     data
+     .
+     status
+     ===
+     'success'
+     )
+     {
+426. wwConfig
+     .
+     token
+     =
+     data
+     .
+     token
+     ;
+427. // $('#captchaContainer').html(``);
+428. share_one_baidu
+     (
+     openInfoLayer
+     ,
+     one_url
+     ,
+     captchaStr
+     ,
+     wwConfig
+     .
+     wx_parse
+     .
+     version
+     ,
+     3
+     );
+429. }
+     else
+     {
+430. layer
+     .
+     msg
+     (
+     data
+     .
+     message
+     );
+431. // loadStableCaptcha();
+432. }
+433. }
+434. });
+435. // }
+
+437. }
+     else
+     {
+438. layer
+     .
+     msg
+     (
+     '请输入验证码'
+     );
+439. }
+440. })
+441. },
+442. });
+443. });
+444. });
+
+446. function
+     gospeedDownload
+     ()
+     {
+447. swal
+     ({
+448. title
+     :
+     "下载 Gopeed 加速器"
+     ,
+449. text
+     :
+     '请先安装 Gopeed 并打开运行(点击按钮下载 Gopeed)。'
+     ,
+450. icon
+     :
+     'warning'
+     ,
+451. type
+     :
+     "warning"
+     ,
+452. confirmButtonText
+     :
+     '点击下载Gopeed'
+     ,
+453. confirmButtonColor
+     :
+     "#dd6b55"
+     ,
+454. }).
+     then
+     (
+     function
+     ()
+     {
+455. openUrl
+     (
+     'https://pan.quark.cn/s/7babffa3960d'
+     );
+456. });
+457. }
+
+459. function
+     openUrl
+     (
+     url
+     )
+     {
+460. window
+     .
+     open
+     (
+     url
+     );
+461. }
+
+463. function
+     selectList
+     ()
+     {
+464. var
+     select
+     =
+     {};
+465. var
+     option
+     =
+     [];
+
+467. try
+     {
+468. option
+     =
+469. require
+     (
+     'system-core:context/context.js'
+     ).
+     instanceForSystem
+     .
+     list
+     .
+     getSelected
+     ();
+470. }
+     catch
+     (
+     e
+     )
+     {
+471. option
+     =
+     document
+     .
+     querySelector
+     (
+     '.wp-s-core-pan'
+     ).
+     __vue__
+     .
+     selectedList
+     ;
+472. }
+473. option
+     .
+     forEach
+     ((
+     element
+     )
+     =>
+     {
+474. select
+     [
+     element
+     .
+     fs_id
+     ]
+     =
+     element
+     ;
+475. });
+476. return
+     select
+     ;
+477. }
+
+479. function
+     init_parse
+     (
+     code
+     )
+     {
+480. switch
+     (
+     code
+     )
+     {
+481. case
+     1
+     :
+482. layer
+     .
+     msg
+     (
+     '解析中'
+     ,
+     {
+483. icon
+     :
+     6
+     ,
+484. time
+     :
+     3000
+     ,
+485. });
+486. setTimeout
+     (()
+     =>
+     {
+487. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+488. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+489. layer
+     .
+     alert
+     (
+     '解析通道比较拥堵，请尝试快速下载！'
+     ,
+     {
+490. title
+     :
+     '提示'
+     ,
+491. closeBtn
+     :
+     0
+     ,
+492. btn
+     :
+     [
+     '确定'
+     ,
+     '前往快速下载'
+     ],
+493. btn1
+     :
+     function
+     (
+     index
+     )
+     {
+494. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+495. layer
+     .
+     close
+     (
+     index
+     );
+496. },
+497. btn2
+     :
+     function
+     (
+     index
+     )
+     {
+498. openUrl
+     (
+     wwConfig
+     .
+     monthCard
+     );
+499. }
+500. });
+501. },
+     3000
+     );
+502. break
+     ;
+503. case
+     2
+     :
+504. layer
+     .
+     alert
+     (
+505. '验证码错误,一个验证码只能下载一个文件,请重新获取！'
+     ,
+506. {
+507. title
+     :
+     '提示'
+     ,
+508. closeBtn
+     :
+     0
+509. },
+     function
+     (
+     index
+     )
+     {
+510. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+511. layer
+     .
+     close
+     (
+     index
+     );
+512. }
+513. );
+514. break
+     ;
+515. case
+     3
+     :
+516. layer
+     .
+     alert
+     (
+     '今日下载次数已达上限，请明天再来下载，或者使用快速下载！'
+     ,
+     {
+517. title
+     :
+     '提示'
+     ,
+518. closeBtn
+     :
+     0
+     ,
+519. btn
+     :
+     [
+     '确定'
+     ,
+     '前往快速下载'
+     ],
+520. btn1
+     :
+     function
+     (
+     index
+     )
+     {
+521. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+522. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+523. layer
+     .
+     close
+     (
+     index
+     );
+524. },
+525. btn2
+     :
+     function
+     (
+     index
+     )
+     {
+526. openUrl
+     (
+     wwConfig
+     .
+     monthCard
+     );
+527. }
+528. });
+529. break
+     ;
+530. case
+     4
+     :
+531. layer
+     .
+     alert
+     (
+     '解析失败，请升级插件或者使用网页稳定版地址！'
+     ,
+     {
+532. title
+     :
+     '提示'
+     ,
+533. closeBtn
+     :
+     0
+     ,
+534. btn
+     :
+     [
+     '确定'
+     ,
+     '前往快速下载'
+     ],
+535. btn1
+     :
+     function
+     (
+     index
+     )
+     {
+536. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+537. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+538. layer
+     .
+     close
+     (
+     index
+     );
+539. },
+540. btn2
+     :
+     function
+     (
+     index
+     )
+     {
+541. openUrl
+     (
+     wwConfig
+     .
+     monthCard
+     );
+542. }
+543. })
+544. break
+     ;
+545. case
+     5
+     :
+546. layer
+     .
+     alert
+     (
+     '文件大于 3G，插件暂不支持下载，请使用网页稳定版地址(不限制文件大小)！'
+     ,
+     {
+547. title
+     :
+     '提示'
+     ,
+548. closeBtn
+     :
+     0
+     ,
+549. btn
+     :
+     [
+     '前往快速下载'
+     ],
+550. btn1
+     :
+     function
+     (
+     index
+     )
+     {
+551. openUrl
+     (
+     wwConfig
+     .
+     monthCard
+     );
+552. layer
+     .
+     close
+     (
+     index
+     );
+553. }
+554. })
+555. break
+     ;
+556. default
+     :
+557. wwConfig
+     .
+     one_parse
+     .
+     version
+     =
+     1
+     ;
+558. break
+     ;
+559. }
+
+561. }
+562. function
+     share_one_baidu
+     (
+     openInfoLayer
+     ,
+     url
+     ,
+     code
+     ,
+     version
+     ,
+     type
+     )
+     {
+563. // console.log(openInfoLayer, url, code, version, type);
+564. let
+     select
+     =
+     Object
+     .
+     keys
+     (
+     selectList
+     ());
+565. let
+     bdstoken
+     =
+     ''
+     ;
+566. let
+     data_json
+     =
+     {};
+567. try
+     {
+568. data_json
+     =
+     $
+     (
+     'html'
+     )
+569. .
+     html
+     ()
+570. .
+     match
+     (
+     /(?<=locals\.mset\()(.*?)(?=\);)/
+     )[
+     0
+     ];
+571. data_json
+     =
+     JSON
+     .
+     parse
+     (
+     data_json
+     );
+572. wwConfig
+     .
+     username
+     =
+     data_json
+     .
+     username
+     ;
+573. bdstoken
+     =
+     data_json
+     .
+     bdstoken
+     ;
+574. }
+     catch
+     (
+     e
+     )
+     {
+575. data_json
+     =
+     $
+     (
+     'html'
+     )
+576. .
+     html
+     ()
+577. .
+     match
+     (
+     /(?<=window\.locals\s=\s)(.*?)(?=;)/
+     )[
+     0
+     ];
+578. data_json
+     =
+     JSON
+     .
+     parse
+     (
+     data_json
+     );
+579. wwConfig
+     .
+     username
+     =
+     data_json
+     .
+     userInfo
+     .
+     username
+     ;
+580. bdstoken
+     =
+     data_json
+     .
+     userInfo
+     .
+     bdstoken
+     ;
+581. }
+
+583. wwConfig
+     .
+     data_json
+     =
+     data_json
+     ;
+
+585. $
+     .
+     ajax
+     ({
+586. type
+     :
+     'GET'
+     ,
+587. url
+     :
+     'https://pan.baidu.com/share/set'
+     ,
+588. async
+     :
+     true
+     ,
+589. data
+     :
+     {
+590. bdstoken
+     :
+     bdstoken
+     ,
+591. period
+     :
+     1
+     ,
+592. pwd
+     :
+     wwConfig
+     .
+     bdPassword
+     ,
+593. eflag_disable
+     :
+     true
+     ,
+594. channel_list
+     :
+     '%5B%5D'
+     ,
+595. schannel
+     :
+     4
+     ,
+596. fid_list
+     :
+     JSON
+     .
+     stringify
+     (
+     select
+     ),
+597. },
+598. dataType
+     :
+     'json'
+     ,
+599. success
+     :
+     function
+     (
+     res
+     )
+     {
+600. if
+     (
+     res
+     .
+     show_msg
+     .
+     indexOf
+     (
+     '禁止'
+     )
+     >
+     -
+     1
+     )
+     {
+601. swal
+     ({
+602. text
+     :
+     '该文件禁止分享'
+     ,
+603. icon
+     :
+     'error'
+     ,
+604. });
+605. return
+     false
+     ;
+606. }
+     else
+     {
+607. let
+     shorturl
+     =
+     ''
+     ;
+608. try
+     {
+609. shorturl
+     =
+     res
+     .
+     link
+     .
+     split
+     (
+     '/'
+     ).
+     pop
+     ();
+610. }
+     catch
+     (
+     error
+     )
+     {
+611. swal
+     ({
+612. text
+     :
+     '初始化准备失败'
+     ,
+613. icon
+     :
+     'error'
+     ,
+614. });
+615. return
+     false
+     ;
+616. }
+617. fetch
+     (
+     url
+     ,
+     {
+618. method
+     :
+     'POST'
+     ,
+619. headers
+     :
+     {
+620. 'Content-Type'
+     :
+     'application/json'
+     ,
+621. },
+622. body
+     :
+     JSON
+     .
+     stringify
+     ({
+623. code
+     :
+     code
+     ,
+624. userKey
+     :
+     'main'
+     ,
+625. fsId
+     :
+     select
+     [
+     0
+     ],
+626. version
+     :
+     version
+     ,
+627. }),
+628. })
+629. .
+     then
+     ((
+     resp
+     )
+     =>
+     resp
+     .
+     json
+     ())
+630. .
+     then
+     ((
+     res
+     )
+     =>
+     {
+631. let
+     laysermsg
+     =
+     layer
+     .
+     msg
+     (
+     '正在解析中'
+     ,
+     {
+632. icon
+     :
+     6
+     ,
+633. time
+     :
+     10000
+     ,
+634. });
+635. if
+     (
+     res
+     .
+     code
+     ==
+     200
+     )
+     {
+636. if
+     ((
+     res
+     .
+     data
+     >
+     100
+     )
+     ||
+     (
+     res
+     .
+     data
+     .
+     data
+     ==
+     100
+     &
+     res
+     .
+     data
+     .
+     vip
+     ==
+     0
+     )
+     ||
+     (
+     res
+     .
+     data
+     .
+     data
+     ==
+     100
+     &
+     res
+     .
+     data
+     .
+     vip
+     ==
+     1
+     )
+     ||
+     (
+     res
+     .
+     data
+     ==
+     50
+     ||
+     res
+     .
+     data
+     .
+     data
+     ==
+     50
+     ))
+     {
+637. let
+     download_url
+     =
+     ''
+     ;
+638. switch
+     (
+     type
+     )
+     {
+639. case
+     1
+     :
+640. download_url
+     =
+     wwConfig
+     .
+     mainUrl
+     +
+     '/wp/pc/dlink'
+     ;
+641. break
+     ;
+642. case
+     2
+     :
+643. download_url
+     =
+     wwConfig
+     .
+     mainUrl
+     +
+     '/wp/fast/pc/dlink'
+     ;
+644. break
+     ;
+645. case
+     3
+     :
+646. download_url
+     =
+     wwConfig
+     .
+     mainUrl
+     +
+     '/wp/fast/pc/dlink'
+     ;
+647. break
+     ;
+648. }
+649. get_down_list
+     (
+650. shorturl
+     ,
+651. wwConfig
+     .
+     bdPassword
+     ,
+652. openInfoLayer
+     ,
+653. res
+     .
+     data
+     ,
+654. laysermsg
+     ,
+655. download_url
+     ,
+656. type
+657. );
+658. }
+659. else
+     if
+     (
+     res
+     .
+     data
+     ==
+     80
+     ||
+     res
+     .
+     data
+     .
+     data
+     ==
+     80
+     )
+     {
+660. init_parse
+     (
+     1
+     );
+661. }
+662. else
+     if
+     (
+     res
+     .
+     data
+     ==
+     60
+     ||
+     res
+     .
+     data
+     .
+     data
+     ==
+     60
+     )
+     {
+663. init_parse
+     (
+     3
+     );
+664. }
+665. // else if (res.data == 50 || res.data.data == 50) {
+666. //   init_parse(2);
+667. // }
+668. else
+     if
+     (
+     res
+     .
+     data
+     .
+     data
+     ==
+     100
+     ||
+     res
+     .
+     data
+     .
+     vip
+     ==
+     0
+     )
+     {
+669. init_parse
+     (
+     3
+     );
+670. }
+671. else
+     {
+672. init_parse
+     (
+     2
+     );
+673. }
+674. }
+     else
+     if
+     (
+     res
+     .
+     code
+     ==
+     500
+     )
+     {
+675. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+676. layer
+     .
+     close
+     (
+     laysermsg
+     );
+677. init_parse
+     (
+     3
+     );
+678. }
+679. });
+680. }
+681. },
+682. error
+     :
+     function
+     (
+     res
+     )
+     {
+683. swal
+     ({
+684. text
+     :
+     '初始化准备请求访问失败'
+     ,
+685. icon
+     :
+     'error'
+     ,
+686. });
+687. },
+688. });
+689. }
+
+691. function
+     copy_text
+     (
+     text
+     ,
+     msg
+     )
+     {
+692. navigator
+     .
+     clipboard
+     .
+     writeText
+     (
+     text
+     ).
+     then
+     (()
+     =>
+     {
+693. layer
+     .
+     msg
+     (
+     msg
+     +
+     ' 已复制到剪贴板'
+     );
+694. }).
+     catch
+     (
+     err
+     =>
+     {
+695. layer
+     .
+     msg
+     (
+     '复制失败，请手动复制：'
+     +
+     text
+     );
+696. });
+697. }
+
+699. async
+     function
+     get_down_list
+     (
+     shorturl
+     ,
+     password
+     ,
+     openInfoLayer
+     ,
+     pwd
+     ,
+     laysermsg
+     ,
+     downloadUrl
+     ,
+     type
+     )
+     {
+700. // console.log(shorturl, password, openInfoLayer, pwd, laysermsg, downloadUrl, type);
+701. let
+     ajax_data
+     =
+     {
+702. shorturl
+     :
+     shorturl
+     ,
+703. pwd
+     :
+     password
+     ,
+704. dir
+     :
+     1
+     ,
+705. root
+     :
+     1
+     ,
+706. userKey
+     :
+     'main'
+     ,
+707. };
+708. if
+     (
+     type
+     ==
+     3
+     )
+     {
+709. // ajax_data.dir = "1";
+710. // ajax_data.index = 0;
+711. // ajax_data.root = "1";
+712. password
+     =
+     'ymta'
+     ;
+713. }
+
+715. fetch
+     (
+     wwConfig
+     .
+     mainUrl
+     +
+     '/wp/parseCopyLink'
+     ,
+     {
+716. method
+     :
+     'POST'
+     ,
+717. headers
+     :
+     {
+718. 'Content-Type'
+     :
+     'application/json'
+     ,
+719. },
+720. body
+     :
+     JSON
+     .
+     stringify
+     (
+     ajax_data
+     ),
+721. })
+722. .
+     then
+     ((
+     resp
+     )
+     =>
+     resp
+     .
+     json
+     ())
+723. .
+     then
+     ((
+     res
+     )
+     =>
+     {
+724. if
+     (
+     res
+     .
+     code
+     ==
+     200
+     )
+     {
+725. // const size = parseInt(res.data.data.list[0].size);
+726. // if (size > 3221225472) {
+727. //   layer.close(openInfoLayer);
+728. //   layer.close(laysermsg);
+729. //   $('#parseBtn').html('<p>发送到Gopeed</p>');
+730. //   init_parse(5);
+731. //   return false;
+732. // }
+733. const
+     requestData
+     =
+     {
+734. fsId
+     :
+     res
+     .
+     data
+     .
+     data
+     .
+     list
+     [
+     0
+     ].
+     fs_id
+     ,
+735. shareid
+     :
+     res
+     .
+     data
+     .
+     data
+     .
+     shareid
+     ,
+736. uk
+     :
+     res
+     .
+     data
+     .
+     data
+     .
+     uk
+     ,
+737. sekey
+     :
+     res
+     .
+     data
+     .
+     data
+     .
+     seckey
+     ,
+738. randsk
+     :
+     res
+     .
+     data
+     .
+     data
+     .
+     seckey
+     ,
+739. fs_ids
+     :
+     [
+     res
+     .
+     data
+     .
+     data
+     .
+     list
+     [
+     0
+     ].
+     fs_id
+     ],
+740. path
+     :
+     res
+     .
+     data
+     .
+     data
+     .
+     list
+     [
+     0
+     ].
+     server_filename
+     ,
+741. size
+     :
+     res
+     .
+     data
+     .
+     data
+     .
+     list
+     [
+     0
+     ].
+     size
+     ,
+742. surl
+     :
+     shorturl
+     ,
+743. url
+     :
+     `
+     https
+     :
+     //pan.baidu.com/s/${shorturl}`,
+744. userKey
+     :
+     'main'
+     ,
+745. pwd
+     :
+     password
+     ,
+746. dir
+     :
+     '/'
+     ,
+747. };
+748. let
+     token
+     =
+     wwConfig
+     .
+     token
+     ;
+749. if
+     (
+     token
+     )
+     {
+750. GM_xmlhttpRequest
+     ({
+751. method
+     :
+     'POST'
+     ,
+752. url
+     :
+     downloadUrl
+     ,
+753. headers
+     :
+     {
+754. 'Content-Type'
+     :
+     'application/json;charset=UTF-8'
+     ,
+755. 'Authorization'
+     :
+     'Bearer '
+     +
+     token
+     ,
+756. },
+757. data
+     :
+     JSON
+     .
+     stringify
+     (
+     requestData
+     ),
+758. onload
+     :
+     function
+     (
+     response
+     )
+     {
+759. const
+     responseData
+     =
+     JSON
+     .
+     parse
+     (
+     response
+     .
+     responseText
+     );
+760. if
+     (
+     responseData
+     .
+     code
+     !==
+     200
+     )
+     {
+761. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+762. layer
+     .
+     close
+     (
+     laysermsg
+     );
+763. init_parse
+     (
+     3
+     );
+764. }
+     else
+     {
+765. layer
+     .
+     close
+     (
+     laysermsg
+     );
+766. wwConfig
+     .
+     url
+     =
+     responseData
+     .
+     data
+     .
+     data
+     .
+     dlink
+     ;
+767. wwConfig
+     .
+     ua
+     =
+     responseData
+     .
+     data
+     .
+     data
+     .
+     ua
+     ;
+768. // console.log(responseData.data)
+769. sendToGopeed
+     (
+     responseData
+     .
+     data
+     .
+     data
+     .
+     urls
+     [
+     0
+     ],
+     requestData
+     .
+     path
+     );
+770. }
+771. },
+772. onerror
+     :
+     function
+     (
+     response
+     )
+     {
+773. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+774. layer
+     .
+     close
+     (
+     laysermsg
+     );
+775. const
+     errorMessage
+     =
+776. JSON
+     .
+     parse
+     (
+     response
+     .
+     responseText
+     ).
+     message
+     ||
+     '网络错误'
+     ;
+777. swal
+     ({
+778. text
+     :
+     '发送到Gopeed遇到问题了，请刷新重试即可！！'
+     ,
+779. icon
+     :
+     'warning'
+     ,
+780. });
+781. },
+782. });
+783. }
+     else
+     {
+784. GM_xmlhttpRequest
+     ({
+785. method
+     :
+     'POST'
+     ,
+786. url
+     :
+     downloadUrl
+     ,
+787. headers
+     :
+     {
+788. 'Content-Type'
+     :
+     'application/json'
+     ,
+789. },
+790. data
+     :
+     JSON
+     .
+     stringify
+     (
+     requestData
+     ),
+791. onload
+     :
+     function
+     (
+     response
+     )
+     {
+792. const
+     responseData
+     =
+     JSON
+     .
+     parse
+     (
+     response
+     .
+     responseText
+     );
+793. // console.log(responseData);
+794. if
+     (
+     responseData
+     .
+     code
+     !==
+     200
+     )
+     {
+795. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+796. layer
+     .
+     close
+     (
+     laysermsg
+     );
+797. // swal({
+798. //   text: responseData.msg,
+799. //   icon: 'warning',
+800. // });
+801. init_parse
+     (
+     3
+     );
+802. }
+     else
+     {
+803. layer
+     .
+     close
+     (
+     laysermsg
+     );
+804. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+805. if
+     (
+     responseData
+     .
+     data
+     .
+     vip
+     )
+     {
+806. wwConfig
+     .
+     url
+     =
+     responseData
+     .
+     data
+     .
+     data
+     .
+     dlink
+     ;
+807. wwConfig
+     .
+     ua
+     =
+     responseData
+     .
+     data
+     .
+     data
+     .
+     ua
+     ;
+808. }
+     else
+     {
+809. wwConfig
+     .
+     url
+     =
+     responseData
+     .
+     data
+     .
+     dlink
+     ;
+810. wwConfig
+     .
+     ua
+     =
+     responseData
+     .
+     data
+     .
+     ua
+     ;
+811. }
+812. sendToGopeed
+     (
+     responseData
+     .
+     data
+     .
+     data
+     ,
+     res
+     .
+     data
+     .
+     data
+     .
+     list
+     [
+     0
+     ].
+     server_filename
+     );
+813. }
+814. },
+815. onerror
+     :
+     function
+     (
+     response
+     )
+     {
+816. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+817. layer
+     .
+     close
+     (
+     laysermsg
+     );
+818. const
+     errorMessage
+     =
+819. JSON
+     .
+     parse
+     (
+     response
+     .
+     responseText
+     ).
+     message
+     ||
+     '网络错误'
+     ;
+820. swal
+     ({
+821. text
+     :
+     '发送到Gopeed遇到问题了，请刷新重试即可！！'
+     ,
+822. icon
+     :
+     'warning'
+     ,
+823. });
+824. },
+825. });
+826. }
+827. }
+     else
+     {
+828. layer
+     .
+     close
+     (
+     openInfoLayer
+     );
+829. layer
+     .
+     close
+     (
+     laysermsg
+     );
+830. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+831. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+832. swal
+     ({
+833. text
+     :
+     '发送到Gopeed遇到问题了，请升级插件刷新重试即可！！'
+     ,
+834. icon
+     :
+     'warning'
+     ,
+835. });
+836. }
+837. });
+838. }
+839. function
+     testSendToGopeed
+     ()
+     {
+840. return
+     fetch
+     (
+     wwConfig
+     .
+     goPeedTaskUrl
+     ,
+     {
+841. method
+     :
+     'POST'
+     ,
+842. headers
+     :
+     {
+843. 'Content-Type'
+     :
+     'application/json'
+844. },
+845. })
+846. .
+     then
+     ((
+     resp
+     )
+     =>
+     resp
+     .
+     json
+     ())
+847. .
+     then
+     ((
+     res
+     )
+     =>
+     {
+848. return
+     true
+     ;
+849. }).
+     catch
+     (
+     e
+     =>
+     {
+850. return
+     false
+     ;
+851. })
+852. }
+853. function
+     sendToGopeed
+     (
+     item
+     ,
+     fileName
+     )
+     {
+854. // console.log(item, fileName)
+855. let
+     download_url
+     =
+     item
+     .
+     url
+     ?
+     item
+     .
+     url
+     :
+     item
+     .
+     urls
+     [
+     0
+     ].
+     url
+     ;
+856. let
+     download_ua
+     =
+     wwConfig
+     .
+     ua
+     ?
+     wwConfig
+     .
+     ua
+     :
+     item
+     .
+     ua
+     ;
+857. let
+     data
+     =
+     {
+858. req
+     :
+     {
+859. url
+     :
+     download_url
+     ,
+860. extra
+     :
+     {
+861. header
+     :
+     {
+862. "User-Agent"
+     :
+     download_ua
+     ,
+863. }
+864. }
+865. },
+866. opt
+     :
+     {
+867. extra
+     :
+     {
+868. connections
+     :
+     256
+     ,
+869. }
+870. }
+871. }
+872. fetch
+     (
+     wwConfig
+     .
+     goPeedTaskUrl
+     ,
+     {
+873. method
+     :
+     'POST'
+     ,
+874. headers
+     :
+     {
+875. 'Content-Type'
+     :
+     'application/json'
+876. },
+877. body
+     :
+     JSON
+     .
+     stringify
+     (
+     data
+     ),
+878. }).
+     then
+     ((
+     resp
+     )
+     =>
+     resp
+     .
+     json
+     ())
+879. .
+     then
+     ((
+     res
+     )
+     =>
+     {
+880. layer
+     .
+     open
+     ({
+881. content
+     :
+     `请打开
+     Gopeed
+     查看
+     <
+     span style
+     =
+     "color:rgba(5,150,105,1);"
+     >
+     $
+     {
+     fileName
+     }<
+     /span> 是否开始下载？未下载成功，先设置IDM/
+     NDM
+     User
+     -
+     Agent
+     :<
+     code
+     >`
+     +
+     wwConfig
+     .
+     ua
+     +
+     `</
+     code
+     >，再复制直链下载！`,
+882. btn
+     :
+     [
+     '已下载，关闭弹窗'
+     ,
+     '复制UA'
+     ,
+     '未下载，复制直链'
+     ],
+883. // content: `请打开 Gopeed 查看 <span style="color:rgba(5,150,105,1);">${fileName}</span> 是否开始下载？未下载成功，请重试！（暂时只支持 Gopeed 下载！）`,
+884. // btn: ['已下载，关闭弹窗', '未下载，复制直链'],
+885. closeBtn
+     :
+     0
+     ,
+886. type
+     :
+     1
+     ,
+887. btn1
+     :
+     function
+     (
+     index
+     ,
+     layero
+     ,
+     that
+     )
+     {
+888. layer
+     .
+     close
+     (
+     index
+     );
+889. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+890. $
+     (
+     '#parseBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+891. // loadStableCaptcha();
+892. },
+893. btn2
+     :
+     function
+     (
+     index
+     ,
+     layero
+     ,
+     that
+     )
+     {
+894. GM_setClipboard
+     (
+     wwConfig
+     .
+     ua
+     ,
+     "text"
+     );
+895. layer
+     .
+     msg
+     (
+     'UA复制成功！'
+     );
+896. return
+     false
+     ;
+897. },
+898. btn3
+     :
+     function
+     (
+     index
+     ,
+     layero
+     ,
+     that
+     )
+     {
+899. GM_setClipboard
+     (
+     download_url
+     ,
+     "text"
+     );
+900. layer
+     .
+     msg
+     (`
+     $
+     {
+     fileName
+     }
+     的直链复制成功！`);
+901. $
+     (
+     '#parseWxBtn'
+     ).
+     html
+     (
+     '<p>发送到Gopeed</p>'
+     );
+902. // loadStableCaptcha();
+903. }
+904. });
+905. }).
+     catch
+     (
+     e
+     =>
+     {
+906. })
+907. }
+
+909. // function loadStableCaptcha() {
+910. //   GM_xmlhttpRequest({
+911. //     method: 'GET',
+912. //     url: `${wwConfig.vipUrl}`,
+913. //     onload: function (response) {
+914. // console.log(response.responseText);
+915. //       const data = JSON.parse(response.responseText);
+916. //       if (data.status === 'success') {
+917. //         $('#captchaImage').attr('src', 'data:image/jpeg;base64,' + data.img);
+918. //         GM_setValue('captcha_uuid', data.uuid);
+919. //       }
+920. //     }
+921. //   });
+922. // }
+
+924. setInterval
+     (()
+     =>
+     {
+925. GM_xmlhttpRequest
+     ({
+926. method
+     :
+     'get'
+     ,
+927. url
+     :
+     wwConfig
+     .
+     goPeedTaskUrl
+     +
+     '?status=running'
+     ,
+928. headers
+     :
+     {
+929. 'Content-Type'
+     :
+     'application/json'
+     ,
+930. },
+931. onload
+     :
+     function
+     (
+     response
+     )
+     {
+932. const
+     responseData
+     =
+     JSON
+     .
+     parse
+     (
+     response
+     .
+     responseText
+     );
+933. const
+     result
+     =
+     responseData
+     .
+     data
+     .
+     filter
+     (
+     e
+     =>
+934. e
+     .
+     status
+     ===
+     "running"
+935. ).
+     filter
+     ((
+     e
+     )
+     =>
+     e
+     .
+     progress
+     .
+     speed
+     <
+     1048576
+     ).
+     map
+     (
+     e
+     =>
+     e
+     .
+     id
+     );
+936. const
+     ids
+     =
+     result
+     .
+     map
+     ((
+     e
+     )
+     =>
+     {
+937. return
+     `
+     id
+     =
+     $
+     {
+     e
+     }`
+938. }).
+     join
+     (
+     '&'
+     )
+939. if
+     (
+     ids
+     &&
+     ids
+     .
+     length
+     )
+     {
+940. GM_xmlhttpRequest
+     ({
+941. method
+     :
+     'put'
+     ,
+942. url
+     :
+     `
+     $
+     {
+     wwConfig
+     .
+     goPeedTaskUrl
+     }/
+     pause
+     ?
+     $
+     {
+     ids
+     }`,
+943. headers
+     :
+     {
+944. 'Content-Type'
+     :
+     'application/json'
+     ,
+945. },
+946. onload
+     :
+     function
+     (
+     response
+     )
+     {
+947. GM_xmlhttpRequest
+     ({
+948. method
+     :
+     'put'
+     ,
+949. url
+     :
+     `
+     $
+     {
+     wwConfig
+     .
+     goPeedTaskUrl
+     }/
+     continue
+     ?
+     $
+     {
+     ids
+     }`,
+950. headers
+     :
+     {
+951. 'Content-Type'
+     :
+     'application/json'
+     ,
+952. },
+953. onload
+     :
+     function
+     (
+     response
+     )
+     {
+954. }
+955. })
+956. }
+957. })
+958. }
+959. }
+960. })
+961. },
+     15000
+     )
+
+963. })();
+
+```
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+
+# Reference
+- [107] [2026最新可用-百度网盘SVIP高速解析直链的不限速下载助手-文武PanDownload - 源代码](https://greasyfork.org/zh-CN/scripts/518023-2026%E6%9C%80%E6%96%B0%E5%8F%AF%E7%94%A8-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98svip%E9%AB%98%E9%80%9F%E8%A7%A3%E6%9E%90%E7%9B%B4%E9%93%BE%E7%9A%84%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E6%96%87%E6%AD%A6pandownload/code)

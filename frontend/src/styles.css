@@ -507,59 +507,24 @@ textarea {
 
 .media-node-view {
   position: relative;
-  margin: 1rem 0;
-  border: 1px solid transparent;
-  border-radius: 1rem;
-}
-
-.media-node-view.is-selected {
-  border-color: rgba(16, 185, 129, 0.45);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
-}
-
-.media-node-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  padding: 0.35rem 0.55rem;
-}
-
-.media-node-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  background: rgba(39, 36, 28, 0.08);
-  padding: 0.4rem;
-}
-
-.media-node-meta {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #78716c;
+  margin: 1.5rem 0;
 }
 
 .media-node-inner,
 .media-node-audio {
   display: block;
   width: 100%;
-  border-radius: 1rem;
 }
 
 .media-node-resize {
   position: absolute;
-  right: 0.25rem;
-  bottom: 0.25rem;
   height: 16px;
   width: 16px;
   cursor: nwse-resize;
-  border-radius: 999px;
-  background: #111827;
+  border-radius: 4px;
+  background: rgba(39, 36, 28, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
 }
 
 .notion-editor-layout {
@@ -1038,8 +1003,95 @@ input {
   opacity: 0.6;
 }
 
-/* 预览模式下图片/媒体节点不可调整大小 */
-.is-preview .media-node-resize,
-.is-preview .media-node-toolbar {
-  display: none !important;
+/* --- NovaBlock (Sprint 3) Professional Typography --- */
+.novablock-editor {
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+  color: #1a1a1a;
+  padding-bottom: 30vh !important;
+}
+
+.novablock-editor p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.novablock-editor h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  color: #000;
+  line-height: 1.2;
+}
+
+.novablock-editor h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #111;
+}
+
+.novablock-editor h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+/* uipro Block Handle */
+.novablock-editor .tiptap-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.novablock-editor .tiptap-drag-handle:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #000;
+}
+
+/* uipro Table Enhancement */
+.novablock-editor table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.04);
+}
+
+.novablock-editor th, .novablock-editor td {
+  border: 0.5px solid rgba(0, 0, 0, 0.06);
+  padding: 14px 18px;
+  min-width: 120px;
+}
+
+.novablock-editor th {
+  background-color: #fafafa;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Task List uipro */
+.novablock-editor ul[data-type="taskList"] li {
+  margin-bottom: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.novablock-editor ul[data-type="taskList"] li:hover {
+  transform: translateX(4px);
 }

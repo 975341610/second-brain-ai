@@ -33,6 +33,7 @@ class NoteBase(BaseModel):
     content: str
     icon: str = "📝"
     is_title_manually_edited: bool = False
+    is_folder: bool = False
 
 
 class NoteCreate(NoteBase):
@@ -46,6 +47,7 @@ class NoteUpdate(BaseModel):
     content: str | None = None
     icon: str | None = None
     parent_id: int | None = None
+    is_folder: bool | None = None
     is_title_manually_edited: bool | None = None
     tags: list[str] | None = None
 
@@ -78,6 +80,14 @@ class NoteResponse(NoteBase):
 
     class Config:
         from_attributes = True
+
+
+class NoteTreeResponse(NoteResponse):
+    children: list["NoteTreeResponse"] = []
+
+
+# Required for self-referencing Pydantic model
+NoteTreeResponse.model_rebuild()
 
 
 class TaskBase(BaseModel):

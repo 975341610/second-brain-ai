@@ -18,11 +18,10 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    host: '0.0.0.0',
+    host: true,
+    allowedHosts: true,
     hmr: {
-      host: '127.0.0.1',
-      protocol: 'ws',
-      clientPort: 5173,
+      clientPort: 443,
     },
   },
 });

@@ -1,0 +1,448 @@
+import { useState, useMemo, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Layers, Settings, ChevronLeft, ChevronRight, Sparkles, FilePlus, FolderPlus, Edit2, Copy, Trash2, FolderOutput } from 'lucide-react';
+import { buildTree, moveNode, isDescendant } from '../../lib/novablock/treeUtils';
+import type { TreeNode } from '../../lib/novablock/treeUtils';
+import { TreeNodeItem } from './TreeNodeItem';
+
+interface SidebarTreeProps {
+  initialNodes?: TreeNode[];
+  onNodeSelect?: (nodeId: string) => void;
+  onNodeAdd?: (parentId: string | null, type?: 'file' | 'folder') => void;
+  onNodeMove?: (nodeId: string, parentId: string | null, sortKey: string) => void;
+  onNodeRename?: (nodeId: string, newTitle: string) => void;
+  onNodeDelete?: (nodeId: string, deleteChildren: boolean) => void;
+  onNodeDuplicate?: (nodeId: string) => void;
+  onMoodboardSelect?: () => void;
+  className?: string;
+  activeView?: 'notes' | 'moodboard';
+}
+
+export const SidebarTree = ({
+  initialNodes = [],
+  onNodeSelect,
+  onNodeAdd,
+  onNodeMove,
+  onNodeRename,
+  onNodeDelete,
+  onNodeDuplicate,
+  onMoodboardSelect,
+  className = '',
+  activeView = 'notes',
+}: SidebarTreeProps) => {
+  const [nodes, setNodes] = useState<TreeNode[]>(initialNodes);
+  const [selectedId, setSelectedId] = useState<string>();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  
+  const [contextMenu, setContextMenu] = useState<{ x: number, y: number, node: TreeNode } | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [deleteModal, setDeleteModal] = useState<{ node: TreeNode } | null>(null);
+  const [moveToModal, setMoveToModal] = useState<{ node: TreeNode } | null>(null);
+  const [moveToSearchQuery, setMoveToSearchQuery] = useState('');
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = () => setContextMenu(null);
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, []);
+
+  useEffect(() => {
+    if (contextMenu && menuRef.current) {
+      const rect = menuRef.current.getBoundingClientRect();
+      const padding = 8;
+      let { x, y } = contextMenu;
+      
+      if (x + rect.width > window.innerWidth - padding) {
+        x = window.innerWidth - rect.width - padding;
+      }
+      if (y + rect.height > window.innerHeight - padding) {
+        y = window.innerHeight - rect.height - padding;
+      }
+      
+      menuRef.current.style.left = `${Math.max(padding, x)}px`;
+      menuRef.current.style.top = `${Math.max(padding, y)}px`;
+      // Ensure visibility is restored after positioning
+      menuRef.current.style.opacity = '1';
+    }
+  }, [contextMenu]);
+
+  // Sync upstream changes (e.g. title updates from editor) while preserving local structural changes from drag-and-drop
+  useEffect(() => {
+    setNodes(prevNodes => {
+      const prevNodeMap = new Map(prevNodes.map(n => [n.id, n]));
+      const newNodesMap = new Map(initialNodes.map(n => [n.id, n]));
+      
+      return initialNodes.map(n => {
+        const prev = prevNodeMap.get(n.id);
+        if (prev) {
+          // If the cached parent no longer exists in the incoming nodes (e.g., deleted folder),
+          // we must accept the new parentId from upstream.
+          const cachedParentExists = prev.parentId === null || newNodesMap.has(prev.parentId);
+          if (!cachedParentExists) {
+            return n;
+          }
+          // Preserve local parentId and sortKey, but update title
+          return { ...n, parentId: prev.parentId, sortKey: prev.sortKey };
+        }
+        return n; // New node added externally
+      });
+    });
+  }, [initialNodes]);
+
+  const tree = useMemo(() => buildTree(nodes), [nodes]);
+
+  const handleMove = (nodeId: string, targetId: string, position: 'before' | 'after' | 'into') => {
+    // 1. 禁止将节点移动到自身
+    if (nodeId === targetId) return;
+
+    // 2. 循环检测：禁止将节点移动到其自身的子孙节点内部
+    // 如果目标是 nodeId 的子孙，则拦截
+    if (isDescendant(nodes, targetId, nodeId)) {
+      console.warn('Cannot move a parent node into its own descendant');
+      return;
+    }
+
+    const { parentId, sortKey } = moveNode(nodes, nodeId, targetId, position);
+    
+    setNodes((prevNodes) => 
+      prevNodes.map((n) => (n.id === nodeId ? { ...n, parentId, sortKey } : n))
+    );
+    onNodeMove?.(nodeId, parentId, sortKey);
+  };
+
+  const handleSelect = (nodeId: string) => {
+    setSelectedId(nodeId);
+    onNodeSelect?.(nodeId);
+  };
+
+  return (
+    <motion.aside
+      animate={{ width: isCollapsed ? 64 : 280 }}
+      className={`
+        h-full border-r border-border/40 bg-background/60 backdrop-blur-2xl flex flex-col transition-all duration-500 ease-in-out
+        ${className}
+      `}
+    >
+      {/* Sidebar Header */}
+      <div className="p-6 flex items-center justify-between">
+        {!isCollapsed && (
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary/80 to-primary shadow-soft flex items-center justify-center">
+              <Layers size={16} className="text-primary-foreground" />
+            </div>
+            <span className="text-sm font-bold text-foreground/80 tracking-tight">Nova Block</span>
+          </div>
+        )}
+        <button 
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className={`p-2 rounded-xl hover:bg-accent/50 text-muted-foreground hover:text-foreground transition-all duration-300 ${isCollapsed ? 'mx-auto' : ''}`}
+        >
+          {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+        </button>
+      </div>
+
+      {!isCollapsed && (
+        <>
+          {/* Quick Actions */}
+          <div className="px-4 pb-4 space-y-2">
+            <button className="w-full flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-muted-foreground bg-accent/30 hover:bg-accent/60 border border-border/20 rounded-2xl transition-all duration-300 group">
+              <Search size={14} className="group-hover:scale-110 transition-transform" />
+              <span>快速搜索</span>
+              <kbd className="ml-auto text-[10px] opacity-40 font-sans bg-background/50 px-1.5 py-0.5 rounded-lg border border-border/10">⌘K</kbd>
+            </button>
+            <button 
+              onClick={onMoodboardSelect}
+              className={`w-full flex items-center gap-2 px-4 py-2.5 text-xs font-medium rounded-2xl transition-all duration-300 border ${
+                activeView === 'moodboard' 
+                  ? 'text-primary bg-primary/10 border-primary/20 shadow-inner shadow-primary/5' 
+                  : 'text-muted-foreground bg-accent/30 hover:bg-accent/60 border-border/20'
+              }`}
+            >
+              <Sparkles size={14} className={activeView === 'moodboard' ? 'text-primary' : 'text-muted-foreground'} />
+              <span>灵感集 (Moodboard)</span>
+            </button>
+          </div>
+
+          {/* Scrollable Tree Area */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden px-3 space-y-1 custom-scrollbar">
+            <div className="flex items-center justify-between px-3 py-2 group/header">
+              <div className="text-[10px] font-bold text-muted-foreground/50 uppercase tracking-widest">我的手账</div>
+              <div className="flex items-center gap-1 opacity-0 group-hover/header:opacity-100 transition-opacity duration-200">
+                <button 
+                  onClick={() => onNodeAdd?.(null, 'file')}
+                  className="p-1 rounded-md hover:bg-accent/60 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
+                  title="新建笔记"
+                >
+                  <FilePlus size={14} />
+                </button>
+                <button 
+                  onClick={() => onNodeAdd?.(null, 'folder')}
+                  className="p-1 rounded-md hover:bg-accent/60 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
+                  title="新建文件夹"
+                >
+                  <FolderPlus size={14} />
+                </button>
+              </div>
+            </div>
+            {tree.map((node) => (
+              <TreeNodeItem
+                key={node.id}
+                node={node}
+                level={0}
+                onMove={handleMove}
+                onSelect={handleSelect}
+                selectedId={selectedId}
+                editingId={editingId}
+                onContextMenu={(e, n) => {
+                  setContextMenu({ x: e.clientX, y: e.clientY, node: n });
+                }}
+                onRenameSubmit={(nodeId, newTitle) => {
+                  setEditingId(null);
+                  if (newTitle.trim() && newTitle !== node.title) {
+                    onNodeRename?.(nodeId, newTitle);
+                  }
+                }}
+              />
+            ))}
+            
+            {tree.length === 0 && (
+              <div className="py-12 text-center space-y-3 opacity-40">
+                <div className="text-muted-foreground text-xs">暂无手账内容</div>
+                <button 
+                  onClick={() => onNodeAdd?.(null, 'file')}
+                  className="text-xs text-primary hover:underline font-medium"
+                >
+                  开启第一篇治愈之旅
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          <div className="p-4 border-t border-border/20">
+            <button className="w-full flex items-center gap-2 px-4 py-2 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-xl transition-all duration-300">
+              <Settings size={14} />
+              <span>设置与空间管理</span>
+            </button>
+          </div>
+        </>
+      )}
+
+      {isCollapsed && (
+        <div className="flex-1 flex flex-col items-center py-6 gap-6">
+          <button className="p-2.5 rounded-xl hover:bg-accent/50 text-muted-foreground hover:text-foreground transition-all group">
+            <Search size={20} className="group-hover:scale-110 transition-transform" />
+          </button>
+          <button 
+            onClick={() => onNodeAdd?.(null, 'file')}
+            className="p-2.5 rounded-xl bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-95"
+            title="新建笔记"
+          >
+            <FilePlus size={20} strokeWidth={2.5} />
+          </button>
+          <button 
+            onClick={onMoodboardSelect}
+            className={`p-2.5 rounded-xl transition-all ${
+              activeView === 'moodboard' 
+                ? 'bg-primary/10 text-primary' 
+                : 'hover:bg-accent/50 text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <Sparkles size={20} />
+          </button>
+          <div className="flex-1 w-8 border-t border-border/20 mt-2" />
+          <button className="p-2.5 rounded-xl hover:bg-accent/50 text-muted-foreground hover:text-foreground transition-all">
+            <Settings size={20} />
+          </button>
+        </div>
+      )}
+
+      {/* Context Menu Portal */}
+      {contextMenu && createPortal(
+        <div
+          ref={menuRef}
+          className="fixed z-50 w-48 bg-background/80 backdrop-blur-2xl border border-border/40 shadow-xl rounded-xl py-1 max-h-[60vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          style={{ top: contextMenu.y, left: contextMenu.x, opacity: 0 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {contextMenu.node.isFolder && (
+            <>
+              <button 
+                onClick={() => {
+                  onNodeAdd?.(contextMenu.node.id, 'file');
+                  setContextMenu(null);
+                }}
+                className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-accent/50 text-foreground transition-colors"
+              >
+                <FilePlus size={14} className="text-muted-foreground" /> 新建笔记
+              </button>
+              <button 
+                onClick={() => {
+                  onNodeAdd?.(contextMenu.node.id, 'folder');
+                  setContextMenu(null);
+                }}
+                className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-accent/50 text-foreground transition-colors"
+              >
+                <FolderPlus size={14} className="text-muted-foreground" /> 新建文件夹
+              </button>
+              <div className="h-px bg-border/40 my-1 mx-2" />
+            </>
+          )}
+          <button 
+            onClick={() => {
+              setEditingId(contextMenu.node.id);
+              setContextMenu(null);
+            }}
+            className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-accent/50 text-foreground transition-colors"
+          >
+            <Edit2 size={14} className="text-muted-foreground" /> 重命名
+          </button>
+          <button 
+            onClick={() => {
+              onNodeDuplicate?.(contextMenu.node.id);
+              setContextMenu(null);
+            }}
+            className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-accent/50 text-foreground transition-colors"
+          >
+            <Copy size={14} className="text-muted-foreground" /> 制作副本
+          </button>
+          <button 
+            onClick={() => {
+              setMoveToModal({ node: contextMenu.node });
+              setContextMenu(null);
+            }}
+            className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-accent/50 text-foreground transition-colors"
+          >
+            <FolderOutput size={14} className="text-muted-foreground" /> 移动到...
+          </button>
+          <div className="h-px bg-border/40 my-1 mx-2" />
+          <button 
+            onClick={() => {
+              if (contextMenu.node.isFolder && contextMenu.node.children && contextMenu.node.children.length > 0) {
+                setDeleteModal({ node: contextMenu.node });
+              } else {
+                onNodeDelete?.(contextMenu.node.id, true);
+              }
+              setContextMenu(null);
+            }}
+            className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-destructive/10 text-destructive transition-colors group"
+          >
+            <Trash2 size={14} className="text-destructive/70 group-hover:text-destructive" /> 删除
+          </button>
+        </div>,
+        document.body
+      )}
+
+      {/* Delete Confirmation Modal */}
+      <AnimatePresence>
+        {deleteModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-background border border-border/40 shadow-2xl rounded-2xl p-6 max-w-sm w-full"
+            >
+              <h3 className="text-lg font-bold mb-2">删除文件夹</h3>
+              <p className="text-sm text-muted-foreground mb-6">
+                「{deleteModal.node.title}」包含子项目。您希望如何处理这些子项目？
+              </p>
+              <div className="space-y-2">
+                <button
+                  onClick={() => {
+                    onNodeDelete?.(deleteModal.node.id, false);
+                    setDeleteModal(null);
+                  }}
+                  className="w-full px-4 py-2 text-sm font-medium text-foreground bg-accent/50 hover:bg-accent rounded-xl transition-colors text-left"
+                >
+                  仅删除文件夹 (保留内容)
+                </button>
+                <button
+                  onClick={() => {
+                    onNodeDelete?.(deleteModal.node.id, true);
+                    setDeleteModal(null);
+                  }}
+                  className="w-full px-4 py-2 text-sm font-medium text-destructive bg-destructive/10 hover:bg-destructive/20 rounded-xl transition-colors text-left"
+                >
+                  删除文件夹及其所有内容
+                </button>
+                <button
+                  onClick={() => setDeleteModal(null)}
+                  className="w-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-xl transition-colors text-left mt-2"
+                >
+                  取消
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Move To Modal */}
+      <AnimatePresence>
+        {moveToModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-background border border-border/40 shadow-2xl rounded-2xl flex flex-col max-w-md w-full max-h-[80vh]"
+            >
+              <div className="p-4 border-b border-border/20">
+                <h3 className="text-lg font-bold mb-3">移动「{moveToModal.node.title || (moveToModal.node.isFolder ? '无标题文件夹' : '无标题笔记')}」到...</h3>
+                <div className="relative">
+                  <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                  <input 
+                    autoFocus
+                    type="text"
+                    value={moveToSearchQuery}
+                    onChange={e => setMoveToSearchQuery(e.target.value)}
+                    placeholder="搜索目标文件夹..."
+                    className="w-full bg-accent/30 border border-border/20 rounded-xl pl-9 pr-4 py-2 text-sm outline-none focus:border-primary/50 transition-colors"
+                  />
+                </div>
+              </div>
+              <div className="flex-1 overflow-y-auto p-2">
+                <button
+                  onClick={() => {
+                    const sortKey = Date.now().toString();
+                    setNodes(prev => prev.map(n => n.id === moveToModal.node.id ? { ...n, parentId: null, sortKey } : n));
+                    onNodeMove?.(moveToModal.node.id, null, sortKey);
+                    setMoveToModal(null);
+                  }}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-accent/50 rounded-lg text-left"
+                >
+                  <Layers size={16} className="text-muted-foreground" /> 根目录
+                </button>
+                {nodes
+                  .filter(n => n.isFolder && n.id !== moveToModal.node.id && !isDescendant(nodes, n.id, moveToModal.node.id) && (n.title || '').toLowerCase().includes(moveToSearchQuery.toLowerCase()))
+                  .map(folder => (
+                    <button
+                      key={folder.id}
+                      onClick={() => {
+                        handleMove(moveToModal.node.id, folder.id, 'into');
+                        setMoveToModal(null);
+                      }}
+                      className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-accent/50 rounded-lg text-left"
+                    >
+                      <FolderPlus size={16} className="text-primary/70" /> {folder.title || '无标题文件夹'}
+                    </button>
+                  ))}
+              </div>
+              <div className="p-4 border-t border-border/20 flex justify-end">
+                <button
+                  onClick={() => setMoveToModal(null)}
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground bg-accent/30 hover:bg-accent/60 rounded-xl transition-colors"
+                >
+                  取消
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </motion.aside>
+  );
+};

@@ -1,0 +1,268 @@
+@import 'vue/fonts.css';
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+    --font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}.typora-wrapper[data-theme="typora-vue"] {
+    font-size: 16px;
+}.typora-wrapper[data-theme="typora-vue"] {
+    font-family: var(--font-sans-serif);
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}.typora-wrapper[data-theme="typora-vue"] #write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}.typora-wrapper[data-theme="typora-vue"] #write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}.typora-wrapper[data-theme="typora-vue"] #write ol li {
+    padding-left: 0.5rem;
+}.typora-wrapper[data-theme="typora-vue"] #write > ul:first-child, .typora-wrapper[data-theme="typora-vue"] #write > ol:first-child {
+    margin-top: 30px;
+}.typora-wrapper[data-theme="typora-vue"] > *:first-child {
+    margin-top: 0 !important;
+}.typora-wrapper[data-theme="typora-vue"] > *:last-child {
+    margin-bottom: 0 !important;
+}.typora-wrapper[data-theme="typora-vue"] a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}.typora-wrapper[data-theme="typora-vue"] h1, .typora-wrapper[data-theme="typora-vue"] h2, .typora-wrapper[data-theme="typora-vue"] h3, .typora-wrapper[data-theme="typora-vue"] h4, .typora-wrapper[data-theme="typora-vue"] h5, .typora-wrapper[data-theme="typora-vue"] h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}.typora-wrapper[data-theme="typora-vue"] h1:hover a.anchor, .typora-wrapper[data-theme="typora-vue"] h2:hover a.anchor, .typora-wrapper[data-theme="typora-vue"] h3:hover a.anchor, .typora-wrapper[data-theme="typora-vue"] h4:hover a.anchor, .typora-wrapper[data-theme="typora-vue"] h5:hover a.anchor, .typora-wrapper[data-theme="typora-vue"] h6:hover a.anchor {
+    text-decoration: none;
+}.typora-wrapper[data-theme="typora-vue"] h1 tt, .typora-wrapper[data-theme="typora-vue"] h1 code {
+    font-size: inherit !important;
+}.typora-wrapper[data-theme="typora-vue"] h2 tt, .typora-wrapper[data-theme="typora-vue"] h2 code {
+    font-size: inherit !important;
+}.typora-wrapper[data-theme="typora-vue"] h3 tt, .typora-wrapper[data-theme="typora-vue"] h3 code {
+    font-size: inherit !important;
+}.typora-wrapper[data-theme="typora-vue"] h4 tt, .typora-wrapper[data-theme="typora-vue"] h4 code {
+    font-size: inherit !important;
+}.typora-wrapper[data-theme="typora-vue"] h5 tt, .typora-wrapper[data-theme="typora-vue"] h5 code {
+    font-size: inherit !important;
+}.typora-wrapper[data-theme="typora-vue"] h6 tt, .typora-wrapper[data-theme="typora-vue"] h6 code {
+    font-size: inherit !important;
+}.typora-wrapper[data-theme="typora-vue"] h2 a, .typora-wrapper[data-theme="typora-vue"] h3 a {
+    color: #34495e;
+}.typora-wrapper[data-theme="typora-vue"] h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}.typora-wrapper[data-theme="typora-vue"] h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}.typora-wrapper[data-theme="typora-vue"] h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}.typora-wrapper[data-theme="typora-vue"] h4 {
+    font-size: 1.2rem;
+}.typora-wrapper[data-theme="typora-vue"] h5 {
+    font-size: 1rem;
+}.typora-wrapper[data-theme="typora-vue"] h6 {
+    font-size: 1rem;
+    color: #777;
+}.typora-wrapper[data-theme="typora-vue"] p, .typora-wrapper[data-theme="typora-vue"] blockquote, .typora-wrapper[data-theme="typora-vue"] ul, .typora-wrapper[data-theme="typora-vue"] ol, .typora-wrapper[data-theme="typora-vue"] dl, .typora-wrapper[data-theme="typora-vue"] table {
+    margin: 0.8em 0;
+}.typora-wrapper[data-theme="typora-vue"] li > ol, .typora-wrapper[data-theme="typora-vue"] li > ul {
+    margin: 0 0;
+}.typora-wrapper[data-theme="typora-vue"] hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}.typora-wrapper[data-theme="typora-vue"] > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] > h3:first-child, .typora-wrapper[data-theme="typora-vue"] > h4:first-child, .typora-wrapper[data-theme="typora-vue"] > h5:first-child, .typora-wrapper[data-theme="typora-vue"] > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] a:first-child h1, .typora-wrapper[data-theme="typora-vue"] a:first-child h2, .typora-wrapper[data-theme="typora-vue"] a:first-child h3, .typora-wrapper[data-theme="typora-vue"] a:first-child h4, .typora-wrapper[data-theme="typora-vue"] a:first-child h5, .typora-wrapper[data-theme="typora-vue"] a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] h1 p, .typora-wrapper[data-theme="typora-vue"] h2 p, .typora-wrapper[data-theme="typora-vue"] h3 p, .typora-wrapper[data-theme="typora-vue"] h4 p, .typora-wrapper[data-theme="typora-vue"] h5 p, .typora-wrapper[data-theme="typora-vue"] h6 p {
+    margin-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] li p.first {
+    display: inline-block;
+}.typora-wrapper[data-theme="typora-vue"] ul, .typora-wrapper[data-theme="typora-vue"] ol {
+    padding-left: 30px;
+}.typora-wrapper[data-theme="typora-vue"] ul:first-child, .typora-wrapper[data-theme="typora-vue"] ol:first-child {
+    margin-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] ul:last-child, .typora-wrapper[data-theme="typora-vue"] ol:last-child {
+    margin-bottom: 0;
+}.typora-wrapper[data-theme="typora-vue"] blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .1);
+}.typora-wrapper[data-theme="typora-vue"] table {
+    padding: 0;
+    word-break: initial;
+}.typora-wrapper[data-theme="typora-vue"] table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}.typora-wrapper[data-theme="typora-vue"] table tr:nth-child(2n), .typora-wrapper[data-theme="typora-vue"] thead {
+    background-color: #fafafa;
+}.typora-wrapper[data-theme="typora-vue"] table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}.typora-wrapper[data-theme="typora-vue"] table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}.typora-wrapper[data-theme="typora-vue"] table tr th:first-child, .typora-wrapper[data-theme="typora-vue"] table tr td:first-child {
+    margin-top: 0;
+}.typora-wrapper[data-theme="typora-vue"] table tr th:last-child, .typora-wrapper[data-theme="typora-vue"] table tr td:last-child {
+    margin-bottom: 0;
+}.typora-wrapper[data-theme="typora-vue"] #write strong {
+    padding: 0 1px;
+}.typora-wrapper[data-theme="typora-vue"] #write em {
+    padding: 0 5px 0 2px;
+}.typora-wrapper[data-theme="typora-vue"] #write table thead th {
+    background-color: #f2f2f2;
+}.typora-wrapper[data-theme="typora-vue"] #write .CodeMirror-gutters {
+    border-right: none;
+}.typora-wrapper[data-theme="typora-vue"] #write .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    word-wrap: normal;
+}.typora-wrapper[data-theme="typora-vue"] #write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}.typora-wrapper[data-theme="typora-vue"] #write code, .typora-wrapper[data-theme="typora-vue"] tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}.typora-wrapper[data-theme="typora-vue"] tt {
+    margin: 0 2px;
+}.typora-wrapper[data-theme="typora-vue"] #write .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}.typora-wrapper[data-theme="typora-vue"] #write mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}.typora-wrapper[data-theme="typora-vue"] #write del {
+    padding: 1px 2px;
+}.typora-wrapper[data-theme="typora-vue"] .cm-s-inner .cm-link, .typora-wrapper[data-theme="typora-vue"] .cm-s-inner.cm-link {
+    color: #22a2c9;
+}.typora-wrapper[data-theme="typora-vue"] .cm-s-inner .cm-string {
+    color: #22a2c9;
+}.typora-wrapper[data-theme="typora-vue"] .md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {.typora-wrapper[data-theme="typora-vue"] {
+        font-size: 13px;
+    }.typora-wrapper[data-theme="typora-vue"] table, .typora-wrapper[data-theme="typora-vue"] pre {
+        page-break-inside: avoid;
+    }.typora-wrapper[data-theme="typora-vue"] pre {
+        word-wrap: break-word;
+    }
+}.typora-wrapper[data-theme="typora-vue"] .md-fences {
+    background-color: #f8f8f8;
+}.typora-wrapper[data-theme="typora-vue"] .md-diagram-panel {
+    position: static !important;
+}.typora-wrapper[data-theme="typora-vue"] #write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}.typora-wrapper[data-theme="typora-vue"] .mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}.typora-wrapper[data-theme="typora-vue"] #write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}.typora-wrapper[data-theme="typora-vue"] #write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}.typora-wrapper[data-theme="typora-vue"] #write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}.typora-wrapper[data-theme="typora-vue"] #write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}.typora-wrapper[data-theme="typora-vue"] .md-image > .md-meta {
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}.typora-wrapper[data-theme="typora-vue"] .md-tag {
+    color: inherit;
+}.typora-wrapper[data-theme="typora-vue"] .md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}.typora-wrapper[data-theme="typora-vue"] .sidebar-tabs {
+    border-bottom: none;
+}.typora-wrapper[data-theme="typora-vue"] #typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}.typora-wrapper[data-theme="typora-vue"] #typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}.typora-wrapper[data-theme="typora-vue"] #md-notification:before {
+    top: 10px;
+}.typora-wrapper[data-theme="typora-vue"] .on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}.typora-wrapper[data-theme="typora-vue"] header, .typora-wrapper[data-theme="typora-vue"] .context-menu, .typora-wrapper[data-theme="typora-vue"] .megamenu-content, .typora-wrapper[data-theme="typora-vue"] footer {
+    font-family: var(--font-sans-serif);
+}.typora-wrapper[data-theme="typora-vue"] .file-node-content:hover .file-node-icon, .typora-wrapper[data-theme="typora-vue"] .file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}.typora-wrapper[data-theme="typora-vue"] .mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}.typora-wrapper[data-theme="typora-vue"] .md-lang {
+    color: #b4654d;
+}.typora-wrapper[data-theme="typora-vue"] .html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}

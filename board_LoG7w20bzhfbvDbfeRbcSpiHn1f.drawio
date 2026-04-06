@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"></mxCell>
+        <mxCell id="1" parent="0"></mxCell>
+        <mxCell id="o1:1" style="align=center;ellipse;fillColor=#ece2fe;fontSize=14;strokeColor=#935af6;strokeWidth=3.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="280.0" y="585.0" width="30.0" height="30.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:2" value="第一阶段：核心同步与桌面 MVP&#xA;&#xA;- Windows 客户端（路线A/B并行验证）&#xA;- 多端数据同步 (离线优先)&#xA;- 外网安全访问 (Cloudflare Tunnel)&#xA;- 私密笔记 (E2EE V1)" style="align=left;fillColor=#ffffff;fontSize=14;html=1;rounded=1;strokeColor=#935af6;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="180.0" y="370.0" width="260.0" height="180.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:1" value="Q2 2026" style="align=center;fillColor=none;fontSize=14;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="265.0" y="625.0" width="60.0" height="30.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:3" style="align=center;ellipse;fillColor=#e1eaff;fontSize=14;strokeColor=#4e83fd;strokeWidth=3.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="680.0" y="585.0" width="30.0" height="30.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:4" value="第二阶段：游戏化与灵感捕捉&#xA;&#xA;- 灵感速记 (全局快捷键/悬浮窗)&#xA;- 游戏化系统 (成就/经验值/技能树)&#xA;- 看板娘 &amp; 桌面宠物&#xA;- 移动端入口 (分享/语音)" style="align=left;fillColor=#ffffff;fontSize=14;html=1;rounded=1;strokeColor=#4e83fd;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="580.0" y="650.0" width="260.0" height="180.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:2" value="Q3 2026" style="align=center;fillColor=none;fontSize=14;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="665.0" y="545.0" width="60.0" height="30.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:5" style="align=center;ellipse;fillColor=#feead2;fontSize=14;strokeColor=#ffa53d;strokeWidth=3.0;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1080.0" y="585.0" width="30.0" height="30.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:6" value="第三阶段：完善与扩展&#xA;&#xA;- 时间轴功能&#xA;- 笔记模板系统&#xA;- 主题与图标“一键换装”&#xA;- 开放 API 与插件市场" style="align=left;fillColor=#ffffff;fontSize=14;html=1;rounded=1;strokeColor=#ffa53d;strokeWidth=2.0;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="980.0" y="370.0" width="260.0" height="180.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:3" value="Q4 2026" style="align=center;fillColor=none;fontSize=14;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1065.0" y="625.0" width="60.0" height="30.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:1" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100.0" y="600.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="1500.0" y="600.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:2" style="endArrow=none;entryX=0.50;entryY=1.00;exitX=0.50;exitY=0.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:1" target="o1:2">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:3" style="endArrow=none;entryX=0.50;entryY=0.00;exitX=0.50;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="o1:3" target="o1:4">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:4" style="endArrow=none;entryX=0.50;entryY=1.00;exitX=0.50;exitY=0.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="1" edge="1" source="a1:2" target="o1:6">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

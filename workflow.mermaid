@@ -1,0 +1,48 @@
+---
+config:
+  theme: 'base'
+---
+
+flowchart TD
+  linkStyle default stroke-width:2px,stroke:#000000
+
+  classDef startend_style fill:#EAE2FE,stroke:#000000,stroke-width:2px,color:#1f2329
+  classDef process_style fill:#F0F4FC,stroke:#000000,stroke-width:2px,color:#1f2329
+  classDef decision_style fill:#FEF1CE,stroke:#000000,stroke-width:2px,color:#1f2329
+
+  subgraph Registration ["`**账号生产层 (Registration Machine)**`"]
+    RegTool["全自动注册机"]
+    Bypass["风控对抗 (Sentinel/Captcha/SMS)"]
+    Accounts["原始账号池 (Access Token/Session)"]
+    RegTool --> Bypass
+    Bypass --> Accounts
+  end
+  style Registration fill:#f5f5f5,stroke:#bbbfc4,color:#000000
+
+  subgraph Conversion ["`**协议转换层 (Conversion Layer)**`"]
+    Sub2API["Sub2API / CRS2"]
+    CPA["CPA (OpenClaw / Codex Manager)"]
+    Accounts --> Sub2API
+    Accounts --> CPA
+    Sub2API -->|"转为标准 API"| StandardAPI["标准 OpenAI 兼容接口"]
+    CPA -->|"转为标准 API"| StandardAPI
+  end
+  style Conversion fill:#f5f5f5,stroke:#bbbfc4,color:#000000
+
+  subgraph Aggregation ["`**聚合与调度层 (Aggregation & Dispatch)**`"]
+    NewAPI["NewAPI / OneAPI (网关管理)"]
+    GPTLoad["GPT-load (智能轮询)"]
+    StandardAPI --> GPTLoad
+    GPTLoad --> NewAPI
+  end
+  style Aggregation fill:#f5f5f5,stroke:#bbbfc4,color:#000000
+
+  subgraph Distribution ["`**分发与业务层 (Distribution)**`"]
+    Users["终端用户 / 开发者"]
+    Billing["计费与权限控制"]
+    NewAPI --> Billing
+    Billing --> Users
+  end
+  style Distribution fill:#f5f5f5,stroke:#bbbfc4,color:#000000
+
+  class RegTool,Bypass,Accounts,Sub2API,CPA,StandardAPI,NewAPI,GPTLoad,Users,Billing process_style

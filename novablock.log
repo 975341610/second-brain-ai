@@ -1,0 +1,21 @@
+
+> nova-block@0.0.0 dev
+> vite
+
+
+  VITE v8.0.3  ready in 158 ms
+
+  ➜  Local:   http://localhost:5173/
+4:08:28 PM [vite] (client) hmr update /src/App.tsx, /src/index.css
+4:08:36 PM [vite] (client) hmr update /src/App.tsx, /src/index.css
+4:09:00 PM [vite] (client) hmr update /src/index.css
+4:09:22 PM [vite] (client) hmr update /src/components/sidebar/SidebarTree.tsx, /src/index.css
+4:09:42 PM [vite] (client) hmr update /src/components/sidebar/TreeNodeItem.tsx, /src/index.css
+4:09:50 PM [vite] (client) hmr update /src/components/sidebar/TreeNodeItem.tsx, /src/index.css
+4:10:00 PM [vite] (client) hmr update /src/components/sidebar/TreeNodeItem.tsx, /src/index.css
+4:10:16 PM [vite] (client) hmr update /src/App.tsx, /src/index.css
+4:10:55 PM [vite] (client) hmr update /src/components/editor/EditorHeader.tsx, /src/index.css
+4:12:09 PM [vite] (client) hmr update /src/components/editor/EditorHeader.tsx, /src/index.css
+4:12:26 PM [vite] (client) hmr update /src/components/novablock/NovaBlockEditor.tsx, /src/index.css
+4:12:41 PM [vite] (client) hmr update /src/components/novablock/NovaBlockEditor.tsx, /src/index.css
+4:16:59 PM [vite] (client) hmr update /src/components/novablock/NovaBlockEditor.tsx, /src/index.css

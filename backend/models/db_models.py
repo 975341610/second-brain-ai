@@ -46,6 +46,7 @@ class Note(Base):
     tags: Mapped[str] = mapped_column(String(500), default="")
     notebook_id: Mapped[int | None] = mapped_column(ForeignKey("notebooks.id", ondelete="SET NULL"), nullable=True, index=True)
     parent_id: Mapped[int | None] = mapped_column(ForeignKey("notes.id", ondelete="SET NULL"), nullable=True, index=True)
+    is_folder: Mapped[bool] = mapped_column(Integer, default=0)  # 0 for false, 1 for true
     position: Mapped[int] = mapped_column(Integer, default=0)
     is_title_manually_edited: Mapped[bool] = mapped_column(Integer, default=0)  # 0 for false, 1 for true
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

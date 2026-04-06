@@ -3,6 +3,7 @@ import { NodeViewWrapper } from '@tiptap/react';
 import { GripVertical, Trash2, FileIcon, Download } from 'lucide-react';
 import { useMemo } from 'react';
 import { formatFileSize } from '../lib/mediaUtils';
+import { getApiBase } from '../lib/api';
 
 type MediaKind = 'image' | 'video' | 'audio' | 'embed' | 'file';
 
@@ -16,15 +17,20 @@ export function MediaNodeView({ node, updateAttributes, deleteNode, selected, ki
   const height = (node.attrs.height as number) || 420;
 
   const content = useMemo(() => {
-    if (kind === 'image') return <img src={src} alt="" className="media-node-inner" draggable={false} />;
-    if (kind === 'video') return <video src={src} controls muted playsInline className="media-node-inner" />;
-    if (kind === 'audio') return <audio src={src} controls className="media-node-audio" />;
+    // If it's a relative URL from our backend, prefix it with the API base
+    const absoluteSrc = src?.startsWith('/api/media/files/') 
+      ? `${getApiBase().replace(/\/api$/, '')}${src}` 
+      : src;
+
+    if (kind === 'image') return <img src={absoluteSrc} alt="" className="media-node-inner" draggable={false} />;
+    if (kind === 'video') return <video src={absoluteSrc} controls muted playsInline className="media-node-inner" />;
+    if (kind === 'audio') return <audio src={absoluteSrc} controls className="media-node-audio" />;
     if (kind === 'file') {
       const { name, size, type } = node.attrs;
       return (
         <div 
           className="flex items-center gap-3 p-3 bg-stone-50 border border-stone-200 rounded-lg hover:bg-stone-100 transition-colors cursor-pointer group/file"
-          onClick={() => window.open(src, '_blank')}
+          onClick={() => window.open(absoluteSrc, '_blank')}
         >
           <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-white border border-stone-200 rounded-md text-stone-400 group-hover/file:text-blue-500 transition-colors shadow-sm">
             <FileIcon size={20} />
@@ -87,18 +93,43 @@ export function MediaNodeView({ node, updateAttributes, deleteNode, selected, ki
   };
 
   return (
-    <NodeViewWrapper className={`media-node-view ${selected ? 'is-selected' : ''}`} data-media-wrapper style={{ width }}>
-      <div className="media-node-toolbar" contentEditable={false}>
-        <button className="media-node-action drag-handle" data-drag-handle type="button">
+    <NodeViewWrapper 
+      className={`media-node-view group relative transition-all duration-300 hover:shadow-md hover:-translate-y-1 bg-white dark:bg-zinc-800 border border-stone-200 dark:border-zinc-700 shadow-sm p-3 pb-10 rounded-xl ${selected ? 'ring-2 ring-emerald-500/50' : ''}`} 
+      data-media-wrapper 
+      style={{ width }}
+    >
+      {/* Floating Action Buttons */}
+      <div 
+        className="absolute top-4 right-4 z-10 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        contentEditable={false}
+      >
+        <button 
+          className="p-1.5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-stone-200 dark:border-zinc-700 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 shadow-sm transition-colors cursor-grab active:cursor-grabbing drag-handle" 
+          data-drag-handle 
+          type="button"
+          title="拖拽"
+        >
           <GripVertical size={14} />
         </button>
-        <div className="media-node-meta">{kind}</div>
-        <button className="media-node-action" type="button" onClick={() => deleteNode()}>
+        <button 
+          className="p-1.5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm border border-stone-200 dark:border-zinc-700 rounded-lg text-stone-500 hover:text-red-500 shadow-sm transition-colors" 
+          type="button" 
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            deleteNode();
+          }}
+          title="删除"
+        >
           <Trash2 size={14} />
         </button>
       </div>
-      {content}
-      <button className="media-node-resize" contentEditable={false} type="button" onMouseDown={startResize} />
+
+      <div className="relative overflow-hidden rounded-lg">
+        {content}
+      </div>
+
+      <button className="media-node-resize absolute right-2 bottom-2 opacity-0 group-hover:opacity-100 transition-opacity" contentEditable={false} type="button" onMouseDown={startResize} />
     </NodeViewWrapper>
   );
 }

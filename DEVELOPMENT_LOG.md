@@ -1,180 +1,138 @@
-# Second Brain AI - 开发进度与状态日志
+# Development Log
 
-> **维护规则 (System Rule)**: 
-> 1. 每次收到新需求、发现新问题，第一时间补充到此文档。
-> 2. 只有在**用户（老大）明确确认**问题/需求解决后，才能标记为 `[x]` 或 `已解决`。
-> 3. 每次提交 GitHub (Commit/Push) 必须在此记录更新详情。
-> 4. 保持言简意赅，方便 AI 快速读取上下文。
+## [2026-04-04] - 高级极简主义大纲目录 (TOC) 组件实现
 
----
+### 核心功能
+- **极简设计**：在静止状态下仅显示代表标题等级的水平横线，不占用正文空间。
+- **动态交互**：鼠标悬停时平滑展开，显示标题文字，伴随毛玻璃效果和贝塞尔曲线动画。
+- **自动提取**：集成 Tiptap 的标题提取逻辑，自动构建 H1-H3 层级树。
+- **同步高亮**：利用 `IntersectionObserver` 实现滚动时的实时位置跟踪与高亮。
+- **平滑滚动**：点击目录项可平滑跳转至对应正文位置。
 
-## 📋 需求追踪 (Requirements)
+### 技术栈
+- **React**: 组件化开发。
+- **Framer Motion**: 高级补间动画与状态切换。
+- **Tailwind CSS**: 基础布局与响应式样式。
+- **IntersectionObserver API**: 高性能的可见性追踪。
 
-### 待办 / 进行中 (Pending / In Progress)
-- [ ] **架构转向：Obsidian/Typora 风格（纯本地文件 SSOT + 数据同步）**
-  - [x] **Phase 1: 极简 I/O 链路重写 (Node.js 原生直写)** - 已完成，切断了笔记读写的 Python 依赖。
-  - [x] **Phase 2: 状态解绑与隔离 (State Decoupling)** - 已完成，编辑器重构为非受控组件，实现静默防抖保存。
-  - [ ] **Phase 3: 结构化元数据索引 (本地嵌入式 DB)**
-- [ ] **Phase 4: 桌面究极体改造** (Electron 重构，独立桌面窗口，系统托盘 - 已完成 MVP 适配)
-- [ ] **全站 UI & 布局重构** (参考 Awwwards、Linear 质感)
-- [ ] **互动级动态壁纸系统** (WebGL/Three.js，环境感知)
-- [ ] **万物皆可拖拽** (自由调整文档/文本/图片位置)
-- [ ] **飞书级表格系统** (多维属性增强)
-- [x] **[Windows MVP] 系统托盘与本地路径优化** (已完成)
+### 视觉细节 (ui-ux-pro-max)
+- 使用 `cubic-bezier(0.4, 0, 0.2, 1)` 贝塞尔曲线。
+- 采用 1.5px 的精致线条和 `text-[11px]` 的极简字体。
+- 实现了展开时的模糊滤镜 (`backdrop-blur`) 和文字渐入 (`opacity + blur`) 效果。
 
-### 待确认 (Pending User Confirmation)
-- [ ] **[架构迁移] 纯本地文件优先 (Local-first) SSOT 闭环实现**
-  - *更新内容*: 
-    1. 增强 `SSOTWatcher`：支持磁盘变更内容实时推送到编辑器。
-    2. `NotionEditor` 适配：响应 `ssot:note-changed` 事件，实现与第三方编辑器（Obsidian/Typora）的协同。
-    3. `preload` 安全增强：优化 IPC 事件绑定，支持自动清理监听。
-    4. Windows 适配：本地存储路径迁移至 `appData`，完善系统托盘双击恢复与关闭隐藏逻辑。
-  - *当前进度*: 代码已就绪，**[待老大确认测试]**。
-- [ ] **[Bug修复] 基础联调与多端同步前置问题修复** (当前所在分支 `fix/4-issues-integration`)
+## [2026-04-06] - 修复组件输入消失问题 & 还原 Blockquote 样式
 
-### 已完成 (Completed)
-- [x] **[架构重构] 彻底切断 FastAPI 依赖，实现纯本地 IPC CRUD 闭环** (2026-03-31)
-  - *重构详情*: 
-    1. **前端 API 层**: 全面移除 `fetch` 对 FastAPI 的直接调用，改为通过 `window.electron.ipcInvoke` 与主进程通信。
-    2. **主进程 IPC Bridge**: 在 `src/main` 引入 Python 桥接机制，直接调用 `repositories.py` 逻辑，绕过网络协议栈。
-    3. **Preload 安全增强**: 暴露通用的 `ipcInvoke` 接口，支持渲染进程直接发起本地指令。
-  - *解决痛点*: 彻底解决了用户抱怨的“本地读写为何还有网络请求失败”的问题，大幅提升了操作响应速度与可靠性。
+### 核心修复
+- **修复组件消失**: 修复了在 CodeBlock、Sticky Note 和 Footnote 中输入时导致组件消失的 Bug。主要原因是 `NovaBlockEditor.tsx` 中的状态同步逻辑在每次按键时不断调用 `setContent`，导致 ProseMirror 销毁并重建 NodeViews。现已将同步逻辑改为仅在 `note.id` 改变时触发。
+- **严格 DOM 映射**: 重构了 `CodeBlockComponent.tsx` 和 `FootnoteComponent.tsx`，使其 React `NodeViewWrapper` 和 `NodeViewContent` 严格使用 `code` 和 `span` 标签，与 Tiptap 的 `renderHTML` 架构定义完美匹配，防止 ProseMirror 丢弃“无效”的嵌套节点。
+- **拖拽事件冒泡**: 在 `StickyNoteComponent.tsx` 中重写了拖拽手柄的事件处理逻辑，严格执行 `e.preventDefault()` 和 `e.stopPropagation()`，并确保 `draggable={true}` 以允许正常拖拽。
 
----
+### 样式调整
+- **Blockquote 还原**: 更新了 `novablock-core.css`，将 Blockquote 的样式还原为最初的设计（`font-style: italic !important;` 以及固定的段落边距），符合用户的“初始实现样式”偏好。
 
-## 🐛 问题追踪 (Issue Tracker)
+## [2026-04-06] - Tiptap 注脚 (Footnote) 组件重构与自动序号系统实现
 
-### 未解决 / 待确认 (Unresolved / Pending Confirmation)
-1. **保存系统冲突（前端保存与磁盘监控打架）**
-   - *现象*: 自动保存触发后，SSOT Watcher 监测到文件变化并推送到前端，导致编辑器强制 `setContent`，引发光标跳动、死循环或内容被旧版本覆盖。
-   - *修复细节*:
-     - **NotionEditor.tsx**: 引入 `isRemoteUpdatingRef` 锁机制。在处理来自磁盘的同步事件（`ssot:note-changed`）时，临时禁用 `onUpdate` 触发的自动保存，切断死循环。
-     - **光标保护**: 增加 `isFocused` 判断，用户正在输入时跳过强制同步；增加 `selection` 记录与恢复逻辑，确保同步后光标位置不丢失。
-     - **属性修改优化**: 在 `App.tsx` 中将侧边栏属性修改（图标、标签等）设为 `silent: true` 模式，减少不必要的 UI 干扰与重绘。
-   - *当前进度*: 已完成核心链路修复，**[待老大确认测试]**。
-2. **保存失败与回收站遗留问题**
-   - *现象*: 笔记保存偶尔失败（父子关系丢失），新建子页面导致父页面重载，删除笔记不进本地回收站。
-   - *修复细节*:
-     - **Bug 1 (保存)**: 修复了 `App.tsx` 的 `onUpdateNote` 回调遗漏 `parent_id` 的问题；改进了后端 `update_note_api` 逻辑，支持显式传递 `null` 来清除父节点。
-     - **Bug 2 (刷新)**: 为 `createDraftNote` 引入 `silent` 模式，在创建子页面时实现局部乐观更新，禁止触发全量组件重绘。
-     - **Bug 3 (回收站)**: 在后端 `soft_delete_note` 中实现了将已删除笔记（含子笔记）自动导出并移动到 `.trash/*.md` 文件的机制，确保了纯本地架构下的物理软删除闭环。
-   - *当前进度*: 已完成 TDD 修复，本地测试通过。**[待老大确认]**。
-2. **编辑器状态泄露 (State Bleed)**
-   - *现象*: 快速切换笔记时，旧笔记内容覆盖新笔记。
-   - *当前进度*: 引入闭包和 `Ref` 锁机制阻断串台。代码已推送，**[待老大确认]**。
-4. **动态视频壁纸无法播放**
-   - *现象*: IndexedDB 取出的视频 Blob 缺少 MIME 类型。
-   - *当前进度*: 已强制指定 `video/mp4` MIME 类型。代码已推送，**[待老大确认]**。
+### 核心功能
+- **全自动序号重排**: 实现 ProseMirror 插件 `footnote-reindexer`，通过 `appendTransaction` 实时监听文档变更。无论是插入、删除还是移动注脚，所有序号都会在毫秒级内自动重新计算并同步（[1], [2], [3]...）。
+- **交互状态分离**: 
+  - **View Mode**: 默认仅显示蓝色的数字序号 `[n]`，保持正文排版极致整洁。
+  - **Edit Mode**: 双击序号即可唤起精致的编辑气泡框，支持实时内容修改。
+- **高级悬停提示 (Tooltip)**: 鼠标悬停在序号上时，显示带有 **毛玻璃背景 (`backdrop-blur`)** 和 **平滑缩放/淡入动画** 的 Tooltip，优雅呈现注脚全文。
+- **内联排版优化**: 严格遵循行内元素规范，采用 `inline-flex` 布局，确保在不同字号和行高下均能完美对齐。
 
-### 已解决 (Resolved)
-1. **保存失败、刷新与回收站遗留问题** (已通过 IPC 重构彻底修复)
-   - **Bug 1 (保存)**: 修复了更新笔记时 `parent_id` 可能被覆盖为 `null` 的逻辑漏洞。
-   - **Bug 2 (刷新)**: 优化了 `useAppStore` 的状态合并逻辑，确保新建子页面（silent 模式）时不会导致父页面编辑器重载。
-   - **Bug 3 (回收站)**: 完善了 Electron 主进程触发的物理软删除，删除笔记时自动在本地 `.trash` 目录生成对应的 `.md` 备份。
-2. **编辑器状态泄露 (State Bleed)** (已修复)
-4. **动态视频壁纸无法播放** (已修复)
+### 技术栈与 UI/UX 设计
+- **ProseMirror Plugin**: 负责底层文档树遍历与属性原子化更新。
+- **Framer Motion**: 处理 Tooltip 和编辑框的所有补间动画，采用 `easeOut` 曲线。
+- **UI-UX Pro Max**: 
+  - 编辑框支持 `Cmd/Ctrl + Enter` 快捷保存。
+  - Tooltip 采用 `bg-white/90` 半透明设计，增加 `shadow-[0_20px_50px_rgba(0,0,0,0.15)]` 增强悬浮感。
+  - 蓝色序号在悬停时具备 `scale-110` 的动态反馈。
 
----
+### 热修复
+- **修复加粗字体颜色与主题适配**: 重构了 `strong` / `b` 标签在 `novablock-core.css` 中的样式，使其不再被不当的全局规则继承为白色。使用了可扩展的主题语义变量（`color: var(--text-primary, #111827)`）来保证其在当前的浅色背景（如 `bg-white`）下保持清晰可读，同时也能完美向前兼容后续即将开发的深浅色/自定义主题系统。不再依赖写死的白字或强制的 `!important`。
 
-## 📦 提交与更新记录 (Commit & Update Log)
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: [Latest]`
-  - *更新内容*: **修复 PropertyPanel 崩溃问题并增强组件健壮性**。
-    1. **PropertyPanel.tsx 崩溃修复**: 修复了在 `note.properties` 为 `undefined` 时调用 `.find()` 导致的 `TypeError`；通过添加默认空数组 `(note.properties || [])` 确保了组件在数据缺失时的稳定性。
-    2. **App.tsx 空值处理**: 同步优化了 `App.tsx` 中 `includes` 相关的空值校验（紧随前序修复）。
-  - *解决痛点*: 消除了编辑器侧边栏在特定笔记数据下导致的整站崩溃风险，提升了前端渲染的容错性。
+### UI 优化
+- **待办事项完成动画**: 为 Tiptap TaskList 添加了纯 CSS 的完成效果。当勾选待办事项（`[data-checked="true"]`）时，文字会带有丝滑的过渡动画（`cubic-bezier`）并显示删除线、颜色变浅和透明度降低，增强“划掉待办”的视觉反馈。
 
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: [Latest]`
-  - *更新内容*: **执行全面的依赖清理与一键安装脚本构建**。
-    1. **依赖统一与修复**: 统一了 `frontend` 中所有 Tiptap 相关包至 `^2.11.5` 稳定版本，修复了版本混用导致的 `peerDependency` 冲突；降级 `vite` 至 `^5.1.4` 以保持架构一致性。
-    2. **显式核心包补全**: 补齐了 `y-protocols`, `@tiptap/y-tiptap`, `@tiptap/extension-node-range` 等缺失的底层依赖。
-    3. **一键式工程化脚本**: 
-       - 新增 `npm run bootstrap`: 跨平台一键清理 `node_modules` 并重新安装。
-       - 增强 `postinstall`: 自动使用 `--legacy-peer-deps` 顺滑安装前端依赖。
-       - 新增 `npm run clean`: 基于 Node.js 的跨平台目录清理脚本。
-  - *解决痛点*: 彻底解决了用户在本地环境安装依赖时频繁遇到的冲突与“Could not resolve”报错，实现了真正的一键开发环境搭建。
+### UI 优化
+- **TOC 语义化主题变量与可见性修复**: 修复了 TOC（大纲目录）在浅色背景下非悬停状态横线几乎不可见的问题。通过引入语义化 CSS 变量（`--toc-line-muted` / `--toc-line-hover` / `--toc-line-active` 等），并结合 `@media (prefers-color-scheme: dark)` 为不同模式提供合理的默认值。
+  - **设计提升**: 浅色模式下，非激活状态的横线可见度从 30% 提升至 40% (rgba(120, 113, 108, 0.4))，确保在白色背景下依然清晰可辨。
+  - **健壮性**: 采用 CSS 变量方案，支持未来一键切换主题或自定义背景，且改动仅局限在 TOC 容器内，不影响全局。
+  - **性能**: 保持原有的 `IntersectionObserver` 逻辑，无冗余 re-render。
 
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: 0bb7643`
-  - *更新内容*: **优化了依赖安装流程，解决了前端依赖丢失问题**。
-    1. **自动依赖安装**: 在根目录 `package.json` 中增加了 `postinstall` 脚本，执行 `npm install` 时会自动安装 `frontend` 目录下的依赖。
-    2. **解决依赖缺失**: 修复了 `@tiptap/extension-collaboration` 等新引入依赖在本地环境拉取后运行报错的问题。
-  - *使用说明*: 之后只需 `git pull` 然后在根目录重新运行 `npm install` 即可自动完成所有依赖安装。
+### 热修复
+- **TOC 静默状态对比度微调**: 重新调整了浅色模式下目录横线的基准变量（从使用 `stone-500` 透明度调整为直接使用基于黑色的 `rgba(0,0,0,0.15)`），解决部分浅色背景下横线对比度依旧偏低的问题。深色模式则使用 `rgba(255,255,255,0.3)` 来确保良好的辨识度。
 
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: a78dc6f`
-  - *更新内容*: **深度诊断并修复了自动保存卡死与白屏 (React 崩溃) 问题**。
-    1. **IPC 链路闭环**: 在 `preload` 中暴露 `ipcInvoke`，并在主进程中实现了业务逻辑转发。
-    2. **性能重构**: 主进程接管了高频的 `notes:*` IPC 请求，并将其转发给常驻的 Python 后端（FastAPI），消除了每次保存都 `spawn` Python 进程的巨大开销。
-    3. **稳定性增强**: 在 `NotionEditor` 外层包裹了 `ErrorBoundary`，删除了所有阻断性的硬编码“连接失败”提示，确保即使后端瞬时繁忙，前端也不会白屏崩溃。
-  - *解决痛点*: 彻底解决了用户反馈的“长时间自动保存中”以及保存失败导致的白屏问题，实现了真正的本地化秒存体验。
+### 热修复
+- **TOC 悬停状态恢复**: 响应用户反馈，恢复了 TOC 在【鼠标悬停展开时】的高级视觉效果（毛玻璃背板 `backdrop-blur`、投影、以及圆角背景框），确保展开后目录层级清晰且具有原先受青睐的美感。同时保留了【非悬停静默状态】下无背景的极简设定，并进一步固化了主题 token 对深浅色双模式的支持。
 
-- **2026-03-31 | Branch: `fix/4-issues-integration`**
-  - `Commit: 9258886`
-  - *更新了什么*: 恢复了毛玻璃面板 UI、基于 IndexedDB 的壁纸存储以及赛博朋克主题。
-  - *解决了什么*: 提升了 UI 质感与个性化体验，确保壁纸数据在本地持久化。
+### 热修复
+- **TOC 非悬停可见度终极调整**: 彻底去除了 TOC 的所有背景颜色（无论是悬停还是非悬停），在悬停时仅保留纯净的 `backdrop-blur(12px)` 毛玻璃滤镜。同时，大幅提升了非悬停状态下的横线不透明度（达到 `0.35`），确保在没有背景衬托的浅色环境中也能清晰辨认。
 
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
-  - `Commit: 6a2c1f3` (Local-only)
-  - *更新了什么*: 修复了三个遗留 Bug：1. 彻底修复 `parent_id` 丢失与保存失败；2. 子页面创建静默乐观更新；3. 数据库与本地文件级联软删除至 `.trash`。
-  - *解决了什么*: 确保了笔记层级的稳健性，提升了 UI 响应体验，并完善了本地文件架构下的回收站闭环。
+### 热修复
+- **TOC 非悬停可见度终极修复**: 找到了导致 TOC 在非悬停状态下隐藏横线的底层原因——原先的组件由于内部强加的 `overflow-hidden` 和固定宽度在失去背景板后导致了元素的布局截断。我们解除了强制隐藏与冗余 `padding`，将非悬停宽度从 40px 微调到 48px，并在内层 `div` 取消了 `overflow-hidden`，确保横线能够自然展现而不被裁剪缩回。
 
-- **2026-03-31 | Branch: `feature/local-first-architecture-poc`**
-  - `Commit: N/A` (本地 PoC 阶段)
-  - *更新了什么*:
-    1. **前端持久化层**: 引入 `yjs` + `y-indexeddb`，在 `NotionEditor` 中为每篇笔记开启独立的 CRDT 状态与 IndexedDB 本地存储。
-    2. **主进程 SSOT 框架**: 实现 `SSOTWatcher` (Node.js 原生 API)，监听本地 `data/` 目录下的 `.md` 文件变更，并通过 IPC 同步至渲染进程。
-    3. **IPC 安全桥接**: 更新 `preload` 与 `index.ts`，暴露 `watchNote` 等本地优先核心接口。
-  - *解决了什么*: 打通了“本地文件监听 -> 渲染进程协作”的 SSOT (Single Source of Truth) 最小可行性闭环，为纯本地文件优先架构奠定基础。
+### UI 微调
+- **TOC 静默状态视觉弱化**: 听取用户对于极简美学的要求，将非活跃状态的横线透明度降至极低的 `0.12`（深色模式 `0.15`），呈现“隐隐约约”的视觉边缘存在感。当用户滚动到特定区域时，当前标题的横线高亮才会真正脱颖而出，从而在“指示”与“不打扰”之间找到了最优雅的平衡。
 
-- **2026-03-31 | Branch: `feature/local-first-architecture`**
+### 交互优化
+- **侧边栏悬停展示完整标题**: 解决了侧边栏笔记标题过长被隐藏的问题。添加了浏览器原生的 `title` 属性，当鼠标悬停在被截断的标题上时，可以显示出完整的笔记名称，既保持了侧边栏的整洁，又提升了信息可读性。
 
-  - `Commit: N/A`
-  - *更新了什么*: 交付了《纯本地文件优先架构迁移方案与 Windows MVP 任务拆解》([文档链接](https://bytedance.larkoffice.com/docx/SwqEduxjho8b7zx0jAscKWPkntd))。
-  - *解决了什么*: 明确了 Local-first 架构的总体设计、技术选型、演进路径与 Windows 客户端 MVP 的具体任务。本次无代码变更，未推送远程。
+## [2026-04-06] - Sticky Note (便利贴) 体验优化
 
-- **2026-03-30 | Branch: `fix/4-issues-integration`**
-  - `Commit: c81a9fe`
-  - *更新了什么*: 修复编辑器 `NotionEditor.tsx` 在防抖保存和快捷键保存时遗漏 `parent_id` 的问题。
-  - *解决了什么*: 防止笔记在更新内容时，其父级层级关系被错误重置（移出到根目录）。
+### 核心功能与交互
+- **光标处流式插入**: 将便利贴的默认定位从绝对定位 (`position: absolute`) 改为相对流式定位 (`position: relative` + `inline-block`)。现在通过 `/` 斜杠菜单插入便利贴时，它会完美出现在当前光标所在的文档流位置，无需再从顶部固定位置拖拽。
+- **内部滚动条 (防溢出)**: 为便利贴的内容区域添加了 `max-h-[260px]` 和优雅的内部滚动条 (`overflow-y-auto custom-scrollbar`)。当输入超长文本时，便利贴本身的大小不再无限撑大，而是保持精致的卡片比例。
+- **隐藏式多巴胺/马卡龙色卡**: 
+  - 在便利贴右上角新增了一个悬浮呼出的调色板图标 (`Palette`)。
+  - 点击即可展开带有 Framer Motion 平滑动画的色卡面板。
+  - 内置 12 种精心调配的马卡龙/多巴胺配色（阳光黄、樱花粉、薄荷绿、海冻蓝、香芋紫、蜜桃橘），每种颜色均提供“纯色”与“微透 (0.6 opacity)”两种质感，并支持实时无缝切换。
 
----
+## [2026-04-06] - 修复文件拖拽功能 Bug 与 Heading 稳定性增强
 
-## 🧪 架构收尾检查与测试清单 (Test Checklist)
+### 核心修复
+- **修复 `ensureHeadingIds` 报错**：在 `CollapsibleHeading.tsx` 扩展中显式实现了 `ensureHeadingIds` 命令，通过遍历文档树为缺失 ID 的标题自动生成基于内容的 Safe Slug 或随机 ID，解决了 `NovaBlockEditor.tsx` 在 `onCreate` 阶段因找不到该命令导致的崩溃。
+- **修复 `NodeViewWrapper` 缺失报错**：重构了 `tiptapExtensions.ts` 中的 `FilePlaceholder` 组件，将原始 `div` 渲染修改为使用 `@tiptap/react` 提供的 `NodeViewWrapper` 包裹。这符合 Tiptap React NodeView 的架构要求，消除了控制台中的 `Please use the NodeViewWrapper component` 错误。
+- **修复上传接口路径与多文件支持**：
+  - 修正了 `api.ts` 中 `upload` 方法的请求路径（从 `/api/upload` 更改为后端实际挂载的 `/api/media/upload`）。
+  - 重构了上传逻辑，支持并发处理多文件上传，并将字段名统一为后端期望的 `file`。
+  - 在 `handleFilesUpload` 中添加了详细的错误处理和用户提示（Alert），当后端未启动或连接失败（`ERR_CONNECTION_REFUSED`）时，能够自动清理无效的占位符并告知用户。
 
-针对 `feature/local-first-architecture` 架构，请务必进行以下验收测试：
+### 细节优化
+- **增强 ID 生成逻辑**：标题 ID 生成现在支持中文字符过滤（Safe Slug），并具备自动冲突检测（Counter 递增），确保 TOC 锚点跳转的唯一性。
+- **文件卡片元数据同步**：修复了上传完成后 `FileNode` 属性（size, type）未能正确从后端返回结果中同步的问题。
+- **UI/UX 鲁棒性**：增强了上传失败时的回滚机制，确保编辑器状态在网络异常时仍能保持干净、一致。
 
-### 1. 离线/断网表现 (Offline-First Ready)
-- [ ] **秒开验证**：断开网络启动应用，编辑器应立即显示上一次的内容（由 IndexedDB 渲染），不应出现长时间 Loading 或白屏。
-- [ ] **数据持久化**：在断网状态下修改内容并关闭应用，重新打开后修改应依然存在。
-- [ ] **存储位置检查**：验证本地配置文件和笔记是否正确存储在 Windows 的 `%APPDATA%\SecondBrainAI` 目录下。
+## [2026-04-06] - 万物皆可拖拽与本地文件预览 (Universal Drag & Drop)
 
-### 2. 多编辑器协同 (External Watcher / SSOT)
-- [ ] **双向同步逻辑**：
-  - 使用外部编辑器（Obsidian/VSCode）修改 `.md` 文件并保存，SecondBrainAI 编辑器应在 1s 内自动刷新。
-  - 在 SecondBrainAI 修改并失去焦点后，检查本地 `.md` 文件内容是否同步更新。
-- [ ] **覆盖与冲突**：模拟同时修改同一行，验证 Yjs 的 CRDT 合并逻辑是否生效（不应导致文件内容乱码或丢失）。
-- [ ] **文件删除处理**：外部物理删除文件后，应用应能正确处理 UI 状态（如提示文件已丢失或从列表移除）。
+### 核心功能
+- **智能拖拽与粘贴 (Drag & Paste)**：深度集成 Tiptap 扩展，支持从系统资源管理器直接拖入文件或从剪贴板粘贴。
+- **分类自动化处理**：
+  - **图片/视频/音频**：上传后自动识别 MIME 类型，分别渲染为 `ResizableImage`、`VideoNode` 或 `AudioNode`，实现即时预览。
+  - **通用文件 (PDF/Word/Excel 等)**：渲染为精美的 **「文件卡片 (File Card)」**，展示图标、文件名和格式化大小。
+- **上传占位加载 UX (Placeholder)**：在文件上传期间，在编辑器内插入带有**脉冲动画 (Pulse Animation)** 和进度条提示的临时卡片，上传完成后无缝替换为实际内容，确保流畅的写作节奏。
+- **本地程序唤起 (Open-in-System)**：点击文件卡片时，通过后端 `open-file` API 调用操作系统默认关联程序（Windows: `os.startfile`, macOS: `open`, Linux: `xdg-open`）打开文件，实现真正的本地联动。
 
-### 3. IPC 与资源清理 (Resource Leak Prevention)
-- [ ] **Watcher 销毁验证**：快速切换工作区文件夹，通过任务管理器观察进程，确保新有的 `chokidar` 监听器已释放。
-- [ ] **Sidecar 进程管理**：退出应用后，检查后台是否有残留的 Python (Backend) 或 Node (Watcher) 进程。
-- [ ] **内存占用监控**：频繁编辑大型文档，观察渲染进程内存，确保 Yjs 历史记录（UndoManager）没有导致内存持续攀升。
+### 技术栈与 UI/UX 设计
+- **后端 (Python/FastAPI)**：
+  - 新增 `/api/system/open-file` 接口，支持绝对路径与相对上传目录的安全解析。
+  - 已有 `/api/media/upload` 与静态文件挂载逻辑。
+- **前端 (NovaBlock/React)**：
+  - **ProseMirror Plugin**: 拦截 `drop` 和 `paste` 事件，处理 `File` 对象队列。
+  - **Tailwind CSS & Lucide**: 
+    - File Card 采用 **Notion/Linear 风格** 的现代极简设计：`rounded-xl` 大圆角、`shadow-sm` 微阴影。
+    - 增加 Hover 时的 `scale-105` 缩放反馈与背景色微变 (`transition-all duration-200`)。
+    - 支持暗色模式 (`dark:bg-stone-900`)，保持灰阶克制。
 
-### 4. Windows 托盘体验 (UX/DX)
-- [ ] **关闭到托盘**：点击窗口关闭按钮（X），窗口应隐藏至托盘。双击托盘图标或通过右键菜单“显示窗口”应能瞬间恢复。
-- [ ] **彻底退出**：托盘右键选择“退出”，应用及所有关联 Sidecar 进程应全部正常关闭。
-- [ ] **多开拦截**：应用已运行时，再次双击桌面快捷方式，应直接唤起已有的窗口，而不是启动第二个进程。
-## 2026-04-03
-### Added
-- Auto-save performance optimized: Frontend store `useAppStore` now correctly extracts and forwards `file_path` in `saveNote` function to trigger local-first fast-path save via `FSBridge` without blocking on Python backend sync.
-## 2026-04-03
-### Added
-- Local-first architecture optimization: Refactored `sidecar.ts` to resolve the startup promise immediately upon spawning the Python backend process, unblocking the frontend splash screen and eliminating the long initial delay caused by backend health checks.
-## 2026-04-03
-### Fixed
-- Critical bug in local-first auto-save fast-path: The Python backend does not return `file_path` in the note schema because it stores notes primarily in SQLite. Thus, the frontend's `currentNote.file_path` was always undefined, causing `index.ts` to silently skip the Node.js fast-path and fall back to the slow Python backend on every keystroke. Added a default fallback `note_${id}.md` directly in the IPC handler so the Node.js native save executes unconditionally.
-## 2026-04-03
-### Fixed
-- Addressed React crash (`TypeError: Cannot read properties of undefined (reading 'length')` in `Sidebar.tsx`) occurring when the application boots locally and the Python IPC backend fails to return a valid `TrashState` or `UserStats` object. Now gracefully handles missing objects by providing default empty arrays/objects.
+### 细节优化
+- **安全性**: 限制 `open-file` 仅能访问本地已存在的文件，并优先匹配上传目录。
+- **UI Pro Max**: 文件类型标签 (Type Tag) 采用全大写字母与 `tracking-wider` 间距，增强专业感。
+- **交互**: 在 File Card 右侧添加 `ExternalLink` 图标，暗示点击即可在外部打开。
+
+## [2026-04-06] - v0.01 发布：拍立得风格 UI 与云端环境适配
+
+### 核心更新
+- **发布 v0.01**：正式发布项目初始版本，包含完整的块级编辑器脚手架。
+- **“拍立得”风格 UI 上线**：彻底重构了多媒体卡片（图片、视频、音频）的展示 UI。引入了类似拍立得照片的视觉风格，包含精致的边框、阴影以及鼠标悬停时的微位移/缩放交互效果。
+- **修复云端 500 错误**：修复了在云端代理（Strato Proxy）环境下，图片上传因 Content-Length 或路径解析问题导致的 500 内部服务器错误。
+- **环境自适应**：完善了 `getApiBase` 逻辑，支持本地与云端环境的动态切换。

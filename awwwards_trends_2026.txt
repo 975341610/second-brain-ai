@@ -1,0 +1,286 @@
+Top UI Design Trends 2026 | Wannathis
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/logo-wannathis-v1.svg)](https://wannathis.one/)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic_close.svg)
+
+[Abstract](https://wannathis.one/illustrations/collections/abstract-3d-illustrations)[Characters](https://wannathis.one/illustrations/collections/3d-characters)[Themes 3d illustrations](https://wannathis.one/illustrations/collections/themed-3d-illustrations)[Mockups](https://wannathis.one/mockups)[Online Tools](https://wannathis.one/online-tools)[Freebies](https://wannathis.one/freebies)
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic-pro-access-v1.svg)
+
+Try Pro Access](https://wannathis.one/pro-access)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/img-menu-mob.png)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/log-in-black.svg)
+
+Login
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/logo-wannathis-v1.svg)](https://wannathis.one/)
+
+[Mockup catalog
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/icons/header-arrow.svg)](https://wannathis.one/mockups)[Free mockups](https://wannathis.one/mockups/free)[Illustrations
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/icons/header-arrow.svg)](https://wannathis.one/illustrations)[Online tools](https://wannathis.one/online-tools)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic-search-black-v1.svg)
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic-pro-access-v1.svg)
+
+Pro Access](https://wannathis.one/pro-access)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic_menu.svg)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic-info.svg)
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/icons/ic-arrow-related.svg)
+
+Back](https://wannathis.one/blog)
+
+Top UI Design Trends for 2026 You Can’t Ignore
+==============================================
+
+08/10/2025
+
+• 7 min read
+
+Every year, UI design shifts just enough to make last year’s work feel a little dated. 2026 is shaping up to be no different. From color choices to the way screens move, small details will set the tone for what feels fresh - and what feels stuck in 2025.
+
+We’ve pulled together top UI design trends that stand out right now. Think of this less as a “rulebook” and more like a snapshot of where design is heading - a mix of what people actually enjoy using and what designers are experimenting with today.
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/uploads/hero_image_f9af4e8e37.png)
+
+1. AI as a design partner
+-------------------------
+
+Let’s start with the big one - the shift that’s already changing how design looks today and will keep shaping how it feels in the future. Designers are still the ones setting the vision, but AI has stepped in as a kind of assistant, making the process faster and smoother.
+
+Instead of trying to “replace” designers, AI handles the basics - first layouts, quick color directions, or simple component sets. That foundation saves time, so you can focus on the details and creative choices that actually make the work yours. It’s why interfaces in 2026 already feel a bit different: they’re shaped by human intent, but boosted by a responsive helper in the background.
+
+Tools like Figma Make show how this works in practice: you type a prompt, and AI instantly generates a working design you can refine further.
+
+We talked more about how AI is changing the way designers work in [this article](https://wannathis.one/blog/how-ai-is-changing-the-way-designers-work), where we reflect on its impact on the creative process.
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/uploads/figma_make_d47b2ae5e3.png)
+
+[Figma Make](https://www.figma.com/make/)
+
+2. Storytelling through scrolling
+---------------------------------
+
+Scrolling used to be purely functional: move down the page, see more stuff. But now it’s becoming an actual storytelling tool. With layered animations and smooth transitions, each swipe feels like a chapter in a story.
+
+It’s almost like directing a movie scene. Instead of dumping all the information at once, they reveal it in steps, guiding your eye naturally. In 2026, we’ll see more interfaces that feel like small journeys rather than static screens.
+
+[![](https://d2pas86kykpvmq.cloudfront.net/uploads/jitter_471cbb2e35.avif)](https://d2pas86kykpvmq.cloudfront.net/uploads/jitter_a8d3ebf717.mp4)
+
+[Jitter.video](https://jitter.video/?noredir=1)
+
+3. 3D depth in UI
+-----------------
+
+Flat design isn’t going anywhere, but it’s starting to get layered again. Shadows, textures, and subtle 3D details are showing up more often, giving screens a sense of depth and making elements feel closer to touch.
+
+It’s not about flashy effects - more like gentle layers that add presence. A button that feels raised, a card that casts a soft shadow, or an image that seems to pop just a little. These small touches make interfaces feel more tactile and engaging without overcomplicating the design.
+
+[![](https://d2pas86kykpvmq.cloudfront.net/uploads/airnbn_a4bb5d5451.avif)](https://d2pas86kykpvmq.cloudfront.net/uploads/airnbnb_281fa7654c.MP4)
+
+[Airbnb 3d animated icons](https://www.airbnb.ca/)
+
+4. Motion Micro-Interactions
+----------------------------
+
+Tiny movements can make a big difference. A slight bounce, a smooth fade, or a quick shift when something updates - these little touches make a UI feel alive and responsive without adding noise.
+
+In 2026, motion design is becoming quieter but smarter. It’s less about showy animations and more about giving the interface a sense of rhythm - the kind that makes using it feel effortless and natural.
+
+[![](https://d2pas86kykpvmq.cloudfront.net/uploads/the_robot_41a548c319.avif)](https://d2pas86kykpvmq.cloudfront.net/uploads/the_robot_654e3a0549.mp4)
+
+[Therobot.tv](https://www.therobot.tv/)
+
+5. Digital Nostalgia Reimagined
+-------------------------------
+
+Designers are bringing back the early internet aesthetic - pixel icons, playful gradients, and nostalgic web elements - but with cleaner, more intentional layouts. This revival mixes early-digital energy with modern precision, turning familiar symbols from the 2000s into fresh, vibrant design moments.
+
+It’s a trend fueled by nostalgia and optimism, showing up in landing pages, apps, and visual identities that embrace color, fun, and simplicity. Think of it as a wink to the past - now reimagined with today’s design clarity.
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/uploads/digital_nostalgia_dc1e01942b.png)
+
+[Pixel 3d illustrations](https://wannathis.one/products/pixel-3d-illustrations)
+
+6. Interactive WebGL Objects
+----------------------------
+
+Interactive 3d elements are becoming more common as browsers get faster and designers push for unique digital experiences. With WebGL, interfaces can feature rotating cubes, spheres, or abstract shapes that respond to user input. These playful touches make a site instantly memorable and give it a sense of depth beyond flat design. While not every product needs such complexity, agencies, campaigns, and creative portfolios are increasingly using WebGL to showcase innovation.
+
+[![](https://d2pas86kykpvmq.cloudfront.net/uploads/flora_a4653a3261.avif)](https://d2pas86kykpvmq.cloudfront.net/uploads/flora_de4a0d4032.mp4)
+
+[Florafauna.ai](https://www.florafauna.ai/)
+
+7. Cinematic UI Previews
+------------------------
+
+UI is no longer presented as static screens - motion is becoming central to how interfaces are designed and shown. In 2026, we see a rise in cinematic previews that highlight transitions, animations, and flows rather than flat layouts. Whether inside apps or on landing pages, moving presentations help users understand how an interface feels in action. Platforms like Awwwards or Savee are full of sites using full-screen video or looping device scenes to showcase UI through motion.
+
+[![](https://d2pas86kykpvmq.cloudfront.net/uploads/animated_8d5fb01d55.avif)](https://d2pas86kykpvmq.cloudfront.net/uploads/animated_6773ab185d.mp4)
+
+[Animated Video Device Mockups](https://wannathis.one/products/animated-video-device-mockups)
+
+8. Abstract 3d Backgrounds & Motion Shapes
+------------------------------------------
+
+Interfaces are moving beyond flat colors and simple gradients - abstract 3d forms are becoming part of the visual language. Animated shapes in glass, metal, or soft materials create depth and mood, often used in hero sections or as subtle motion in the background. This trend adds sophistication while keeping the UI itself clean and functional.
+
+[![](https://d2pas86kykpvmq.cloudfront.net/uploads/glass_99b6ab7042.avif)](https://d2pas86kykpvmq.cloudfront.net/uploads/glass_abstract_906409d7cd.mp4)
+
+[Glass Abstract Animated Shapes](https://wannathis.one/products/glass-3d-abstract-animated-shapes)
+
+9. Bold visuals and anti-design
+-------------------------------
+
+Minimalism has been the safe bet for a long time, but it’s not the only option anymore. Bold colors, strong contrasts, and “unfinished” looks are making their way back into mainstream UI.
+
+Anti-design doesn’t mean chaos - it means character. It’s about letting interfaces breathe with energy and imperfection, which can make them feel more human. Expect to see more playful, expressive layouts breaking away from the sterile grid.
+
+[![](https://d2pas86kykpvmq.cloudfront.net/uploads/sami_0b32879e92.avif)](https://d2pas86kykpvmq.cloudfront.net/uploads/sami_1b9bba1fcb.mp4)
+
+[Sami.marketing](https://sami.marketing/en)
+
+Wrap-Up
+-------
+
+If there’s one thing that ties all these trends together, it’s movement. UI in 2026 feels more alive - it reacts, it shifts, it responds. Scrolling tells a story, motion adds rhythm, and tiny details make screens feel a little more human. It’s less about rules and more about how design behaves in real life.
+
+At Wannathis, we try to bring that same feeling into [what we make](https://wannathis.one/mockups) - mockups that don’t just show design but help you feel it. Because that’s really where UI is heading now: lighter, more fluid, and a bit more connected to the people using it.
+
+Recent articles
+---------------
+
+[Explore all](https://wannathis.one/blog)
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/uploads/cover_image_c13ff10120.png)](https://wannathis.one/blog/top-graphic-design-trends-2026)
+
+Best Device in Hand Mockups to Elevate Your App Presentation
+============================================================
+
+There’s something different about seeing an app on a real screen, in someone’s hand. A flat screenshot can look clean, b…
+
+28/09/2025
+
+• 5 min read
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/uploads/cover_image_d4f95d0d46.png)](https://wannathis.one/blog/web-design-trends-2026)
+
+Best Premium Mockup Sites for High Quality Visuals
+==================================================
+
+If you’ve been designing for a while, you already know how much a good mockup can change the whole vibe of a project. Th…
+
+05/12/2025
+
+• 8 min read
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/uploads/cover_image_1_285df63cf8.png)](https://wannathis.one/blog/the-art-of-storytelling-in-design-why-it-matters-more-than-ever)
+
+Best Interior Device Mockups for Designers. From iPhones to MacBooks
+====================================================================
+
+Flat screens can only show so much. Once you drop your design into a real space - on a desk, next to a laptop, maybe wit…
+
+10/10/2025
+
+• 5 min read
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/pro-access/card-pro-1.png)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/pro-access/card-pro-2.png)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/pro-access/card-pro-3.png)
+
+Get full access to the entire library
+-------------------------------------
+
+[Try Pro Access](https://wannathis.one/pro-access)
+
+Huge library with regular releases
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/logo-2.svg)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/wannathis-1.svg)](https://wannathis.one/)
+
+Great design deserves great presentation. Premium mockups and illustrations crafted for makers, studios, and agencies.
+
+Browse mockups
+
+[All mockups](https://wannathis.one/mockups)
+
+[Device mockups](https://wannathis.one/mockups/device-mockups)
+
+[Free mockups](https://wannathis.one/mockups/free)
+
+[iPhone mockups](https://wannathis.one/mockups/iphone-mockups)
+
+[MacBook mockups](https://wannathis.one/mockups/macbook-mockups)
+
+[iPad mockups](https://wannathis.one/mockups/ipad-mockups)
+
+[Desktop mockups](https://wannathis.one/mockups/desktop-mockups)
+
+[Branding mockups](https://wannathis.one/mockups/branding-mockups)
+
+[Print mockups](https://wannathis.one/mockups/print-mockups)
+
+[Billboard mockups](https://wannathis.one/mockups/billboard-mockups)
+
+[All free assets](https://wannathis.one/freebies)
+
+![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic-pro-access-v1.svg)
+
+[Pro Access](https://wannathis.one/pro-access)
+
+Browse illustrations
+
+[All 3d illustrations](https://wannathis.one/illustrations)
+
+[Free 3d illustrations](https://wannathis.one/illustrations/free)
+
+[Abstract illustrations](https://wannathis.one/illustrations/collections/abstract-3d-illustrations)
+
+[Themes illustrations](https://wannathis.one/illustrations/collections/themed-3d-illustrations)
+
+[Character illustrations](https://wannathis.one/illustrations/collections/3d-characters)
+
+Online tools
+
+[Figma plugin](https://www.figma.com/community/plugin/1201574158914021598/wannathis-mockups-3d-illustrations)
+
+[Mockup online](https://mockup-online.wannathis.one)
+
+Info
+
+[License](https://wannathis.one/license)
+
+[Affiliate program](https://wannathis.one/affiliate)
+
+[Use cases](https://wannathis.one/use-cases)
+
+[Order custom](https://studio.wannathis.one)
+
+[Privacy Policy](https://wannathis.one/privacy-policy)
+
+[Terms of use](https://wannathis.one/terms-of-use)
+
+[help@wannathis.one](mailto:help@wannathis.one)
+
+Company
+
+[Blog](https://wannathis.one/blog)
+
+© 2026 All Rights Reserved
+
+[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic_instagram.svg)](https://www.instagram.com/wannathis.one)[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic_x.svg)](https://twitter.com/wannathis3d)[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic_pinterest.svg)](https://br.pinterest.com/wannathisone)[![web_image](https://d2pas86kykpvmq.cloudfront.net/images/main/ic_beh.svg)](https://www.behance.net/wannathisone)
+
+# Reference
+- [6] [Top UI Design Trends 2026 | Wannathis](https://wannathis.one/blog/top-ui-design-trends-for-2026-you-cant-ignore)

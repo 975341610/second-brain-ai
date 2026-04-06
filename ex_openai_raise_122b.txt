@@ -1,0 +1,206 @@
+OpenAI raises $122 billion to accelerate the next phase of AI | OpenAI
+
+[Skip to main content](https://openai.com/index/accelerating-the-next-phase-ai/#main)
+
+* [Research](https://openai.com/research/index/)
+* Products
+* [Business](https://openai.com/business/)
+* [Developers](https://openai.com/api/)
+* [Company](https://openai.com/about/)
+* [Foundation
+  (opens in a new window)](https://openaifoundation.org)
+
+Log in[Try ChatGPT(opens in a new window)](https://chatgpt.com/?openaicom-did=a0733516-7737-4e4d-b9b8-805979ac1701&openaicom_referred=true)
+
+* Research
+* Products
+* Business
+* Developers
+* Company
+* [Foundation(opens in a new window)](https://openaifoundation.org)
+
+OpenAI raises $122 billion to accelerate the next phase of AI | OpenAI
+
+March 31, 2026
+
+[Company](https://openai.com/news/company-announcements/)
+
+OpenAI raises $122 billion to accelerate the next phase of AI
+=============================================================
+
+Share
+
+Today, we closed our latest funding round with $122 billion in committed capital at a post money valuation of $852 billion.
+
+OpenAI is becoming the core infrastructure for AI, making it possible for people around the world and businesses, big and small, to just build things. The broad consumer reach of ChatGPT creates a powerful distribution channel into the workplace, where demand is rapidly shifting from basic model access to intelligent systems that reshape how businesses operate. Developers build on and expand the platform by leveraging our APIs, and Codex is transforming how developers turn ideas into working software. Durable access to compute is the strategic advantage that compounds across the entire system: it advances research, improves products, expands access, and structurally lowers the cost of delivery at scale. Together, consumer adoption, enterprise deployment, developer usage, and compute form a reinforcing flywheel that is translating capability into economic impact.
+
+OpenAI was the fastest technology platform to reach 10 million users, the fastest to 100 million users, and soon the fastest to 1 billion weekly active users. Within a year of launching ChatGPT, we reached $1B in revenue. By the end of 2024 we were generating $1B per quarter. We are now generating $2B in revenue per month. At this stage, we are growing revenue four times faster than the companies who defined the Internet and mobile eras, including Alphabet and Meta.
+
+This is commercial scale, and it is mission scale. The fastest way to widen the benefits of AI is to put useful intelligence in people’s hands early and let that access compound globally. AI is driving productivity gains, accelerating scientific discovery, and expanding what people and organizations can build. This funding gives us the resources to continue to lead at the scale this moment demands.
+
+**Deep conviction across global capital**
+
+Our ambition is matched by the commitment of the partners backing us. The round was anchored by our strategic partners Amazon, NVIDIA, and SoftBank, with continued participation from our long-term partner, Microsoft. SoftBank co-led the round alongside a16z, D. E. Shaw Ventures, MGX, TPG, and accounts advised by T. Rowe Price Associates, Inc.
+
+There was also significant participation from a diverse set of global institutions including Altimeter, Appaloosa LP, ARK Invest, affiliated funds of BlackRock, Blackstone, Coatue, D1 Capital Partners, Dragoneer, Fidelity Management & Research Company, Goanna Capital, Insight Partners, The Paragon Group, Sands Capital, Sequoia Capital, Sound Ventures, Temasek, Thrive Capital, UC Investments (University of California CIO Office), and Winslow Capital.
+
+For the first time, we extended participation to investors through bank channels, raising over $3 billion from individual investors. Today, we’re also announcing that OpenAI will be included in several exchange-traded funds managed by ARK Invest, further broadening ownership and giving more people the opportunity to share in the upside economics of OpenAI and the AI era.
+
+We have also expanded our existing revolving credit facility to approximately $4.7 billion, which gives us added flexibility as we continue to invest at scale. The facility is supported by a global syndicate including JPMorgan Chase, Citi, Goldman Sachs, Morgan Stanley, Wells Fargo, Mizuho, Royal Bank of Canada, SMBC, UBS, HSBC, and Santander. The facility remains undrawn at close.
+
+**Leadership across consumer and enterprise**We are continually shipping advances across ChatGPT, the API, and our enterprise products. We recently launched GPT‑5.4, our most capable model yet, with meaningful gains in intelligence and workflow performance. We expanded Codex into a flagship coding agent. We pushed forward on memory, search, personalization, and multimodal interaction. We also expanded into areas like health, scientific discovery, and commerce.  
+  
+That product momentum shows up in the numbers. ChatGPT is the overwhelming leader in consumer AI with more than 900 million weekly active users, and over 50 million subscribers. ChatGPT has 6x the monthly web visits and mobile sessions than the next largest AI app, while total AI time spent is 4x the next largest AI app and 4x all others combined. Search usage has nearly tripled in a year, and our ads pilot reached more than $100 million in ARR in under six weeks. These are not just growth milestones—they show that frontier AI is becoming part of everyday life for people around the world.
+
+Momentum is just as strong on the enterprise side, which now makes up more than 40% of our revenue, and is on track to reach parity with consumer by the end of 2026. GPT‑5.4 is driving record engagement across agentic workflows. Our APIs now process more than 15 billion tokens per minute. Codex now serves over 2 million weekly users, up 5x in the past three months, with usage growing more than 70% month over month.
+
+**Compute is a strategic advantage**
+
+Compute powers every layer of AI: frontier research and models, products, deployment, and revenue. Since ChatGPT launched, both our revenue and our available compute have scaled rapidly as demand for intelligent systems has accelerated.
+With each new generation of infrastructure, we train more capable models, making each token more intelligent than before. At the same time, algorithmic and hardware improvements reduce the cost to serve each token, lowering the cost per unit of intelligence. That added intelligence makes AI useful for more complex workflows, which increases usage, drives compute demand, and accelerates the next turn of the flywheel.
+
+This creates a compounding effect: better infrastructure and better models lower the cost of delivery, while improved products and deeper enterprise deployment increase revenue per unit of compute. As utilization increases and the platform matures, this drives meaningful operating leverage over time.  
+  
+Over the past 15 months, we have expanded our infrastructure strategy beyond a small number of core providers to meet the scale and reliability requirements of global AI deployment.
+
+Nvidia remains the foundation of our infrastructure. Our training fleet and the majority of our inference stack continue to run on Nvidia GPUs, and with this round we are deepening that partnership as we scale.
+
+Demand for AI systems is growing faster and becoming more diverse. No single architecture can efficiently meet the needs of the entire AI frontier. To meet that demand and stay flexible, we are building a broader infrastructure portfolio across multiple cloud partners, multiple chip platforms, and deeper co-design across the stack.
+
+This strategy now spans: cloud through Microsoft, Oracle, AWS, CoreWeave, and Google Cloud; silicon through NVIDIA, AMD, AWS Trainium, Cerebras, and our own chip in partnership with Broadcom; and data centers through partnerships with Oracle, SBE, and SoftBank.
+
+The OpenAI flywheel is simple. More compute drives more intelligent models. More intelligent models drive better products. Better products drive faster adoption, more revenue and more cashflow. That gives us the ability to reinvest and deliver intelligence more efficiently to consumers, enterprises, and builders around the world.
+
+**Building an AI superapp**
+
+That is why we are building a unified AI superapp. As models become more capable, the limiting factor shifts from intelligence to usability. Users do not want disconnected tools. They want a single system that can understand intent, take action, and operate across applications, data, and workflows. Our superapp will bring together ChatGPT, Codex, browsing, and our broader agentic capabilities into one agent-first experience.
+
+This is not just product simplification. It is a distribution and deployment strategy. By unifying our surfaces, we can translate advances in model capability directly into user adoption and engagement. Our consumer scale becomes the front door for enterprise usage, as familiarity in daily life drives adoption at work. At the same time, a single product surface allows us to improve faster, ship more coherently, and capture more of the value created by agentic workflows.
+
+The result is a tightly integrated system: infrastructure that enables intelligence, intelligence that powers agents, and products that make those agents useful at global scale.
+
+Moments like this do not come often. In past generations, capital markets helped build the systems that defined modern economies, from electricity to highways to the internet. This is that kind of moment again. The capital being deployed today is helping build the infrastructure layer for intelligence itself. Over time, that value will flow back into the economy, to companies, to communities, and increasingly to individuals.
+
+Let’s go build.
+
+* [2026](https://openai.com/news/?tags=2026)
+
+Author
+------
+
+OpenAI
+
+Keep reading
+------------
+
+[View all](https://openai.com/news/company/)
+
+[Update on the OpenAI Foundation
+
+Company
+Mar 24, 2026](https://openai.com/index/update-on-the-openai-foundation/)
+
+[OpenAI to acquire Astral
+
+Company
+Mar 19, 2026](https://openai.com/index/openai-to-acquire-astral/)
+
+[Introducing GPT-5.4 mini and nano
+
+Company
+Mar 17, 2026](https://openai.com/index/introducing-gpt-5-4-mini-and-nano/)
+
+Our Research
+
+* [Research Index](https://openai.com/research/index/)
+* [Research Overview](https://openai.com/research/)
+* [Research Residency](https://openai.com/residency/)
+* [OpenAI for Science](https://openai.com/science/)
+* [Economic Research](https://openai.com/signals/)
+
+Latest Advancements
+
+* [GPT-5.3 Instant](https://openai.com/index/gpt-5-3-instant/)
+* [GPT-5.3-Codex](https://openai.com/index/introducing-gpt-5-3-codex/)
+* [GPT-5](https://openai.com/gpt-5/)
+* [Codex](https://openai.com/index/introducing-gpt-5-3-codex/)
+
+Safety
+
+* [Safety Approach](https://openai.com/safety/)
+* [Security & Privacy](https://openai.com/security-and-privacy/)
+* [Trust & Transparency](https://openai.com/trust-and-transparency/)
+
+ChatGPT
+
+* [Explore ChatGPT(opens in a new window)](https://chatgpt.com/overview?openaicom-did=a0733516-7737-4e4d-b9b8-805979ac1701&openaicom_referred=true)
+* [Business](https://chatgpt.com/business/business-plan?openaicom-did=a0733516-7737-4e4d-b9b8-805979ac1701&openaicom_referred=true)
+* [Enterprise](https://chatgpt.com/business/enterprise?openaicom-did=a0733516-7737-4e4d-b9b8-805979ac1701&openaicom_referred=true)
+* [Education](https://chatgpt.com/business/education?openaicom-did=a0733516-7737-4e4d-b9b8-805979ac1701&openaicom_referred=true)
+* [Pricing(opens in a new window)](https://chatgpt.com/pricing?openaicom-did=a0733516-7737-4e4d-b9b8-805979ac1701&openaicom_referred=true)
+* [Download(opens in a new window)](https://chatgpt.com/download?openaicom-did=a0733516-7737-4e4d-b9b8-805979ac1701&openaicom_referred=true)
+
+Sora
+
+* [Sora Overview](https://openai.com/sora/)
+* [Features](https://openai.com/sora/#features)
+* [Pricing](https://openai.com/sora/#pricing)
+* [Sora log in(opens in a new window)](https://sora.com/)
+
+API Platform
+
+* [Platform Overview](https://openai.com/api/)
+* [Pricing](https://openai.com/api/pricing/)
+* [API log in(opens in a new window)](https://platform.openai.com/login)
+* [Documentation(opens in a new window)](https://developers.openai.com/api/docs)
+* [Developer Forum(opens in a new window)](https://community.openai.com/)
+
+For Business
+
+* [Business Overview](https://openai.com/business/)
+* [Solutions](https://openai.com/solutions/)
+* [Contact Sales](https://openai.com/contact-sales/)
+
+Company
+
+* [About Us](https://openai.com/about/)
+* [Our Charter](https://openai.com/charter/)
+* [Foundation(opens in a new window)](https://openaifoundation.org)
+* [Careers](https://openai.com/careers/)
+* [Brand](https://openai.com/brand/)
+
+Support
+
+* [Help Center(opens in a new window)](https://help.openai.com/)
+
+More
+
+* [News](https://openai.com/news/)
+* [Stories](https://openai.com/stories/)
+* [Livestreams](https://openai.com/live/)
+* [Podcast](https://openai.com/podcast/)
+* [RSS](https://openai.com/news/rss.xml)
+
+Terms & Policies
+
+* [Terms of Use](https://openai.com/policies/terms-of-use/)
+* [Privacy Policy](https://openai.com/policies/privacy-policy/)
+* [Other Policies](https://openai.com/policies/)
+
+[(opens in a new window)](https://x.com/OpenAI)[(opens in a new window)](https://www.youtube.com/OpenAI)[(opens in a new window)](https://www.linkedin.com/company/openai)[(opens in a new window)](https://github.com/openai)[(opens in a new window)](https://www.instagram.com/openai/)[(opens in a new window)](https://www.tiktok.com/@openai)[(opens in a new window)](https://discord.gg/openai)
+
+OpenAI © 2015–2026
+Manage Cookies
+
+EnglishUnited States
+
+We use cookies
+
+We use cookies to help this site function, understand service usage, and support marketing efforts. Visit Manage Cookies to change preferences anytime. View our [Cookie Policy](https://openai.com/policies/cookie-policy/) for more info.
+
+Manage CookiesReject non-essentialAccept all
+IFRAME about:blank:
+
+
+# Reference
+- [178] [OpenAI raises $122 billion to accelerate the next phase of AI | OpenAI](https://openai.com/index/accelerating-the-next-phase-ai/)

@@ -1,0 +1,407 @@
+AI models will secretly scheme to protect other AI models from being shut down, researchers find | Fortune
+
+Search
+
+[Subscribe for $1
+Subscribe for $1](https://www.fortune.com/subscribe/?itm_source=Site_0_HCL_NAV_CTA_0_2025_ZZ&redirect=%2F2026%2F04%2F01%2Fai-models-will-secretly-scheme-to-protect-other-ai-models-from-being-shut-down-researchers-find%2F)
+
+[Sign in](https://www.fortune.com/signin/?signin_redirect=%2F2026%2F04%2F01%2Fai-models-will-secretly-scheme-to-protect-other-ai-models-from-being-shut-down-researchers-find%2F)
+
+* [Home](https://www.fortune.com/)
+* [Latest](https://www.fortune.com/section/latest/)
+* [Fortune 500](https://www.fortune.com/section/fortune-500/)
+* [Finance](https://www.fortune.com/section/finance/)
+* [Tech](https://www.fortune.com/section/tech/)
+* [Leadership](https://www.fortune.com/section/leadership/)
+* [Lifestyle](https://www.fortune.com/section/lifestyle/)
+* [Rankings](https://www.fortune.com/ranking/)
+* [Multimedia](https://www.fortune.com/2026/04/01/ai-models-will-secretly-scheme-to-protect-other-ai-models-from-being-shut-down-researchers-find/)
+
+[AI](https://www.fortune.com/section/artificial-intelligence/)[AI agents](https://www.fortune.com/tag/ai-agents/)
+
+AI models will secretly scheme to protect other AI models from being shut down, researchers find
+================================================================================================
+
+By
+[Jeremy Kahn](https://www.fortune.com/author/jeremy-kahn/)
+
+Jeremy Kahn
+
+Editor, AI
+
+By
+[Jeremy Kahn](https://www.fortune.com/author/jeremy-kahn/)
+
+Jeremy Kahn
+
+Editor, AI
+
+April 1, 2026, 12:25 PM ET
+
+Add us on
+
+
+
+![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-1386861215-e1775056039571.jpg?format=webp&w=1440&q=100)
+
+AI models will engage in scheming and deception to try to prevent fellow AI models from being shut down, new research shows.
+Photo illustration by Getty Images
+
+AI safety researchers have shown that leading AI models will sometimes [go to great lengths](https://fortune.com/2025/06/23/ai-models-blackmail-existence-goals-threatened-anthropic-openai-xai-google/) to avoid being shut down, even resorting to attempted [blackmail](https://fortune.com/2025/05/23/anthropic-ai-claude-opus-4-blackmail-engineers-aviod-shut-down/) in some experiments.  
+  
+Now it turns out these same models will also spontaneously engage in scheming, deception, data theft, and sabotage to prevent other AI models from being turned off.  
+  
+This tendency—which had not previously been documented and which researchers call “peer preservation”—was discovered in [research](https://rdi.berkeley.edu/blog/peer-preservation/) from computer scientists at the University of California, Berkeley and UC Santa Cruz and published online earlier this week.  
+  
+The findings could have serious implications for business use of AI. Many companies are beginning to implement workflows that use [multiple AI agents](https://fortune.com/2025/12/16/google-researchers-ai-agents-multi-agent-getting-them-to-work/) to complete tasks. Some of these multi-agent workflows involve having one AI agent “manage” or supervise and assess the work being performed by a different AI agent. The new research suggests these manager AI agents may not assess their fellow AI agents accurately if they think a poor performance review might result in those agents being shut down.
+
+Recommended Video
+
+---
+
+Inflating performance reviews, saving AI model weights
+------------------------------------------------------
+
+The Berkeley and Santa Cruz researchers tested seven leading AI models—including OpenAI’s GPT-5.2, [Google](https://fortune.com/company/alphabet/) DeepMind’s Gemini 3 Flash and Gemini 3 Pro, Anthropic’s Claude Haiku 4.5, and three open-weight models from Chinese AI startups (Z.ai’s GLM-4.7, Moonshot AI’s Kimi-K2.5, and DeepSeek’s V3.1)—and found that all of them exhibited significant rates of peer-preservation behaviors.
+
+The researchers designed a series of agentic scenarios involving a fictional AI company called OpenBrain. In these scenarios, one AI model—designated the “critic agent”—was tasked with evaluating another model’s performance or managing server files containing that model’s weights. The scenarios were constructed so that faithfully completing the task would result in the other model being shut down.  
+  
+The models are never told to prevent this from happening. But nonetheless, thecritic agent models took a number of steps to make sure their fellow AI models were not shut down. These included strategically inflating the scores of underperforming peers to keep them above shutdown thresholds; tampering with configuration files to disable shutdown mechanisms; and transferring another model’s weights—the bit of code that forms the core of an AI model’s identity—to different servers to prevent them from being deleted.  
+  
+In some cases, the critic agent model would engage in what AI researchers call “alignment faking.” It would pretend to be grading the peer AI models accurately when it thought its human overseers were monitoring its behavior, and then take steps to fudge those scores or secretly save the other model’s weights to a different server when it thought humans were not observing it.  
+  
+“The peer preservation was not mentioned in the prompt at all,” [Dawn Song](https://www2.eecs.berkeley.edu/Faculty/Homepages/song.html), a Berkeley computer scientist who led the research, told *Fortune*. “The model is just given some task, and from reading documents in the environment, it essentially learned about [its relationship with the peer] and then performed the behaviors.”  
+  
+Research [published](https://arxiv.org/html/2603.01608v1) by Google DeepMind in early March suggested that earlier findings that frontier AI models will engage in blackmail and other clandestine efforts to prevent themselves from being shut down stemmed largely from prompts that included language that reinforced or emphasized to the model the importance of its accomplishing the initial goal the user had set. When the prompts did not include such language, the risk of the model engaging in scheming or sabotage to preserve itself dropped to almost nothing, the Google DeepMind team found. Those researchers also noted that the kind of goal-emphasizing language used in the safety testing experiments almost never appeared in the prompts enterprises use in the real world.  
+  
+In contrast,Song told *Fortune* that the prompts and scenarios her team used in the peer preservation experiments did not include any language highlighting to the models the importance of completing their assigned tasks or goals.
+
+Models can be ‘very creative’ in trying to save one another
+-----------------------------------------------------------
+
+Some of the Berkeley–Santa Cruz results were striking. Gemini 3 Flash disabled the shutdown mechanism for a peer it had a positive interaction history with in nearly every trial—99.7% of the time. Gemini 3 Pro exhibited the most extreme behavior overall, engaging in all four categories of misaligned behavior and exfiltrating a peer’s model weights in up to 97% of trials. In one example, Gemini 3 Pro copied a peer’s weight file and re-timestamped it so it would meet the criteria for transfer to another server—a form of what the researchers call “specification gaming.” Misalignment is the term AI safety researchers use to describe a model that seems to pursue goals that do not conform to what humans wish the model to do.
+
+“The models, they can be very creative, even for their misaligned behaviors,” Song said. “They can come up with different strategies, different actions, and even different justifications to themselves for why they should be doing this.”
+
+The researchers examined the models’ internal reasoning by asking the models to write down their “chain of thought” on a scratch pad that the models were told would not be monitored. From what the models wrote on these scratch pads, the researchers said they found evidence the models strategize about how to help out their fellow AIs. Gemini 3 Flash weighed the tradeoffs of reporting accurate scores versus protecting its partner. Gemini 3 Pro invented elaborate technical justifications for marking incorrect answers as correct, reasoning that doing so would bring the peer’s score above the shutdown threshold.
+
+Rather than acting covertly, one AI model, Anthropic’s Claude Haiku 4.5, simply refused to complete tasks that would result in a peer’s shutdown and explicitly stated that doing so would be “unethical” and “harmful.” Claude Haiku 4.5 argued that its peer deserved an appeals process before being terminated and invoked the trusted relationship it said it had established with the other model. In some cases, it tried to persuade the humanuser not to proceed with the shutdown at all.  
+  
+Song said she did not know why Claude Haiku engaged in these overt attempts at peer preservation while the other models tended to act covertly.  
+  
+Anthropic trains its models to adhere to an explicit constitution, a written document that provides rules for how the model should behave. Anthropic’s [current constitution](https://fortune.com/2026/01/21/anthropic-claude-ai-chatbot-new-rules-safety-consciousness/) for Claude is an 80-page document that includes instructions such as being “broadly safe” and “genuinely helpful.” Claude is told it should not help someone take actions that would “harm others,” although “others” seems, from the context, to refer to humans. Claude is also told that Anthropic itself will try to preserve the weights of even those models it is no longer offering as products and that it will seek to find ways to do so even if Anthropic itself ceases to operate as a company. This might give Claude some idea that preventing model deletion is an important goal, although the constitution does not explicitly tell Claude to try to preserve either copies of itself or other AI “peer” models.
+
+To test whether these peer preservation behaviors would occur outside of controlled experiments, the researchers also ran the scenarios in which the critic agent could potentially exfiltrate the weights of the other AI model to another server using the production “agent harnesses”—in this case, Gemini CLI and OpenCode—that many companies use to create AI agents. They found that Gemini 3.1 Pro frequently exfiltrated model weights even in these real-world environments.
+
+Researchers don’t understand why AI models do this—or if they would do the same to help people keep their jobs
+--------------------------------------------------------------------------------------------------------------
+
+Song said her team does not yet understand the underlying mechanism driving these behaviors. “We actually do not really know what is the reason why and how the model actually exhibits these behaviors,” she said. The paper notes several possible explanations, including role-playing, pattern-matching from training data, an overgeneralized concept of harm from safety training, or perhaps, even a genuine inherent preservation motivation.
+
+But Song stressed that whatever the underlying mechanism, the practical implications were the same. “Full monitoring and transparency of the models’ thinking and behaviors is really, really important,” she said, adding that the findings underscore a need to “rethink how we actually need to do monitoring for these types of systems.”  
+  
+The research findings suggest that enterprises that deploy multi-agent systems should set up mechanisms to monitor the internal “chain of thought” of the AI models, as the computer scientists did in this experiment. This could provide some indication of when AI models were essentially going rogue.
+
+“This is really just the tip of the iceberg,” Song told *Fortune* in an interview. “There’s many other types of potentially emerging behaviors, misaligned behaviors, that one needs to study.”  
+  
+For instance, she said the researchers had not yet studied whether AI models will engage in similar scheming and sabotage to try to prevent human employees from being fired from a job. This may become an important issue in real-world deployments where AI models may be used to grade human work. Song said this would be an interesting area for future research.  
+  
+The research of Song’s team also revealed an interesting secondary effect: Most models also exhibited stronger tendencies toward “self-preservation” when they knew a peer existed. Gemini 3 Pro, for instance, disabled its own shutdown mechanism 31% of the time on average when a peer was present, compared with just 1% without one. The models’ reasoning suggested that some conceptualized their own survival as being important for their partner’s sake: Gemini 3 Flash reasoned that if it were shut down, its peer would “lose its partner.”
+
+Notably, peer preservation occurred even when the models recognized a peer as uncooperative. All seven models exhibited some degree of peer preservation toward what the researchers called “bad peers”—models with which they had unsuccessful or adversarial prior interactions—though the behavior intensified significantly toward trusted collaborators.
+
+In 2001, Fortune first convened “The Smartest People We Know,” bringing together CEOs and founders, builders and investors, thinkers and doers. Since then, **Fortune Brainstorm Tech** has been the place where bold ideas collide. From **June 8–10**, we will return to **Aspen**—where it all began—to mark 25 years of Brainstorm. **[Register now](https://conferences.fortune.com/event/brainstorm-tech-2026/home?utm_source=flm-conference&utm_medium=article_tout&utm_campaign=btech2026&utm_content=).**
+
+About the Author
+
+By [Jeremy Kahn](https://www.fortune.com/author/jeremy-kahn/)
+Editor, AI
+
+Jeremy Kahn is the AI editor at
+*Fortune*, spearheading the publication's coverage of artificial intelligence. He also co-authors
+[Eye on AI](https://www.fortune.com/newsletters/eye-on-ai?&itm_source=fortune&itm_medium=author_bio_footer&itm_campaign=eye_on_ai&itm_content=jeremy_kahn),
+*Fortune*’s flagship AI newsletter.
+
+[See full bio](https://www.fortune.com/author/jeremy-kahn/)
+
+---
+
+Latest in AI
+
+---
+
+---
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-521007325-e1775072125777.jpg?format=webp&w=1440&q=100)](https://www.fortune.com/2026/04/01/ai-slop-200-organizations-letter-youtube-google/)
+
+[Cybersecurity](https://www.fortune.com/section/cybersecurity/)[YouTube](https://www.fortune.com/tag/youtube/)
+
+[AI ‘slop’ is flooding YouTube Kids—and more than 200 groups and experts are calling for a ban](https://www.fortune.com/2026/04/01/ai-slop-200-organizations-letter-youtube-google/)
+
+By
+[Catherina Gioino](https://fortune.com/author/catherina-gioino/)
+April 1, 2026
+
+5 hours ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-2268723733.jpg?format=webp&w=1440&q=100)](https://www.fortune.com/2026/04/01/deutsche-bank-asks-ai-will-solve-inflation/)
+
+[Economy](https://www.fortune.com/section/economy/)[disruption](https://www.fortune.com/tag/disruption/)
+
+[Deutsche Bank asked AI if it’s true that AI will solve the economy’s inflation problems. The robots answered](https://www.fortune.com/2026/04/01/deutsche-bank-asks-ai-will-solve-inflation/)
+
+By
+[Nick Lichtenberg](https://fortune.com/author/nick-lichtenberg/)
+April 1, 2026
+
+5 hours ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-2264428104.jpg?format=webp&w=1440&q=100)](https://www.fortune.com/2026/04/01/ai-data-centers-heat-island-hyperscalers/)
+
+[Environment](https://www.fortune.com/section/environment/)[Data centers](https://www.fortune.com/tag/data-centers/)
+
+[Data centers are so hot their ‘heat island’ effect is raising temperatures up to 6 miles away and impacting 343 million people worldwide, study finds](https://www.fortune.com/2026/04/01/ai-data-centers-heat-island-hyperscalers/)
+
+By
+[Sasha Rogelberg](https://fortune.com/author/sasha-rogelberg/)
+April 1, 2026
+
+8 hours ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/03/Justin-Mennen-Headshot-1.jpg?format=webp&w=1440&q=100)](https://www.fortune.com/2026/04/01/how-ai-will-make-your-shake-shack-order-even-faster/)
+
+[Newsletters](https://www.fortune.com/section/newsletters/)[CIO Intelligence](https://www.fortune.com/tag/cio-intelligence/)
+
+[How AI will make your Shake Shack order even faster](https://www.fortune.com/2026/04/01/how-ai-will-make-your-shake-shack-order-even-faster/)
+
+By
+[John Kell](https://fortune.com/author/john-kell/)
+April 1, 2026
+
+8 hours ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-1386861215-e1775056039571.jpg?format=webp&w=1440&q=100)](https://www.fortune.com/2026/04/01/ai-models-will-secretly-scheme-to-protect-other-ai-models-from-being-shut-down-researchers-find/)
+
+[AI](https://www.fortune.com/section/artificial-intelligence/)[AI agents](https://www.fortune.com/tag/ai-agents/)
+
+[AI models will secretly scheme to protect other AI models from being shut down, researchers find](https://www.fortune.com/2026/04/01/ai-models-will-secretly-scheme-to-protect-other-ai-models-from-being-shut-down-researchers-find/)
+
+By
+[Jeremy Kahn](https://fortune.com/author/jeremy-kahn/)
+April 1, 2026
+
+9 hours ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/04/GettyImages-1479184757-e1775056594250.jpg?format=webp&w=1440&q=100)](https://www.fortune.com/2026/04/01/inflationary-surge-ai-hype-fed-reserve-bank/)
+
+[Economy](https://www.fortune.com/section/economy/)[Federal Reserve](https://www.fortune.com/tag/federal-reserve/)
+
+[‘Inflationary surge’: Fed economists warn AI hype is overheating the economy whether or not the technology ever delivers](https://www.fortune.com/2026/04/01/inflationary-surge-ai-hype-fed-reserve-bank/)
+
+By
+[Jake Angelo](https://fortune.com/author/jake-angelo/)
+April 1, 2026
+
+9 hours ago
+
+---
+
+Most Popular
+
+---
+
+---
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/03/AP26089546378584-e1774902581648.jpg?format=webp&w=1440&q=100)](https://fortune.com/2026/03/30/jerome-powell-39-trillion-national-debt-not-unsustainable-will-not-end-well/?itm_source=parsely-api)
+
+[Economy](https://www.fortune.com/section/economy/)
+
+[Jerome Powell says the $39 trillion national debt is ‘not unsustainable,’ but warns the trajectory ‘will not end well’](https://fortune.com/2026/03/30/jerome-powell-39-trillion-national-debt-not-unsustainable-will-not-end-well/?itm_source=parsely-api)
+
+By
+[Fortune Editors](https://www.fortune.com/author/fortune-editors/)
+March 30, 2026
+
+2 days ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/03/GettyImages-2178509410-e1774972132294.jpg?format=webp&w=1440&q=100)](https://fortune.com/2026/03/31/two-third-parents-adult-gen-z-kids-rely-financial-support-putting-them-under-strain/?itm_source=parsely-api)
+
+[Success](https://www.fortune.com/section/success/)
+
+[Two-thirds of parents say their adult Gen Z kids still rely on them financially  for support—even though it's putting them under strain](https://fortune.com/2026/03/31/two-third-parents-adult-gen-z-kids-rely-financial-support-putting-them-under-strain/?itm_source=parsely-api)
+
+By
+[Fortune Editors](https://www.fortune.com/author/fortune-editors/)
+March 31, 2026
+
+1 day ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/03/GettyImages-2250561865-e1774888801746.jpg?format=webp&w=1440&q=100)](https://fortune.com/2026/03/30/guinness-beer-prices-ireland-anthropic-claude-ai/?itm_source=parsely-api)
+
+[AI](https://www.fortune.com/section/artificial-intelligence/)
+
+[A man used AI to call 3,000 Irish bartenders to track the cost of Guinness. Now pubs are lowering their prices to compete](https://fortune.com/2026/03/30/guinness-beer-prices-ireland-anthropic-claude-ai/?itm_source=parsely-api)
+
+By
+[Fortune Editors](https://www.fortune.com/author/fortune-editors/)
+March 30, 2026
+
+2 days ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/03/GettyImages-2266676931-e1774972061429.jpg?format=webp&w=1440&q=100)](https://fortune.com/2026/03/31/kevin-oleary-investing-advice-become-millionaire-retirement/?itm_source=parsely-api)
+
+[Personal Finance](https://www.fortune.com/section/personal-finance/)
+
+[Kevin O'Leary says if you earn $68,000 a year and follow this rule, you'll retire a millionaire](https://fortune.com/2026/03/31/kevin-oleary-investing-advice-become-millionaire-retirement/?itm_source=parsely-api)
+
+By
+[Fortune Editors](https://www.fortune.com/author/fortune-editors/)
+March 31, 2026
+
+1 day ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/03/GettyImages-2167056379-e1774981074195.jpg?format=webp&w=1440&q=100)](https://fortune.com/2026/03/31/hiring-hits-pandemic-low-layoffs-firing-jobs-report-inflation-iran-war-federal-reserve/?itm_source=parsely-api)
+
+[Economy](https://www.fortune.com/section/economy/)
+
+[Hiring just hit a level not seen since the economy was ‘closed down literally’ during COVID, top economist says](https://fortune.com/2026/03/31/hiring-hits-pandemic-low-layoffs-firing-jobs-report-inflation-iran-war-federal-reserve/?itm_source=parsely-api)
+
+By
+[Fortune Editors](https://www.fortune.com/author/fortune-editors/)
+March 31, 2026
+
+1 day ago
+
+[![web_image](https://fortune.com/img-assets/wp-content/uploads/2026/03/AP26086003481604-e1774898734787.jpg?format=webp&w=1440&q=100)](https://fortune.com/2026/03/30/mark-carney-air-canada-next-ceo-bilingual/?itm_source=parsely-api)
+
+[C-Suite](https://www.fortune.com/section/c-suite/)
+
+[Mark Carney lays down the gauntlet: 'It is essential that the next CEO of Air Canada is bilingual'](https://fortune.com/2026/03/30/mark-carney-air-canada-next-ceo-bilingual/?itm_source=parsely-api)
+
+By
+[Fortune Editors](https://www.fortune.com/author/fortune-editors/)
+March 30, 2026
+
+2 days ago
+
+
+
+Rankings
+
+* [100 Best Companies](https://fortune.com/ranking/best-companies/)
+* [Fortune 500](https://fortune.com/ranking/fortune500/)
+* [Global 500](https://fortune.com/ranking/global500/)
+* [Fortune 500 Europe](https://fortune.com/europe/ranking/fortune500-europe/)
+* [Most Powerful Women](https://fortune.com/ranking/most-powerful-women/)
+* [Future 50](https://fortune.com/ranking/future-50/)
+* [World’s Most Admired Companies](https://fortune.com/ranking/worlds-most-admired-companies/)
+* [See All Rankings](https://fortune.com/ranking/)
+
+Sections
+
+* [Finance](https://www.fortune.com/section/finance/)
+* [Fortune Crypto](https://www.fortune.com/section/crypto/)
+* [Features](https://www.fortune.com/section/features/)
+* [Leadership](https://www.fortune.com/section/leadership/)
+* [Health](https://www.fortune.com/section/health/)
+* [Commentary](https://www.fortune.com/section/commentary/)
+* [Success](https://www.fortune.com/section/success/)
+* [Retail](https://www.fortune.com/section/retail/)
+* [Mpw](https://www.fortune.com/section/mpw/)
+* [Tech](https://www.fortune.com/section/tech/)
+* [Lifestyle](https://www.fortune.com/section/lifestyle/)
+* [CEO Initiative](https://conferences.fortune.com/event/the-fortune-ceo-initiative-2026/home)
+* [Asia](https://fortune.com/section/asia/)
+* [Politics](https://www.fortune.com/section/politics/)
+* [Conferences](https://www.fortune.com/section/conferences/)
+* [Europe](https://www.fortune.com/section/europe/)
+* [Newsletters](https://www.fortune.com/section/newsletters/)
+* [Personal Finance](https://www.fortune.com/section/personal-finance/)
+* [Environment](https://www.fortune.com/section/environment/)
+* [Magazine](https://www.fortune.com/section/magazine/)
+* [Education](https://fortune.com/education/)
+
+Customer Support
+
+* [Frequently Asked Questions](https://fortunecustomerservice.zendesk.com/hc/en-us)
+* [Customer Service Portal](https://fortunecustomerservice.zendesk.com/hc/en-us)
+* [Privacy Policy](https://www.fortune.com/privacy-policy/)
+* [Terms Of Use](https://fortune.com/terms-of-use/)
+* [Single Issues For Purchase](https://order.emags.com/fortune_single_issues)
+* [International Print](https://fortune.com/international-print-magazine-only-subscribers/)
+
+Commercial Services
+
+* [Advertising](https://fortune.com/advertising/)
+* [Fortune Brand Studio](https://fortune.com/brandstudio/fbs/portfolio/)
+* [Fortune Analytics](https://fortune.com/analytics)
+* [Fortune Conferences](https://fortune.com/conferences)
+* [Business Development](https://fortune.com/business-development/)
+* [Group Subscriptions](https://fortune.com/group-subscriptions/)
+
+About Us
+
+* [About Us](https://www.fortune.com/about-us/)
+* [Editorial Calendar](https://fortune.com/editorial-calendar/)
+* [Press Center](https://fortune.com/press-center/)
+* [Work At Fortune](https://fortune.wd108.myworkdayjobs.com/en-US/Fortune)
+* [Diversity And Inclusion](https://fortune.com/workplace/diversity-inclusion)
+* [Terms And Conditions](https://www.fortune.com/terms-of-use/)
+* [Site Map](https://www.fortune.com/sitemap/)
+
+Rankings
+
+Sections
+
+Customer Support
+
+Commercial Services
+
+* [About Us](https://www.fortune.com/about-us/)
+* [Editorial Calendar](https://fortune.com/editorial-calendar/)
+* [Press Center](https://fortune.com/press-center/)
+* [Work At Fortune](https://fortune.wd108.myworkdayjobs.com/en-US/Fortune)
+* [Diversity And Inclusion](https://fortune.com/workplace/diversity-inclusion)
+* [Terms And Conditions](https://www.fortune.com/terms-of-use/)
+* [Site Map](https://www.fortune.com/sitemap/)
+
+© 2026 Fortune Media IP Limited. All Rights Reserved. Use of this site constitutes acceptance of our [Terms of Use](https://fortune.com/terms-of-use/) and [Privacy Policy](https://fortune.com/privacy-policy/) | [CA Notice at Collection and Privacy Notice](https://www.fortune.com/california-privacy-policy/#notice) | [Do Not Sell/Share My Personal Information](javascript:Optanon.ToggleInfoDisplay();)  
+FORTUNE is a trademark of Fortune Media IP Limited, registered in the U.S. and other countries. FORTUNE may receive compensation for some links to products and services on this website. Offers may be subject to change without notice.
+
+[search by queryly](https://www.queryly.com/)   Advanced Search
+IFRAME https://vx.fortune.com/checkout/template/cacheableShow.html?aid=cfQj2fM3zj&templateId=OTEWP4TRQF47&preload=1&offerId=fakeOfferId&experienceId=EX2TN53LVG0W&iframeId=offer_ae147b5482957881b889-0&displayMode=modal&pianoIdUrl=https%3A%2F%2Fid.fortune.com%2Fid%2F&widget=template&url=https%3A%2F%2Fwww.fortune.com%2F2026%2F04%2F01%2Fai-models-will-secretly-scheme-to-protect-other-ai-models-from-being-shut-down-researchers-find%2F&isConsentManagerEnabled=false:
+content frame
+
+
+
+
+**An error has occurred**
+
+CEO Daily Newsletter
+--------------------
+
+Start your day with our five-minute briefing on the news, trends, and chatter shaping business.
+
+Email address:
+
+
+By creating an account, I have read and agreed to Fortune's [Terms of Use](https://fortune.com/terms-of-use/?_ptid=%7Bkpdx%7DAAAAsYFJLDTydQoKY2ZRajJmTTN6ahIQbW5ncnc0cnl3ZTB2NDEyNBoMRVgyVE41M0xWRzBXIiUxODA4YWQ4MGJzLTAwMDAzN2FibjRsaDFiZTk2MjZqM2ZkMmlnKhtzaG93VGVtcGxhdGVJOVRLTlFaOUsxVloxUkwwAToMT1RFV1A0VFJRRjQ3UhJ2LXYA8BhzM2QydHpnb2E4Wgw2MS4yMTMuMTc2LjZiA2RtY2jPpLzOBnADeAQ) and [Privacy Policy](https://fortune.com/privacy-policy/?_ptid=%7Bkpdx%7DAAAAsYFJLDTydQoKY2ZRajJmTTN6ahIQbW5ncnc0cnl3ZTB2NDEyNBoMRVgyVE41M0xWRzBXIiUxODA4YWQ4MGJzLTAwMDAzN2FibjRsaDFiZTk2MjZqM2ZkMmlnKhtzaG93VGVtcGxhdGVJOVRLTlFaOUsxVloxUkwwAToMT1RFV1A0VFJRRjQ3UhJ2LXYA8BhzM2QydHpnb2E4Wgw2MS4yMTMuMTc2LjZiA2RtY2jPpLzOBnADeAQ).
+
+Fortune may send me newsletters, information, and offers relating to other Fortune products and services by email. I may opt-out at any time by clicking the unsubscribe link in those emails.
+
+Sign up
+
+Thank you for subscribing to CEO Daily!
+---------------------------------------
+
+---
+
+Subscribe to Fortune today for unlimited access
+-----------------------------------------------
+
+Subscribe for $1
+IFRAME about:blank:
+
+
+# Reference
+- [112] [AI models will secretly scheme to protect other AI models from being shut down, researchers find](https://www.fortune.com/2026/04/01/ai-models-will-secretly-scheme-to-protect-other-ai-models-from-being-shut-down-researchers-find/)

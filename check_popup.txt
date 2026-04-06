@@ -1,0 +1,57 @@
+Full-Screen Screenshot: ![](/tmp/webpage_images/check_popup_full_screen_screenshot.png)
+Second Brain AI
+
+
+
+笔记
+
+编辑
+
+Second Brain
+
+第二大脑
+====
+
+主页
+笔记
+数据库
+
+新建
+
+笔记本
+
+新建本
+
+⚡
+快速笔记
+1
+
++
+
+📝
+未命名笔记
+
+垃圾桶
+
+Synced at 19:59
+
+EditPreview
+
+📝
+
+未命名笔记
+=====
+
+自动标签
+
+添加属性
+
+使用模板快速开始
+
+新建笔记
+====
+
+从这里开始记录你的想法。
+
+# Reference
+- [10] [Second Brain AI](http://127.0.0.1:8000/)

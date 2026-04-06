@@ -1,0 +1,187 @@
+OpenAI 新闻动态 | OpenAI
+
+[跳至主要内容](https://openai.com/news/#main)
+
+* [研究](https://openai.com/zh-Hans-CN/research/index/)
+* 产品
+* [企业](https://openai.com/zh-Hans-CN/business/)
+* [开发人员](https://openai.com/zh-Hans-CN/api/)
+* [公司](https://openai.com/zh-Hans-CN/about/)
+* [基金会
+  （在新窗口中打开）](https://openaifoundation.org)
+
+[试用 ChatGPT（在新窗口中打开）](https://chatgpt.com/?openaicom-did=c9923eb8-6586-4504-9855-998b775050af&openaicom_referred=true)
+
+* 研究
+* 产品
+* 企业
+* 开发人员
+* 公司
+* [基金会（在新窗口中打开）](https://openaifoundation.org)
+
+OpenAI 新闻动态 | OpenAI
+
+All
+---
+
+* [公司](https://openai.com/news/company-announcements/)
+* [研究](https://openai.com/zh-Hans-CN/news/research/)
+* [产品](https://openai.com/zh-Hans-CN/news/product-releases/)
+* [安全](https://openai.com/news/safety-alignment/)
+* [工程](https://openai.com/news/engineering/)
+* [安全防护](https://openai.com/news/security/)
+* [全球事务](https://openai.com/news/global-affairs/)
+* [AI 采用](https://openai.com/zh-Hans-CN/news/ai-adoption/)
+* [全部](https://openai.com/zh-Hans-CN/news/)
+
+---
+
+筛选
+
+排序
+
+切换卡片以显示媒体
+
+切换卡片以隐藏媒体
+
+[OpenAI raises $122 billion to accelerate the next phase of AI
+
+公司
+2026年3月31日](https://openai.com/index/accelerating-the-next-phase-ai/)
+
+[深入解析我们的模型规范制定方法
+
+研究
+2026年3月25日](https://openai.com/index/our-approach-to-the-model-spec/)
+
+[OpenAI 安全性风险赏金计划正式上线
+
+安全
+2026年3月25日](https://openai.com/zh-Hans-CN/index/safety-bug-bounty/)
+
+[助力开发者为青少年打造更安全的 AI 体验
+
+安全
+2026年3月24日](https://openai.com/zh-Hans-CN/index/teen-safety-policies-gpt-oss-safeguard/)
+
+[OpenAI Foundation 最新动态
+
+公司
+2026年3月24日](https://openai.com/zh-Hans-CN/index/update-on-the-openai-foundation/)
+
+[在 ChatGPT 中直接探索商品
+
+产品
+2026年3月24日](https://openai.com/zh-Hans-CN/index/powering-product-discovery-in-chatgpt/)
+
+[在 Sora 中安全创作
+
+安全
+2026年3月23日](https://openai.com/index/creating-with-sora-safely/)
+
+[我们如何监控内部编程智能体的对齐失范
+
+安全
+2026年3月19日](https://openai.com/zh-Hans-CN/index/how-we-monitor-internal-coding-agents-misalignment/)
+
+[OpenAI to acquire Astral
+
+公司
+2026年3月19日](https://openai.com/index/openai-to-acquire-astral/)
+
+加载更多
+
+我们的研究
+
+* [研究索引](https://openai.com/zh-Hans-CN/research/index/)
+* [研究概览](https://openai.com/zh-Hans-CN/research/)
+* [研究驻留](https://openai.com/zh-Hans-CN/residency/)
+* [OpenAI for Science](https://openai.com/zh-Hans-CN/science/)
+* [经济研究](https://openai.com/zh-Hans-CN/signals/)
+
+最新进展
+
+* [GPT-5.3 Instant](https://openai.com/zh-Hans-CN/index/gpt-5-3-instant/)
+* [GPT-5.3-Codex](https://openai.com/zh-Hans-CN/index/introducing-gpt-5-3-codex/)
+* [GPT-5](https://openai.com/zh-Hans-CN/gpt-5/)
+* [Codex](https://openai.com/zh-Hans-CN/index/introducing-gpt-5-3-codex/)
+
+安全
+
+* [安全措施](https://openai.com/zh-Hans-CN/safety/)
+* [安全与隐私](https://openai.com/zh-Hans-CN/security-and-privacy/)
+* [信任与透明度](https://openai.com/zh-Hans-CN/trust-and-transparency/)
+
+ChatGPT
+
+* [探索 ChatGPT（在新窗口中打开）](https://chatgpt.com/zh-Hans-CN/overview?openaicom-did=c9923eb8-6586-4504-9855-998b775050af&openaicom_referred=true)
+* [Business 版](https://chatgpt.com/zh-Hans-CN/business/business-plan?openaicom-did=c9923eb8-6586-4504-9855-998b775050af&openaicom_referred=true)
+* [Enterprise 版](https://chatgpt.com/zh-Hans-CN/business/enterprise?openaicom-did=c9923eb8-6586-4504-9855-998b775050af&openaicom_referred=true)
+* [Education 版](https://chatgpt.com/zh-Hans-CN/business/education?openaicom-did=c9923eb8-6586-4504-9855-998b775050af&openaicom_referred=true)
+* [定价（在新窗口中打开）](https://chatgpt.com/zh-Hans-CN/pricing?openaicom-did=c9923eb8-6586-4504-9855-998b775050af&openaicom_referred=true)
+* [下载（在新窗口中打开）](https://chatgpt.com/zh-Hans-CN/download?openaicom-did=c9923eb8-6586-4504-9855-998b775050af&openaicom_referred=true)
+
+Sora
+
+* [Sora 概览](https://openai.com/zh-Hans-CN/sora/)
+* [功能](https://openai.com/sora/#features)
+* [定价](https://openai.com/sora/#pricing)
+* [Sora 登录（在新窗口中打开）](https://sora.com/)
+
+API 平台
+
+* [平台概览](https://openai.com/zh-Hans-CN/api/)
+* [定价](https://openai.com/zh-Hans-CN/api/pricing/)
+* [API 登录（在新窗口中打开）](https://platform.openai.com/login)
+* [文档（在新窗口中打开）](https://developers.openai.com/api/docs)
+* [开发者论坛（在新窗口中打开）](https://community.openai.com/)
+
+商业应用
+
+* [商业应用概览](https://openai.com/zh-Hans-CN/business/)
+* [解决方案](https://openai.com/zh-Hans-CN/solutions/)
+* [联系销售团队](https://openai.com/zh-Hans-CN/contact-sales/)
+
+公司
+
+* [关于我们](https://openai.com/zh-Hans-CN/about/)
+* [我们的宪章](https://openai.com/zh-Hans-CN/charter/)
+* [基金会（在新窗口中打开）](https://openaifoundation.org)
+* [工作机会](https://openai.com/zh-Hans-CN/careers/)
+* [品牌](https://openai.com/zh-Hans-CN/brand/)
+
+支持
+
+* [帮助中心（在新窗口中打开）](https://help.openai.com/)
+
+更多
+
+* [新闻](https://openai.com/zh-Hans-CN/news/)
+* [客户案例](https://openai.com/zh-Hans-CN/stories/)
+* [直播](https://openai.com/zh-Hans-CN/live/)
+* [播客](https://openai.com/zh-Hans-CN/podcast/)
+* [RSS](https://openai.com/news/rss.xml)
+
+条款与政策
+
+* [使用条款](https://openai.com/zh-Hans-CN/policies/terms-of-use/)
+* [隐私政策](https://openai.com/zh-Hans-CN/policies/privacy-policy/)
+* [其他政策](https://openai.com/zh-Hans-CN/policies/)
+
+[（在新窗口中打开）](https://x.com/OpenAI)[（在新窗口中打开）](https://www.youtube.com/OpenAI)[（在新窗口中打开）](https://www.linkedin.com/company/openai)[（在新窗口中打开）](https://github.com/openai)[（在新窗口中打开）](https://www.instagram.com/openai/)[（在新窗口中打开）](https://www.tiktok.com/@openai)[（在新窗口中打开）](https://discord.gg/openai)
+
+OpenAI © 2015–2026
+管理 Cookie
+
+中文中国
+
+我们使用 Cookie
+
+我们使用 Cookie 来确保网站正常运作、了解服务使用情况并支持营销推广。访问 管理 Cookie 可随时更改偏好设置。查看我们的 [Cookie 政策](https://openai.com/policies/cookie-policy/)以了解详情。
+
+管理 Cookie拒绝非必要全部接受
+IFRAME about:blank:
+
+
+# Reference
+- [174] [OpenAI 新闻动态 | OpenAI](https://openai.com/zh-Hans-CN/news/)

@@ -1,0 +1,2 @@
+INFO 2026-03-20 16:41:47,029 v1(7) ../../usr/local/node/lib/node_modules/@byted/mcp-proxy/node_modules/@byted-service/bytedtrace/lib/reporter/client.js:71 fd00:ffff:ffff:9e::139 flow.agentsphere.runtime - default - gl [bytetrace]: connect client success
+INFO 2026-03-20 16:41:47,033 v1(7) ../../usr/local/node/lib/node_modules/@byted/mcp-proxy/node_modules/@byted-service/bytedtrace/lib/reporter/client.js:71 fd00:ffff:ffff:9e::139 flow.agentsphere.runtime - default - gl [bytetrace]: connect client success

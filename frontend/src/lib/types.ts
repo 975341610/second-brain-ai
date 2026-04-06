@@ -13,6 +13,7 @@ export type Note = {
   content: string;
   summary: string;
   is_title_manually_edited: boolean;
+  is_folder?: boolean;
   tags: string[];
   properties: NoteProperty[];
   links: number[];

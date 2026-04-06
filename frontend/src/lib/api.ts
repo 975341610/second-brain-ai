@@ -19,6 +19,15 @@ declare global {
   }
 }
 
+export const getApiBase = () => {
+  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
+  if (typeof window !== 'undefined' && window.location.hostname.includes('strato-https-proxy')) {
+    // 将前端 vite 预览的端口替换为后端 8765 端口
+    return `https://${window.location.hostname.replace(/^[0-9]+-/, '8765-')}/api`;
+  }
+  return 'http://127.0.0.1:8765/api';
+};
+
 // Helper to call IPC or fallback to fetch
 async function invoke<T>(channel: string, path: string, options?: any): Promise<T> {
   if (window.electron?.ipcInvoke) {
@@ -34,7 +43,7 @@ async function invoke<T>(channel: string, path: string, options?: any): Promise<
   }
   
   // Fallback to FastAPI REST API (only if electron is not available, e.g. web preview)
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
+  const API_BASE = getApiBase();
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     ...(options?.headers as Record<string, string> || {}),
@@ -60,9 +69,11 @@ export const api = {
   deleteNotebook: (notebookId: number) => invoke('notebooks:delete', `/notebooks/${notebookId}`, { params: { id: notebookId } }),
   restoreNotebook: (notebookId: number) => invoke<Notebook>('notebooks:restore', `/notebooks/${notebookId}/restore`, { params: { id: notebookId } }),
   purgeNotebook: (notebookId: number) => invoke('notebooks:purge', `/notebooks/${notebookId}/purge`, { params: { id: notebookId } }),
-  createNote: (payload: { title: string; content: string; notebook_id?: number | null; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; tags?: string[] }) =>
+  createNote: (payload: { title: string; content: string; notebook_id?: number | null; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; is_folder?: boolean; tags?: string[] }) =>
     invoke<Note>('notes:create', '/notes', { method: 'POST', body: JSON.stringify(payload) }),
-  updateNote: (noteId: number, payload: { title?: string; content?: string; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; tags?: string[], file_path?: string }) =>
+  createFolder: (payload: { title: string; notebook_id?: number | null; parent_id?: number | null; tags?: string[] }) =>
+    invoke<Note>('folders:create', '/folders', { method: 'POST', body: JSON.stringify(payload) }),
+  updateNote: (noteId: number, payload: { title?: string; content?: string; icon?: string; parent_id?: number | null; is_title_manually_edited?: boolean; is_folder?: boolean; tags?: string[], file_path?: string }) =>
     invoke<Note>('notes:update', `/notes/${noteId}`, { params: { id: noteId, ...payload } }),
   updateNoteTags: (noteId: number, tags: string[]) =>
     invoke<Note>('notes:update-tags', `/notes/${noteId}/tags`, { params: { id: noteId, tags } }),
@@ -96,7 +107,7 @@ export const api = {
     if (window.electron?.ipcInvoke) {
       return window.electron.ipcInvoke('ai:stream-inline', payload, (chunk: string) => onChunk(chunk));
     }
-    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
+    const API_BASE = getApiBase();
     const response = await fetch(`${API_BASE}/inline-ai`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -128,7 +139,7 @@ export const api = {
         console.warn('IPC streaming failed, falling back to fetch', e);
       }
     }
-    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
+    const API_BASE = getApiBase();
     const response = await fetch(`${API_BASE}/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -146,10 +157,19 @@ export const api = {
   },
   upload: async (files: File[]) => {
     // Upload is complex via IPC without proper encoding, keep it for now or implement as FS copy
-    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
+    const API_BASE = getApiBase();
     const formData = new FormData();
     files.forEach((file) => formData.append('files', file));
     const response = await fetch(`${API_BASE}/upload`, { method: 'POST', body: formData });
+    if (!response.ok) throw new Error(await response.text());
+    return response.json();
+  },
+  uploadMediaChunked: async (file: File) => {
+    // Basic single-file upload for now, matching utils.tsx expectations
+    const API_BASE = getApiBase();
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch(`${API_BASE}/media/upload`, { method: 'POST', body: formData });
     if (!response.ok) throw new Error(await response.text());
     return response.json();
   },
@@ -163,7 +183,7 @@ export const api = {
   updateUserWallpaper: (wallpaperUrl: string) => invoke<UserStats>('user:update-wallpaper', '/user/wallpaper', { params: { wallpaper_url: wallpaperUrl } }),
   listBgm: () => invoke<string[]>('bgm:list', '/bgm/list'),
   getBgmStreamUrl: (filename: string) => {
-    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8765/api';
+    const API_BASE = getApiBase();
     return `${API_BASE}/bgm/stream/${encodeURIComponent(filename)}`;
   },
   getSystemVersion: () => invoke<{ version: string; git_commit?: string; build_time?: string; executable?: string }>('system:version', '/system/version'),

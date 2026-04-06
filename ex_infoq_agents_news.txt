@@ -1,0 +1,27 @@
+Human Verification
+
+
+
+临时错误。请再试一次。
+
+在继续处理您的请求之前，您需要完成拼图，并且该拼图要求禁用 Google Translate。请禁用 Google Translate 并重试。
+
+我们需要确认您是人类
+==========
+
+在继续操作之前，请完成安全检查。此步骤将验证您不是机器人，这有助于保护您的账户并阻止垃圾邮件。
+
+开始
+
+العربيةČeštinaDanskDeutschEnglishEspañolFrançaisBahasa IndonesiaItaliano日本語한국어NederlandsPolskiPortuguêsSvenskaไทยTürkçe中文
+
+
+
+JavaScript is disabled
+======================
+
+In order to continue, you need to verify that you're not a robot by solving a CAPTCHA puzzle.
+The CAPTCHA puzzle requires JavaScript. Enable JavaScript and then reload the page.
+
+# Reference
+- [114] [News](https://www.infoq.com/Agents/news/)

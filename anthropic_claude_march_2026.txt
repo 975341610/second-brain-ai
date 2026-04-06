@@ -1,0 +1,2605 @@
+ 
+
+Anthropic's madcap March: 14+ launches, 5 outages, and an accidental Claude Mythos leak - The New Stack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+![web_image](https://cdn-cookieyes.com/assets/images/revisit.svg)
+
+We value your privacy
+
+We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking "Accept All", you consent to our use of cookies.
+
+Customise Reject All Accept All
+
+Powered by
+
+Customise Consent Preferences
+ 
+
+![web_image](https://cdn-cookieyes.com/assets/images/close.svg)
+
+We use cookies to help you navigate efficiently and perform certain functions. You will find detailed information about all cookies under each consent category below.
+
+The cookies that are categorised as "Necessary" are stored on your browser as they are essential for enabling the basic functionalities of the site. ... Show more
+
+NecessaryAlways Active
+
+Necessary cookies are required to enable the basic features of this site, such as providing secure log-in or adjusting your consent preferences. These cookies do not store any personally identifiable data.
+
+* Cookie
+
+  \_\_eoi
+* Duration
+
+  6 months
+* Description
+
+  Description is currently not available.
+
+* Cookie
+
+  \_\_cf\_bm
+* Duration
+
+  1 hour
+* Description
+
+  This cookie, set by Cloudflare, is used to support Cloudflare Bot Management.
+
+* Cookie
+
+  \_cfuvid
+* Duration
+
+  session
+* Description
+
+  Cloudflare sets this cookie to track users across sessions to optimize user experience by maintaining session consistency and providing personalized services
+
+* Cookie
+
+  AWSALBCORS
+* Duration
+
+  7 days
+* Description
+
+  Amazon Web Services set this cookie for load balancing.
+
+* Cookie
+
+  li\_gc
+* Duration
+
+  6 months
+* Description
+
+  Linkedin set this cookie for storing visitor's consent regarding using cookies for non-essential purposes.
+
+* Cookie
+
+  \_\_hssrc
+* Duration
+
+  session
+* Description
+
+  This cookie is set by Hubspot whenever it changes the session cookie. The \_\_hssrc cookie set to 1 indicates that the user has restarted the browser, and if the cookie does not exist, it is assumed to be a new session.
+
+* Cookie
+
+  \_\_hssc
+* Duration
+
+  1 hour
+* Description
+
+  HubSpot sets this cookie to keep track of sessions and to determine if HubSpot should increment the session number and timestamps in the \_\_hstc cookie.
+
+* Cookie
+
+  AWSALB
+* Duration
+
+  7 days
+* Description
+
+  AWSALB is an application load balancer cookie set by Amazon Web Services to map the session to the target.
+
+* Cookie
+
+  \_\_Secure-YNID
+* Duration
+
+  6 months
+* Description
+
+  Google cookie used to protect user security and prevent fraud, especially during the login process.
+
+* Cookie
+
+  jwtOnAir
+* Duration
+
+  1 month 1 day
+* Description
+
+  Description is currently not available.
+
+* Cookie
+
+  jwt
+* Duration
+
+  1 month 1 day
+* Description
+
+  No description available.
+
+* Cookie
+
+  csrfToken
+* Duration
+
+  1 month 1 day
+* Description
+
+  Description is currently not available.
+
+* Cookie
+
+  \_octo
+* Duration
+
+  1 year
+* Description
+
+  No description available.
+
+* Cookie
+
+  logged\_in
+* Duration
+
+  1 year
+* Description
+
+  No description available.
+
+* Cookie
+
+  csrf\_token
+* Duration
+
+  session
+* Description
+
+  No description available.
+
+* Cookie
+
+  token\_v2
+* Duration
+
+  1 day
+* Description
+
+  Description is currently not available.
+
+* Cookie
+
+  VISITOR\_PRIVACY\_METADATA
+* Duration
+
+  6 months
+* Description
+
+  YouTube sets this cookie to store the user's cookie consent state for the current domain.
+
+* Cookie
+
+  yt.innertube::nextId
+* Duration
+
+  Never Expires
+* Description
+
+  YouTube sets this cookie to register a unique ID to store data on what videos from YouTube the user has seen.
+
+* Cookie
+
+  yt.innertube::requests
+* Duration
+
+  Never Expires
+* Description
+
+  YouTube sets this cookie to register a unique ID to store data on what videos from YouTube the user has seen.
+
+* Cookie
+
+  session\_tracker
+* Duration
+
+  session
+* Description
+
+  This cookie is set by the Reddit. This cookie is used to identify trusted web traffic. It also helps in adverstising on the website.
+
+* Cookie
+
+  YSC
+* Duration
+
+  session
+* Description
+
+  YSC cookie is set by Youtube and is used to track the views of embedded videos on Youtube pages.
+
+* Cookie
+
+  VISITOR\_INFO1\_LIVE
+* Duration
+
+  6 months
+* Description
+
+  A cookie set by YouTube to measure bandwidth that determines whether the user gets the new or old player interface.
+
+* Cookie
+
+  yt-remote-connected-devices
+* Duration
+
+  Never Expires
+* Description
+
+  YouTube sets this cookie to store the user's video preferences using embedded YouTube videos.
+
+* Cookie
+
+  ytidb::LAST\_RESULT\_ENTRY\_KEY
+* Duration
+
+  Never Expires
+* Description
+
+  The cookie ytidb::LAST\_RESULT\_ENTRY\_KEY is used by YouTube to store the last search result entry that was clicked by the user. This information is used to improve the user experience by providing more relevant search results in the future.
+
+* Cookie
+
+  yt-remote-device-id
+* Duration
+
+  Never Expires
+* Description
+
+  YouTube sets this cookie to store the user's video preferences using embedded YouTube videos.
+
+* Cookie
+
+  yt-remote-session-name
+* Duration
+
+  session
+* Description
+
+  The yt-remote-session-name cookie is used by YouTube to store the user's video player preferences using embedded YouTube video.
+
+* Cookie
+
+  yt-remote-fast-check-period
+* Duration
+
+  session
+* Description
+
+  The yt-remote-fast-check-period cookie is used by YouTube to store the user's video player preferences for embedded YouTube videos.
+
+* Cookie
+
+  yt-remote-session-app
+* Duration
+
+  session
+* Description
+
+  The yt-remote-session-app cookie is used by YouTube to store user preferences and information about the interface of the embedded YouTube video player.
+
+* Cookie
+
+  yt-remote-cast-available
+* Duration
+
+  session
+* Description
+
+  The yt-remote-cast-available cookie is used to store the user's preferences regarding whether casting is available on their YouTube video player.
+
+* Cookie
+
+  yt-remote-cast-installed
+* Duration
+
+  session
+* Description
+
+  The yt-remote-cast-installed cookie is used to store the user's video player preferences using embedded YouTube video.
+
+* Cookie
+
+  currency
+* Duration
+
+  session
+* Description
+
+  This cookie is used to store the currency preference of the user.
+
+* Cookie
+
+  cookieyes-consent
+* Duration
+
+  1 year
+* Description
+
+  CookieYes sets this cookie to remember users' consent preferences so that their preferences are respected on subsequent visits to this site. It does not collect or store any personal information about the site visitors.
+
+* Cookie
+
+  test\_cookie
+* Duration
+
+  15 minutes
+* Description
+
+  doubleclick.net sets this cookie to determine if the user's browser supports cookies.
+
+* Cookie
+
+  pxcts
+* Duration
+
+  session
+* Description
+
+  Description is currently not available.
+
+* Cookie
+
+  bStore
+* Duration
+
+  Less than a minute
+* Description
+
+  Description is currently not available.
+
+* Cookie
+
+  JSESSIONID
+* Duration
+
+  session
+* Description
+
+  New Relic uses this cookie to store a session identifier so that New Relic can monitor session counts for an application.
+
+* Cookie
+
+  \_pxvid
+* Duration
+
+  1 year
+* Description
+
+  PerimeterX sets this cookie to detect fraud and bot activity.
+
+* Cookie
+
+  \_px3
+* Duration
+
+  6 minutes
+* Description
+
+  This cookie is set by the Bloomberg to protect the site from BOT attacks.
+
+* Cookie
+
+  cookietest
+* Duration
+
+  session
+* Description
+
+  The cookietest cookie is typically used to determine whether the user's browser accepts cookies, essential for website functionality and user experience.
+
+* Cookie
+
+  cf\_use\_ob
+* Duration
+
+  1 minute
+* Description
+
+  Cloudflare sets this cookie to improve page load times and to disallow any security restrictions based on the visitor's IP address.
+
+Functional
+
+Functional cookies help perform certain functionalities like sharing the content of the website on social media platforms, collecting feedback, and other third-party features.
+
+* Cookie
+
+  BCTempID
+* Duration
+
+  10 minutes
+* Description
+
+  No description available.
+
+* Cookie
+
+  BCSessionID
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Blueconic sets this cookie as a unique identifier for the BlueConic profile.
+
+* Cookie
+
+  lidc
+* Duration
+
+  1 day
+* Description
+
+  LinkedIn sets the lidc cookie to facilitate data center selection.
+
+* Cookie
+
+  loid
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  This cookie is set by the Reddit. The cookie enables the sharing of content from the website onto the social media platform.
+
+* Cookie
+
+  lang
+* Duration
+
+  session
+* Description
+
+  LinkedIn sets this cookie to remember a user's language setting.
+
+Analytics
+
+Analytical cookies are used to understand how visitors interact with the website. These cookies help provide information on metrics such as the number of visitors, bounce rate, traffic source, etc.
+
+* Cookie
+
+  taboola\_session\_id
+* Duration
+
+  session
+* Description
+
+  This cookie is owned by trc.taboola.com and is used to create a temporary session ID to prevent duplicate recommendations from being displayed on the page.
+
+* Cookie
+
+  \_ga\_\*
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Google Analytics sets this cookie to store and count page views.
+
+* Cookie
+
+  \_ga
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Google Analytics sets this cookie to calculate visitor, session and campaign data and track site usage for the site's analytics report. The cookie stores information anonymously and assigns a randomly generated number to recognise unique visitors.
+
+* Cookie
+
+  \_\_hstc
+* Duration
+
+  6 months
+* Description
+
+  Hubspot set this main cookie for tracking visitors. It contains the domain, initial timestamp (first visit), last timestamp (last visit), current timestamp (this visit), and session number (increments for each subsequent session).
+
+* Cookie
+
+  hubspotutk
+* Duration
+
+  6 months
+* Description
+
+  HubSpot sets this cookie to keep track of the visitors to the website. This cookie is passed to HubSpot on form submission and used when deduplicating contacts.
+
+* Cookie
+
+  \_gh\_sess
+* Duration
+
+  session
+* Description
+
+  GitHub sets this cookie for temporary application and framework state between pages like what step the user is on in a multiple step form.
+
+* Cookie
+
+  \_clck
+* Duration
+
+  1 year
+* Description
+
+  Microsoft Clarity sets this cookie to retain the browser's Clarity User ID and settings exclusive to that website. This guarantees that actions taken during subsequent visits to the same website will be linked to the same user ID.
+
+* Cookie
+
+  \_clsk
+* Duration
+
+  1 day
+* Description
+
+  Microsoft Clarity sets this cookie to store and consolidate a user's pageviews into a single session recording.
+
+* Cookie
+
+  mp\_\*\_mixpanel
+* Duration
+
+  Never Expires
+* Description
+
+  Mixpanel sets this cookie to determine how users use the website so that a good user experience can be provided.
+
+* Cookie
+
+  browser\_id
+* Duration
+
+  5 years
+* Description
+
+  This cookie is used for identifying the visitor browser on re-visit to the website.
+
+* Cookie
+
+  li\_alerts
+* Duration
+
+  1 year
+* Description
+
+  LinkedIn sets this cookie to track impressions of LinkedIn alerts, such as the Cookie Banner and to implement cool-off periods for display of alerts.
+
+* Cookie
+
+  MR
+* Duration
+
+  7 days
+* Description
+
+  This cookie, set by Bing, is used to collect user information for analytics purposes.
+
+Performance
+
+Performance cookies are used to understand and analyse the key performance indexes of the website which helps in delivering a better user experience for the visitors.
+
+* Cookie
+
+  \_uetsid
+* Duration
+
+  1 day
+* Description
+
+  Bing Ads sets this cookie to engage with a user that has previously visited the website.
+
+* Cookie
+
+  \_uetvid
+* Duration
+
+  1 year 24 days
+* Description
+
+  Bing Ads sets this cookie to engage with a user that has previously visited the website.
+
+Advertisement
+
+Advertisement cookies are used to provide visitors with customised advertisements based on the pages you visited previously and to analyse the effectiveness of the ad campaigns.
+
+* Cookie
+
+  t\_pt\_gid
+* Duration
+
+  1 year
+* Description
+
+  Description is currently not available.
+
+* Cookie
+
+  muc\_ads
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Twitter sets this cookie to collect user behaviour and interaction data to optimize the website.
+
+* Cookie
+
+  guest\_id\_marketing
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Twitter sets this cookie to identify and track the website visitor.
+
+* Cookie
+
+  guest\_id\_ads
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Twitter sets this cookie to identify and track the website visitor.
+
+* Cookie
+
+  personalization\_id
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Twitter sets this cookie to integrate and share features for social media and also store information about how the user uses the website, for tracking and targeting.
+
+* Cookie
+
+  guest\_id
+* Duration
+
+  1 year 1 month 4 days
+* Description
+
+  Twitter sets this cookie to identify and track the website visitor. It registers if a user is signed in to the Twitter platform and collects information about ad preferences.
+
+* Cookie
+
+  bcookie
+* Duration
+
+  1 year
+* Description
+
+  LinkedIn sets this cookie from LinkedIn share buttons and ad tags to recognize browser IDs.
+
+* Cookie
+
+  \_gcl\_au
+* Duration
+
+  3 months
+* Description
+
+  Google Tag Manager sets this cookie to experiment advertisement efficiency of websites using their services.
+
+* Cookie
+
+  t\_gid
+* Duration
+
+  1 year
+* Description
+
+  Taboola sets this cookie by assigning a specific ID for attribution and reporting purposes and to tailor recommendations to the user.
+
+* Cookie
+
+  \_fbp
+* Duration
+
+  3 months
+* Description
+
+  Facebook sets this cookie to store and track interactions.
+
+* Cookie
+
+  MUID
+* Duration
+
+  1 year 24 days
+* Description
+
+  Bing sets this cookie to recognise unique web browsers visiting Microsoft sites. This cookie is used for advertising, site analytics, and other operations.
+
+* Cookie
+
+  bscookie
+* Duration
+
+  1 year
+* Description
+
+  LinkedIn sets this cookie to store performed actions on the website.
+
+Uncategorised
+
+Other uncategorised cookies are those that are being analysed and have not been classified into a category as yet.
+
+No cookies to display.
+
+Reject All Save My Preferences Accept All
+
+Powered by
+
+
+
+  
+
+TNS
+
+OK
+
+SUBSCRIBE
+
+Join our community of software engineering leaders and aspirational developers. Always
+stay in-the-know by getting the most important news and exclusive content delivered
+fresh to your inbox to learn more about at-scale software development.
+
+EMAIL ADDRESS
+
+REQUIRED
+
+SUBSCRIBE
+
+RESUBSCRIPTION REQUIRED
+
+It seems that you've previously unsubscribed from our newsletter
+in the past. Click the button below to open the re-subscribe form
+in a new tab. When you're done, simply close that tab and continue
+with this form to complete your subscription.
+
+RE-SUBSCRIBE
+
+The New Stack does not sell your information or share it with
+unaffiliated third parties. By continuing, you agree to our
+[Terms of Use](https://thenewstack.io/terms-of-use/) and
+[Privacy Policy](https://thenewstack.io/privacy-policy/).
+
+Welcome and thank you for joining The New Stack community!
+
+Please answer a few simple questions to help us deliver the news and resources you are interested in.
+
+FIRST NAME
+
+REQUIRED
+
+LAST NAME
+
+REQUIRED
+
+COMPANY NAME
+
+REQUIRED
+
+COUNTRY
+
+REQUIRED
+
+Select ...
+United States
+Canada
+India
+United Kingdom
+Germany
+France
+---
+Afghanistan
+Albania
+Algeria
+American Samoa
+Andorra
+Angola
+Anguilla
+Antarctica
+Antigua and Barbuda
+Argentina
+Armenia
+Aruba
+Asia/Pacific Region
+Australia
+Austria
+Azerbaijan
+Bahamas
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgium
+Belize
+Benin
+Bermuda
+Bhutan
+Bolivia
+Bonaire, Sint Eustatius and Saba
+Bosnia and Herzegovina
+Botswana
+Bouvet Island
+Brazil
+British Indian Ocean Territory
+Brunei Darussalam
+Bulgaria
+Burkina Faso
+Burundi
+Cambodia
+Cameroon
+Canada
+Cape Verde
+Cayman Islands
+Central African Republic
+Chad
+Chile
+China
+Christmas Island
+Cocos (Keeling) Islands
+Colombia
+Comoros
+Congo
+Congo, The Democratic Republic of the
+Cook Islands
+Costa Rica
+Croatia
+Cuba
+Curaçao
+Cyprus
+Czech Republic
+Côte d'Ivoire
+Denmark
+Djibouti
+Dominica
+Dominican Republic
+Ecuador
+Egypt
+El Salvador
+Equatorial Guinea
+Eritrea
+Estonia
+Ethiopia
+Falkland Islands (Malvinas)
+Faroe Islands
+Fiji
+Finland
+France
+French Guiana
+French Polynesia
+French Southern Territories
+Gabon
+Gambia
+Georgia
+Germany
+Ghana
+Gibraltar
+Greece
+Greenland
+Grenada
+Guadeloupe
+Guam
+Guatemala
+Guernsey
+Guinea
+Guinea-Bissau
+Guyana
+Haiti
+Heard Island and Mcdonald Islands
+Holy See (Vatican City State)
+Honduras
+Hong Kong
+Hungary
+Iceland
+India
+Indonesia
+Iran, Islamic Republic Of
+Iraq
+Ireland
+Isle of Man
+Israel
+Italy
+Jamaica
+Japan
+Jersey
+Jordan
+Kazakhstan
+Kenya
+Kiribati
+Korea, Republic of
+Kuwait
+Kyrgyzstan
+Laos
+Latvia
+Lebanon
+Lesotho
+Liberia
+Libyan Arab Jamahiriya
+Liechtenstein
+Lithuania
+Luxembourg
+Macao
+Madagascar
+Malawi
+Malaysia
+Maldives
+Mali
+Malta
+Marshall Islands
+Martinique
+Mauritania
+Mauritius
+Mayotte
+Mexico
+Micronesia, Federated States of
+Moldova, Republic of
+Monaco
+Mongolia
+Montenegro
+Montserrat
+Morocco
+Mozambique
+Myanmar
+Namibia
+Nauru
+Nepal
+Netherlands
+Netherlands Antilles
+New Caledonia
+New Zealand
+Nicaragua
+Niger
+Nigeria
+Niue
+Norfolk Island
+North Korea
+North Macedonia
+Northern Mariana Islands
+Norway
+Oman
+Pakistan
+Palau
+Palestinian Territory, Occupied
+Panama
+Papua New Guinea
+Paraguay
+Peru
+Philippines
+Pitcairn Islands
+Poland
+Portugal
+Puerto Rico
+Qatar
+Reunion
+Romania
+Russian Federation
+Rwanda
+Saint Barthélemy
+Saint Helena
+Saint Kitts and Nevis
+Saint Lucia
+Saint Martin
+Saint Martin
+Saint Pierre and Miquelon
+Saint Vincent and the Grenadines
+Samoa
+San Marino
+Sao Tome and Principe
+Saudi Arabia
+Senegal
+Serbia
+Serbia and Montenegro
+Seychelles
+Sierra Leone
+Singapore
+Sint Maarten
+Slovakia
+Slovenia
+Solomon Islands
+Somalia
+South Africa
+South Georgia and the South Sandwich Islands
+South Sudan
+Spain
+Sri Lanka
+Sudan
+Suriname
+Svalbard and Jan Mayen
+Swaziland
+Sweden
+Switzerland
+Syrian Arab Republic
+Taiwan
+Tajikistan
+Tanzania, United Republic of
+Thailand
+Timor-Leste
+Togo
+Tokelau
+Tonga
+Trinidad and Tobago
+Tunisia
+Turkey
+Turkmenistan
+Turks and Caicos Islands
+Tuvalu
+Uganda
+Ukraine
+United Arab Emirates
+United Kingdom
+United States
+United States Minor Outlying Islands
+Uruguay
+Uzbekistan
+Vanuatu
+Venezuela
+Vietnam
+Virgin Islands, British
+Virgin Islands, U.S.
+Wallis and Futuna
+Western Sahara
+Yemen
+Zambia
+Zimbabwe
+Åland Islands
+
+ZIPCODE
+
+REQUIRED
+
+Great to meet you!
+
+Tell us a bit about your job so we can cover the topics you find most relevant.
+
+What is your job level?
+
+REQUIRED
+
+
+Select ...
+C-Level
+VP/Director
+Manager/Supervisor
+Mid Level or Senior Non-Managerial Staff
+Entry Level/Junior Staff
+Freelancer/Contractor
+Student/Intern
+Other ...
+
+Which of these most closely describes your job role?
+
+REQUIRED
+
+Select ...
+Developer/Software Engineer
+SysAdmin/Operations/SRE
+Architect
+Security Professional
+DevOps Engineer/Team
+Community Manager/Developer Advocate
+IT management, including CIO/CISO/CTO
+Business Development/Marketing/Sales
+Enthusiast/Hobbyist
+Other ...
+
+How many employees are in the organization you work with?
+
+REQUIRED
+
+Select ...
+Self-employed
+2-10
+11-50
+51-250
+251-1,000
+1,001-10,000
+> 10,000
+I am not working
+
+What option best describes the type of organization you work for?
+
+REQUIRED
+
+Select ...
+“End user” organization that primarily uses IT products and services to support their business deliverables
+Hardware / software vendor or supplier
+Cloud service provider or managed service provider
+System integrator or IT consulting firm
+Other ...
+
+Which of the following best describes your organization's primary industry?
+
+REQUIRED
+
+Select ...
+Advertising/Marketing
+Aerospace/Aviation
+Agriculture
+Automotive
+Biotech/Pharmaceutical
+Business Services (accounting, consulting, etc.)
+Computers/Information Technology
+Construction
+Education
+Facilities/Service Industry
+Finance/Financial Services (banking, insurance, etc.)
+Government
+Healthcare
+Human Resources
+Legal
+Life sciences (biotech, pharmaceuticals, etc.)
+Manufacturing
+Media
+Non-profit
+Real Estate
+Retail/Consumer Goods
+Telecommunications
+Transportation/Logistics
+Travel/Hospitality/Entertainment
+Utility/Energy
+Other ...
+
+LINKEDIN PROFILE URL
+
+Welcome!
+
+We’re so glad you’re here. You can expect all the best TNS content to arrive
+Monday through Friday to keep you on top of the news and at the top of your game.
+
+What’s next?
+
+Check your inbox for a confirmation email where you can adjust your preferences
+and even join additional groups.
+
+Follow TNS on your favorite social media networks.
+
+Become a [TNS follower on LinkedIn](https://www.linkedin.com/company/the-new-stack).
+
+Check out [the latest featured and trending stories](https://thenewstack.io/) while you wait for your
+first TNS newsletter.
+
+PREV
+
+1
+ of 2
+
+NEXT
+
+VOXPOP
+
+As a JavaScript developer, what non-React tools do you use most often?
+
+✓
+
+Angular
+
+0%
+
+✓
+
+Astro
+
+0%
+
+✓
+
+Svelte
+
+0%
+
+✓
+
+Vue.js
+
+0%
+
+✓
+
+Other
+
+0%
+
+✓
+
+I only use React
+
+0%
+
+✓
+
+I don't use JavaScript
+
+0%
+
+Thanks for your opinion! Subscribe below to get the final results, published
+exclusively in our TNS Update newsletter:
+
+SUBMIT
+
+NEW! Try Stackie AI
+
+LOGIN
+
+ARCHITECTURE
+
+[Cloud Native Ecosystem](https://thenewstack.io/cloud-native/) 
+[Containers](https://thenewstack.io/containers/) 
+[Databases](https://thenewstack.io/databases/) 
+[Edge Computing](https://thenewstack.io/edge-computing/) 
+[Infrastructure as Code](https://thenewstack.io/infrastructure-as-code/) 
+[Linux](https://thenewstack.io/linux/) 
+[Microservices](https://thenewstack.io/microservices/) 
+[Open Source](https://thenewstack.io/open-source/) 
+[Networking](https://thenewstack.io/networking/) 
+[Storage](https://thenewstack.io/storage/)
+
+ENGINEERING
+
+[AI](https://thenewstack.io/ai/) 
+[AI Engineering](https://thenewstack.io/ai-engineering/) 
+[API Management](https://thenewstack.io/api-management/) 
+[Backend development](https://thenewstack.io/backend-development/) 
+[Data](https://thenewstack.io/data/) 
+[Frontend Development](https://thenewstack.io/frontend-development/) 
+[Large Language Models](https://thenewstack.io/llm/) 
+[Security](https://thenewstack.io/security/) 
+[Software Development](https://thenewstack.io/software-development/) 
+[WebAssembly](https://thenewstack.io/webassembly/)
+
+OPERATIONS
+
+[AI Operations](https://thenewstack.io/ai-operations/) 
+[CI/CD](https://thenewstack.io/ci-cd/) 
+[Cloud Services](https://thenewstack.io/cloud-services/) 
+[DevOps](https://thenewstack.io/devops/) 
+[Kubernetes](https://thenewstack.io/kubernetes/) 
+[Observability](https://thenewstack.io/observability/) 
+[Operations](https://thenewstack.io/operations/) 
+[Platform Engineering](https://thenewstack.io/platform-engineering/)
+
+PROGRAMMING
+
+[C++](https://thenewstack.io/c/) 
+[Developer tools](https://thenewstack.io/developer-tools/) 
+[Go](https://thenewstack.io/go/) 
+[Java](https://thenewstack.io/java/) 
+[JavaScript](https://thenewstack.io/javascript/) 
+[Programming Languages](https://thenewstack.io/programming-languages/) 
+[Python](https://thenewstack.io/python/) 
+[Rust](https://thenewstack.io/rust/) 
+[TypeScript](https://thenewstack.io/typescript/)
+
+CHANNELS
+
+[Podcasts](https://thenewstack.io/podcasts/) 
+[Ebooks](https://thenewstack.io/ebooks/) 
+[Events](https://thenewstack.io/events/) 
+[Webinars](https://thenewstack.io/webinars/) 
+[Newsletter](https://thenewstack.io/newsletter/) 
+[TNS RSS Feeds](https://thenewstack.io/rss-feeds/)
+
+THE NEW STACK
+
+[About / Contact](https://thenewstack.io/about-and-contact-info/) 
+[Sponsors](https://thenewstack.io/sponsors/) 
+[Advertise With Us](https://thenewstack.io/sponsorship/) 
+[Contributions](https://thenewstack.io/contributions/)
+
+[PODCASTS](https://thenewstack.io/podcasts/)
+[EBOOKS](https://thenewstack.io/ebooks/)
+[EVENTS](https://thenewstack.io/events/)
+[WEBINARS](https://thenewstack.io/webinars/)
+[NEWSLETTER](https://thenewstack.io/newsletter/)
+[CONTRIBUTE](https://thenewstack.io/contributions/)
+
+[ARCHITECTURE](https://thenewstack.io/anthropic-march-2026-roundup/)
+[ENGINEERING](https://thenewstack.io/anthropic-march-2026-roundup/)
+[OPERATIONS](https://thenewstack.io/anthropic-march-2026-roundup/)
+[PROGRAMMING](https://thenewstack.io/anthropic-march-2026-roundup/)
+
+[Cloud Native Ecosystem](https://thenewstack.io/cloud-native/) 
+[Containers](https://thenewstack.io/containers/) 
+[Databases](https://thenewstack.io/databases/) 
+[Edge Computing](https://thenewstack.io/edge-computing/) 
+[Infrastructure as Code](https://thenewstack.io/infrastructure-as-code/) 
+[Linux](https://thenewstack.io/linux/) 
+[Microservices](https://thenewstack.io/microservices/) 
+[Open Source](https://thenewstack.io/open-source/) 
+[Networking](https://thenewstack.io/networking/) 
+[Storage](https://thenewstack.io/storage/)
+
+[Why WebAssembly won't replace Kubernetes but makes Helm more secure
+
+Mar 21st 2026 8:45am, by
+B. Cameron Gain](https://thenewstack.io/helm-webassembly-kubernetes-security/)
+
+[Why the ‘glorified host’ for AI is exactly the Kubernetes we need
+
+Mar 20th 2026 9:00am, by
+Danielle Cook](https://thenewstack.io/kubernetes-glorified-ai-host/)
+
+[Linux kernel scale is swamping an already-flawed CVE system
+
+Mar 20th 2026 4:30am, by
+Jed Salazar](https://thenewstack.io/linux-kernel-cve-system/)
+
+[Sampling: the philosopher's stone of distributed tracing
+
+Mar 19th 2026 8:00am, by
+Michele Mancioppi](https://thenewstack.io/distributed-tracing-sampling-opentelemetry/)
+
+[What is KubeVirt and why it’s growing
+
+Mar 17th 2026 9:00am, by
+Tiago Castro](https://thenewstack.io/kubevirt-live-migration-mayastor/)
+
+[Edera spent years calling KVM less secure. Here's why it changed its mind.
+
+Mar 25th 2026 2:22pm, by
+Steven J. Vaughan-Nichols](https://thenewstack.io/edera-adds-kvm-support/)
+
+[Minimus aims to solve one of open-source's long-festering problems
+
+Mar 24th 2026 3:00am, by
+Adrian Bridgwater](https://thenewstack.io/minimus-open-source-container-security/)
+
+[How to deploy Pi-Hole with Docker and stop ads on every device on your LAN
+
+Mar 23rd 2026 7:44am, by
+Jack Wallen](https://thenewstack.io/pihole-docker-network-adblocking/)
+
+[Chainguard has a fix for the open source packages your AI agents keep grabbing
+
+Mar 18th 2026 9:24am, by
+Darryl K. Taft](https://thenewstack.io/chainguard-repository-ai-agents/)
+
+[Chainguard thinks most DevOps teams are solving container security the hard way
+
+Mar 17th 2026 1:04pm, by
+Steven J. Vaughan-Nichols](https://thenewstack.io/chainguard-os-packages-containers/)
+
+[The reason your pgvector benchmark is lying to you
+
+Mar 27th 2026 5:00am, by
+Naina Ananthaswamy](https://thenewstack.io/why-pgvector-benchmarks-lie/)
+
+[Scaling Btrfs to petabytes in production: a 74% cost reduction story
+
+Mar 18th 2026 5:00am, by
+Motiejus Jakštys](https://thenewstack.io/btrfs-petabyte-cost-reduction/)
+
+[The “files are all you need” debate misses what's actually happening in agent memory architecture
+
+Mar 13th 2026 5:00am, by
+Mikiko Bazeley](https://thenewstack.io/ai-agent-memory-architecture/)
+
+[With GridGain acquisition, MariaDB bets on in-memory computing and Apache Ignite
+
+Mar 10th 2026 6:47am, by
+Paul Sawers](https://thenewstack.io/with-gridgain-acquisition-mariadb-bets-on-in-memory-computing-and-apache-ignite/)
+
+[Moving AI apps from prototype to production requires enterprise-grade postgres infrastructure
+
+Mar 9th 2026 7:00am, by
+Meredith Shubel](https://thenewstack.io/ai-prototype-to-production-postgres/)
+
+[Developers are coding to a moving target, and nobody knows where AI lands next
+
+Mar 3rd 2026 7:33am, by
+Adrian Bridgwater](https://thenewstack.io/developers-coding-moving-target-ai/)
+
+[Cloudflare’s new Markdown support shows how the web is evolving for AI agents
+
+Mar 2nd 2026 4:30am, by
+David Eastman](https://thenewstack.io/intent-engineering-ai-agents/)
+
+[React Server Components Vulnerability Found
+
+Dec 6th 2025 7:00am, by
+Loraine Lawson](https://thenewstack.io/react-server-components-vulnerability-found/)
+
+[Kubernetes at the Edge: Lessons From GE HealthCare’s Edge Strategy
+
+Nov 24th 2025 10:00am, by
+Vicki Walker](https://thenewstack.io/kubernetes-at-the-edge-lessons-from-ge-healthcares-edge-strategy/)
+
+[Building a Cloud-to-Edge Architecture Across 40K Global Locations
+
+Nov 20th 2025 10:00am, by
+Vicki Walker](https://thenewstack.io/building-a-cloud-to-edge-architecture-across-40k-global-locations/)
+
+[The operational gap is real, and it's getting wider
+
+Mar 26th 2026 8:00am, by
+Yevgeny Pats](https://thenewstack.io/closing-cloud-operational-gap/)
+
+[Why "automated" infrastructure might cost more than you think
+
+Feb 24th 2026 4:00am, by
+Justyn Roberts](https://thenewstack.io/automated-infrastructure-hidden-costs/)
+
+[Why 40% of AI projects will be canceled by 2027 (and how to stay in the other 60%)
+
+Feb 13th 2026 6:00am, by
+Alex Drag](https://thenewstack.io/agentic-ai-connectivity-platform/)
+
+[Durable Execution: Build reliable software in an unreliable world
+
+Feb 2nd 2026 3:23pm, by
+Charles Humble](https://thenewstack.io/temporal-durable-execution-platform/)
+
+[Terraform challenger Formae expands to more clouds
+
+Jan 28th 2026 6:00am, by
+Joab Jackson](https://thenewstack.io/terraform-competitor-formae-expands-to-more-clouds/)
+
+[Edera spent years calling KVM less secure. Here's why it changed its mind.
+
+Mar 25th 2026 2:22pm, by
+Steven J. Vaughan-Nichols](https://thenewstack.io/edera-adds-kvm-support/)
+
+[Linux kernel scale is swamping an already-flawed CVE system
+
+Mar 20th 2026 4:30am, by
+Jed Salazar](https://thenewstack.io/linux-kernel-cve-system/)
+
+[Scaling Btrfs to petabytes in production: a 74% cost reduction story
+
+Mar 18th 2026 5:00am, by
+Motiejus Jakštys](https://thenewstack.io/btrfs-petabyte-cost-reduction/)
+
+[Chainguard thinks most DevOps teams are solving container security the hard way
+
+Mar 17th 2026 1:04pm, by
+Steven J. Vaughan-Nichols](https://thenewstack.io/chainguard-os-packages-containers/)
+
+[Tromjaro is a free-trade Linux distribution with plenty to offer
+
+Mar 14th 2026 11:00am, by
+Jack Wallen](https://thenewstack.io/tromjaro-is-a-free-trade-linux-distribution-with-plenty-to-offer/)
+
+[Tetrate launches open source marketplace to simplify Envoy adoption
+
+Mar 11th 2026 10:52am, by
+Adrian Bridgwater](https://thenewstack.io/tetrate-built-on-envoy/)
+
+[OpenTelemetry roadmap: Sampling rates and collector improvements ahead
+
+Feb 24th 2026 11:00am, by
+B. Cameron Gain](https://thenewstack.io/opentelemetry-roadmap-sampling-rates-and-collector-improvements-ahead/)
+
+[Merging To Test Is Killing Your Microservices Velocity
+
+Dec 16th 2025 7:00am, by
+Arjun Iyer](https://thenewstack.io/merging-to-test-is-killing-your-microservices-velocity/)
+
+[IBM’s Confluent Acquisition Is About Event-Driven AI
+
+Dec 11th 2025 6:00am, by
+Joab Jackson](https://thenewstack.io/ibms-confluent-acquisition-is-about-event-driven-ai/)
+
+[Deploy Agentic AI Workflows With Kubernetes and Terraform
+
+Nov 26th 2025 9:00am, by
+Oladimeji Sowole](https://thenewstack.io/deploy-agentic-ai-workflows-with-kubernetes-and-terraform/)
+
+[Gitleaks creator returns with Betterleaks, an open source secrets scanner for the agentic era
+
+Mar 27th 2026 11:00am, by
+Paul Sawers](https://thenewstack.io/betterleaks-open-source-secret-scanner/)
+
+[How TeamPCP turned Aqua Security's own Trivy scanner into a weapon against millions of developers
+
+Mar 27th 2026 10:00am, by
+Steven J. Vaughan-Nichols](https://thenewstack.io/teampcp-trivy-supply-chain-attack/)
+
+[The reason your pgvector benchmark is lying to you
+
+Mar 27th 2026 5:00am, by
+Naina Ananthaswamy](https://thenewstack.io/why-pgvector-benchmarks-lie/)
+
+[Edera spent years calling KVM less secure. Here's why it changed its mind.
+
+Mar 25th 2026 2:22pm, by
+Steven J. Vaughan-Nichols](https://thenewstack.io/edera-adds-kvm-support/)
+
+[Broadcom donates Velero to CNCF — and it could reshape how Kubernetes users handle backup and disaster recovery
+
+Mar 24th 2026 8:38am, by
+B. Cameron Gain](https://thenewstack.io/broadcom-velero-cncf-kubernetes/)
+
+[How to deploy Pi-Hole with Docker and stop ads on every device on your LAN
+
+Mar 23rd 2026 7:44am, by
+Jack Wallen](https://thenewstack.io/pihole-docker-network-adblocking/)
+
+[Why flat Kubernetes networks fail at scale
+
+Mar 20th 2026 7:00am, by
+Reza Ramezanpour](https://thenewstack.io/kubernetes-network-security-hierarchies/)
+
+[GSMA Open Gateway offers developers one API for 300+ mobile networks
+
+Mar 4th 2026 10:26am, by
+Adrian Bridgwater](https://thenewstack.io/gsma-open-gateway-developers/)
+
+[How Homepage simplifies monitoring your self-hosted services
+
+Feb 6th 2026 8:00am, by
+Jack Wallen](https://thenewstack.io/how-homepage-simplifies-monitoring-your-self-hosted-services/)
+
+[S3 is the new network: Rethinking data architecture for the cloud era
+
+Feb 2nd 2026 4:00am, by
+Max Liu](https://thenewstack.io/tidb-x-open-source-database/)
+
+[Scaling Btrfs to petabytes in production: a 74% cost reduction story
+
+Mar 18th 2026 5:00am, by
+Motiejus Jakštys](https://thenewstack.io/btrfs-petabyte-cost-reduction/)
+
+[What is KubeVirt and why it’s growing
+
+Mar 17th 2026 9:00am, by
+Tiago Castro](https://thenewstack.io/kubevirt-live-migration-mayastor/)
+
+[S3 is the new network: Rethinking data architecture for the cloud era
+
+Feb 2nd 2026 4:00am, by
+Max Liu](https://thenewstack.io/tidb-x-open-source-database/)
+
+[Agoda’s secret to 50x scale: Getting the database basics right
+
+Jan 28th 2026 7:00am, by
+Cynthia Dunlop](https://thenewstack.io/agodas-secret-to-50x-scale-getting-the-database-basics-right/)
+
+[Chainguard EmeritOSS backs MinIO, other orphaned projects
+
+Jan 27th 2026 6:15am, by
+Steven J. Vaughan-Nichols](https://thenewstack.io/chainguard-emeritoss-backs-minio-other-orphaned-projects/)
+
+[AI](https://thenewstack.io/ai/) 
+[AI Engineering](https://thenewstack.io/ai-engineering/) 
+[API Management](https://thenewstack.io/api-management/) 
+[Backend development](https://thenewstack.io/backend-development/) 
+[Data](https://thenewstack.io/data/) 
+[Frontend Development](https://thenewstack.io/frontend-development/) 
+[Large Language Models](https://thenewstack.io/llm/) 
+[Security](https://thenewstack.io/security/) 
+[Software Development](https://thenewstack.io/software-development/) 
+[WebAssembly](https://thenewstack.io/webassembly/)
+
+[Anthropic's madcap March: 14+ launches, 5 outages, and an accidental Claude Mythos leak](https://thenewstack.io/anthropic-march-2026-roundup/) 
+
+Mar 28th 2026 4:00am, by
+[Matthew Burns](https://thenewstack.io/author/matthew-burns/ "Posts by Matthew Burns")
+
+[OpenAI's Codex gets plugins](https://thenewstack.io/openais-codex-gets-plugins/) 
+
+Mar 27th 2026 8:20am, by
+[Frederic Lardinois](https://thenewstack.io/author/frederic-lardinois/ "Posts by Frederic Lardinois")
+
+[GitHub will train AI models on your Copilot data — and share it with Microsoft](https://thenewstack.io/github-copilot-interaction-data/) 
+
+Mar 27th 2026 6:37am, by
+[Meredith Shubel](https://thenewstack.io/author/mshubel/ "Posts by Meredith Shubel")
+
+[Claude can now open apps, click buttons, and complete tasks on your Mac — but Anthropic says risks remain](https://thenewstack.io/claude-computer-use/) 
+
+Mar 25th 2026 4:36am, by
+[Meredith Shubel](https://thenewstack.io/author/mshubel/ "Posts by Meredith Shubel")
+
+[Ai2 launches MolmoWeb, an open-source web agent](https://thenewstack.io/ai2-launches-molmoweb-an-open-source-web-agent/) 
+
+Mar 24th 2026 9:07am, by
+[Frederic Lardinois](https://thenewstack.io/author/frederic-lardinois/ "Posts by Frederic Lardinois")
+
+[Why online stores keep showing the wrong products — and why tensors fix it](https://thenewstack.io/tensor-ranking-product-discovery/) 
+
+Mar 25th 2026 6:00am, by
+[Tim Young](https://thenewstack.io/author/tim-young/ "Posts by Tim Young")
+
+[OpenClaw's biggest security flaw is why Jentic Mini exists](https://thenewstack.io/openclaw-is-a-security-mess-jentic-wants-to-fix-it/) 
+
+Mar 25th 2026 5:00am, by
+[Darryl K. Taft](https://thenewstack.io/author/darryl-taft/ "Posts by Darryl K. Taft")
+
+[Why most AI projects fail after the demo actually works](https://thenewstack.io/ai-demo-to-production/) 
+
+Mar 25th 2026 4:00am, by
+[Oladimeji Sowole](https://thenewstack.io/author/oladimeji-sowole/ "Posts by Oladimeji Sowole")
+
+[PwC's AI agents are now your consultants -- whether you're ready or not](https://thenewstack.io/pwcs-ai-agents-are-now-your-consultants-whether-youre-ready-or-not/) 
+
+Mar 24th 2026 6:00am, by
+[Darryl K. Taft](https://thenewstack.io/author/darryl-taft/ "Posts by Darryl K. Taft")
+
+[Four prompt engineering patterns every developer should know — and why "draw a cat" explains them all](https://thenewstack.io/prompt-engineering-for-developers/) 
+
+Mar 23rd 2026 11:00am, by
+[Jessica Wachtel](https://thenewstack.io/author/jessica-wachtel/ "Posts by Jessica Wachtel")
+
+[MCP is everywhere, but don't panic. Here's why your existing APIs still matter.](https://thenewstack.io/api-mcp-agent-integration/) 
+
+Mar 23rd 2026 5:00am, by
+[Camille Crowell-Lee](https://thenewstack.io/author/camille-crowell-lee/ "Posts by Camille Crowell-Lee") and [Morgan Fine](https://thenewstack.io/author/morgan-fine/ "Posts by Morgan Fine")
+
+[Before you let AI agents loose, you’d better know what they’re capable of](https://thenewstack.io/risk-mitigation-agentic-ai/) 
+
+Mar 12th 2026 1:22pm, by
+[Charles Humble](https://thenewstack.io/author/charles-humble/ "Posts by Charles Humble")
+
+[GSMA Open Gateway offers developers one API for 300+ mobile networks](https://thenewstack.io/gsma-open-gateway-developers/) 
+
+Mar 4th 2026 10:26am, by
+[Adrian Bridgwater](https://thenewstack.io/author/adrian-bridgwater/ "Posts by Adrian Bridgwater")
+
+[Your AI strategy is built on layers of API sediment](https://thenewstack.io/ai-strategy-api-sediment/) 
+
+Feb 17th 2026 9:37am, by
+[Charles Humble](https://thenewstack.io/author/charles-humble/ "Posts by Charles Humble")
+
+[Solving the Problems That Accompany API Sprawl With AI](https://thenewstack.io/solving-the-problems-that-accompany-api-sprawl-with-ai/) 
+
+Jan 15th 2026 1:00pm, by
+[Heather Joslyn](https://thenewstack.io/author/hjoslyn/ "Posts by Heather Joslyn")
+
+[Backend Development in 2026: What's Changed, What Matters, and What to Learn Next](https://thenewstack.io/introduction-to-backend-development/) 
+
+Mar 19th 2026 11:37am, by
+[TNS Staff](https://thenewstack.io/author/tns-staff/ "Posts by TNS Staff")
+
+[How To Get DNS Right: A Guide to Common Failure Modes](https://thenewstack.io/how-to-get-dns-right-a-guide-to-common-failure-modes/) 
+
+Dec 24th 2025 8:00am, by
+[Sheldon Pereira](https://thenewstack.io/author/sheldon-pereira/ "Posts by Sheldon Pereira") and [Denton Chikura](https://thenewstack.io/author/denton-chikura/ "Posts by Denton Chikura")
+
+[Combining Rust and Python for High-Performance AI Systems](https://thenewstack.io/combining-rust-and-python-for-high-performance-ai-systems/) 
+
+Dec 3rd 2025 1:00pm, by
+[Zziwa Raymond Ian](https://thenewstack.io/author/zziwa-raymond/ "Posts by Zziwa Raymond Ian")
+
+[How MCP Uses Streamable HTTP for Real-Time AI Tool Interaction](https://thenewstack.io/how-mcp-uses-streamable-http-for-real-time-ai-tool-interaction/) 
+
+Aug 18th 2025 10:34am, by
+[Janakiram MSV](https://thenewstack.io/author/janakiram/ "Posts by Janakiram MSV")
+
+[A Backend for Frontend: Watt for Node.js Simplifies Operations](https://thenewstack.io/a-backend-for-frontend-watt-for-node-js-simplifies-operations/) 
+
+Aug 14th 2025 6:00am, by
+[Loraine Lawson](https://thenewstack.io/author/loraine-lawson/ "Posts by Loraine Lawson")
+
+[Fivetran donates its SQLMesh data transformation framework to the Linux Foundation](https://thenewstack.io/fivetran-donates-sqlmesh-lf/) 
+
+Mar 25th 2026 7:39am, by
+[Frederic Lardinois](https://thenewstack.io/author/frederic-lardinois/ "Posts by Frederic Lardinois")
+
+[Ex-Snowflake engineers say there's a blind spot in data engineering — so they built Tower to fix it](https://thenewstack.io/tower-python-data-pipelines/) 
+
+Mar 15th 2026 7:00am, by
+[Paul Sawers](https://thenewstack.io/author/paul-sawers/ "Posts by Paul Sawers")
+
+[Why the "bible" of data systems is getting a massive rewrite for 2026](https://thenewstack.io/data-intensive-applications-rewrite-2026/) 
+
+Mar 4th 2026 5:00am, by
+[Cynthia Dunlop](https://thenewstack.io/author/cynthiadunlop/ "Posts by Cynthia Dunlop")
+
+[How to clone a drive to an image with Clonezilla](https://thenewstack.io/how-to-clone-a-drive-to-an-image-with-clonezilla/) 
+
+Mar 3rd 2026 1:00pm, by
+[Jack Wallen](https://thenewstack.io/author/jack-wallen/ "Posts by Jack Wallen")
+
+[Databases weren’t built for agent sprawl – SurrealDB wants to fix it](https://thenewstack.io/surrealdb-3-ai-agents/) 
+
+Feb 24th 2026 2:07pm, by
+[Paul Sawers](https://thenewstack.io/author/paul-sawers/ "Posts by Paul Sawers")
+
+[WebMCP turns any Chrome web page into an MCP server for AI agents](https://thenewstack.io/webmcp-chrome-ai-agents/) 
+
+Mar 17th 2026 11:50am, by
+[David Eastman](https://thenewstack.io/author/david-eastman/ "Posts by David Eastman")
+
+[Confluent adds A2A support, anomaly detection, and Queues for Kafka in major platform update](https://thenewstack.io/confluent-kafka-a2a-agents/) 
+
+Mar 3rd 2026 10:21am, by
+[Jelani Harper](https://thenewstack.io/author/jelani-harper/ "Posts by Jelani Harper")
+
+[Google's Chrome browser moves to a two-week release cycle](https://thenewstack.io/chrome-two-week-releases/) 
+
+Mar 3rd 2026 9:00am, by
+[Frederic Lardinois](https://thenewstack.io/author/frederic-lardinois/ "Posts by Frederic Lardinois")
+
+[Meta gave React its own foundation. But it's not letting go just yet.](https://thenewstack.io/react-foundation-open-source-governance/) 
+
+Mar 3rd 2026 4:00am, by
+[Paul Sawers](https://thenewstack.io/author/paul-sawers/ "Posts by Paul Sawers")
+
+[The shift left hangover: Why modern platforms are shifting down to cure developer fatigue](https://thenewstack.io/shift-left-hangover-steve-corndell/) 
+
+Jan 30th 2026 6:22pm, by
+[Steve Corndell](https://thenewstack.io/author/steve-corndell/ "Posts by Steve Corndell")
+
+[Why most AI projects fail after the demo actually works](https://thenewstack.io/ai-demo-to-production/) 
+
+Mar 25th 2026 4:00am, by
+[Oladimeji Sowole](https://thenewstack.io/author/oladimeji-sowole/ "Posts by Oladimeji Sowole")
+
+[IBM, Red Hat, and Google just donated a Kubernetes blueprint for LLM inference to the CNCF](https://thenewstack.io/llm-d-cncf-kubernetes-inference/) 
+
+Mar 24th 2026 8:20am, by
+[Steven J. Vaughan-Nichols](https://thenewstack.io/author/sjvn/ "Posts by Steven J. Vaughan-Nichols")
+
+[Andrej Karpathy's 630-line Python script ran 50 experiments overnight without any human input](https://thenewstack.io/karpathy-autonomous-experiment-loop/) 
+
+Mar 14th 2026 5:00am, by
+[Janakiram MSV](https://thenewstack.io/author/janakiram/ "Posts by Janakiram MSV")
+
+["Self-healing" IT? HPE research explores how AI-trained models can catch silent infrastructure failures](https://thenewstack.io/hpe-self-healing-ai-infrastructure/) 
+
+Mar 11th 2026 9:37am, by
+[Jennifer Riggins](https://thenewstack.io/author/jennifer-riggins/ "Posts by Jennifer Riggins")
+
+[How context rot drags down AI and LLM results for enterprises, and how to fix it](https://thenewstack.io/context-rot-enterprise-ai-llms/) 
+
+Mar 9th 2026 9:00am, by
+[Todd R. Weiss](https://thenewstack.io/author/todd-r-weiss/ "Posts by Todd R. Weiss")
+
+[Gitleaks creator returns with Betterleaks, an open source secrets scanner for the agentic era](https://thenewstack.io/betterleaks-open-source-secret-scanner/) 
+
+Mar 27th 2026 11:00am, by
+[Paul Sawers](https://thenewstack.io/author/paul-sawers/ "Posts by Paul Sawers")
+
+[How TeamPCP turned Aqua Security's own Trivy scanner into a weapon against millions of developers](https://thenewstack.io/teampcp-trivy-supply-chain-attack/) 
+
+Mar 27th 2026 10:00am, by
+[Steven J. Vaughan-Nichols](https://thenewstack.io/author/sjvn/ "Posts by Steven J. Vaughan-Nichols")
+
+[OpenClaw's biggest security flaw is why Jentic Mini exists](https://thenewstack.io/openclaw-is-a-security-mess-jentic-wants-to-fix-it/) 
+
+Mar 25th 2026 5:00am, by
+[Darryl K. Taft](https://thenewstack.io/author/darryl-taft/ "Posts by Darryl K. Taft")
+
+[WebAssembly could solve AI agents' most dangerous security gap](https://thenewstack.io/webassembly-sandboxing-ai-agents/) 
+
+Mar 24th 2026 9:01am, by
+[B. Cameron Gain](https://thenewstack.io/author/bruce-gain/ "Posts by B. Cameron Gain")
+
+[Minimus aims to solve one of open-source's long-festering problems](https://thenewstack.io/minimus-open-source-container-security/) 
+
+Mar 24th 2026 3:00am, by
+[Adrian Bridgwater](https://thenewstack.io/author/adrian-bridgwater/ "Posts by Adrian Bridgwater")
+
+[Why online stores keep showing the wrong products — and why tensors fix it](https://thenewstack.io/tensor-ranking-product-discovery/) 
+
+Mar 25th 2026 6:00am, by
+[Tim Young](https://thenewstack.io/author/tim-young/ "Posts by Tim Young")
+
+[Will AI force code to evolve or make it extinct?](https://thenewstack.io/ai-programming-languages-future/) 
+
+Mar 22nd 2026 6:00am, by
+[David Cassel](https://thenewstack.io/author/destiny/ "Posts by David Cassel")
+
+[Backend Development in 2026: What's Changed, What Matters, and What to Learn Next](https://thenewstack.io/introduction-to-backend-development/) 
+
+Mar 19th 2026 11:37am, by
+[TNS Staff](https://thenewstack.io/author/tns-staff/ "Posts by TNS Staff")
+
+[Jellyfish AI development study: The real sting has yet to land](https://thenewstack.io/jellyfish-ai-engineering-trends/) 
+
+Mar 19th 2026 11:01am, by
+[Adrian Bridgwater](https://thenewstack.io/author/adrian-bridgwater/ "Posts by Adrian Bridgwater")
+
+[Sampling: the philosopher's stone of distributed tracing](https://thenewstack.io/distributed-tracing-sampling-opentelemetry/) 
+
+Mar 19th 2026 8:00am, by
+[Michele Mancioppi](https://thenewstack.io/author/michele-mancioppi/ "Posts by Michele Mancioppi")
+
+[WebAssembly could solve AI agents' most dangerous security gap](https://thenewstack.io/webassembly-sandboxing-ai-agents/) 
+
+Mar 24th 2026 9:01am, by
+[B. Cameron Gain](https://thenewstack.io/author/bruce-gain/ "Posts by B. Cameron Gain")
+
+[How WebAssembly plugins simplify Kubernetes extensibility](https://thenewstack.io/how-webassembly-plugins-simplify-kubernetes-extensibility/) 
+
+Mar 3rd 2026 2:00pm, by
+[B. Cameron Gain](https://thenewstack.io/author/bruce-gain/ "Posts by B. Cameron Gain")
+
+[WebAssembly is everywhere. Here's how it works](https://thenewstack.io/webassembly-is-everywhere-heres-how-it-works/) 
+
+Feb 25th 2026 11:00am, by
+[Jessica Wachtel](https://thenewstack.io/author/jessica-wachtel/ "Posts by Jessica Wachtel")
+
+[Wasm vs. JavaScript: Who wins at a million rows?](https://thenewstack.io/wasm-vs-javascript-who-wins-at-a-million-rows/) 
+
+Feb 22nd 2026 6:00am, by
+[Jessica Wachtel](https://thenewstack.io/author/jessica-wachtel/ "Posts by Jessica Wachtel")
+
+[How WebAssembly and Web Workers prevent UI freezes](https://thenewstack.io/how-webassembly-and-web-workers-prevent-ui-freezes/) 
+
+Feb 7th 2026 9:00am, by
+[Jessica Wachtel](https://thenewstack.io/author/jessica-wachtel/ "Posts by Jessica Wachtel")
+
+[AI Operations](https://thenewstack.io/ai-operations/) 
+[CI/CD](https://thenewstack.io/ci-cd/) 
+[Cloud Services](https://thenewstack.io/cloud-services/) 
+[DevOps](https://thenewstack.io/devops/) 
+[Kubernetes](https://thenewstack.io/kubernetes/) 
+[Observability](https://thenewstack.io/observability/) 
+[Operations](https://thenewstack.io/operations/) 
+[Platform Engineering](https://thenewstack.io/platform-engineering/)
+
+[HPE's AI agents cut root cause analysis time in half](https://thenewstack.io/hpes-ai-agents-cut-root-cause-analysis-time-in-half/) 
+
+Mar 25th 2026 7:14am, by
+Jennifer Riggins
+
+[Why most AI projects fail after the demo actually works](https://thenewstack.io/ai-demo-to-production/) 
+
+Mar 25th 2026 4:00am, by
+Oladimeji Sowole
+
+[From pillars to platform: How open observability data is changing the industry](https://thenewstack.io/open-observability-ai-platforms/) 
+
+Mar 20th 2026 6:00am, by
+Ted Young
+
+[Building a Kubernetes-native pattern for AI infrastructure at scale](https://thenewstack.io/kubernetes-native-ai-infrastructure/) 
+
+Mar 19th 2026 5:00am, by
+Sachi Desai
+
+[The AI blind spot debt: the hidden cost killing your innovation strategy](https://thenewstack.io/ai-blind-spot-debt/) 
+
+Mar 17th 2026 7:00am, by
+Yuval Fernbach
+
+[How TeamPCP turned Aqua Security's own Trivy scanner into a weapon against millions of developers](https://thenewstack.io/teampcp-trivy-supply-chain-attack/) 
+
+Mar 27th 2026 10:00am, by
+Steven J. Vaughan-Nichols
+
+[Enterprise dev teams are about to hit a wall. And CI pipelines can't save them.](https://thenewstack.io/ai-agent-validation-bottleneck/) 
+
+Mar 26th 2026 7:00am, by
+Anirudh Ramanathan
+
+[This simple infrastructure gap is holding back AI productivity](https://thenewstack.io/this-simple-infrastructure-gap-is-holding-back-ai-productivity/) 
+
+Feb 22nd 2026 8:00am, by
+Charlotte Fleming
+
+[Ramp’s Inspect shows closed-loop AI agents are software’s future](https://thenewstack.io/ramps-inspect-shows-closed-loop-ai-agents-are-softwares-future/) 
+
+Jan 29th 2026 11:00am, by
+Arjun Iyer
+
+[QCon chat: Is agentic AI killing continuous integration?](https://thenewstack.io/qcon-chat-is-agentic-ai-killing-continuous-integration/) 
+
+Jan 27th 2026 6:00am, by
+Joab Jackson
+
+[A practical guide to the 6 categories of AI cloud infrastructure in 2026](https://thenewstack.io/ai-cloud-taxonomy-2026/) 
+
+Mar 15th 2026 5:00am, by
+Janakiram MSV
+
+[Runpod report: Qwen has overtaken Meta's Llama as the most-deployed self-hosted LLM](https://thenewstack.io/runpod-ai-infrastructure-reality/) 
+
+Mar 12th 2026 6:00am, by
+Adrian Bridgwater
+
+[Snowflake Cortex Code CLI adds dbt and Apache Airflow support for AI-powered data pipelines](https://thenewstack.io/snowflake-cortex-code-dbt-airflow/) 
+
+Mar 8th 2026 6:00am, by
+Jelani Harper
+
+[Databases weren’t built for agent sprawl – SurrealDB wants to fix it](https://thenewstack.io/surrealdb-3-ai-agents/) 
+
+Feb 24th 2026 2:07pm, by
+Paul Sawers
+
+[Rising identity complexity: How CISOs can prevent it from becoming an attacker’s roadmap](https://thenewstack.io/ciso-identity-complexity-strategy/) 
+
+Feb 19th 2026 12:47pm, by
+Jay Reddy
+
+[One developer, team power: The future of AI-driven DevSecOps](https://thenewstack.io/future-ai-driven-devsecops/) 
+
+Mar 5th 2026 2:29pm, by
+Bryan Ross
+
+[Observability platform migration guide: Prometheus, OpenTelemetry, and Fluent Bit](https://thenewstack.io/observability-platform-migration-guide/) 
+
+Feb 26th 2026 7:28am, by
+Katie Greenley
+
+[Most platform teams build products, but they don’t know it](https://thenewstack.io/internal-platforms-are-products/) 
+
+Feb 24th 2026 9:00am, by
+Oleg Danilyuk
+
+[Why "automated" infrastructure might cost more than you think](https://thenewstack.io/automated-infrastructure-hidden-costs/) 
+
+Feb 24th 2026 4:00am, by
+Justyn Roberts
+
+[The essential shift every ITOps leader must make to survive an unrelenting stream of incidents](https://thenewstack.io/modernizing-itops-incident-management/) 
+
+Feb 19th 2026 1:46pm, by
+Ariel Russo
+
+[Your Kubernetes isn't ready for AI workloads, and drift is the reason](https://thenewstack.io/ai-workloads-kubernetes-infrastructure-drift/) 
+
+Mar 25th 2026 8:43am, by
+TNS Staff
+
+[Broadcom donates Velero to CNCF — and it could reshape how Kubernetes users handle backup and disaster recovery](https://thenewstack.io/broadcom-velero-cncf-kubernetes/) 
+
+Mar 24th 2026 8:38am, by
+B. Cameron Gain
+
+[IBM, Red Hat, and Google just donated a Kubernetes blueprint for LLM inference to the CNCF](https://thenewstack.io/llm-d-cncf-kubernetes-inference/) 
+
+Mar 24th 2026 8:20am, by
+Steven J. Vaughan-Nichols
+
+[Why WebAssembly won't replace Kubernetes but makes Helm more secure](https://thenewstack.io/helm-webassembly-kubernetes-security/) 
+
+Mar 21st 2026 8:45am, by
+B. Cameron Gain
+
+[Why the ‘glorified host’ for AI is exactly the Kubernetes we need](https://thenewstack.io/kubernetes-glorified-ai-host/) 
+
+Mar 20th 2026 9:00am, by
+Danielle Cook
+
+[From pillars to platform: How open observability data is changing the industry](https://thenewstack.io/open-observability-ai-platforms/) 
+
+Mar 20th 2026 6:00am, by
+Ted Young
+
+[Sampling: the philosopher's stone of distributed tracing](https://thenewstack.io/distributed-tracing-sampling-opentelemetry/) 
+
+Mar 19th 2026 8:00am, by
+Michele Mancioppi
+
+[Why your observability bill keeps growing (and it's not your vendor's fault)](https://thenewstack.io/why-observability-bills-grow/) 
+
+Mar 18th 2026 4:00am, by
+Juraci Paixão Kröhling
+
+[Why agentic AI stalls in production — and how a control plane fixes it](https://thenewstack.io/agentic-ai-control-plane-production/) 
+
+Mar 17th 2026 6:00am, by
+TNS Staff
+
+[Why AI workloads are breaking traditional Kubernetes observability strategies](https://thenewstack.io/ai-kubernetes-observability-practices/) 
+
+Mar 16th 2026 7:04am, by
+TNS Staff
+
+[The operational gap is real, and it's getting wider](https://thenewstack.io/closing-cloud-operational-gap/) 
+
+Mar 26th 2026 8:00am, by
+Yevgeny Pats
+
+[HPE's AI agents cut root cause analysis time in half](https://thenewstack.io/hpes-ai-agents-cut-root-cause-analysis-time-in-half/) 
+
+Mar 25th 2026 7:14am, by
+Jennifer Riggins
+
+[WebAssembly could solve AI agents' most dangerous security gap](https://thenewstack.io/webassembly-sandboxing-ai-agents/) 
+
+Mar 24th 2026 9:01am, by
+B. Cameron Gain
+
+[Kubernetes co-founder Brendan Burns: AI-generated code will become as invisible as assembly](https://thenewstack.io/ai-generated-code-invisible/) 
+
+Mar 24th 2026 7:20am, by
+Frederic Lardinois
+
+[Exton Linux's light version will "enlighten" you](https://thenewstack.io/exton-linuxs-light-version-will-enlighten-you/) 
+
+Mar 24th 2026 5:43am, by
+Jack Wallen
+
+[The operational gap is real, and it's getting wider](https://thenewstack.io/closing-cloud-operational-gap/) 
+
+Mar 26th 2026 8:00am, by
+Yevgeny Pats
+
+[Enterprise dev teams are about to hit a wall. And CI pipelines can't save them.](https://thenewstack.io/ai-agent-validation-bottleneck/) 
+
+Mar 26th 2026 7:00am, by
+Anirudh Ramanathan
+
+[Your Kubernetes isn't ready for AI workloads, and drift is the reason](https://thenewstack.io/ai-workloads-kubernetes-infrastructure-drift/) 
+
+Mar 25th 2026 8:43am, by
+TNS Staff
+
+[Capital One deprecated an AI tool it once championed. Its DevEx chief says that's the point.](https://thenewstack.io/capital-one-developer-enablement/) 
+
+Mar 18th 2026 8:02am, by
+Jennifer Riggins
+
+[From monolith to global mesh: How Uber standardized ML at scale](https://thenewstack.io/uber-standardized-ml-scale/) 
+
+Mar 17th 2026 4:00am, by
+Eric Wang and Ying Zheng
+
+[C++](https://thenewstack.io/c/) 
+[Developer tools](https://thenewstack.io/developer-tools/) 
+[Go](https://thenewstack.io/go/) 
+[Java](https://thenewstack.io/java/) 
+[JavaScript](https://thenewstack.io/javascript/) 
+[Programming Languages](https://thenewstack.io/programming-languages/) 
+[Python](https://thenewstack.io/python/) 
+[Rust](https://thenewstack.io/rust/) 
+[TypeScript](https://thenewstack.io/typescript/)
+
+[Open source USearch library jumpstarts ScyllaDB vector search](https://thenewstack.io/open-source-usearch-library-jumpstarts-scylladb-vector-search/) 
+
+Feb 5th 2026 12:00pm, by
+Jelani Harper
+
+[AWS WAF vs. Google Cloud Armor: A Multicloud Security Showdown](https://thenewstack.io/aws-waf-vs-google-cloud-armor-a-multicloud-security-showdown/) 
+
+Nov 25th 2025 10:00am, by
+Advait Patel
+
+[Goodbye Dashboards: Agents Deliver Answers, Not Just Reports](https://thenewstack.io/goodbye-dashboards-agents-deliver-answers-not-just-reports/) 
+
+Nov 23rd 2025 9:00am, by
+Ketan Karkhanis
+
+[Rust vs. C++: a Modern Take on Performance and Safety](https://thenewstack.io/rust-vs-c-a-modern-take-on-performance-and-safety/) 
+
+Oct 22nd 2025 2:00pm, by
+Zziwa Raymond Ian
+
+[Building a Real-Time System Monitor in Rust Terminal](https://thenewstack.io/building-a-real-time-system-monitor-in-rust-terminal/) 
+
+Oct 15th 2025 7:05am, by
+Tinega Onchari
+
+[OpenAI's Codex gets plugins](https://thenewstack.io/openais-codex-gets-plugins/) 
+
+Mar 27th 2026 8:20am, by
+Frederic Lardinois
+
+[GitHub will train AI models on your Copilot data — and share it with Microsoft](https://thenewstack.io/github-copilot-interaction-data/) 
+
+Mar 27th 2026 6:37am, by
+Meredith Shubel
+
+[OpenAI acquires Astral to bring open source Python developer tools to Codex — but details are still fuzzy](https://thenewstack.io/openai-astral-acquisition/) 
+
+Mar 20th 2026 7:33am, by
+Meredith Shubel
+
+[Jellyfish AI development study: The real sting has yet to land](https://thenewstack.io/jellyfish-ai-engineering-trends/) 
+
+Mar 19th 2026 11:01am, by
+Adrian Bridgwater
+
+[Sauce Labs wants to solve an AI-created problem nobody wanted to work on](https://thenewstack.io/ai-test-authoring-launch/) 
+
+Mar 18th 2026 9:19am, by
+Frederic Lardinois
+
+[Go Experts: 'I Don't Want to Maintain AI-Generated Code'](https://thenewstack.io/go-experts-i-dont-want-to-maintain-ai-generated-code/) 
+
+Sep 28th 2025 6:00am, by
+David Cassel
+
+[How To Run Kubernetes Commands in Go: Steps and Best Practices](https://thenewstack.io/how-to-run-kubernetes-commands-in-go-steps-and-best-practices/) 
+
+Jun 27th 2025 8:00am, by
+Sunny Yadav
+
+[Prepare Your Mac for Go Development](https://thenewstack.io/prepare-your-mac-for-go-development/) 
+
+Apr 12th 2025 7:00am, by
+Damon M. Garn
+
+[Pagoda: A Web Development Starter Kit for Go Programmers](https://thenewstack.io/pagoda-a-web-development-starter-kit-for-go-programmers/) 
+
+Mar 19th 2025 6:10am, by
+Loraine Lawson
+
+[Microsoft TypeScript Devs Explain Why They Chose Go Over Rust, C#](https://thenewstack.io/microsoft-typescript-devs-explain-why-they-chose-go-over-rust-c/) 
+
+Mar 18th 2025 7:00am, by
+David Cassel
+
+[Java 26 lands without an LTS badge. Here's why developers should care anyway.](https://thenewstack.io/java-26-performance-ai/) 
+
+Mar 18th 2026 9:35am, by
+Darryl K. Taft
+
+[62% of enterprises now use Java to power AI apps](https://thenewstack.io/2026-java-ai-apps/) 
+
+Feb 10th 2026 12:58pm, by
+Darryl K. Taft
+
+[BellSoft bets Java expertise can beat hardened container wave](https://thenewstack.io/bellsoft-bets-java-expertise-can-beat-hardened-container-wave/) 
+
+Jan 26th 2026 3:00pm, by
+Darryl K. Taft
+
+[Java Developers Get Multiple Paths To Building AI Agents](https://thenewstack.io/java-developers-get-multiple-paths-to-building-ai-agents/) 
+
+Dec 26th 2025 7:02am, by
+Darryl K. Taft
+
+[Your Enterprise AI Strategy Must Start With Java, Not Python](https://thenewstack.io/your-enterprise-ai-strategy-must-start-with-java-not-python/) 
+
+Dec 22nd 2025 1:00pm, by
+Michael Coté
+
+[TypeScript 6.0 RC arrives as a bridge to a faster future](https://thenewstack.io/typescript-6-0-rc-arrives-as-a-bridge-to-a-faster-future/) 
+
+Mar 14th 2026 9:00am, by
+Darryl K. Taft
+
+[WebAssembly is everywhere. Here's how it works](https://thenewstack.io/webassembly-is-everywhere-heres-how-it-works/) 
+
+Feb 25th 2026 11:00am, by
+Jessica Wachtel
+
+[Wasm vs. JavaScript: Who wins at a million rows?](https://thenewstack.io/wasm-vs-javascript-who-wins-at-a-million-rows/) 
+
+Feb 22nd 2026 6:00am, by
+Jessica Wachtel
+
+[Arcjet reaches v1.0, promises stable security for JavaScript apps](https://thenewstack.io/arcjet-reaches-v1-0-promises-stable-security-for-javascript-apps/) 
+
+Feb 14th 2026 7:00am, by
+Darryl K. Taft
+
+[How WebAssembly and Web Workers prevent UI freezes](https://thenewstack.io/how-webassembly-and-web-workers-prevent-ui-freezes/) 
+
+Feb 7th 2026 9:00am, by
+Jessica Wachtel
+
+[Will AI force code to evolve or make it extinct?](https://thenewstack.io/ai-programming-languages-future/) 
+
+Mar 22nd 2026 6:00am, by
+David Cassel
+
+[Java 26 lands without an LTS badge. Here's why developers should care anyway.](https://thenewstack.io/java-26-performance-ai/) 
+
+Mar 18th 2026 9:35am, by
+Darryl K. Taft
+
+[TypeScript 6.0 RC arrives as a bridge to a faster future](https://thenewstack.io/typescript-6-0-rc-arrives-as-a-bridge-to-a-faster-future/) 
+
+Mar 14th 2026 9:00am, by
+Darryl K. Taft
+
+[Nearly half of all companies now use Rust in production, survey finds](https://thenewstack.io/rust-enterprise-developers/) 
+
+Mar 6th 2026 10:45am, by
+Darryl K. Taft
+
+[Statistical language R is making a comeback against Python](https://thenewstack.io/statistical-language-r-is-making-a-comeback-against-python/) 
+
+Feb 12th 2026 2:57pm, by
+Darryl K. Taft
+
+[OpenAI acquires Astral to bring open source Python developer tools to Codex — but details are still fuzzy](https://thenewstack.io/openai-astral-acquisition/) 
+
+Mar 20th 2026 7:33am, by
+Meredith Shubel
+
+[Python virtual environments: isolation without the chaos](https://thenewstack.io/python-virtual-environments-isolation-without-the-chaos/) 
+
+Feb 16th 2026 7:00am, by
+Jessica Wachtel
+
+[Statistical language R is making a comeback against Python](https://thenewstack.io/statistical-language-r-is-making-a-comeback-against-python/) 
+
+Feb 12th 2026 2:57pm, by
+Darryl K. Taft
+
+[Arcjet's Python SDK Embeds Security in Code](https://thenewstack.io/arcjets-python-sdk-embeds-security-in-code/) 
+
+Jan 16th 2026 2:00pm, by
+Darryl K. Taft
+
+[2025: The Year of the Return of the Ada Programming Language?](https://thenewstack.io/2025-the-year-of-the-return-of-the-ada-programming-language/) 
+
+Jan 14th 2026 4:00pm, by
+Darryl K. Taft
+
+[Nearly half of all companies now use Rust in production, survey finds](https://thenewstack.io/rust-enterprise-developers/) 
+
+Mar 6th 2026 10:45am, by
+Darryl K. Taft
+
+[Wasm vs. JavaScript: Who wins at a million rows?](https://thenewstack.io/wasm-vs-javascript-who-wins-at-a-million-rows/) 
+
+Feb 22nd 2026 6:00am, by
+Jessica Wachtel
+
+[Open source USearch library jumpstarts ScyllaDB vector search](https://thenewstack.io/open-source-usearch-library-jumpstarts-scylladb-vector-search/) 
+
+Feb 5th 2026 12:00pm, by
+Jelani Harper
+
+[The 'weird' things that happened when Clickhouse replaced C++ with Rust](https://thenewstack.io/the-weird-things-that-happened-when-clickhouse-replaced-c-with-rust/) 
+
+Feb 4th 2026 7:26am, by
+B. Cameron Gain
+
+[Async Rust: Pinning demystified](https://thenewstack.io/async-rust-pinning-demystified/) 
+
+Jan 26th 2026 11:00am, by
+Anshul Gupta
+
+[TypeScript 6.0 RC arrives as a bridge to a faster future](https://thenewstack.io/typescript-6-0-rc-arrives-as-a-bridge-to-a-faster-future/) 
+
+Mar 14th 2026 9:00am, by
+Darryl K. Taft
+
+[Mastra empowers web devs to build AI agents in TypeScript](https://thenewstack.io/mastra-empowers-web-devs-to-build-ai-agents-in-typescript/) 
+
+Jan 28th 2026 11:00am, by
+Loraine Lawson
+
+[Inferno Vet Creates Frontend Framework Built With AI in Mind](https://thenewstack.io/inferno-vet-creates-frontend-framework-built-with-ai-in-mind/) 
+
+Dec 10th 2025 11:00am, by
+Loraine Lawson
+
+[JavaScript Utility Library Lodash Changing Governance Model](https://thenewstack.io/javascript-utility-library-lodash-changing-governance-model/) 
+
+Nov 1st 2025 7:00am, by
+Loraine Lawson
+
+[Microsoft TypeScript Devs Explain Why They Chose Go Over Rust, C#](https://thenewstack.io/microsoft-typescript-devs-explain-why-they-chose-go-over-rust-c/) 
+
+Mar 18th 2025 7:00am, by
+David Cassel
+
+
+
+
+2026-03-28 04:00:00
+
+Anthropic's madcap March: 14+ launches, 5 outages, and an accidental Claude Mythos leak
+
+[AI](https://thenewstack.io/category/ai/) 
+/
+[AI Infrastructure](https://thenewstack.io/category/ai-infrastructure/) 
+/
+[Model Context Protocol (MCP)](https://thenewstack.io/category/model-context-protocol-mcp/)
+
+Anthropic’s madcap March: 14+ launches, 5 outages, and an accidental Claude Mythos leak
+=======================================================================================
+
+Anthropic shipped dozens of Claude updates in March 2026, from Opus 4.6 to computer use, while MCP crossed 97M installs and reliability concerns mounted.
+
+Mar 28th, 2026 4:00am by
+[Matthew Burns](https://thenewstack.io/author/matthew-burns/ "Posts by Matthew Burns")
+
+![web_image](https://cdn.thenewstack.io/media/2026/03/21bf8ca8-screenshot-2026-03-27-at-12.21.10-1024x670.png)
+
+Beatriz Camaleão for Unsplash+
+
+**I’m Matt Burns, Head of Content at Insight Media Group. Each week, I round up the most important AI developments and explain what they mean for people actually putting this technology to work. The thesis is simple: workers who learn to use AI will define the next era of their industries. This newsletter is here to help you be one of them.**
+
+Fair warning: This weekly roundup is heavily Anthropic-focused. That’s not favoritism – it’s just where the news is. Anthropic is cooking right now, shipping faster and harder than anyone else in the industry, and most of the week’s biggest stories trace back to them.
+
+Anthropic’s March has been absurd
+---------------------------------
+
+I’ve been covering technology startups and projects for 20 years, and I genuinely cannot remember a period where a company shipped as much as Anthropic did in February and March. Nearly every other day, Claude was upgraded with new features and capabilities.
+
+These are just the major releases:
+
+* [**Claude Opus 4.6**](https://techcrunch.com/2026/02/05/anthropic-releases-opus-4-6-with-new-agent-teams/) dropped on February 5 with a 1M-token context window and 128K-token output — Anthropic’s most capable model to date, and *The New Stack* [called it a step change for the enterprise.](https://thenewstack.io/anthropics-opus-4-6-is-a-step-change-for-the-enterprise/)
+* [**Claude Sonnet 4.6**](https://www.anthropic.com/news/claude-sonnet-4-6) followed on February 17 as the new default across free and Pro plans, with upgrades across coding, computer use, and agent planning at Sonnet 4.5 pricing ($3/$15 per million tokens).
+* [**Interactive visualizations**](https://claude.com/blog/claude-builds-visuals) launched March 12 — Claude now builds charts, diagrams, and interactive widgets inline using HTML and SVG, rolling out to [all plan types, including free](https://thenewstack.io/anthropics-claude-interactive-visualizations).
+* [**Memory for free users**](https://dataconomy.com/2026/03/04/anthropic-makes-claude-memory-feature-free-for-all-users/) arrived March 2, completing an eight-month rollout and adding a ChatGPT/Gemini import tool to make switching easier
+* [**Claude Marketplace**](https://venturebeat.com/technology/anthropic-launches-claude-marketplace-giving-enterprises-access-to-claude) went live on March 6, letting enterprises apply existing Anthropic spend toward Claude-powered tools from Replit, GitLab, Harvey, Snowflake, and Lovable — with Anthropic taking zero cut
+* [**Claude Code multi-agent review**](https://thenewstack.io/anthropic-launches-a-multi-agent-code-review-tool-for-claude-code/) launched March 9, dispatching parallel agents to catch bugs before human reviewers see the code — 54% of PRs now get substantive comments, up from 16%
+* [**Excel and PowerPoint integrations**](https://venturebeat.com/orchestration/anthropic-gives-claude-shared-context-across-microsoft-excel-and-powerpoint/) gained shared context across both apps on March 11, with reusable Skills and LLM gateway support through Bedrock, Vertex AI, and Foundry
+* [**The Claude Partner Network**](https://www.anthropic.com/news/claude-partner-network) formalized on March 12 with a $100M commitment — Accenture is training 30,000 professionals on Claude, and Cognizant opened access to its entire 350,000-person workforce
+* [**1M token context**](https://blockchain.news/ainews/anthropic-claude-opus-4-6-and-sonnet-4-6-launch-1m-token-context-at-standard-pricing-business-impact-and-2026-analysis) at standard pricing went GA on March 14 for both Opus 4.6 and Sonnet 4.6, eliminating the previous 2x input surcharge beyond 200K tokens
+* [**Claude Dispatch**](https://support.claude.com/en/articles/13947068-assign-tasks-to-claude-from-anywhere-in-cowork) launched March 17 as a persistent agent thread in Cowork — assign tasks from your phone, get a push notification when Claude finishes them on your Mac
+* [**Claude Code hit web and mobile**](https://thenewstack.io/anthropics-claude-code-comes-to-web-and-mobile/), letting developers kick off parallel coding workflows from Claude.ai on Anthropic-managed instances
+* [**Computer use**](https://siliconangle.com/2026/03/23/anthropics-claude-gets-computer-use-capabilities-preview/) rolled out on March 23 as a research preview for Pro and Max — Claude can open apps, click, type, and navigate your Mac screen, falling back to screen control when it doesn’t have a direct integration
+* [**Off-peak usage**](https://thenewstack.io/anthropic-doubles-claude-usage-outside-peak-hours/) limits doubled across Free, Pro, Max, and Team plans from March 13 through March 28, 2026
+* [**Claude Code usage**](https://thenewstack.io/claude-code-user-base-grows-300-as-anthropic-launches-enterprise-analytics-dashboard/) grew 300% since the Claude 4 models launched, with run-rate revenue up 5.5x, and Anthropic shipped an enterprise analytics dashboard to track spend and code acceptance rates
+
+Beyond the headline features, there’s been a steady stream of smaller stuff: Claude Code added PowerShell support on Windows, transcript search, MCP deduplication, and idle-return prompts across five point releases in the past week alone. Cowork picked up plugin support and improvements to file management. *The New Stack* has been all over it. I’d start with [our coverage of the multi-agent code review launch](https://thenewstack.io/anthropic-launches-a-multi-agent-code-review-tool-for-claude-code/) and Claude Code’s [expansion to the web and mobile](https://thenewstack.io/anthropics-claude-code-comes-to-web-and-mobile/) if you’re trying to keep up.
+
+The servers, though
+-------------------
+
+There’s a flip side to shipping this fast: Anthropic’s infrastructure seems to be struggling to keep up. Claude has gone down at least five times in March alone, including two lengthy outages this week. As I’m writing this on Friday morning, Opus 4.6 is experiencing elevated errors, though Sonnet 4.6 seems to be fine.
+
+This isn’t unique to Anthropic. OpenAI, Google, and others have all faced similar growing pains as usage surges. But it’s more visible when you’re shipping as aggressively as Anthropic is right now. You can have the best model in the world, but if developers can’t rely on it being available, they’ll build fallback patterns, and some of those fallbacks become permanent. Reliability is a product feature, and right now it might be the one Anthropic most needs to ship.
+
+TRENDING STORIES
+
+1. [GitHub Copilot's effect on collaboration has stunned researchers](https://thenewstack.io/copilot-reshapes-developer-work/)
+2. [Claude can now open apps, click buttons, and complete tasks on your Mac — but Anthropic says risks remain](https://thenewstack.io/claude-computer-use/)
+3. [GitHub will train AI models on your Copilot data — and share it with Microsoft](https://thenewstack.io/github-copilot-interaction-data/)
+4. [Nvidia's NemoClaw is OpenClaw with guardrails](https://thenewstack.io/nemoclaw-openclaw-with-guardrails/)
+5. [Anthropic's Claude can now draw interactive charts and diagrams](https://thenewstack.io/anthropics-claude-interactive-visualizations/)
+
+Claude Mythos slipped out
+-------------------------
+
+On Thursday, *Fortune* broke a story that [Anthropic is testing a new model](https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/) called Claude Mythos – internally codenamed “Capybara” – a next-generation model that the company describes as a “step change” in capability and “the most capable we’ve built to date.”
+
+The reveal wasn’t planned. Anthropic accidentally left roughly 3,000 unpublished assets in a publicly accessible data cache — a draft blog post among them — due to what the company called “human error” during CMS configuration. Security researchers found it. *Fortune* reviewed it before Anthropic locked it down.
+
+The claimed capabilities are significant: dramatically higher scores on coding, academic reasoning, and cybersecurity benchmarks compared to Opus 4.6. Anthropic said the model is “far ahead of any other AI model in cyber capabilities,” adding that it “presages an upcoming wave of models that can exploit vulnerabilities in ways that far outpace the efforts of defenders.” That’s Anthropic warning about its own model. The company says it’s testing Claude Mythos with a small group of early access customers and being “deliberate” about release.
+
+Between the March feature blitz, the reliability problems, and now a next-generation model waiting in the wings, Anthropic’s story right now is one company trying to run at three different speeds simultaneously.
+
+MCP crossed 97 million installs
+-------------------------------
+
+Anthropic’s Model Context Protocol hit [97 million monthly SDK downloads in March](https://www.digitalapplied.com/blog/mcp-97-million-downloads-model-context-protocol-mainstream). That’s up from roughly 2 million when it launched in November 2025 — 4,750% growth in 16 months. The ecosystem now includes over 5,800 community and enterprise servers spanning databases, CRMs, cloud providers, developer tools, and more. When OpenAI committed to MCP support last year, it stopped being Anthropic’s protocol and started being the industry’s. Anthropic formalized that shift in December by [donating MCP to the Agentic AI Foundation](https://thenewstack.io/anthropic-donates-the-mcp-protocol-to-the-agentic-ai-foundation/) under the Linux Foundation, co-founded with Block and OpenAI.
+
+*The New Stack* has covered the MCP story closely. Richard MacManus wrote a good piece on [why MCP won](https://thenewstack.io/why-the-model-context-protocol-won/) and our reporting on the [2026 roadmap](https://thenewstack.io/model-context-protocol-roadmap-2026/) digs into the production-readiness gaps the maintainers are now trying to close – auth, observability, server management at scale. The protocol is clearly winning adoption, but as one of our pieces put it, there’s still a [steep mountain between MCP and production.](https://thenewstack.io/model-context-protocol-evolution/) For developers building agentic workflows, MCP is the standard. The question now is whether the tooling around it can keep up with the demand.
+
+If you want to go deeper with us, [we’ll be at the MCP Dev Summit](https://events.linuxfoundation.org/mcp-dev-summit-north-america/) April 2-3 in New York City. My good friend Alex Wilhelm, who publishes the excellent [*Cautious Optimism*](https://www.cautiousoptimism.news/) newsletter, will be there doing interviews for *The New Stack*.
+
+The AI Czar clocks out
+----------------------
+
+David Sacks told *Bloomberg* Thursday that [he’s used up his 130 days](https://www.cnbc.com/2026/03/26/david-sacks-trump-crypto-ai-czar.html) as a special government employee and is stepping down as Trump’s AI and crypto czar. He’ll co-chair the President’s Council of Advisors on Science and Technology (PCAST) alongside Michael Kratsios. This gives Sacks a broader portfolio to oversee, but perhaps considerably less direct power.
+
+As AI czar, Sacks had a direct line to Trump and a hand in shaping policy. As PCAST co-chair, he’ll make recommendations. [Axios reports](https://www.axios.com/2026/03/26/trump-white-house-david-sacks-ai-czar-policy-influence) the White House doesn’t plan to appoint a new AI czar, which means the most visible AI policy role in Washington is vacant with no replacement.
+
+Before leaving, Sacks told *Bloomberg* that [Congress could pass bipartisan AI legislation](https://www.bloomberg.com/news/articles/2026-03-26/congress-could-pass-ai-standard-in-months-key-trump-aide-says) within months, with the framework pairing child safety measures with federal preemption of state AI laws. “We’ve gotten a very good reception from Capitol Hill,” Sacks said. “This is an area where I think we’re willing and happy to work with Democrats.” Whether that optimism survives his departure from the day-to-day is the question. AI policy might be one of the few genuinely bipartisan issues right now, but bipartisan momentum without a champion has a way of fading.
+
+For organizations adopting AI, the regulatory picture matters. Federal preemption of state laws would simplify compliance significantly. A patchwork of state regulations is one of the biggest friction points for enterprises deploying AI across the U.S. If Sacks is right that a bill is months away, that’s worth paying attention to.
+
+
+
+
+[YOUTUBE.COM/THENEWSTACK
+
+Tech moves fast, don't miss an episode. Subscribe to our YouTube
+channel to stream all our podcasts, interviews, demos, and more.
+
+SUBSCRIBE](https://youtube.com/thenewstack?sub_confirmation=1)
+
+
+[![web_image](https://cdn.thenewstack.io/media/2026/02/976a6c81-1706717710759.jpeg)
+
+Matt Burns is Director of Editorial at Insight Media Group, where he oversees The New Stack, Roadmap.sh, and Towards Data Science — three platforms that collectively help millions of developers figure out what to learn next. Previously, he spent 16...
+
+Read more from Matthew Burns](https://thenewstack.io/author/matthew-burns/)
+
+SHARE THIS STORY
+
+TRENDING STORIES
+
+1. [GitHub Copilot's effect on collaboration has stunned researchers](https://thenewstack.io/copilot-reshapes-developer-work/)
+2. [Claude can now open apps, click buttons, and complete tasks on your Mac — but Anthropic says risks remain](https://thenewstack.io/claude-computer-use/)
+3. [GitHub will train AI models on your Copilot data — and share it with Microsoft](https://thenewstack.io/github-copilot-interaction-data/)
+4. [Nvidia's NemoClaw is OpenClaw with guardrails](https://thenewstack.io/nemoclaw-openclaw-with-guardrails/)
+5. [Anthropic's Claude can now draw interactive charts and diagrams](https://thenewstack.io/anthropics-claude-interactive-visualizations/)
+
+TNS owner Insight Partners is an investor in: OpenAI, Anthropic.
+
+SHARE THIS STORY
+
+TRENDING STORIES
+
+1. [GitHub Copilot's effect on collaboration has stunned researchers](https://thenewstack.io/copilot-reshapes-developer-work/)
+2. [Claude can now open apps, click buttons, and complete tasks on your Mac — but Anthropic says risks remain](https://thenewstack.io/claude-computer-use/)
+3. [GitHub will train AI models on your Copilot data — and share it with Microsoft](https://thenewstack.io/github-copilot-interaction-data/)
+4. [Nvidia's NemoClaw is OpenClaw with guardrails](https://thenewstack.io/nemoclaw-openclaw-with-guardrails/)
+5. [Anthropic's Claude can now draw interactive charts and diagrams](https://thenewstack.io/anthropics-claude-interactive-visualizations/)
+
+Insights From Our Sponsors
+
+[Heroku March 2026 Update  
+
+19 March 2026](https://www.heroku.com/blog/march-2026-update/?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)[Modernizing the Command Line: Heroku CLI v11  
+
+19 March 2026](https://www.heroku.com/blog/modernizing-the-command-line-heroku-cli-v11/?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)[Bigger Slugs and Greater Build Timeout Flexibility  
+
+19 March 2026](https://www.heroku.com/blog/bigger-slugs-and-greater-build-timeout-flexibility/?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)
+
+[Improved browser monitor experience: Synthetic on the latest Dynatrace platform  
+
+27 March 2026](https://www.dynatrace.com/news/blog/improved-browser-monitor-experience-synthetic-on-the-latest-dynatrace-platform/?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)[How lookup tables turn observability data into business insight  
+
+25 March 2026](https://www.dynatrace.com/news/blog/how-lookup-tables-turn-observability-data-into-business-insight/?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)[Five real-world lessons for building developer workflows in the agentic era  
+
+25 March 2026](https://www.dynatrace.com/news/blog/five-real-world-lessons-for-building-developer-workflows-in-the-agentic-era/?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)
+
+[SIEM-as-a-Service offering leverages Elastic for unified cybersecurity across the US government  
+
+25 March 2026](https://www.elastic.co/blog/siem-as-a-service?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)[An engineer’s take on onboarding at Elastic  
+
+25 March 2026](https://www.elastic.co/blog/engineer-onboarding-guilherme-xavier?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)[Elastic and Red Hat: Scaling the sovereign AI factory with NVIDIA GPU acceleration  
+
+16 March 2026](https://www.elastic.co/blog/elastic-red-hat-openshift-ai-nvidia?utm_source=the+new+stack&utm_medium=referral&utm_campaign=tns+platform&utm_content=sponsor+module)
+
+TNS DAILY NEWSLETTER
+Receive a free roundup of the most recent TNS articles in your inbox each day.
+
+SUBSCRIBE
+
+The New Stack does not sell your information or share it with
+unaffiliated third parties. By continuing, you agree to our
+[Terms of Use](https://thenewstack.io/terms-of-use/) and
+[Privacy Policy](https://thenewstack.io/privacy-policy/).
+
+ARCHITECTURE
+
+[Cloud Native Ecosystem](https://thenewstack.io/cloud-native/) 
+[Containers](https://thenewstack.io/containers/) 
+[Databases](https://thenewstack.io/databases/) 
+[Edge Computing](https://thenewstack.io/edge-computing/) 
+[Infrastructure as Code](https://thenewstack.io/infrastructure-as-code/) 
+[Linux](https://thenewstack.io/linux/) 
+[Microservices](https://thenewstack.io/microservices/) 
+[Open Source](https://thenewstack.io/open-source/) 
+[Networking](https://thenewstack.io/networking/) 
+[Storage](https://thenewstack.io/storage/)
+
+ENGINEERING
+
+[AI](https://thenewstack.io/ai/) 
+[AI Engineering](https://thenewstack.io/ai-engineering/) 
+[API Management](https://thenewstack.io/api-management/) 
+[Backend development](https://thenewstack.io/backend-development/) 
+[Data](https://thenewstack.io/data/) 
+[Frontend Development](https://thenewstack.io/frontend-development/) 
+[Large Language Models](https://thenewstack.io/llm/) 
+[Security](https://thenewstack.io/security/) 
+[Software Development](https://thenewstack.io/software-development/) 
+[WebAssembly](https://thenewstack.io/webassembly/)
+
+OPERATIONS
+
+[AI Operations](https://thenewstack.io/ai-operations/) 
+[CI/CD](https://thenewstack.io/ci-cd/) 
+[Cloud Services](https://thenewstack.io/cloud-services/) 
+[DevOps](https://thenewstack.io/devops/) 
+[Kubernetes](https://thenewstack.io/kubernetes/) 
+[Observability](https://thenewstack.io/observability/) 
+[Operations](https://thenewstack.io/operations/) 
+[Platform Engineering](https://thenewstack.io/platform-engineering/)
+
+CHANNELS
+
+[Podcasts](https://thenewstack.io/podcasts/) 
+[Ebooks](https://thenewstack.io/ebooks/) 
+[Events](https://thenewstack.io/events/) 
+[Webinars](https://thenewstack.io/webinars/) 
+[Newsletter](https://thenewstack.io/newsletter/) 
+[TNS RSS Feeds](https://thenewstack.io/rss-feeds/)
+
+THE NEW STACK
+
+[About / Contact](https://thenewstack.io/about-and-contact-info/) 
+[Sponsors](https://thenewstack.io/sponsors/) 
+[Advertise With Us](https://thenewstack.io/sponsorship/) 
+[Contributions](https://thenewstack.io/contributions/)
+
+[roadmap.sh
+
+Community created roadmaps, articles, resources and journeys for
+developers to help you choose your path and grow in your career.](https://roadmap.sh/?utm_source=The+New+Stack&utm_medium=Referral&utm_campaign=Footer)
+[Frontend Developer Roadmap](https://roadmap.sh/frontend?utm_source=The+New+Stack&utm_medium=Referral&utm_campaign=Footer)
+[Backend Developer Roadmap](https://roadmap.sh/backend?utm_source=The+New+Stack&utm_medium=Referral&utm_campaign=Footer)
+[Devops Roadmap](https://roadmap.sh/devops?utm_source=The+New+Stack&utm_medium=Referral&utm_campaign=Footer)
+
+© The New Stack 2026
+
+[Disclosures](https://thenewstack.io/disclosure-guidelines/)
+[Terms of Use](https://thenewstack.io/terms-of-use/)
+[Advertising Terms & Conditions](https://thenewstack.io/advertising-terms-conditions/)
+[Privacy Policy](https://thenewstack.io/privacy-policy/)
+[Cookie Policy](https://thenewstack.io/cookie-policy/)
+
+FOLLOW TNS
+IFRAME about:blank:
+
+
+# Reference
+- [168] [Anthropic's madcap March: 14+ launches, 5 outages, and an accidental Claude Mythos leak - The New Stack](https://thenewstack.io/anthropic-march-2026-roundup/)

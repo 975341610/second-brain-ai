@@ -1,0 +1,365 @@
+Here's what that Claude Code source leak reveals about Anthropic's plans - Ars Technica
+
+
+
+
+
+
+[Skip to content](https://arstechnica.com/ai/2026/04/heres-what-that-claude-code-source-leak-reveals-about-anthropics-plans/#main)
+[Ars Technica home
+
+
+](https://arstechnica.com/)
+
+Sections
+
+
+
+
+[Forum](https://arstechnica.com/civis/)[Subscribe](https://arstechnica.com/subscribe/)[
+
+Search](https://arstechnica.com/search/)
+
+* [
+
+  AI](https://arstechnica.com/ai/)
+* [
+
+  Biz & IT](https://arstechnica.com/information-technology/)
+* [
+
+  Cars](https://arstechnica.com/cars/)
+* [
+
+  Culture](https://arstechnica.com/culture/)
+* [
+
+  Gaming](https://arstechnica.com/gaming/)
+* [
+
+  Health](https://arstechnica.com/health/)
+* [
+
+  Policy](https://arstechnica.com/tech-policy/)
+* [
+
+  Science](https://arstechnica.com/science/)
+* [
+
+  Security](https://arstechnica.com/security/)
+* [
+
+  Space](https://arstechnica.com/space/)
+* [
+
+  Tech](https://arstechnica.com/gadgets/)
+
+* [
+
+  Feature](https://arstechnica.com/features/)
+* [
+
+  Reviews](https://arstechnica.com/reviews/)
+
+* [AI](https://arstechnica.com/ai/)
+* [Biz & IT](https://arstechnica.com/information-technology/)
+* [Cars](https://arstechnica.com/cars/)
+* [Culture](https://arstechnica.com/culture/)
+* [Gaming](https://arstechnica.com/gaming/)
+* [Health](https://arstechnica.com/health/)
+* [Policy](https://arstechnica.com/tech-policy/)
+* [Science](https://arstechnica.com/science/)
+* [Security](https://arstechnica.com/security/)
+* [Space](https://arstechnica.com/space/)
+* [Tech](https://arstechnica.com/gadgets/)
+
+[Forum](https://arstechnica.com/civis/)[Subscribe](https://arstechnica.com/subscribe/)
+
+
+
+
+
+Story text
+
+Size
+
+Small
+Standard
+Large
+Width
+\*
+
+Standard
+Wide
+Links
+
+Standard
+Orange
+
+\* Subscribers only
+  
+  [Learn more](https://arstechnica.com/store/product/subscriptions/)
+
+Pin to story
+
+Theme
+
+
+![web_image](/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/webpage_images/https_arstechnica_com_ai_2026_04_heres_what_that_claude_code_source_leak_reveals_about_anth_07b6ca04/1775091904.5688572.png)
+
+
+
+![web_image](/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/webpage_images/https_arstechnica_com_ai_2026_04_heres_what_that_claude_code_source_leak_reveals_about_anth_07b6ca04/1775091904.5689647.png)
+
+
+
+
+
+
+
+* 
+
+  HyperLight
+* 
+
+  Day & Night
+* 
+
+  Dark
+* 
+
+  System
+
+[
+
+Search](https://arstechnica.com/search/ "Search")
+
+Sign In
+
+
+Sign in dialog...
+
+
+
+Sign in
+
+
+
+
+
+
+Poring through the files
+
+Here’s what that Claude Code source leak reveals about Anthropic’s plans
+========================================================================
+
+A persistent agent, stealth “Undercover” mode, and… a virtual assistant named Buddy?
+
+[Kyle Orland](https://arstechnica.com/author/kyle-orland/)
+–
+Apr 1, 2026 4:04 pm
+|
+ [
+
+30](https://arstechnica.com/ai/2026/04/heres-what-that-claude-code-source-leak-reveals-about-anthropics-plans/#comments "30 comments")
+
+[![web_image](https://cdn.arstechnica.net/wp-content/uploads/2026/02/claude-no-ads-640x356.png)
+
+
+
+![web_image](https://cdn.arstechnica.net/wp-content/uploads/2026/02/claude-no-ads-1152x648.png)](https://cdn.arstechnica.net/wp-content/uploads/2026/02/claude-no-ads.png)
+
+The Claude Code source code suggests it could be serving up many new features in the near future.
+Credit:
+[Anthropic](https://www.anthropic.com/news/claude-is-a-space-to-think)
+
+The Claude Code source code suggests it could be serving up many new features in the near future.
+Credit:
+[Anthropic](https://www.anthropic.com/news/claude-is-a-space-to-think)
+
+
+
+Text
+settings
+
+![web_image](/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/webpage_images/https_arstechnica_com_ai_2026_04_heres_what_that_claude_code_source_leak_reveals_about_anth_07b6ca04/1775091904.5714762.png)
+
+
+
+
+
+
+
+
+Story text
+
+
+
+Size
+
+Small
+Standard
+Large
+Width
+\*
+
+Standard
+Wide
+Links
+
+Standard
+Orange
+
+\* Subscribers only
+  
+  [Learn more](https://arstechnica.com/store/product/subscriptions/)
+
+Minimize to nav
+
+Yesterday’s [surprise leak of the source code for Anthropic’s Claude Code](https://arstechnica.com/ai/2026/03/entire-claude-code-cli-source-code-leaks-thanks-to-exposed-map-file/) revealed a lot about the vibe-coding scaffolding the company has built around its proprietary Claude model. But observers digging through over 512,000 lines of code across more than 2,000 files have also discovered references to disabled, hidden, or inactive features that provide a peek into the potential roadmap for future features.
+
+Chief among these features is [Kairos](https://github.com/zackautocracy/claude-code/blob/4b9d30f7953273e567a18eb819f4eddd45fcc877/src/memdir/memdir.ts#L319), a persistent daemon that can operate in the background even when the Claude Code terminal window is closed. The system would use periodic “<tick>” prompts to regularly review whether new actions are needed and [a “PROACTIVE” flag](https://github.com/zackautocracy/claude-code/blob/4b9d30f7953273e567a18eb819f4eddd45fcc877/src/tools/BriefTool/BriefTool.ts#L34) for “surfacing something the user hasn’t asked for and needs to see now.”
+
+Kairos makes use of a file-based “memory system” designed to allow for persistent operation across user sessions. [A prompt](https://github.com/zackautocracy/claude-code/blob/main/src/memdir/teamMemPrompts.ts) hidden behind a disabled “KAIROS” flag in the code explains that the system is designed to “have a complete picture of who the user is, how they’d like to collaborate with you, what behaviors to avoid or repeat, and the context behind the work the user gives you.”
+
+To organize and consolidate this memory system across sessions, the Claude Code source code includes references to [an evocatively named AutoDream system](https://github.com/zackautocracy/claude-code/tree/main/src/services/autoDream). When a user goes idle or [manually tells Anthropic to sleep](https://github.com/zackautocracy/claude-code/blob/main/src/tools/SleepTool/prompt.ts) at the end of a session, the AutoDream system would [tell Claude Code](https://github.com/zackautocracy/claude-code/blob/main/src/services/autoDream/consolidationPrompt.ts) that “you are performing a dream—a reflective pass over your memory files.”
+
+This prompt describing this AI “dream” process asks Claude Code to scan the day’s transcripts for “new information worth persisting,” consolidate that new information in a way that avoids “near-duplicates” and “contradictions,” and prune existing memories that are overly verbose or newly outdated. Claude Code would also be instructed to watch out for “existing memories that drifted,” an issue we’ve seen previously [when Claude users have tried to graft memory systems onto their harnesses](https://arstechnica.com/ai/2025/03/why-anthropics-claude-still-hasnt-beaten-pokemon/). The overall goal would be to “synthesize what you’ve learned recently into durable, well-organized memories so that future sessions can orient quickly,” according to the prompt.
+
+Undercover Buddy
+----------------
+
+[![web_image](https://cdn.arstechnica.net/wp-content/uploads/2026/04/Screenshot-2026-04-01-at-3.40.40-PM.png)](https://cdn.arstechnica.net/wp-content/uploads/2026/04/Screenshot-2026-04-01-at-3.40.40-PM.png)
+
+A portion of the “Undercover mode” prompt that has attracted some controversy in open source circles.
+
+Credit:
+[Anthropic](https://github.com/zackautocracy/claude-code/blob/4b9d30f7953273e567a18eb819f4eddd45fcc877/src/utils/undercover.ts)
+
+A portion of the “Undercover mode” prompt that has attracted some controversy in open source circles.
+Credit:
+[Anthropic](https://github.com/zackautocracy/claude-code/blob/4b9d30f7953273e567a18eb819f4eddd45fcc877/src/utils/undercover.ts)
+
+While the Kairos daemon doesn’t seem to have been fully implemented in code yet, [a separate “Undercover mode”](https://github.com/zackautocracy/claude-code/blob/4b9d30f7953273e567a18eb819f4eddd45fcc877/src/utils/undercover.ts#L80) appears to be inactive, letting Anthropic employees contribute to public open source repositories without revealing themselves as AI agents. The reference prompts for this mode focus primarily on protecting “internal model codenames, project names, or other Anthropic-internal information” from becoming accidentally public through open source commits. But the prompt also explicitly tells the system that its commits should “never include… the phrase ‘Claude Code’ or any mention that you are an AI,” and to omit any “co-Authored-By lines or any other attribution.” That kind of obfuscation seems especially relevant given [recent](https://arstechnica.com/gaming/2025/10/civil-war-gzdoom-fan-developers-split-off-over-use-of-chatgpt-generated-code/) [controversies](https://arstechnica.com/ai/2026/03/ai-can-rewrite-open-source-code-but-can-it-rewrite-the-license-too/) surrounding AI coding tools being used on popular repositories.
+
+[![web_image](https://cdn.arstechnica.net/wp-content/uploads/2026/04/Screenshot-2026-04-01-at-3.36.54-PM.png)](https://cdn.arstechnica.net/wp-content/uploads/2026/04/Screenshot-2026-04-01-at-3.36.54-PM.png)
+
+A snippet from the “Buddy” code shows how Anthropic envisions its ASCII-art cat companions.
+
+Credit:
+[Anthropic](https://github.com/zackautocracy/claude-code/blob/main/src/buddy/sprites.ts)
+
+A snippet from the “Buddy” code shows how Anthropic envisions its ASCII-art cat companions.
+Credit:
+[Anthropic](https://github.com/zackautocracy/claude-code/blob/main/src/buddy/sprites.ts)
+
+On the lighter side, the Claude Code source code [also describes Buddy](https://github.com/zackautocracy/claude-code/tree/main/src/buddy), a Clippy-like “separate watcher” that “sits beside the user’s input box and occasionally comments in a speech bubble.” These virtual creatures would [come in 18 randomized “species” forms](https://github.com/zackautocracy/claude-code/blob/main/src/buddy/types.ts) ranging from blob to axolotl and [appear as five-line-by-12-column ASCII art animations](https://github.com/zackautocracy/claude-code/blob/main/src/buddy/sprites.ts) with tiny hats. A comment suggests that Buddy was planned for a “teaser window” launch between April 1 and 7 before a full launch in May. It’s unclear how the source code leak has impacted those plans.
+
+Other potential planned Claude Code features referenced in the source code leak include:
+
+* An [UltraPlan](https://github.com/zackautocracy/claude-code/blob/main/src/commands/ultraplan.tsx) feature allowing Opus-level Claude models to “draft an advanced plan you can edit and approve,” which can run for 10 to 30 minutes at a time.
+* A [Voice Mode](https://github.com/zackautocracy/claude-code/blob/4b9d30f7953273e567a18eb819f4eddd45fcc877/src/voice/voiceModeEnabled.ts) letting users chat directly to Claude Code, much like similar AI systems.
+* [A Bridge mode](https://github.com/zackautocracy/claude-code/tree/main/src/bridge) that expands on [the existing Anthropic Dispatch tool](https://support.claude.com/en/articles/13947068-assign-tasks-to-claude-from-anywhere-in-cowork) to allow for remote Claude Code sessions that are fully controllable from an outside browser or mobile device.
+* A [Coordinator tool](https://github.com/zackautocracy/claude-code/blob/main/src/coordinator/coordinatorMode.ts) designed to spawn and “orchestrate software engineering tasks across multiple workers” through parallel processes that could [communicate via WebSockets](https://github.com/zackautocracy/claude-code/tree/main/src/remote).
+
+[![web_image](https://cdn.arstechnica.net/wp-content/uploads/2016/05/k.orland-13.jpg)](https://arstechnica.com/author/kyle-orland/)
+
+[Kyle Orland](https://arstechnica.com/author/kyle-orland/)
+Senior Gaming Editor
+
+[Kyle Orland](https://arstechnica.com/author/kyle-orland/)
+Senior Gaming Editor
+
+Kyle Orland has been the Senior Gaming Editor at Ars Technica since 2012, writing primarily about the business, tech, and culture behind video games. He has journalism and computer science degrees from University of Maryland. He once [wrote a whole book about *Minesweeper*](https://bossfightbooks.com/collections/books/products/minesweeper-by-kyle-orland).
+
+[
+
+30 Comments](https://arstechnica.com/ai/2026/04/heres-what-that-claude-code-source-leak-reveals-about-anthropics-plans/#comments "30 comments")
+
+
+
+Comments
+
+[
+
+Forum view](https://arstechnica.com/civis/threads/here%E2%80%99s-what-that-claude-code-source-leak-reveals-about-anthropic%E2%80%99s-plans.1512383/)
+
+![web_image](https://cdn.arstechnica.net/wp-content/themes/ars-v9/public/images/firework-loader.75ab30.gif)
+
+Loading comments...
+
+[
+
+Prev story](https://arstechnica.com/science/2026/04/research-roundup-7-cool-science-stories-we-almost-missed-3/ "Go to: Research roundup: 7 cool science stories we almost missed")
+
+[Next story
+
+](https://arstechnica.com/gaming/2026/04/nvidias-new-app-lets-you-precompile-gaming-shaders-during-machine-idle-time/ "Go to: Nvidia rolls out its fix for PC gaming's \"compiling shaders\" wait times")
+
+
+
+Most Read
+
+1. [![web_image](https://cdn.arstechnica.net/wp-content/uploads/2026/03/claude-code-768x432.jpg)](https://arstechnica.com/ai/2026/03/entire-claude-code-cli-source-code-leaks-thanks-to-exposed-map-file/)
+
+   1.
+   [Entire Claude Code CLI source code leaks thanks to exposed map file](https://arstechnica.com/ai/2026/03/entire-claude-code-cli-source-code-leaks-thanks-to-exposed-map-file/)
+2. 2.
+   [Starlink satellite breaks apart into "tens of objects"; SpaceX confirms "anomaly"](https://arstechnica.com/tech-policy/2026/03/starlink-satellite-breaks-apart-into-tens-of-objects-spacex-confirms-anomaly/)
+3. 3.
+   [Launch day has arrived for NASA's Artemis II mission—here's what to expect](https://arstechnica.com/space/2026/04/launch-day-has-arrived-for-nasas-artemis-ii-mission-heres-what-to-expect/)
+4. 4.
+   [RFK Jr. wants Americans to use peptides that were banned over safety risks](https://arstechnica.com/health/2026/03/rfk-jr-s-fda-expected-to-lift-restrictions-on-risky-unproven-peptides/)
+5. 5.
+   [You can finally change the goofy Gmail address you chose years ago](https://arstechnica.com/gadgets/2026/03/you-can-finally-change-the-goofy-gmail-address-you-chose-years-ago/)
+
+
+
+Customize
+
+[](https://arstechnica.com/)
+
+Ars Technica has been separating the signal from
+the noise for over 25 years. With our unique combination of
+technical savvy and wide-ranging interest in the technological arts
+and sciences, Ars is the trusted source in a sea of information. After
+all, you don’t need to know everything, only what’s important.
+
+[](https://bsky.app/profile/arstechnica.com)
+[](https://mastodon.social/@arstechnica)
+[](https://www.facebook.com/arstechnica)
+[](https://www.youtube.com/@arstechnica)
+[](https://www.instagram.com/arstechnica/)
+
+More
+from Ars
+
+* [About Us](https://arstechnica.com/about-us/)
+* [Staff Directory](https://arstechnica.com/staff-directory/)
+* [Ars Newsletters](https://arstechnica.com/newsletters/)
+* [General FAQ](https://arstechnica.com/general-faq/)
+* [Posting Guidelines](https://arstechnica.com/ars-technica-posting-guidelines-v3-0/)
+* [RSS Feeds](https://arstechnica.com/rss-feeds/)
+
+Contact
+
+* [Contact us](https://arstechnica.com/contact-us/)
+* [Advertise with us](mailto:adinquiries@condenast.com)
+* [Reprints](https://arstechnica.com/reprints/)
+
+Manage Preferences
+
+© 2026 Condé Nast. All rights reserved. Use of and/or
+registration on any portion of this site constitutes acceptance of our [User Agreement](https://www.condenast.com/user-agreement/) and
+[Privacy Policy and
+Cookie Statement](https://www.condenast.com/privacy-policy/) and [Ars
+Technica Addendum](https://arstechnica.com/amendment-to-conde-nast-user-agreement-privacy-policy/) and [Your
+California Privacy Rights](https://www.condenast.com/privacy-policy/#california). Ars Technica may earn compensation on
+sales from links on this site. [Read our
+affiliate link policy](https://arstechnica.com/affiliate-link-policy/). The material on this site may not be
+reproduced, distributed, transmitted, cached or otherwise used, except
+with the prior written permission of Condé Nast. [Ad
+Choices](https://www.aboutads.info/)
+
+# Reference
+- [139] [Here’s what that Claude Code source leak reveals about Anthropic’s plans](https://arstechnica.com/ai/2026/04/heres-what-that-claude-code-source-leak-reveals-about-anthropics-plans/)

@@ -1,0 +1,71 @@
+Full-Screen Screenshot: ![](/tmp/webpage_images/menu_check_full_screen_screenshot.png)
+Second Brain AI
+
+
+
+笔记
+
+编辑
+
+Second Brain
+
+第二大脑
+====
+
+主页
+笔记
+数据库
+
+最近访问的笔记
+
+待办和任务看板
+
+添加
+筛选
+
+todo
+
+Review imported sample notes
+
+中 · 工作任务
+
+tododoingdone
+
+doing
+
+Ask the AI assistant for a weekly plan
+
+中 · 工作任务
+
+tododoingdone
+
+done
+
+Brain AI
+
+Deep Intelligence
+
+新会话
+
+对话
+
+知识库
+
+智能体
+
+总结我最近的重点笔记根据知识库给我一个本周计划帮我发现这些笔记之间的关联
+
+可以在这里连续对话，支持普通聊天、知识库问答和智能体模式。
+
+结合我的笔记，建议我这周最值得优先推进的事情。
+
+Ask AI
+
+引用来源
+
+当前没有返回引用来源。
+
+知识卡片
+
+# Reference
+- [5] [Second Brain AI](http://127.0.0.1:8000/)

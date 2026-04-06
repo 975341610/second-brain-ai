@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- WARNING: This diagram contains unsupported graphics -->
+<!-- These unsupported node types will NOT be rendered in Draw.io -->
+<!-- This may result in LOSS OF INFORMATION from the original diagram -->
+<!-- DO NOT MODIFY THIS BOARD -->
+<!-- Unsupported node types: table(1) -->
+<mxfile>
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"></mxCell>
+        <mxCell id="1" parent="0"></mxCell>
+        <mxCell id="a1:1" value="质量评估专项：数据标注与问题定位分析" style="align=left;fillColor=none;fontColor=#000000;fontSize=22;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1394.0" y="9.0" width="1052.0" height="32.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:2" value="关键任务" style="align=left;fillColor=none;fontColor=#000000;fontSize=18;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1394.0" y="71.0" width="1052.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:1" style="align=center;fillColor=#f5f6fe;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1394.0" y="111.0" width="341.3" height="268.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="p1:1" style="shape=larkSvg;strokeColor=none;" parent="o1:1" vertex="1">
+          <mxGeometry x="18.0" y="18.0" width="16.9" height="15.0" as="geometry"></mxGeometry>
+          <larkSvgData>&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;16.875&#34; height=&#34;15&#34; viewBox=&#34;0 0 576 512&#34; fill=&#34;rgb(51, 61, 204)&#34;&gt;&lt;path d=&#34;M304 240l0-223.4c0-9 7-16.6 16-16.6C443.7 0 544 100.3 544 224c0 9-7.6 16-16.6 16L304 240zM32 272C32 150.7 122.1 50.3 239 34.3c9.2-1.3 17 6.1 17 15.4L256 288 412.5 444.5c6.7 6.7 6.2 17.7-1.5 23.1C371.8 495.6 323.8 512 272 512C139.5 512 32 404.6 32 272zm526.4 16c9.3 0 16.6 7.8 15.4 17c-7.7 55.9-34.6 105.6-73.9 142.3c-6 5.6-15.4 5.2-21.2-.7L320 288l238.4 0z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;</larkSvgData>
+        </mxCell>
+        <mxCell id="a1:3" value="数据产出分析" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="40.9" y="14.0" width="112.0" height="21.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:2" style="align=center;fillColor=#ffffff;fontSize=14;rounded=1;strokeColor=#1a7526;strokeWidth=1.0;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="269.3" y="13.0" width="54.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:4" value="进行中" style="align=left;fillColor=none;fontColor=#000000;fontSize=12;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:2" vertex="1">
+          <mxGeometry x="9.0" y="2.0" width="43.0" height="20.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:3" style="align=center;fillColor=#ffffff;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="o1:1" vertex="1">
+          <mxGeometry x="6.0" y="51.0" width="329.3" height="211.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:5" value="总样本量：200条标注数据" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="7.0" y="14.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:6" value="评估类型：第一期剧壳审核标注" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="7.0" y="46.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:7" value="问题分类与占比统计" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="7.0" y="78.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:8" value="整体评估正确率计算" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="7.0" y="110.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:9" value="人审问题定位与量化" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:3" vertex="1">
+          <mxGeometry x="7.0" y="142.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:4" style="align=center;fillColor=#ecfaff;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1749.3" y="111.0" width="341.3" height="268.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="p1:2" style="shape=larkSvg;strokeColor=none;" parent="o1:4" vertex="1">
+          <mxGeometry x="18.0" y="18.0" width="15.0" height="15.0" as="geometry"></mxGeometry>
+          <larkSvgData>&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;15&#34; height=&#34;15&#34; viewBox=&#34;0 0 512 512&#34; fill=&#34;rgb(4, 127, 176)&#34;&gt;&lt;path d=&#34;M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;</larkSvgData>
+        </mxCell>
+        <mxCell id="a1:10" value="执行归因分析" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:4" vertex="1">
+          <mxGeometry x="39.0" y="14.0" width="112.0" height="21.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:5" style="align=center;fillColor=#ffffff;fontSize=14;rounded=1;strokeColor=#1a7526;strokeWidth=1.0;verticalAlign=middle;" parent="o1:4" vertex="1">
+          <mxGeometry x="269.3" y="13.0" width="54.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:11" value="进行中" style="align=left;fillColor=none;fontColor=#000000;fontSize=12;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:5" vertex="1">
+          <mxGeometry x="9.0" y="2.0" width="43.0" height="20.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:6" style="align=center;fillColor=#ffffff;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="o1:4" vertex="1">
+          <mxGeometry x="6.0" y="51.0" width="329.3" height="211.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:12" value="定位人审执行问题并分析成因" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:6" vertex="1">
+          <mxGeometry x="14.0" y="16.0" width="302.0" height="21.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:13" value="错误标签归类与聚合分析" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:6" vertex="1">
+          <mxGeometry x="7.0" y="69.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:14" value="各误判policy占比统计" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:6" vertex="1">
+          <mxGeometry x="7.0" y="101.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:15" value="识别最大影响面的policy问题" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:6" vertex="1">
+          <mxGeometry x="7.0" y="133.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:16" value="执行难度与操作时间分析" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:6" vertex="1">
+          <mxGeometry x="7.0" y="165.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:7" style="align=center;fillColor=#f4f9df;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="2104.7" y="111.0" width="341.3" height="268.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="p1:3" style="shape=larkSvg;strokeColor=none;" parent="o1:7" vertex="1">
+          <mxGeometry x="18.0" y="18.0" width="18.8" height="15.0" as="geometry"></mxGeometry>
+          <larkSvgData>&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;18.75&#34; height=&#34;15&#34; viewBox=&#34;0 0 640 512&#34; fill=&#34;rgb(107, 127, 6)&#34;&gt;&lt;path d=&#34;M308.5 135.3c7.1-6.3 9.9-16.2 6.2-25c-2.3-5.3-4.8-10.5-7.6-15.5L304 89.4c-3-5-6.3-9.9-9.8-14.6c-5.7-7.6-15.7-10.1-24.7-7.1l-28.2 9.3c-10.7-8.8-23-16-36.2-20.9L199 27.1c-1.9-9.3-9.1-16.7-18.5-17.8C173.9 8.4 167.2 8 160.4 8l-.7 0c-6.8 0-13.5 .4-20.1 1.2c-9.4 1.1-16.6 8.6-18.5 17.8L115 56.1c-13.3 5-25.5 12.1-36.2 20.9L50.5 67.8c-9-3-19-.5-24.7 7.1c-3.5 4.7-6.8 9.6-9.9 14.6l-3 5.3c-2.8 5-5.3 10.2-7.6 15.6c-3.7 8.7-.9 18.6 6.2 25l22.2 19.8C32.6 161.9 32 168.9 32 176s.6 14.1 1.7 20.9L11.5 216.7c-7.1 6.3-9.9 16.2-6.2 25c2.3 5.3 4.8 10.5 7.6 15.6l3 5.2c3 5.1 6.3 9.9 9.9 14.6c5.7 7.6 15.7 10.1 24.7 7.1l28.2-9.3c10.7 8.8 23 16 36.2 20.9l6.1 29.1c1.9 9.3 9.1 16.7 18.5 17.8c6.7 .8 13.5 1.2 20.4 1.2s13.7-.4 20.4-1.2c9.4-1.1 16.6-8.6 18.5-17.8l6.1-29.1c13.3-5 25.5-12.1 36.2-20.9l28.2 9.3c9 3 19 .5 24.7-7.1c3.5-4.7 6.8-9.5 9.8-14.6l3.1-5.4c2.8-5 5.3-10.2 7.6-15.5c3.7-8.7 .9-18.6-6.2-25l-22.2-19.8c1.1-6.8 1.7-13.8 1.7-20.9s-.6-14.1-1.7-20.9l22.2-19.8zM112 176a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM504.7 500.5c6.3 7.1 16.2 9.9 25 6.2c5.3-2.3 10.5-4.8 15.5-7.6l5.4-3.1c5-3 9.9-6.3 14.6-9.8c7.6-5.7 10.1-15.7 7.1-24.7l-9.3-28.2c8.8-10.7 16-23 20.9-36.2l29.1-6.1c9.3-1.9 16.7-9.1 17.8-18.5c.8-6.7 1.2-13.5 1.2-20.4s-.4-13.7-1.2-20.4c-1.1-9.4-8.6-16.6-17.8-18.5L583.9 307c-5-13.3-12.1-25.5-20.9-36.2l9.3-28.2c3-9 .5-19-7.1-24.7c-4.7-3.5-9.6-6.8-14.6-9.9l-5.3-3c-5-2.8-10.2-5.3-15.6-7.6c-8.7-3.7-18.6-.9-25 6.2l-19.8 22.2c-6.8-1.1-13.8-1.7-20.9-1.7s-14.1 .6-20.9 1.7l-19.8-22.2c-6.3-7.1-16.2-9.9-25-6.2c-5.3 2.3-10.5 4.8-15.6 7.6l-5.2 3c-5.1 3-9.9 6.3-14.6 9.9c-7.6 5.7-10.1 15.7-7.1 24.7l9.3 28.2c-8.8 10.7-16 23-20.9 36.2L315.1 313c-9.3 1.9-16.7 9.1-17.8 18.5c-.8 6.7-1.2 13.5-1.2 20.4s.4 13.7 1.2 20.4c1.1 9.4 8.6 16.6 17.8 18.5l29.1 6.1c5 13.3 12.1 25.5 20.9 36.2l-9.3 28.2c-3 9-.5 19 7.1 24.7c4.7 3.5 9.5 6.8 14.6 9.8l5.4 3.1c5 2.8 10.2 5.3 15.5 7.6c8.7 3.7 18.6 .9 25-6.2l19.8-22.2c6.8 1.1 13.8 1.7 20.9 1.7s14.1-.6 20.9-1.7l19.8 22.2zM464 304a48 48 0 1 1 0 96 48 48 0 1 1 0-96z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;</larkSvgData>
+        </mxCell>
+        <mxCell id="a1:17" value="标准优化建议" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:7" vertex="1">
+          <mxGeometry x="42.8" y="14.0" width="91.0" height="21.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:8" style="align=center;fillColor=#ffffff;fontSize=14;rounded=1;strokeColor=#c25705;strokeWidth=1.0;verticalAlign=middle;" parent="o1:7" vertex="1">
+          <mxGeometry x="269.3" y="13.0" width="54.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:18" value="待完善" style="align=left;fillColor=none;fontColor=#000000;fontSize=12;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:8" vertex="1">
+          <mxGeometry x="9.0" y="2.0" width="43.0" height="20.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:9" style="align=center;fillColor=#ffffff;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="o1:7" vertex="1">
+          <mxGeometry x="6.0" y="51.0" width="329.3" height="211.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:19" value="审核逻辑问题识别" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:9" vertex="1">
+          <mxGeometry x="7.0" y="14.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:20" value="标准不清晰点定位" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:9" vertex="1">
+          <mxGeometry x="7.0" y="46.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:21" value="策略流转问题备注" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:9" vertex="1">
+          <mxGeometry x="7.0" y="78.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:22" value="标准侧沟通建议" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:9" vertex="1">
+          <mxGeometry x="7.0" y="110.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:23" value="优化空间前置思考" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:9" vertex="1">
+          <mxGeometry x="7.0" y="142.0" width="309.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:24" value="专项跟进" style="align=left;fillColor=none;fontColor=#000000;fontSize=18;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1394.0" y="410.0" width="1052.0" height="26.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="q1:1" value="&amp;lt;table border=&#39;1&#39; cellpadding=&#39;4&#39; cellspacing=&#39;0&#39; style=&#39;border-collapse:collapse;&#39;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td bgcolor=&#39;#f5f6f7&#39; align=&#39;left&#39;&amp;gt;&amp;lt;b&amp;gt;工作模块&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#f5f6f7&#39; align=&#39;left&#39;&amp;gt;&amp;lt;b&amp;gt;具体要求&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#f5f6f7&#39; align=&#39;left&#39;&amp;gt;&amp;lt;b&amp;gt;时间节点&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#f5f6f7&#39; align=&#39;left&#39;&amp;gt;&amp;lt;b&amp;gt;状态&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;文档撰写&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;四部分内容完整呈现&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;周二下午4-5点&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;center&#39;&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;每周报告&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;周五定期输出结论&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;每周五&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;center&#39;&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;多维度标注&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;剧壳外其他队列标注&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;left&#39;&amp;gt;未明确&amp;lt;/td&amp;gt;&amp;lt;td bgcolor=&#39;#ffffff&#39; align=&#39;center&#39;&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/table&amp;gt;" style="fillColor=#ffffff;html=1;larkTableType=table;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="1395.0" y="451.0" width="1050.0" height="203.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:10" style="align=center;fillColor=#e4fae1;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="q1:1" vertex="1">
+          <mxGeometry x="0.0" y="0.0" width="52.0" height="24.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:25" value="进行中" style="align=left;fillColor=none;fontColor=#000000;fontSize=12;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:10" vertex="1">
+          <mxGeometry x="8.0" y="1.0" width="43.0" height="20.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:11" style="align=center;fillColor=#f2f3f5;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="q1:1" vertex="1">
+          <mxGeometry x="0.0" y="0.0" width="52.0" height="24.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:26" value="待启动" style="align=left;fillColor=none;fontColor=#000000;fontSize=12;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:11" vertex="1">
+          <mxGeometry x="8.0" y="1.0" width="43.0" height="20.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:12" style="align=center;fillColor=#f2f3f5;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="q1:1" vertex="1">
+          <mxGeometry x="0.0" y="0.0" width="52.0" height="24.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:27" value="规划中" style="align=left;fillColor=none;fontColor=#000000;fontSize=12;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:12" vertex="1">
+          <mxGeometry x="8.0" y="1.0" width="43.0" height="20.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:13" style="align=center;fillColor=#fff5fb;fontSize=14;rounded=1;strokeColor=none;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1394.0" y="687.0" width="1052.0" height="54.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="p1:4" style="shape=larkSvg;strokeColor=none;" parent="o1:13" vertex="1">
+          <mxGeometry x="16.0" y="19.0" width="11.2" height="15.0" as="geometry"></mxGeometry>
+          <larkSvgData>&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;11.25&#34; height=&#34;15&#34; viewBox=&#34;0 0 384 512&#34; fill=&#34;rgb(184, 40, 121)&#34;&gt;&lt;path d=&#34;M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;</larkSvgData>
+        </mxCell>
+        <mxCell id="a1:28" value="核心目标：通过系统化标注分析，定位人审执行与标准问题，为星辰团队提供执行纠偏依据，推动审核质量提升" style="align=left;fillColor=none;fontColor=#000000;fontSize=15;html=1;strokeColor=none;text;verticalAlign=middle;" parent="o1:13" vertex="1">
+          <mxGeometry x="33.2" y="16.0" width="757.0" height="21.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:29" value="飞书智能会议纪要 AI 生成" style="align=right;fillColor=none;fontColor=#000000;fontSize=12;html=1;strokeColor=none;text;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1394.0" y="758.0" width="1052.0" height="17.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:1" style="endArrow=none;startArrow=none;strokeColor=#dee0e3;strokeWidth=1.0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1769.3" y="216.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="2070.7" y="216.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

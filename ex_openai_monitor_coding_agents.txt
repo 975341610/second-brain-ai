@@ -1,0 +1,13 @@
+請稍候...
+
+
+驗證成功。正在等待 openai.com 回應
+
+Enable JavaScript and cookies to continue
+IFRAME about:blank:
+
+IFRAME https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/ov2/av0/rch/mnlb5/0x4AAAAAAADnPIDROrmt1Wwj/light/fbE/new/normal?lang=auto:
+Checking your Browser…
+
+# Reference
+- [180] [請稍候...](https://openai.com/zh-Hans-CN/index/how-we-monitor-internal-coding-agents-misalignment/)

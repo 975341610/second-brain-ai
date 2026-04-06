@@ -26,6 +26,7 @@ from backend.models.schemas import (
     NotePropertyResponse,
     NotePropertyUpdate,
     NoteResponse,
+    NoteTreeResponse,
     NoteUpdate,
     QuickCaptureRequest,
     QuickCaptureResponse,
@@ -66,6 +67,7 @@ from backend.services.repositories import (
     get_or_create_model_config,
     get_or_create_user_stats,
     list_notes,
+    list_notes_tree,
     list_notebooks,
     list_trashed_notes,
     list_trashed_notebooks,
@@ -183,8 +185,17 @@ def note_to_response(note: Note) -> NoteResponse:
         parent_id=note.parent_id,
         position=note.position,
         is_title_manually_edited=(note.is_title_manually_edited == 1),
+        is_folder=(note.is_folder == 1),
         created_at=note.created_at,
         deleted_at=note.deleted_at,
+    )
+
+def note_to_tree_response(note: Note) -> NoteTreeResponse:
+    resp = note_to_response(note)
+    children = [note_to_tree_response(child) for child in note.children if child.deleted_at is None]
+    return NoteTreeResponse(
+        **resp.model_dump(),
+        children=children
     )
 
 def notebook_to_response(notebook: Notebook) -> NotebookResponse:
@@ -469,6 +480,22 @@ async def suggest_tags(payload: TagSuggestRequest, db: Session = Depends(get_db)
     }
     tags = await ai_client.tags(payload.content, llm_config)
     return TagSuggestResponse(tags=tags)
+
+@router.get("/notes/tree", response_model=list[NoteTreeResponse])
+def get_notes_tree(db: Session = Depends(get_db)) -> list[NoteTreeResponse]:
+    roots = list_notes_tree(db)
+    return [note_to_tree_response(note) for note in roots]
+
+@router.post("/folders", response_model=NoteResponse)
+async def create_folder_api(payload: NoteCreate, db: Session = Depends(get_db)) -> NoteResponse:
+    from backend.database import with_db_retry
+    @with_db_retry(max_retries=3)
+    def do_create():
+        notebook_id = payload.notebook_id or get_or_create_default_notebook(db).id
+        return create_note(db, title=payload.title, content="", summary="", tags=payload.tags, notebook_id=notebook_id, icon="📂", parent_id=payload.parent_id, is_folder=True)
+    
+    folder = do_create()
+    return note_to_response(folder)
 
 @router.get("/notes", response_model=list[NoteResponse])
 def get_notes(property_name: str | None = None, property_value: str | None = None, db: Session = Depends(get_db)) -> list[NoteResponse]:
@@ -908,6 +935,34 @@ async def system_restart():
         return {"status": "ok", "message": "Restarting..."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/system/open-file")
+async def open_file(payload: dict):
+    """通过系统默认程序打开文件"""
+    file_path_str = payload.get("path")
+    if not file_path_str:
+        raise HTTPException(status_code=400, detail="Missing file path")
+    
+    # 允许打开本地绝对路径或相对于上传目录的路径
+    p = Path(file_path_str)
+    if not p.is_absolute():
+        p = Path(settings.uploads_path) / p.name
+    
+    if not p.exists():
+        raise HTTPException(status_code=404, detail=f"File not found: {p}")
+
+    try:
+        import platform
+        system = platform.system()
+        if system == "Windows":
+            os.startfile(str(p))
+        elif system == "Darwin":  # macOS
+            subprocess.run(["open", str(p)])
+        else:  # Linux
+            subprocess.run(["xdg-open", str(p)])
+        return {"status": "ok"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to open file: {str(e)}")
 
 @router.post("/system/import-data")
 async def import_data(payload: dict):

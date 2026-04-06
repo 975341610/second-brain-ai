@@ -1,0 +1,333 @@
+解析分享链接（JSON） - 网盘分享链接云解析服务API
+
+1. 解析接口
+
+复制页面
+
+[![web_image](https://cdn.apifox.com/app/apidoc-image/custom/20251113/ea0c8424-1d7d-4216-830d-f2ef4bc87c65.png)
+
+**网盘分享链接云解析服务API**](https://nfdparser.apifox.cn/)
+
+* 解析接口
+
+  + [解析分享链接（JSON）
+
+    GET](https://nfdparser.apifox.cn/376096141e0 "解析分享链接（JSON）")
+  + [解析分享链接（重定向）
+
+    GET](https://nfdparser.apifox.cn/376096140e0 "解析分享链接（重定向）")
+  + [根据类型和Key解析（重定向）
+
+    GET](https://nfdparser.apifox.cn/376096142e0 "根据类型和Key解析（重定向）")
+  + [根据类型和Key解析（JSON）
+
+    GET](https://nfdparser.apifox.cn/376096143e0 "根据类型和Key解析（JSON）")
+  + [获取链接信息
+
+    GET](https://nfdparser.apifox.cn/376096144e0 "获取链接信息")
+* 文件列表
+
+  + [获取文件列表
+
+    GET](https://nfdparser.apifox.cn/376096145e0 "获取文件列表")
+* 预览接口
+
+  + [预览媒体文件（按类型和Key）
+
+    GET](https://nfdparser.apifox.cn/376096146e0 "预览媒体文件（按类型和Key）")
+  + [预览媒体文件（按URL）
+
+    GET](https://nfdparser.apifox.cn/376096147e0 "预览媒体文件（按URL）")
+  + [预览URL（目录预览）
+
+    GET](https://nfdparser.apifox.cn/376096148e0 "预览URL（目录预览）")
+* 客户端下载
+
+  + [获取所有客户端下载链接
+
+    GET](https://nfdparser.apifox.cn/376096149e0 "获取所有客户端下载链接")
+  + [获取指定类型的客户端下载链接
+
+    GET](https://nfdparser.apifox.cn/376096150e0 "获取指定类型的客户端下载链接")
+* 统计信息
+
+  + [获取统计信息
+
+    GET](https://nfdparser.apifox.cn/376096151e0 "获取统计信息")
+* 网盘列表
+
+  + [获取支持的网盘列表
+
+    GET](https://nfdparser.apifox.cn/376096152e0 "获取支持的网盘列表")
+* 版本信息
+
+  + [获取版本号
+
+    GET](https://nfdparser.apifox.cn/376096153e0 "获取版本号")
+* 隔空喊话
+
+  + [提交消息
+
+    POST](https://nfdparser.apifox.cn/376096154e0 "提交消息")
+  + [检索消息
+
+    GET](https://nfdparser.apifox.cn/376096155e0 "检索消息")
+* 快捷下载
+
+  + [下载重定向（短链）
+
+    GET](https://nfdparser.apifox.cn/376096156e0 "下载重定向（短链）")
+  + [重定向下载URL（目录文件）
+
+    GET](https://nfdparser.apifox.cn/376096157e0 "重定向下载URL（目录文件）")
+* 数据模型
+
+  + [CacheLinkInfo](https://nfdparser.apifox.cn/218835625d0 "CacheLinkInfo")
+  + [FileInfo](https://nfdparser.apifox.cn/218835626d0 "FileInfo")
+  + [LinkInfoResp](https://nfdparser.apifox.cn/218835627d0 "LinkInfoResp")
+  + [ShareLinkInfo](https://nfdparser.apifox.cn/218835628d0 "ShareLinkInfo")
+  + [ClientLinkResp](https://nfdparser.apifox.cn/218835629d0 "ClientLinkResp")
+  + [StatisticsInfo](https://nfdparser.apifox.cn/218835630d0 "StatisticsInfo")
+  + [PanInfo](https://nfdparser.apifox.cn/218835631d0 "PanInfo")
+  + [ShoutMessage](https://nfdparser.apifox.cn/218835632d0 "ShoutMessage")
+  + [JsonResult](https://nfdparser.apifox.cn/218835633d0 "JsonResult")
+  + [ErrorResponse](https://nfdparser.apifox.cn/218835634d0 "ErrorResponse")
+
+1. 解析接口
+
+MCP
+
+复制页面
+
+解析分享链接（JSON）
+============
+
+公共解析站
+
+https://lz0.qaiu.top
+
+公共解析站
+
+https://lz0.qaiu.top
+
+GET
+
+/json/parser
+
+调试
+Run in Apifox
+
+Run in Apifox
+
+解析分享链接并返回JSON格式的直链信息
+
+请求参数
+----
+
+Query 参数
+
+生成代码
+
+###
+
+返回响应
+----
+
+🟢
+200
+成功
+
+application/json
+
+解析成功
+
+Body
+
+生成代码
+
+###
+
+🔴
+500
+服务器内部错误
+
+请求示例
+请求示例
+
+Shell
+
+JavaScript
+
+Java
+
+Swift
+
+cURL
+cURL-Windows
+Httpie
+wget
+PowerShell
+
+```
+curl
+ --location
+ --request
+ GET 'https://lz0.qaiu.top/json/parser?url&pwd'
+
+```
+
+响应示例
+响应示例
+
+200 -
+示例 1
+
+```
+{
+
+    "shareKey"
+:
+ "lz:ia2cntg"
+,
+
+    "directLink"
+:
+ "https://example.com/download/file.zip"
+,
+
+    "cacheHit"
+:
+ false
+,
+
+    "expires"
+:
+ "2025-01-22 12:00:00"
+,
+
+    "expiration"
+:
+ 86400000
+,
+
+    "fileInfo"
+:
+ {
+
+        "fileName"
+:
+ "file.zip"
+,
+
+        "fileId"
+:
+ "123456"
+,
+
+        "fileIcon"
+:
+ "icon.png"
+,
+
+        "size"
+:
+ 1024000
+,
+
+        "sizeStr"
+:
+ "1MB"
+,
+
+        "fileType"
+:
+ "zip"
+,
+
+        "filePath"
+:
+ "/folder/file.zip"
+,
+
+        "createTime"
+:
+ "2025-01-21 10:00:00"
+,
+
+        "updateTime"
+:
+ "2025-01-21 11:00:00"
+,
+
+        "createBy"
+:
+ "user123"
+,
+
+        "description"
+:
+ "string"
+,
+
+        "downloadCount"
+:
+ 10
+,
+
+        "panType"
+:
+ "lz"
+,
+
+        "parserUrl"
+:
+ "string"
+,
+
+        "previewUrl"
+:
+ "string"
+,
+
+        "hash"
+:
+ "string"
+,
+
+        "extParameters"
+:
+ {
+
+            "property1"
+:
+ "string"
+,
+
+            "property2"
+:
+ "string"
+
+        }
+
+    }
+
+}
+
+```
+
+修改于
+2026-02-28 04:52:16
+
+[下一页
+
+解析分享链接（重定向）](https://nfdparser.apifox.cn/376096140e0)
+
+[LLMs.txt](https://nfdparser.apifox.cn/llms.txt)克隆
+导出
+
+[Built with
+
+](https://apifox.com)
+
+# Reference
+- [97] [解析分享链接（JSON） - 网盘分享链接云解析服务API](https://nfdparser.apifox.cn/)

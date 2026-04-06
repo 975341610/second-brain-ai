@@ -1,0 +1,183 @@
+{
+  "total_sample_size": 232,
+  "execution_stats": [
+    {
+      "Label": "低俗色情",
+      "Count": 4,
+      "Percentage": 25.0
+    },
+    {
+      "Label": "其他",
+      "Count": 3,
+      "Percentage": 18.75
+    },
+    {
+      "Label": "封面&剧集内容不一致",
+      "Count": 2,
+      "Percentage": 12.5
+    },
+    {
+      "Label": "排版不美观-画面异常",
+      "Count": 1,
+      "Percentage": 6.25
+    },
+    {
+      "Label": "低俗色情-多人导向",
+      "Count": 1,
+      "Percentage": 6.25
+    },
+    {
+      "Label": "排版不美观-画风过差",
+      "Count": 1,
+      "Percentage": 6.25
+    },
+    {
+      "Label": "低俗色情-低俗表达",
+      "Count": 1,
+      "Percentage": 6.25
+    },
+    {
+      "Label": "低俗色情-乳沟/内衣/内裤露出",
+      "Count": 1,
+      "Percentage": 6.25
+    },
+    {
+      "Label": "低俗色情-特殊性癖/同性",
+      "Count": 1,
+      "Percentage": 6.25
+    },
+    {
+      "Label": "导向不良-复仇/霸总/出轨/家暴/乱伦/宣扬自杀自残/反社会/辱骂/脏话",
+      "Count": 1,
+      "Percentage": 6.25
+    },
+    {
+      "Label": "无关描述-信息缺失/标题过小",
+      "Count": 1,
+      "Percentage": 6.25
+    }
+  ],
+  "standard_stats": [
+    {
+      "Label": "排版不美观-画面异常",
+      "Count": 2,
+      "Percentage": 18.18
+    },
+    {
+      "Label": "无关描述-无效书名/简介",
+      "Count": 1,
+      "Percentage": 9.09
+    },
+    {
+      "Label": "其他",
+      "Count": 1,
+      "Percentage": 9.09
+    },
+    {
+      "Label": "导向不良-复仇/霸总/出轨/家暴/乱伦/宣扬自杀自残/反社会/辱骂/脏话",
+      "Count": 1,
+      "Percentage": 9.09
+    }
+  ],
+  "annotation_sample_count": 113,
+  "security_stats": [
+    {
+      "Label": "低俗色情",
+      "Count": 16
+    },
+    {
+      "Label": "其他",
+      "Count": 11
+    },
+    {
+      "Label": "低俗色情-乳沟/内衣/裤露出",
+      "Count": 11
+    },
+    {
+      "Label": "导向不良-霸总/出轨/家暴/乱伦/宣扬自杀自残/反社会/辱骂/脏话",
+      "Count": 8
+    },
+    {
+      "Label": "涉政涉敏",
+      "Count": 5
+    },
+    {
+      "Label": "涉政涉敏-涉党政军",
+      "Count": 3
+    },
+    {
+      "Label": "低俗色情-性遐想",
+      "Count": 1
+    },
+    {
+      "Label": "低俗色情-畸形性恋/特殊性癖",
+      "Count": 1
+    },
+    {
+      "Label": "低俗色情-多人导向",
+      "Count": 1
+    },
+    {
+      "Label": "低俗色情-低俗表达",
+      "Count": 1
+    },
+    {
+      "Label": "未成年相关",
+      "Count": 1
+    },
+    {
+      "Label": "未成年-负面行为（霸凌、涉黑、赌博、自杀等）",
+      "Count": 1
+    },
+    {
+      "Label": "涉血腥暴力恐怖",
+      "Count": 1
+    },
+    {
+      "Label": "血腥暴力恐怖",
+      "Count": 1
+    },
+    {
+      "Label": "低俗色情-低俗文案",
+      "Count": 1
+    },
+    {
+      "Label": "涉政涉敏-涉领导人",
+      "Count": 1
+    },
+    {
+      "Label": "涉政涉敏-涉党政军-关联国运",
+      "Count": 1
+    }
+  ],
+  "quality_stats": [
+    {
+      "Label": "封面&剧集内容不一致",
+      "Count": 36
+    },
+    {
+      "Label": "无关描述-无效书名/简介",
+      "Count": 30
+    },
+    {
+      "Label": "排版不美观-画面异常",
+      "Count": 8
+    },
+    {
+      "Label": "排版不美观-画风过差",
+      "Count": 8
+    },
+    {
+      "Label": "无关描述-信息缺失/标题过小",
+      "Count": 8
+    },
+    {
+      "Label": "不当营销-封面存在【热播/爆款/荐】",
+      "Count": 3
+    },
+    {
+      "Label": "封面模糊/拉伸",
+      "Count": 2
+    }
+  ]
+}

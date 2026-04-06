@@ -1,0 +1,191 @@
+Cline debuts Kanban for local parallel CLI coding agents
+
+
+
+[TestingCatalog](https://www.testingcatalog.com)
+
+* [ChatGPT](https://www.testingcatalog.com/tag/chatgpt/)
+* [Gemini](https://www.testingcatalog.com/tag/gemini/)
+* [Perplexity](https://www.testingcatalog.com/tag/perplexity/)
+* [Claude](https://www.testingcatalog.com/tag/claude/)
+* [Grok](https://www.testingcatalog.com/tag/grok/)
+* [More](https://www.testingcatalog.com/cline-debuts-kanban-for-local-parallel-cli-coding-agents/)
+
+  [Weekly Newsletter](https://www.testingcatalog.com/weekly-newsletter/)[For Advertisers](https://stan.store/testingcatalog)[Follow on Telegram](https://t.me/testingcatalog/)[Follow on Threads](https://www.threads.com/testingcatalog/)[Follow on BlueSky](https://bsky.app/profile/testingcatalog.com/)[Follow on LinkedIn](https://www.linkedin.com/company/testingcatalog/)
+
+  ---
+
+[Log in](https://www.testingcatalog.com/cline-debuts-kanban-for-local-parallel-cli-coding-agents/#/portal/signin)
+[Subscribe](https://www.testingcatalog.com/cline-debuts-kanban-for-local-parallel-cli-coding-agents/#/portal/signup)
+
+[Log in](https://www.testingcatalog.com/cline-debuts-kanban-for-local-parallel-cli-coding-agents/)
+[Subscribe](https://www.testingcatalog.com/cline-debuts-kanban-for-local-parallel-cli-coding-agents/)
+
+* [ChatGPT](https://www.testingcatalog.com/tag/chatgpt/)
+* [Gemini](https://www.testingcatalog.com/tag/gemini/)
+* [Perplexity](https://www.testingcatalog.com/tag/perplexity/)
+* [Claude](https://www.testingcatalog.com/tag/claude/)
+* [Grok](https://www.testingcatalog.com/tag/grok/)
+
+[Sponsored](https://www.testingcatalog.com/tag/sponsored/)
+
+Cline debuts Kanban for local parallel CLI coding agents
+========================================================
+
+Cline's Kanban runs multiple CLI agents in parallel with isolated git worktrees. Free, open source, no account required.
+
+[Nero Soares](https://www.testingcatalog.com/author/nero-2/)
+
+26 Mar 2026
+·
+2 min read
+
+Share:
+
+![web_image](https://www.testingcatalog.com/content/images/size/w2000/2026/03/cline_og_img.webp)
+
+Cline has launched [Cline Kanban](https://github.com/cline/kanban?ref=testingcatalog.com), a free browser-based orchestration interface that lets developers run multiple coding agents in parallel from the root of any git repository. It requires Node.js 18+ and an API key from any supported provider, including Anthropic, OpenAI, Google, and Mistral, or free models can be used instead. The tool is now live as part of the Cline CLI and installs via *`npm i -g cline`*.
+
+Each task card on the board is assigned its own dedicated terminal and ephemeral git worktree, managed automatically. This setup allows multiple agents to work on separate branches simultaneously without interfering with each other. Developers can view a real-time diff of every change next to the agent's terminal interface and leave inline comments as they would during a code review. When the work is ready, hitting Commit or Open PR prompts the agent to convert the worktree into a clean commit or pull request branch, resolving any merge conflicts in the process.
+
+[![](https://img.spacergif.org/v1/1920x1080/0a/spacer.png)](https://storage.ghost.io/c/2a/1b/2a1b1782-8506-4d7d-bf53-ad3fb52e2a0f/content/media/2026/03/Kanban-Demo.mp4)
+
+0:25
+
+/1:02
+
+1×
+
+Cline Kanban
+
+Cline designed the tool to work with Claude Code, OpenAI Codex, and Cline, with more agents coming soon. The premise is that sequential single-agent workflows leave throughput on the table. With task cards linked through dependency chains, the completion of one task automatically triggers the next, so an API endpoint test only fires once the schema migration it depends on is done. The tool also supports Linear ticket import, turning an entire sprint backlog into agent tasks in a single step without copy-pasting descriptions into prompts.
+
+Cline is the team behind the VS Code extension and CLI of the same name, trusted by over five million developers. The organization released Cline CLI 2.0 in February 2026, introducing parallel execution and headless CI/CD capabilities to the terminal. Cline Kanban is the next layer in that direction: a visual command center for coordinating agents at scale rather than managing them one terminal window at a time. The interface runs entirely locally and remains agent-agnostic, with a built-in git view covering commit history, branch management, fetch, pull, and push without leaving the app.
+
+****SPONSORED****
+
+Get started now on
+[cline.gg/kanban](https://cline.gg/kanban?ref=testingcatalog.com)
+
+[Take me there!](https://cline.gg/kanban?ref=testingcatalog.com)
+
+The release comes as agent orchestration becomes an increasingly competitive space, with tools like Vibe Kanban, Gas Town, and Code Conductor all addressing the same core challenge of coordinating multiple agents across a codebase. Cline's approach keeps configuration overhead low and the entire experience local. The project ships as a beta release, and the team is actively looking for feedback as the product evolves.
+
+[Sponsored](https://www.testingcatalog.com/tag/sponsored/ "Sponsored")
+
+Share:
+
+Sign up for more like this
+--------------------------
+
+[Enter your email
+
+Subscribe](https://www.testingcatalog.com/cline-debuts-kanban-for-local-parallel-cli-coding-agents/#/portal)
+
+No spam. No jibber jabber. Unsubscribe any time.
+
+---
+
+[Previous article
+
+Google expands Lyria 3 Pro AI music model to apps and APIs
+----------------------------------------------------------
+
+What's new? Google launched Lyria 3 Pro preview on Vertex AI, Google AI Studio and Gemini API for music; Google Vids and ProducerAI now support global soundtracks;](https://www.testingcatalog.com/google-expands-lyria-3-pro-ai-music-model-to-apps-and-apis/)
+
+[Next article
+
+ICYMI: Google launches Gemini 3.1 Flash Live on AI Studio and Gemini
+--------------------------------------------------------------------
+
+What's new? Gemini 3.1 Flash Live is available via the Gemini API and Google AI Studio for real time voice and vision agents; it cuts latency and isolates speech in 90+ languages;](https://www.testingcatalog.com/icymi-google-launches-gemini-3-1-flash-live-on-ai-studio-and-gemini/)
+
+### Related Articles
+
+[Merge launches Gateway for teams managing LLMs on prod
+------------------------------------------------------
+
+31 Mar 2026
+·
+2 min read](https://www.testingcatalog.com/merge-launches-gateway-for-teams-managing-llms-on-prod/)
+
+[CREAO launches Super Agent for AI-powered workflow apps
+-------------------------------------------------------
+
+30 Mar 2026
+·
+2 min read](https://www.testingcatalog.com/creao-launches-super-agent-for-ai-powered-workflow-apps/)
+
+[Moda launches AI design agent that creates brand-aligned assets
+---------------------------------------------------------------
+
+24 Mar 2026
+·
+2 min read](https://www.testingcatalog.com/moda-launches-ai-design-agent-that-creates-brand-aligned-assets/)
+
+[Noota launches AI talent platform to automate recruitment process
+-----------------------------------------------------------------
+
+24 Mar 2026
+·
+2 min read](https://www.testingcatalog.com/noota-launches-ai-talent-platform-to-automate-recruitment-process/)
+
+[PlayerZero launches AI Production Engineers for Enterprise
+----------------------------------------------------------
+
+23 Mar 2026
+·
+2 min read](https://www.testingcatalog.com/playerzero-launches-ai-production-engineers-for-enterprise/)
+
+[Perceptis launches AI platform for generating data-driven slides
+----------------------------------------------------------------
+
+18 Mar 2026
+·
+2 min read](https://www.testingcatalog.com/perceptis-launches-ai-platform-for-generating-data-driven-slides/)
+
+
+
+### About Us
+
+Reporting AI updates. A future news media, driven by virtual assistants 🤖
+
+### Tags
+
+[Latest AI News](https://www.testingcatalog.com/tag/ai/ "Latest AI News")
+
+[Announced AI Features](https://www.testingcatalog.com/tag/release/ "Announced AI Features")
+
+[Unreleased AI Features](https://www.testingcatalog.com/tag/leak/ "Unreleased AI Features")
+
+[ChatGPT News](https://www.testingcatalog.com/tag/chatgpt/ "ChatGPT News")
+
+[Social Apps](https://www.testingcatalog.com/tag/social-apps/ "Social Apps")
+
+### Subscribe
+
+Get the best viral stories straight into your inbox!
+
+Continue
+ 
+
+**Great!** Check your inbox and click the link to confirm your subscription
+
+Please enter a valid email address!
+
+* [X](https://twitter.com/testingcatalog)
+* [Telegram](https://t.me/testingcatalog)
+* [About](https://www.testingcatalog.com/about/)
+* [Contact Us](https://www.testingcatalog.com/contact-us/)
+* [Terms](https://www.testingcatalog.com/terms/)
+* [Policy](https://www.testingcatalog.com/policy/)
+* [Imprint](https://www.testingcatalog.com/imprint/)
+
+© 2026 TestingCatalog. All rights reserved.
+
+![web_image](/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/webpage_images/https_www_testingcatalog_com_cline_debuts_kanban_for_local_parallel_cli_coding_agents/1775005794.7840893.png)
+IFRAME about:srcdoc:
+
+
+# Reference
+- [124] [Cline debuts Kanban for local parallel CLI coding agents](https://www.testingcatalog.com/cline-debuts-kanban-for-local-parallel-cli-coding-agents/)

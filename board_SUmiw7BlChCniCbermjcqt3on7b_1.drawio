@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"></mxCell>
+        <mxCell id="1" parent="0"></mxCell>
+        <mxCell id="t1:2" style="fillColor=none;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-50.0" y="-197.0" width="1069.0" height="1074.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:1" value="User" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;larkLifelineType=actor_lifeline;participant=actor;perimeter=lifelinePerimeter;shape=umlLifeline;size=153;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="50.0" y="241.0" width="100.0" height="1030.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:2" value="客户端 (离线)" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="314.5" y="344.0" width="147.0" height="927.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:3" value="客户端 (在线)" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="644.5" y="344.0" width="147.0" height="927.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:4" value="云端同步服务" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="977.0" y="344.0" width="142.0" height="927.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:1" value="离线编辑与增量同步时序图" style="align=center;fillColor=none;fontSize=14;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="494.5" y="197.0" width="180.0" height="24.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:1" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:2" vertex="1">
+          <mxGeometry x="58.5" y="149.0" width="30.0" height="75.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:2" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:3" vertex="1">
+          <mxGeometry x="58.5" y="407.0" width="30.0" height="505.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:3" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:4" vertex="1">
+          <mxGeometry x="56.0" y="525.0" width="30.0" height="60.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:4" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:4" vertex="1">
+          <mxGeometry x="56.0" y="763.0" width="30.0" height="149.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:1" value="编辑文档 (Tiptap + Yjs)" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50.0" y="252.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="323.0" y="252.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:2" value="Yjs 变更写入 y-indexeddb" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="88.5" y="164.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="88.5" y="209.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-116.0" y="17.0"></mxPoint>
+              <mxPoint x="-116.0" y="62.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:5" value="1. 拉取变更 (Pull) &#xA;last_synced_at, version_vector" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="88.5" y="525.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="388.5" y="525.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:3" value="元数据变更写入本地 SQLite" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;exitX=1.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1" source="s1:1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="73.5" y="269.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-131.0" y="77.0"></mxPoint>
+              <mxPoint x="-131.0" y="122.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:6" value="3. 合并云端变更 &#xA;CRDT 自动合并 / 冲突解决" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="88.5" y="600.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="88.5" y="674.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-446.0" y="453.0"></mxPoint>
+              <mxPoint x="-446.0" y="527.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:8" value="2. 返回增量变更 (Delta)" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1" source="s1:3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-244.0" y="585.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:4" value="网络恢复" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="73.5" y="407.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="388.5" y="407.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:7" value="4. 推送本地变更 (Push) &#xA;含本地离线期间的所有变更" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="88.5" y="763.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="388.5" y="763.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:9" value="5. 服务端合并 &#xA;处理冲突, 更新版本向量" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="86.0" y="778.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="86.0" y="852.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-781.0" y="631.0"></mxPoint>
+              <mxPoint x="-781.0" y="705.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:11" value="离线操作" style="endArrow=none;startArrow=none;strokeColor=#bbbfc4;strokeWidth=4.0;" parent="t1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.0" y="224.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="1069.0" y="224.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:10" value="6. 确认推送成功" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1" source="s1:4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-244.0" y="912.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:12" value="用户持续离线编辑" style="endArrow=none;startArrow=none;strokeColor=#bbbfc4;strokeWidth=4.0;" parent="t1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.0" y="443.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="1069.0" y="443.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:13" value="网络恢复, 自动同步" style="endArrow=none;startArrow=none;strokeColor=#bbbfc4;strokeWidth=4.0;" parent="t1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.0" y="482.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="1069.0" y="482.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

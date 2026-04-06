@@ -1,4 +1,4 @@
-import { BookCopy, ChevronDown, ChevronRight, FolderPlus, Home, Layout, MoreHorizontal, Plus, Search, Settings, Trash2, UploadCloud, X } from 'lucide-react';
+import { BookCopy, ChevronDown, ChevronRight, Folder, FolderPlus, Home, Layout, MoreHorizontal, FileText, Plus, Search, Settings, Trash2, UploadCloud, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
 import { defaultIconFor, isDataIcon, validateExistingDataIcon, validateIconFile } from '../lib/iconUtils';
 import type { Note, Notebook, Task, TrashState } from '../lib/types';
@@ -34,6 +34,7 @@ type SidebarProps = {
   onPurgeNote: (noteId: number) => void;
   onPurgeTrash: () => void;
   onUpload: (files: File[]) => void;
+  onCreateFolder: (notebookId: number, parentId?: number | null) => void;
 };
 
 export function Sidebar({
@@ -65,6 +66,7 @@ export function Sidebar({
   onPurgeNote,
   onPurgeTrash,
   onUpload,
+  onCreateFolder,
 }: SidebarProps) {
   const { userStats } = useAppStore();
   const hasWallpaper = !!userStats?.wallpaper_url;
@@ -203,16 +205,17 @@ export function Sidebar({
     const noteEditing = editingNoteId === note.id;
     const isSelected = selectedNoteId === note.id;
     const isDragOver = dragOverNoteId === note.id;
+    const isFolder = note.is_folder;
 
     return (
       <div key={note.id} className="flex flex-col">
         <div
           className={`
-            relative group flex items-center gap-1.5 px-2 py-1 rounded-md transition-all cursor-pointer
+            relative group flex items-center gap-1 px-2 py-0.5 rounded-md transition-all cursor-pointer
             ${isSelected ? 'bg-reflect-border/60 text-reflect-text font-medium' : 'text-reflect-muted hover:bg-reflect-border/30 hover:text-reflect-text'}
             ${isDragOver ? 'ring-1 ring-reflect-accent/50' : ''}
           `}
-          style={{ paddingLeft: `${(level + 1) * 10 + 6}px` }}
+          style={{ paddingLeft: `${(level + 1) * 10 + 2}px` }}
           draggable
           onDragStart={() => setDraggingNoteId(note.id)}
           onDragOver={(event) => {
@@ -229,17 +232,25 @@ export function Sidebar({
             onMoveNote(draggingNoteId, notebookId, children.length, note.id);
             setDraggingNoteId(null);
           }}
-          onClick={() => onSelectNote(note.id)}
+          onClick={() => {
+            if (isFolder) {
+              setCollapsedNotes((prev) => ({ ...prev, [note.id]: !prev[note.id] }));
+            } else {
+              onSelectNote(note.id);
+            }
+          }}
         >
-          <div className="flex items-center gap-2 flex-1 min-w-0">
-            {children.length > 0 && (
-              <button
-                onClick={(e) => { e.stopPropagation(); setCollapsedNotes((prev) => ({ ...prev, [note.id]: !prev[note.id] })) }}
-                className="p-0.5 hover:bg-reflect-border/50 rounded transition opacity-60 hover:opacity-100"
-              >
-                {isCollapsed ? <ChevronRight size={12} /> : <ChevronDown size={12} />}
-              </button>
-            )}
+          <div className="flex items-center gap-1.5 flex-1 min-w-0">
+            <div className="flex items-center justify-center w-3.5 h-3.5">
+              {(isFolder || children.length > 0) ? (
+                <button
+                  onClick={(e) => { e.stopPropagation(); setCollapsedNotes((prev) => ({ ...prev, [note.id]: !prev[note.id] })) }}
+                  className="p-0.5 hover:bg-reflect-border/50 rounded transition opacity-60 hover:opacity-100"
+                >
+                  {isCollapsed ? <ChevronRight size={10} /> : <ChevronDown size={10} />}
+                </button>
+              ) : null}
+            </div>
             
             <div className="flex-1 truncate">
               {noteEditing ? (
@@ -248,31 +259,55 @@ export function Sidebar({
                   value={editingNoteTitle} 
                   onClick={(e) => e.stopPropagation()}
                   onChange={(event) => setEditingNoteTitle(event.target.value)} 
+                  onBlur={() => { onUpdateNote(note.id, { title: editingNoteTitle }); setEditingNoteId(null); }}
                   onKeyDown={(e) => e.key === 'Enter' && (onUpdateNote(note.id, { title: editingNoteTitle }), setEditingNoteId(null))} 
                   className="w-full bg-white border border-reflect-border px-2 py-0.5 text-xs rounded outline-none" 
                 />
               ) : (
-                <div className="flex items-center gap-2">
-                  <span className="flex-shrink-0 text-xs opacity-70">{renderIcon(note.icon, defaultIconFor('note'))}</span>
-                  <span className="truncate text-xs leading-relaxed">{note.title}</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="flex-shrink-0 opacity-70">
+                    {isFolder ? <Folder size={12} className="text-amber-500/80" /> : renderIcon(note.icon, defaultIconFor('note'))}
+                  </span>
+                  <span className="truncate text-[11px] leading-relaxed">{note.title}</span>
                 </div>
               )}
             </div>
           </div>
 
           {!noteEditing && (
-            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-              <button 
-                onClick={(e) => { e.stopPropagation(); onCreateNoteInNotebook(notebookId, note.id); }} 
-                className="p-1 hover:bg-reflect-border/50 rounded text-reflect-muted hover:text-reflect-text"
-              >
-                <Plus size={12} />
-              </button>
+            <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+              {isFolder && (
+                <>
+                  <button 
+                    title="新建笔记"
+                    onClick={(e) => { e.stopPropagation(); onCreateNoteInNotebook(notebookId, note.id); }} 
+                    className="p-1 hover:bg-reflect-border/50 rounded text-reflect-muted hover:text-reflect-text"
+                  >
+                    <FileText size={10} />
+                  </button>
+                  <button 
+                    title="新建子文件夹"
+                    onClick={(e) => { e.stopPropagation(); onCreateFolder(notebookId, note.id); }} 
+                    className="p-1 hover:bg-reflect-border/50 rounded text-reflect-muted hover:text-reflect-text"
+                  >
+                    <FolderPlus size={10} />
+                  </button>
+                </>
+              )}
+              {!isFolder && (
+                 <button 
+                  title="新建子项"
+                  onClick={(e) => { e.stopPropagation(); onCreateNoteInNotebook(notebookId, note.id); }} 
+                  className="p-1 hover:bg-reflect-border/50 rounded text-reflect-muted hover:text-reflect-text"
+                >
+                  <Plus size={10} />
+                </button>
+              )}
               <button 
                 onClick={(e) => { e.stopPropagation(); setActiveNoteMenuId(activeNoteMenuId === note.id ? null : note.id); }} 
                 className="p-1 hover:bg-reflect-border/50 rounded text-reflect-muted hover:text-reflect-text"
               >
-                <MoreHorizontal size={12} />
+                <MoreHorizontal size={10} />
               </button>
             </div>
           )}
@@ -464,10 +499,18 @@ export function Sidebar({
                       </div>
                       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                          <button 
+                          title="新建笔记"
                           onClick={(e) => { e.stopPropagation(); onCreateNoteInNotebook(notebook.id, null); }}
                           className="p-1 hover:bg-reflect-border/50 rounded"
                         >
                           <Plus size={12} />
+                        </button>
+                        <button 
+                          title="新建文件夹"
+                          onClick={(e) => { e.stopPropagation(); onCreateFolder(notebook.id, null); }}
+                          className="p-1 hover:bg-reflect-border/50 rounded"
+                        >
+                          <FolderPlus size={12} />
                         </button>
                         <button 
                           onClick={(e) => { e.stopPropagation(); setActiveNotebookMenuId(activeNotebookMenuId === notebook.id ? null : notebook.id); }}

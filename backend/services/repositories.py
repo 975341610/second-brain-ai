@@ -94,7 +94,7 @@ def get_note(db: Session, note_id: int) -> Note | None:
     return db.get(Note, note_id)
 
 
-def create_note(db: Session, title: str, content: str, summary: str, tags: list[str] | None, notebook_id: int | None, icon: str = "📝", parent_id: int | None = None, is_title_manually_edited: bool = False) -> Note:
+def create_note(db: Session, title: str, content: str, summary: str, tags: list[str] | None, notebook_id: int | None, icon: str = "📝", parent_id: int | None = None, is_title_manually_edited: bool = False, is_folder: bool = False) -> Note:
     note = Note(
         title=title,
         icon=icon,
@@ -104,6 +104,7 @@ def create_note(db: Session, title: str, content: str, summary: str, tags: list[
         notebook_id=notebook_id,
         parent_id=parent_id,
         is_title_manually_edited=1 if is_title_manually_edited else 0,
+        is_folder=1 if is_folder else 0,
         position=next_note_position(db, notebook_id, parent_id),
     )
     db.add(note)
@@ -112,7 +113,7 @@ def create_note(db: Session, title: str, content: str, summary: str, tags: list[
     return note
 
 
-def update_note(db: Session, note_id: int, title: str | None = None, content: str | None = None, summary: str | None = None, tags: list[str] | None = None, icon: str | None = None, parent_id: int | None = None, is_title_manually_edited: bool | None = None) -> Note | None:
+def update_note(db: Session, note_id: int, title: str | None = None, content: str | None = None, summary: str | None = None, tags: list[str] | None = None, icon: str | None = None, parent_id: int | None = None, is_title_manually_edited: bool | None = None, is_folder: bool | None = None) -> Note | None:
     note = db.get(Note, note_id)
     if not note:
         return None
@@ -145,6 +146,11 @@ def update_note(db: Session, note_id: int, title: str | None = None, content: st
         if note.is_title_manually_edited != val:
             note.is_title_manually_edited = val
             changed = True
+    if is_folder is not None:
+        val = 1 if is_folder else 0
+        if note.is_folder != val:
+            note.is_folder = val
+            changed = True
     
     if changed:
         db.add(note)
@@ -152,6 +158,21 @@ def update_note(db: Session, note_id: int, title: str | None = None, content: st
         db.refresh(note)
     
     return note
+
+
+def list_notes_tree(db: Session) -> list[Note]:
+    # 获取所有非删除的笔记，按位置排序
+    notes = list(db.scalars(select(Note).where(Note.deleted_at.is_(None)).order_by(Note.position.asc())))
+    
+    # 在内存中构建树形结构
+    note_map = {note.id: note for note in notes}
+    roots = []
+    
+    for note in notes:
+        if note.parent_id is None or note.parent_id not in note_map:
+            roots.append(note)
+            
+    return roots
 
 
 def move_note(db: Session, note_id: int, notebook_id: int | None, position: int, parent_id: int | None = None) -> Note | None:

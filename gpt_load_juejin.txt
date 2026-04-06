@@ -1,0 +1,614 @@
+GPT-Load - 智能密钥轮询的多渠道企业 AI 代理https://github.com/tbphp/gpt-lo - 掘金
+
+
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg)
+
+ 
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/6c61ae65d1c41ae8221a670fa32d05aa.svg)  
+
+* 首页
+
+  + [首页](https://juejin.cn/)
+  + [沸点](https://juejin.cn/pins)
+  + [课程](https://juejin.cn/course)
+  + [数据标注
+    HOT](https://aidp.juejin.cn)
+  + [AI Coding](https://aicoding.juejin.cn)
+  + [更多](javascript:void(0);)
+    - [直播](https://juejin.cn/live)
+    - [活动](https://juejin.cn/events/all)
+    - [APP](https://juejin.cn/app?utm_source=jj_nav)
+    - [插件](https://juejin.cn/extension?utm_source=jj_nav)
+  + [直播](https://juejin.cn/live)
+  + [活动](https://juejin.cn/events/all)
+  + [APP](https://juejin.cn/app?utm_source=jj_nav)
+  + [插件](https://juejin.cn/extension?utm_source=jj_nav)
+
++ - 搜索历史
+     清空
+  - 创作者中心
+
+    * 写文章
+    * 发沸点
+    * 写笔记
+    * 写代码
+    * 草稿箱
+
+    创作灵感
+     查看更多
+ + 登录
+
+  注册
+
+  首次登录 / 注册免费领取
+  -------------
+
+   登录 / 注册
+
+ 
+
+GPT-Load - 智能密钥轮询的多渠道企业 AI 代理
+=============================
+
+[tbphp](https://juejin.cn/user/1644525123544136/posts)
+
+2025-08-02
+  242
+ 阅读2分钟
+
+专栏：
+
+GPT-Load
+
+ 关注
+
+   
+
+项目地址：[github.com/tbphp/gpt-l…](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Ftbphp%2Fgpt-load "https://github.com/tbphp/gpt-load")  
+如果对你有用，辛苦点个Star吧。
+
+简单说下，能干啥：  
+支持多个渠道类型（OpenAI，Gemini，Anthropic）的Key池轮询代理服务。
+现在Gemini的免费Key又恢复了`gemini-2.5-pro`可用额度，马上去搞点Key，一键部署起来爽用！
+如果你有很多硅基或者其他渠道的Key，也可以用这个项目来方便的管理多Key。
+
+一个高性能、企业级的 AI 接口透明代理服务，专门为需要集成多种 AI 服务的企业和开发者设计。采用 Go 语言开发，具备智能密钥管理、负载均衡和完善的监控功能，专为高并发生产环境而设计。
+
+详细请查看 [官方文档](https://link.juejin.cn?target=https%3A%2F%2Fwww.gpt-load.com%2Fdocs "https://www.gpt-load.com/docs")。
+
+功能特性
+----
+
+* **透明代理**: 完全保留原生 API 格式，支持 OpenAI 和 Google Gemini 等多种格式（持续扩展中）
+* **智能密钥管理**: 高性能密钥池，支持分组管理、自动轮换和故障恢复
+* **负载均衡**: 支持多上游端点的加权负载均衡，提升服务可用性
+* **智能故障处理**: 自动密钥黑名单管理和恢复机制，确保服务连续性
+* **动态配置**: 系统设置和分组配置支持热重载，无需重启即可生效
+* **企业级架构**: 分布式主从部署，支持水平扩展和高可用
+* **现代化管理**: 基于 Vue 3 的 Web 管理界面，直观易用
+* **全面监控**: 实时统计、健康检查、详细请求日志
+* **高性能设计**: 零拷贝流式传输、连接池复用、原子操作
+* **生产就绪**: 优雅关闭、错误恢复、完善的安全机制
+
+Docker 快速开始
+-----------
+
+```
+
+
+bash
+
+
+
+
+
+ 体验AI代码助手
+
+
+
+
+
+ 代码解读
+
+
+
+复制代码
+
+docker run -d --name gpt-load \
+
+-p 3001:3001 \
+
+-e AUTH_KEY=sk-123456 \
+
+-v "$(pwd)
+/data"
+:/app/data \
+
+ghcr.io/tbphp/gpt-load:latest
+
+
+# 使用 sk-123456 登录管理界面：http://localhost:3001
+
+
+```
+
+还支持`Claw Cloud`快速部署，`Docker Compose`及源码部署。  
+更多部署方式和使用方法情参考 [官方文档](https://link.juejin.cn?target=https%3A%2F%2Fwww.gpt-load.com%2Fdocs "https://www.gpt-load.com/docs")。
+
+标签：
+
+[Go](https://juejin.cn/tag/Go)
+
+本文收录于以下专栏
+
+![web_image](https://p9-juejin-sign.byteimg.com/tos-cn-i-k3u1fbpfcp/95414745836549ce9143753e2a30facd~tplv-k3u1fbpfcp-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgdGJwaHA=:q75.awebp?rk3s=f64ab15b&x-expires=1774921347&x-signature=6IoVKbZM7qdWQq3h1%2BkQJiAE9Pk%3D)
+
+GPT-Load
+
+专栏目录
+
+GPT-Load项目
+
+0 订阅
+
+·
+
+4 篇文章
+
+  订阅
+
+下一篇
+
+这个3k Star的开源项目，让你低成本爽用 Claude Code
+
+评论 1
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/58aaf1326ac763d8a1054056f3b7f2ef.svg)
+
+0
+ / 1000
+
+标点符号、链接等不计算在有效字数内
+
+⌘ + Enter
+
+发送
+
+登录 / 注册 即可发布评论！
+
+最热
+
+最新
+
+[![web_image](https://p3-passport.byteacctimg.com/img/user-avatar/364d901db96e9e63f7633bc3cb4780b3~100x100.awebp)](https://juejin.cn/user/1644525123544136/robots)
+
+[tbphp](https://juejin.cn/user/1644525123544136)
+
+作者
+
+欢迎大家使用，反馈意见。
+
+7月前
+
+点赞
+
+评论
+
+* 屏蔽作者：tbphp
+* 举报
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/c12d6646efb2245fa4e88f0e1a9565b7.svg)
+
+ 1
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/336af4d1fafabcca3b770c8ad7a50781.svg)
+
+ 1
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/3d482c7a948bac826e155953b2a28a9e.svg)
+
+ 收藏
+
+加个关注，精彩更新不错过~
+
+![web_image](https://p3-passport.byteacctimg.com/img/user-avatar/364d901db96e9e63f7633bc3cb4780b3~40x40.awebp)
+
+关注
+
+[![web_image](https://p3-passport.byteacctimg.com/img/user-avatar/364d901db96e9e63f7633bc3cb4780b3~100x100.awebp)
+
+tbphp
+ ![web_image](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/53901be7d27e4abe94530e12d815491d~tplv-k3u1fbpfcp-jj:0:0:0:0:q75.avis)](https://juejin.cn/user/1644525123544136/posts)
+
+[4
+
+文章](https://juejin.cn/user/1644525123544136/posts) [1.6k
+
+阅读](https://juejin.cn/user/1644525123544136/posts) [0
+
+粉丝](https://juejin.cn/user/1644525123544136/followers)
+
+加个关注，精彩更新不错过~
+
+关注
+
+已关注
+ [私信](https://juejin.cn/notification/im?participantId=1644525123544136)
+
+目录
+
+收起
+
+* [功能特性](https://juejin.cn/post/7533503751006208000#heading-0 "功能特性")
+* [Docker 快速开始](https://juejin.cn/post/7533503751006208000#heading-1 "Docker 快速开始")
+
+ 
+
+相关推荐
+
+[力压GPT-4o！新王Claude 3.5 Sonnet来了，直接免费可用
+
+30k阅读
+
+·
+
+23点赞](https://juejin.cn/post/7382470660776050742 "力压GPT-4o！新王Claude 3.5 Sonnet来了，直接免费可用")[不翻墙完美申请ChatGPT攻略：Azure OpenAI 使用指南！
+
+19k阅读
+
+·
+
+13点赞](https://juejin.cn/post/7223947439127199805 "不翻墙完美申请ChatGPT攻略：Azure OpenAI 使用指南！")[深入浅出 LangChain 与智能 Agent：构建下一代 AI 助手
+
+15k阅读
+
+·
+
+179点赞](https://juejin.cn/post/7346009985791311922 "深入浅出 LangChain 与智能 Agent：构建下一代 AI 助手")[使用Python与GPT-3 API：从入门到进阶
+
+107阅读
+
+·
+
+0点赞](https://juejin.cn/post/7421185520338698303 "使用Python与GPT-3 API：从入门到进阶")[ChatGPT-与-OpenAI-的现代生成式-AI（二）
+
+218阅读
+
+·
+
+0点赞](https://juejin.cn/post/7363279489981743113 "ChatGPT-与-OpenAI-的现代生成式-AI（二）")
+
+精选内容
+
+[Claude Skills 新手笔记
+
+言萧凡\_CookieBoty
+
+·
+
+261阅读
+
+·
+
+2点赞](https://juejin.cn/post/7619514074445135881 "Claude Skills 新手笔记")[2026 年前端面试问什么
+
+hpoenixf
+
+·
+
+456阅读
+
+·
+
+9点赞](https://juejin.cn/post/7619245854761041935 "2026 年前端面试问什么")[阶段一：从 0 看懂 JSVMP 架构，先在脑子里搭出一台最小 JSVM
+
+泯泷
+
+·
+
+76阅读
+
+·
+
+1点赞](https://juejin.cn/post/7619628639453478912 "阶段一：从 0 看懂 JSVMP 架构，先在脑子里搭出一台最小 JSVM")[【节点】[SampleTexture3D节点]原理解析与实际应用
+
+SmalBox
+
+·
+
+23阅读
+
+·
+
+0点赞](https://juejin.cn/post/7619352087450583078 "【节点】[SampleTexture3D节点]原理解析与实际应用")[openclaw才是真正利好打工人的产品
+
+华洛
+
+·
+
+136阅读
+
+·
+
+1点赞](https://juejin.cn/post/7619663264675315758 "openclaw才是真正利好打工人的产品")
+
+找对属于你的技术圈子
+
+回复「进群」加入官方微信群
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/img/qr-code.4e391ff.png)
+
+为你推荐
+
+- [免费使用ChatGPT-4 的 6 种简单方法](https://juejin.cn/post/7344971137690402855 "免费使用ChatGPT-4 的 6 种简单方法 ")
+
+  [免费使用ChatGPT-4 的 6 种简单方法  介绍 在不断发展的人工智能领域，OpenAI 推出了迄今为止最出色的作品——ChatGPT-4。GPT-4 是一次重大飞跃，在强度和引入多模式功能方面](https://juejin.cn/post/7344971137690402855)
+
+  * [前端孺子牛](https://juejin.cn/user/1626932938803485)
+  * 2年前
+  * 8.1k
+  * 点赞
+  * 1
+
+  [前端](https://juejin.cn/tag/%E5%89%8D%E7%AB%AF "前端")[JavaScript](https://juejin.cn/tag/JavaScript "JavaScript")[算法](https://juejin.cn/tag/%E7%AE%97%E6%B3%95 "算法")
+
+  ![web_image](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/88d8b4317e52488a906e0933e6ed93db~tplv-k3u1fbpfcp-jj:108:72:0:0:q75.avis#?w=1280&h=720&s=55532&e=webp&b=0f1418)
+- [可以使用 Auto-GPT 的 8 种实用方法](https://juejin.cn/post/7226665757882449978 "可以使用 Auto-GPT 的 8 种实用方法")
+
+  [如果您是 ChatGPT 用户并且已经完成了设计详细提示的过程，您可能想尝试使用 Auto-GPT。 Auto-GPT 是一个基于 AI 的开源项目，可以通过消除不良数据点并使其更健壮地进行更改来帮助](https://juejin.cn/post/7226665757882449978)
+
+  * [黄桃罐头Plus](https://juejin.cn/user/2025729778269367)
+  * 2年前
+  * 1.6k
+  * 点赞
+  * 评论
+
+  [人工智能](https://juejin.cn/tag/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD "人工智能")
+- [WeAssist-使用说明 V2.1](https://juejin.cn/post/7429901707613061170 "WeAssist-使用说明 V2.1")
+
+  [WeAssist-使用说明 V2.1 1. 产品说明 1. 产品概述 - WeAssist 可将大模型一键接入微信生态，深度融入销售、运营、交付、品宣等多个对外场景中，帮助企业用更少的人力](https://juejin.cn/post/7429901707613061170)
+
+  * [360\_go\_php](https://juejin.cn/user/2436173498956695)
+  * 1年前
+  * 366
+  * 点赞
+  * 评论
+
+  [后端](https://juejin.cn/tag/%E5%90%8E%E7%AB%AF "后端")[架构](https://juejin.cn/tag/%E6%9E%B6%E6%9E%84 "架构")[面试](https://juejin.cn/tag/%E9%9D%A2%E8%AF%95 "面试")
+- [11Labs 支持打造对话 AI 智能体；阿里推出大模型 Qwen2.5-Turbo 速度提升 4.3 倍丨 RTE 开发者日报](https://juejin.cn/post/7439217908915470355 "11Labs 支持打造对话 AI 智能体；阿里推出大模型 Qwen2.5-Turbo 速度提升 4.3 倍丨 RTE 开发者日报")
+
+  [开发者朋友们大家好： 这里是 「RTE 开发者日报」 ，每天和大家一起看新闻、聊八卦。本期编辑：@SSN，@鲍勃](https://juejin.cn/post/7439217908915470355)
+
+  * [RTE开发者社区](https://juejin.cn/user/3210229682022440)
+  * 1年前
+  * 359
+  * 点赞
+  * 评论
+
+  [人工智能](https://juejin.cn/tag/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD "人工智能")
+
+  ![web_image](https://p3-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/6f1f2cd22d664fc9bfc410073af1f1af~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUlRF5byA5Y-R6ICF56S-5Yy6:q75.awebp?rk3s=f64ab15b&x-expires=1774921349&x-signature=W%2Boz0oyw972G060msXPrMsJIQ8c%3D)
+- [AutoGPT 简介、安装与使用](https://juejin.cn/post/7222079859710427173 "AutoGPT 简介、安装与使用")
+
+  [Auto GPT 是一款人工智能应用程序，可以帮助用户自动化和优化业务流程，生成测试用例，调试代码，甚至还能产生新的业务创意。](https://juejin.cn/post/7222079859710427173)
+
+  * [CVHub](https://juejin.cn/user/963636095357966)
+  * 2年前
+  * 7.4k
+  * 10
+  * 7
+
+  [GPT](https://juejin.cn/tag/GPT "GPT")[ChatGPT](https://juejin.cn/tag/ChatGPT "ChatGPT")[人工智能](https://juejin.cn/tag/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD "人工智能")
+
+  ![web_image](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d008c2e58e4e425daaa303bc679b624a~tplv-k3u1fbpfcp-jj:108:72:0:0:q75.avis)
+- [GPT-4 如何购买和使用密钥指南](https://juejin.cn/post/7299659033971327011 "GPT-4 如何购买和使用密钥指南")
+
+  [原文链接： [https://bysocket.com/openai-gpt4-plus-account-subscribe/](https://bysocket.com/openai-gpt4-p](https://juejin.cn/post/7299659033971327011)
+
+  * [子木聊出海](https://juejin.cn/user/430664257378366)
+  * 2年前
+  * 1.5k
+  * 点赞
+  * 评论
+
+  [Java](https://juejin.cn/tag/Java "Java")
+- [人工智能的真实盈利：掌握 ChatGPT-4 用于业务营销（全）](https://juejin.cn/post/7352845644736413723 "人工智能的真实盈利：掌握 ChatGPT-4 用于业务营销（全）")
+
+  [第一部分：理解基础知识 第一章： 人工智能和 ChatGPT-4 简介 在我们旅程的最初章节中，我们踏上了对人工智能（AI）及其有天赋的后代 ChatGPT-4 的激动人心探索之旅。想象一下 AI 就](https://juejin.cn/post/7352845644736413723)
+
+  * [布客飞龙](https://juejin.cn/user/571401775094861)
+  * 1年前
+  * 183
+  * 点赞
+  * 评论
+
+  [人工智能](https://juejin.cn/tag/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD "人工智能")
+- [史上最详细的使用Laf接入Claude-api教程](https://juejin.cn/post/7238917620849672247 "史上最详细的使用Laf接入Claude-api教程")
+
+  [这篇文章将会手把手教你如何使用Claude和接入Claude-api。没有最细，只有更细，堪称全网最详细。](https://juejin.cn/post/7238917620849672247)
+
+  * [xintianyou](https://juejin.cn/user/325111173099198)
+  * 2年前
+  * 20k
+  * 21
+  * 55
+
+  [前端](https://juejin.cn/tag/%E5%89%8D%E7%AB%AF "前端")[Claude](https://juejin.cn/tag/Claude "Claude")
+- [探索Vectara Chat：提升ChatGPT体验的AI平台](https://juejin.cn/post/7416723051376721956 "探索Vectara Chat：提升ChatGPT体验的AI平台")
+
+  [引言 在当今的AI驱动世界中，创建一个像ChatGPT一样智能的AI助手成为许多组织的目标。Vectara提供了一种值得信赖的生成式AI平台，使企业能够快速实现这一目标。本文将深入探讨Vectara的](https://juejin.cn/post/7416723051376721956)
+
+  * [用户955766060958](https://juejin.cn/user/886681621244410)
+  * 1年前
+  * 88
+  * 点赞
+  * 评论
+
+  [前端](https://juejin.cn/tag/%E5%89%8D%E7%AB%AF "前端")
+- [释放 GPT-4 API 的力量：开发人员新手指南](https://juejin.cn/post/7219097755737440293 "释放 GPT-4 API 的力量：开发人员新手指南")
+
+  [老兵希望这份新手指南能让你开始探索 GPT-4 及其 API 的巨大潜力。通过将这种高级语言模型集成到你的项目和应用程序中，你可以释放新的机会并推动创新。拥抱 GPT-4 的强大功能，准备好将你的工作](https://juejin.cn/post/7219097755737440293)
+
+  * [CF14年老兵](https://juejin.cn/user/483440845143341)
+  * 2年前
+  * 4.1k
+  * 9
+  * 1
+
+  [Python](https://juejin.cn/tag/Python "Python")[OpenAI](https://juejin.cn/tag/OpenAI "OpenAI")[ChatGPT](https://juejin.cn/tag/ChatGPT "ChatGPT")
+
+  ![web_image](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92d1a86a624445c8a3fcda5d836abb0e~tplv-k3u1fbpfcp-jj:108:72:0:0:q75.avis)
+- [众人围剿，GPT-5招惹了谁](https://juejin.cn/post/7216412604800450621 "众人围剿，GPT-5招惹了谁")
+
+  [3月29日，马斯克、Stability AI创始人 Emad Mostaque 等上千名科技大佬和AI专家签署公开信，呼吁暂停训练比 GPT-4 更强大的AI系统。](https://juejin.cn/post/7216412604800450621)
+
+  * [柒号华仔](https://juejin.cn/user/110403611263262)
+  * 2年前
+  * 6.5k
+  * 47
+  * 46
+
+  [ChatGPT](https://juejin.cn/tag/ChatGPT "ChatGPT")[OpenAI](https://juejin.cn/tag/OpenAI "OpenAI")[人工智能](https://juejin.cn/tag/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD "人工智能")
+
+  ![web_image](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b617c0e95e0145729b0930f4d14ed493~tplv-k3u1fbpfcp-jj:108:72:0:0:q75.avis)
+- [PYTHON多智能体系统中的协同智能](https://juejin.cn/post/7426999391653281801 "PYTHON多智能体系统中的协同智能")
+
+  [使用 LangChain 等 Python 工具，可以更轻松地实现多智能体系统，从而创建超越简单自动化的智能系统。 近年来，大型语言模型 (LLM)通过生成类似人类的文本、解决复杂问题和自主执行任务，](https://juejin.cn/post/7426999391653281801)
+
+  * [云云众生s](https://juejin.cn/user/380845430158739)
+  * 1年前
+  * 395
+  * 1
+  * 评论
+
+  [人工智能](https://juejin.cn/tag/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD "人工智能")
+
+  ![web_image](https://p3-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/0b73c30bade34bd7b9a33642d39a6ea6~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5LqR5LqR5LyX55Sfcw==:q75.awebp?rk3s=f64ab15b&x-expires=1774921349&x-signature=x2Do3jOE20fU1EgWZQemk90bb%2FM%3D)
+- [自治AI代理：Auto-GPT、BabyAGI、AgentGPT、JARVIS / HuggingGPT](https://juejin.cn/post/7230806990453014565 "自治AI代理：Auto-GPT、BabyAGI、AgentGPT、JARVIS / HuggingGPT")
+
+  [ChatGPT和许多其它当前的基础模型都很棒，可以回答无数的问题，生成与人类艺术作品几乎没有区别的AI艺术、分析照片等都表现得不输人类。 只有一件事是它们做不到的，即完成由大量非常不同的独立步骤组成的](https://juejin.cn/post/7230806990453014565)
+
+  * [天行无忌](https://juejin.cn/user/4406498333033918)
+  * 2年前
+  * 1.8k
+  * 3
+  * 评论
+
+  [GPT](https://juejin.cn/tag/GPT "GPT")[ChatGPT](https://juejin.cn/tag/ChatGPT "ChatGPT")[OpenAI](https://juejin.cn/tag/OpenAI "OpenAI")
+
+  ![web_image](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e46a44aebab483785cb3cc5dd4088a7~tplv-k3u1fbpfcp-jj:108:72:0:0:q75.avis)
+- [使用OpenAI API进行情感分析的JavaScript实现](https://juejin.cn/post/7369165310181867560 "使用OpenAI API进行情感分析的JavaScript实现")
+
+  [前言 今天我们来聊聊如何使用OpenAi进行评论的情感分析，通过使用Ai进行对评论的情感分析可以大大减少人力成本。下面来我将带领大家来了解如何使用LLM对用户评论进行情感分析。](https://juejin.cn/post/7369165310181867560)
+
+  * [有机后脑](https://juejin.cn/user/2206034825846026)
+  * 1年前
+  * 4.4k
+  * 53
+  * 8
+
+  [前端](https://juejin.cn/tag/%E5%89%8D%E7%AB%AF "前端")[后端](https://juejin.cn/tag/%E5%90%8E%E7%AB%AF "后端")[JavaScript](https://juejin.cn/tag/JavaScript "JavaScript")
+
+  ![web_image](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2511cf03457044a5a40445b9902e3bfe~tplv-k3u1fbpfcp-jj:108:72:0:0:q75.avis#?w=700&h=391&s=573566&e=png&b=031b4a)
+- [敲黑板！吴恩达开始强推Agent工作流；智能体平台深度体验报告👍；OpenAI GPTs可能要烂尾了；抓住Agent创业风口；大模型Agent技术万字解析 |](https://juejin.cn/post/7350970626267856922 "敲黑板！吴恩达开始强推Agent工作流；智能体平台深度体验报告👍；OpenAI GPTs可能要烂尾了；抓住Agent创业风口；大模型Agent技术万字解析 |")
+
+  [日报关键词：淘宝/腾讯/谷歌/苹果等近期LLM新闻合集；OpenAI GPTs可能要烂尾；🉑10+平台的AI Agent体验报告；🉑吴恩达强推Agent工作流；🉑智能体行业最新共识……阅读原文](https://juejin.cn/post/7350970626267856922)
+
+  * [ShowMeAI](https://juejin.cn/user/554605767047053)
+  * 1年前
+  * 3.0k
+  * 18
+  * 评论
+
+  [OpenAI](https://juejin.cn/tag/OpenAI "OpenAI")[LLM](https://juejin.cn/tag/LLM "LLM")[AIGC](https://juejin.cn/tag/AIGC "AIGC")
+
+  ![web_image](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b3c82210b8e342158154b2c3471b48fe~tplv-k3u1fbpfcp-jj:108:72:0:0:q75.avis#?w=671&h=378&s=603236&e=png&b=c65727)
+
+收藏成功！
+
+已添加到「」， 点击更改
+
+* 微信
+
+  
+
+  微信扫码分享
+* 新浪微博
+* QQ
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/img/cartoon.31472f0.png)
+
+AI代码助手上线啦
+
+选中代码，体验AI替你一键快速解读代码
+
+立即体验
+
+ 
+
+APP内打开
+
+* ![web_image](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2ad212d53ccd44569d10317171664bae~tplv-k3u1fbpfcp-jj:90:0:0:0:q75.avis)
+
+   下载APP
+
+  下载APP
+* ![web_image](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9f4933cc8fdb411cba89904f14a3ec0a~tplv-k3u1fbpfcp-jj:90:0:0:0:q75.avis)
+
+   微信扫一扫
+
+  微信公众号
+* [新浪微博](https://weibo.com/xitucircle)
+
+
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/img/MaskGroup.13dfc4f.png)
+
+ 选择你感兴趣的技术方向
+
+后端
+
+前端
+
+Android
+
+
+
+iOS
+
+人工智能
+
+开发工具
+
+代码人生
+
+阅读
+
+跳过
+
+上一步
+
+至少选择1个分类
+
+温馨提示
+
+当前操作失败，如有疑问，可点击申诉
+
+前往申诉
+ 我知道了
+
+![web_image](https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/8867e249c23a7c0ea596c139befc04d7.svg)
+
+沉浸阅读
+
+确定屏蔽该用户
+
+屏蔽后，对方将不能关注你、与你产生任何互动，无法查看你的主页
+
+取消
+ 确定
+
+# Reference
+- [97] [GPT-Load - 智能密钥轮询的多渠道企业 AI 代理https://github.com/tbphp/gpt-lo - 掘金](https://juejin.cn/post/7533503751006208000)

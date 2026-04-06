@@ -1,0 +1,556 @@
+Anthropic to launch new ‘Claude Mythos’ model with advanced reasoning features - SiliconANGLE
+
+
+
+
+
+
+
+
+
+­
+
+
+
+
+
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/SA-web-logo-300x58.png)](https://siliconangle.com)
+
+[the voice of enterprise and emerging tech]
+
+* *search*
+* OUR NETWORK
+* [![web_image](https://s3.us-west-2.amazonaws.com/cube365-prod/related-content/e810e50d-1091-4ce3-9cc2-0232848a8d60.png)](https://www.thecube.net)
+* [![web_image](https://s3.us-west-2.amazonaws.com/cube365-prod/related-content/04ae65c6-92d8-4203-904e-2ee935b71f1f.png)](https://thecuberesearch.com)
+
+*menu*
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/SA-web-logo-300x58.png)](https://siliconangle.com)
+
+* *account\_circle*
+
+* *search*
+
+* [Home](http://siliconangle.com "Home")
+* [TechForward Awards](https://siliconangle.com/awards/ "TechForward Awards")
+* [Cloud](https://siliconangle.com/category/cloud "Cloud") 
+  + [Cloud Native](https://siliconangle.com/category/cloud/cloud-native-3/ "Cloud Native")
+* [AI](https://siliconangle.com/category/ai "AI")
+* [Security](https://siliconangle.com/category/security "Security")
+* [Infra](https://siliconangle.com/category/infrastructure "Infra")
+* [Blockchain](https://siliconangle.com/category/blockchain "Blockchain")
+* [Big Data](https://siliconangle.com/category/big-data "Big Data")
+* [Emerging Tech](https://siliconangle.com/category/emerging-tech "Emerging Tech")
+* [Policy](https://siliconangle.com/category/policy "Policy")
+* [Apps](https://siliconangle.com/category/apps-2 "Apps")
+* [Iot](https://siliconangle.com/category/iot "Iot")
+* [Women In Tech](https://siliconangle.com/category/women-in-tech "Women In Tech")
+* [theCUBE Research](https://siliconangle.com/category/wikibon "theCUBE Research")
+* [Special Reports](https://siliconangle.com/special-reports "Special Reports")
+* [Video Exclusives](https://siliconangle.com/tag/video-exclusive "Video Exclusives")
+* [CUBE SPECIAL FEATURES](https://siliconangle.com/people/ "CUBE SPECIAL FEATURES")
+* [RECENT CUBE EVENTS](https://siliconangle.com/events "RECENT CUBE EVENTS")
+* [AWARDS](https://www.thecube.net/awards "AWARDS")
+More *expand\_more*
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-2.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_with-date_watch_now-2.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-2.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_banner_watch_now_on_demand-7.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_with-date_watch_now-1.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-1.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod_SAM_banner_1.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-2.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_with-date_watch_now-2.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-2.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_banner_watch_now_on_demand-7.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_with-date_watch_now-1.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-1.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod_SAM_banner_1.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_banner_watch_now_on_demand-2.png)
+
+
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+prev
+
+next
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/share.png)
+
+SHARE
+
+UPDATED 17:19 EDT/
+MARCH 27 2026
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Anthropic-1-1.png)
+
+ AI
+
+### Anthropic to launch new ‘Claude Mythos’ model with advanced reasoning features
+
+by [Maria Deutscher](https://siliconangle.com/author/chi22/)
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/share.png)
+
+SHARE
+
+A configuration error in Anthropic PBC’s content management system has revealed that it’s testing a new large language model called Claude Mythos.
+
+The company confirmed the project in a Thursday statement to
+[Fortune](https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/). According to the company, its engineers have finished training Claude Mythos and are piloting it with early customers. Anthropic added that the LLM is “the most capable we’ve built to date.”
+
+Mythos came to light after the company accidentally left a CMS folder with 3,000 assets publicly accessible. The repository contained a draft version of a launch blog post for Claude Mythos. According to Fortune, the document indicates that the model will be pricier than the company’s existing algorithms.
+
+The blog post also revealed that Anthropic plans to change how it distributes its LLMs. Claude 4.6, the company’s current flagship model, is available in three versions with different feature sets and pricing. Anthropic will add a fourth product tier when it launches Claude Mythos.
+
+The new LLM edition will reportedly be pricier and more capable than Opus, Anthropic’s current top-end product tier. The draft blog post refers to the upcoming offering as Capybara. Anthropic’s internal testing reportedly indicates that the Capybara edition of Mythos is “dramatically” better than Claude 4.6 Opus at programming tasks and other reasoning use cases.
+
+Capybara is particularly adept at finding cybersecurity vulnerabilities. As a result, Anthropic will take precautions to prevent hackers from gaining access to the model.
+
+The model “presages an upcoming wave of models that can exploit vulnerabilities in ways that far outpace the efforts of defenders,” reads the draft post. “We’re releasing it in early access to organizations, giving them a head start in improving the robustness of their codebases against the impending wave of AI-driven exploits.”
+
+Shares of CrowdStrike Holdings Inc., Palo Alto Networks Inc. and other major cybersecurity providers dropped more than 5% on the news. Investors might be concerned that Capybara could give Anthropic a competitive edge in the vulnerability detection market. The company entered the segment last month by [releasing](https://siliconangle.com/2026/02/20/cybersecurity-stocks-drop-anthropic-debuts-claude-code-security/) a tool called Claude Code Security.
+
+The tool is currently powered by Claude Opus 4.6, which has proven highly adept at discovering vulnerabilities. Anthropic engineers have used it to
+[find](https://red.anthropic.com/2026/zero-days/)more than 500 high-severity exploits in open-source projects. On one occasion, the model deduced the presence of a flaw in a PDF tool by analyzing a developer comment in its change log.
+
+The disclosure of Claude Mythos comes a few days after [word emerged](https://www.theinformation.com/articles/openai-ceo-shifts-responsibilities-preps-spud-ai-model) that OpenAI Group PBC has finished pretraining its newest LLM. Pretraining is the phase of the development workflow in which engineers build a model’s core capabilities. It’s followed by smaller optimizations that focus on improving the LLM’s hardware-efficiency, safety and usability.
+
+OpenAI’s new model is reportedly known as Spud internally. The company is expected to launch it within weeks.
+
+##### Image: Anthropic
+
+---
+
+A message from John Furrier, co-founder of SiliconANGLE:
+========================================================
+
+Support our mission to keep content open and free by engaging with theCUBE community. **Join theCUBE’s Alumni Trust Network**, where technology leaders connect, share intelligence and create opportunities.
+
+* **15M+ viewers of theCUBE videos**, powering conversations across AI, cloud, cybersecurity and more
+* **11.4k+ theCUBE alumni** — Connect with more than 11,400 tech and business leaders shaping the future through a unique trusted-based network.
+
+**About SiliconANGLE Media**
+
+SiliconANGLE Media is a recognized leader in digital media innovation, uniting breakthrough technology, strategic insights and real-time audience engagement. As the parent company of [SiliconANGLE](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fsiliconangle.com%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=SiliconANGLE&index=9&md5=646b1b564e2259100a2b8638aab0a552), [theCUBE Network](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fwww.thecube.net%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=theCUBE+Network&index=10&md5=7de2a85f95ab4a4a495cede20b8cb1da), [theCUBE Research](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fthecuberesearch.com%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=theCUBE+Research&index=11&md5=7bb33676722925eb57d588ec343e4f6f), [CUBE365](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fwww.cube365.net%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=CUBE365&index=12&md5=d310fb35919714e66ad8d42c9c0c1bc6), [theCUBE AI](https://cts.businesswire.com/ct/CT?id=smartlink&url=https%3A%2F%2Fwww.thecubeai.com%2F&esheet=54119777&newsitemid=20240910506833&lan=en-US&anchor=theCUBE+AI&index=13&md5=b8b98472f8071b23ebb10ab9a8dd0683) and theCUBE SuperStudios — with flagship locations in Silicon Valley and the New York Stock Exchange — SiliconANGLE Media operates at the intersection of media, technology and AI.
+
+Founded by tech visionaries John Furrier and Dave Vellante, SiliconANGLE Media has built a dynamic ecosystem of industry-leading digital media brands that reach 15+ million elite tech professionals. Our new proprietary theCUBE AI Video Cloud is breaking ground in audience interaction, leveraging theCUBEai.com neural network to help technology companies make data-driven decisions and stay at the forefront of industry conversations.
+
+
+
+
+
+##### LATEST STORIES
+
+---
+
+* [OpenAI introduces plugins for its Codex programming assistant](https://siliconangle.com/2026/03/27/openai-introduces-plugins-codex-programming-assistant/)
+
+* [Anthropic to launch new ‘Claude Mythos’ model with advanced reasoning features](https://siliconangle.com/2026/03/27/anthropic-launch-new-claude-mythos-model-advanced-reasoning-features/)
+
+* [The 'wild, wild west' of agentic security: Insights from theCUBE's RSAC closing analysis](https://siliconangle.com/2026/03/27/cybersecurity-governance-agentic-wild-west-rsac26/)
+
+* [Scaling industrial AI is more a human than a technical challenge](https://siliconangle.com/2026/03/29/scaling-industrial-ai-human-technical-challenge/)
+
+* [The agentic AI gap: Vendors sprint, enterprises crawl](https://siliconangle.com/2026/03/28/agentic-ai-gap-vendors-sprint-enterprises-crawl/)
+
+* [Iran-linked hackers breach personal email account of FBI Director Kash Patel](https://siliconangle.com/2026/03/27/iran-linked-hackers-breach-personal-email-account-fbi-director-kash-patel/)
+
+* [OpenAI introduces plugins for its Codex programming assistant](https://siliconangle.com/2026/03/27/openai-introduces-plugins-codex-programming-assistant/)
+
+* [Anthropic to launch new ‘Claude Mythos’ model with advanced reasoning features](https://siliconangle.com/2026/03/27/anthropic-launch-new-claude-mythos-model-advanced-reasoning-features/)
+
+* [The 'wild, wild west' of agentic security: Insights from theCUBE's RSAC closing analysis](https://siliconangle.com/2026/03/27/cybersecurity-governance-agentic-wild-west-rsac26/)
+
+* [Scaling industrial AI is more a human than a technical challenge](https://siliconangle.com/2026/03/29/scaling-industrial-ai-human-technical-challenge/)
+
+* [The agentic AI gap: Vendors sprint, enterprises crawl](https://siliconangle.com/2026/03/28/agentic-ai-gap-vendors-sprint-enterprises-crawl/)
+
+* [Iran-linked hackers breach personal email account of FBI Director Kash Patel](https://siliconangle.com/2026/03/27/iran-linked-hackers-breach-personal-email-account-fbi-director-kash-patel/)
+
+prev
+
+next
+
+##### LATEST STORIES
+
+---
+
+* [Scaling industrial AI is more a human than a technical challenge](https://siliconangle.com/2026/03/29/scaling-industrial-ai-human-technical-challenge/)
+
+  AI
+   - BY [GUEST AUTHOR](https://siliconangle.com/author/guestauthor/) . 1 MIN AGO
+* [The agentic AI gap: Vendors sprint, enterprises crawl](https://siliconangle.com/2026/03/28/agentic-ai-gap-vendors-sprint-enterprises-crawl/)
+
+  AI
+   - BY [GUEST AUTHOR](https://siliconangle.com/author/guestauthor/) . 1 DAY AGO
+* [Iran-linked hackers breach personal email account of FBI Director Kash Patel](https://siliconangle.com/2026/03/27/iran-linked-hackers-breach-personal-email-account-fbi-director-kash-patel/)
+
+  SECURITY
+   - BY [MARIA DEUTSCHER](https://siliconangle.com/author/chi22/) . 2 DAYS AGO
+* [OpenAI introduces plugins for its Codex programming assistant](https://siliconangle.com/2026/03/27/openai-introduces-plugins-codex-programming-assistant/)
+
+  AI
+   - BY [MARIA DEUTSCHER](https://siliconangle.com/author/chi22/) . 2 DAYS AGO
+* [Anthropic to launch new ‘Claude Mythos’ model with advanced reasoning features](https://siliconangle.com/2026/03/27/anthropic-launch-new-claude-mythos-model-advanced-reasoning-features/)
+
+  AI
+   - BY [MARIA DEUTSCHER](https://siliconangle.com/author/chi22/) . 2 DAYS AGO
+* [The 'wild, wild west' of agentic security: Insights from theCUBE's RSAC closing analysis](https://siliconangle.com/2026/03/27/cybersecurity-governance-agentic-wild-west-rsac26/)
+
+  SECURITY
+   - BY [EMILE LOUW](https://siliconangle.com/author/emlouw97/) . 2 DAYS AGO
+
+
+
+##### [CUBE EVENT COVERAGE](https://siliconangle.com/category/cube-event-coverage/)*help\_outline*
+
+---
+
+---
+
+[GO TO EVENT](https://www.thecube.net/events/nyse/bitgo-ipo)
+
+##### [LATEST FROM THECUBE](https://siliconangle.com/category/cube-event-coverage/)
+
+---
+
+[What to expect at Qlik Connect: Join theCUBE April 14](https://siliconangle.com/2026/03/27/thecube-coverage-qlik-connect-decision-intelligence-qlikconnect/)
+
+[A robot dog, a cloud-native AI platform and the journey from POC to production](https://siliconangle.com/2026/03/27/robot-dog-cloud-native-ai-platforms-journey-proof-concept-production-kubeconeu/)
+
+[As autonomous systems proliferate, agent identity is becoming the next big security battle](https://siliconangle.com/2026/03/27/ai-agent-identity-becomes-top-enterprise-security-priority-rsac26/)
+
+[The 'wild, wild west' of agentic security: Insights from theCUBE's RSAC closing analysis](https://siliconangle.com/2026/03/27/cybersecurity-governance-agentic-wild-west-rsac26/)
+
+[When the data layer is weak, enterprise AI is always one prompt away from disaster](https://siliconangle.com/2026/03/27/data-security-bedrock-needed-ai-agents-scale-rsac26/)
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/dave-breaking-analysis.png)
+
+[DIVE INTO DAVE VELLANTE’S BREAKING ANALYSIS SERIES](https://siliconangle.com/tag/breaking-analysis/)
+
+*help\_outline*
+
+---
+
+[The agentic AI gap: Vendors sprint, enterprises crawl](https://siliconangle.com/2026/03/28/agentic-ai-gap-vendors-sprint-enterprises-crawl/)
+
+![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Gemini_Generated_Image_sqae07sqae07sqae-2048x1143.png)
+
+[RSAC 2026: AI hype meets operating model reality](https://siliconangle.com/2026/03/21/rsac-2026-preview-ai-hype-meets-operating-model-reality/)
+
+[Telcos' last chance: Why the edge becomes hyperconverged](https://siliconangle.com/2026/03/06/telcos-last-chance-edge-becomes-hyperconverged/)
+
+[Satya's sacrifice: Why agents threaten Office and how Microsoft responds](https://siliconangle.com/2026/02/28/satyas-sacrifice-agents-threaten-office-microsoft-responds/)
+
+[TheCUBE Research 2026 predictions: The year of enterprise ROI](https://siliconangle.com/2026/02/15/thecube-research-2026-predictions-year-enterprise-roi/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-1.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-2.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-1.png)](https://www.thecube.net/events/rsa/rsac-2026-conference?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2025/09/SAM_ad_square_watch_on_demand-7.png)](https://www.thecube.net/events/nyse/ai-factories-data-centers-of-the-future?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_on_demand-2.png)](https://www.thecube.net/events/nvidia/nvidia-gtc-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/SAM_ad_square_watch_now-2.png)](https://www.thecube.net/events/linux-foundation/kubecon-eu-2026?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/CUBE-Pod-2.png)](https://www.thecube.net/events/program/thecube-pod?utm_source=social&utm_medium=medium&utm_campaign=SAbanner)
+
+prev
+
+next
+
+##### Sign Up for Our Weekly Newsletter
+
+---
+
+[SUBSCRIBE](https://siliconangle.com/newsletter)
+
+##### [UPCOMING CUBE EVENTS](https://www.thecube.net/events)
+
+---
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/7a3a1c46-7fa4-4567-8d75-bd43788f542f.webp)](https://www.thecube.net/events/nutanix/nutanix-next-2026)
+
+[##### Nutanix .NEXT 2026](https://www.thecube.net/events/nutanix/nutanix-next-2026)[Apr 08-09](https://www.thecube.net/events/nutanix/nutanix-next-2026)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/6e893384-9bb1-4879-9dc0-7fa80624eae7.webp)](https://www.thecube.net/events/qlik/qlik-connect-2026)
+
+[##### Qlik Connect 2026](https://www.thecube.net/events/qlik/qlik-connect-2026)[Apr 14-15](https://www.thecube.net/events/qlik/qlik-connect-2026)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/856c8874-98bb-4d98-b723-32731c2586f9.webp)](https://www.thecube.net/events/hpe/world-quantum-day)
+
+[##### HPE World Quantum Day](https://www.thecube.net/events/hpe/world-quantum-day)[Apr 15](https://www.thecube.net/events/hpe/world-quantum-day)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/2dca8b19-8810-4986-88cb-12745c114abe.webp)](https://www.thecube.net/events/oracle/data-deep-dive-nyc)
+
+[##### Oracle Data Deep Dive NYC](https://www.thecube.net/events/oracle/data-deep-dive-nyc)[Apr 15](https://www.thecube.net/events/oracle/data-deep-dive-nyc)
+
+[![web_image](https://cube365-prod.s3.us-west-2.amazonaws.com/related-content/d854056c-fae3-45dc-aafe-355ca85c26e4.webp)](https://www.thecube.net/events/suse/susecon-2026)
+
+[##### SUSECON 2026](https://www.thecube.net/events/suse/susecon-2026)[Apr 21-22](https://www.thecube.net/events/suse/susecon-2026)
+
+SEE MORE
+
+[##### RECENT CUBE EVENTS](https://siliconangle.com/events)
+
+---
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/KubeCon.png)](https://siliconangle.com/tag/kubeconeu26eventpage/)
+
+[##### KubeCon + CloudNativeCon EU 2026](https://siliconangle.com/tag/kubeconeu26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/RSAC-Image.jpg)](https://siliconangle.com/tag/rsac26eventpage/)
+
+[##### RSAC 2026 Conference](https://siliconangle.com/tag/rsac26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/Nvidia-GTC.jpg)](https://siliconangle.com/tag/nvidiagtcai26eventpage/)
+
+[##### Nvidia GTC 2026](https://siliconangle.com/tag/nvidiagtcai26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/03/Google-Cloud-AI-Agents-in-Action-Series.png)](https://siliconangle.com/tag/googlecloudaiagentsinaction25eventpage/)
+
+[##### Google Cloud AI Agents in Action Series 2025/2026](https://siliconangle.com/tag/googlecloudaiagentsinaction25eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2026/02/MWC-Barcelona-Hero-March-2026.png)](https://siliconangle.com/tag/mwc26eventpage/)
+
+[##### MWC Barcelona 2026](https://siliconangle.com/tag/mwc26eventpage/)
+
+[![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/favicon-SA.png)](https://siliconangle.com)
+
+* + [PRIVACY POLICY](https://siliconangle.com/privacy-policy/)
+  + [TERMS](https://siliconangle.com/terms-of-use/)
+  + [ABOUT US](https://siliconangle.com/about-us/)
+  + [CONTACT US](https://siliconangle.com/2026/03/27/anthropic-launch-new-claude-mythos-model-advanced-reasoning-features/)
+  + [Send us a News tip](https://siliconangle.com/2026/03/27/anthropic-launch-new-claude-mythos-model-advanced-reasoning-features/)
+  + [BRAND GUIDELINES](https://siliconangle.com/brand-guidelines/)
+* 2026 SiliconANGLE Media Inc. All rights reserved.
+
+* ##### JOIN OUR COMMUNITY
+
+  + ![web_image](https://d15shllkswkct0.cloudfront.net/wp-content/themes/siliconangle/img/cube_footer.png)
+
+    [theCUBE](https://twitter.com/thecube)
+  + [theCUBE Research](https://x.com/theCUBEresearch)
+
+×
+
+### Send us a News Tip
+
+* Name\*
+
+  First
+  Last
+* Type of Pitch\*
+
+  Consumer or Enterprise?EnterpriseStartup NewsEmerging Technology
+* Email\*
+* What's your story?\*
+* File
+* Comments
+
+  This field is for validation purposes and should be left unchanged.
+
+×
+[![web_image](https://s3.us-west-2.amazonaws.com/cube365-prod/related-content/ba8c110e-cedf-4670-929d-e2ecca19ae3c.png)](https://aws.events.cube365.net/startup/s2e1?utm_source=siliconangle&utm_medium=banner&utm_campaign=showcase_campaign)
+
+×
+
+#### SIGN IN
+
+...
+
+Remember me
+
+LOGIN
+
+[Forgot Password?](https://siliconangle.com/wp-login.php?action=lostpassword&redirect_to=https%3A%2F%2Fsiliconangle.com%2F2026%2F03%2F27%2Fanthropic-launch-new-claude-mythos-model-advanced-reasoning-features%2F)
+
+##### OR
+
+#### New User? SIGN UP
+
+Continue with Email
+
+...
+
+...
+
+×
+
+#### SIGN UP
+
+Continue with Email
+
+...
+
+...
+
+×
+
+##### Bio
+
+##### Ethics Statement
+
+×
+
+### EXTRACT THE SIGNAL FROM THE NOISE
+
+Like Free Content? Subscribe to follow.
+
+Subscribe
+
+CONTACT US
+
+×
+
+Click here to inquire about guest posts
+
+Click here for all other inquiries
+
+CONTACT US
+
+×
+
+* NAME OF INDIVIDUAL\*
+* NAME OF COMPANY\*
+* EMAIL\*
+* COMMENTS\*
+
+CONTACT US
+
+×
+
+* NAME OF INDIVIDUAL\*
+* NAME OF COMPANY\*
+* EMAIL\*
+* COMMENTS\*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Cookies
+
+We employ the use of cookies. [Find out more.](https://siliconangle.com/terms-of-use/)
+GOT IT!
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+IFRAME https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&co=aHR0cHM6Ly9zaWxpY29uYW5nbGUuY29tOjQ0Mw..&hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&size=normal&anchor-ms=20000&execute-ms=30000&cb=8dfe3if3i7m:
+reCAPTCHA
+
+
+
+
+Recaptcha 要求验证.
+
+进行人机身份验证
+
+reCAPTCHA
+
+[隐私权](https://www.google.com/intl/zh-CN/policies/privacy/)-
+[使用条款](https://www.google.com/intl/zh-CN/policies/terms/)
+IFRAME https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&co=aHR0cHM6Ly9zaWxpY29uYW5nbGUuY29tOjQ0Mw..&hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&size=normal&anchor-ms=20000&execute-ms=30000&cb=4balwpdlhmah:
+reCAPTCHA
+
+
+
+
+Recaptcha 要求验证.
+
+进行人机身份验证
+
+reCAPTCHA
+
+[隐私权](https://www.google.com/intl/zh-CN/policies/privacy/)-
+[使用条款](https://www.google.com/intl/zh-CN/policies/terms/)
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+IFRAME https://www.google.com/recaptcha/api2/bframe?hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&bft=0dAFcWeA4KPyRC3j4OuCF0rNCaDbZ2TXIy_E0RohMXiNs2M4rwAgPcKuqCTwdqlDNjS4EwWoAr8j7AjK5ysHErUg9jZbZz57Nbpw:
+reCAPTCHA
+IFRAME about:blank:
+
+IFRAME https://www.google.com/recaptcha/api2/bframe?hl=zh-CN&v=79clEdOi5xQbrrpL2L8kGmK3&k=6LcyJTMUAAAAAGG1jQUhr9xLgvPaLHuvFrgIuU7E&bft=0dAFcWeA6goKQmqNMUT80nLOqr7GS9JbBDVPVHPSx1p3gclZmNMbCJIdgTbg20OMmkJ6gnSm5f_Ddylmr4N_LolDRuz2TVXn0Umw:
+reCAPTCHA
+
+# Reference
+- [133] [Anthropic to launch new ‘Claude Mythos’ model with advanced reasoning features - SiliconANGLE](https://siliconangle.com/2026/03/27/anthropic-launch-new-claude-mythos-model-advanced-reasoning-features/)

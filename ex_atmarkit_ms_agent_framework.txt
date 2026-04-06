@@ -1,0 +1,257 @@
+「型安全でコードを呼び出す」　AIエージェント開発の新基盤「Agent Framework」RC版公開：.NETとPythonに対応 - ＠IT
+
+メディア
+
+[連載一覧](https://atmarkit.itmedia.co.jp/ait/series/search/)
+
+[連載まとめ読み＠IT eBook](https://atmarkit.itmedia.co.jp/ait/series/1567/)
+
+[記事ランキング](https://atmarkit.itmedia.co.jp/ait/subtop/features/ranking/index.html)
+
+[＠IT Special](https://atmarkit.itmedia.co.jp/ait/subtop/features/special/index.html)
+
+[セミナー](https://atmarkit.itmedia.co.jp/ait/subtop/features/seminar/index.html)
+
+[ホワイトペーパー](https://wp.techtarget.itmedia.co.jp/)
+
+[クラウド](https://atmarkit.itmedia.co.jp/ait/subtop/cloud.html)
+
+[AI IoT](https://atmarkit.itmedia.co.jp/ait/subtop/ai.html)
+
+[アジャイル/DevOps](https://atmarkit.itmedia.co.jp/ait/subtop/devops.html)
+
+[セキュリティ](https://atmarkit.itmedia.co.jp/ait/subtop/security.html)
+
+[キャリア&スキル](https://atmarkit.itmedia.co.jp/ait/subtop/jibun/index.html)
+
+[Windows](https://atmarkit.itmedia.co.jp/ait/subtop/win/index.html)
+
+[初・中級者向けAI](https://atmarkit.itmedia.co.jp/ait/subtop/di/index.html)
+
+[その他](javascript:void(0);)
+
+* [Server & Storage](https://atmarkit.itmedia.co.jp/ait/subtop/server/index.html)
+* [HTML5 + UX](https://atmarkit.itmedia.co.jp/ait/subtop/ux/index.html)
+* [Smart & Social](https://atmarkit.itmedia.co.jp/ait/subtop/smart/index.html)
+* [Coding Edge](https://atmarkit.itmedia.co.jp/ait/subtop/coding/index.html)
+* [Java Agile](https://atmarkit.itmedia.co.jp/ait/subtop/java/index.html)
+* [Database Expert](https://atmarkit.itmedia.co.jp/ait/subtop/db/index.html)
+* [Linux ＆ OSS](https://atmarkit.itmedia.co.jp/ait/subtop/linux/index.html)
+* [Master of IP Network](https://atmarkit.itmedia.co.jp/ait/subtop/network/index.html)
+* [Security & Trust](https://atmarkit.itmedia.co.jp/ait/subtop/security/index.html)
+* [Test & Tools](https://atmarkit.itmedia.co.jp/ait/subtop/testtools/index.html)
+* [Insider.NET](https://atmarkit.itmedia.co.jp/ait/subtop/dotnet/index.html)
+* [ブログ](https://el.jibun.atmarkit.co.jp/index.html)
+
+[AIを作り動かし守り生かす](https://atmarkit.itmedia.co.jp/ait/subtop/4ai/)
+
+[ローコード/ノーコード](https://atmarkit.itmedia.co.jp/ait/subtop/lowcodenocode/)
+
+[クラウドネイティブ](https://atmarkit.itmedia.co.jp/ait/subtop/cloudnative/)
+
+[Microsoft&Windows](https://atmarkit.itmedia.co.jp/ait/subtop/features/server/ms_win_2026.html)
+
+[その他の特集](https://atmarkit.itmedia.co.jp/ait/subtop/features/theme/index.html)
+
+[マイページ](https://id.itmedia.co.jp/isentry/contents?sc=b281bc2c616cb3c3a097215fdc9397ae87e6e06b156cc34e656be7a1a9ce8839&lc=7d7179c146d0d6af4ebd304ab799a718fe949a8dcd660cd6d12fb97915f9ab0a&return_url=https%3A%2F%2Fid.itmedia.co.jp%2F&cr=e0166b482e66ce9e4461d69c33e4a4bf918607567bbff3ca1e7c48d706acc917)
+
+1. [＠IT](https://atmarkit.itmedia.co.jp/)
+2. [AI IoT](https://atmarkit.itmedia.co.jp/ait/subtop/ai.html)
+3. [Smart & Social](https://atmarkit.itmedia.co.jp/ait/subtop/smart/index.html)
+4. 「型安全でコードを呼び出す」　AIエージェント開発...
+
+「型安全でコードを呼び出す」　AIエージェント開発の新基盤「Agent Framework」RC版公開
+*：**.NETとPythonに対応*
+=======================================================================
+
+
+
+Microsoftは、AIエージェント構築フレームワーク「Microsoft Agent Framework」のリリース候補（RC）版を公開した。.NETとPython両言語で正式版リリースへの準備が整った。
+
+
+
+2026年03月27日 13時00分 公開
+
+[＠IT
+]
+
+
+
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| [印刷](https://id.itmedia.co.jp/isentry/contents?sc=0c1c43111448b131d65b3b380041de26f2edd6264ee1c371184f54d26ab53365&lc=7d7179c146d0d6af4ebd304ab799a718fe949a8dcd660cd6d12fb97915f9ab0a&return_url=https://ids.itmedia.co.jp/print/ait/articles/2603/27/news057.html&encoding=shift_jis&ac=e8cb9106baa7e37eb9feb877b9f0a27ddaf48b95ba02da49cbb3a8247ee7fec4&cr=e9fd42802bc22856808963077023568339063544b05e5a8646e62c02a898e0fd "この記事を印刷する") | [見る](https://twitter.com/search?q=https://atmarkit.itmedia.co.jp/ait/articles/2603/27/news057.html) [Post](javascript:void(0);) | [Share](javascript:void(0);) [シェア](javascript:void(0);) | [はてなブックマーク](http://b.hatena.ne.jp/entry/https%3A%2F%2Fatmarkit.itmedia.co.jp%2Fait%2Farticles%2F2603%2F27%2Fnews057.html) |
+
+
+
+
+この記事は会員限定です。会員登録（無料）
+すると全てご覧いただけます。
+
+
+
+
+　Microsoftは2026年2月19日（米国時間）、AI（人工知能）エージェント構築フレームワーク「Microsoft Agent Framework」が、「.NET」および「Python」の両言語でリリース候補（RC）ステータスに到達したと発表した。RC版はAPI（アプリケーションプログラミングインタフェース）仕様の安定化とバージョン1.0で提供予定の全機能が完成したことを意味し、GA（一般提供）に向けた最終段階に入ったことになる。
+
+[![web_image](https://image.itmedia.co.jp/ait/articles/2603/27/ait_ms-agent-framework01.png)](https://image.itmedia.co.jp/l/im/ait/articles/2603/27/l_ait_ms-agent-framework01.png)
+Microsoft Agent Frameworkの開発画面。グラフベースのワークフローで複数エージェントの連携や実行状況を可視化できる（提供：Microsoft）
+
+型安全なツール定義で、コードを呼び出す機能も
+----------------------
+
+　Microsoft Agent Frameworkは、AIエージェントの構築、オーケストレーション、デプロイのためのオープンソースフレームワークだ。これまでMicrosoftが提供してきた「Semantic Kernel」と「AutoGen」の後継として位置付けられ、.NETとPythonで統一されたプログラミングモデルを提供する。
+
+　主な特徴は以下の通り。
+
+[続きを読む](https://id.itmedia.co.jp/isentry/contents?sc=0c1c43111448b131d65b3b380041de26f2edd6264ee1c371184f54d26ab53365&lc=7d7179c146d0d6af4ebd304ab799a718fe949a8dcd660cd6d12fb97915f9ab0a&ac=1a599d548ac1cb9a50f16ce3ba121520c8ab7e05d54e097bfa5b82cb5a328a0f&cr=90cfa6d666682f8b5dc3c798020e432fc294ef430deb069008d4f8bceeb02418&bc=1&return_url=https%3A%2F%2Fatmarkit.itmedia.co.jp%2Fait%2Farticles%2F2603%2F27%2Fnews057.html&pnp=1&encoding=shiftjis)
+
+* シンプルなエージェント作成
+  + 数行のコードでゼロから実際に動作するエージェントを構築できる
+* 関数ツールへの対応
+  + 型安全なツール定義（Type-safe tool definitions）で、エージェントがコードを呼び出す機能を付与
+* グラフベースのワークフロー
+  + シーケンシャル（逐次実行）、並行処理、ハンドオフ（引き継ぎ）、グループチャットなどの多様なパターンに対応し、ストリーミング、チェックポインティング、ヒューマンインザループ（人間が判断に介在する機能）をサポート
+* マルチプロバイダーのサポート
+  + 「Microsoft Foundry」「Azure OpenAI」「OpenAI」「GitHub Copilot」「Anthropic Claude」「Amazon Bedrock」「Ollama」など主要プラットフォームを横断して利用可能
+* 相互運用性
+  + 「A2A」（Agent-to-Agent）、「AG-UI」（Agent-User Interaction Protocol）、「MCP」（Model Context Protocol）などの標準規格をサポート
+
+　Microsoftは、Semantic KernelやAutoGenでエージェントを構築してきた開発者向けに、Microsoft Agent Frameworkへ移行するためのガイドを公開している。
+
+* [Semantic Kernelからの移行ガイド](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-semantic-kernel/?pivots=programming-language-csharp)
+* [AutoGenからの移行ガイド](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-autogen)
+
+
+
+
+
+
+Copyright © ITmedia, Inc. All Rights Reserved.
+
+### 関連記事
+
+* [面倒で難しいコード “こそ”、AIに書かせては？　「生産性が高まるAIコーディング」の始め方](https://atmarkit.itmedia.co.jp/ait/articles/2603/26/news028.html)
+* [AIコーディングで現場が疲弊するのはツールのせいではない　KDDIアジャイル開発センターに聞く、AIコーディングの誤解と「本当の生産性」](https://atmarkit.itmedia.co.jp/ait/articles/2603/24/news010.html)
+* [GitHub、IssueやPull Requestの処理を自動化する「GitHub Agentic Workflows」テクニカルプレビュー公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/19/news128.html)
+
+### 関連リンク
+
+* [Microsoft Agent Framework Reaches Release Candidate（Microsoft）](https://devblogs.microsoft.com/foundry/microsoft-agent-framework-reaches-release-candidate/)
+
+SpecialPR
+
+この記事に関連する製品／サービスを比較（キーマンズネット）
+
+* [エクスポート機能の有無は重要ポイント！『BaaS』導入のポイント](http://www.keyman.or.jp/dev/baas/product?cx_source=kn-pdb201704)
+* [操作性、移行性、機能性、互換性……『開発ツール』製品比較](http://www.keyman.or.jp/dev/devtool/product?cx_source=kn-pdb201704)
+* [モニタリング機能の使いやすさに注目！『テストツール』の選び方](http://www.keyman.or.jp/dev/testing/product?cx_source=kn-pdb201704)
+* [帳票形式と格納方法は要確認！『帳票管理システム』製品一覧](http://www.keyman.or.jp/coresys/formsys/product?cx_source=kn-pdb201704)
+
+
+
+
+
+
+[印刷／保存](https://id.itmedia.co.jp/isentry/contents?sc=0c1c43111448b131d65b3b380041de26f2edd6264ee1c371184f54d26ab53365&lc=7d7179c146d0d6af4ebd304ab799a718fe949a8dcd660cd6d12fb97915f9ab0a&return_url=https://ids.itmedia.co.jp/print/ait/articles/2603/27/news057.html&encoding=shift_jis&ac=e8cb9106baa7e37eb9feb877b9f0a27ddaf48b95ba02da49cbb3a8247ee7fec4&cr=e9fd42802bc22856808963077023568339063544b05e5a8646e62c02a898e0fd "この記事を印刷する")
+
+検索
+
+
+
+
+
+アイティメディアからのお知らせ
+---------------
+
+* [キャリア採用の応募を受け付けています](https://hrmos.co/pages/itmedia/jobs?jobType=FULL)
+
+スポンサーからのお知らせPR
+
+SpecialPR
+
+Smart & Social 記事ランキング
+
+**本日****月間**
+
+* [ローカルで動く日本語対応の音声認識AIモデル「Voxtral Transcribe 2」公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/09/news037.html "      ローカルで動く日本語対応の音声認識AIモデル「Voxtral Transcribe 2」公開    ")
+* [AIエージェントは「便利なだけ」では普及しない？　標準化へ、イニシアチブ発足](https://atmarkit.itmedia.co.jp/ait/articles/2603/26/news158.html "      AIエージェントは「便利なだけ」では普及しない？　標準化へ、イニシアチブ発足    ")
+* [たった1文で15のLLMのガードレールを無効化した手法、Microsoftが公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/16/news044.html "      たった1文で15のLLMのガードレールを無効化した手法、Microsoftが公開    ")
+* [無料の国交省、中小企業庁、総務省データ用「リモートMCPサーバー」公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/18/news055.html "      無料の国交省、中小企業庁、総務省データ用「リモートMCPサーバー」公開    ")
+* [MCPは「AIの業界標準になるのか」？　利用拡大の裏で“普及を阻む課題”も浮上](https://atmarkit.itmedia.co.jp/ait/articles/2603/24/news060.html "      MCPは「AIの業界標準になるのか」？　利用拡大の裏で“普及を阻む課題”も浮上    ")
+* [サイバーエージェントが実践する「生成AI活用の舞台裏」](https://atmarkit.itmedia.co.jp/ait/articles/2512/25/news010.html "      サイバーエージェントが実践する「生成AI活用の舞台裏」    ")
+* [G20加盟国の重要インフラが「2028年までに止まる」？――「AIの死角」とは](https://atmarkit.itmedia.co.jp/ait/articles/2603/24/news050.html "      G20加盟国の重要インフラが「2028年までに止まる」？――「AIの死角」とは    ")
+* [「型安全でコードを呼び出す」　AIエージェント開発の新基盤「Agent Framework」RC版公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/27/news057.html "      「型安全でコードを呼び出す」　AIエージェント開発の新基盤「Agent Framework」RC版公開    ")
+* [Anthropic、Coworkに“業務特化Claude”を構築できるプラグイン追加](https://atmarkit.itmedia.co.jp/ait/articles/2603/10/news018.html "      Anthropic、Coworkに“業務特化Claude”を構築できるプラグイン追加    ")
+* [AIで生産性は上がらない？　約6000社調査で判明した“AIブーム”の実態と将来予測](https://atmarkit.itmedia.co.jp/ait/articles/2603/25/news060.html "      AIで生産性は上がらない？　約6000社調査で判明した“AIブーム”の実態と将来予測    ")
+
+» [ランキングをもっと見る](https://atmarkit.itmedia.co.jp/ait/subtop/features/ranking/index.html#smart)
+
+* [無料の国交省、中小企業庁、総務省データ用「リモートMCPサーバー」公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/18/news055.html "      無料の国交省、中小企業庁、総務省データ用「リモートMCPサーバー」公開    ")
+* [「ブラウザ自動化」の限界を解消？　Googleが新標準「WebMCP」早期プレビュー公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/18/news058.html "      「ブラウザ自動化」の限界を解消？　Googleが新標準「WebMCP」早期プレビュー公開    ")
+* [Anthropic、Coworkに“業務特化Claude”を構築できるプラグイン追加](https://atmarkit.itmedia.co.jp/ait/articles/2603/10/news018.html "      Anthropic、Coworkに“業務特化Claude”を構築できるプラグイン追加    ")
+* [たった1文で15のLLMのガードレールを無効化した手法、Microsoftが公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/16/news044.html "      たった1文で15のLLMのガードレールを無効化した手法、Microsoftが公開    ")
+* [ローカルで動く日本語対応の音声認識AIモデル「Voxtral Transcribe 2」公開](https://atmarkit.itmedia.co.jp/ait/articles/2603/09/news037.html "      ローカルで動く日本語対応の音声認識AIモデル「Voxtral Transcribe 2」公開    ")
+* [Open WebUIと自作MCPツールで「ローカル操作を“安全に”自動化する」方法](https://atmarkit.itmedia.co.jp/ait/articles/2603/16/news007.html "      Open WebUIと自作MCPツールで「ローカル操作を“安全に”自動化する」方法    ")
+* [AIで生産性は上がらない？　約6000社調査で判明した“AIブーム”の実態と将来予測](https://atmarkit.itmedia.co.jp/ait/articles/2603/25/news060.html "      AIで生産性は上がらない？　約6000社調査で判明した“AIブーム”の実態と将来予測    ")
+* [MCPは「AIの業界標準になるのか」？　利用拡大の裏で“普及を阻む課題”も浮上](https://atmarkit.itmedia.co.jp/ait/articles/2603/24/news060.html "      MCPは「AIの業界標準になるのか」？　利用拡大の裏で“普及を阻む課題”も浮上    ")
+* [AIエージェント導入が進む企業は何が違う？　Microsoft、成否を分ける“5要素”を提示](https://atmarkit.itmedia.co.jp/ait/articles/2603/13/news063.html "      AIエージェント導入が進む企業は何が違う？　Microsoft、成否を分ける“5要素”を提示    ")
+* [「GitHub Copilot CLI」のコマンドチートシート　GitHubが解説](https://atmarkit.itmedia.co.jp/ait/articles/2602/18/news050.html "      「GitHub Copilot CLI」のコマンドチートシート　GitHubが解説    ")
+
+» [ランキングをもっと見る](https://atmarkit.itmedia.co.jp/ait/subtop/features/ranking/month.html#smart)
+
+
+
+＠IT eBook
+
+[AI時代のエンジニア像とは？　まつもとゆきひろ氏が語る「ジュニア不要論」の危機【ディレクターズカット収録】](https://atmarkit.itmedia.co.jp/ait/articles/2602/04/news008.html#utm_medium=rightcol_ebook&utm_content=textlink1)
+
+[シンギュラリティはすぐそこに？　超IT用語解説漫画「食べ超」で縦横無尽に未来を夢想しよう](https://atmarkit.itmedia.co.jp/ait/articles/2508/20/news010.html#utm_medium=rightcol_ebook&utm_content=textlink2)
+
+[「ポテチの量は毎回違う？」そのギモン、Excel×確率分布で解けます　無料eBook『Excelで学ぶ、やさしい確率分布』配布中](https://atmarkit.itmedia.co.jp/ait/articles/2508/04/news002.html#utm_medium=rightcol_ebook&utm_content=textlink3)
+
+[インストールから仮想マシンの作成・管理まで、IT管理者のための『VMware Workstation Pro入門』](https://atmarkit.itmedia.co.jp/ait/articles/2507/25/news011.html#utm_medium=rightcol_ebook&utm_content=textlink4)
+
+» [一覧ページへ](https://atmarkit.itmedia.co.jp/ait/series/1567/#utm_medium=rightcol_ebook&utm_content=toindex)
+
+注目のテーマ
+
+[![web_image](https://image.itmedia.co.jp/ait/images/htmlgen/rc_teemasitebanner_1_1774165387.png)](https://atmarkit.itmedia.co.jp/ait/subtop/features/coding/aicoding.html)
+
+
+
+システム開発ノウハウ 【発注ナビ】PR
+
+
+
+
+あなたにおすすめの記事PR
+
+@ITについて
+
+* [お問い合わせ](https://corp.itmedia.co.jp/media/inquiry/articles/ "お問い合わせ")
+* [広告について](https://go.itmedia.co.jp/l/291242/2022-08-17/2b9nm9r "広告について")
+* [採用広告について](https://go.itmedia.co.jp/l/291242/2022-09-11/2bjg5ck "採用広告について")
+* [利用規約](https://atmarkit.itmedia.co.jp/ait/subtop/termofuse.html "利用規約")
+* [著作権・リンク・免責事項](https://atmarkit.itmedia.co.jp/ait/subtop/copyright.html "著作権・リンク・免責事項")
+* [サイトマップ](https://atmarkit.itmedia.co.jp/info/sitemap/sitemap.html "サイトマップ")
+
+RSSについて
+
+* [＠ITのRSS一覧](https://corp.itmedia.co.jp/media/rss_list/ "＠ITのRSS一覧")
+
+アイティメディアIDについて
+
+* [アイティメディアIDとは](https://id.itmedia.co.jp/info/campaign/all_id.html "アイティメディアIDとは")
+
+メールマガジン登録
+
+＠ITのメールマガジンは、 もちろん、すべて無料です。ぜひメールマガジンをご購読ください。
+
+[申し込みページへ](https://atmarkit.itmedia.co.jp/ait/subtop/info/lp/ait_new.html)
+
+ITmediaはアイティメディア株式会社の登録商標です。
+
+[メディア一覧](https://corp.itmedia.co.jp/media/) | [公式SNS](https://corp.itmedia.co.jp/media/sns/) | [広告案内](https://corp.itmedia.co.jp/ad/) | [お問い合わせ](https://corp.itmedia.co.jp/corp/inquiry/) | [プライバシーポリシー](https://corp.itmedia.co.jp/corp/privacy/privacy/) | [RSS](https://corp.itmedia.co.jp/media/rss_list/) | [運営会社](https://corp.itmedia.co.jp/) | [採用情報](https://corp.itmedia.co.jp/recruit/) | [推奨環境](https://www.itmedia.co.jp/info/rule/recommended.html)
+
+# Reference
+- [176] [「型安全でコードを呼び出す」　AIエージェント開発の新基盤「Agent Framework」RC版公開：.NETとPythonに対応 - ＠IT](https://atmarkit.itmedia.co.jp/ait/articles/2603/27/news057.html)

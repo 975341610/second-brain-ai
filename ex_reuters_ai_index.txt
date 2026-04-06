@@ -1,0 +1,34 @@
+reuters.com
+IFRAME https://geo.captcha-delivery.com/captcha/?initialCid=AHrlqAAAAAMA-kEexrrH2ooAPdWwDA==&cid=T8wJFf2OZ2tZ3ihzfRSSVopAHDsg0pmBtIzzmi_03~iryKlcL9N9YgUKbi_Fh55b_baj3PWQTMn7xChAcMqGDImcYjkvobuFswyId7IL_II7yGizPBYXhpjFu4pb12rn&referer=https%3A%2F%2Fwww.reuters.com%2Ftechnology%2Fartificial-intelligence%2F&hash=2013457ADA70C67D6A4123E0A76873&t=bv&s=43909&e=012b9d91ccfd82efb2eb9748b71aa1279e3f54d6c0c721f2bbae4662b0354f8fe0ed414416dec43ad852fc29165dac1a&ir=417019%2C417017%2C417050%2C417023%2C417021%2C417011%2C417009%2C417073%2C417042%2C417015%2C417013%2C417034%2C417038%2C417059%2C91%2C417057%2C417030%2C417020%2C417018%2C417024%2C417088%2C417022%2C333055%2C417012%2C417076%2C417010%2C31519%2C417014%2C417025&dm=dc_ir&b=1005349:
+你被封锁了。
+
+
+
+访问暂时受限
+
+为什么需要经过「我不是机器人」的验证? 在您浏览网页过程中，
+
+可能有以下几种原因启动此验证程式：
+
+* 系统侦测到您浏览网页的速度异常，为非正常操作。
+* 您的电脑设定/软体阻挡网页 Javascript 程式运行。
+* 您使用的IP位址(IP:114.251.196.98)与网路机器人相同。
+
+无法操作验证页面?
+联络我们
+
+ID: aeaff531-9eff-7068-5527-44d58c56b503
+
+请选择一个理由（强制性）。
+
+发送
+
+
+![web_image](https://static.captcha-delivery.com/captcha/assets/tpl/6dc485c0c428c35b53577b146dc6f9179f55ef9ad41b327a2a179998839364bf/loading_spinner.gif)
+
+您填写的讯息已完成送出。
+
+发生了错误...
+
+# Reference
+- [145] [Reuters AI News | Latest Headlines and Developments | Reuters](https://www.reuters.com/technology/artificial-intelligence/)

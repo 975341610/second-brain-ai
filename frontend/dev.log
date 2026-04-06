@@ -1,0 +1,10 @@
+
+> second-brain-ai-frontend@0.5.4 dev
+> vite --host
+
+
+  VITE v5.4.21  ready in 162 ms
+
+  ➜  Local:   http://localhost:5173/
+4:46:09 PM [vite] vite.config.ts changed, restarting server...
+4:46:09 PM [vite] server restarted.

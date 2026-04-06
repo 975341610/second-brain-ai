@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile>
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"></mxCell>
+        <mxCell id="1" parent="0"></mxCell>
+        <mxCell id="t1:2" style="fillColor=none;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-50.0" y="-197.0" width="1308.0" height="1815.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:1" value="User" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;larkLifelineType=actor_lifeline;participant=actor;perimeter=lifelinePerimeter;shape=umlLifeline;size=153;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="50.0" y="241.0" width="100.0" height="1771.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:2" value="ClientA" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="270.5" y="344.0" width="105.0" height="1668.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:3" value="ClientB" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="601.5" y="344.0" width="103.0" height="1668.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:4" value="Server" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=50;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="903.0" y="344.0" width="100.0" height="1668.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="r1:5" value="Database" style="align=center;fillColor=#e1eaff;fontSize=20;fontStyle=1;html=1;larkLifelineType=data_base;perimeter=lifelinePerimeter;rounded=1;shape=umlLifeline;size=76;strokeColor=#000000;strokeWidth=1.0;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="1222.5" y="318.0" width="121.0" height="1694.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="o1:1" value="[存在冲突 (版本不一致)]" style="align=left;fillColor=#eff0f1;fontSize=14;fontStyle=1;height=20;html=1;shape=umlFrame;strokeColor=#bbbfc4;strokeWidth=2.0;verticalAlign=top;whiteSpace=wrap;width=20;" parent="t1:2" vertex="1">
+          <mxGeometry x="278.0" y="1303.0" width="1080.0" height="605.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:1" value="[无冲突]" style="align=center;fillColor=none;fontSize=14;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="286.0" y="1691.0" width="52.6" height="24.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="a1:2" value="多端同步时序图：离线编辑与冲突解决" style="align=center;fillColor=none;fontSize=14;fontStyle=1;html=1;strokeColor=none;text;verticalAlign=middle;" parent="t1:2" vertex="1">
+          <mxGeometry x="576.5" y="197.0" width="255.0" height="24.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:1" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:2" vertex="1">
+          <mxGeometry x="37.5" y="110.0" width="30.0" height="104.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:2" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:2" vertex="1">
+          <mxGeometry x="37.5" y="677.0" width="30.0" height="902.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:3" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:3" vertex="1">
+          <mxGeometry x="36.5" y="319.0" width="30.0" height="269.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:4" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:4" vertex="1">
+          <mxGeometry x="35.0" y="408.0" width="30.0" height="180.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:5" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:4" vertex="1">
+          <mxGeometry x="35.0" y="677.0" width="30.0" height="902.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:6" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:5" vertex="1">
+          <mxGeometry x="45.5" y="494.0" width="30.0" height="60.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:7" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:5" vertex="1">
+          <mxGeometry x="45.5" y="792.0" width="30.0" height="60.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:8" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:5" vertex="1">
+          <mxGeometry x="45.5" y="1201.0" width="30.0" height="60.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="s1:9" style="fillColor=#4e83fd;html=1;shape=umlActivation;strokeColor=#000000;strokeWidth=2.0;whiteSpace=wrap;" parent="r1:5" vertex="1">
+          <mxGeometry x="45.5" y="1450.0" width="30.0" height="60.0" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="c1:1" value="1  编辑笔记 &#34;N1&#34;" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50.0" y="213.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="258.0" y="213.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:2" value="4  编辑笔记 &#34;N1&#34;" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50.0" y="422.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="588.0" y="422.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:7" value="5  发送变更 (携带基线版本号)" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="66.5" y="408.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="336.5" y="408.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:3" value="2  将变更写入本地事件日志 (Event Log)" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="67.5" y="125.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="67.5" y="199.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-93.0" y="-22.0"></mxPoint>
+              <mxPoint x="-93.0" y="52.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:8" value="6  验证版本号并应用变更" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="65.0" y="468.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="365.0" y="468.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:4" value="3  更新本地数据库状态" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;exitX=1.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1" source="s1:1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="52.5" y="259.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-108.0" y="67.0"></mxPoint>
+              <mxPoint x="-108.0" y="112.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:9" value="8  确认变更" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1" source="s1:4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-235.0" y="588.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:5" value="9  请求同步 (发送本地事件日志)" style="endArrow=classic;exitX=1.00;exitY=0.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1" source="s1:2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="667.5" y="677.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:10" value="10  获取笔记 &#34;N1&#34; 的最新版本" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="65.0" y="766.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="365.0" y="766.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:17" value="7  变更成功" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:5" edge="1" source="s1:6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-254.5" y="554.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:6" value="20  更新本地数据库至最新状态" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;exitX=1.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:2" edge="1" source="s1:2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="52.5" y="1653.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-108.0" y="1432.0"></mxPoint>
+              <mxPoint x="-108.0" y="1506.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:11" value="12  冲突检测&#xA;比较设备 A 的基线版本与云端历史" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="65.0" y="841.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="65.0" y="944.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-728.0" y="694.0"></mxPoint>
+              <mxPoint x="-728.0" y="797.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:18" value="11  返回最新版本及变更历史" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:5" edge="1" source="s1:7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-254.5" y="852.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:21" style="endArrow=none;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="t1:2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="228.0" y="1486.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="1308.0" y="1486.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:12" value="13  应用冲突解决策略 (CRDT / 自动合并 / etc.)" style="curved=0;edgeStyle=orthogonalEdgeStyle;endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="65.0" y="1041.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="65.0" y="1115.0" as="targetPoint"></mxPoint>
+            <Array as="points">
+              <mxPoint x="-728.0" y="894.0"></mxPoint>
+              <mxPoint x="-728.0" y="968.0"></mxPoint>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:19" value="15  保存成功" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:5" edge="1" source="s1:8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-254.5" y="1261.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:13" value="14  保存合并后的最终版本" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="65.0" y="1175.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="365.0" y="1175.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:20" value="18  变更成功" style="endArrow=classic;exitX=0.00;exitY=1.00;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:5" edge="1" source="s1:9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-254.5" y="1510.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:14" value="16  返回合并后的最终版本 + 需要解决的冲突" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="35.0" y="1324.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="-565.0" y="1324.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:15" value="17  应用设备 A 的变更" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="65.0" y="1424.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="365.0" y="1424.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1:16" value="19  确认同步成功" style="endArrow=classic;startArrow=none;strokeColor=#bbbfc4;strokeWidth=2.0;" parent="r1:4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="35.0" y="1544.0" as="sourcePoint"></mxPoint>
+            <mxPoint x="-565.0" y="1544.0" as="targetPoint"></mxPoint>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

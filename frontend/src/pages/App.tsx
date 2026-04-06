@@ -9,6 +9,7 @@ import { Sidebar } from '../components/Sidebar';
 import { LoginPage } from '../components/LoginPage';
 import { SplashScreen } from '../components/SplashScreen';
 import { Mascot } from '../components/Mascot';
+import { TableOfContents } from '../components/TableOfContents';
 import { useAppStore } from '../store/useAppStore';
 import { wallpaperStore } from '../lib/wallpaperStore';
 import hyruleSunset from '../assets/ui/hyrule_sunset.webp';
@@ -92,6 +93,7 @@ export default function App() {
     clearToast,
     userStats,
     userAchievements,
+    createFolder,
   } = useAppStore();
 
   useEffect(() => {
@@ -235,6 +237,7 @@ export default function App() {
                 icon: payload.icon ?? note.icon,
                 tags: payload.tags,
                 parent_id: note.parent_id,
+                is_folder: payload.is_folder ?? note.is_folder,
                 is_title_manually_edited: payload.title !== undefined ? true : note.is_title_manually_edited
               });
             }}
@@ -251,6 +254,7 @@ export default function App() {
             onPurgeNote={(noteId) => void purgeNote(noteId)}
             onPurgeTrash={() => void purgeTrash()}
             onUpload={(files) => void uploadFiles(files)}
+            onCreateFolder={(notebookId, parentId) => void createFolder(notebookId, parentId)}
           />
         </div>
 
@@ -328,6 +332,9 @@ export default function App() {
           )}
           <Mascot />
         </>
+      )}
+      {activePage === 'notes' && selectedNoteId && (
+        <TableOfContents outline={outline} />
       )}
     </main>
     <div className="fixed bottom-4 left-4 z-50 text-[10px] text-stone-400 font-mono pointer-events-auto opacity-30 hover:opacity-100 transition-opacity max-w-[400px] truncate" title={`${appVersion} | ${gitCommit}\n${exePath}`}>
