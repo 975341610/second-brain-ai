@@ -208,7 +208,8 @@ async def get_music_library():
                 "url": f"/api/media/music/{file.name}",
                 "title": title,
                 "artist": "本地音频",
-                "cover": cover
+                "cover": cover,
+                "source": "local"
             })
         elif file.suffix.lower() == '.json':
             try:
@@ -220,7 +221,8 @@ async def get_music_library():
                             "url": data["url"],
                             "title": data["title"],
                             "artist": data.get("artist", "网络直链"),
-                            "cover": data.get("cover")
+                            "cover": data.get("cover"),
+                            "source": "network"
                         })
             except Exception:
                 pass
@@ -245,7 +247,8 @@ async def save_music_link(payload: dict):
             "title": title, 
             "url": url, 
             "cover": cover, 
-            "artist": "网络直链"
+            "artist": "网络直链",
+            "source": "network"
         }, f, ensure_ascii=False, indent=2)
     
     return {"status": "success", "path": str(json_path)}

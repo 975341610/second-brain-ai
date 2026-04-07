@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, X, ListMusic } from 'lucide-react';
 import { useMusicControls } from '../../contexts/MusicContext';
-import { PlaylistPopover } from './PlaylistPopover';
 
 const EDGE_PEEK_PX = 20;
 const DEFAULT_MARGIN_PX = 40;
@@ -217,7 +216,7 @@ export const FloatingMusicCapsule: React.FC = () => {
               <div className={`flex items-center gap-1 border-black/5 ${snapSide === 'right' ? 'border-r pr-2' : 'border-l pl-2'}`}>
                 <button
                   ref={listButtonRef}
-                  onClick={() => togglePlaylist(listButtonRef.current?.getBoundingClientRect() || null)}
+                  onClick={(e) => togglePlaylist(e.currentTarget.getBoundingClientRect())}
                   className={`p-1.5 rounded-full transition-colors ${showPlaylist ? 'bg-pink-100 text-pink-500' : 'hover:bg-black/5 text-gray-500'}`}
                 >
                   <ListMusic size={14} />

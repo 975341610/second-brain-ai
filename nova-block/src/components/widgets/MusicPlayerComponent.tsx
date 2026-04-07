@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, Link2, Play, Pause, ChevronDown, ChevronUp, Music, SkipBack, SkipForward, ListMusic } from 'lucide-react';
 import { useMusicControls, useMusicProgress } from '../../contexts/MusicContext';
 import { api, getApiBase } from '../../lib/api';
-import { PlaylistPopover } from './PlaylistPopover';
 
 const palette = {
   bg: 'bg-[#F6F3EF]',
@@ -72,9 +71,9 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               transition={isActive ? { duration: 3, ease: 'linear', repeat: Infinity } : { duration: 0 }}
               className="absolute inset-2 rounded-full overflow-hidden"
               style={{
-                backgroundImage: (isCurrent ? (currentTrack?.cover || cover) : cover) 
-                  ? `url("${isCurrent ? (currentTrack?.cover || cover) : cover}")` 
-                  : macaronGradient,
+                backgroundImage: (isCurrent && currentTrack?.cover) 
+                  ? `url("${currentTrack.cover}")` 
+                  : (cover ? `url("${cover}")` : macaronGradient),
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -99,7 +98,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               <div className="flex items-center gap-1">
                 <button 
                   ref={listButtonRef}
-                  onClick={() => togglePlaylist(listButtonRef.current?.getBoundingClientRect() || null)}
+                  onClick={(e) => togglePlaylist(e.currentTarget.getBoundingClientRect())}
                   className={`p-1.5 rounded-lg transition-colors ${showPlaylist ? 'bg-pink-100 text-pink-500' : 'hover:bg-black/5 text-black/40'}`}
                 >
                   <ListMusic size={18} />
@@ -191,12 +190,12 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
                 <button
                   type="button"
                   className="px-4 py-2.5 rounded-xl border border-black/5 bg-white/40 hover:bg-white hover:shadow-sm transition-all text-xs font-bold flex items-center gap-2"
-                  onClick={() => {
+                  onClick={(e) => {
                     if (playlist.length === 0) {
                       alert('库中暂无歌曲');
                       return;
                     }
-                    togglePlaylist(listButtonRef.current?.getBoundingClientRect() || null);
+                    togglePlaylist(e.currentTarget.getBoundingClientRect());
                   }}
                 >
                   <Music size={14} className="text-black/40" /> 从库中选择歌曲

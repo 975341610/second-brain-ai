@@ -14,6 +14,7 @@ export interface Track {
   title: string;
   artist?: string;
   cover?: string;
+  source?: 'local' | 'network';
 }
 
 interface MusicControlsContextType {
@@ -59,7 +60,22 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const nextRef = useRef<() => void>(() => {});
 
   const togglePlaylist = useCallback((rect: DOMRect | null) => {
-    setPlaylistPopoverAnchor(prev => prev ? null : rect);
+    if (!rect) {
+      setPlaylistPopoverAnchor(null);
+      return;
+    }
+
+    setPlaylistPopoverAnchor(prev => {
+      if (!prev) return rect;
+
+      const same =
+        Math.abs(prev.left - rect.left) < 1 &&
+        Math.abs(prev.top - rect.top) < 1 &&
+        Math.abs(prev.width - rect.width) < 1 &&
+        Math.abs(prev.height - rect.height) < 1;
+
+      return same ? null : rect;
+    });
   }, []);
 
   const closePlaylist = useCallback(() => {
@@ -170,6 +186,8 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
               ? track.cover
               : `${apiBase}${track.cover}`)
             : track.cover,
+          // 判断来源
+          source: track.source || (track.url.startsWith('http') ? 'network' : 'local'),
         }));
         setPlaylist(tracks);
         console.log(`[MusicContext] Library refreshed, ${tracks.length} tracks found.`);

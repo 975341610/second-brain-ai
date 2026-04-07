@@ -19,10 +19,22 @@ export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose, ancho
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 10 }}
       className={`${portal ? 'fixed' : 'absolute bottom-full right-0 mb-4'} w-72 max-h-[400px] overflow-hidden bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl flex flex-col z-[1000]`}
-      style={portal && anchorRect ? {
-        left: Math.min(anchorRect.left - 288 + anchorRect.width, window.innerWidth - 288 - 20),
-        top: Math.min(anchorRect.top - 400 - 12, window.innerHeight - 400 - 20),
-      } : {}}
+      style={portal && anchorRect ? (() => {
+        const popoverWidth = 288;
+        const popoverHeight = 400;
+        let left = anchorRect.left;
+        let top = anchorRect.bottom + 8; // 默认在按钮下方
+        
+        // 边界检测
+        if (left + popoverWidth > window.innerWidth) {
+          left = window.innerWidth - popoverWidth - 20;
+        }
+        if (top + popoverHeight > window.innerHeight) {
+          top = anchorRect.top - popoverHeight - 8; // 空间不够就在按钮上方
+        }
+        
+        return { left, top };
+      })() : {}}
     >
       <div className="p-4 border-b border-black/5 flex items-center justify-between bg-gradient-to-r from-pink-50 to-blue-50">
         <div className="flex items-center gap-2">
@@ -74,10 +86,10 @@ export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose, ancho
                     {track.title}
                   </div>
                   <div className="text-[10px] text-gray-400 truncate flex items-center gap-1">
-                    {track.url.startsWith('http') ? (
-                      <><ExternalLink size={10} /> 网络直链</>
-                    ) : (
+                    {track.source === 'local' ? (
                       '本地文件'
+                    ) : (
+                      <><ExternalLink size={10} /> 网络直链</>
                     )}
                   </div>
                 </div>
