@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, FileText, Command, ArrowRight } from 'lucide-react';
-import { Note } from '../../lib/types';
+import type { Note } from '../../lib/types';
 
 interface CommandPaletteProps {
   isOpen: boolean;

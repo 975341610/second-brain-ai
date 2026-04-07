@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Search, FileText, X } from 'lucide-react';
-import { Note } from '../../lib/types';
+import type { Note } from '../../lib/types';
 
 interface GlobalSearchPanelProps {
   notes: Note[];
