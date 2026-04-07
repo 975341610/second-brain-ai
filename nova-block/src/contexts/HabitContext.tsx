@@ -7,6 +7,10 @@ export interface Habit {
   targetValue: number;
   color: string;
   /**
+   * 卡片背景颜色（外边框颜色）
+   */
+  cardColor?: string;
+  /**
    * 可为 Emoji，也可为图片 URL（/api/media/files/... 或 data:image/...）。
    * 由于需要离线/无后端环境兜底，这里统一用 string 存储。
    */
@@ -54,6 +58,7 @@ const normalizeHabit = (raw: any): Habit => {
     name: String(raw?.name ?? '新习惯'),
     targetValue: Number(raw?.targetValue ?? 1) || 1,
     color: String(raw?.color ?? '#b8c6db'),
+    cardColor: String(raw?.cardColor ?? '#fcf9f2'),
     icon: String(raw?.icon ?? '✨'),
     backgroundUrl: typeof raw?.backgroundUrl === 'string' ? raw.backgroundUrl : '',
     bgImage: typeof raw?.bgImage === 'string' ? raw.bgImage : '',
@@ -73,9 +78,9 @@ export const HabitProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       }
     }
     return [
-      { id: '1', name: '喝水', targetValue: 8, color: '#a8ebd1', icon: '💧', backgroundUrl: '', bgImage: '', createdAt: new Date().toISOString() },
-      { id: '2', name: '健身', targetValue: 1, color: '#ffc4d9', icon: '🏋️‍♂️', backgroundUrl: '', bgImage: '', createdAt: new Date().toISOString() },
-      { id: '3', name: '阅读', targetValue: 1, color: '#ffd8a8', icon: '📚', backgroundUrl: '', bgImage: '', createdAt: new Date().toISOString() },
+      { id: '1', name: '喝水', targetValue: 8, color: '#a8ebd1', cardColor: '#fcf9f2', icon: '💧', backgroundUrl: '', bgImage: '', createdAt: new Date().toISOString() },
+      { id: '2', name: '健身', targetValue: 1, color: '#ffc4d9', cardColor: '#fcf9f2', icon: '🏋️‍♂️', backgroundUrl: '', bgImage: '', createdAt: new Date().toISOString() },
+      { id: '3', name: '阅读', targetValue: 1, color: '#ffd8a8', cardColor: '#fcf9f2', icon: '📚', backgroundUrl: '', bgImage: '', createdAt: new Date().toISOString() },
     ];
   });
 

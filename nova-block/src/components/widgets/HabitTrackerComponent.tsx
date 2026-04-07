@@ -359,8 +359,11 @@ export const HabitTrackerComponent: React.FC<any> = (props) => {
       <div className="max-w-md mx-auto" style={{ fontFamily: handDrawnStyle.fontFamily }}>
         {/* Main Card */}
         <div
-          className="relative bg-[#fcf9f2] border-2 border-stone-800 shadow-[4px_4px_0px_0px_rgba(28,25,23,1)] p-6 transition-all duration-500 hover:shadow-[6px_6px_0px_0px_rgba(28,25,23,1)]"
-          style={{ borderRadius: handDrawnStyle.borderRadius }}
+          className="relative border-2 border-stone-800 shadow-[4px_4px_0px_0px_rgba(28,25,23,1)] p-6 transition-all duration-500 hover:shadow-[6px_6px_0px_0px_rgba(28,25,23,1)]"
+          style={{ 
+            borderRadius: handDrawnStyle.borderRadius,
+            backgroundColor: activeHabit?.cardColor || '#fcf9f2'
+          }}
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
@@ -384,7 +387,7 @@ export const HabitTrackerComponent: React.FC<any> = (props) => {
                     className="bg-transparent border-none font-bold text-lg focus:ring-0 cursor-pointer p-0 pr-6 appearance-none outline-none z-10"
                   >
                     {habits.map((h) => (
-                      <option key={h.id} value={h.id} className="bg-[#fcf9f2] text-sm">
+                      <option key={h.id} value={h.id} className="text-sm" style={{ backgroundColor: h.cardColor || '#fcf9f2' }}>
                         {h.name}
                       </option>
                     ))}
@@ -504,7 +507,7 @@ export const HabitTrackerComponent: React.FC<any> = (props) => {
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-stone-800 uppercase italic">Edit Habits</span>
                     <button
-                      onClick={() => addHabit({ name: '新习惯', icon: '✨', color: '#b8c6db', targetValue: 1 })}
+                      onClick={() => addHabit({ name: '新习惯', icon: '✨', color: '#b8c6db', cardColor: '#fcf9f2', targetValue: 1 })}
                       className="p-1 bg-stone-100 border-2 border-stone-800 shadow-[1px_1px_0px_0px_rgba(28,25,23,1)] hover:bg-white transition-all active:shadow-none active:translate-x-[1px] active:translate-y-[1px]"
                       style={{ borderRadius: '4px' }}
                     >
@@ -603,10 +606,19 @@ export const HabitTrackerComponent: React.FC<any> = (props) => {
                             />
                             <input
                               type="color"
+                              title="打卡主题色"
                               value={h.color}
                               onChange={(e) => updateHabit(h.id, { color: e.target.value })}
                               className="w-5 h-5 border-2 border-stone-800 p-0 bg-transparent cursor-pointer overflow-hidden [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border-none"
                               style={{ borderRadius: '50%' }}
+                            />
+                            <input
+                              type="color"
+                              title="卡片外框底色"
+                              value={h.cardColor || '#fcf9f2'}
+                              onChange={(e) => updateHabit(h.id, { cardColor: e.target.value })}
+                              className="w-5 h-5 border-2 border-stone-800 p-0 bg-transparent cursor-pointer overflow-hidden [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border-none"
+                              style={{ borderRadius: '4px' }}
                             />
                             <button
                               onClick={() => deleteHabit(h.id)}
