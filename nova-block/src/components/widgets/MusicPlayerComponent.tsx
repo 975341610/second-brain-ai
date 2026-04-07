@@ -29,6 +29,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
   const { progress, duration, setProgress } = useMusicProgress();
   const [isExpanded, setIsExpanded] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
+  const listButtonRef = React.useRef<HTMLButtonElement | null>(null);
 
   const src = node?.attrs?.src || '';
   const title = node?.attrs?.title || '未命名歌曲';
@@ -52,6 +53,8 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
   const currentProgress = isCurrent ? progress : 0;
   const currentDuration = isCurrent ? duration : 0;
 
+  const macaronGradient = 'linear-gradient(45deg, #FF9A9E 0%, #FAD0C4 99%, #FAD0C4 100%)';
+
   return (
     <NodeViewWrapper
       className={`my-5 rounded-3xl border ${palette.border} ${palette.bg} shadow-soft overflow-hidden ${selected ? 'ring-2 ring-black/10' : ''}`}
@@ -67,12 +70,14 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               transition={isActive ? { duration: 3, ease: 'linear', repeat: Infinity } : { duration: 0 }}
               className="absolute inset-2 rounded-full overflow-hidden"
               style={{
-                backgroundImage: cover ? `url(${cover})` : 'linear-gradient(45deg, #f3ec78, #af4261)',
+                backgroundImage: (isCurrent && currentTrack?.cover) 
+                  ? `url("${currentTrack.cover}")` 
+                  : (cover ? `url("${cover}")` : macaronGradient),
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.25)_45%,rgba(0,0,0,0.65)_100%)]" />
+              <div className="absolute inset-0 bg-black/20" />
               <div className="absolute inset-0 opacity-30" style={{
                 backgroundImage:
                   'repeating-radial-gradient(circle at center, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, rgba(0,0,0,0) 5px, rgba(0,0,0,0) 8px)',
@@ -91,6 +96,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               <div className={`text-base md:text-lg font-black tracking-tight ${palette.text} truncate`}>{title}</div>
               <div className="flex items-center gap-1">
                 <button 
+                  ref={listButtonRef}
                   onClick={() => setShowPlaylist(!showPlaylist)}
                   className={`p-1.5 rounded-lg transition-colors ${showPlaylist ? 'bg-pink-100 text-pink-500' : 'hover:bg-black/5 text-black/40'}`}
                 >
@@ -151,11 +157,15 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
           </div>
         </div>
 
-        {showPlaylist && (
-          <div className="relative mt-4 z-50">
-             <PlaylistPopover onClose={() => setShowPlaylist(false)} />
-          </div>
-        )}
+        <AnimatePresence>
+          {showPlaylist && (
+            <PlaylistPopover 
+              onClose={() => setShowPlaylist(false)} 
+              portal 
+              anchorRect={listButtonRef.current?.getBoundingClientRect()}
+            />
+          )}
+        </AnimatePresence>
 
         {/* Configuration Panel (Expanded) */}
         <AnimatePresence>

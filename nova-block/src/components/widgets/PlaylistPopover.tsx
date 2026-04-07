@@ -1,21 +1,28 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { Music, Play, ExternalLink } from 'lucide-react';
 import { useMusicControls } from '../../contexts/MusicContext';
 
 interface PlaylistPopoverProps {
   onClose: () => void;
+  anchorRect?: DOMRect;
+  portal?: boolean;
 }
 
-export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose }) => {
+export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose, anchorRect, portal = false }) => {
   const { playlist, currentTrack, play } = useMusicControls();
 
-  return (
+  const content = (
     <motion.div
       initial={{ opacity: 0, scale: 0.9, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 10 }}
-      className="absolute bottom-full right-0 mb-4 w-72 max-h-[400px] overflow-hidden bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl flex flex-col z-[110]"
+      className={`${portal ? 'fixed' : 'absolute bottom-full right-0 mb-4'} w-72 max-h-[400px] overflow-hidden bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl flex flex-col z-[1000]`}
+      style={portal && anchorRect ? {
+        left: Math.min(window.innerWidth - 300, Math.max(12, anchorRect.left - 288 + anchorRect.width)),
+        bottom: window.innerHeight - anchorRect.top + 12,
+      } : {}}
     >
       <div className="p-4 border-b border-black/5 flex items-center justify-between bg-gradient-to-r from-pink-50 to-blue-50">
         <div className="flex items-center gap-2">
@@ -98,4 +105,10 @@ export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose }) => 
       </div>
     </motion.div>
   );
+
+  if (portal) {
+    return createPortal(content, document.body);
+  }
+
+  return content;
 };

@@ -6,7 +6,7 @@ import { PlaylistPopover } from './PlaylistPopover';
 
 const EDGE_PEEK_PX = 20;
 const DEFAULT_MARGIN_PX = 40;
-const SNAP_THRESHOLD_PX = 150;
+const SNAP_THRESHOLD_PX = 80;
 
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 
@@ -15,6 +15,7 @@ export const FloatingMusicCapsule: React.FC = () => {
   const { currentTrack, isPlaying, toggle, next, prev, stop } = useMusicControls();
 
   const capsuleRef = useRef<HTMLDivElement | null>(null);
+  const listButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -115,6 +116,7 @@ export const FloatingMusicCapsule: React.FC = () => {
     const w = rect.width;
     const h = rect.height;
 
+    const centerX = rect.left + w / 2;
     const leftGap = rect.left;
     const rightGap = vw - rect.right;
 
@@ -123,23 +125,28 @@ export const FloatingMusicCapsule: React.FC = () => {
 
     const nextY = clamp(rect.top, 0, maxY);
 
-    if (leftGap < SNAP_THRESHOLD_PX) {
-      setIsSnapped(true);
-      setSnapSide('left');
-      setPos({ x: 0, y: nextY });
-      return;
-    }
-
-    if (rightGap < SNAP_THRESHOLD_PX) {
-      setIsSnapped(true);
-      setSnapSide('right');
-      setPos({ x: maxX, y: nextY });
-      return;
+    // 优先判断靠近哪一侧，并结合阈值
+    if (centerX < vw / 2) {
+      if (leftGap < SNAP_THRESHOLD_PX) {
+        setIsSnapped(true);
+        setSnapSide('left');
+        setPos({ x: 0, y: nextY });
+        return;
+      }
+    } else {
+      if (rightGap < SNAP_THRESHOLD_PX) {
+        setIsSnapped(true);
+        setSnapSide('right');
+        setPos({ x: maxX, y: nextY });
+        return;
+      }
     }
 
     setIsSnapped(false);
     setPos({ x: clamp(rect.left, 0, maxX), y: nextY });
   };
+
+  const macaronGradient = 'linear-gradient(45deg, #FF9A9E 0%, #FAD0C4 99%, #FAD0C4 100%)';
 
   return (
     <AnimatePresence>
@@ -156,7 +163,7 @@ export const FloatingMusicCapsule: React.FC = () => {
         transition={{ type: 'spring', stiffness: 500, damping: 40, mass: 0.8 }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`fixed top-0 left-0 z-[100] flex items-center gap-2 bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl rounded-full p-1.5 transition-shadow duration-300 hover:shadow-pink-200/50 transform-gpu will-change-transform ${isSnapped ? '' : 'cursor-move'}`}
+        className={`fixed top-0 left-0 z-[1000] flex items-center gap-2 bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl rounded-full p-1.5 transition-shadow duration-300 hover:shadow-pink-200/50 transform-gpu will-change-transform ${isSnapped ? '' : 'cursor-move'}`}
       >
         {/* Vinyl Disc */}
         <div className="relative w-10 h-10 shrink-0">
@@ -167,8 +174,8 @@ export const FloatingMusicCapsule: React.FC = () => {
             className="absolute inset-1 rounded-full overflow-hidden"
             style={{
               backgroundImage: currentTrack.cover
-                ? `url(${currentTrack.cover})`
-                : 'linear-gradient(45deg, #FF9A9E 0%, #FAD0C4 99%, #FAD0C4 100%)',
+                ? `url("${currentTrack.cover}")`
+                : macaronGradient,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -206,6 +213,7 @@ export const FloatingMusicCapsule: React.FC = () => {
 
               <div className="flex items-center gap-1 border-l border-black/5 pl-2">
                 <button
+                  ref={listButtonRef}
                   onClick={() => setShowPlaylist(!showPlaylist)}
                   className={`p-1.5 rounded-full transition-colors ${showPlaylist ? 'bg-pink-100 text-pink-500' : 'hover:bg-black/5 text-gray-500'}`}
                 >
@@ -219,7 +227,15 @@ export const FloatingMusicCapsule: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {showPlaylist && <PlaylistPopover onClose={() => setShowPlaylist(false)} />}
+        <AnimatePresence>
+          {showPlaylist && (
+            <PlaylistPopover 
+              onClose={() => setShowPlaylist(false)} 
+              portal 
+              anchorRect={listButtonRef.current?.getBoundingClientRect()}
+            />
+          )}
+        </AnimatePresence>
       </motion.div>
     </AnimatePresence>
   );
