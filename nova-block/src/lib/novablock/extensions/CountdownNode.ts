@@ -17,6 +17,9 @@ export const CountdownNode = Node.create({
       title: {
         default: '倒计时',
       },
+      showBubble: {
+        default: false,
+      },
     };
   },
 

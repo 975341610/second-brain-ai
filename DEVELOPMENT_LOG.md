@@ -162,3 +162,30 @@
 - **修复**: 
   - 修复了因为直接从文件中导入 TypeScript 纯类型引发的 `Uncaught SyntaxError` 导致 Vite 白屏的 Bug。
   - 从 Git 追踪记录中剥离了 `__pycache__` 并统一配置了 `.gitignore`，一劳永逸解决了拉取代码时的冲突与缓存覆盖问题。
+## [2026-04-07] - 手账风精致小组件 (Widgets) Phase 1
+
+### 核心功能
+- **倒计时 (Countdown)**: 马卡龙配色倒计时卡片，支持设置目标日期面板，实时显示天/时/分/秒。
+- **黑胶播放器 (Music Player)**: 莫兰迪色系的可爱版音乐播放器，支持直接输入音频直链或上传，播放时带有 Framer Motion 驱动的丝滑黑胶唱片旋转动画。
+- **迷你日历 (Mini Calendar)**: 基于 `date-fns` 的极简月历打卡组件。
+- **斜杠菜单集成**: 已统一注册至编辑器 `/` 菜单的 "🧩 精致小组件" 分组下。
+
+### 技术栈与 UI/UX 设计
+- 深度利用 Tiptap React NodeView 架构，组件状态（日期、音频链接等）直接与底层 Node attributes 绑定，确保随文档实时无缝保存。
+- 视觉严格遵循“手账/可爱”约束：`rounded-2xl` / `3xl` 超大圆角、马卡龙渐变底色、柔和阴影 (`shadow-sm` + `shadow-black/5`)，以及悬停时的轻盈浮动交互 (`-translate-y-1` + `transition-all`)。
+## [2026-04-07] - 手账风精致小组件 (Widgets) Phase 2: 多列看板
+
+### 核心功能
+- **多列看板 (Kanban)**: 实现了一个完整的多列任务看板小组件，支持 "Todo"、"In Progress"、"Done" 等自定义列状态。
+- **全局进度条**: 顶部集成了醒目的全局进度条 (Progress Bar)，实时计算并展示整体任务完成率。
+- **任务管理交互**:
+  - 支持在各列底部快速添加新任务。
+  - 支持任务卡片在不同列之间左右流转（通过悬停时出现的左右箭头按钮操作）。
+  - 支持任务勾选完成状态与一键移除。
+
+### 技术栈与 UI/UX 设计
+- **状态同步**: 通过 Tiptap 的 `updateAttributes` 实时将 React 级别的任务列表、列状态序列化并写入文档 Node 的 `attrs`，实现 0 延迟的持久化保存。
+- **极致视觉体验 (ui-ux-pro-max)**:
+  - 延续手账/可爱风格约束，采用莫兰迪色系渐变、`rounded-2xl` 大圆角卡片。
+  - 运用 `shadow-sm shadow-black/5` 营造柔和的纸质层级感。
+  - 任务卡片 hover 时具备轻微的 `-translate-y-1` 悬浮反馈与丝滑过渡 (`transition-all`)。
