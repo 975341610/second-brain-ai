@@ -71,7 +71,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               transition={isActive ? { duration: 3, ease: 'linear', repeat: Infinity } : { duration: 0 }}
               className="absolute inset-2 rounded-full overflow-hidden"
               style={{
-                backgroundImage: (isCurrent && currentTrack?.cover) 
+                backgroundImage: currentTrack?.cover 
                   ? `url("${currentTrack.cover}")` 
                   : (cover ? `url("${cover}")` : macaronGradient),
                 backgroundSize: 'cover',

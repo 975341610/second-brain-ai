@@ -20,17 +20,25 @@ export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose, ancho
       exit={{ opacity: 0, scale: 0.9, y: 10 }}
       className={`${portal ? 'fixed' : 'absolute bottom-full right-0 mb-4'} w-72 max-h-[400px] overflow-hidden bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl flex flex-col z-[1000]`}
       style={portal && anchorRect ? (() => {
-        const popoverWidth = 288;
-        const popoverHeight = 400;
         let left = anchorRect.left;
-        let top = anchorRect.bottom + 8; // 默认在按钮下方
-        
-        // 边界检测
+        let top = anchorRect.bottom + 8; // 默认下方
+        const popoverWidth = 288;
+        const maxPopoverHeight = 400; // 这是一个预估的最大高度
+
+        // 左右边界
         if (left + popoverWidth > window.innerWidth) {
           left = window.innerWidth - popoverWidth - 20;
         }
-        if (top + popoverHeight > window.innerHeight) {
-          top = anchorRect.top - popoverHeight - 8; // 空间不够就在按钮上方
+        if (left < 10) left = 10;
+
+        // 上下边界 (优先下方，下方不够放上方，上方不够就强制贴在视口边缘)
+        if (top + maxPopoverHeight > window.innerHeight) {
+          // 下方不够，尝试放在上方
+          top = anchorRect.top - maxPopoverHeight - 8;
+        }
+        // 终极防溢出：如果放在上方导致 top 变成负数（被浏览器顶部吃掉）
+        if (top < 10) {
+          top = 10; // 强行贴在距离顶部 10px 的位置，内部有 overflow-y-auto 会自然滚动
         }
         
         return { left, top };
