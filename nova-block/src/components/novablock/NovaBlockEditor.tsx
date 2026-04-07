@@ -15,7 +15,7 @@ import { StickyNotesLayer } from '../editor/StickyNotesLayer';
 import type { StickyNoteData } from '../../lib/types';
 import { 
   GripVertical, Bold, Italic, 
-  Underline, Eraser, Cpu, Strikethrough,
+  Underline, Eraser, Cpu, Strikethrough, Timer,
   Type, Heading1, Heading2, Heading3, CheckSquare, Table as TableIcon, Code, Quote, Sparkles,
   Link as LinkIcon, Highlighter, Trash2, Copy, Replace, ListPlus, Minus,
   Trash, Columns, Rows, Film, Music, FileText, MonitorPlay, StickyNote as StickyNoteIcon,
@@ -27,7 +27,8 @@ import {
     EmbedNode, ResizableImage, TaskItem, TaskList, VideoNode, WikiLink,
     SlashCommands, FileNode, Heading, MathInline, MathBlock, Footnote, 
     ColumnGroup, Column, HighlightBlock,
-    WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload
+    WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload,
+    CountdownNode, MusicPlayerNode, MiniCalendarNode
   } from '../../lib/tiptapExtensions';
 
 import type { Note } from '../../lib/types';
@@ -117,6 +118,11 @@ const NOVA_BLOCK_SLASH_ITEMS = [
   // 4. 手账装饰 (Scrapbook Decoration)
   { label: '和纸胶带', description: '插入装饰性胶带', group: '手账装饰', icon: <Highlighter size={18} className="text-pink-400" />, keywords: ['tape', 'washi'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'washiTape' }) },
   { label: '便利贴', description: '独立浮动的彩色便利贴', group: '手账装饰', icon: <StickyNoteIcon size={18} className="text-yellow-400" />, keywords: ['note', 'sticky'], action: () => window.dispatchEvent(new CustomEvent('add-sticky-note')) },
+
+  // 5. 🧩 精致小组件 (Exquisite Widgets)
+  { label: '倒计时', description: '莫兰迪配色倒计时', group: '🧩 精致小组件', icon: <Timer size={18} />, keywords: ['countdown', 'djs'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'countdown' }) },
+  { label: '黑胶播放器', description: '带动画的音乐播放器', group: '🧩 精致小组件', icon: <Music size={18} />, keywords: ['music', 'player'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'musicPlayer' }) },
+  { label: '迷你日历', description: '极简月历打卡', group: '🧩 精致小组件', icon: <List size={18} />, keywords: ['calendar', 'checkin'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'miniCalendar' }) },
 ];
 
 interface NovaBlockEditorProps {
@@ -219,6 +225,9 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     JournalStamp,
     FilePlaceholder,
     FileUpload,
+    CountdownNode,
+    MusicPlayerNode,
+    MiniCalendarNode,
     SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
   ], []);
 

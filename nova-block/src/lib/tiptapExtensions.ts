@@ -24,6 +24,11 @@ import { CodeBlockComponent } from '../components/editor/CodeBlockComponent';
 
 export { TaskList, TaskItem };
 
+// --- Widgets ---
+export { CountdownNode } from './novablock/extensions/CountdownNode';
+export { MusicPlayerNode } from './novablock/extensions/MusicPlayerNode';
+export { MiniCalendarNode } from './novablock/extensions/MiniCalendarNode';
+
 // --- 基础扩展增强 ---
 export { Heading };
 
