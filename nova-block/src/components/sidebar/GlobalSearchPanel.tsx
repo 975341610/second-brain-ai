@@ -32,7 +32,14 @@ const GlobalSearchPanel: React.FC<GlobalSearchPanelProps> = ({
       if (note.is_folder) return;
 
       const titleMatch = note.title.toLowerCase().includes(q);
-      const textContent = stripHtml(note.content);
+      
+      // 合并主内容和所有便利贴内容进行全局搜索
+      let fullContent = note.content;
+      if (note.sticky_notes && note.sticky_notes.length > 0) {
+        fullContent += " " + note.sticky_notes.map(sn => sn.content).join(" ");
+      }
+      
+      const textContent = stripHtml(fullContent);
       const contentLower = textContent.toLowerCase();
       const contentMatchIndex = contentLower.indexOf(q);
 
