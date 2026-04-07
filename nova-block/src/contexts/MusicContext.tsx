@@ -25,6 +25,7 @@ interface MusicContextType {
   setProgress: (v: number) => void;
   stop: () => void;
   setPlaylist: (tracks: Track[]) => void;
+  refreshPlaylist: () => Promise<void>;
 }
 
 const MusicContext = createContext<MusicContextType | undefined>(undefined);
@@ -143,22 +144,27 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
 
+  const refreshPlaylist = useCallback(async () => {
+    try {
+      const data = await api.listMusicLibrary();
+      if (Array.isArray(data)) {
+        const apiBase = getApiBase().replace(/\/api$/, '');
+        const tracks = data.map((track: any) => ({
+          ...track,
+          url: track.url.startsWith('http') ? track.url : `${apiBase}${track.url}`,
+          cover: track.cover ? (track.cover.startsWith('http') ? track.cover : `${apiBase}${track.cover}`) : track.cover
+        }));
+        setPlaylist(tracks);
+      }
+    } catch (err) {
+      console.error('Failed to fetch music library:', err);
+    }
+  }, []);
+
   // Fetch local library
   useEffect(() => {
-    api.listMusicLibrary()
-      .then(data => {
-        if (Array.isArray(data)) {
-          const apiBase = getApiBase().replace(/\/api$/, '');
-          const tracks = data.map(track => ({
-            ...track,
-            url: track.url.startsWith('http') ? track.url : `${apiBase}${track.url}`,
-            cover: track.cover ? (track.cover.startsWith('http') ? track.cover : `${apiBase}${track.cover}`) : track.cover
-          }));
-          setPlaylist(tracks);
-        }
-      })
-      .catch(err => console.error('Failed to fetch music library:', err));
-  }, []);
+    refreshPlaylist();
+  }, [refreshPlaylist]);
 
   return (
     <MusicContext.Provider value={{
@@ -177,7 +183,8 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       setVolume,
       setProgress,
       stop,
-      setPlaylist
+      setPlaylist,
+      refreshPlaylist
     }}>
       {children}
     </MusicContext.Provider>

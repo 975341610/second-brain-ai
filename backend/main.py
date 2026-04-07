@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import os
 import sys
+import json
+import uuid
+import shutil
 
 # 🚀 模块导入路径修复：确保项目根目录在 sys.path 中，防止 ModuleNotFoundError
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -10,7 +13,7 @@ if root_dir not in sys.path:
 
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -56,6 +59,8 @@ async def auth_middleware(request: Request, call_next):
         or request.url.path.startswith(f"{settings.api_prefix}/media/files")
         or request.url.path.startswith(f"{settings.api_prefix}/media/music")
         or request.url.path == f"{settings.api_prefix}/media/music-library"
+        or request.url.path == f"{settings.api_prefix}/media/music-link"
+        or request.url.path == f"{settings.api_prefix}/media/music-upload"
         or request.url.path == f"{settings.api_prefix}/system/version"
         or request.url.path == f"{settings.api_prefix}/model-config"
     )
@@ -179,11 +184,11 @@ async def health() -> dict[str, str]:
 async def get_music_library():
     music_dir = Path(settings.music_path)
     if not music_dir.exists():
-        return []
+        music_dir.mkdir(parents=True, exist_ok=True)
     
     tracks = []
-    # Scan audio files
-    extensions = {'.mp3', '.wav', '.flac'}
+    # 格式支持放宽
+    extensions = {'.mp3', '.flac', '.wav', '.ogg', '.m4a', '.aac'}
     img_extensions = {'.jpg', '.png', '.jpeg', '.webp'}
     
     # Sort for deterministic output
@@ -202,10 +207,74 @@ async def get_music_library():
             tracks.append({
                 "url": f"/api/media/music/{file.name}",
                 "title": title,
-                "artist": "未知艺术家",
+                "artist": "本地音频",
                 "cover": cover
             })
+        elif file.suffix.lower() == '.json':
+            try:
+                with open(file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    # 支持 JSON 解析库，扫描 .json 文件
+                    if "url" in data and "title" in data:
+                        tracks.append({
+                            "url": data["url"],
+                            "title": data["title"],
+                            "artist": data.get("artist", "网络直链"),
+                            "cover": data.get("cover")
+                        })
+            except Exception:
+                pass
     return tracks
+
+
+@app.post("/api/media/music-link")
+async def save_music_link(payload: dict):
+    """新增直链保存接口"""
+    title = payload.get("title")
+    url = payload.get("url")
+    cover = payload.get("cover")
+    if not title or not url:
+        raise HTTPException(status_code=400, detail="Title and URL are required")
+    
+    music_dir = Path(settings.music_path)
+    music_dir.mkdir(parents=True, exist_ok=True)
+    
+    json_path = music_dir / f"{title}.json"
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "title": title, 
+            "url": url, 
+            "cover": cover, 
+            "artist": "网络直链"
+        }, f, ensure_ascii=False, indent=2)
+    
+    return {"status": "success", "path": str(json_path)}
+
+
+@app.post("/api/media/music-upload")
+async def upload_music(file: UploadFile = File(...), cover: UploadFile = File(None)):
+    """上传接口扩展"""
+    music_dir = Path(settings.music_path)
+    music_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Save audio file
+    audio_path = music_dir / file.filename
+    with open(audio_path, "wb") as f:
+        f.write(await file.read())
+        
+    # Save cover if provided
+    cover_url = None
+    if cover:
+        cover_path = music_dir / cover.filename
+        with open(cover_path, "wb") as f:
+            f.write(await cover.read())
+        cover_url = f"/api/media/music/{cover.filename}"
+    
+    return {
+        "status": "success",
+        "url": f"/api/media/music/{file.filename}",
+        "cover": cover_url
+    }
 
 
 @app.get("/{full_path:path}", response_model=None)

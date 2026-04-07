@@ -182,6 +182,17 @@ export const api = {
   getSystemVersion: () => invoke<{ version: string; git_commit?: string; build_time?: string; executable?: string }>('system:version', '/system/version'),
   openFile: (path: string) => invoke('system:open-file', '/system/open-file', { method: 'POST', body: JSON.stringify({ path }) }),
   listMusicLibrary: () => invoke<any[]>('media:music-library', '/media/music-library'),
+  saveMusicLink: (payload: { title: string; url: string; cover?: string }) =>
+    invoke<any>('media:music-link', '/media/music-link', { method: 'POST', body: JSON.stringify(payload) }),
+  uploadMusic: async (file: File, cover?: File) => {
+    const API_BASE = getApiBase();
+    const formData = new FormData();
+    formData.append('file', file);
+    if (cover) formData.append('cover', cover);
+    const response = await fetch(`${API_BASE}/media/music-upload`, { method: 'POST', body: formData });
+    if (!response.ok) throw new Error(await response.text());
+    return response.json();
+  },
   
   // Dummy implementations for PropertyPanel
   suggestTags: async (content: string) => {

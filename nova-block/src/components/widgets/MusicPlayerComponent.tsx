@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Upload, Link2, Play, Pause, ChevronDown, ChevronUp, Music } from 'lucide-react';
+import { Upload, Link2, Play, Pause, ChevronDown, ChevronUp, Music, SkipBack, SkipForward, ListMusic } from 'lucide-react';
 import { useMusic } from '../../contexts/MusicContext';
-import { getApiBase } from '../../lib/api';
+import { api, getApiBase } from '../../lib/api';
+import { PlaylistPopover } from './PlaylistPopover';
 
 const palette = {
   bg: 'bg-[#F6F3EF]',
@@ -24,8 +25,9 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
   const { editor, node, updateAttributes, selected } = props;
   const isEditable = editor?.isEditable;
 
-  const { currentTrack, isPlaying, progress, duration, play, toggle, setProgress } = useMusic();
+  const { currentTrack, isPlaying, progress, duration, play, toggle, setProgress, next, prev, refreshPlaylist, playlist } = useMusic();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(false);
 
   const src = node?.attrs?.src || '';
   const title = node?.attrs?.title || '未命名歌曲';
@@ -86,42 +88,73 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
               <div className={`text-base md:text-lg font-black tracking-tight ${palette.text} truncate`}>{title}</div>
-              <button 
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="p-1 hover:bg-black/5 rounded-lg transition-colors text-black/40"
-              >
-                {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-              </button>
+              <div className="flex items-center gap-1">
+                <button 
+                  onClick={() => setShowPlaylist(!showPlaylist)}
+                  className={`p-1.5 rounded-lg transition-colors ${showPlaylist ? 'bg-pink-100 text-pink-500' : 'hover:bg-black/5 text-black/40'}`}
+                >
+                  <ListMusic size={18} />
+                </button>
+                <button 
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="p-1 hover:bg-black/5 rounded-lg transition-colors text-black/40"
+                >
+                  {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </button>
+              </div>
             </div>
             <div className={`mt-0.5 text-sm font-semibold ${palette.subtle} truncate flex items-center gap-1.5`}>
               <Music size={12} /> {artist}
             </div>
 
-            {/* Simple Player Progress (Always shown in block) */}
-            <div className="mt-4">
-               <div 
-                className={`relative h-1.5 rounded-full bg-black/5 cursor-pointer overflow-hidden`}
-                onClick={(e) => {
-                  if (!isCurrent) return;
-                  const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const ratio = Math.min(1, Math.max(0, x / rect.width));
-                  setProgress(ratio);
-                }}
-              >
-                <motion.div 
-                  className="absolute inset-y-0 left-0 bg-black/60" 
-                  initial={false}
-                  animate={{ width: `${currentProgress * 100}%` }}
-                />
-              </div>
-              <div className="mt-1.5 flex justify-between text-[10px] font-bold text-black/30 tabular-nums uppercase tracking-wider">
-                <span>{isCurrent ? formatTime(currentProgress * currentDuration) : '0:00'}</span>
-                <span>{isCurrent ? formatTime(currentDuration) : '0:00'}</span>
-              </div>
+            {/* Simple Player Controls & Progress */}
+            <div className="mt-4 flex items-center gap-4">
+               <div className="flex items-center gap-1 shrink-0 bg-black/5 p-1 rounded-full">
+                  <button onClick={prev} className="p-1.5 hover:bg-black/10 rounded-full text-black/40 transition-colors">
+                    <SkipBack size={14} fill="currentColor" />
+                  </button>
+                  <button 
+                    onClick={handleToggle} 
+                    className="p-2.5 bg-black text-white rounded-full hover:scale-105 transition-transform shadow-lg"
+                  >
+                    {isActive ? <Pause size={12} fill="currentColor" /> : <Play size={12} fill="currentColor" className="ml-0.5" />}
+                  </button>
+                  <button onClick={next} className="p-1.5 hover:bg-black/10 rounded-full text-black/40 transition-colors">
+                    <SkipForward size={14} fill="currentColor" />
+                  </button>
+               </div>
+               
+               <div className="flex-1 min-w-0">
+                  <div 
+                    className={`relative h-1.5 rounded-full bg-black/5 cursor-pointer overflow-hidden`}
+                    onClick={(e) => {
+                      if (!isCurrent) return;
+                      const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+                      const x = e.clientX - rect.left;
+                      const ratio = Math.min(1, Math.max(0, x / rect.width));
+                      setProgress(ratio);
+                    }}
+                  >
+                    <motion.div 
+                      className="absolute inset-y-0 left-0 bg-black/60" 
+                      initial={false}
+                      animate={{ width: `${currentProgress * 100}%` }}
+                    />
+                  </div>
+                  <div className="mt-1.5 flex justify-between text-[10px] font-bold text-black/30 tabular-nums uppercase tracking-wider">
+                    <span>{isCurrent ? formatTime(currentProgress * currentDuration) : '0:00'}</span>
+                    <span>{isCurrent ? formatTime(currentDuration) : '0:00'}</span>
+                  </div>
+               </div>
             </div>
           </div>
         </div>
+
+        {showPlaylist && (
+          <div className="relative mt-4 z-50">
+             <PlaylistPopover onClose={() => setShowPlaylist(false)} />
+          </div>
+        )}
 
         {/* Configuration Panel (Expanded) */}
         <AnimatePresence>
@@ -138,59 +171,47 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
                 <button
                   type="button"
                   className="px-4 py-2.5 rounded-xl border border-black/5 bg-white/40 hover:bg-white hover:shadow-sm transition-all text-xs font-bold flex items-center gap-2"
-                  onClick={() => {
-                    const v = window.prompt('音频直链 URL：', src);
-                    if (v !== null) updateAttributes({ src: v.trim() });
+                  onClick={async () => {
+                    const t = window.prompt('歌曲标题：');
+                    const u = window.prompt('音频直链 URL：');
+                    const c = window.prompt('封面图片 URL (可选)：');
+                    if (t && u) {
+                      await api.saveMusicLink({ title: t, url: u, cover: c || undefined });
+                      await refreshPlaylist();
+                      alert('已保存到库');
+                    }
                   }}
                 >
-                  <Link2 size={14} className="text-black/40" /> 设置音频直链
+                  <Link2 size={14} className="text-black/40" /> 保存直链到库
                 </button>
 
                 <button
                   type="button"
                   className="px-4 py-2.5 rounded-xl border border-black/5 bg-white/40 hover:bg-white hover:shadow-sm transition-all text-xs font-bold flex items-center gap-2"
                   onClick={() => {
-                    const v = window.prompt('封面图片 URL：', cover);
-                    if (v !== null) updateAttributes({ cover: v.trim() });
+                    if (playlist.length === 0) {
+                      alert('库中暂无歌曲');
+                      return;
+                    }
+                    setShowPlaylist(true);
                   }}
                 >
-                  <Link2 size={14} className="text-black/40" /> 设置封面
-                </button>
-
-                <button
-                  type="button"
-                  className="px-4 py-2.5 rounded-xl border border-black/5 bg-white/40 hover:bg-white hover:shadow-sm transition-all text-xs font-bold flex items-center gap-2"
-                  onClick={() => {
-                    const v = window.prompt('歌曲名：', title);
-                    if (v !== null) updateAttributes({ title: v.trim() || '未命名歌曲' });
-                  }}
-                >
-                  <Link2 size={14} className="text-black/40" /> 设置歌曲名
-                </button>
-
-                <button
-                  type="button"
-                  className="px-4 py-2.5 rounded-xl border border-black/5 bg-white/40 hover:bg-white hover:shadow-sm transition-all text-xs font-bold flex items-center gap-2"
-                  onClick={() => {
-                    const v = window.prompt('艺术家：', artist);
-                    if (v !== null) updateAttributes({ artist: v.trim() || '未知艺术家' });
-                  }}
-                >
-                  <Link2 size={14} className="text-black/40" /> 设置艺术家
+                  <Music size={14} className="text-black/40" /> 从库中选择歌曲
                 </button>
 
                 {isEditable && (
                   <label className="md:col-span-2 px-4 py-2.5 rounded-xl border border-black/5 bg-white/40 text-xs font-bold flex items-center gap-2 cursor-pointer hover:bg-white hover:shadow-sm transition-all">
-                    <Upload size={14} className="text-black/40" /> 上传音频文件（本地）
+                    <Upload size={14} className="text-black/40" /> 上传音频到库
                     <input
                       type="file"
                       accept="audio/*"
                       className="hidden"
-                      onChange={(e) => {
+                      onChange={async (e) => {
                         const f = e.target.files?.[0];
                         if (!f) return;
-                        const url = URL.createObjectURL(f);
-                        updateAttributes({ src: url, title: f.name.replace(/\.[^/.]+$/, "") });
+                        await api.uploadMusic(f);
+                        await refreshPlaylist();
+                        alert('上传成功');
                       }}
                     />
                   </label>
