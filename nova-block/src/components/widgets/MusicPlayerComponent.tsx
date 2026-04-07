@@ -3,7 +3,7 @@ import { NodeViewWrapper } from '@tiptap/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, Link2, Play, Pause, ChevronDown, ChevronUp, Music, SkipBack, SkipForward, ListMusic } from 'lucide-react';
 import { useMusicControls, useMusicProgress } from '../../contexts/MusicContext';
-import { api, getApiBase } from '../../lib/api';
+import { api } from '../../lib/api';
 
 const palette = {
   bg: 'bg-[#F6F3EF]',
@@ -24,7 +24,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
   const { editor, node, selected } = props;
   const isEditable = editor?.isEditable;
 
-  const { currentTrack, isPlaying, play, toggle, next, prev, refreshPlaylist, playlist, togglePlaylist, playlistPopoverAnchor } = useMusicControls();
+  const { currentTrack, isPlaying, toggle, next, prev, refreshPlaylist, playlist, togglePlaylist, playlistPopoverAnchor } = useMusicControls();
   const { progress, duration, setProgress } = useMusicProgress();
   const [isExpanded, setIsExpanded] = useState(false);
   const listButtonRef = React.useRef<HTMLButtonElement | null>(null);
@@ -32,22 +32,21 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
   const showPlaylist = playlistPopoverAnchor !== null && listButtonRef.current !== null && 
     playlistPopoverAnchor.left === listButtonRef.current.getBoundingClientRect().left;
 
-  const src = node?.attrs?.src || '';
-  const title = node?.attrs?.title || '未命名歌曲';
-  const artist = node?.attrs?.artist || '未知艺术家';
-  const cover = node?.attrs?.cover || '';
+  const displayTitle = currentTrack?.title || '未播放音乐';
+  const displayArtist = currentTrack?.artist || '请从右侧列表选择或上传';
+  const displayCover = currentTrack?.cover || '';
 
-  const isCurrent = currentTrack?.url === src || (currentTrack?.url === (src.startsWith('http') || src.startsWith('blob:') ? src : `${getApiBase().replace(/\/api$/, '')}${src}`));
+  const isCurrent = !!currentTrack; 
   const isActive = isCurrent && isPlaying;
 
   const handleToggle = () => {
     if (isCurrent) {
       toggle();
     } else {
-      const apiBase = getApiBase().replace(/\/api$/, '');
-      const normalizedSrc = src.startsWith('http') || src.startsWith('blob:') || src.startsWith('data:') ? src : `${apiBase}${src}`;
-      const normalizedCover = cover && !cover.startsWith('http') ? `${apiBase}${cover}` : cover;
-      play({ url: normalizedSrc, title, artist, cover: normalizedCover });
+      // 全局没歌时，点击播放按钮直接弹出右侧的 PlaylistPopover 列表让用户选歌
+      if (listButtonRef.current) {
+        togglePlaylist(listButtonRef.current.getBoundingClientRect());
+      }
     }
   };
 
@@ -71,9 +70,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               transition={isActive ? { duration: 3, ease: 'linear', repeat: Infinity } : { duration: 0 }}
               className="absolute inset-2 rounded-full overflow-hidden"
               style={{
-                backgroundImage: currentTrack
-                  ? (currentTrack.cover ? `url("${currentTrack.cover}")` : macaronGradient)
-                  : (cover ? `url("${cover}")` : macaronGradient),
+                backgroundImage: displayCover ? `url("${displayCover}")` : macaronGradient,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -94,7 +91,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
           {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
-              <div className={`text-base md:text-lg font-black tracking-tight ${palette.text} truncate`}>{title}</div>
+              <div className={`text-base md:text-lg font-black tracking-tight ${palette.text} truncate`}>{displayTitle}</div>
               <div className="flex items-center gap-1">
                 <button 
                   ref={listButtonRef}
@@ -112,7 +109,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               </div>
             </div>
             <div className={`mt-0.5 text-sm font-semibold ${palette.subtle} truncate flex items-center gap-1.5`}>
-              <Music size={12} /> {artist}
+              <Music size={12} /> {displayArtist}
             </div>
 
             {/* Simple Player Controls & Progress */}
