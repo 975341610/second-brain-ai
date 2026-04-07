@@ -27,41 +27,43 @@ export const KanbanComponent: React.FC<any> = (props) => {
 
   const progress = totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
 
+  const cloneColumns = () => JSON.parse(JSON.stringify(columns ?? []));
+
   const handleAddTask = (colIndex: number) => {
     const content = window.prompt('任务内容:');
     if (!content) return;
 
-    const newColumns = [...columns];
+    const newColumns = cloneColumns();
     newColumns[colIndex].tasks.push({
       id: Math.random().toString(36).substring(7),
       content,
-      completed: false
+      completed: false,
     });
     updateAttributes({ columns: newColumns });
   };
 
   const moveTask = (fromColIndex: number, toColIndex: number, taskIndex: number) => {
-    const newColumns = JSON.parse(JSON.stringify(columns));
+    const newColumns = cloneColumns();
     const [task] = newColumns[fromColIndex].tasks.splice(taskIndex, 1);
     newColumns[toColIndex].tasks.push(task);
     updateAttributes({ columns: newColumns });
   };
 
   const toggleTask = (colIndex: number, taskIndex: number) => {
-    const newColumns = JSON.parse(JSON.stringify(columns));
+    const newColumns = cloneColumns();
     newColumns[colIndex].tasks[taskIndex].completed = !newColumns[colIndex].tasks[taskIndex].completed;
     updateAttributes({ columns: newColumns });
   };
 
   const removeTask = (colIndex: number, taskIndex: number) => {
-    const newColumns = JSON.parse(JSON.stringify(columns));
+    const newColumns = cloneColumns();
     newColumns[colIndex].tasks.splice(taskIndex, 1);
     updateAttributes({ columns: newColumns });
   };
 
   return (
     <NodeViewWrapper 
-      className={`my-6 rounded-3xl border ${morandi.border} ${morandi.bg} shadow-soft overflow-hidden select-none ${selected ? 'ring-2 ring-black/10' : ''}`}
+      className={`my-6 rounded-2xl border ${morandi.border} ${morandi.bg} shadow-sm shadow-black/5 hover:shadow-md hover:-translate-y-1 transition-all overflow-hidden select-none ${selected ? 'ring-2 ring-black/10' : ''}`}
       data-drag-handle
     >
       <div className="p-5 md:p-6">

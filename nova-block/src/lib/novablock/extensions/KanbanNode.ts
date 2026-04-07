@@ -17,6 +17,23 @@ export const KanbanNode = Node.create({
           { title: '进行中', tasks: [] },
           { title: '已完成', tasks: [] },
         ],
+        parseHTML: (element) => {
+          const raw = element.getAttribute('data-columns');
+          if (!raw) return undefined;
+          try {
+            const v = JSON.parse(raw);
+            return Array.isArray(v) ? v : undefined;
+          } catch {
+            return undefined;
+          }
+        },
+        renderHTML: (attributes) => {
+          try {
+            return { 'data-columns': JSON.stringify(attributes.columns ?? []) };
+          } catch {
+            return { 'data-columns': '[]' };
+          }
+        },
       },
     };
   },
