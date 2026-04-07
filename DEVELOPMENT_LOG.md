@@ -281,3 +281,27 @@
   - 修复了在 Tiptap 笔记编辑器内点击“列表”按钮时，弹出的马卡龙悬浮列表被编辑器自带的 `overflow: hidden` 截断或遮挡的致命问题。
   - 运用了 React 最顶级的渲染魔法 **`createPortal`**，强行将整个 `PlaylistPopover` 弹窗传送并挂载到了网页的最顶层 (`document.body`)。
   - 配合 `getBoundingClientRect` 动态计算触发按钮的物理坐标，确保列表弹窗不仅拥有凌驾于一切组件之上的最高 `z-index` 永不被遮挡，还能像长了眼睛一样精准地贴合在触发按钮的附近。
+## [2026-04-07] - 音乐播放器 (Music Player) 究极进化 Phase 5: 核心交互与显示 Bug 修复 (待验证)
+
+### 修复内容详情
+- **修复组件冲突与列表打开异常**：
+  - 重构了 `MusicContext.tsx` 中的 `togglePlaylist` 逻辑，通过 `DOMRect` 坐标精确对比触发源，解决了胶囊与笔记组件同时存在时的交互冲突。
+  - 确保所有触发按钮均传递 `e.currentTarget.getBoundingClientRect()`。
+- **列表弹出位置与边界检测**：
+  - 在 `PlaylistPopover.tsx` 中实现了智能定位算法。当列表弹出位置超出屏幕右侧或下方时，会自动向内偏移或向上弹出，确保 100% 可见。
+- **封面映射错误修复**：
+  - 修正了 `MusicPlayerComponent.tsx` 中的黑胶封面渲染逻辑，优先读取全局状态 `currentTrack.cover`，确保“全局单例遥控器”的视觉一致性。
+- **本地音乐来源标识修复**：
+  - **后端**：修改了 `/api/media/music-library` 和 `/api/media/music-link` 接口，扫描本地文件时显式打上 `source: 'local'` 标签，网络直链打上 `source: 'network'` 标签。
+  - **前端**：`PlaylistPopover` 根据 `source` 字段精准显示“本地文件”或“网络直链”，不再单纯依赖 URL 字符串判断。
+
+### Phase 5 追加修复 (Hotfix)
+- **修复播放列表溢出视口顶部**：增强了 `PlaylistPopover.tsx` 中的边界检测算法。当下边界不足弹到上方，且上边界也依然超出视口时，强行将其固定在 `top: 10px` 的安全区，利用内部滚动条防止顶部被“腰斩”。
+- **笔记组件封面全息同步**：移除了 `MusicPlayerComponent.tsx` 中自作聪明的 `isCurrent` 判断。现在即使该笔记配置的音频并未在播放，其黑胶封面也会被强制接管并显示全局正在播放的封面，真正实现了 100% “全局大脑遥控器”。
+
+### Phase 5 终极追加 (Hotfix 2)
+- **彻底切断笔记组件旧封面在无全局封面时的错误回退 (Ternary Fallback Leak)**：修复了当全局播放一首“无封面”的歌曲时，由于三元运算符的漏洞，导致 `MusicPlayerComponent` 错误地降级显示节点自身旧封面的 Bug。现在只要全局有歌曲播放，组件会无条件强制显示全局状态（包含没封面时的马卡龙默认底色），完全隔离了局部旧状态的干扰。
+
+- [x] **Music Player Widget 重构 (2026-04-07)**: 彻底清理了 `MusicPlayerComponent.tsx` 中的初版局部数据 (`node.attrs.src` 等)。现在笔记内的播放器组件已升格为“纯粹的全局状态镜像遥控器”，完美与全局 `MusicContext` 同步，彻底修复了切歌后笔记组件UI“装死”的Bug。
+
+- [x] **版本发布 (2026-04-07)**: 发布 v0.04 版本，解决了音乐播放器无法同步全局播放状态的遗留 Bug，提升了桌面小组件的稳定性和全息同步体验。
