@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import { differenceInSeconds, isValid, parseISO, addDays, addHours, addMinutes, addSeconds, format } from 'date-fns';
-import { Settings, Calendar } from 'lucide-react';
+import { Settings, Calendar, X, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const morandi = {
@@ -154,7 +154,7 @@ export const CountdownComponent: React.FC<any> = (props) => {
               initial={{ opacity: 0, y: 10, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.98 }}
-              className={`absolute inset-0 z-30 p-5 md:p-6 ${morandi.bg} flex flex-col gap-4`}
+              className={`absolute inset-0 z-30 p-4 md:p-5 ${morandi.bg} flex flex-col gap-3 rounded-3xl`}
             >
               <div className="flex-1 flex flex-col gap-5 overflow-y-auto">
                 <div className="flex flex-col gap-3">
@@ -162,13 +162,13 @@ export const CountdownComponent: React.FC<any> = (props) => {
                   <div className="flex p-1 bg-black/5 rounded-xl">
                     <button
                       onClick={() => setMode('duration')}
-                      className={`flex-1 py-1.5 rounded-lg text-[11px] font-bold transition-all ${mode === 'duration' ? 'bg-white shadow-sm text-[#3F3A3A]' : 'text-[#6E6868]'}`}
+                      className={`flex-1 py-1 rounded-md text-[10px] font-bold transition-all ${mode === 'duration' ? 'bg-white shadow-sm text-[#3F3A3A]' : 'text-[#6E6868]'}`}
                     >
                       输入时长
                     </button>
                     <button
                       onClick={() => setMode('date')}
-                      className={`flex-1 py-1.5 rounded-lg text-[11px] font-bold transition-all ${mode === 'date' ? 'bg-white shadow-sm text-[#3F3A3A]' : 'text-[#6E6868]'}`}
+                      className={`flex-1 py-1 rounded-md text-[10px] font-bold transition-all ${mode === 'date' ? 'bg-white shadow-sm text-[#3F3A3A]' : 'text-[#6E6868]'}`}
                     >
                       具体日期
                     </button>
@@ -188,26 +188,26 @@ export const CountdownComponent: React.FC<any> = (props) => {
                             min="0"
                             value={duration[f.key as keyof typeof duration]}
                             onChange={(e) => setDuration({ ...duration, [f.key]: e.target.value })}
-                            className={`w-full py-2.5 rounded-xl border-none ${morandi.card} text-center font-black text-lg focus:ring-2 ring-[#B7C0C7] ${morandi.text}`}
+                            className={`w-full py-1.5 rounded-xl border-none ${morandi.card} text-center font-black text-sm focus:ring-2 ring-[#B7C0C7] ${morandi.text}`}
                           />
-                          <span className={`text-[10px] font-bold ${morandi.subtle}`}>{f.label}</span>
+                          <span className={`text-[9px] font-bold ${morandi.subtle}`}>{f.label}</span>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className={`flex items-center gap-3 p-3 rounded-2xl ${morandi.card} border ${morandi.border}`}>
-                      <Calendar size={16} className={morandi.subtle} />
+                    <div className={`flex items-center gap-2 p-2 rounded-xl ${morandi.card} border ${morandi.border}`}>
+                      <Calendar size={14} className={morandi.subtle} />
                       <input
                         type="datetime-local"
                         value={targetDateTime}
                         onChange={(e) => setTargetDateTime(e.target.value)}
-                        className="flex-1 bg-transparent border-none outline-none text-sm font-bold text-[#3F3A3A] focus:ring-0"
+                        className="flex-1 bg-transparent border-none outline-none text-xs font-bold text-[#3F3A3A] focus:ring-0 px-1 py-0.5"
                       />
                     </div>
                   )}
                 </div>
 
-                <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/40 border border-dashed border-black/10">
+                <div className="flex items-center gap-2 p-2 rounded-xl bg-white/40 mt-1 border border-dashed border-black/10">
                   <input
                     type="checkbox"
                     id="showBubble"
@@ -215,24 +215,26 @@ export const CountdownComponent: React.FC<any> = (props) => {
                     onChange={(e) => setShowBubble(e.target.checked)}
                     className="w-4 h-4 rounded border-[#E6DFD8] text-[#B7C0C7] focus:ring-[#B7C0C7] cursor-pointer"
                   />
-                  <label htmlFor="showBubble" className={`text-[11px] font-bold ${morandi.subtle} cursor-pointer`}>
+                  <label htmlFor="showBubble" className={`text-[10px] font-bold ${morandi.subtle} cursor-pointer select-none`}>
                     倒计时结束时显示气泡提醒
                   </label>
                 </div>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex gap-2 justify-end mt-1">
                 <button
                   onClick={() => setIsSettingsOpen(false)}
-                  className="flex-1 py-3 rounded-2xl text-[11px] font-black bg-white border ${morandi.border} text-[#6E6868] hover:bg-gray-50 active:scale-95 transition-all"
+                  title="取消"
+                  className="p-2 rounded-xl bg-white border border-[#E6DFD8] text-[#6E6868] hover:bg-gray-50 active:scale-95 transition-all shadow-sm flex items-center justify-center group relative"
                 >
-                  取消
+                  <X size={14} strokeWidth={3} />
                 </button>
                 <button
                   onClick={handleConfirm}
-                  className="flex-1 py-3 rounded-2xl text-[11px] font-black bg-[#B7C0C7] text-white shadow-lg shadow-[#B7C0C7]/20 hover:opacity-90 active:scale-95 transition-all"
+                  title="保存"
+                  className="p-2 rounded-xl bg-[#B7C0C7] text-white shadow-md shadow-[#B7C0C7]/30 hover:opacity-90 active:scale-95 transition-all flex items-center justify-center group relative"
                 >
-                  确定
+                  <Check size={14} strokeWidth={3} />
                 </button>
               </div>
             </motion.div>
