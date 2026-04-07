@@ -31,6 +31,9 @@ interface MusicControlsContextType {
   stop: () => void;
   setPlaylist: (tracks: Track[]) => void;
   refreshPlaylist: () => Promise<void>;
+  playlistPopoverAnchor: DOMRect | null;
+  togglePlaylist: (rect: DOMRect | null) => void;
+  closePlaylist: () => void;
 }
 
 interface MusicProgressContextType {
@@ -49,10 +52,28 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [duration, setDuration] = useState(0);
   const [playlist, setPlaylist] = useState<Track[]>([]);
   const [volume, setVolume] = useState(0.8);
+  const [playlistPopoverAnchor, setPlaylistPopoverAnchor] = useState<DOMRect | null>(null);
 
   // 让 audio 标签在顶层常驻（避免因组件隐藏/重渲染导致音频中断）
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const nextRef = useRef<() => void>(() => {});
+
+  const togglePlaylist = useCallback((rect: DOMRect | null) => {
+    setPlaylistPopoverAnchor(prev => prev ? null : rect);
+  }, []);
+
+  const closePlaylist = useCallback(() => {
+    setPlaylistPopoverAnchor(null);
+  }, []);
+
+  // 监听滚动自动关闭
+  useEffect(() => {
+    const handleScroll = () => {
+      closePlaylist();
+    };
+    window.addEventListener('scroll', handleScroll, { capture: true });
+    return () => window.removeEventListener('scroll', handleScroll, { capture: true });
+  }, [closePlaylist]);
 
   const play = useCallback(
     (track: Track) => {
@@ -218,6 +239,9 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       stop,
       setPlaylist,
       refreshPlaylist,
+      playlistPopoverAnchor,
+      togglePlaylist,
+      closePlaylist,
     }),
     [
       currentTrack,
@@ -232,6 +256,9 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       prev,
       stop,
       refreshPlaylist,
+      playlistPopoverAnchor,
+      togglePlaylist,
+      closePlaylist,
     ],
   );
 

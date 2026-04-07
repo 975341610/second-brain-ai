@@ -25,11 +25,13 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
   const { editor, node, selected } = props;
   const isEditable = editor?.isEditable;
 
-  const { currentTrack, isPlaying, play, toggle, next, prev, refreshPlaylist, playlist } = useMusicControls();
+  const { currentTrack, isPlaying, play, toggle, next, prev, refreshPlaylist, playlist, togglePlaylist, playlistPopoverAnchor } = useMusicControls();
   const { progress, duration, setProgress } = useMusicProgress();
   const [isExpanded, setIsExpanded] = useState(false);
-  const [showPlaylist, setShowPlaylist] = useState(false);
   const listButtonRef = React.useRef<HTMLButtonElement | null>(null);
+
+  const showPlaylist = playlistPopoverAnchor !== null && listButtonRef.current !== null && 
+    playlistPopoverAnchor.left === listButtonRef.current.getBoundingClientRect().left;
 
   const src = node?.attrs?.src || '';
   const title = node?.attrs?.title || '未命名歌曲';
@@ -70,9 +72,9 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               transition={isActive ? { duration: 3, ease: 'linear', repeat: Infinity } : { duration: 0 }}
               className="absolute inset-2 rounded-full overflow-hidden"
               style={{
-                backgroundImage: (isCurrent && currentTrack?.cover) 
-                  ? `url("${currentTrack.cover}")` 
-                  : (cover ? `url("${cover}")` : macaronGradient),
+                backgroundImage: (isCurrent ? (currentTrack?.cover || cover) : cover) 
+                  ? `url("${isCurrent ? (currentTrack?.cover || cover) : cover}")` 
+                  : macaronGradient,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -97,7 +99,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
               <div className="flex items-center gap-1">
                 <button 
                   ref={listButtonRef}
-                  onClick={() => setShowPlaylist(!showPlaylist)}
+                  onClick={() => togglePlaylist(listButtonRef.current?.getBoundingClientRect() || null)}
                   className={`p-1.5 rounded-lg transition-colors ${showPlaylist ? 'bg-pink-100 text-pink-500' : 'hover:bg-black/5 text-black/40'}`}
                 >
                   <ListMusic size={18} />
@@ -157,17 +159,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
           </div>
         </div>
 
-        <AnimatePresence>
-          {showPlaylist && (
-            <PlaylistPopover 
-              onClose={() => setShowPlaylist(false)} 
-              portal 
-              anchorRect={listButtonRef.current?.getBoundingClientRect()}
-            />
-          )}
-        </AnimatePresence>
-
-        {/* Configuration Panel (Expanded) */}
+        {/* 配置面板 (展开) */}
         <AnimatePresence>
           {isExpanded && (
             <motion.div
@@ -204,7 +196,7 @@ export const MusicPlayerComponent: React.FC<any> = (props) => {
                       alert('库中暂无歌曲');
                       return;
                     }
-                    setShowPlaylist(true);
+                    togglePlaylist(listButtonRef.current?.getBoundingClientRect() || null);
                   }}
                 >
                   <Music size={14} className="text-black/40" /> 从库中选择歌曲

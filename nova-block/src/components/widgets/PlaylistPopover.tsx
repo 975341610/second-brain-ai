@@ -20,8 +20,8 @@ export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose, ancho
       exit={{ opacity: 0, scale: 0.9, y: 10 }}
       className={`${portal ? 'fixed' : 'absolute bottom-full right-0 mb-4'} w-72 max-h-[400px] overflow-hidden bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl flex flex-col z-[1000]`}
       style={portal && anchorRect ? {
-        left: Math.min(window.innerWidth - 300, Math.max(12, anchorRect.left - 288 + anchorRect.width)),
-        bottom: window.innerHeight - anchorRect.top + 12,
+        left: Math.min(anchorRect.left - 288 + anchorRect.width, window.innerWidth - 288 - 20),
+        top: Math.min(anchorRect.top - 400 - 12, window.innerHeight - 400 - 20),
       } : {}}
     >
       <div className="p-4 border-b border-black/5 flex items-center justify-between bg-gradient-to-r from-pink-50 to-blue-50">

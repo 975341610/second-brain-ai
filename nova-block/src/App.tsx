@@ -5,8 +5,24 @@ import { MoodboardView } from './components/moodboard/MoodboardView'
 import CommandPalette from './components/search/CommandPalette'
 import type { Note } from './lib/types'
 import { AnimatePresence, motion } from 'framer-motion'
-import { MusicProvider } from './contexts/MusicContext'
+import { MusicProvider, useMusicControls } from './contexts/MusicContext'
 import { FloatingMusicCapsule } from './components/widgets/FloatingMusicCapsule'
+import { PlaylistPopover } from './components/widgets/PlaylistPopover'
+
+function MusicGlobalUI() {
+  const { playlistPopoverAnchor, closePlaylist } = useMusicControls();
+  return (
+    <AnimatePresence>
+      {playlistPopoverAnchor && (
+        <PlaylistPopover
+          onClose={closePlaylist}
+          portal
+          anchorRect={playlistPopoverAnchor}
+        />
+      )}
+    </AnimatePresence>
+  );
+}
 
 // 初始模拟数据
 
@@ -330,6 +346,9 @@ function App() {
         
         {/* 全局悬浮音乐胶囊 */}
         <FloatingMusicCapsule />
+        
+        {/* 全局音乐列表 (单例) */}
+        <MusicGlobalUI />
       </div>
     </MusicProvider>
   )
