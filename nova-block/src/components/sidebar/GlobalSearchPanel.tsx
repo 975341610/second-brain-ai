@@ -39,6 +39,11 @@ const GlobalSearchPanel: React.FC<GlobalSearchPanelProps> = ({
         fullContent += " " + note.sticky_notes.map(sn => sn.content).join(" ");
       }
       
+      // 合并标签内容，让标签也能被全局搜索到
+      if (note.tags && note.tags.length > 0) {
+        fullContent += " " + note.tags.join(" ");
+      }
+      
       const textContent = stripHtml(fullContent);
       const contentLower = textContent.toLowerCase();
       const contentMatchIndex = contentLower.indexOf(q);

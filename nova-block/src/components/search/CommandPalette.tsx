@@ -27,7 +27,12 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
     }
     const q = query.toLowerCase();
     return notes
-      .filter(n => !n.is_folder && n.title.toLowerCase().includes(q))
+      .filter(n => {
+        if (n.is_folder) return false;
+        const matchTitle = n.title.toLowerCase().includes(q);
+        const matchTags = n.tags && n.tags.some(tag => tag.toLowerCase().includes(q));
+        return matchTitle || matchTags;
+      })
       .slice(0, 10);
   }, [query, notes]);
 
