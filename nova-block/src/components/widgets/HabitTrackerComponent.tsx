@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import {
   addMonths,
@@ -19,7 +19,6 @@ import {
   Trash2,
   Plus,
   Camera,
-  Wallpaper,
   Trophy,
   CalendarDays,
   PenTool,
@@ -205,7 +204,7 @@ export const HabitTrackerComponent: React.FC<any> = (props) => {
     return map;
   }, [logs, activeHabit?.id]);
 
-  const handleAction = useCallback((dateStr: string, isRight: boolean, e: any) => {
+  const handleAction = useCallback((dateStr: string, isRight: boolean) => {
     if (!activeHabit || !isEditable) return;
     const cur = logsMap[dateStr] || 0;
     const next = isRight ? Math.max(0, cur - 1) : Math.min(activeHabit.targetValue, cur + 1);
@@ -373,8 +372,8 @@ export const HabitTrackerComponent: React.FC<any> = (props) => {
                     isToday={isToday(date)}
                     isCurrMonth={isSameMonth(date, cursor)}
                     isEditable={isEditable}
-                    onLeftClick={(d:any, e:any) => handleAction(d, false, e)}
-                    onRightClick={(d:any, e:any) => handleAction(d, true, e)}
+                    onLeftClick={(d:any) => handleAction(d, false)}
+                    onRightClick={(d:any) => handleAction(d, true)}
                     themeColor={activeHabit?.color}
                   />
                 );

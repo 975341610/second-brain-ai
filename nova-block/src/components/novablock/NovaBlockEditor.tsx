@@ -21,8 +21,7 @@ import {
     Type, Heading1, Heading2, Heading3, CheckSquare, Table as TableIcon, Code, Quote, Sparkles,
     Link as LinkIcon, Highlighter, Trash2, Copy, Replace, ListPlus, Minus,
     Trash, Columns, Rows, Film, Music, FileText, MonitorPlay, StickyNote as StickyNoteIcon,
-    List, ListOrdered, ArrowUpToLine, ArrowDownToLine, CopyPlus, StickyNote, Image as ImageIcon,
-    Settings2, MousePointer2
+    List, ListOrdered, ArrowUpToLine, ArrowDownToLine, CopyPlus, StickyNote, Smile, X
 } from 'lucide-react';
 
 import { 
@@ -31,7 +30,8 @@ import {
     SlashCommands, FileNode, Heading, MathInline, MathBlock, Footnote, 
     ColumnGroup, Column, HighlightBlock,
     WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload,
-    CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode
+    CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode,
+    Emoticon
   } from '../../lib/tiptapExtensions';
 
 import type { Note } from '../../lib/types';
@@ -40,6 +40,7 @@ import { EditorHeader } from '../editor/EditorHeader';
 import { PropertyPanel } from '../editor/PropertyPanel';
 import { getSuggestionConfig } from '../notion/SlashMenuConfig';
 import { TableOfContents } from './components/TableOfContents';
+import { EmoticonPanel } from '../editor/EmoticonPanel';
 
 const NOVA_BLOCK_SLASH_ITEMS = [
   // 1. 文本格式 (Text Formatting)
@@ -62,6 +63,11 @@ const NOVA_BLOCK_SLASH_ITEMS = [
   { label: '有序列表', description: '数字编号列表', group: '段落设置', icon: <ListPlus size={18} className="rotate-180" />, keywords: ['ol', 'ordered'], action: (chain: ChainedCommands) => chain.toggleOrderedList() },
   { label: '无序列表', description: '圆点符号列表', group: '段落设置', icon: <ListPlus size={18} />, keywords: ['ul', 'bullet'], action: (chain: ChainedCommands) => chain.toggleBulletList() },
   { label: '待办事项', description: '复选框任务', group: '段落设置', icon: <CheckSquare size={18} />, keywords: ['todo', 'task'], action: (chain: ChainedCommands) => chain.toggleTaskList() },
+  { label: '表情', description: '插入内联表情', group: '段落设置', icon: <Smile size={18} />, keywords: ['emoji', 'emoticon', 'bqb'], action: (chain: ChainedCommands) => {
+    // 转发一个事件让外部弹窗处理，或者在这里能拿到上下文
+    window.dispatchEvent(new CustomEvent('open-emoticon-panel'));
+    return chain;
+  } },
   { label: '引用', description: '块级引用', group: '段落设置', icon: <Quote size={18} />, keywords: ['quote', 'blockquote'], action: (chain: ChainedCommands) => chain.toggleBlockquote() },
 
   // 3. 插入 (Insert)
@@ -155,7 +161,9 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   const [stickyNotes, setStickyNotes] = useState<StickyNoteData[]>([]);
   const [isStickerMode, setIsStickerMode] = useState(false);
   const [isStickerPanelOpen, setIsStickerPanelOpen] = useState(false);
+  const [isEmoticonPanelOpen, setIsEmoticonPanelOpen] = useState(false);
   const blockMenuRef = useRef<HTMLDivElement>(null);
+  const emoticonPanelRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -215,7 +223,17 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       }
     };
     window.addEventListener('add-sticky-note', handleAddSticker as EventListener);
-    return () => window.removeEventListener('add-sticky-note', handleAddSticker as EventListener);
+    
+    const handleOpenEmoticon = (e?: any) => {
+      if (e && e.stopPropagation) e.stopPropagation();
+      setIsEmoticonPanelOpen(true);
+    };
+    window.addEventListener('open-emoticon-panel', handleOpenEmoticon);
+
+    return () => {
+      window.removeEventListener('add-sticky-note', handleAddSticker as EventListener);
+      window.removeEventListener('open-emoticon-panel', handleOpenEmoticon);
+    };
   }, [stickers, stickyNotes, handleStickersChange, handleStickyNotesChange]);
 
   const slashItemsRef = useRef<any[]>(NOVA_BLOCK_SLASH_ITEMS);
@@ -269,6 +287,7 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     KanbanNode,
     HabitTrackerNode,
     TodoNode,
+    Emoticon,
     SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
   ], []);
 
@@ -372,7 +391,31 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     editorProps: {
       attributes: {
         class: 'novablock-editor prose prose-stone dark:prose-invert max-w-none focus:outline-none min-h-[500px] w-full mx-auto pt-4 px-12 mb-32 font-sans text-foreground selection:bg-primary/20'
-      }
+      },
+      handleKeyDown: (view, event) => {
+        // `/e` + Enter -> 打开表情面板（阻止换行，并删除触发文本）
+        if (event.key !== 'Enter') return false;
+
+        const { state } = view;
+        const { selection } = state;
+        if (!selection.empty) return false;
+
+        const { from } = selection;
+        if (from < 2) return false;
+
+        const trigger = state.doc.textBetween(from - 2, from, '\0', '\0');
+        if (trigger !== '/e') return false;
+
+        // 确保 `/e` 是一个独立触发（前一个字符为空或空白）
+        const prevChar = from - 3 >= 0 ? state.doc.textBetween(from - 3, from - 2, '\0', '\0') : '';
+        if (prevChar && !/\s/.test(prevChar)) return false;
+
+        event.preventDefault();
+        const tr = state.tr.delete(from - 2, from);
+        view.dispatch(tr);
+        setIsEmoticonPanelOpen(true);
+        return true;
+      },
     }
   }, [extensions, updateOutline]);
 
@@ -446,6 +489,22 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isBlockMenuOpen]);
+
+  // 点击外部关闭表情面板
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (emoticonPanelRef.current && !emoticonPanelRef.current.contains(event.target as Node)) {
+        setIsEmoticonPanelOpen(false);
+      }
+    };
+
+    if (isEmoticonPanelOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isEmoticonPanelOpen]);
 
   // 处理拖拽手柄点击：捕获当前 Block 位置
   const handleGripClick = (e: React.MouseEvent) => {
@@ -981,6 +1040,26 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                   >
                     <Eraser size={16} />
                   </button>
+
+                  <div className="w-px h-5 bg-border/20 mx-1" />
+
+                  <div className="relative">
+                    <button
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setIsEmoticonPanelOpen((v) => !v);
+                      }}
+                      className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${isEmoticonPanelOpen ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                      title="表情包"
+                    >
+                      <Smile size={16} />
+                    </button>
+                  </div>
                 </motion.div>
               </BubbleMenu>
             )}
@@ -1004,6 +1083,42 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
               notes={stickyNotes}
               onChange={handleStickyNotesChange}
             />
+
+            {/* Global Emoticon Panel (Detached from BubbleMenu) */}
+            <AnimatePresence>
+              {isEmoticonPanelOpen && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: 8 }}
+                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99999]"
+                  ref={emoticonPanelRef}
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  <EmoticonPanel
+                    onSelect={(emoticon) => {
+                      editor?.chain().focus().setEmoticon({ src: emoticon.url, alt: emoticon.name }).run();
+                      setIsEmoticonPanelOpen(false);
+                    }}
+                  />
+                  <button
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setIsEmoticonPanelOpen(false);
+                    }}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-background border border-border rounded-full flex items-center justify-center shadow-md hover:bg-accent transition-colors"
+                    aria-label="关闭表情面板"
+                  >
+                    <X size={14} />
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
         

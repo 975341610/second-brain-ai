@@ -75,6 +75,10 @@ class Settings(BaseSettings):
         return (self.data_root / "stickers").as_posix()
 
     @property
+    def emoticons_path(self) -> str:
+        return (self.data_root / "emoticons").as_posix()
+
+    @property
     def sample_docs_path(self) -> str:
         return (self.data_root / "sample_docs").as_posix()
 

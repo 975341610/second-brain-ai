@@ -17,6 +17,12 @@ const viteConfig = defineConfig({
     host: '0.0.0.0',
     port: 5173,
     allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8765',
+        changeOrigin: true,
+      }
+    },
     // 根据环境变量动态配置 HMR，避免写死导致本地和云端环境冲突
     hmr: process.env.HMR_CLIENT_PORT 
       ? {

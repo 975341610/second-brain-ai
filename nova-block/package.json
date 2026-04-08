@@ -1,7 +1,7 @@
 {
   "name": "nova-block",
   "private": true,
-  "version": "0.07",
+  "version": "0.09",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",

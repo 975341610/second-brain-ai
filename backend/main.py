@@ -116,6 +116,11 @@ if music_dir.exists():
     # Use a more specific path to avoid prefix matching other API routes (like /api/media/music-library)
     app.mount("/api/media/static/music", StaticFiles(directory=music_dir), name="music_files")
 
+# Mount emoticons library
+emoticons_dir = Path(settings.emoticons_path)
+if emoticons_dir.exists():
+    app.mount("/api/emoticons/static/files", StaticFiles(directory=emoticons_dir), name="emoticon_files")
+
 def run_migrations() -> None:
     inspector = inspect(engine)
     with engine.begin() as connection:

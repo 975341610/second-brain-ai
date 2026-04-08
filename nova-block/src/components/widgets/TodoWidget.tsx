@@ -2,7 +2,7 @@ import React, { useMemo, useState, useCallback } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import { Plus, CheckCircle2, Circle, Settings, Trash2, ChevronDown } from 'lucide-react';
 import { useTodo } from '../../contexts/TodoContext';
-import type { TodoTask, TodoList } from '../../contexts/TodoContext';
+import type { TodoTask } from '../../contexts/TodoContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // 莫兰迪色系配置
@@ -21,13 +21,11 @@ const morandi = {
 const TodoItem = React.memo(({ 
   task, 
   onToggle, 
-  onDelete, 
-  color 
+  onDelete 
 }: { 
   task: TodoTask; 
   onToggle: (id: string) => void; 
   onDelete: (id: string) => void;
-  color?: string;
 }) => {
   return (
     <motion.div 
@@ -66,7 +64,7 @@ TodoItem.displayName = 'TodoItem';
 export const TodoWidget: React.FC<any> = (props) => {
   const { node, updateAttributes, selected } = props;
   const { listId } = node.attrs;
-  const { todoLists, activeListId, setActiveListId, addTask, toggleTask, deleteTask, addTodoList, updateTodoList } = useTodo();
+  const { todoLists, addTask, toggleTask, deleteTask, addTodoList } = useTodo();
   
   const [isSettingOpen, setIsSettingOpen] = useState(false);
 
@@ -163,7 +161,6 @@ export const TodoWidget: React.FC<any> = (props) => {
                 task={task} 
                 onToggle={handleToggleTask} 
                 onDelete={handleDeleteTask}
-                color={currentList.color}
               />
             ))}
           </AnimatePresence>

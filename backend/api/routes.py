@@ -222,6 +222,23 @@ async def persist_note(db: Session, title: str, content: str, background_tasks: 
     
     return note_to_response(note)
 
+@router.get("/emoticons/list", response_model=list[dict])
+def list_emoticons():
+    """获取表情包资源列表"""
+    emoticons_path = Path(settings.emoticons_path)
+    if not emoticons_path.exists():
+        emoticons_path.mkdir(parents=True, exist_ok=True)
+    
+    files = []
+    # 支持常见的图片格式
+    for ext in ["*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg"]:
+        for f in emoticons_path.glob(ext):
+            files.append({
+                "name": f.name,
+                "url": f"/api/emoticons/static/files/{f.name}"
+            })
+    return sorted(files, key=lambda x: x["name"])
+
 @router.post("/notes/quick-capture", response_model=QuickCaptureResponse)
 async def quick_capture_api(payload: QuickCaptureRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)) -> QuickCaptureResponse:
     from datetime import datetime
@@ -893,6 +910,69 @@ def create_task_api(payload: TaskCreate, db: Session = Depends(get_db)) -> TaskR
 def clear_completed_tasks_api(db: Session = Depends(get_db)) -> dict:
     count = clear_completed_tasks(db)
     return {"status": "ok", "cleared_count": count}
+
+# ============================================================
+# 😄 表情包系统接口
+# ============================================================
+
+@router.post("/emoticons/upload")
+async def upload_emoticon(file: UploadFile = File(...)):
+    """上传新表情"""
+    try:
+        emoticons_path = Path(settings.data_root) / "emoticons"
+        if not emoticons_path.exists():
+            emoticons_path.mkdir(parents=True, exist_ok=True)
+
+        ext = os.path.splitext(file.filename)[1].lower()
+        if ext not in [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"]:
+            raise HTTPException(status_code=400, detail="Unsupported file type")
+            
+        unique_name = f"{uuid.uuid4()}{ext}"
+        save_path = emoticons_path / unique_name
+        
+        with open(save_path, "wb") as f:
+            f.write(await file.read())
+            
+        return {
+            "name": unique_name,
+            "url": f"/api/emoticons/static/files/{unique_name}",
+            "original_name": file.filename
+        }
+    except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
+        raise HTTPException(status_code=500, detail=f"Emoticon upload failed: {str(e)}")
+
+@router.get("/emoticons/files/{filename}")
+def get_emoticon_file(filename: str):
+    """获取表情文件内容"""
+    emoticons_path = Path(settings.data_root) / "emoticons"
+    file_path = emoticons_path / filename
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Emoticon not found")
+    
+    import mimetypes
+    mime_type, _ = mimetypes.guess_type(filename)
+    
+    def iterfile():
+        with open(file_path, mode="rb") as f:
+            yield from f
+            
+    return StreamingResponse(iterfile(), media_type=mime_type or "image/png")
+
+@router.delete("/emoticons/files/{filename}")
+def delete_emoticon_file(filename: str):
+    """物理删除表情文件"""
+    emoticons_path = Path(settings.data_root) / "emoticons"
+    file_path = emoticons_path / filename
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Emoticon not found")
+    
+    try:
+        os.remove(file_path)
+        return {"status": "ok", "message": f"Emoticon {filename} deleted"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete emoticon: {str(e)}")
 
 @router.patch("/tasks/{task_id:int}", response_model=TaskResponse)
 def update_task_api(task_id: int, payload: TaskUpdate, db: Session = Depends(get_db)) -> TaskResponse:

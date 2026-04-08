@@ -1,5 +1,45 @@
 # Development Log
 
+## v0.09 - 动态表情包系统与快捷面板唤起 [2026-04-09]
+
+### 表情包面板完全体
+- **彻底脱离 BubbleMenu**：重构了表情包面板的挂载结构，将其从容易被 Tiptap 拦截销毁的 `BubbleMenu` 中抽离，采用 `fixed` 全局居中挂载与 `z-[99999]` 高层级，解决了点击笑脸按钮面板瞬间闪退的 Bug。
+- **预装动态 GIF**：在 `data/emoticons/` 目录下预装了 3 个动态 GIF 测试表情，面板秒开即用，直接支持点击插入。
+- **极客唤醒快捷键**：拦截编辑器键盘事件，实现打字时敲击 `/e + 回车`，瞬间删除 `/e` 并唤起表情面板。
+
+
+## [2026-04-09] - 表情包体验补全：预装动态 GIF & `/e` 快捷唤起
+
+### 预装测试用动态表情包 (GIF)
+- 新增脚本 `nova_repo/scripts/generate_test_emoticons.py`（Pillow）用于生成测试表情资源。
+- 在 `nova_repo/data/emoticons/` 目录预置 3 个动态 GIF：
+  - `test_color_blink.gif`
+  - `test_bounce.gif`
+  - `test_text_flash.gif`
+- 可被后端 `/api/emoticons/list` 正常扫描，并可通过 `/api/emoticons/static/files/<filename>` 访问。
+
+### `/e` + 回车 快捷唤起表情面板
+- 在 `nova_repo/nova-block/src/components/novablock/NovaBlockEditor.tsx` 中新增 `editorProps.handleKeyDown` 拦截逻辑：
+  - 当光标前 2 个字符为 `/e` 时：`preventDefault()` 阻止换行、派发 `delete` transaction 自动删除 `/e`，并 `setIsEmoticonPanelOpen(true)` 打开表情面板。
+
+## [2026-04-08] - 彻底排查并修复表情包接口 404 及静态资源冲突 (v0.13)
+
+### 核心修复与深度联调
+- **后端配置补全 (config.py)**: 修复了 `nova_repo/backend/config.py` 中缺失 `emoticons_path` 属性的问题，确保 `data/emoticons` 路径解析正确。
+- **静态资源挂载 (main.py)**: 
+  - 在 `main.py` 中新增了表情包静态目录挂载 `/api/emoticons/static/files`。
+  - **重要修复**: 将静态挂载路径与 API 路由路径分离，避免了 `/api/emoticons/files` 路径既作为 API 又作为静态目录导致的路由冲突。
+- **接口路由重构 (routes.py)**:
+  - 将 `/emoticons/list` 接口移动至路由定义前方，排除了潜在的路由拦截风险。
+  - 更新了 `list_emoticons` 和 `upload_emoticon` 的返回逻辑，将图片 URL 统一指向新的静态挂载点 `/api/emoticons/static/files/`。
+- **前端代理修复 (vite.config.ts)**:
+  - 在 `nova_repo/nova-block/vite.config.ts` 中补齐了缺失的 `/api` proxy 配置，确保前端请求能正确转发至后端 8765 端口。
+- **接口联调验证**:
+  - 成功通过 `curl http://127.0.0.1:8765/api/emoticons/list` 验证，返回结果为标准的 JSON 列表格式（200 OK）。
+  - 验证了图片 URL 拼接逻辑与前端 `EmoticonPanel.tsx` 的兼容性，确保表情包能正常显示。
+
+---
+
 ## v0.08 - 贴纸系统完全体 (修复全局404、实现拖拽与体验微调)
 
 ### 核心修复与优化 (Sticker System & API)
@@ -14,6 +54,24 @@
 - **悬浮操作菜单**：将贴纸操作从“悬停触发”改为“点击选中”，避免鼠标经过时的视觉干扰。选中后唤起带有毛玻璃效果的精致控制面板。
 - **头部按钮 Hover 菜单**：在编辑器顶部工具栏新增 Hover 悬浮菜单，集成一键清理、层级切换等快捷操作。
 - **视觉反馈增强**：为选中的贴纸添加蓝色光晕外框与动态高层级阴影，提升交互的确定感。
+
+### 2026-04-08 表情包系统 (Emoticon System) 404 修复与容错加强 (v0.12)
+
+**修复表情包接口失效与前端渲染崩溃问题**
+
+- **后端修复 (API Fixes)**:
+  - **补全缺失路由**: 在 `backend/api/routes.py` 中新增了完整的表情包管理接口，包括 `/emoticons/list` (列表查询)、`/emoticons/upload` (图片上传)、`/emoticons/files/{filename}` (文件流式获取) 及 `/emoticons/files/{filename}` (物理删除)。
+  - **自动化存储管理**: 接口会自动在 `data/emoticons` 目录下管理资源，并支持 `.png, .jpg, .jpeg, .gif, .webp, .svg` 等主流格式的扫描与下发。
+  - **解决 404 报错**: 确保了前端请求的路径与后端注册路由完全匹配，杜绝了因路由缺失导致的 API 调用失败。
+
+- **前端容错处理 (Frontend Robustness)**:
+  - **防崩溃校验**: 在 `EmoticonPanel.tsx` 中对所有涉及 `emoticons` 数组的操作（`filter`, `map` 等）前增加了 `Array.isArray()` 严格校验。
+  - **空数据兜底**: 将 `emoticons` 的初始状态及异常捕获后的状态统一强制设为空数组 `[]`，彻底解决了 `emoticons.filter is not a function` 导致的页面白屏或组件崩溃。
+  - **渲染性能与安全**: 优化了删除操作后的状态更新逻辑，确保 UI 响应灵敏且不会触发无效的重渲染。
+
+- **结果**:
+  - 表情包面板现在可以正常加载、上传和删除资源。
+  - 即使后端接口返回异常数据，前端也能优雅降级显示“没有找到表情”，而非直接报错崩溃。
 
 ### 2026-04-08 贴纸系统交互细节深度修复 (v0.11)
 

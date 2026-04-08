@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Upload, X, Search, Image as ImageIcon, Plus, Loader2 } from 'lucide-react';
-import { api, getApiBase } from '../../lib/api';
+import { motion } from 'framer-motion';
+import { X, Search, Image as ImageIcon, Plus, Loader2 } from 'lucide-react';
+import { getApiBase } from '../../lib/api';
 
 interface StickerResource {
   name: string;
@@ -130,32 +130,37 @@ export const StickerPanel: React.FC<StickerPanelProps> = ({ onSelect, onClose })
           <div className="grid grid-cols-3 gap-3">
             {filteredStickers.map((sticker, idx) => (
               <div key={sticker.name} className="relative group">
-                <motion.button
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.03 }}
-                  onClick={() => onSelect(sticker.url)}
-                  draggable={true}
-                  onDragStart={(e) => {
-                    e.dataTransfer.setData('application/json', JSON.stringify({ 
-                      url: sticker.url, 
-                      type: 'image',
-                      name: sticker.name 
-                    }));
-                    // 设置拖拽预览图
-                    const img = e.currentTarget.querySelector('img');
-                    if (img) {
-                      e.dataTransfer.setDragImage(img, 50, 50);
-                    }
-                  }}
-                  className="w-full aspect-square bg-stone-50 rounded-2xl overflow-hidden hover:ring-4 hover:ring-pink-100 transition-all active:scale-90 cursor-grab active:cursor-grabbing"
                 >
-                  <img 
-                    src={sticker.url.startsWith('/') ? `${getApiBase()}${sticker.url.replace('/api', '')}` : sticker.url} 
-                    alt={sticker.name}
-                    className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform"
-                  />
-                </motion.button>
+                  <button
+                    type="button"
+                    onClick={() => onSelect(sticker.url)}
+                    draggable={true}
+                    onDragStart={(e: React.DragEvent<HTMLButtonElement>) => {
+                      e.dataTransfer.setData('application/json', JSON.stringify({
+                        url: sticker.url,
+                        type: 'image',
+                        name: sticker.name,
+                      }));
+
+                      // 设置拖拽预览图
+                      const img = e.currentTarget.querySelector('img');
+                      if (img) {
+                        e.dataTransfer.setDragImage(img, 50, 50);
+                      }
+                    }}
+                    className="w-full aspect-square bg-stone-50 rounded-2xl overflow-hidden hover:ring-4 hover:ring-pink-100 transition-all active:scale-90 cursor-grab active:cursor-grabbing"
+                  >
+                    <img
+                      src={sticker.url.startsWith('/') ? `${getApiBase()}${sticker.url.replace('/api', '')}` : sticker.url}
+                      alt={sticker.name}
+                      className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform"
+                    />
+                  </button>
+                </motion.div>
                 <button
                   onClick={(e) => handleDelete(e, sticker.name)}
                   className="absolute -top-1 -right-1 w-6 h-6 bg-white shadow-md border border-stone-100 rounded-full flex items-center justify-center text-stone-400 hover:text-rose-500 hover:scale-110 opacity-0 group-hover:opacity-100 transition-all z-10"

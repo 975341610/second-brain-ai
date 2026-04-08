@@ -31,6 +31,7 @@ export { MiniCalendarNode } from './novablock/extensions/MiniCalendarNode';
 export { KanbanNode } from './novablock/extensions/KanbanNode';
 export { HabitTrackerNode } from './novablock/extensions/HabitTrackerNode';
 export { TodoNode } from './novablock/extensions/TodoNode';
+export { Emoticon } from '../components/novablock/extensions/Emoticon';
 
 // --- 基础扩展增强 ---
 export { Heading };
