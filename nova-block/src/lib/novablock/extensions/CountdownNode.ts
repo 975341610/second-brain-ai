@@ -13,12 +13,24 @@ export const CountdownNode = Node.create({
     return {
       targetDate: {
         default: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        parseHTML: (element) => element.getAttribute('data-target-date') || element.getAttribute('targetDate'),
+        renderHTML: (attributes) => ({
+          'data-target-date': attributes.targetDate,
+        }),
       },
       title: {
         default: '倒计时',
+        parseHTML: (element) => element.getAttribute('data-title') || element.getAttribute('title'),
+        renderHTML: (attributes) => ({
+          'data-title': attributes.title,
+        }),
       },
       showBubble: {
         default: false,
+        parseHTML: (element) => element.getAttribute('data-show-bubble') === 'true' || element.getAttribute('showbubble') === 'true',
+        renderHTML: (attributes) => ({
+          'data-show-bubble': attributes.showBubble,
+        }),
       },
     };
   },

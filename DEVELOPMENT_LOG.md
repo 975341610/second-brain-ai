@@ -1,5 +1,11 @@
 # Development Log
  
+ ### 2026-04-08 (v0.07)
+ - **Release**: 版本升级至 0.07。
+ - **Feature**: 深度重构倒计时 (Countdown) 为物理翻转时钟 (Flip Clock) 效果，采用纯 CSS 动画解决数字重叠与物理穿帮问题。
+ - **Fix**: 修复 TodoWidget 的接口导出错误及环境同步问题。
+ - **UI/UX**: 打卡日历 (HabitTrackerComponent) 重构为 Hobonichi 清冷手账风，引入虚拟印章打卡交互与杂志级排版。
+
  ### 2026-04-08 (v0.06)
  - **Release**: 版本升级至 0.06，包含打卡日历 (HabitTrackerComponent) 的 Hobonichi 杂志风重构、TodoWidget 的状态修复等功能更新。
  
