@@ -1,0 +1,56 @@
+cline/cline v3.77.0 on GitHub
+
+
+
+
+
+[Pricing](https://newreleases.io/pricing)
+[Log in](https://newreleases.io/login)
+[Sign up](https://newreleases.io/registration)
+
+[cline/cline](https://newreleases.io/github/cline/cline)
+[v3.77.0](https://github.com/cline/cline/releases/tag/v3.77.0) on [GitHub](https://github.com/cline/cline)
+===================================================================================================================================================================
+
+latest release:
+v2.13.0-cli
+
+6 days ago
+
+### Added
+
+* Add "Lazy Teammate Mode" experimental toggle
+* `read_file` tool now supports chunked reading for targeted file access
+
+### Fixed
+
+* Exclude `new_task` tool from system prompt in yolo/headless mode
+* Fix Kanban demo video formatting
+
+### Changed
+
+* Polish `Notification` hook functionality
+
+**Full Changelog**: [v3.76.0...v3.77.0](https://github.com/cline/cline/compare/v3.76.0...v3.77.0)
+
+Check out [latest releases](https://newreleases.io/latest) or   
+ [releases around cline/cline v3.77.0](https://newreleases.io/latest?start=7ktnae0)
+
+Don't miss a new cline
+ release
+
+NewReleases
+ is sending notifications on new releases.
+
+[Get notifications](https://newreleases.io/github/cline/cline)
+
+* © 2026 NewReleases
+* [About](https://newreleases.io/about)
+* [News](https://twitter.com/newreleasesio)
+* [Contact](https://newreleases.io/contact)
+
+* [Terms of Service](https://newreleases.io/terms)
+* [Privacy Policy](https://newreleases.io/privacy)
+
+# Reference
+- [146] [cline/cline   v3.77.0](https://newreleases.io/project/github/cline/cline/release/v3.77.0)

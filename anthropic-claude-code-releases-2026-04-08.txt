@@ -1,0 +1,1420 @@
+Releases · anthropics/claude-code
+
+
+
+[Skip to content](https://github.com/anthropics/claude-code/releases#start-of-content)
+
+
+
+
+
+
+
+
+
+
+
+Navigation Menu
+---------------
+
+Toggle navigation
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fanthropics%2Fclaude-code%2Freleases)
+
+Appearance settings
+
+* Platform
+
+  + AI CODE CREATION
+    - [GitHub Copilot
+      Write better code with AI](https://github.com/features/copilot)
+    - [GitHub Spark
+      Build and deploy intelligent apps](https://github.com/features/spark)
+    - [GitHub Models
+      Manage and compare prompts](https://github.com/features/models)
+    - [MCP RegistryNew
+      Integrate external tools](https://github.com/mcp)
+  + DEVELOPER WORKFLOWS
+    - [Actions
+      Automate any workflow](https://github.com/features/actions)
+    - [Codespaces
+      Instant dev environments](https://github.com/features/codespaces)
+    - [Issues
+      Plan and track work](https://github.com/features/issues)
+    - [Code Review
+      Manage code changes](https://github.com/features/code-review)
+  + APPLICATION SECURITY
+    - [GitHub Advanced Security
+      Find and fix vulnerabilities](https://github.com/security/advanced-security)
+    - [Code security
+      Secure your code as you build](https://github.com/security/advanced-security/code-security)
+    - [Secret protection
+      Stop leaks before they start](https://github.com/security/advanced-security/secret-protection)
+  + EXPLORE
+    - [Why GitHub](https://github.com/why-github)
+    - [Documentation](https://docs.github.com)
+    - [Blog](https://github.blog)
+    - [Changelog](https://github.blog/changelog)
+    - [Marketplace](https://github.com/marketplace)
+
+  [View all features](https://github.com/features)
+* Solutions
+
+  + BY COMPANY SIZE
+    - [Enterprises](https://github.com/enterprise)
+    - [Small and medium teams](https://github.com/team)
+    - [Startups](https://github.com/enterprise/startups)
+    - [Nonprofits](https://github.com/solutions/industry/nonprofits)
+  + BY USE CASE
+    - [App Modernization](https://github.com/solutions/use-case/app-modernization)
+    - [DevSecOps](https://github.com/solutions/use-case/devsecops)
+    - [DevOps](https://github.com/solutions/use-case/devops)
+    - [CI/CD](https://github.com/solutions/use-case/ci-cd)
+    - [View all use cases](https://github.com/solutions/use-case)
+  + BY INDUSTRY
+    - [Healthcare](https://github.com/solutions/industry/healthcare)
+    - [Financial services](https://github.com/solutions/industry/financial-services)
+    - [Manufacturing](https://github.com/solutions/industry/manufacturing)
+    - [Government](https://github.com/solutions/industry/government)
+    - [View all industries](https://github.com/solutions/industry)
+
+  [View all solutions](https://github.com/solutions)
+* Resources
+
+  + EXPLORE BY TOPIC
+    - [AI](https://github.com/resources/articles?topic=ai)
+    - [Software Development](https://github.com/resources/articles?topic=software-development)
+    - [DevOps](https://github.com/resources/articles?topic=devops)
+    - [Security](https://github.com/resources/articles?topic=security)
+    - [View all topics](https://github.com/resources/articles)
+  + EXPLORE BY TYPE
+    - [Customer stories](https://github.com/customer-stories)
+    - [Events & webinars](https://github.com/resources/events)
+    - [Ebooks & reports](https://github.com/resources/whitepapers)
+    - [Business insights](https://github.com/solutions/executive-insights)
+    - [GitHub Skills](https://skills.github.com)
+  + SUPPORT & SERVICES
+    - [Documentation](https://docs.github.com)
+    - [Customer support](https://support.github.com)
+    - [Community forum](https://github.com/orgs/community/discussions)
+    - [Trust center](https://github.com/trust-center)
+    - [Partners](https://github.com/partners)
+
+  [View all resources](https://github.com/resources)
+* Open Source
+
+  + COMMUNITY
+    - [GitHub Sponsors
+      Fund open source developers](https://github.com/sponsors)
+  + PROGRAMS
+    - [Security Lab](https://securitylab.github.com)
+    - [Maintainer Community](https://maintainers.github.com)
+    - [Accelerator](https://github.com/accelerator)
+    - [GitHub Stars](https://stars.github.com)
+    - [Archive Program](https://archiveprogram.github.com)
+  + REPOSITORIES
+    - [Topics](https://github.com/topics)
+    - [Trending](https://github.com/trending)
+    - [Collections](https://github.com/collections)
+* Enterprise
+
+  + ENTERPRISE SOLUTIONS
+    - [Enterprise platform
+      AI-powered developer platform](https://github.com/enterprise)
+  + AVAILABLE ADD-ONS
+    - [GitHub Advanced Security
+      Enterprise-grade security features](https://github.com/security/advanced-security)
+    - [Copilot for Business
+      Enterprise-grade AI features](https://github.com/features/copilot/copilot-business)
+    - [Premium Support
+      Enterprise-grade 24/7 support](https://github.com/premium-support)
+* [Pricing](https://github.com/pricing)
+
+Search or jump to...
+
+
+Search code, repositories, users, issues, pull requests...
+==========================================================
+
+Search
+
+Clear
+
+[Search syntax tips](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax)
+
+Provide feedback
+================
+
+We read every piece of feedback, and take your input very seriously.
+
+
+Include my email address so I can be contacted
+
+Cancel
+ Submit feedback
+
+
+
+
+
+Saved searches
+==============
+
+Use saved searches to filter your results more quickly
+------------------------------------------------------
+
+Name
+
+Query
+
+To see all available qualifiers, see our [documentation](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax).
+
+Cancel
+ Create saved search
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fanthropics%2Fclaude-code%2Freleases)
+
+[Sign up](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Freleases%2Findex&source=header-repo&source_repo=anthropics%2Fclaude-code)
+
+Appearance settings
+
+Resetting focus
+
+You signed in with another tab or window. Reload to refresh your session.
+You signed out in another tab or window. Reload to refresh your session.
+You switched accounts on another tab or window. Reload to refresh your session.
+ 
+Dismiss alert
+
+{{ message }}
+
+[anthropics](https://github.com/anthropics)
+/
+**[claude-code](https://github.com/anthropics/claude-code)**
+Public
+
+* [Notifications](https://github.com/login?return_to=%2Fanthropics%2Fclaude-code) You must be signed in to change notification settings
+* [Fork
+  18.4k](https://github.com/login?return_to=%2Fanthropics%2Fclaude-code)
+* [Star
+   111k](https://github.com/login?return_to=%2Fanthropics%2Fclaude-code)
+
+* [Code](https://github.com/anthropics/claude-code)
+* [Issues
+  5k+](https://github.com/anthropics/claude-code/issues)
+* [Pull requests
+  450](https://github.com/anthropics/claude-code/pulls)
+* [Actions](https://github.com/anthropics/claude-code/actions)
+* [Security and quality
+  22](https://github.com/anthropics/claude-code/security)
+* [Insights](https://github.com/anthropics/claude-code/pulse)
+
+Additional navigation options
+
+
+* [Code](https://github.com/anthropics/claude-code)
+* [Issues](https://github.com/anthropics/claude-code/issues)
+* [Pull requests](https://github.com/anthropics/claude-code/pulls)
+* [Actions](https://github.com/anthropics/claude-code/actions)
+* [Security and quality](https://github.com/anthropics/claude-code/security)
+* [Insights](https://github.com/anthropics/claude-code/pulse)
+
+Releases: anthropics/claude-code
+================================
+
+[Releases](https://github.com/anthropics/claude-code/releases)
+[Tags](https://github.com/anthropics/claude-code/tags)
+
+Releases · anthropics/claude-code
+
+v2.1.94
+-------
+
+07 Apr 21:18
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.94](https://github.com/anthropics/claude-code/tree/v2.1.94)
+
+[`b9fbc77`](https://github.com/anthropics/claude-code/commit/b9fbc7796b80659c570265deee97b0a8fc40bd89)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.94](https://github.com/anthropics/claude-code/releases/tag/v2.1.94)
+[Latest](https://github.com/anthropics/claude-code/releases/latest)
+
+[Latest](https://github.com/anthropics/claude-code/releases/latest)
+
+What's changed
+--------------
+
+* Added support for Amazon Bedrock powered by Mantle, set `CLAUDE_CODE_USE_MANTLE=1`
+* Changed default effort level from medium to high for API-key, Bedrock/Vertex/Foundry, Team, and Enterprise users (control this with `/effort`)
+* Added compact `Slacked #channel` header with a clickable channel link for Slack MCP send-message tool calls
+* Added `keep-coding-instructions` frontmatter field support for plugin output styles
+* Added `hookSpecificOutput.sessionTitle` to `UserPromptSubmit` hooks for setting the session title
+* Plugin skills declared via `"skills": ["./"]` now use the skill's frontmatter `name` for the invocation name instead of the directory basename, giving a stable name across install methods
+* Fixed agents appearing stuck after a 429 rate-limit response with a long Retry-After header — the error now surfaces immediately instead of silently waiting
+* Fixed Console login on macOS silently failing with "Not logged in" when the login keychain is locked or its password is out of sync — the error is now surfaced and `claude doctor` diagnoses the fix
+* Fixed plugin skill hooks defined in YAML frontmatter being silently ignored
+* Fixed plugin hooks failing with "No such file or directory" when `CLAUDE_PLUGIN_ROOT` was not set
+* Fixed `${CLAUDE_PLUGIN_ROOT}` resolving to the marketplace source directory instead of the installed cache for local-marketplace plugins on startup
+* Fixed scrollback showing the same diff repeated and blank pages in long-running sessions
+* Fixed multiline user prompts in the transcript indenting wrapped lines under the `❯` caret instead of under the text
+* Fixed Shift+Space inserting the literal word "space" instead of a space character in search inputs
+* Fixed hyperlinks opening two browser tabs when clicked inside tmux running in an xterm.js-based terminal (VS Code, Hyper, Tabby)
+* Fixed an alt-screen rendering bug where content height changes mid-scroll could leave compounding ghost lines
+* Fixed `FORCE_HYPERLINK` environment variable being ignored when set via `settings.json` `env`
+* Fixed native terminal cursor not tracking the selected tab in dialogs, so screen readers and magnifiers can follow tab navigation
+* Fixed Bedrock invocation of Sonnet 3.5 v2 by using the `us.` inference profile ID
+* Fixed SDK/print mode not preserving the partial assistant response in conversation history when interrupted mid-stream
+* Improved `--resume` to resume sessions from other worktrees of the same repo directly instead of printing a `cd` command
+* Fixed CJK and other multibyte text being corrupted with U+FFFD in stream-json input/output when chunk boundaries split a UTF-8 sequence
+* [VSCode] Reduced cold-open subprocess work on starting a session
+* [VSCode] Fixed dropdown menus selecting the wrong item when the mouse was over the list while typing or using arrow keys
+* [VSCode] Added a warning banner when `settings.json` files fail to parse, so users know their permission rules are not being applied
+
+Assets
+2
+
+* [Source code
+  (zip)](https://github.com/anthropics/claude-code/archive/refs/tags/v2.1.94.zip)
+
+  2026-04-07T21:18:46Z
+* [Source code
+  (tar.gz)](https://github.com/anthropics/claude-code/archive/refs/tags/v2.1.94.tar.gz)
+
+  2026-04-07T21:18:46Z
+
+👍
+11
+ coygeek, JayVDZ, NDOTO-G, tihiera, trust-delta, M0RDI0, tukumalu, JeonHyeongJunKW, nekowasabi, lpsgverrilla, and egoan82 reacted with thumbs up emoji
+ 😄
+2
+ coygeek and Swilimidon reacted with laugh emoji
+ 🎉
+1
+ coygeek reacted with hooray emoji
+ ❤️
+1
+ coygeek reacted with heart emoji
+ 🚀
+3
+ coygeek, tmshv, and egoan82 reacted with rocket emoji
+ 👀
+2
+ coygeek and praxis1244-consulting reacted with eyes emoji
+
+All reactions
+
+* 👍
+  11 reactions
+* 😄
+  2 reactions
+* 🎉
+  1 reaction
+* ❤️
+  1 reaction
+* 🚀
+  3 reactions
+* 👀
+  2 reactions
+
+14 people reacted
+
+v2.1.92
+-------
+
+04 Apr 00:42
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.92](https://github.com/anthropics/claude-code/tree/v2.1.92)
+
+[`b543a25`](https://github.com/anthropics/claude-code/commit/b543a256248ce5ff98804b8dfef4cd6247423d98)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.92](https://github.com/anthropics/claude-code/releases/tag/v2.1.92)
+
+What's changed
+--------------
+
+* Added `forceRemoteSettingsRefresh` policy setting: when set, the CLI blocks startup until remote managed settings are freshly fetched, and exits if the fetch fails (fail-closed)
+* Added interactive Bedrock setup wizard accessible from the login screen when selecting "3rd-party platform" — guides you through AWS authentication, region configuration, credential verification, and model pinning
+* Added per-model and cache-hit breakdown to `/cost` for subscription users
+* `/release-notes` is now an interactive version picker
+* Remote Control session names now use your hostname as the default prefix (e.g. `myhost-graceful-unicorn`), overridable with `--remote-control-session-name-prefix`
+* Pro users now see a footer hint when returning to a session after the prompt cache has expired, showing roughly how many tokens the next turn will send uncached
+* Fixed subagent spawning permanently failing with "Could not determine pane count" after tmux windows are killed or renumbered during a long-running session
+* Fixed prompt-type Stop hooks incorrectly failing when the small fast model returns `ok:false`, and restored `preventContinuation:true` semantics for non-Stop prompt-type hooks
+* Fixed tool input validation failures when streaming emits array/object fields as JSON-encoded strings
+* Fixed an API 400 error that could occur when extended thinking produced a whitespace-only text block alongside real content
+* Fixed accidental feedback survey submissions from auto-pilot keypresses and consecutive-prompt digit collisions
+* Fixed misleading "esc to interrupt" hint appearing alongside "esc to clear" when a text selection exists in fullscreen mode during processing
+* Fixed Homebrew install update prompts to use the cask's release channel (`claude-code` → stable, `claude-code@latest` → latest)
+* Fixed `ctrl+e` jumping to the end of the next line when already at end of line in multiline prompts
+* Fixed an issue where the same message could appear at two positions when scrolling up in fullscreen mode (iTerm2, Ghostty, and other terminals with DEC 2026 support)
+* Fixed idle-return "/clear to save X tokens" hint showing cumulative session tokens instead of current context size
+* Fixed plugin MCP servers stuck "connecting" on session start when they duplicate a claude.ai connector that is unauthenticated
+* Improved Write tool diff computation speed for large files (60% faster on files with tabs/`&`/`$`)
+* Removed `/tag` command
+* Removed `/vim` command (toggle vim mode via `/config` → Editor mode)
+* Linux sandbox now ships the `apply-seccomp` helper in both npm and native builds, restoring unix-socket blocking for sandboxed commands
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+49
+ mike1858, QuBenhao, Ero-gamer, coygeek, DevOpsSagar01, Faizan-MD-BOTZ, zachary-zae, Monkeygamer2010, valetivivek, Xlone9773, and 39 more reacted with thumbs up emoji
+ 😄
+6
+ mike1858, coygeek, Monkeygamer2010, KennedyLovesMonroe, StudentWeis, and saita08 reacted with laugh emoji
+ 🎉
+12
+ mike1858, coygeek, jgonxo, htnabe, Monkeygamer2010, KennedyLovesMonroe, StudentWeis, TKMD, simono, saita08, and 2 more reacted with hooray emoji
+ ❤️
+14
+ mike1858, coygeek, prasrvenkat, noises1990, Monkeygamer2010, spacebbq, genticai0910-png, KennedyLovesMonroe, StudentWeis, uditya22-flux, and 4 more reacted with heart emoji
+ 🚀
+10
+ mike1858, coygeek, noises1990, Monkeygamer2010, robin271828, ivandrofly, KennedyLovesMonroe, egoan82, saita08, and leesdonson reacted with rocket emoji
+ 👀
+10
+ mike1858, Ero-gamer, coygeek, VoDaiLocz, Monkeygamer2010, KennedyLovesMonroe, AlbertoBarrago, TKMD, kawadakeima-png, and saita08 reacted with eyes emoji
+
+All reactions
+
+* 👍
+  49 reactions
+* 😄
+  6 reactions
+* 🎉
+  12 reactions
+* ❤️
+  14 reactions
+* 🚀
+  10 reactions
+* 👀
+  10 reactions
+
+66 people reacted
+
+v2.1.91
+-------
+
+02 Apr 23:45
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.91](https://github.com/anthropics/claude-code/tree/v2.1.91)
+
+[`1e03cc7`](https://github.com/anthropics/claude-code/commit/1e03cc7fc40d9bab33f24855a8b5d31ba66205cb)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.91](https://github.com/anthropics/claude-code/releases/tag/v2.1.91)
+
+What's changed
+--------------
+
+* Added MCP tool result persistence override via `_meta["anthropic/maxResultSizeChars"]` annotation (up to 500K), allowing larger results like DB schemas to pass through without truncation
+* Added `disableSkillShellExecution` setting to disable inline shell execution in skills, custom slash commands, and plugin commands
+* Added support for multi-line prompts in `claude-cli://open?q=` deep links (encoded newlines `%0A` no longer rejected)
+* Plugins can now ship executables under `bin/` and invoke them as bare commands from the Bash tool
+* Fixed transcript chain breaks on `--resume` that could lose conversation history when async transcript writes fail silently
+* Fixed `cmd+delete` not deleting to start of line on iTerm2, kitty, WezTerm, Ghostty, and Windows Terminal
+* Fixed plan mode in remote sessions losing track of the plan file after a container restart, which caused permission prompts on plan edits and an empty plan-approval modal
+* Fixed JSON schema validation for `permissions.defaultMode: "auto"` in settings.json
+* Fixed Windows version cleanup not protecting the active version's rollback copy
+* `/feedback` now explains why it's unavailable instead of disappearing from the slash menu
+* Improved `/claude-api` skill guidance for agent design patterns including tool surface decisions, context management, and caching strategy
+* Improved performance: faster `stripAnsi` on Bun by routing through `Bun.stripANSI`
+* Edit tool now uses shorter `old_string` anchors, reducing output tokens
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+44
+ saita08, phosae, coygeek, n-river-otter, Ero-gamer, konkong, a0905594549-cmyk, mike1858, danieldeckard881-lab, arturR0611, and 34 more reacted with thumbs up emoji
+ 😄
+9
+ saita08, coygeek, mike1858, a957924278, athola, HarryFang30, KennedyLovesMonroe, RuijieThranduil, and tukumalu reacted with laugh emoji
+ 🎉
+10
+ jgonxo, TalhaSelimhan, saita08, hanzii00, coygeek, StudentWeis, mike1858, athola, KennedyLovesMonroe, and chib30333 reacted with hooray emoji
+ ❤️
+9
+ saita08, coygeek, StudentWeis, bugcysg, mike1858, JRAVILES, athola, shimscho, and KennedyLovesMonroe reacted with heart emoji
+ 🚀
+9
+ saita08, coygeek, mike1858, JRAVILES, athola, rezafarzaneh7, egoan82, ivandrofly, and KennedyLovesMonroe reacted with rocket emoji
+ 👀
+15
+ Mantej-Singh, eseiker, saita08, coygeek, Ero-gamer, mike1858, hanifwdyt, JefPeiffer, ystgd07, athola, and 5 more reacted with eyes emoji
+
+All reactions
+
+* 👍
+  44 reactions
+* 😄
+  9 reactions
+* 🎉
+  10 reactions
+* ❤️
+  9 reactions
+* 🚀
+  9 reactions
+* 👀
+  15 reactions
+
+64 people reacted
+
+v2.1.90
+-------
+
+01 Apr 23:41
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.90](https://github.com/anthropics/claude-code/tree/v2.1.90)
+
+[`a50a919`](https://github.com/anthropics/claude-code/commit/a50a91999b671e707cebad39542eade7154a00fa)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.90](https://github.com/anthropics/claude-code/releases/tag/v2.1.90)
+
+What's changed
+--------------
+
+* Added `/powerup` — interactive lessons teaching Claude Code features with animated demos
+* Added `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE` env var to keep the existing marketplace cache when `git pull` fails, useful in offline environments
+* Added `.husky` to protected directories (acceptEdits mode)
+* Fixed an infinite loop where the rate-limit options dialog would repeatedly auto-open after hitting your usage limit, eventually crashing the session
+* Fixed `--resume` causing a full prompt-cache miss on the first request for users with deferred tools, MCP servers, or custom agents (regression since v2.1.69)
+* Fixed `Edit`/`Write` failing with "File content has changed" when a PostToolUse format-on-save hook rewrites the file between consecutive edits
+* Fixed `PreToolUse` hooks that emit JSON to stdout and exit with code 2 not correctly blocking the tool call
+* Fixed collapsed search/read summary badge appearing multiple times in fullscreen scrollback when a CLAUDE.md file auto-loads during a tool call
+* Fixed auto mode not respecting explicit user boundaries ("don't push", "wait for X before Y") even when the action would otherwise be allowed
+* Fixed click-to-expand hover text being nearly invisible on light terminal themes
+* Fixed UI crash when malformed tool input reached the permission dialog
+* Fixed headers disappearing when scrolling `/model`, `/config`, and other selection screens
+* Hardened PowerShell tool permission checks: fixed trailing `&` background job bypass, `-ErrorAction Break` debugger hang, archive-extraction TOCTOU, and parse-fail fallback deny-rule degradation
+* Improved performance: eliminated per-turn JSON.stringify of MCP tool schemas on cache-key lookup
+* Improved performance: SSE transport now handles large streamed frames in linear time (was quadratic)
+* Improved performance: SDK sessions with long conversations no longer slow down quadratically on transcript writes
+* Improved `/resume` all-projects view to load project sessions in parallel, improving load times for users with many projects
+* Changed `--resume` picker to no longer show sessions created by `claude -p` or SDK invocations
+* Removed `Get-DnsClientCache` and `ipconfig /displaydns` from auto-allow (DNS cache privacy)
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+63
+ coygeek, egoan82, Hacker90, mike1858, xiaodream551-a11y, menghao01, JRAVILES, eyoboue, oran9eLi, hahwul, and 53 more reacted with thumbs up emoji
+ 😄
+14
+ coygeek, CristianoSword, mike1858, Reqwey, chib30333, cygullem, xullul, YM601307, Monkeygamer2010, KennedyLovesMonroe, and 4 more reacted with laugh emoji
+ 🎉
+17
+ coygeek, jgonxo, turtleqiu, mike1858, JRAVILES, furkankoykiran, cygullem, ShutoYamada, StevenSue, YM601307, and 7 more reacted with hooray emoji
+ ❤️
+20
+ coygeek, sizorlee, NooB9496, mike1858, StudentWeis, JRAVILES, salihesmersoy-a11y, cnxiya, cygullem, yogirk, and 10 more reacted with heart emoji
+ 🚀
+12
+ coygeek, egoan82, mike1858, JRAVILES, taocleve, cygullem, laithshadeed, QAInsights, KennedyLovesMonroe, DavidMaldonadoc, and 2 more reacted with rocket emoji
+ 👀
+9
+ coygeek, mike1858, danbuica, cygullem, KennedyLovesMonroe, guiwohl, saita08, athola, and whitehyun-paytalab reacted with eyes emoji
+
+All reactions
+
+* 👍
+  63 reactions
+* 😄
+  14 reactions
+* 🎉
+  17 reactions
+* ❤️
+  20 reactions
+* 🚀
+  12 reactions
+* 👀
+  9 reactions
+
+90 people reacted
+
+v2.1.89
+-------
+
+01 Apr 01:07
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.89](https://github.com/anthropics/claude-code/tree/v2.1.89)
+
+[`b4fa5f8`](https://github.com/anthropics/claude-code/commit/b4fa5f85f3d2e02b47f67ab2e348ce6101fb7b5a)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.89](https://github.com/anthropics/claude-code/releases/tag/v2.1.89)
+
+What's changed
+--------------
+
+* Added `"defer"` permission decision to `PreToolUse` hooks — headless sessions can pause at a tool call and resume with `-p --resume` to have the hook re-evaluate
+* Added `CLAUDE_CODE_NO_FLICKER=1` environment variable to opt into flicker-free alt-screen rendering with virtualized scrollback
+* Added `PermissionDenied` hook that fires after auto mode classifier denials — return `{retry: true}` to tell the model it can retry
+* Added named subagents to `@` mention typeahead suggestions
+* Added `MCP_CONNECTION_NONBLOCKING=true` for `-p` mode to skip the MCP connection wait entirely, and bounded `--mcp-config` server connections at 5s instead of blocking on the slowest server
+* Auto mode: denied commands now show a notification and appear in `/permissions` → Recent tab where you can retry with `r`
+* Fixed `Edit(//path/**)` and `Read(//path/**)` allow rules to check the resolved symlink target, not just the requested path
+* Fixed voice push-to-talk not activating for some modifier-combo bindings, and voice mode on Windows failing with "WebSocket upgrade rejected with HTTP 101"
+* Fixed Edit/Write tools doubling CRLF on Windows and stripping Markdown hard line breaks (two trailing spaces)
+* Fixed `StructuredOutput` schema cache bug causing ~50% failure rate when using multiple schemas
+* Fixed memory leak where large JSON inputs were retained as LRU cache keys in long-running sessions
+* Fixed a crash when removing a message from very large session files (over 50MB)
+* Fixed LSP server zombie state after crash — server now restarts on next request instead of failing until session restart
+* Fixed prompt history entries containing CJK or emoji being silently dropped when they fall on a 4KB boundary in `~/.claude/history.jsonl`
+* Fixed `/stats` undercounting tokens by excluding subagent usage, and losing historical data beyond 30 days when the stats cache format changes
+* Fixed `-p --resume` hangs when the deferred tool input exceeds 64KB or no deferred marker exists, and `-p --continue` not resuming deferred tools
+* Fixed `claude-cli://` deep links not opening on macOS
+* Fixed MCP tool errors truncating to only the first content block when the server returns multi-element error content
+* Fixed skill reminders and other system context being dropped when sending messages with images via the SDK
+* Fixed PreToolUse/PostToolUse hooks to receive `file_path` as an absolute path for Write/Edit/Read tools, matching the documented behavior
+* Fixed autocompact thrash loop — now detects when context refills to the limit immediately after compacting three times in a row and stops with an actionable error instead of burning API calls
+* Fixed prompt cache misses in long sessions caused by tool schema bytes changing mid-session
+* Fixed nested CLAUDE.md files being re-injected dozens of times in long sessions that read many files
+* Fixed `--resume` crash when transcript contains a tool result from an older CLI version or interrupted write
+* Fixed misleading "Rate limit reached" message when the API returned an entitlement error — now shows the actual error with actionable hints
+* Fixed hooks `if` condition filtering not matching compound commands (`ls && git push`) or commands with env-var prefixes (`FOO=bar git push`)
+* Fixed collapsed search/read group badges duplicating in terminal scrollback during heavy parallel tool use
+* Fixed notification `invalidates` not clearing the currently-displayed notification immediately
+* Fixed prompt briefly disappearing after submit when background messages arrived during processing
+* Fixed Devanagari and other combining-mark text being truncated in assistant output
+* Fixed rendering artifacts on main-screen terminals after layout shifts
+* Fixed voice mode failing to request microphone permission on macOS Apple Silicon
+* Fixed Shift+Enter submitting instead of inserting a newline on Windows Terminal Preview 1.25
+* Fixed periodic UI jitter during streaming in iTerm2 when running inside tmux
+* Fixed PowerShell tool incorrectly reporting failures when commands like `git push` wrote progress to stderr on Windows PowerShell 5.1
+* Fixed a potential out-of-memory crash when the Edit tool was used on very large files (>1 GiB)
+* Improved collapsed tool summary to show "Listed N directories" for `ls`/`tree`/`du` instead of "Read N files"
+* Improved Bash tool to warn when a formatter/linter command modifies files you have previously read, preventing stale-edit errors
+* Improved `@`-mention typeahead to rank source files above MCP resources with similar names
+* Improved PowerShell tool prompt with version-appropriate syntax guidance (5.1 vs 7+)
+* Changed `Edit` to work on files viewed via `Bash` with `sed -n` or `cat`, without requiring a separate `Read` call first
+* Changed hook output over 50K characters to be saved to disk with a file path + preview instead of being injected directly into context
+* Changed `cleanupPeriodDays: 0` in settings.json to be rejected with a validation error — it previously silently disabled transcript persistence
+* Changed thinking summaries to no longer be generated by default in interactive sessions — set `showThinkingSummaries: true` in settings.json to restore
+* Documented `TaskCreated` hook event and its blocking behavior
+* Preserved task notifications when backgrounding a running command with Ctrl+B
+* PowerShell tool on Windows: external-command arguments containing both a double-quote and whitespace now prompt instead of auto-allowing (PS 5.1 argument-splitting hardening)
+* `/env` now applies to PowerShell tool commands (previously only affected Bash)
+* `/usage` now hides redundant "Current week (Sonnet only)" bar for Pro and Enterprise plans
+* Image paste no longer inserts a trailing space
+* Pasting `!command` into an empty prompt now enters bash mode, matching typed `!` behavior
+* `/buddy` is here for April 1st — hatch a small creature that watches you code
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+65
+ hyeonjinyoon, saita08, IGames-X, jweingardt12, hzy-6, wenbo97, achiya-automation, srmdn, Pcyslist, 0-sayed, and 55 more reacted with thumbs up emoji
+ 😄
+28
+ saita08, hyongtao-code, StudentWeis, reloadercf, yougrandpa, mike1858, Snowflake-Pink, coygeek, transbe, maximilianspitzer, and 18 more reacted with laugh emoji
+ 🎉
+9
+ saita08, tareqmahmud, mike1858, gaardhus, coygeek, lorisgautero, Fireworks729, KennedyLovesMonroe, and athola reacted with hooray emoji
+ ❤️
+14
+ saita08, mike1858, StudentWeis, coygeek, jonigl, yuang-w, mehdeh, terry90918, jgonxo, sgueye00, and 4 more reacted with heart emoji
+ 🚀
+11
+ saita08, mike1858, egoan82, coygeek, jonigl, YingchaoX, levnikolaevich, NNTN-DEV, KennedyLovesMonroe, Project888-maker, and athola reacted with rocket emoji
+ 👀
+10
+ saita08, Spirit-ZeroHeart, owlprog-glitch, mike1858, HaitaoWuTJU, closure11, coygeek, Puiching-Memory, KennedyLovesMonroe, and athola reacted with eyes emoji
+
+All reactions
+
+* 👍
+  65 reactions
+* 😄
+  28 reactions
+* 🎉
+  9 reactions
+* ❤️
+  14 reactions
+* 🚀
+  11 reactions
+* 👀
+  10 reactions
+
+102 people reacted
+
+v2.1.87
+-------
+
+29 Mar 02:17
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.87](https://github.com/anthropics/claude-code/tree/v2.1.87)
+
+[`78a44f1`](https://github.com/anthropics/claude-code/commit/78a44f1b7dbd6f728cb8966b36ab7fa1be99dbc5)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.87](https://github.com/anthropics/claude-code/releases/tag/v2.1.87)
+
+What's changed
+--------------
+
+* Fixed messages in Cowork Dispatch not getting delivered
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+55
+ montasirmoyen, TrueNine, OGCrunched, Korea-Maker, lpsgverrilla, JamesTrain, athola, agoalofalife, huangsam, hyeonjinyoon, and 45 more reacted with thumbs up emoji
+ 😄
+8
+ athola, princeofscale, KennedyLovesMonroe, saita08, mike1858, xolotlatoani, chaoshou-coder, and sachinbytecodes-lab reacted with laugh emoji
+ 🎉
+8
+ athola, StudentWeis, noemuch, KennedyLovesMonroe, creadian, saita08, mike1858, and jgonxo reacted with hooray emoji
+ ❤️
+9
+ athola, JRAVILES, ayush1k, KennedyLovesMonroe, saita08, sean-, waqarsethar, mike1858, and mehdeh reacted with heart emoji
+ 🚀
+6
+ mrverdant13, athola, egoan82, KennedyLovesMonroe, saita08, and mike1858 reacted with rocket emoji
+ 👀
+5
+ athola, Kolass2004, KennedyLovesMonroe, mike1858, and 1765939603a-afk reacted with eyes emoji
+
+All reactions
+
+* 👍
+  55 reactions
+* 😄
+  8 reactions
+* 🎉
+  8 reactions
+* ❤️
+  9 reactions
+* 🚀
+  6 reactions
+* 👀
+  5 reactions
+
+69 people reacted
+
+v2.1.86
+-------
+
+27 Mar 21:42
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.86](https://github.com/anthropics/claude-code/tree/v2.1.86)
+
+[`2923bc8`](https://github.com/anthropics/claude-code/commit/2923bc87d10da4fda57570313f2abbc5b457fed1)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.86](https://github.com/anthropics/claude-code/releases/tag/v2.1.86)
+
+What's changed
+--------------
+
+* Added `X-Claude-Code-Session-Id` header to API requests so proxies can aggregate requests by session without parsing the body
+* Added `.jj` and `.sl` to VCS directory exclusion lists so Grep and file autocomplete don't descend into Jujutsu or Sapling metadata
+* Fixed `--resume` failing with "tool\_use ids were found without tool\_result blocks" on sessions created before v2.1.85
+* Fixed Write/Edit/Read failing on files outside the project root (e.g., `~/.claude/CLAUDE.md`) when conditional skills or rules are configured
+* Fixed unnecessary config disk writes on every skill invocation that could cause performance issues and config corruption on Windows
+* Fixed potential out-of-memory crash when using `/feedback` on very long sessions with large transcript files
+* Fixed `--bare` mode dropping MCP tools in interactive sessions and silently discarding messages enqueued mid-turn
+* Fixed the `c` shortcut copying only ~20 characters of the OAuth login URL instead of the full URL
+* Fixed masked input (e.g., OAuth code paste) leaking the start of the token when wrapping across multiple lines on narrow terminals
+* Fixed official marketplace plugin scripts failing with "Permission denied" on macOS/Linux since v2.1.83
+* Fixed statusline showing another session's model when running multiple Claude Code instances and using `/model` in one of them
+* Fixed scroll not following new messages after wheel scroll or click-to-select at the bottom of a long conversation
+* Fixed `/plugin` uninstall dialog: pressing `n` now correctly uninstalls the plugin while preserving its data directory
+* Fixed a regression where pressing Enter after clicking could leave the transcript blank until the response arrived
+* Fixed `ultrathink` hint lingering after deleting the keyword
+* Fixed memory growth in long sessions from markdown/highlight render caches retaining full content strings
+* Reduced startup event-loop stalls when many claude.ai MCP connectors are configured (macOS keychain cache extended from 5s to 30s)
+* Reduced token overhead when mentioning files with `@` — raw string content no longer JSON-escaped
+* Improved prompt cache hit rate for Bedrock, Vertex, and Foundry users by removing dynamic content from tool descriptions
+* Memory filenames in the "Saved N memories" notice now highlight on hover and open on click
+* Skill descriptions in the `/skills` listing are now capped at 250 characters to reduce context usage
+* Changed `/skills` menu to sort alphabetically for easier scanning
+* Auto mode now shows "unavailable for your plan" when disabled by plan restrictions (was "temporarily unavailable")
+* [VSCode] Fixed extension incorrectly showing "Not responding" during long-running operations
+* [VSCode] Fixed extension defaulting Max plan users to Sonnet after the OAuth token refreshes (8 hours after login)
+* Read tool now uses compact line-number format and deduplicates unchanged re-reads, reducing token usage
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+36
+ chrisjenx, coygeek, theangrydev, KennedyLovesMonroe, artemsemdev, alowouodilonfrejus, apurvaumredkar, riazulhoque, eyoboue, aniketqxp, and 26 more reacted with thumbs up emoji
+ 😄
+7
+ coygeek, KennedyLovesMonroe, mike1858, NellInc, tanakornrawee-dev, saita08, and athola reacted with laugh emoji
+ 🎉
+10
+ coygeek, KennedyLovesMonroe, mike1858, tanakornrawee-dev, LeoBorai, chrislongros, jadenlwangzai, saita08, jgonxo, and athola reacted with hooray emoji
+ ❤️
+9
+ coygeek, KennedyLovesMonroe, riazulhoque, mike1858, tanakornrawee-dev, tiger-captain, saita08, enekui, and athola reacted with heart emoji
+ 🚀
+9
+ coygeek, KennedyLovesMonroe, mike1858, egoan82, OscargwStudio, chrislongros, mrverdant13, enekui, and athola reacted with rocket emoji
+ 👀
+5
+ coygeek, KennedyLovesMonroe, mike1858, chrislongros, and athola reacted with eyes emoji
+
+All reactions
+
+* 👍
+  36 reactions
+* 😄
+  7 reactions
+* 🎉
+  10 reactions
+* ❤️
+  9 reactions
+* 🚀
+  9 reactions
+* 👀
+  5 reactions
+
+45 people reacted
+
+v2.1.85
+-------
+
+26 Mar 22:52
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.85](https://github.com/anthropics/claude-code/tree/v2.1.85)
+
+[`f75b613`](https://github.com/anthropics/claude-code/commit/f75b6138eff5f36c48e7c4ddb2fe44b959ac2d8c)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.85](https://github.com/anthropics/claude-code/releases/tag/v2.1.85)
+
+What's changed
+--------------
+
+* Added `CLAUDE_CODE_MCP_SERVER_NAME` and `CLAUDE_CODE_MCP_SERVER_URL` environment variables to MCP `headersHelper` scripts, allowing one helper to serve multiple servers
+* Added conditional `if` field for hooks using permission rule syntax (e.g., `Bash(git *)`) to filter when they run, reducing process spawning overhead
+* Added timestamp markers in transcripts when scheduled tasks (`/loop`, `CronCreate`) fire
+* Added trailing space after `[Image #N]` placeholder when pasting images
+* Deep link queries (`claude-cli://open?q=…`) now support up to 5,000 characters, with a "scroll to review" warning for long pre-filled prompts
+* MCP OAuth now follows RFC 9728 Protected Resource Metadata discovery to find the authorization server
+* Plugins blocked by organization policy (`managed-settings.json`) can no longer be installed or enabled, and are hidden from marketplace views
+* PreToolUse hooks can now satisfy `AskUserQuestion` by returning `updatedInput` alongside `permissionDecision: "allow"`, enabling headless integrations that collect answers via their own UI
+* `tool_parameters` in OpenTelemetry tool\_result events are now gated behind `OTEL_LOG_TOOL_DETAILS=1`
+* Fixed `/compact` failing with "context exceeded" when the conversation has grown too large for the compact request itself to fit
+* Fixed `/plugin enable` and `/plugin disable` failing when a plugin's install location differs from where it's declared in settings
+* Fixed `--worktree` exiting with an error in non-git repositories before the `WorktreeCreate` hook could run
+* Fixed `deniedMcpServers` setting not blocking claude.ai MCP servers
+* Fixed `switch_display` in the computer-use tool returning "not available in this session" on multi-monitor setups
+* Fixed crash when `OTEL_LOGS_EXPORTER`, `OTEL_METRICS_EXPORTER`, or `OTEL_TRACES_EXPORTER` is set to `none`
+* Fixed diff syntax highlighting not working in non-native builds
+* Fixed MCP step-up authorization failing when a refresh token exists — servers requesting elevated scopes via `403 insufficient_scope` now correctly trigger the re-authorization flow
+* Fixed memory leak in remote sessions when a streaming response is interrupted
+* Fixed persistent ECONNRESET errors during edge connection churn by using a fresh TCP connection on retry
+* Fixed prompts getting stuck in the queue after running certain slash commands, with up-arrow unable to retrieve them
+* Fixed Python Agent SDK: `type:'sdk'` MCP servers passed via `--mcp-config` are no longer dropped during startup
+* Fixed raw key sequences appearing in the prompt when running over SSH or in the VS Code integrated terminal
+* Fixed Remote Control session status staying stuck on "Requires Action" after a permission is resolved
+* Fixed shift+enter and meta+enter being intercepted by typeahead suggestions instead of inserting newlines
+* Fixed stale content bleeding through when scrolling up during streaming
+* Fixed terminal left in enhanced keyboard mode after exit in Ghostty, Kitty, WezTerm, and other terminals supporting the Kitty keyboard protocol — Ctrl+C and Ctrl+D now work correctly after quitting
+* Improved @-mention file autocomplete performance on large repositories
+* Improved PowerShell dangerous command detection
+* Improved scroll performance with large transcripts by replacing WASM yoga-layout with a pure TypeScript implementation
+* Reduced UI stutter when compaction triggers on large sessions
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+18
+ Mantej-Singh, coygeek, thevi31415, saita08, egoan82, CarolMonroe22, sayu-llanos, lorisgautero, tukumalu, IGames-X, and 8 more reacted with thumbs up emoji
+ 😄
+4
+ coygeek, saita08, athola, and kookie14 reacted with laugh emoji
+ 🎉
+5
+ coygeek, saita08, tiger-captain, athola, and chrislongros reacted with hooray emoji
+ ❤️
+11
+ coygeek, 0-sayed, saita08, tiger-captain, alevizio, athola, xPloits3c, elrefai99, chrislongros, jisungbin, and jgonxo reacted with heart emoji
+ 🚀
+13
+ riftzen-bit, eckonode, intech, coygeek, AldoRastrelli, blackdiamond6390, xpe, saita08, egoan82, CarolMonroe22, and 3 more reacted with rocket emoji
+ 👀
+6
+ coygeek, saita08, qianYuanJ, athola, chrislongros, and CollabxConstruct reacted with eyes emoji
+
+All reactions
+
+* 👍
+  18 reactions
+* 😄
+  4 reactions
+* 🎉
+  5 reactions
+* ❤️
+  11 reactions
+* 🚀
+  13 reactions
+* 👀
+  6 reactions
+
+34 people reacted
+
+v2.1.84
+-------
+
+26 Mar 00:31
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.84](https://github.com/anthropics/claude-code/tree/v2.1.84)
+
+[`a0d9b87`](https://github.com/anthropics/claude-code/commit/a0d9b87038e72d8a523b61c152ec53299ac6fe94)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.84](https://github.com/anthropics/claude-code/releases/tag/v2.1.84)
+
+What's changed
+--------------
+
+* Added PowerShell tool for Windows as an opt-in preview. Learn more at <https://code.claude.com/docs/en/tools-reference#powershell-tool>
+* Added `ANTHROPIC_DEFAULT_{OPUS,SONNET,HAIKU}_MODEL_SUPPORTS` env vars to override effort/thinking capability detection for pinned default models for 3p (Bedrock, Vertex, Foundry), and `_MODEL_NAME`/`_DESCRIPTION` to customize the `/model` picker label
+* Added `CLAUDE_STREAM_IDLE_TIMEOUT_MS` env var to configure the streaming idle watchdog threshold (default 90s)
+* Added `TaskCreated` hook that fires when a task is created via `TaskCreate`
+* Added `WorktreeCreate` hook support for `type: "http"` — return the created worktree path via `hookSpecificOutput.worktreePath` in the response JSON
+* Added `allowedChannelPlugins` managed setting for team/enterprise admins to define a channel plugin allowlist
+* Added `x-client-request-id` header to API requests for debugging timeouts
+* Added idle-return prompt that nudges users returning after 75+ minutes to `/clear`, reducing unnecessary token re-caching on stale sessions
+* Deep links (`claude-cli://`) now open in your preferred terminal instead of whichever terminal happens to be first in the detection list
+* Rules and skills `paths:` frontmatter now accepts a YAML list of globs
+* MCP tool descriptions and server instructions are now capped at 2KB to prevent OpenAPI-generated servers from bloating context
+* MCP servers configured both locally and via claude.ai connectors are now deduplicated — the local config wins
+* Background bash tasks that appear stuck on an interactive prompt now surface a notification after ~45 seconds
+* Token counts ≥1M now display as "1.5m" instead of "1512.6k"
+* Global system-prompt caching now works when `ToolSearch` is enabled, including for users with MCP tools configured
+* Fixed voice push-to-talk: holding the voice key no longer leaks characters into the text input, and transcripts now insert at the correct position
+* Fixed up/down arrow keys being unresponsive when a footer item is focused
+* Fixed `Ctrl+U` (kill-to-line-start) being a no-op at line boundaries in multiline input, so repeated `Ctrl+U` now clears across lines
+* Fixed null-unbinding a default chord binding (e.g. `"ctrl+x ctrl+k": null`) still entering chord-wait mode instead of freeing the prefix key
+* Fixed mouse events inserting literal "mouse" text into transcript search input
+* Fixed workflow subagents failing with API 400 when the outer session uses `--json-schema` and the subagent also specifies a schema
+* Fixed missing background color behind certain emoji in user message bubbles on some terminals
+* Fixed the "allow Claude to edit its own settings for this session" permission option not sticking for users with `Edit(.claude)` allow rules
+* Fixed a hang when generating attachment snippets for large edited files
+* Fixed MCP tool/resource cache leak on server reconnect
+* Fixed a startup performance issue where partial clone repositories (Scalar/GVFS) triggered mass blob downloads
+* Fixed native terminal cursor not tracking the text input caret, so IME composition (CJK input) now renders inline and screen readers can follow the input position
+* Fixed spurious "Not logged in" errors on macOS caused by transient keychain read failures
+* Fixed cold-start race where core tools could be deferred without their bypass active, causing Edit/Write to fail with InputValidationError on typed parameters
+* Improved detection for dangerous removals of Windows drive roots (`C:\`, `C:\Windows`, etc.)
+* Improved interactive startup by ~30ms by running `setup()` in parallel with slash command and agent loading
+* Improved startup for `claude "prompt"` with MCP servers — the REPL now renders immediately instead of blocking until all servers connect
+* Improved Remote Control to show a specific reason when blocked instead of a generic "not yet enabled" message
+* Improved p90 prompt cache rate
+* Reduced scroll-to-top resets in long sessions by making the message window immune to compaction and grouping changes
+* Reduced terminal flickering when animated tool progress scrolls above the viewport
+* Changed issue/PR references to only become clickable links when written as `owner/repo#123` — bare `#123` is no longer auto-linked
+* Slash commands unavailable for the current auth setup (`/voice`, `/mobile`, `/chrome`, `/upgrade`, etc.) are now hidden instead of shown
+* [VSCode] Added rate limit warning banner with usage percentage and reset time
+* Stats screenshot (Ctrl+S in /stats) now works in all builds and is 16× faster
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+29
+ egoan82, jason-hwang, Mantej-Singh, 0-sayed, mike1858, coygeek, saita08, wenbo97, jweingardt12, KunW777, and 19 more reacted with thumbs up emoji
+ 😄
+6
+ mike1858, coygeek, aqlkzf, KennedyLovesMonroe, hoangduong92, and athola reacted with laugh emoji
+ 🎉
+10
+ mike1858, coygeek, saita08, RoboticWorx, TheRealMaN, thecloudtips, simono, david-jarman, KennedyLovesMonroe, and athola reacted with hooray emoji
+ ❤️
+10
+ mike1858, coygeek, saita08, KennedyLovesMonroe, tanakornrawee-dev, athola, elrefai99, roboking123, jovezhong, and BeeKhyyyyyy reacted with heart emoji
+ 🚀
+6
+ mike1858, coygeek, saita08, mrverdant13, KennedyLovesMonroe, and athola reacted with rocket emoji
+ 👀
+6
+ mike1858, coygeek, ssmanji89, KennedyLovesMonroe, parksungun, and athola reacted with eyes emoji
+
+All reactions
+
+* 👍
+  29 reactions
+* 😄
+  6 reactions
+* 🎉
+  10 reactions
+* ❤️
+  10 reactions
+* 🚀
+  6 reactions
+* 👀
+  6 reactions
+
+44 people reacted
+
+v2.1.83
+-------
+
+25 Mar 06:08
+
+[ashwin-ant](https://github.com/ashwin-ant)
+
+[v2.1.83](https://github.com/anthropics/claude-code/tree/v2.1.83)
+
+[`cada21c`](https://github.com/anthropics/claude-code/commit/cada21c89dc76cb0355fdeee659806674abfd38c)
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/anthropics/claude-code/tags)
+
+[v2.1.83](https://github.com/anthropics/claude-code/releases/tag/v2.1.83)
+
+What's changed
+--------------
+
+* Added `managed-settings.d/` drop-in directory alongside `managed-settings.json`, letting separate teams deploy independent policy fragments that merge alphabetically
+* Added `CwdChanged` and `FileChanged` hook events for reactive environment management (e.g., direnv)
+* Added `sandbox.failIfUnavailable` setting to exit with an error when sandbox is enabled but cannot start, instead of running unsandboxed
+* Added `disableDeepLinkRegistration` setting to prevent `claude-cli://` protocol handler registration
+* Added `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1` to strip Anthropic and cloud provider credentials from subprocess environments (Bash tool, hooks, MCP stdio servers)
+* Added transcript search — press `/` in transcript mode (`Ctrl+O`) to search, `n`/`N` to step through matches
+* Added `Ctrl+X Ctrl+E` as an alias for opening the external editor (readline-native binding; `Ctrl+G` still works)
+* Pasted images now insert an `[Image #N]` chip at the cursor so you can reference them positionally in your prompt
+* Agents can now declare `initialPrompt` in frontmatter to auto-submit a first turn
+* `chat:killAgents` and `chat:fastMode` are now rebindable via `~/.claude/keybindings.json`
+* Fixed mouse tracking escape sequences leaking to shell prompt after exit
+* Fixed Claude Code hanging on exit on macOS
+* Fixed screen flashing blank after being idle for a few seconds
+* Fixed a hang when diffing very large files with few common lines — diffs now time out after 5 seconds and fall back gracefully
+* Fixed a 1–8 second UI freeze on startup when voice input was enabled, caused by eagerly loading the native audio module
+* Fixed a startup regression where Claude Code would wait ~3s for claude.ai MCP config fetch before proceeding
+* Fixed `--mcp-config` CLI flag bypassing `allowedMcpServers`/`deniedMcpServers` managed policy enforcement
+* Fixed claude.ai MCP connectors (Slack, Gmail, etc.) not being available in single-turn `--print` mode
+* Fixed `caffeinate` process not properly terminating when Claude Code exits, preventing Mac from sleeping
+* Fixed bash mode not activating when tab-accepting `!`-prefixed command suggestions
+* Fixed stale slash command selection showing wrong highlighted command after navigating suggestions
+* Fixed `/config` menu showing both the search cursor and list selection at the same time
+* Fixed background subagents becoming invisible after context compaction, which could cause duplicate agents to be spawned
+* Fixed background agent tasks staying stuck in "running" state when git or API calls hang during cleanup
+* Fixed `--channels` showing "Channels are not currently available" on first launch after upgrade
+* Fixed uninstalled plugin hooks continuing to fire until the next session
+* Fixed queued commands flickering during streaming responses
+* Fixed slash commands being sent to the model as text when submitted while a message is processing
+* Fixed scrollback jumping when collapsed read/search groups finish after scrolling offscreen
+* Fixed scrollback jumping to top when the model starts or stops thinking
+* Fixed SDK session history loss on resume caused by hook progress/attachment messages forking the parentUuid chain
+* Fixed copy-on-select not firing when you release the mouse outside the terminal window
+* Fixed ghost characters appearing in height-constrained lists when items overflow
+* Fixed `Ctrl+B` interfering with readline backward-char at an idle prompt — it now only fires when a foreground task can be backgrounded
+* Fixed tool result files never being cleaned up, ignoring the `cleanupPeriodDays` setting
+* Fixed space key being swallowed for up to 3 seconds after releasing voice hold-to-talk
+* Fixed ALSA library errors corrupting the terminal UI when using voice mode on Linux without audio hardware (Docker, headless, WSL1)
+* Fixed voice mode SoX detection on Termux/Android where spawning `which` is kernel-restricted
+* Fixed Remote Control sessions showing as Idle in the web session list while actively running
+* Fixed footer navigation selecting an invisible Remote Control pill in config-driven mode
+* Fixed memory leak in remote sessions where tool use IDs accumulate indefinitely
+* Improved Bedrock SDK cold-start latency by overlapping profile fetch with other boot work
+* Improved `--resume` memory usage and startup latency on large sessions
+* Improved plugin startup — commands, skills, and agents now load from disk cache without re-fetching
+* Improved Remote Control session titles: AI-generated titles now appear within seconds of the first message
+* Improved `WebFetch` to identify as `Claude-User` so site operators can recognize and allowlist Claude Code traffic via `robots.txt`
+* Reduced `WebFetch` peak memory usage for large pages
+* Reduced scrollback resets in long sessions from once per turn to once per ~50 messages
+* Faster `claude -p` startup with unauthenticated HTTP/SSE MCP servers (~600ms saved)
+* Bash ghost-text suggestions now include just-submitted commands immediately
+* Increased non-streaming fallback token cap (21k → 64k) and timeout (120s → 300s local) so fallback requests are less likely to be truncated
+* Interrupting a prompt before any response now automatically restores your input so you can edit and resubmit
+* `/status` now works while Claude is responding, instead of being queued until the turn finishes
+* Plugin MCP servers that duplicate an org-managed connector are now suppressed instead of running a second connection
+* Linux: respect `XDG_DATA_HOME` when registering the `claude-cli://` protocol handler
+* Changed "stop all background agents" keybinding from `Ctrl+F` to `Ctrl+X Ctrl+K` to stop shadowing readline forward-char
+* Deprecated `TaskOutput` tool in favor of using `Read` on the background task's output file path
+* [VSCode] Spinner now turns red with "Not responding" when the backend hasn't responded for 60 seconds
+* [VSCode] Fixed session history not loading correctly when reopening a session via URL or after restart
+
+Assets
+2
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+26
+ coygeek, LeandroNina, tukumalu, MoonMao42, hyeonjinyoon, CUHKSZzxy, Cotchi666, xullul, redacktion, saita08, and 16 more reacted with thumbs up emoji
+ 😄
+4
+ coygeek, saita08, KennedyLovesMonroe, and athola reacted with laugh emoji
+ 🎉
+7
+ coygeek, saita08, ckempster, simono, edvardm, KennedyLovesMonroe, and athola reacted with hooray emoji
+ ❤️
+12
+ charly24, CaiCandong, hahwul, tareqmahmud, needleinthhay, coygeek, zhangzaibin, saita08, TomsB95, KennedyLovesMonroe, and 2 more reacted with heart emoji
+ 🚀
+8
+ yakkun, coygeek, LeandroNina, saita08, rpadulaflow, mrverdant13, KennedyLovesMonroe, and athola reacted with rocket emoji
+ 👀
+4
+ coygeek, yougrandpa, KennedyLovesMonroe, and athola reacted with eyes emoji
+
+All reactions
+
+* 👍
+  26 reactions
+* 😄
+  4 reactions
+* 🎉
+  7 reactions
+* ❤️
+  12 reactions
+* 🚀
+  8 reactions
+* 👀
+  4 reactions
+
+41 people reacted
+
+Previous
+ *1* [2](https://github.com/anthropics/claude-code/releases?page=2) [3](https://github.com/anthropics/claude-code/releases?page=3) [4](https://github.com/anthropics/claude-code/releases?page=4) [5](https://github.com/anthropics/claude-code/releases?page=5) [6](https://github.com/anthropics/claude-code/releases?page=6) [7](https://github.com/anthropics/claude-code/releases?page=7) [8](https://github.com/anthropics/claude-code/releases?page=8) [Next](https://github.com/anthropics/claude-code/releases?page=2)
+
+Previous
+ [Next](https://github.com/anthropics/claude-code/releases?page=2)
+
+Footer
+------
+
+© 2026 GitHub, Inc.
+
+### Footer navigation
+
+* [Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)
+* [Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)
+* [Security](https://github.com/security)
+* [Status](https://www.githubstatus.com/)
+* [Community](https://github.community/)
+* [Docs](https://docs.github.com/)
+* [Contact](https://support.github.com?tags=dotcom-footer)
+* Manage cookies
+* Do not share my personal information
+
+
+
+You can’t perform that action at this time.
+
+# Reference
+- [121] [Releases · anthropics/claude-code](https://github.com/anthropics/claude-code/releases)
