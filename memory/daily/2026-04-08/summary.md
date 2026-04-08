@@ -25,3 +25,13 @@
 - 代理执行代码硬重置，并将 `TodoWidget.tsx` 中的 `TodoList` 和 `TodoTask` 导入方式修改为显式的 `import type`（因其为 TypeScript 接口，直接导入会导致 Vite 编译失败），修复了红屏报错并更新了开发日志。
 - 代理最初将修复后的代码强推至临时打工分支（`aime/1775610140-fix-audio-resize-handle`），用户发现 `main` 分支未更新。在代理向用户确认了合并到 `main` 分支后仍可通过 `git revert` 或 `git reset` 安全撤销后，用户同意合并。
 - 代理在将改动合并至 `main` 分支时遇到冲突，为确保回滚后的代码干净无误，直接使用修复后的安全版本对 `main` 分支进行了硬重置，并强制推送到 GitHub 远程仓库，用户可直接在本地拉取同步。
+
+## 12:03:34
+- 用户要求重新设计打卡日历（Habit Widget）的 UI，偏好日系手账和文艺杂志排版风格。代理将组件重构为带有淡点阵底纹（Grid）、低饱和度朱红色“复古印章”打卡印记、衬线体留白排版及“左图右文”杂志级图文混排的样式，并推送到 `main` 分支。
+- 用户拉取代码时遇到 `The following untracked working tree files would be overwritten by merge` 的报错，涉及 `data/second_brain.db` 和日志等临时文件。代理排查为误提交了本地缓存文件，随后在远程仓库中清空这些文件，更新了 `.gitignore` 黑名单，并指导用户使用 `git reset --hard origin/main` 强行同步。
+- 用户反馈在使用打卡组件替换/上传背景图时控制台出现 `404 (Not Found)` 和 `Upload failed at uploadFileToLocal` 报错。代理排查确认为前端本地运行缺失后端接口支持，修改了 `HabitTrackerComponent.tsx`，恢复了“当后端接口失败时自动降级压缩为 base64 存至本地缓存”的回退机制，并提交了修复。
+
+## 12:30:36
+- 用户反馈打卡日历左侧缺失默认极简几何线稿及图片上传功能，且缺少“一键回到今天”的快速跳转按钮。
+- 代理恢复了极简几何线稿（`MinimalIllustration`）作为画框，并添加了悬浮点击上传插画的功能（包含无后端时的 base64 本地缓存降级机制）。
+- 代理优化了 UI 排版，将原有大圆圈图标移至标题旁增加留白感，并在右侧日历翻页箭头旁新增了 `Today` 按钮以快速切回当前月份，改动已推送至 `main` 分支。
