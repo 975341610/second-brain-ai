@@ -20,6 +20,7 @@
 
 ### 阶段二：手账专属 Tiptap Blocks (Pending)
 - [ ] **手写体支持**: 引入手写风格字体。
+- [x] **高级图片轮播 (Slider)**: 实现带设置面板、自动播放与多图滑动功能的自定义 Tiptap 扩展。
 - [ ] **装饰性组件**: 胶带 (Washi Tape)、贴纸 (Stickers)、图章 (Stamps) Block 实现。
 - [ ] **心情追踪器**: 集成情感分析的心情记录块。
 
@@ -275,9 +276,13 @@
 ## 2026-04-03
 ### Fixed
 - Critical bug in local-first auto-save fast-path: The Python backend does not return `file_path` in the note schema because it stores notes primarily in SQLite. Thus, the frontend's `currentNote.file_path` was always undefined, causing `index.ts` to silently skip the Node.js fast-path and fall back to the slow Python backend on every keystroke. Added a default fallback `note_${id}.md` directly in the IPC handler so the Node.js native save executes unconditionally.
-## 2026-04-03
-### Fixed
-- Addressed React crash (`TypeError: Cannot read properties of undefined (reading 'length')` in `Sidebar.tsx`) occurring when the application boots locally and the Python IPC backend fails to return a valid `TrashState` or `UserStats` object. Now gracefully handles missing objects by providing default empty arrays/objects.
+## 2026-04-09
+### Added
+- **Slider Extension (Tiptap)**:
+  - 实现 `SliderExtension` 自定义节点，支持 `images` (string[]), `autoPlay`, `showDots`, `showArrows` 属性。
+  - 实现 `SliderNodeView` 交互组件，支持左右滑动切换图片及浮动设置面板。
+  - MVP 阶段支持通过 URL 粘贴快速添加图片。
+  - 在 `NovaBlockEditor` 中注册并集成至 Slash Menu (`/slider`)。
 ## 2026-04-03
 ### Fixed
 - Tiptap Callout Block Escape Logic: Removed complex transaction hooks and isolating properties. Refactored Callout HTML structure to use `flex-direction: column` and a dedicated `callout-content` wrapper. This correctly aligns with Tiptap's default behavior, allowing soft breaks (`Shift+Enter`) and native double-Enter block escapes without cursor jumping.
