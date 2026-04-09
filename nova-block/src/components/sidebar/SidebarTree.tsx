@@ -209,7 +209,14 @@ export const SidebarTree = ({
         </AnimatePresence>
       </div>
 
-      <div className="px-4 py-2 flex items-center justify-center gap-4 border-b border-border/10 mb-2 min-h-[56px]">
+      <motion.div 
+        animate={{ 
+          gap: isCollapsed ? 8 : 16,
+          paddingLeft: isCollapsed ? 12 : 16,
+          paddingRight: isCollapsed ? 12 : 16
+        }}
+        className="py-2 flex items-center justify-center border-b border-border/10 mb-2 min-h-[56px] overflow-hidden"
+      >
         <button
           onClick={() => setActiveTab('tree')}
           title="文件树"
@@ -234,7 +241,7 @@ export const SidebarTree = ({
             全局搜索
           </div>
         </button>
-      </div>
+      </motion.div>
 
       {activeTab === 'search' && (
         <div className="flex-1 overflow-hidden">
@@ -252,14 +259,21 @@ export const SidebarTree = ({
           <div className="px-3 pb-4 space-y-2">
             <button 
               onClick={onQuickSearchOpen}
-              className="flex items-center gap-3 h-11 w-full text-xs font-medium text-muted-foreground bg-accent/30 hover:bg-accent/60 border border-border/20 rounded-2xl transition-all duration-300 group overflow-hidden"
+              className="flex items-center h-11 w-full text-xs font-medium text-muted-foreground bg-accent/30 hover:bg-accent/60 border border-border/20 rounded-2xl transition-all duration-300 group overflow-hidden"
               title={isCollapsed ? "快速搜索 (⌘K)" : undefined}
             >
-              <div className={`w-10 h-10 flex items-center justify-center shrink-0 transition-all ${isCollapsed ? 'mx-auto' : 'ml-1'}`}>
+              <motion.div 
+                animate={{ 
+                  width: isCollapsed ? 40 : 44,
+                  marginLeft: isCollapsed ? 0 : 4,
+                  marginRight: isCollapsed ? 0 : 4
+                }}
+                className="h-10 flex items-center justify-center shrink-0"
+              >
                 <Search size={14} className="group-hover:scale-110 transition-transform shrink-0" />
-              </div>
+              </motion.div>
               <AnimatedLabel isCollapsed={isCollapsed} className="flex-1">
-                <div className="flex items-center w-full">
+                <div className="flex items-center w-full pr-3">
                   <span>快速搜索</span>
                   <kbd className="ml-auto text-[10px] opacity-40 font-sans bg-background/50 px-1.5 py-0.5 rounded-lg border border-border/10">⌘K</kbd>
                 </div>
@@ -267,18 +281,25 @@ export const SidebarTree = ({
             </button>
             <button 
               onClick={onMoodboardSelect}
-              className={`flex items-center gap-3 h-11 w-full text-xs font-medium rounded-2xl transition-all duration-300 border overflow-hidden ${
+              className={`flex items-center h-11 w-full text-xs font-medium rounded-2xl transition-all duration-300 border overflow-hidden ${
                 activeView === 'moodboard' 
                   ? 'text-primary bg-primary/10 border-primary/20 shadow-inner shadow-primary/5' 
                   : 'text-muted-foreground bg-accent/30 hover:bg-accent/60 border-border/20'
               }`}
               title={isCollapsed ? "灵感集 (Moodboard)" : undefined}
             >
-              <div className={`w-10 h-10 flex items-center justify-center shrink-0 transition-all ${isCollapsed ? 'mx-auto' : 'ml-1'}`}>
+              <motion.div 
+                animate={{ 
+                  width: isCollapsed ? 40 : 44,
+                  marginLeft: isCollapsed ? 0 : 4,
+                  marginRight: isCollapsed ? 0 : 4
+                }}
+                className="h-10 flex items-center justify-center shrink-0"
+              >
                 <Sparkles size={14} className={`${activeView === 'moodboard' ? 'text-primary' : 'text-muted-foreground'} shrink-0`} />
-              </div>
+              </motion.div>
               <AnimatedLabel isCollapsed={isCollapsed}>
-                <span>灵感集 (Moodboard)</span>
+                <span className="pr-3">灵感集 (Moodboard)</span>
               </AnimatedLabel>
             </button>
           </div>
@@ -354,14 +375,21 @@ export const SidebarTree = ({
           {/* Footer */}
           <div className="p-3 border-t border-border/20 flex justify-center">
             <button 
-              className="flex items-center gap-3 h-11 w-full text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-xl transition-all duration-300 overflow-hidden"
+              className="flex items-center h-11 w-full text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-xl transition-all duration-300 overflow-hidden"
               title={isCollapsed ? "设置与空间管理" : undefined}
             >
-              <div className={`w-10 h-10 flex items-center justify-center shrink-0 transition-all ${isCollapsed ? 'mx-auto' : 'ml-1'}`}>
+              <motion.div 
+                animate={{ 
+                  width: isCollapsed ? 40 : 44,
+                  marginLeft: isCollapsed ? 0 : 4,
+                  marginRight: isCollapsed ? 0 : 4
+                }}
+                className="h-10 flex items-center justify-center shrink-0"
+              >
                 <Settings size={14} className="shrink-0" />
-              </div>
+              </motion.div>
               <AnimatedLabel isCollapsed={isCollapsed}>
-                <span>设置与空间管理</span>
+                <span className="pr-3">设置与空间管理</span>
               </AnimatedLabel>
             </button>
           </div>
