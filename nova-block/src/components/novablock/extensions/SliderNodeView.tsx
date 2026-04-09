@@ -30,6 +30,8 @@ export const SliderNodeView: React.FC<any> = ({ node, updateAttributes }) => {
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const wheelTimeout = useRef<any>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
 
   const nextSlide = useCallback(() => {
     if (images.length === 0) return;
@@ -48,7 +50,7 @@ export const SliderNodeView: React.FC<any> = ({ node, updateAttributes }) => {
     }
   }, [autoPlay, images.length, nextSlide, isSettingsOpen]);
 
-  const handleWheel = (e: React.WheelEvent) => {
+  const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault();
     if (wheelTimeout.current) return;
 
@@ -61,7 +63,31 @@ export const SliderNodeView: React.FC<any> = ({ node, updateAttributes }) => {
     wheelTimeout.current = setTimeout(() => {
       wheelTimeout.current = null;
     }, 300);
-  };
+  }, [nextSlide, prevSlide]);
+
+  useEffect(() => {
+    const carouselEl = carouselRef.current;
+    if (carouselEl) {
+      carouselEl.addEventListener('wheel', handleWheel, { passive: false });
+    }
+    return () => {
+      if (carouselEl) {
+        carouselEl.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [handleWheel]);
+
+  useEffect(() => {
+    const lightboxEl = lightboxRef.current;
+    if (isLightboxOpen && lightboxEl) {
+      lightboxEl.addEventListener('wheel', handleWheel, { passive: false });
+    }
+    return () => {
+      if (lightboxEl) {
+        lightboxEl.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [isLightboxOpen, handleWheel]);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -112,8 +138,8 @@ export const SliderNodeView: React.FC<any> = ({ node, updateAttributes }) => {
   const renderCoverflow = () => {
     return (
       <div 
+        ref={carouselRef}
         className="relative w-full h-full flex items-center justify-center overflow-hidden"
-        onWheel={handleWheel}
       >
         <AnimatePresence initial={false}>
           {images.map((url: string, index: number) => {
@@ -203,20 +229,12 @@ export const SliderNodeView: React.FC<any> = ({ node, updateAttributes }) => {
         <AnimatePresence>
           {isLightboxOpen && (
             <motion.div
+              ref={lightboxRef}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4 sm:p-12 cursor-zoom-out"
               onClick={() => setIsLightboxOpen(false)}
-              onWheel={(e) => {
-                e.preventDefault();
-                if (wheelTimeout.current) return;
-                if (e.deltaY > 0) nextSlide();
-                else if (e.deltaY < 0) prevSlide();
-                wheelTimeout.current = setTimeout(() => {
-                  wheelTimeout.current = null;
-                }, 300);
-              }}
             >
               <button 
                 onClick={(e) => { e.stopPropagation(); setIsLightboxOpen(false); }}
