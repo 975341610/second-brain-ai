@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { NodeViewWrapper, NodeViewProps } from '@tiptap/react';
+import { NodeViewWrapper } from '@tiptap/react';
 import { Settings, ChevronLeft, ChevronRight, Plus, X, Trash2 } from 'lucide-react';
 
-export const SliderNodeView: React.FC<NodeViewProps> = ({ node, updateAttributes }) => {
+export const SliderNodeView: React.FC<any> = ({ node, updateAttributes }) => {
   const { images, autoPlay, showDots, showArrows } = node.attrs;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
