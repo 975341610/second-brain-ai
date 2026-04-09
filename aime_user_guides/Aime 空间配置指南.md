@@ -387,7 +387,6 @@ A：目前有两种方式可以按需尝试。
 <!-- BLOCK_40 | Wk98dKCENo06Yuxxe5Jc2Htonlb -->
 <grid cols="2">
 <column width="40">
-  - **用户群**：[内测交流7群](https://applink.larkoffice.com/client/chat/chatter/add_by_link?link_token=08fp0a94-8096-4be4-8e0e-11383e51f137)
 </column>
 <column width="60">
   - **联系我们**：你也可以直接联系空间管理员或@(lanjunjian@bytedance.com)@(dingdegao@bytedance.com)@(wangyiyun.0423@bytedance.com)
