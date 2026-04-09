@@ -21,7 +21,8 @@ import {
     Type, Heading1, Heading2, Heading3, CheckSquare, Table as TableIcon, Code, Quote, Sparkles,
     Link as LinkIcon, Highlighter, Trash2, Copy, Replace, ListPlus, Minus,
     Trash, Columns, Rows, Film, Music, FileText, MonitorPlay, StickyNote as StickyNoteIcon,
-    List, ListOrdered, ArrowUpToLine, ArrowDownToLine, CopyPlus, StickyNote, Smile, X
+    List, ListOrdered, ArrowUpToLine, ArrowDownToLine, CopyPlus, StickyNote, Smile, X,
+    Layout
 } from 'lucide-react';
 
 import { 
@@ -31,7 +32,7 @@ import {
     ColumnGroup, Column, HighlightBlock,
     WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload,
     CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode,
-    Emoticon
+    Emoticon, SliderExtension
   } from '../../lib/tiptapExtensions';
 
 import type { Note } from '../../lib/types';
@@ -123,6 +124,7 @@ const NOVA_BLOCK_SLASH_ITEMS = [
 
     return chain.insertContent({ type: 'embedNode', attrs: { src: embedUrl } });
   } },
+  { label: '图片轮播', description: '插入高级图片轮播组件', group: '插入', icon: <Layout size={18} />, keywords: ['slider', 'carousel', 'lunbo'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'slider', attrs: { images: [] } }) },
 
   // 4. 手账装饰 (Scrapbook Decoration)
   { label: '和纸胶带', description: '插入装饰性胶带', group: '手账装饰', icon: <Highlighter size={18} className="text-pink-400" />, keywords: ['tape', 'washi'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'washiTape' }) },
@@ -290,6 +292,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     HabitTrackerNode,
     TodoNode,
     Emoticon,
+    SliderExtension,
     SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
   ], []);
 

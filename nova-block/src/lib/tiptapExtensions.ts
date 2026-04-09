@@ -22,7 +22,9 @@ import { MathBlockComponent } from '../components/editor/MathBlockComponent';
 import { FootnoteComponent } from '../components/editor/FootnoteComponent';
 import { CodeBlockComponent } from '../components/editor/CodeBlockComponent';
 
-export { TaskList, TaskItem };
+import { SliderExtension } from '../components/novablock/extensions/SliderExtension';
+
+export { TaskList, TaskItem, SliderExtension };
 
 // --- Widgets ---
 export { CountdownNode } from './novablock/extensions/CountdownNode';

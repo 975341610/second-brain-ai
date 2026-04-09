@@ -281,7 +281,13 @@
 ## 2026-04-03
 ### Fixed
 - Tiptap Callout Block Escape Logic: Removed complex transaction hooks and isolating properties. Refactored Callout HTML structure to use `flex-direction: column` and a dedicated `callout-content` wrapper. This correctly aligns with Tiptap's default behavior, allowing soft breaks (`Shift+Enter`) and native double-Enter block escapes without cursor jumping.
-## 2026-04-09 (性能调优)
+## 2026-04-09 (功能新增)
+### Added
+- **Tiptap Slider (图片轮播) MVP 落地**:
+  - **核心扩展**: 实现 `SliderExtension` 与 `SliderNodeView`，支持多图管理、自动播放、控制开关（分页点/箭头）。
+  - **Slash 菜单接入**: 在 `NovaBlockEditor.tsx` 中注册扩展，并添加 `/slider` (图片轮播) 菜单项，支持关键词匹配。
+  - **UI/UX**: 采用治愈系莫兰迪配色，支持浮动设置面板实时调整轮播参数，具备 60 FPS 流畅切换动画。
+  - **稳定性**: 通过 TypeScript 类型检查，确保在 `nova_repo` 真实结构下完美运行。
 ### Optimized
 - **侧边栏高频切换性能优化**:
   - **渲染隔离 (React.memo)**: 对 `NovaBlockEditor` 使用 `React.memo` 包裹，彻底解决侧边栏收缩/展开时导致编辑器内部（Tiptap 引擎）无效重渲染的问题，大幅提升 FPS。
