@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Smile, Plus, Loader2, X } from 'lucide-react';
 import { getApiBase } from '../../lib/api';
+import { HoverPlayImage } from './HoverPlayImage';
 
 interface EmoticonResource {
   name: string;
   url: string;
+  thumb_url: string;
 }
 
 interface EmoticonPanelProps {
@@ -109,26 +111,33 @@ export const EmoticonPanel: React.FC<EmoticonPanelProps> = ({ onSelect, classNam
           </div>
         ) : filteredEmoticons.length > 0 ? (
           <div className="grid grid-cols-5 gap-2">
-            {filteredEmoticons.map((emoticon) => (
-              <div key={emoticon.name} className="relative group">
-                <button
-                  onClick={() => onSelect(emoticon)}
-                  className="w-full aspect-square flex items-center justify-center p-1 bg-accent/30 rounded-lg hover:bg-accent hover:ring-2 hover:ring-primary/20 transition-all active:scale-90"
-                >
-                  <img 
-                    src={emoticon.url.startsWith('/') ? `${getApiBase()}${emoticon.url.replace('/api', '')}` : emoticon.url} 
-                    alt={emoticon.name}
-                    className="w-full h-full object-contain"
-                  />
-                </button>
-                <button
-                  onClick={(e) => handleDelete(e, emoticon.name)}
-                  className="absolute -top-1 -right-1 w-4 h-4 bg-background shadow-sm border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-all z-10"
-                >
-                  <X size={10} />
-                </button>
-              </div>
-            ))}
+            {filteredEmoticons.map((emoticon) => {
+              const formatUrl = (url: string) => {
+                if (!url) return '';
+                return url.startsWith('/') ? `${getApiBase()}${url.replace('/api', '')}` : url;
+              };
+              return (
+                <div key={emoticon.name} className="relative group">
+                  <button
+                    onClick={() => onSelect(emoticon)}
+                    className="w-full aspect-square flex items-center justify-center p-1 bg-accent/30 rounded-lg hover:bg-accent hover:ring-2 hover:ring-primary/20 transition-all active:scale-90"
+                  >
+                    <HoverPlayImage 
+                      src={formatUrl(emoticon.url)} 
+                      thumbSrc={formatUrl(emoticon.thumb_url || emoticon.url)}
+                      alt={emoticon.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </button>
+                  <button
+                    onClick={(e) => handleDelete(e, emoticon.name)}
+                    className="absolute -top-1 -right-1 w-4 h-4 bg-background shadow-sm border border-border rounded-full flex items-center justify-center text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-all z-10"
+                  >
+                    <X size={10} />
+                  </button>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className="h-full flex flex-col items-center justify-center text-muted-foreground gap-2 py-8">

@@ -214,3 +214,51 @@
   font-size: 1.125rem;
   color: #ffffff;
 }
+
+/* Note Link Capsule Styling - 莫兰迪色治愈系风格 */
+.note-link-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.1rem 0.6rem;
+  margin: 0 0.2rem;
+  background-color: #E6E2D3; /* 莫兰迪浅米色 */
+  color: #6B5B4B; /* 深咖啡灰 */
+  border: 1px solid #D4C5B9;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  vertical-align: middle;
+  text-decoration: none !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.note-link-capsule:hover {
+  background-color: #D4C5B9;
+  color: #4A3F35;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(107, 91, 75, 0.3);
+  border-color: #B99976;
+}
+
+.note-link-capsule.selected {
+  border: 2px solid #B99976;
+  box-shadow: 0 0 0 2px rgba(185, 153, 118, 0.2);
+}
+
+.note-link-capsule::before {
+  content: "";
+  display: none; /* We handle the icon in renderHTML */
+}
+
+/* Tippy theme for note link menu */
+.tippy-box[data-theme~='note-link-menu'] {
+  background-color: transparent;
+  box-shadow: none;
+}
+.tippy-box[data-theme~='note-link-menu'] .tippy-content {
+  padding: 0;
+}

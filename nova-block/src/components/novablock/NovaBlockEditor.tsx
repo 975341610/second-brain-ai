@@ -32,7 +32,7 @@ import {
     ColumnGroup, Column, HighlightBlock,
     WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload,
     CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode,
-    Emoticon, SliderExtension
+    Emoticon, SliderExtension, NoteLink
   } from '../../lib/tiptapExtensions';
 
 import type { Note } from '../../lib/types';
@@ -40,6 +40,7 @@ import type { Note } from '../../lib/types';
 import { EditorHeader } from '../editor/EditorHeader';
 import { PropertyPanel } from '../editor/PropertyPanel';
 import { getSuggestionConfig } from '../notion/SlashMenuConfig';
+import { getNoteLinkSuggestionConfig } from './extensions/NoteLinkConfig';
 import { TableOfContents } from './components/TableOfContents';
 import { EmoticonPanel } from '../editor/EmoticonPanel';
 
@@ -106,6 +107,7 @@ const NOVA_BLOCK_SLASH_ITEMS = [
     if (url) return chain.insertContent({ type: 'fileNode', attrs: { src: url, name: name || '未命名文件' } });
     return chain;
   } },
+  { label: '链接到笔记', description: '搜索并引用其他笔记', group: '插入', icon: <LinkIcon size={18} />, keywords: ['link', 'note', 'backlink', 'gl'], action: (chain: ChainedCommands) => chain.insertContent('[[') },
   { label: '嵌入 (B站/YouTube)', description: '嵌入外站视频或网页', group: '插入', icon: <MonitorPlay size={18} />, keywords: ['embed', 'bilibili', 'youtube', 'iframe', 'bzhan'], action: (chain: ChainedCommands) => {
     const url = window.prompt('请输入 B站、YouTube 或其他可嵌入网页的链接:');
     if (!url) return chain;
@@ -293,6 +295,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     TodoNode,
     Emoticon,
     SliderExtension,
+    NoteLink.configure({ suggestion: getNoteLinkSuggestionConfig() }),
     SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
   ], []);
 

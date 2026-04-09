@@ -375,14 +375,29 @@ def purge_notebook(db: Session, notebook_id: int) -> bool:
     return True
 
 
-def replace_note_links(db: Session, source_note_id: int, targets: list[tuple[int, float]]) -> None:
-    links = list(db.scalars(select(NoteLink).where(NoteLink.source_note_id == source_note_id)))
+def replace_note_links(db: Session, source_note_id: int, targets: list[tuple[int, float]], link_type: str = "manual") -> None:
+    # Clear old links of the same type
+    links = list(db.scalars(select(NoteLink).where(NoteLink.source_note_id == source_note_id, NoteLink.link_type == link_type)))
     for link in links:
         db.delete(link)
+    
+    # Add new links
     for target_id, score in targets:
         if target_id == source_note_id:
             continue
-        db.add(NoteLink(source_note_id=source_note_id, target_note_id=target_id, score=round(score, 4)))
+        # Verify target note exists
+        target_note = db.get(Note, target_id)
+        if not target_note:
+            continue
+            
+        # Avoid duplicate links
+        existing = db.scalar(select(NoteLink).where(
+            NoteLink.source_note_id == source_note_id,
+            NoteLink.target_note_id == target_id,
+            NoteLink.link_type == link_type
+        ))
+        if not existing:
+            db.add(NoteLink(source_note_id=source_note_id, target_note_id=target_id, score=round(score, 4), link_type=link_type))
     db.commit()
 
 

@@ -2,9 +2,11 @@ from __future__ import annotations
 import os
 import uuid
 import shutil
+from PIL import Image
 from pathlib import Path
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, Form, BackgroundTasks
 from fastapi.responses import StreamingResponse
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from backend.agent.planner import run_agent
 from backend.config import get_settings
@@ -99,6 +101,29 @@ router = APIRouter()
 settings = get_settings()
 ai_client = AIClient()
 
+import re
+
+def extract_manual_links(content: str) -> list[int]:
+    """
+    Extract note IDs from content.
+    Matches: <span data-type="note-link" data-id="123">...</span>
+    Also support any custom tiptap node output if needed.
+    """
+    if not content:
+        return []
+    
+    # Match data-id="..." within tags that have data-type="note-link" or data-type="wiki"
+    # The requirement mentioned <span data-type="note-link" data-id="123">
+    pattern = r'data-id="(\d+)"'
+    ids = re.findall(pattern, content)
+    
+    # Also look for data-wiki-id if we use that for WikiLink
+    wiki_pattern = r'data-wiki-id="(\d+)"'
+    ids.extend(re.findall(wiki_pattern, content))
+    
+    # Convert to unique integers
+    return list(set(int(id_str) for id_str in ids))
+
 async def background_index_note(note_id: int, title: str, content: str, tags: list[str] | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False):
     """异步执行 AI 处理：摘要、向量化、自动链接"""
     db = SessionLocal()
@@ -157,7 +182,7 @@ async def background_index_note(note_id: int, title: str, content: str, tags: li
         if link_targets:
             @with_db_retry(max_retries=5, delay=0.5)
             def save_links():
-                replace_note_links(db, note_id, sorted(link_targets, key=lambda pair: pair[1], reverse=True)[:5])
+                replace_note_links(db, note_id, sorted(link_targets, key=lambda pair: pair[1], reverse=True)[:5], link_type="ai")
             save_links()
             
     except Exception as e:
@@ -170,7 +195,8 @@ async def background_index_note(note_id: int, title: str, content: str, tags: li
 
 
 def note_to_response(note: Note) -> NoteResponse:
-    links = [link.target_note_id for link in note.links_from]
+    links = [link.target_note_id for link in note.links_from if link.link_type == "manual"]
+    ai_links = [link.target_note_id for link in note.links_from if link.link_type == "ai"]
     properties = [NotePropertyResponse.model_validate(p) for p in note.properties]
     return NoteResponse(
         id=note.id,
@@ -181,6 +207,7 @@ def note_to_response(note: Note) -> NoteResponse:
         tags=[tag for tag in note.tags.split(",") if tag],
         properties=properties,
         links=links,
+        ai_links=ai_links,
         notebook_id=note.notebook_id,
         parent_id=note.parent_id,
         position=note.position,
@@ -213,6 +240,11 @@ async def persist_note(db: Session, title: str, content: str, background_tasks: 
     
     note = do_create()
     
+    # 1.5 Parse and save manual links
+    manual_link_ids = extract_manual_links(content)
+    if manual_link_ids:
+        replace_note_links(db, note.id, [(tid, 1.0) for tid in manual_link_ids], link_type="manual")
+    
     # 2. 异步执行 AI 任务
     background_tasks.add_task(
         background_index_note, 
@@ -221,6 +253,28 @@ async def persist_note(db: Session, title: str, content: str, background_tasks: 
     )
     
     return note_to_response(note)
+
+def get_or_create_thumbnail(file_path: Path) -> str | None:
+    """如果文件是动图且没有缩略图，则生成并返回缩略图文件名；否则返回 None。"""
+    if file_path.suffix.lower() not in [".gif", ".webp"] or file_path.name.endswith(".thumb.png"):
+        return None
+    
+    thumb_name = f"{file_path.stem}.thumb.png"
+    thumb_path = file_path.parent / thumb_name
+    
+    if not thumb_path.exists():
+        try:
+            with Image.open(file_path) as img:
+                # 提取第一帧并保存
+                img.seek(0)
+                # 转换到 RGBA (针对带有透明度的 WebP/GIF) 并保存为 PNG
+                img.convert("RGBA").save(thumb_path, "PNG")
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error(f"Failed to generate thumbnail for {file_path}: {e}")
+            return None
+            
+    return thumb_name
 
 @router.get("/emoticons/list", response_model=list[dict])
 def list_emoticons():
@@ -231,12 +285,28 @@ def list_emoticons():
     
     files = []
     # 支持常见的图片格式
-    for ext in ["*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg"]:
+    extensions = ["*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg"]
+    for ext in extensions:
         for f in emoticons_path.glob(ext):
+            # 排除生成的缩略图文件本身被列出
+            if f.name.endswith(".thumb.png"):
+                continue
+                
+            url = f"/api/emoticons/static/files/{f.name}"
+            thumb_url = url
+            
+            # 动图特殊处理
+            if f.suffix.lower() in [".gif", ".webp"]:
+                thumb_name = get_or_create_thumbnail(f)
+                if thumb_name:
+                    thumb_url = f"/api/emoticons/static/files/{thumb_name}"
+            
             files.append({
                 "name": f.name,
-                "url": f"/api/emoticons/static/files/{f.name}"
+                "url": url,
+                "thumb_url": thumb_url
             })
+            
     return sorted(files, key=lambda x: x["name"])
 
 @router.post("/notes/quick-capture", response_model=QuickCaptureResponse)
@@ -498,6 +568,36 @@ async def suggest_tags(payload: TagSuggestRequest, db: Session = Depends(get_db)
     tags = await ai_client.tags(payload.content, llm_config)
     return TagSuggestResponse(tags=tags)
 
+@router.get("/notes/{note_id}/links", response_model=list[NoteResponse])
+def get_note_links(note_id: int, db: Session = Depends(get_db)) -> list[NoteResponse]:
+    """获取当前笔记引用了哪些笔记"""
+    note = get_note(db, note_id)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    
+    # 结合手动和 AI 链接
+    target_ids = {link.target_note_id for link in note.links_from}
+    if not target_ids:
+        return []
+    
+    notes = db.scalars(select(Note).where(Note.id.in_(target_ids), Note.deleted_at.is_(None))).all()
+    return [note_to_response(n) for n in notes]
+
+@router.get("/notes/{note_id}/backlinks", response_model=list[NoteResponse])
+def get_note_backlinks(note_id: int, db: Session = Depends(get_db)) -> list[NoteResponse]:
+    """获取有哪些笔记引用了当前笔记"""
+    note = get_note(db, note_id)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+    
+    # 从 NoteLink 表中查询 target_note_id 为当前笔记的记录
+    source_ids = {link.source_note_id for link in note.links_to}
+    if not source_ids:
+        return []
+    
+    notes = db.scalars(select(Note).where(Note.id.in_(source_ids), Note.deleted_at.is_(None))).all()
+    return [note_to_response(n) for n in notes]
+
 @router.get("/notes/tree", response_model=list[NoteTreeResponse])
 def get_notes_tree(db: Session = Depends(get_db)) -> list[NoteTreeResponse]:
     roots = list_notes_tree(db)
@@ -614,6 +714,11 @@ async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: B
     
     note = do_quick_update()
     
+    # 1.5 更新手动链接
+    manual_link_ids = extract_manual_links(content)
+    # 即使为空也更新，以防用户删除了所有链接
+    replace_note_links(db, note_id, [(tid, 1.0) for tid in manual_link_ids], link_type="manual")
+
     # 2. 异步执行耗时的 AI 处理 (摘要、向量化、自动链接)
     background_tasks.add_task(
         background_index_note,
@@ -837,11 +942,26 @@ def list_stickers():
     
     files = []
     # 支持常见的图片格式
-    for ext in ["*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg"]:
+    extensions = ["*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg"]
+    for ext in extensions:
         for f in stickers_path.glob(ext):
+            # 排除生成的缩略图文件本身被列出
+            if f.name.endswith(".thumb.png"):
+                continue
+                
+            url = f"/api/stickers/files/{f.name}"
+            thumb_url = url
+            
+            # 动图特殊处理
+            if f.suffix.lower() in [".gif", ".webp"]:
+                thumb_name = get_or_create_thumbnail(f)
+                if thumb_name:
+                    thumb_url = f"/api/stickers/files/{thumb_name}"
+            
             files.append({
                 "name": f.name,
-                "url": f"/api/stickers/files/{f.name}"
+                "url": url,
+                "thumb_url": thumb_url
             })
     return sorted(files, key=lambda x: x["name"])
 

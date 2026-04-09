@@ -73,7 +73,8 @@ class NoteLink(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     source_note_id: Mapped[int] = mapped_column(ForeignKey("notes.id", ondelete="CASCADE"), index=True)
     target_note_id: Mapped[int] = mapped_column(ForeignKey("notes.id", ondelete="CASCADE"), index=True)
-    score: Mapped[float] = mapped_column(Float, default=0.0)
+    score: Mapped[float] = mapped_column(Float, default=1.0) # 1.0 for manual links
+    link_type: Mapped[str] = mapped_column(String(50), default="manual") # manual, ai
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     source: Mapped[Note] = relationship(back_populates="links_from", foreign_keys=[source_note_id])

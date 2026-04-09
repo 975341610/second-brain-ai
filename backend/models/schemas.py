@@ -72,6 +72,7 @@ class NoteResponse(NoteBase):
     tags: list[str]
     properties: list[NotePropertyResponse] = []
     links: list[int]
+    ai_links: list[int] = []
     notebook_id: int | None = None
     parent_id: int | None = None
     position: int = 0

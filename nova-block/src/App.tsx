@@ -119,7 +119,7 @@ function App() {
     setIsSidebarCollapsed(collapsed);
   };
 
-  // 全局快捷键 Cmd+K
+  // 全局快捷键 Cmd+K 和 笔记跳转事件
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -127,13 +127,29 @@ function App() {
         setIsCommandPaletteOpen(prev => !prev)
       }
     }
+    
+    const handleSelectNoteEvent = (e: any) => {
+      const noteId = e.detail?.noteId;
+      if (noteId) {
+        setCurrentNoteId(Number(noteId));
+        setActiveView('notes');
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
+    window.addEventListener('nova-select-note', handleSelectNoteEvent)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('nova-select-note', handleSelectNoteEvent)
+    }
+  }, [currentNoteId])
 
   // 同步到 localStorage
   useEffect(() => {
     localStorage.setItem('nova-block-notes', JSON.stringify(notes))
+    // @ts-ignore
+    window.novaNotes = notes
+    window.dispatchEvent(new Event('nova-notes-updated'))
   }, [notes])
 
   useEffect(() => {

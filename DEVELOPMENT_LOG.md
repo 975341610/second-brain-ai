@@ -617,3 +617,29 @@ Fixed Flip Clock animation pure CSS
 
 ### 细节优化
 - 完善了 `handleSave` 结尾的脏状态 (`isDirty`) 清除逻辑，现在会判断当前编辑器 DOM 中的内容是否与准备保存时完全一致，避免由于网络延迟，将用户在这 3 秒防抖期间新打入的内容误判为已保存。
+
+## [2026-04-09] - 修复双向链接 (Bi-directional Links) API 404 与 500 错误
+
+### 核心修复
+- **修复 API 404 错误**: 
+  - 之前侧边栏发出的 `/api/notes/{note_id}/backlinks` 及 `/api/notes/{note_id}/links` 接口抛出了 `404 Not Found`。
+  - 在 `backend/api/routes.py` 中补充了对应的接口定义与数据查询逻辑。
+- **修复创建笔记时触发的 500 错误 (SQLAlchemy Error)**:
+  - 触发了数据库结构不一致问题。新增的双向链接在更新数据库时，由于 `note_links` 表中遗漏了新字段 `link_type` 导致 `sqlite3.OperationalError: no such column: note_links.link_type`。
+  - 通过执行 `ALTER TABLE note_links ADD COLUMN link_type VARCHAR DEFAULT 'ai'` 命令修复了 `data/second_brain.db` 实体表的字段缺失问题，消除了创建笔记与访问链接接口时的报错。
+
+## [2026-04-09] - 双向链侧边栏离线优先改造与标题动态同步修复
+
+### 核心修复与重构
+- **侧边栏离线优先改造**: 
+  - 移除了 `BacklinksPanel.tsx` 中依赖后端 API (`/api/notes/...`) 的异步 `fetch` 逻辑。
+  - 完全改为基于全局状态 `window.novaNotes` 的纯前端内存计算，通过正则 (`/data-id="(\d+)"/g`) 实时计算正向链接与反向链接。
+  - 彻底解决了当应用以后端分离或纯前端模式运行（如 `nova-block` 独立演示站）时，因后端数据库无数据导致的面板不显示、报错 404/500 等问题。
+- **标题动态全息同步**: 
+  - 重构了 `NoteLinkNode.tsx` 的显示逻辑。之前 `[[笔记]]` 胶囊一旦插入，即使目标笔记改名，胶囊依然显示旧标题（因标题写死在 `label` 属性中）。
+  - 新增 `realLabel` 响应式状态，组件挂载与全局笔记更新（`nova-notes-updated`）时，会自动通过 `data-id` 到全局 `novaNotes` 中查表获取最新的实时标题。
+- **修复跳转未知笔记 Bug**:
+  - 修复了因为 Tiptap 传出的 `data-id` 为字符串格式，而在 `App.tsx` 的 `handleSelectNoteEvent` 中错误地将其直接赋值给原本期待 `number` 类型的 `currentNoteId`，导致严格比对 (`===`) 找不到笔记从而显示空白页的问题。现已强制转化为 `Number(noteId)`。
+
+### 细节优化
+- 在 `App.tsx` 中每当笔记状态变更时，触发全局事件 `window.dispatchEvent(new Event('nova-notes-updated'))`，打通了编辑器扩展与侧边栏的响应式数据流。

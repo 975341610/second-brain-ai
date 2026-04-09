@@ -34,6 +34,11 @@ export { KanbanNode } from './novablock/extensions/KanbanNode';
 export { HabitTrackerNode } from './novablock/extensions/HabitTrackerNode';
 export { TodoNode } from './novablock/extensions/TodoNode';
 export { Emoticon } from '../components/novablock/extensions/Emoticon';
+export { NoteLink } from '../components/novablock/extensions/NoteLink';
+
+// Keep WikiLink for backward compatibility if needed, or replace it. 
+// The user asked for a Tiptap Extension with capsule style and ID. 
+// NoteLink (from NoteLink.ts) is our new implementation.
 
 // --- 基础扩展增强 ---
 export { Heading };

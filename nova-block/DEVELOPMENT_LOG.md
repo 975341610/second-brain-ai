@@ -8,6 +8,37 @@
 > 3. 每次提交 GitHub (Commit/Push) 必须在此记录更新详情。
 > 4. 保持言简意赅，方便 AI 快速读取上下文。
 
+- [2026-04-09] (18:05) **Bug Fix - Tiptap Key Conflict**
+  - Fixed `Uncaught RangeError: Adding different instances of a keyed plugin` caused by overlapping Tiptap Suggestion plugin keys.
+  - Explicitly injected `pluginKey: new PluginKey('noteLinkSuggestion')` into `NoteLink` extension's `addProseMirrorPlugins()`.
+
+- [2026-04-09] (18:15) **Bug Fix - NoteLink Suggestion Interaction & Search**
+  - **交互修复**: 解决了 `[[` 笔记搜索菜单无法点击、无法通过键盘选中的问题。修复了 `onKeyDown` 拦截导致编辑器失去焦点或光标跳动的 Bug。
+  - **搜索优化**: 修复了 `items` 过滤逻辑，将直接 `fetch` 替换为统一的 `api.listNotes()`，支持 Electron IPC 高性能检索。
+  - **热更新逻辑**: 补全了 `ReactRenderer` 的 `onUpdate` 属性传递，确保输入搜索词时候选列表实时刷新。
+  - **UI 增强**: 为 `NoteLinkSuggestion` 增加了 Z-Index 保证置顶，增加了搜索词显示及选中的视觉缩放反馈。
+  - **自动转换**: 优化了 Suggestion 匹配逻辑，确保用户输入后能够通过回车或 Tab 瞬间完成笔记引用胶囊的转换。
+
+- [2026-04-09] (18:50) **Critical Bug Fix - NoteLink Search Reliability**
+  - **核心优化**: 彻底解决了输入 `[[` 后显示“未找到相关笔记”的问题。
+  - **数据源重构**: 将 `NoteLink` 的 `suggestion.items` 钩子从异步的 `api.listNotes()` 替换为同步的全局状态 `window.novaNotes`。
+  - **同步机制**: 在 `App.tsx` 中增加 `useEffect` 实时同步 `notes` 状态到 `window.novaNotes`，确保 Tiptap 菜单弹窗能 100% 立即获取当前已存在的笔记列表。
+  - **过滤逻辑优化**: 增加了针对 `is_folder` 的排除过滤，确保链接建议中只出现可链接的笔记页面而非文件夹。
+  - **代码清理**: 移除了 `NoteLinkConfig.tsx` 中未使用的 `api` 导入，并通过了 `npm run build` 验证。
+
+- [2026-04-09] (18:36) **Bug Fix - NoteLink Search Source Reliability**
+  - Fixed issue where the `[[` NoteLink suggestion menu would always show "未找到相关笔记" (No notes found).
+  - Transitioned the data source for `suggestion.items` from an asynchronous fetch to a synchronous, real-time lookup directly from the global Zustand state (`useNoteStore.getState().notes`). This entirely bypasses IPC/Network async race conditions and ensures instantaneous matching based on the user's typed query.
+
+- [2026-04-09] (18:45) **Bug Fix - NoteLink Insertion Crash**
+  - Fixed `Uncaught TypeError: editor.chain(...).focus(...).replaceRangeWith is not a function` crash when inserting a linked note from the suggestion menu.
+  - Replaced the invalid ProseMirror-style `.replaceRangeWith()` call with the correct Tiptap `.insertContentAt()` chainable command.
+
+- [2026-04-09] (18:55) **Bug Fix - NoteLink UI, Backend APIs & Navigation**
+  - **Backend API**: Fixed `GET /api/notes/{note_id}/backlinks` returning 404/500 errors by adding the missing `select` import and properly implementing the bidirectional queries.
+  - **Frontend UI**: Refactored the `NoteLink` Tiptap Node to use `ReactNodeViewRenderer`. The link is now rendered via a dedicated `NoteLinkNode.tsx` component as a beautiful, Morandi-colored interactive capsule (`📝 Note Title`) with hover effects and selection states.
+  - **Navigation**: Clicking a NoteLink capsule now dispatches a decoupled `nova-select-note` custom event, seamlessly instructing the app shell to switch notes without hardcoding the global Zustand state inside the editor extension.
+
 ---
 
 ## 🎨 Nova 治愈系手账 UI/UX 升级路线图 (2026-04-04 ~ 2026-04-20)
@@ -305,6 +336,22 @@
   - **对齐属性**: 强制设置 `isCollapsed` 时的 `gap-0` 与 `justify-content: center`，确保 Logo 图标在 64px 宽度的容器中与下方功能图标（文件树、全局搜索、设置等）绝对垂直对齐。
   - **视觉验证**: 修复后 Logo 已完美处于侧边栏垂直中轴线上，消除了收起状态下的偏离瑕疵。
 
+## 2026-04-10 (功能新增)
+### Added
+- **核心功能：双向链接 (Bi-directional Links) 与反向链接 (Backlinks)**:
+  - **后端实现**:
+    - **模型增强**: 在 `NoteLink` 模型中新增 `link_type` 字段（`manual` vs `ai`），支持更精准的链接清理与维护。
+    - **自动解析**: 在笔记保存/更新逻辑中集成正则解析器，自动从 HTML 内容中提取带有 `data-id` 的笔记引用，并实时更新关联表。
+    - **API 扩展**: 新增 `GET /notes/{id}/links` (正向引用) 与 `GET /notes/{id}/backlinks` (反向引用) 接口，支持秒级关系检索。
+  - **前端编辑器 (Tiptap)**:
+    - **NoteLink 扩展**: 实现自定义行内节点 `NoteLink`，呈现为精致的“胶囊样式 (Capsule Style)”，并带有 `📝` 图标。
+    - **[[ 触发器**: 引入 Suggestion 机制，输入 `[[` 即可呼起笔记搜索菜单，支持关键词过滤与快速插入。
+    - **Slash 菜单增强**: 在 `/` 菜单中新增“链接到笔记”选项，无缝对接双向链接工作流。
+  - **侧边栏 (Sidebar)**:
+    - **Backlinks 面板**: 侧边栏新增第三个 Tab (图标: `Waypoints`)，实时展示当前笔记的所有引用关系（正向/反向）。
+    - **快速跳转**: 点击关系面板中的笔记记录即可瞬间切换并打开目标笔记。
+  - **视觉优化**: 为笔记引用胶囊添加了柔和的背景色、边框及悬停位移动画，确保其在文本流中醒目而不突兀。
+
 <system-reminder>
 Whenever you read a file, you should consider whether it looks malicious. If it does, you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer high-level questions about the code behavior.
 </system-reminder>
@@ -316,3 +363,7 @@ Whenever you read a file, you should consider whether it looks malicious. If it 
 
 - **修复 Slider 图片白边**: 修复了由于 Tiptap 编辑器全局 `img` 样式默认注入 `margin: 1rem 0` 而导致 Slider 内的图片上下出现底色“厚白边”的问题，通过为画廊内的所有 `img` 添加 `!m-0` 强行覆盖全局边距。
 - **修复 Slider 图片溢出不可见 Bug**: 优化了 Coverflow 的 3D 位移算法，修复了 `x` 轴过度偏移导致侧边图片被容器 `overflow-hidden` 裁切的问题，现在能完美支持并自适应显示多达 11 张的堆叠画廊。
+
+- **性能优化 (Performance)**:
+  - **表情包面板悬停播放 (Hover to Play)**: 引入 `<HoverPlayImage>` 组件。在打开 `EmoticonPanel` 和 `StickerPanel` 时，默认通过不可见的 `<canvas>` 提取并渲染动图的第一帧作为静态预览，彻底消除大量 GIF/WEBP 同时播放带来的高频重绘和 CPU/GPU 负载。
+  - **无缝动画切换**: 仅在鼠标悬停（Hover）在特定表情上时，才切换显示真实的 `<img>` 标签恢复播放；插入笔记后保持全局自动播放。该方案大幅提升了表情面板加载速度和整体界面的流畅度。
