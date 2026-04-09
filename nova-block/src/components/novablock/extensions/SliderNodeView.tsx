@@ -24,12 +24,14 @@ const Switch: React.FC<{ checked: boolean; onChange: (checked: boolean) => void;
 };
 
 export const SliderNodeView: React.FC<NodeViewProps> = ({ node, updateAttributes }) => {
-  const { images, autoPlay, showDots, showArrows } = node.attrs;
+  const { images, autoPlay, showDots, showArrows, visibleCount = 5 } = node.attrs;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [newImageUrl, setNewImageUrl] = useState('');
   const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextSlide = useCallback(() => {
     if (images.length === 0) return;
@@ -40,6 +42,39 @@ export const SliderNodeView: React.FC<NodeViewProps> = ({ node, updateAttributes
     if (images.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   }, [images.length]);
+
+  // 处理滚轮事件
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      
+      if (wheelTimeoutRef.current) return;
+
+      if (e.deltaY > 0) {
+        nextSlide();
+      } else if (e.deltaY < 0) {
+        prevSlide();
+      }
+
+      wheelTimeoutRef.current = setTimeout(() => {
+        wheelTimeoutRef.current = null;
+      }, 300); // 300ms 节流锁
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel);
+      }
+      if (wheelTimeoutRef.current) {
+        clearTimeout(wheelTimeoutRef.current);
+      }
+    };
+  }, [nextSlide, prevSlide]);
 
   useEffect(() => {
     if (autoPlay && images.length > 1 && !isSettingsOpen) {
@@ -93,60 +128,91 @@ export const SliderNodeView: React.FC<NodeViewProps> = ({ node, updateAttributes
   };
 
   return (
-    <NodeViewWrapper className="slider-node my-6 relative group">
-      <div className="relative w-full aspect-video bg-zinc-50 rounded-xl overflow-hidden ring-1 ring-zinc-200/60 shadow-md">
+    <NodeViewWrapper className="slider-node my-10 relative group">
+      <div 
+        ref={containerRef}
+        className="relative w-full aspect-[21/9] flex items-center justify-center overflow-hidden"
+      >
         {images.length > 0 ? (
-          <div className="w-full h-full relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="w-full h-full"
-              >
-                {failedImages[currentIndex] ? (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-100 text-zinc-400 gap-2">
-                    <AlertCircle size={40} className="stroke-[1.5]" />
-                    <span className="text-sm font-medium">图片加载失败或无法解析</span>
-                  </div>
-                ) : (
-                  <img
-                    src={images[currentIndex]}
-                    alt={`Slide ${currentIndex + 1}`}
-                    className="w-full h-full object-cover"
-                    onError={() => setFailedImages(prev => ({ ...prev, [currentIndex]: true }))}
-                  />
-                )}
-              </motion.div>
-            </AnimatePresence>
+          <div className="relative w-full h-full flex items-center justify-center">
+            {images.map((url: string, index: number) => {
+              // 处理环形逻辑的 diff
+              let diff = index - currentIndex;
+              const len = images.length;
+              
+              // 寻找最短路径
+              if (diff > len / 2) diff -= len;
+              if (diff < -len / 2) diff += len;
+
+              const isVisible = Math.abs(diff) <= Math.floor(visibleCount / 2);
+              
+              return (
+                <motion.div
+                  key={index}
+                  style={{
+                    zIndex: 50 - Math.abs(diff),
+                    position: 'absolute',
+                  }}
+                  initial={false}
+                  animate={{
+                    x: diff * 45 + '%', // 平移量
+                    scale: 1 - Math.abs(diff) * 0.15, // 缩放
+                    opacity: isVisible ? 1 : 0,
+                    pointerEvents: index === currentIndex ? 'auto' : 'none',
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20
+                  }}
+                  className="w-1/2 aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20"
+                >
+                  {failedImages[index] ? (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-100 text-zinc-400 gap-2">
+                      <AlertCircle size={40} className="stroke-[1.5]" />
+                      <span className="text-sm font-medium">图片加载失败</span>
+                    </div>
+                  ) : (
+                    <img
+                      src={url}
+                      alt={`Slide ${index + 1}`}
+                      className="w-full h-full object-cover select-none"
+                      onError={() => setFailedImages(prev => ({ ...prev, [index]: true }))}
+                    />
+                  )}
+                  {/* 倒影或遮罩效果增强景深 */}
+                  {index !== currentIndex && (
+                    <div className="absolute inset-0 bg-black/20 transition-opacity duration-300" />
+                  )}
+                </motion.div>
+              );
+            })}
             
             {showArrows && images.length > 1 && (
               <>
                 <button
                   onClick={prevSlide}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg text-zinc-800 transition-all opacity-0 group-hover:opacity-100 border border-zinc-100 hover:scale-105 active:scale-95"
+                  className="absolute left-8 z-[100] p-3 bg-white/90 hover:bg-white rounded-full shadow-xl text-zinc-800 transition-all opacity-0 group-hover:opacity-100 border border-zinc-100 hover:scale-110 active:scale-90"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={24} />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg text-zinc-800 transition-all opacity-0 group-hover:opacity-100 border border-zinc-100 hover:scale-105 active:scale-95"
+                  className="absolute right-8 z-[100] p-3 bg-white/90 hover:bg-white rounded-full shadow-xl text-zinc-800 transition-all opacity-0 group-hover:opacity-100 border border-zinc-100 hover:scale-110 active:scale-90"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={24} />
                 </button>
               </>
             )}
 
             {showDots && images.length > 1 && (
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 px-3 py-2 bg-black/10 backdrop-blur-md rounded-full">
+              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex gap-2 px-4 py-2 bg-zinc-100/50 backdrop-blur-md rounded-full border border-zinc-200/50">
                 {images.map((_: any, i: number) => (
                   <button
                     key={i}
                     onClick={() => setCurrentIndex(i)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === currentIndex ? 'bg-white w-5' : 'bg-white/40 hover:bg-white/70 w-1.5'
+                      i === currentIndex ? 'bg-zinc-800 w-6' : 'bg-zinc-300 hover:bg-zinc-400 w-1.5'
                     }`}
                   />
                 ))}
@@ -165,7 +231,7 @@ export const SliderNodeView: React.FC<NodeViewProps> = ({ node, updateAttributes
         {/* 浮动设置图标 */}
         <button
           onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-          className={`absolute top-3 right-3 p-2 rounded-lg shadow-sm transition-all border opacity-0 group-hover:opacity-100 ${
+          className={`absolute top-4 right-4 z-[101] p-2 rounded-lg shadow-sm transition-all border opacity-0 group-hover:opacity-100 ${
             isSettingsOpen 
               ? 'bg-zinc-900 text-white border-zinc-800 scale-100 opacity-100' 
               : 'bg-white/90 text-zinc-600 border-zinc-200 hover:bg-white scale-95 hover:scale-100'
@@ -198,6 +264,28 @@ export const SliderNodeView: React.FC<NodeViewProps> = ({ node, updateAttributes
             </div>
 
             <div className="space-y-6">
+              {/* 可见数量配置 */}
+              <div className="bg-zinc-50/50 p-4 rounded-xl border border-zinc-100">
+                <div className="flex justify-between items-center mb-3">
+                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">可见图片数量</label>
+                  <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{visibleCount} 张</span>
+                </div>
+                <input
+                  type="range"
+                  min="3"
+                  max="9"
+                  step="2"
+                  value={visibleCount}
+                  onChange={(e) => updateAttributes({ visibleCount: parseInt(e.target.value) })}
+                  className="w-full h-1.5 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-zinc-900"
+                />
+                <div className="flex justify-between mt-2 px-0.5">
+                  <span className="text-[10px] text-zinc-400 font-medium">精简 (3)</span>
+                  <span className="text-[10px] text-zinc-400 font-medium">标准 (5)</span>
+                  <span className="text-[10px] text-zinc-400 font-medium">宽幅 (9)</span>
+                </div>
+              </div>
+
               {/* 图片添加区域 */}
               <div className="space-y-3">
                 <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider">素材添加</label>
