@@ -39,6 +39,9 @@ export const SliderExtension = Node.create<SliderOptions>({
       showArrows: {
         default: true,
       },
+      visibleCount: {
+        default: 5,
+      },
     };
   },
 
