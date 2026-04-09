@@ -496,6 +496,19 @@ export const DatabaseTableCell = BaseTableCell.extend({
 
 export const ResizableImage = Image.extend({
   draggable: true,
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      HTMLAttributes: {},
+    }
+  },
+  parseHTML() {
+    return [
+      {
+        tag: 'img[src]:not([data-emoticon]):not([src*="/api/emoticons/"])',
+      },
+    ]
+  },
   addAttributes() {
     return {
       ...this.parent?.(),

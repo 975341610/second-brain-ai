@@ -1,5 +1,22 @@
 # Development Log
 
+## [2026-04-09] - 修复编辑器异常与媒体路由 404 (v0.10.1)
+
+### 修复问题列表
+1. **表情包被渲染为巨型块级媒体卡片**
+   - **根因**: Tiptap 扩展注册与解析的优先级冲突。我们之前的 `ResizableImage` 扩展通过 `img[src]` 捕获了所有的图片标签，包括表情包，导致带有 `data-emoticon` 的内联表情被错误地解析并套用了块级图片卡片的组件与样式（包括拖拽和缩放 UI）。
+   - **修复**: 
+     - 在 `nova-block/src/components/novablock/extensions/Emoticon.ts` 中，为表情包增加 `priority: 100` 的解析权重，并确保不仅匹配 `[data-emoticon]` 也能匹配所有后端的 `/api/emoticons/` 资源链接。
+     - 在 `nova-block/src/lib/tiptapExtensions.ts` 的 `ResizableImage` 中，显式排除了表情包的匹配特征：`tag: 'img[src]:not([data-emoticon]):not([src*="/api/emoticons/"])'`。
+     - 这保证了普通的内联表情和块级插图渲染各司其职，不会混淆拉伸。
+2. **媒体接口 404 报错 (`/api/media/files/...`)**
+   - **根因**: 之前的路由重构时，把后端的音频/视频的静态挂载路径修改为了更规范的 `/api/media/static/files`，但前端（尤其是旧笔记的渲染内容和部分硬编码上传逻辑）仍在使用旧的 `/api/media/files` 路径，导致请求丢失 404。
+   - **修复**: 在 `backend/main.py` 中为 `uploads_dir` 挂载了两个静态访问路径，同时保留了 `/api/media/static/files` 和 `/api/media/files`，实现了向后兼容。
+3. **编辑器控制台重复注册及 Tippy 报错**
+   - **根因 1 (tiptap warn)**: `Duplicate extension names found: ['link', 'underline']` 是因为 Tiptap 内部的某些组合包（如 `StarterKit` 虽然关了部分功能，或其它自定义扩展继承）隐式引入了这些基础 mark，但我们在 `extensions` 数组中又显式地 `Link.configure()` 且注册了 `WikiLink`，并混用。
+   - **根因 2 (tippy warn)**: `tippy.js destroy() was called on an already-destroyed instance.` 这是由于 React 的严格模式或频繁重渲染导致的。BubbleMenu 在内部销毁时没有将自己从我们的组件引用中解绑，导致重渲染时对同一个已经被 `destroy` 的实例再次发起调用。
+   - **修复 2 (tippy warn)**: 引入 `tippyInstances` 全局引用池（`useRef(new Set())`），在 BubbleMenu 的 `tippyOptions.onMount` 时加入池中，在 `tippyOptions.onHidden` (而不是 `onDestroy`) 时移除。并在 `useEffect` 的 cleanup 里进行安全的逐个销毁，防止悬空调用。
+
 ## [2026-04-09] - 侧边栏与主页面空间纵深联动动效 (v0.10)
 
 ### 核心物理动效重构

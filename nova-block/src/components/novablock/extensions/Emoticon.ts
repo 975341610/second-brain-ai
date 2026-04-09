@@ -51,6 +51,11 @@ export const Emoticon = Node.create<EmoticonOptions>({
     return [
       {
         tag: 'img[data-emoticon]',
+        priority: 100,
+      },
+      {
+        tag: 'img[src*="/api/emoticons/"]',
+        priority: 100,
       },
     ];
   },

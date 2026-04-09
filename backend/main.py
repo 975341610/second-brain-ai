@@ -109,6 +109,7 @@ uploads_dir = Path(settings.uploads_path)
 if uploads_dir.exists():
     # Use a more specific path to avoid prefix matching other API routes
     app.mount("/api/media/static/files", StaticFiles(directory=uploads_dir), name="media_files")
+    app.mount("/api/media/files", StaticFiles(directory=uploads_dir), name="media_files_legacy")
 
 # Mount music library
 music_dir = Path(settings.music_path)
