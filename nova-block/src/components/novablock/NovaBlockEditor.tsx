@@ -147,7 +147,7 @@ interface NovaBlockEditorProps {
  * NovaBlockEditor (Sprint 3 Core)
  * 极致性能、uipro 专业视觉
  */
-export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
+export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
   note, onSave, onNotify
 }) => {
   const [isSaving, setIsSaving] = useState(false);
@@ -1182,4 +1182,4 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       </AnimatePresence>
     </motion.div>
   );
-};
+});

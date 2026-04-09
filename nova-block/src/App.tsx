@@ -114,6 +114,11 @@ function App() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
 
+  // 对侧边栏切换进行简单的节流处理，防止动画堆积
+  const toggleSidebar = (collapsed: boolean) => {
+    setIsSidebarCollapsed(collapsed);
+  };
+
   // 全局快捷键 Cmd+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -301,21 +306,24 @@ function App() {
           activeView={activeView}
           className="z-20"
           isCollapsed={isSidebarCollapsed}
-          onToggleCollapse={setIsSidebarCollapsed}
+          onToggleCollapse={toggleSidebar}
         />
 
         {/* 主编辑区 */}
         <motion.main 
+          initial={false}
           animate={{ 
-            scale: isSidebarCollapsed ? 1 : 0.95,
-            borderRadius: isSidebarCollapsed ? "0px" : "16px",
-            x: isSidebarCollapsed ? 0 : 0, // 侧边栏变宽时，主页面保持原位但缩放
+            scale: isSidebarCollapsed ? 1 : 0.98,
+            borderRadius: isSidebarCollapsed ? "0px" : "24px",
+            // 侧边栏宽度从 280 变到 64，差值 216。
+            // 当展开时，主页面缩小并向右偏移一点，保持呼吸感
+            x: isSidebarCollapsed ? 0 : 0, 
           }}
           transition={{ 
-            duration: 0.4, 
+            duration: 0.5, 
             ease: [0.32, 0.72, 0, 1] 
           }}
-          className="flex-1 h-full relative overflow-hidden flex flex-col z-10 bg-background shadow-2xl origin-left"
+          className="flex-1 h-full relative overflow-hidden flex flex-col z-10 bg-background shadow-[0_0_50px_rgba(0,0,0,0.1)] origin-left"
         >
           {/* 主页面遮罩 - 当侧边栏展开时显现 */}
           {!isSidebarCollapsed && (

@@ -281,6 +281,17 @@
 ## 2026-04-03
 ### Fixed
 - Tiptap Callout Block Escape Logic: Removed complex transaction hooks and isolating properties. Refactored Callout HTML structure to use `flex-direction: column` and a dedicated `callout-content` wrapper. This correctly aligns with Tiptap's default behavior, allowing soft breaks (`Shift+Enter`) and native double-Enter block escapes without cursor jumping.
+## 2026-04-09 (性能调优)
+### Optimized
+- **侧边栏高频切换性能优化**:
+  - **渲染隔离 (React.memo)**: 对 `NovaBlockEditor` 使用 `React.memo` 包裹，彻底解决侧边栏收缩/展开时导致编辑器内部（Tiptap 引擎）无效重渲染的问题，大幅提升 FPS。
+  - **防抖与冷却机制**: 在 `SidebarTree` 中引入 300ms 切换冷却时间（Ref 锁），防止用户连续狂点导致动画指令堆积与引擎死锁。
+  - **动画性能优化 (Layout Thrashing)**: 
+    - 精简了 `SidebarTree` 内部过度的 `layout` 属性，减轻 JS 动画引擎的计算负担。
+    - 优化 `App.tsx` 中的主布局动画，将 `scale` 调整为更保守且平滑的 `0.98`，并将持续时间延长至 `0.5s`，配合 `ease: [0.32, 0.72, 0, 1]` 提供更丝滑的呼吸感切换体验。
+  - **稳定性**: 统一了 `onToggleCollapse` 的调用逻辑，确保状态流转清晰可控。
+- **视觉验证**: 修复后，即使在连续快速点击侧边栏收缩按钮时，编辑器内容也保持稳定不抖动，FPS 稳定在 60 左右。
+
 ## 2026-04-09 (修复补丁)
 ### Fixed
 - **侧边栏 Logo 垂直对齐精准修复**:

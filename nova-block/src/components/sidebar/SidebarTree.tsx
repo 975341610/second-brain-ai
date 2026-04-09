@@ -60,9 +60,15 @@ export const SidebarTree = ({
   const [nodes, setNodes] = useState<TreeNode[]>(initialNodes);
   const [selectedId, setSelectedId] = useState<string>();
   const [internalIsCollapsed, setInternalIsCollapsed] = useState(false);
+  const lastToggleTime = useRef(0);
   
   const isCollapsed = externalIsCollapsed !== undefined ? externalIsCollapsed : internalIsCollapsed;
   const setIsCollapsed = (collapsed: boolean) => {
+    // 简单的冷却时间 (300ms)，防止高频点击导致的动画引擎死锁
+    const now = Date.now();
+    if (now - lastToggleTime.current < 300) return;
+    lastToggleTime.current = now;
+
     if (onToggleCollapse) {
       onToggleCollapse(collapsed);
     } else {
@@ -217,7 +223,6 @@ export const SidebarTree = ({
       </div>
 
       <motion.div 
-        layout
         animate={{ 
           flexDirection: isCollapsed ? "column" : "row",
           gap: isCollapsed ? 8 : 16,
@@ -226,8 +231,7 @@ export const SidebarTree = ({
         }}
         className="py-2 flex items-center justify-center border-b border-border/10 mb-2 min-h-[56px] overflow-hidden"
       >
-        <motion.button
-          layout
+        <button
           onClick={() => setActiveTab('tree')}
           title="文件树"
           className={`relative group flex items-center justify-center w-10 h-10 rounded-xl transition-all shrink-0 ${
@@ -238,9 +242,8 @@ export const SidebarTree = ({
           <div className="absolute left-full ml-2 px-2 py-1 bg-foreground text-background text-[10px] rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50">
             文件树
           </div>
-        </motion.button>
-        <motion.button
-          layout
+        </button>
+        <button
           onClick={() => setActiveTab('search')}
           title="全局搜索"
           className={`relative group flex items-center justify-center w-10 h-10 rounded-xl transition-all shrink-0 ${
@@ -251,7 +254,7 @@ export const SidebarTree = ({
           <div className="absolute left-full ml-2 px-2 py-1 bg-foreground text-background text-[10px] rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50">
             全局搜索
           </div>
-        </motion.button>
+        </button>
       </motion.div>
 
       {activeTab === 'search' && (
