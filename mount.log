@@ -1,0 +1,5 @@
+INFO:     Started server process [4003865]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60614 - "HEAD /api/media/files/b714d05c-a849-4f33-b153-37bc2a15794a.png HTTP/1.1" 404 Not Found

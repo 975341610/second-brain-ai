@@ -659,6 +659,121 @@ def purge_trash_api(db: Session = Depends(get_db)) -> dict:
     return {"status": "ok"}
 
 # ============================================================
+# 🎵 音乐库接口
+# ============================================================
+
+@router.get("/media/music-library")
+async def get_music_library():
+    music_dir = Path(settings.music_path)
+    if not music_dir.exists():
+        music_dir.mkdir(parents=True, exist_ok=True)
+    
+    tracks = []
+    # 格式支持放宽
+    extensions = {'.mp3', '.flac', '.wav', '.ogg', '.m4a', '.aac'}
+    img_extensions = {'.jpg', '.png', '.jpeg', '.webp'}
+    
+    # Sort for deterministic output
+    files = sorted(list(music_dir.iterdir()))
+    for file in files:
+        if file.suffix.lower() in extensions:
+            title = file.stem
+            cover = None
+            # Match songA.jpg or songA.png for songA.mp3
+            for img_ext in img_extensions:
+                img_file = music_dir / f"{title}{img_ext}"
+                if img_file.exists():
+                    cover = f"/api/media/static/music/{img_file.name}"
+                    break
+            
+            tracks.append({
+                "url": f"/api/media/static/music/{file.name}",
+                "title": title,
+                "artist": "本地音频",
+                "cover": cover,
+                "source": "local"
+            })
+        elif file.suffix.lower() == '.json':
+            try:
+                with open(file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    # 支持 JSON 解析库，扫描 .json 文件
+                    if "url" in data and "title" in data:
+                        tracks.append({
+                            "url": data["url"],
+                            "title": data["title"],
+                            "artist": data.get("artist", "网络直链"),
+                            "cover": data.get("cover"),
+                            "source": "network"
+                        })
+            except Exception:
+                pass
+    return tracks
+
+
+@router.post("/media/music-link")
+async def save_music_link(payload: dict):
+    """保存直链保存接口"""
+    title = payload.get("title")
+    url = payload.get("url")
+    cover = payload.get("cover")
+    if not title or not url:
+        raise HTTPException(status_code=400, detail="Title and URL are required")
+    
+    music_dir = Path(settings.music_path)
+    music_dir.mkdir(parents=True, exist_ok=True)
+    
+    json_path = music_dir / f"{title}.json"
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "title": title, 
+            "url": url, 
+            "cover": cover, 
+            "artist": "网络直链",
+            "source": "network"
+        }, f, ensure_ascii=False, indent=2)
+    
+    return {"status": "success", "path": str(json_path)}
+
+
+@router.post("/media/music-upload")
+async def upload_music(file: UploadFile = File(...), cover: UploadFile = File(None)):
+    """上传接口扩展"""
+    music_dir = Path(settings.music_path)
+    music_dir.mkdir(parents=True, exist_ok=True)
+    
+    # 📝 修复：安全处理文件名
+    safe_filename = Path(file.filename).name if file.filename else f"upload_{uuid.uuid4().hex}"
+    audio_path = music_dir / safe_filename
+    
+    try:
+        with open(audio_path, "wb") as f:
+            content = await file.read()
+            f.write(content)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to save audio file: {str(e)}")
+        
+    # Save cover if provided
+    cover_url = None
+    if cover and cover.filename:
+        safe_cover_name = Path(cover.filename).name
+        cover_path = music_dir / safe_cover_name
+        try:
+            with open(cover_path, "wb") as f:
+                content = await cover.read()
+                f.write(content)
+            cover_url = f"/api/media/static/music/{safe_cover_name}"
+        except Exception as e:
+            print(f"[!] Error saving cover: {str(e)}")
+    
+    return {
+        "status": "success",
+        "url": f"/api/media/static/music/{safe_filename}",
+        "cover": cover_url
+    }
+
+
+# ============================================================
 # 🎵 BGM 播放器接口
 # ============================================================
 
@@ -686,6 +801,149 @@ def stream_bgm(filename: str):
             yield from f
             
     return StreamingResponse(iterfile(), media_type="audio/mpeg")
+
+# ============================================================
+# 🎨 贴纸系统接口
+# ============================================================
+
+@router.get("/stickers/list", response_model=list[dict])
+def list_stickers():
+    """获取贴纸资源列表"""
+    stickers_path = Path(settings.stickers_path)
+    if not stickers_path.exists():
+        stickers_path.mkdir(parents=True, exist_ok=True)
+        # 尝试从 nova_repo/data/stickers 初始化 (如果是开发环境且 path 不对)
+        dev_data_path = PROJECT_DIR / "data" / "stickers"
+        if dev_data_path.exists() and dev_data_path != stickers_path:
+            for f in dev_data_path.glob("*.*"):
+                if f.suffix.lower() in [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"]:
+                    shutil.copy2(f, stickers_path / f.name)
+    
+    files = []
+    # 支持常见的图片格式
+    for ext in ["*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg"]:
+        for f in stickers_path.glob(ext):
+            files.append({
+                "name": f.name,
+                "url": f"/api/stickers/files/{f.name}"
+            })
+    return sorted(files, key=lambda x: x["name"])
+
+@router.post("/stickers/upload")
+async def upload_sticker(file: UploadFile = File(...)):
+    """上传新贴纸"""
+    try:
+        ext = os.path.splitext(file.filename)[1].lower()
+        if ext not in [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"]:
+            raise HTTPException(status_code=400, detail="Unsupported file type")
+            
+        unique_name = f"{uuid.uuid4()}{ext}"
+        save_path = Path(settings.stickers_path) / unique_name
+        
+        with open(save_path, "wb") as f:
+            f.write(await file.read())
+            
+        return {
+            "name": unique_name,
+            "url": f"/api/stickers/files/{unique_name}",
+            "original_name": file.filename
+        }
+    except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
+        raise HTTPException(status_code=500, detail=f"Sticker upload failed: {str(e)}")
+
+@router.get("/stickers/files/{filename}")
+def get_sticker_file(filename: str):
+    """获取贴纸文件内容"""
+    file_path = Path(settings.stickers_path) / filename
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Sticker not found")
+    
+    import mimetypes
+    mime_type, _ = mimetypes.guess_type(filename)
+    
+    def iterfile():
+        with open(file_path, mode="rb") as f:
+            yield from f
+            
+    return StreamingResponse(iterfile(), media_type=mime_type or "image/png")
+
+@router.delete("/stickers/files/{filename}")
+def delete_sticker_file(filename: str):
+    """物理删除贴纸文件"""
+    file_path = Path(settings.stickers_path) / filename
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Sticker not found")
+    
+    try:
+        os.remove(file_path)
+        return {"status": "ok", "message": f"Sticker {filename} deleted"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete sticker: {str(e)}")
+
+# ============================================================
+# 😄 表情包系统接口
+# ============================================================
+
+@router.get("/emoticons/list", response_model=list[dict])
+def list_emoticons():
+    """获取表情包资源列表"""
+    emoticons_path = Path(settings.emoticons_path)
+    if not emoticons_path.exists():
+        emoticons_path.mkdir(parents=True, exist_ok=True)
+    
+    files = []
+    # 支持常见的图片格式
+    valid_extensions = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+    for f in emoticons_path.iterdir():
+        if f.suffix.lower() in valid_extensions:
+            files.append({
+                "name": f.name,
+                "url": f"/api/emoticons/static/files/{f.name}"
+            })
+    return sorted(files, key=lambda x: x["name"])
+
+@router.post("/emoticons/upload")
+async def upload_emoticon(file: UploadFile = File(...)):
+    """上传新表情包"""
+    try:
+        ext = os.path.splitext(file.filename)[1].lower()
+        valid_extensions = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+        if ext not in valid_extensions:
+            raise HTTPException(status_code=400, detail="Unsupported file type")
+            
+        # 使用原始文件名或 UUID 确保唯一性
+        # 为了方便管理，我们可以保留原始文件名但处理掉非法字符，或者直接用 UUID
+        unique_name = f"{uuid.uuid4()}{ext}"
+        save_path = Path(settings.emoticons_path) / unique_name
+        
+        content = await file.read()
+        with open(save_path, "wb") as f:
+            f.write(content)
+            
+        return {
+            "name": unique_name,
+            "url": f"/api/emoticons/static/files/{unique_name}",
+            "original_name": file.filename
+        }
+    except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
+        raise HTTPException(status_code=500, detail=f"Emoticon upload failed: {str(e)}")
+
+@router.delete("/emoticons/files/{filename}")
+def delete_emoticon_file(filename: str):
+    """删除表情包文件"""
+    file_path = Path(settings.emoticons_path) / filename
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Emoticon not found")
+    
+    try:
+        os.remove(file_path)
+        return {"status": "ok", "message": f"Emoticon {filename} deleted"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete emoticon: {str(e)}")
 
 @router.get("/tasks", response_model=list[TaskResponse])
 def get_tasks(db: Session = Depends(get_db)) -> list[TaskResponse]:

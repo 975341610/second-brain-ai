@@ -53,7 +53,12 @@ async def auth_middleware(request: Request, call_next):
         not settings.access_token
         or request.url.path == "/health"
         or not request.url.path.startswith(settings.api_prefix)
-        or request.url.path.startswith(f"{settings.api_prefix}/media/files")
+        or request.url.path.startswith(f"{settings.api_prefix}/media/static")
+        or request.url.path == f"{settings.api_prefix}/media/music-library"
+        or request.url.path == f"{settings.api_prefix}/media/music-link"
+        or request.url.path == f"{settings.api_prefix}/media/music-upload"
+        or request.url.path.startswith(f"{settings.api_prefix}/stickers")
+        or request.url.path.startswith(f"{settings.api_prefix}/emoticons")
         or request.url.path == f"{settings.api_prefix}/system/version"
         or request.url.path == f"{settings.api_prefix}/model-config"
     )
@@ -99,7 +104,19 @@ else:
 # Mount media uploads
 uploads_dir = Path(settings.uploads_path)
 if uploads_dir.exists():
-    app.mount("/api/media/files", StaticFiles(directory=uploads_dir), name="media")
+    # Use a more specific path to avoid prefix matching other API routes
+    app.mount("/api/media/static/files", StaticFiles(directory=uploads_dir), name="media_files")
+
+# Mount music library
+music_dir = Path(settings.music_path)
+if music_dir.exists():
+    # Use a more specific path to avoid prefix matching other API routes (like /api/media/music-library)
+    app.mount("/api/media/static/music", StaticFiles(directory=music_dir), name="music_files")
+
+# Mount emoticons library
+emoticons_dir = Path(settings.emoticons_path)
+if emoticons_dir.exists():
+    app.mount("/api/emoticons/static/files", StaticFiles(directory=emoticons_dir), name="emoticon_files")
 
 def run_migrations() -> None:
     inspector = inspect(engine)
@@ -169,31 +186,28 @@ async def health() -> dict[str, str]:
 
 
 @app.get("/{full_path:path}", response_model=None)
-async def spa(full_path: str):
+async def spa(request: Request, full_path: str):
     """
     SPA Fallback Route:
     1. If requested path matches a file in frontend_dist, serve it.
     2. Otherwise, if not an api call, return index.html for SPA.
-    3. Else return 404.
+    3. Else return 404 JSON.
     """
-    # 1. Check if it's a direct file in frontend_dist (like favicon.svg, robots.txt)
-    # Exclude directories and index.html to avoid infinite loops
-    target_file = frontend_dist / full_path
-    
-    # Special handle for common web files if full_path is empty but requested
-    if not full_path:
-        # If accessing root, always try index.html first via fallback below
-        pass
-    elif target_file.is_file() and target_file.name != "index.html":
-        return FileResponse(target_file)
-    elif full_path == "favicon.ico" and (frontend_dist / "favicon.svg").exists():
-        return FileResponse(frontend_dist / "favicon.svg")
+    # 0. Fast exclude for API calls (Never return HTML for /api/ paths)
+    # Check both full_path and request.url.path to be safe
+    raw_path = request.url.path
+    if (
+        full_path.startswith("api/") 
+        or full_path == "api" 
+        or raw_path.startswith("/api")
+        or (settings.api_prefix and raw_path.startswith(settings.api_prefix))
+    ):
+         return JSONResponse(
+             status_code=404, 
+             content={"detail": "API endpoint not found (intercepted by SPA fallback)"}
+         )
 
-    # 2. Skip SPA fallback for API routes, health, and assets to avoid 200 OK for 404
-    if full_path.startswith("api") or full_path == "health" or full_path.startswith("assets"):
-         raise HTTPException(status_code=404, detail="Resource not found")
-    
-    # 3. Handle SPA fallback (only if index.html exists)
+    # 1. Check if it's a direct file in frontend_dist (like favicon.svg, robots.txt)
     index_file = frontend_dist / "index.html"
     if index_file.exists():
         return FileResponse(index_file)

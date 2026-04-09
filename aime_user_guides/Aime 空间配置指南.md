@@ -69,7 +69,7 @@
 <!-- END_BLOCK_14 -->
 
 <!-- BLOCK_15 | PI41dVMd6oPbSvx5uufcx5gXnvf -->
-<table header-row="true" col-widths="100,112,250,250,250">
+<table header-row="true" col-widths="100,169,250,250,250">
     <tr>
         <td>**资源类型**</td>
         <td>资源名称</td>

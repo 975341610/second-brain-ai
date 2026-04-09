@@ -1,5 +1,20 @@
 # Development Log
 
+## v0.08 - 贴纸系统完全体 (修复全局404、实现拖拽与体验微调)
+
+### 核心修复与优化 (Sticker System & API)
+- **后端 API 全面修复**：解决了后端 IPv6/IPv4 端口冲突导致的 404 错误，重构了 SPA 拦截逻辑，确保 API 请求（如 `/api/stickers/list`）不再被错误重定向至 `index.html`。
+- **内网穿透适配**：改写前端 fetch 请求逻辑，引入 `getApiBase()` 动态识别环境，完美适配内网穿透与远程访问场景。
+- **原生拖拽上墙 (Drag & Drop)**：在贴纸面板实现 HTML5 原生拖拽，支持将贴纸库资源直接拖拽至编辑器任意位置，并实现“落点即中心”的精准放置。
+- **解决无限循环渲染**：重构了 `StickerLayer` 与 `NovaBlockEditor` 的通讯机制，将回调函数移出 React 状态更新周期，彻底消除了由于状态竞争导致的崩溃与白屏报错。
+- **独立透明度与样式分离**：为贴纸引入独立的透明度调节功能，并与便利贴（Sticky Notes）实现架构层面的彻底分离，互不干扰。
+- **防状态重置保护**：优化了数据保存与读取逻辑，确保在编辑器重渲染或切换笔记时，贴纸的位置、旋转角度、缩放比例及透明度得到持久化保留。
+
+### UI/UX 体验升级
+- **悬浮操作菜单**：将贴纸操作从“悬停触发”改为“点击选中”，避免鼠标经过时的视觉干扰。选中后唤起带有毛玻璃效果的精致控制面板。
+- **头部按钮 Hover 菜单**：在编辑器顶部工具栏新增 Hover 悬浮菜单，集成一键清理、层级切换等快捷操作。
+- **视觉反馈增强**：为选中的贴纸添加蓝色光晕外框与动态高层级阴影，提升交互的确定感。
+
 ## [2026-04-04] - 高级极简主义大纲目录 (TOC) 组件实现
 
 ### 核心功能
@@ -129,9 +144,155 @@
 - **UI Pro Max**: 文件类型标签 (Type Tag) 采用全大写字母与 `tracking-wider` 间距，增强专业感。
 - **交互**: 在 File Card 右侧添加 `ExternalLink` 图标，暗示点击即可在外部打开。
 
-## [2026-04-08] - 音频节点 UI 优化
+## [2026-04-08] - 修复后端 API 全面 404 与 SPA 拦截逻辑重构 (核心修复)
 
-### UI 优化
-- **隐藏音频控制悬浮按钮**: 为 `AudioNode` (kind === 'audio') 隐藏了悬浮的拖拽和删除按钮工具栏。由于音频播放器本身占据了卡片的主要交互区域，隐藏这些悬浮按钮可以减少视觉干扰并防止误操作。
-- **保留缩放功能**: 明确保留了音频节点右下角的缩放手柄（Resize Handle），确保用户仍能调整音频播放器的宽度，同时不影响图片、视频等其他媒体类型的交互逻辑。
+### 1. 根因分析与环境治理
+- **多版本冲突修复**：发现环境中存在两套 `backend` 代码（根目录 `backend/` 与 `nova_repo/backend/`）。由于 `PYTHONPATH` 优先级问题，系统实际运行的是根目录下残缺的旧版代码，导致 `nova_repo` 中的修复始终无效。本次修复实现了两套代码的**深度同步与固化**。
+- **配置属性补全**：修复了根目录 `backend/config.py` 中缺失的 `music_path` 和 `stickers_path` 属性，解决了因配置缺失导致的后端启动崩溃并退化至 SPA 拦截的问题。
 
+### 2. 路由逻辑与静态挂载优化
+- **消除 Mount 路径冲突**：将静态文件挂载路径从 `/api/media/music` 和 `/api/media/files` 迁移至 `/api/media/static/music` 和 `/api/media/static/files`。这彻底解决了 FastAPI `mount` 前缀匹配劫持 `/api/media/music-library` 等 API 路由导致的 404 遗留问题。
+- **补全缺失 API 路由**：在 `backend/api/routes.py` 中手工补全了被遗漏的 `/api/media/music-library`、`/api/stickers/list` 等核心业务路由，确保所有前端功能均有对应的后端接口支撑。
+
+### 3. SPA Fallback 安全拦截 (防止 JSON 解析报错)
+- **严格 API 过滤**：重构了 `main.py` 中的 `spa` 路径拦截逻辑。现在所有以 `/api` 开头的请求，如果未匹配到具体路由，将**强制返回标准 404 JSON** (`{"detail": "API endpoint not found"}`)，而不再错误地返回 `index.html`。
+- **解决 Unexpected token '<'**：这一重构从根本上杜绝了前端因收到 HTML 响应而导致的 `JSON.parse` 报错（如 `StickerPanel.tsx:29`）。
+
+### 4. 权限与自动化
+- **鉴权豁免同步**：更新了 `auth_middleware` 的豁免列表，确保 `/api/media/music-library` 和 `/api/stickers` 相关的合法请求在未配置 Token 的本地开发环境下也能正常通行。
+- **实机验证**：通过内存 TestClient 模拟请求，证实 `/api/stickers/list` 和 `/api/media/music-library` 均已恢复 `200 OK` 状态并正确返回 JSON 数据。
+
+## [2026-04-08] - 修复 StickerLayer (贴纸层) 拖拽导致的白屏报错 (TypeError: Cannot read properties of null)
+
+### 1. 核心修复：StickerLayer.tsx 稳定性增强
+- **修复 null 指针引用**：修复了在 `StickerItem` 组件的拖拽 (`mousemove`) 事件处理中，由于 `setLocalSticker` 异步状态回调执行时 `dragRef.current` 可能已在 `mouseup` 中被重置为 `null` 导致的白屏报错。
+- **快照式状态访问**：在 `handleMouseMove` 开头通过 `const currentDrag = dragRef.current` 获取引用快照，并移除所有非空断言 (`!`)，确保在整个事件周期内即使 `ref` 被置空，回调逻辑依然能安全运行或静默退出。
+- **防御性编程**：在 `setLocalSticker` 回调内部增加了对快照的闭包引用，彻底杜绝了 `Cannot read properties of null (reading 'initialX')` 这一类型的运行时错误。
+
+### 2. 交互逻辑优化
+- **清理逻辑加固**：确保在 `handleMouseUp` 中先完成所有必要的父组件状态同步 (`onUpdate`)，再清理 `dragRef.current` 和移除事件监听，保证了数据流的完整性。
+- **响应性能**：维持了 `localSticker` 的局部状态更新策略，确保在拖拽、缩放、旋转和透明度调整时拥有极致的丝滑体验，同时避免了高频触发父组件重渲染。
+
+### 3. 技术细节
+- **React Hooks**: `useRef` + `useEffect` + `useCallback`。
+- **Event Listeners**: 动态监听 `mousemove` 与 `mouseup`，并在结束后及时销毁。
+- **Framer Motion**: 配合 `AnimatePresence` 处理控制面板的淡入淡出。
+
+## [2026-04-08] - 修复 StickerItem 渲染触发 NovaBlockEditor 报错 (React 竞态修复)
+
+### 1. 核心修复：消除跨组件更新报错 (Cannot update a component while rendering...)
+- **修复状态更新器副作用**：在 `StickerLayer.tsx` 的 `StickerItem` 组件中，修复了 `onUpdate` (父组件回调) 在 `setLocalSticker` 的**状态更新函数 (updater function)** 内部被非法调用的问题。
+- **逻辑解耦**：将所有导致父组件重渲染的回调函数（`onUpdate`, `onRemove`）移出 React 状态更新周期。现在这些回调仅在确定的事件处理程序（如 `handleMouseUp`）中被调用，且直接访问当前的闭包变量，确保符合 React 的纯函数状态更新规范。
+- **闭包安全**：在 `handleMouseUp` 触发时，直接使用 `localSticker` 最新的值同步给父组件，消除了渲染期间产生的副作用。
+
+### 2. 性能与稳定性优化
+- **引用稳定性控制 (Memoization)**：在 `StickerLayer` 组件中，为 `handleUpdate` 和 `handleRemove` 增加了 `useCallback` 封装。这确保了在父组件 `NovaBlockEditor` 重渲染时，传递给子组件的函数引用保持稳定，防止了不必要的子组件大规模重渲染。
+- **渲染链路清理**：经过全量搜索排查，确认 `StickerItem` 的所有渲染路径中不再包含任何裸露的父组件状态更新调用。
+
+### 3. 技术栈
+- **React**: `useCallback`, `useState`, `useRef`。
+- **状态管理**: 局部状态 (`localSticker`) 与全局状态 (`onUpdate`) 的分阶段同步策略。
+
+## [2026-04-08] - 贴纸系统交互体验深度升级与原生拖拽支持
+
+### 1. 核心修复：解决贴纸“裂图”问题
+- **路径解析逻辑对齐**：修复了 `StickerLayer.tsx` 中贴纸图片的 `src` 拼接逻辑。现在它能正确识别并转换以 `/api` 开头的本地路径（将其映射到 `/api/stickers/files/...`），确保贴纸从库中添加到画布后能正常显示，不再出现图片破碎。
+- **一致性增强**：使贴纸图层与贴纸面板（StickerPanel）使用完全一致的 `getApiBase()` 转换逻辑。
+
+### 2. 交互革命：实现原生拖拽添加 (Drag & Drop)
+- **StickerPanel 升级**：在贴纸库的每个贴纸元素上启用了 HTML5 原生拖拽 (`draggable={true}`)。
+- **数据负载传输**：在 `onDragStart` 中封装了贴纸的 JSON 元数据（URL、类型、名称），并设置了 50x50 的居中拖拽预览图，提供直观的视觉反馈。
+- **精准落点放置**：
+  - 在 `NovaBlockEditor.tsx` 的主滚动容器上实现了 `onDragOver` 和 `onDrop` 监听。
+  - **局部坐标计算**：在 `onDrop` 时精准计算鼠标相对于编辑器容器的局部坐标 `(x, y)`，并自动减去偏移量实现“落点即中心”。
+  - **流式分发**：直接触发 `add-sticky-note` 自定义事件并携带坐标参数，实现从工具栏拖出、在鼠标位置瞬间生成的丝滑闭环。
+
+### 3. UI 交互：从“悬停”进化为“点击选中”
+- **干扰消除**：将贴纸的操作菜单和控制手柄从 `onMouseEnter` 触发改为 `onClick` 选中触发。这彻底解决了拖拽鼠标路过其他贴纸时菜单乱跳、遮挡视线的痛点。
+- **选中状态管理**：
+  - 在 `StickerLayer` 中引入了 `selectedStickerId` 状态。
+  - **自动取消选中**：实现了全局点击监听，当用户点击编辑器空白处或其他非贴纸区域时，自动清空选中状态，保持画布整洁。
+  - **视觉反馈**：仅在选中状态下显示蓝色光晕外框 (`ring-2 ring-blue-400/50`)、高层级阴影及功能手柄（移动、缩放、旋转、透明度、删除）。
+
+### 4. 技术栈
+- **HTML5 Drag and Drop API**: 处理跨组件的数据传输。
+- **React State & Effects**: 管理复杂的交互状态与全局点击捕获。
+- **Framer Motion**: 配合 `AnimatePresence` 提供菜单弹出与消失的顺滑过渡。
+- **Tailwind CSS**: 动态处理 `z-index` 与选中视觉反馈。
+
+## [2026-04-08] - Tiptap 自定义表情包系统 (Emoticons) 前端功能实现
+
+### 1. 自定义 Tiptap Node (`Emoticon.ts`)
+- **内联渲染**：创建了继承自 `Node` 的 `Emoticon` 节点，配置为 `inline: true` 和 `group: 'inline'`。这使得表情包能像文字一样在段落中自然排版。
+- **性能冻结魔法**：渲染为带有 `data-emoticon="true"` 属性的 `<img>` 标签，方便后续在列表摘要等只读场景下通过 CSS 或 Canvas 进行特定处理。
+- **属性支持**：支持 `src`、`alt` 和 `title` 属性，并内置了 `1.5em` 的标准表情包尺寸样式。
+
+### 2. 表情包选择面板 (`EmoticonPanel.tsx`)
+- **微缩设计**：采用类似微信表情包的网格布局，适配 Popover 弹出显示。
+- **后端联动**：集成表情包列表获取 (`GET /api/emoticons/list`)、上传 (`POST /api/emoticons/upload`) 和删除 (`DELETE /api/emoticons/files/{filename}`) 功能。
+- **体验优化**：内置搜索过滤、上传进度状态提示及删除二次确认逻辑。
+
+### 3. 编辑器集成与工具栏增强
+- **Popover 集成**：在 `NovaBlockEditor.tsx` 的浮动菜单（BubbleMenu）中集成表情包按钮，使用 `Smile` 图标。
+- **斜杠菜单支持**：在 `/` 命令菜单中新增“表情”选项，点击可快速唤起选择面板。
+- **注册扩展**：在 `NovaBlockEditor` 的 `extensions` 数组中正式注册 `Emoticon` 扩展，使其在整个编辑器中可用。
+
+### 4. 技术细节与安全性
+- **API 基准适配**：所有图片请求和接口调用均通过 `getApiBase()` 进行动态 URL 包装，确保在内网穿透和不同部署环境下均能正常加载。
+- **UI 库集成**：使用了 `@/components/ui/popover` 实现非侵入式的弹出层交互。
+- **Lucide Icons**: 引入 `Smile` 图标作为表情系统的视觉入口。
+
+---
+
+
+## [2026-04-08] - 紧急修复：Vite 构建报错 (Popover 未定义) 与 UI 鲁棒性增强
+
+### 1. 核心修复：清理非法 UI 组件引入
+- **移除不存在的 Popover 导入**：修复了 `NovaBlockEditor.tsx` 中由于错误引入不存在的 `../ui/popover` 组件导致的 Vite 构建崩溃（`Failed to resolve import`）。
+- **原生悬浮实现重构**：将编辑器浮动菜单（BubbleMenu）中的表情包面板（EmoticonPanel）触发逻辑从 Shadcn `Popover` 替换为基于 React 状态和 Tailwind CSS 的**原生绝对定位 `div` 实现**。
+- **视觉一致性保持**：利用 `AnimatePresence` 和 `framer-motion` 还原了平滑的弹出与缩放动画（`scale-90 -> 100`），并确保 z-index 层级（`z-[120]`）正确覆盖在编辑器之上。
+
+### 2. 项目全局清理
+- **全面排查**：经全局搜索确认，项目中所有其他 `Popover` 引用（如 `PlaylistPopover.tsx`、`FootnoteComponent.tsx`）均已采用原生 `motion.div` 实现，不存在类似的非法引入隐患。
+
+### 3. 技术栈
+- **React**: 状态驱动的条件渲染。
+- **Framer Motion**: 高级交互动画。
+- **Tailwind CSS**: 响应式定位与阴影/背景滤镜。
+
+---
+
+
+### 1. 核心架构重构：分离“贴纸 (Stickers)”与“便利贴 (Sticky Notes)”
+- **三层架构逻辑纠偏**：
+  - **Layer 2 (Middle Layer / StickerLayer)**：恢复为纯装饰性的贴纸层，仅包含图片资源（SVG/PNG 等）。该层位于文字之下、背景之上，受“贴纸模式”开关控制（开启时可编辑，关闭时不可点击并带有模糊/低透明度效果）。
+  - **Layer 1 (Editor Layer / Tiptap)**：核心文字编辑层。
+  - **Layer 0 (Top Layer / StickyNotesLayer)**：恢复为独立的便利贴层，位于最顶层，**不受贴纸模式模糊滤镜影响**。便利贴现在被视为笔记内容的一部分，而非纯装饰。
+- **数据结构独立化**：
+  - 在 `types.ts` 中彻底分离 `StickerData` (仅限 image 类型) 与 `StickyNoteData` (含 HTML 内容)。
+  - `Note` 对象现在拥有独立的 `stickers` 和 `sticky_notes` 属性，避免了保存时的属性覆盖和逻辑混淆。
+- **交互逻辑修复**：
+  - 在 `NovaBlockEditor.tsx` 中重新分发 `add-sticky-note` 事件。根据事件携带的是 `url` (贴纸) 还是 `content` (便利贴) 自动分发到对应的状态数组中。
+
+### 2. 贴纸预置图库显示修复
+- **后端静态挂载**：在 `backend/main.py` 中新增 `/api/stickers/files` 路径的静态文件挂载，确保前端能直接访问 `data/stickers/` 目录下的资源。
+- **自动初始化逻辑**：在 `backend/api/routes.py` 的 `list_stickers` 接口中增加了路径自动纠偏逻辑。如果运行时 `stickers_path` 找不到预置图，会自动尝试从项目根目录的 `data/stickers` 初始化，解决了开发环境下路径不一致导致面板空白的问题。
+- **前端渲染优化**：`StickerPanel.tsx` 现在能正确显示 `tape.svg`, `note.svg`, `star.svg`, `heart.svg` 等预设矢量图，并支持直接选中插入。
+
+### 3. 技术栈
+- **FastAPI**: 静态文件挂载与路径纠便逻辑。
+- **React/Tiptap**: 多层级状态同步与事件分发重构。
+- **CSS/Tailwind**: 修复了 `z-index` 层级冲突，确保便利贴始终在最上方可点击。
+
+
+
+
+## [2026-04-08] - 修复表情面板点击无法弹出（脱离 BubbleMenu 的重构方案）
+
+### 根因
+- Tiptap `BubbleMenu` 内部存在原生 `mousedown/click` 拦截与失焦隐藏机制：当用户点击菜单内按钮时，容易触发编辑器失焦，导致 `BubbleMenu` 立刻销毁，从而把其 DOM 树内的 `<EmoticonPanel>` 一并卸载（表现为“点不出来/闪一下就没了”）。
+
+### 修复方案（彻底脱离 BubbleMenu）
+- **将挂载点抽离**：不再把 `<EmoticonPanel>` 渲染在 `<BubbleMenu>` 内部，改为在 `NovaBlockEditor` 返回结构中与 `BubbleMenu` 平级挂载。
+- **固定定位兜底**：面板使用 `fixed top-1/2 left-1/2 ... z-[99999]` 居中展示，彻底摆脱 `BubbleMenu` 生命周期影响。
+- **事件纪律**：表情按钮增加 `onMouseDown/onClick` 的 `e.preventDefault(); e.stopPropagation();`，避免触发 `BubbleMenu` 的隐藏/失焦链路。
