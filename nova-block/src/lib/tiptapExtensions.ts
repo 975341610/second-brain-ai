@@ -498,9 +498,11 @@ export const ResizableImage = Image.extend({
   draggable: true,
   addOptions() {
     return {
-      ...this.parent?.(),
+      ...(this.parent?.() || {}),
+      inline: false,
+      allowBase64: false,
       HTMLAttributes: {},
-    }
+    } as any;
   },
   parseHTML() {
     return [

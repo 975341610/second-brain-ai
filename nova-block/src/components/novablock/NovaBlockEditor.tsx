@@ -294,57 +294,64 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   ], []);
 
   const [outline, setOutline] = useState<any[]>([]);
+  const outlineTimerRef = useRef<any>(null);
 
   // 提取大纲数据用于 TOC
   const updateOutline = useCallback((editorInstance: Editor) => {
-    const items: any[] = [];
-    let foldLevel: number | null = null;
+    if (outlineTimerRef.current) {
+      clearTimeout(outlineTimerRef.current);
+    }
     
-    editorInstance.state.doc.descendants((node, pos) => {
-      if (node.type.name === 'heading') {
-        const currentLevel = node.attrs.level;
-        
-        // 逻辑与 CollapsibleHeading 保持一致
-        if (foldLevel !== null && currentLevel <= foldLevel) {
-          foldLevel = null;
-        }
-
-        // 如果处于折叠范围内，不加入大纲
-        if (foldLevel !== null) return false;
-
-        const text = node.textContent;
-        const displayText = text.trim() === '' ? '无标题' : text;
-        const id = node.attrs.id || `h-pending-${pos}`;
-        
-        items.push({
-          id,
-          text: displayText,
-          level: currentLevel,
-        });
-
-        if (node.attrs.collapsed) {
-          foldLevel = currentLevel;
-        }
-        return false;
-      }
+    outlineTimerRef.current = setTimeout(() => {
+      const items: any[] = [];
+      let foldLevel: number | null = null;
       
-      if (node.isBlock && foldLevel !== null) return false;
-      return true;
-    });
+      editorInstance.state.doc.descendants((node, pos) => {
+        if (node.type.name === 'heading') {
+          const currentLevel = node.attrs.level;
+          
+          // 逻辑与 CollapsibleHeading 保持一致
+          if (foldLevel !== null && currentLevel <= foldLevel) {
+            foldLevel = null;
+          }
 
-    // 只有在结构或核心数据发生变化时才更新状态
-    setOutline((prev) => {
-      // 关键：如果当前包含 pending ID，或者之前包含 pending ID，必须允许更新以达到最终稳定状态
-      const hasPending = items.some(it => it.id.startsWith('h-pending-'));
-      const prevHasPending = prev.some(it => it.id.startsWith('h-pending-'));
+          // 如果处于折叠范围内，不加入大纲
+          if (foldLevel !== null) return false;
 
-      if (!hasPending && !prevHasPending && 
-          prev.length === items.length && 
-          prev.every((item, i) => item.id === items[i].id && item.text === items[i].text && item.level === items[i].level)) {
-        return prev;
-      }
-      return items;
-    });
+          const text = node.textContent;
+          const displayText = text.trim() === '' ? '无标题' : text;
+          const id = node.attrs.id || `h-pending-${pos}`;
+          
+          items.push({
+            id,
+            text: displayText,
+            level: currentLevel,
+          });
+
+          if (node.attrs.collapsed) {
+            foldLevel = currentLevel;
+          }
+          return false;
+        }
+        
+        if (node.isBlock && foldLevel !== null) return false;
+        return true;
+      });
+
+      // 只有在结构或核心数据发生变化时才更新状态
+      setOutline((prev) => {
+        // 关键：如果当前包含 pending ID，或者之前包含 pending ID，必须允许更新以达到最终稳定状态
+        const hasPending = items.some(it => it.id.startsWith('h-pending-'));
+        const prevHasPending = prev.some(it => it.id.startsWith('h-pending-'));
+
+        if (!hasPending && !prevHasPending && 
+            prev.length === items.length && 
+            prev.every((item, i) => item.id === items[i].id && item.text === items[i].text && item.level === items[i].level)) {
+          return prev;
+        }
+        return items;
+      });
+    }, 500); // 500ms 防抖，大幅提升输入性能，杜绝 React 渲染死锁
   }, []);
 
   const editor = useEditor({
