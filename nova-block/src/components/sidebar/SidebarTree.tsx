@@ -25,6 +25,22 @@ interface SidebarTreeProps {
   onToggleCollapse?: (collapsed: boolean) => void;
 }
 
+const AnimatedLabel = ({ children, isCollapsed, className = "" }: { children: React.ReactNode, isCollapsed: boolean, className?: string }) => (
+  <AnimatePresence>
+    {!isCollapsed && (
+      <motion.span
+        initial={{ opacity: 0, x: -10, width: 0 }}
+        animate={{ opacity: 1, x: 0, width: "auto" }}
+        exit={{ opacity: 0, x: -10, width: 0 }}
+        transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+        className={`whitespace-nowrap overflow-hidden ${className}`}
+      >
+        {children}
+      </motion.span>
+    )}
+  </AnimatePresence>
+);
+
 export const SidebarTree = ({
   initialNodes = [],
   notes = [],
@@ -149,52 +165,78 @@ export const SidebarTree = ({
         ease: [0.32, 0.72, 0, 1] 
       }}
       className={`
-        h-full border-r border-border/40 bg-background/60 backdrop-blur-2xl flex flex-col
+        h-full border-r border-border/40 bg-background/60 backdrop-blur-2xl flex flex-col relative
         ${className}
       `}
     >
       {/* Sidebar Header */}
-      <div className="p-6 pb-2 flex items-center justify-between">
-        {!isCollapsed && (
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary/80 to-primary shadow-soft flex items-center justify-center">
-              <Layers size={16} className="text-primary-foreground" />
-            </div>
-            <span className="text-sm font-bold text-foreground/80 tracking-tight">Nova Block</span>
+      <div className="p-6 pb-2 flex items-center h-[72px]">
+        <div className="flex items-center gap-3 overflow-hidden">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary/80 to-primary shadow-soft flex items-center justify-center shrink-0">
+            <Layers size={16} className="text-primary-foreground" />
           </div>
-        )}
-        <button 
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className={`p-2 rounded-xl hover:bg-accent/50 text-muted-foreground hover:text-foreground transition-all duration-300 ${isCollapsed ? 'mx-auto' : ''}`}
+          <AnimatedLabel isCollapsed={isCollapsed}>
+            <span className="text-sm font-bold text-foreground/80 tracking-tight">Nova Block</span>
+          </AnimatedLabel>
+        </div>
+        
+        <AnimatePresence>
+          {!isCollapsed && (
+            <motion.button 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={() => setIsCollapsed(true)}
+              className="p-2 ml-auto rounded-xl hover:bg-accent/50 text-muted-foreground hover:text-foreground transition-all duration-300 shrink-0"
+            >
+              <ChevronLeft size={18} />
+            </motion.button>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {isCollapsed && (
+             <motion.button 
+               initial={{ opacity: 0, x: 10 }}
+               animate={{ opacity: 1, x: 0 }}
+               exit={{ opacity: 0, x: 10 }}
+               onClick={() => setIsCollapsed(false)}
+               className="absolute -right-3 top-7 w-6 h-6 rounded-full bg-background border border-border shadow-sm flex items-center justify-center text-muted-foreground hover:text-foreground hover:scale-110 transition-all z-30"
+             >
+               <ChevronRight size={14} />
+             </motion.button>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <div className="px-4 py-2 flex items-center justify-center gap-4 border-b border-border/10 mb-2 min-h-[56px]">
+        <button
+          onClick={() => setActiveTab('tree')}
+          title="文件树"
+          className={`relative group flex items-center justify-center w-10 h-10 rounded-xl transition-all shrink-0 ${
+            activeTab === 'tree' ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-accent/50'
+          }`}
         >
-          {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+          <FileText size={18} />
+          <div className="absolute left-full ml-2 px-2 py-1 bg-foreground text-background text-[10px] rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50">
+            文件树
+          </div>
+        </button>
+        <button
+          onClick={() => setActiveTab('search')}
+          title="全局搜索"
+          className={`relative group flex items-center justify-center w-10 h-10 rounded-xl transition-all shrink-0 ${
+            activeTab === 'search' ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-accent/50'
+          }`}
+        >
+          <Search size={18} />
+          <div className="absolute left-full ml-2 px-2 py-1 bg-foreground text-background text-[10px] rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-50">
+            全局搜索
+          </div>
         </button>
       </div>
 
-      {!isCollapsed && (
-        <div className="px-4 py-2 flex items-center gap-1 border-b border-border/10 mb-2">
-          <button
-            onClick={() => setActiveTab('tree')}
-            className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all ${
-              activeTab === 'tree' ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-accent/50'
-            }`}
-          >
-            <FileText size={12} />
-            文件树
-          </button>
-          <button
-            onClick={() => setActiveTab('search')}
-            className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all ${
-              activeTab === 'search' ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-accent/50'
-            }`}
-          >
-            <Search size={12} />
-            全局搜索
-          </button>
-        </div>
-      )}
-
-      {!isCollapsed && activeTab === 'search' && (
+      {activeTab === 'search' && (
         <div className="flex-1 overflow-hidden">
           <GlobalSearchPanel 
             notes={notes} 
@@ -204,53 +246,78 @@ export const SidebarTree = ({
         </div>
       )}
 
-      {!isCollapsed && activeTab === 'tree' && (
+      {activeTab === 'tree' && (
         <>
           {/* Quick Actions */}
-          <div className="px-4 pb-4 space-y-2">
+          <div className="px-3 pb-4 space-y-2">
             <button 
               onClick={onQuickSearchOpen}
-              className="w-full flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-muted-foreground bg-accent/30 hover:bg-accent/60 border border-border/20 rounded-2xl transition-all duration-300 group"
+              className="flex items-center gap-3 h-11 w-full text-xs font-medium text-muted-foreground bg-accent/30 hover:bg-accent/60 border border-border/20 rounded-2xl transition-all duration-300 group overflow-hidden"
+              title={isCollapsed ? "快速搜索 (⌘K)" : undefined}
             >
-              <Search size={14} className="group-hover:scale-110 transition-transform" />
-              <span>快速搜索</span>
-              <kbd className="ml-auto text-[10px] opacity-40 font-sans bg-background/50 px-1.5 py-0.5 rounded-lg border border-border/10">⌘K</kbd>
+              <div className={`w-10 h-10 flex items-center justify-center shrink-0 transition-all ${isCollapsed ? 'mx-auto' : 'ml-1'}`}>
+                <Search size={14} className="group-hover:scale-110 transition-transform shrink-0" />
+              </div>
+              <AnimatedLabel isCollapsed={isCollapsed} className="flex-1">
+                <div className="flex items-center w-full">
+                  <span>快速搜索</span>
+                  <kbd className="ml-auto text-[10px] opacity-40 font-sans bg-background/50 px-1.5 py-0.5 rounded-lg border border-border/10">⌘K</kbd>
+                </div>
+              </AnimatedLabel>
             </button>
             <button 
               onClick={onMoodboardSelect}
-              className={`w-full flex items-center gap-2 px-4 py-2.5 text-xs font-medium rounded-2xl transition-all duration-300 border ${
+              className={`flex items-center gap-3 h-11 w-full text-xs font-medium rounded-2xl transition-all duration-300 border overflow-hidden ${
                 activeView === 'moodboard' 
                   ? 'text-primary bg-primary/10 border-primary/20 shadow-inner shadow-primary/5' 
                   : 'text-muted-foreground bg-accent/30 hover:bg-accent/60 border-border/20'
               }`}
+              title={isCollapsed ? "灵感集 (Moodboard)" : undefined}
             >
-              <Sparkles size={14} className={activeView === 'moodboard' ? 'text-primary' : 'text-muted-foreground'} />
-              <span>灵感集 (Moodboard)</span>
+              <div className={`w-10 h-10 flex items-center justify-center shrink-0 transition-all ${isCollapsed ? 'mx-auto' : 'ml-1'}`}>
+                <Sparkles size={14} className={`${activeView === 'moodboard' ? 'text-primary' : 'text-muted-foreground'} shrink-0`} />
+              </div>
+              <AnimatedLabel isCollapsed={isCollapsed}>
+                <span>灵感集 (Moodboard)</span>
+              </AnimatedLabel>
             </button>
           </div>
 
           {/* Scrollable Tree Area */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden px-3 space-y-1 custom-scrollbar">
-            <div className="flex items-center justify-between px-3 py-2 group/header">
-              <div className="text-[10px] font-bold text-muted-foreground/50 uppercase tracking-widest">我的手账</div>
-              <div className="flex items-center gap-1 opacity-0 group-hover/header:opacity-100 transition-opacity duration-200">
-                <button 
-                  onClick={() => onNodeAdd?.(null, 'file')}
-                  className="p-1 rounded-md hover:bg-accent/60 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
-                  title="新建笔记"
-                >
-                  <FilePlus size={14} />
-                </button>
-                <button 
-                  onClick={() => onNodeAdd?.(null, 'folder')}
-                  className="p-1 rounded-md hover:bg-accent/60 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
-                  title="新建文件夹"
-                >
-                  <FolderPlus size={14} />
-                </button>
+          <div className="flex-1 overflow-y-auto overflow-x-hidden space-y-1 custom-scrollbar px-3">
+            {!isCollapsed && (
+              <div className="flex items-center justify-between px-3 py-2 group/header">
+                <div className="text-[10px] font-bold text-muted-foreground/50 uppercase tracking-widest">我的手账</div>
+                <div className="flex items-center gap-1 opacity-0 group-hover/header:opacity-100 transition-opacity duration-200">
+                  <button 
+                    onClick={() => onNodeAdd?.(null, 'file')}
+                    className="p-1 rounded-md hover:bg-accent/60 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
+                    title="新建笔记"
+                  >
+                    <FilePlus size={14} />
+                  </button>
+                  <button 
+                    onClick={() => onNodeAdd?.(null, 'folder')}
+                    className="p-1 rounded-md hover:bg-accent/60 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
+                    title="新建文件夹"
+                  >
+                    <FolderPlus size={14} />
+                  </button>
+                </div>
               </div>
-            </div>
-            {tree.map((node) => (
+            )}
+            {isCollapsed && (
+               <div className="flex flex-col items-center gap-2 py-2">
+                 <button 
+                   onClick={() => onNodeAdd?.(null, 'file')}
+                   className="p-2 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 transition-all"
+                   title="新建笔记"
+                 >
+                   <FilePlus size={16} />
+                 </button>
+               </div>
+            )}
+            {!isCollapsed && tree.map((node) => (
               <TreeNodeItem
                 key={node.id}
                 node={node}
@@ -271,7 +338,7 @@ export const SidebarTree = ({
               />
             ))}
             
-            {tree.length === 0 && (
+            {!isCollapsed && tree.length === 0 && (
               <div className="py-12 text-center space-y-3 opacity-40">
                 <div className="text-muted-foreground text-xs">暂无手账内容</div>
                 <button 
@@ -285,43 +352,23 @@ export const SidebarTree = ({
           </div>
 
           {/* Footer */}
-          <div className="p-4 border-t border-border/20">
-            <button className="w-full flex items-center gap-2 px-4 py-2 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-xl transition-all duration-300">
-              <Settings size={14} />
-              <span>设置与空间管理</span>
+          <div className="p-3 border-t border-border/20 flex justify-center">
+            <button 
+              className="flex items-center gap-3 h-11 w-full text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-xl transition-all duration-300 overflow-hidden"
+              title={isCollapsed ? "设置与空间管理" : undefined}
+            >
+              <div className={`w-10 h-10 flex items-center justify-center shrink-0 transition-all ${isCollapsed ? 'mx-auto' : 'ml-1'}`}>
+                <Settings size={14} className="shrink-0" />
+              </div>
+              <AnimatedLabel isCollapsed={isCollapsed}>
+                <span>设置与空间管理</span>
+              </AnimatedLabel>
             </button>
           </div>
         </>
       )}
 
-      {isCollapsed && (
-        <div className="flex-1 flex flex-col items-center py-6 gap-6">
-          <button className="p-2.5 rounded-xl hover:bg-accent/50 text-muted-foreground hover:text-foreground transition-all group">
-            <Search size={20} className="group-hover:scale-110 transition-transform" />
-          </button>
-          <button 
-            onClick={() => onNodeAdd?.(null, 'file')}
-            className="p-2.5 rounded-xl bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-95"
-            title="新建笔记"
-          >
-            <FilePlus size={20} strokeWidth={2.5} />
-          </button>
-          <button 
-            onClick={onMoodboardSelect}
-            className={`p-2.5 rounded-xl transition-all ${
-              activeView === 'moodboard' 
-                ? 'bg-primary/10 text-primary' 
-                : 'hover:bg-accent/50 text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            <Sparkles size={20} />
-          </button>
-          <div className="flex-1 w-8 border-t border-border/20 mt-2" />
-          <button className="p-2.5 rounded-xl hover:bg-accent/50 text-muted-foreground hover:text-foreground transition-all">
-            <Settings size={20} />
-          </button>
-        </div>
-      )}
+      {/* 移除旧的 isCollapsed 判断块，因为我们现在采用了统一的侧边栏结构 */}
 
       {/* Context Menu Portal */}
       {contextMenu && createPortal(
