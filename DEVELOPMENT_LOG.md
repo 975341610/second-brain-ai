@@ -10,12 +10,13 @@
      - 在 `nova-block/src/lib/tiptapExtensions.ts` 的 `ResizableImage` 中，显式排除了表情包的匹配特征：`tag: 'img[src]:not([data-emoticon]):not([src*="/api/emoticons/"])'`。
      - 这保证了普通的内联表情和块级插图渲染各司其职，不会混淆拉伸。
 2. **媒体接口 404 报错 (`/api/media/files/...`)**
-   - **根因**: 之前的路由重构时，把后端的音频/视频的静态挂载路径修改为了更规范的 `/api/media/static/files`，但前端（尤其是旧笔记的渲染内容和部分硬编码上传逻辑）仍在使用旧的 `/api/media/files` 路径，导致请求丢失 404。
-   - **修复**: 在 `backend/main.py` 中为 `uploads_dir` 挂载了两个静态访问路径，同时保留了 `/api/media/static/files` 和 `/api/media/files`，实现了向后兼容。
+   - **根因**: 之前的路由重构时，由于 fastapi 的路由优先级问题，`/api/media/files` 被匹配到了 `/api/media/music-library` 或者其他具体的路由中，导致旧版本的链接请求 404。
+   - **修复**: 在 `backend/main.py` 中将旧路由 `app.mount("/api/media/files")` 挂载优先级提前，放置于新静态资源路由之前。
 3. **编辑器控制台重复注册及 Tippy 报错**
-   - **根因 1 (tiptap warn)**: `Duplicate extension names found: ['link', 'underline']` 是因为 Tiptap 内部的某些组合包（如 `StarterKit` 虽然关了部分功能，或其它自定义扩展继承）隐式引入了这些基础 mark，但我们在 `extensions` 数组中又显式地 `Link.configure()` 且注册了 `WikiLink`，并混用。
-   - **根因 2 (tippy warn)**: `tippy.js destroy() was called on an already-destroyed instance.` 这是由于 React 的严格模式或频繁重渲染导致的。BubbleMenu 在内部销毁时没有将自己从我们的组件引用中解绑，导致重渲染时对同一个已经被 `destroy` 的实例再次发起调用。
-   - **修复 2 (tippy warn)**: 引入 `tippyInstances` 全局引用池（`useRef(new Set())`），在 BubbleMenu 的 `tippyOptions.onMount` 时加入池中，在 `tippyOptions.onHidden` (而不是 `onDestroy`) 时移除。并在 `useEffect` 的 cleanup 里进行安全的逐个销毁，防止悬空调用。
+   - **根因 1 (tiptap warn)**: `Duplicate extension names found: ['link', 'underline']` 是因为 `StarterKit` 默认包含了 `link` 和 `underline`（在较新版本的 `@tiptap/starter-kit` 中），而我们又在 `extensions` 数组中显式地引入并配置了 `Link.configure` 和 `UnderlineExtension`。
+   - **修复 1 (tiptap warn)**: 在 `StarterKit.configure` 中明确禁用 `link: false` 和 `underline: false`，避免和自定义配置版本冲突。
+   - **根因 2 (tippy warn)**: `tippy.js destroy() was called on an already-destroyed instance.` 这是由于 React 的严格模式或频繁重渲染导致的，之前引入 `tippyInstances` 全局引用池（`useRef(new Set())`）的方案反而加剧了生命周期混乱。
+   - **修复 2 (tippy warn)**: 直接移除手动的 `tippyInstances` 管理逻辑。Tiptap 的 BubbleMenu 本身会自动管理 tippy 实例，交给底层组件处理即可，去掉画蛇添足的 `onMount/onHidden` 手动收集销毁代码。
 
 ## [2026-04-09] - 侧边栏与主页面空间纵深联动动效 (v0.10)
 
@@ -526,3 +527,25 @@
 
 
 Fixed Flip Clock animation pure CSS
+
+## [2026-04-09] - 修复 Media 静态文件 404 及 Tiptap/Tippy 警告
+
+### 核心修复
+- **修复 Media 静态路由被 SPA 拦截 (404 Not Found)**: 
+  - **问题现象**: 请求 `/api/media/files/...` 返回了 `{"detail": "API endpoint not found"}` 的 404 错误，而不是预期的文件。
+  - **根本原因**: 在 `backend/main.py` 中，SPA fallback 路由 (`/{full_path:path}`) 及全局的 `/api` 前缀拦截逻辑被放置在了 `app.mount("/api/media/files", StaticFiles(...))` 之前。导致所有到达 FastAPI 的媒体文件请求被错误判定为“未注册的 API 接口”而直接返回 404 JSON。
+  - **解决方案**: 调整了 FastAPI 的中间件和路由挂载顺序。将 `app.mount` 静态文件挂载逻辑提前至 `app.include_router(router)` 和 SPA fallback 路由之前。确保静态文件请求能够被 `StaticFiles` 正确接管并处理。
+- **修复 Tiptap Duplicate Extension 警告**: 
+  - **问题现象**: 控制台持续输出 `Duplicate extension names found: ['link', 'underline']` 警告。
+  - **解决方案**: 在 `NovaBlockEditor.tsx` 的 `StarterKit.configure` 中显式添加 `link: false` 和 `underline: false`，因为我们已经独立注册了自定义的 `Link` 和 `Underline` 扩展。
+- **修复 Tippy.js Memory Leak 警告**: 
+  - **问题现象**: 控制台输出 `tippy.js destroy() was called on an already-destroyed instance` 警告。
+  - **解决方案**: 移除了 `NovaBlockEditor.tsx` 中手动维护的 `tippyInstances` `useRef` 追踪器及相关的 `onDestroy` 清理逻辑。Tiptap 的 `BubbleMenu` 内部已经完善地处理了 Tippy 实例的生命周期，移除多余的手动干预后，警告彻底消除。
+
+### 细节优化
+- **Media NodeView 兼容性**: 
+  - 更新了前端 `nova_repo/nova-block/src/components/MediaNodeView.tsx` 中的路径解析逻辑。
+  - 现已同时兼容旧版硬编码的 `/api/media/files/` 路径以及新版标准的 `/api/media/static/files/` 路径，确保旧笔记中的媒体文件也能正常渲染，无需进行数据库批量迁移。
+
+### 遗留提示
+- 路由已修复，目前请求不存在的文件会返回标准的 404 HTML/Text 而非 API JSON 错误。但是，对于特定的历史图片（如 `b714d05c-a849-4f33-b153-37bc2a15794a.png`），由于其在本地 `data/uploads/` 目录中确实**物理缺失**，依然会显示裂图。需要用户同步或重新上传缺失的实体文件。

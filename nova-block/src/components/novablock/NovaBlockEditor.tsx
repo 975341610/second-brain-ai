@@ -251,6 +251,8 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       heading: false,
       codeBlock: false,
       blockquote: false,
+      link: false,
+      underline: false,
     }),
     Heading.configure({ levels: [1, 2, 3, 4, 5, 6] }),
     Blockquote,
@@ -292,21 +294,6 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   ], []);
 
   const [outline, setOutline] = useState<any[]>([]);
-
-  // 解决 Tippy 实例在重新渲染时没有被正确清理导致重复销毁的警告
-  const tippyInstances = useRef<Set<any>>(new Set());
-
-  // 清理所有的 Tippy 实例
-  useEffect(() => {
-    return () => {
-      tippyInstances.current.forEach(instance => {
-        if (instance && typeof instance.destroy === 'function' && !instance.state?.isDestroyed) {
-          try { instance.destroy(); } catch (e) {}
-        }
-      });
-      tippyInstances.current.clear();
-    };
-  }, []);
 
   // 提取大纲数据用于 TOC
   const updateOutline = useCallback((editorInstance: Editor) => {
@@ -889,8 +876,6 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                   offset: [0, 10],
                   maxWidth: 'none',
                   zIndex: 110,
-                  onMount: (instance: any) => tippyInstances.current.add(instance),
-                  onHidden: (instance: any) => tippyInstances.current.delete(instance),
                 } as any}
                 className="flex overflow-hidden rounded-2xl border border-border/20 bg-popover/80 backdrop-blur-2xl shadow-soft p-1.5"
               >
@@ -965,8 +950,6 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                   maxWidth: 'none',
                   zIndex: 110,
                   animation: 'fade',
-                  onMount: (instance: any) => tippyInstances.current.add(instance),
-                  onHidden: (instance: any) => tippyInstances.current.delete(instance),
                 } as any}
                 shouldShow={({ editor }: { editor: Editor }) => {
                   const { selection } = editor.state;

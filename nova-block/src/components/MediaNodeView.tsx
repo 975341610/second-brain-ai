@@ -21,7 +21,7 @@ export function MediaNodeView({ node, updateAttributes, deleteNode, selected, ki
 
   const content = useMemo(() => {
     // If it's a relative URL from our backend, prefix it with the API base
-    const absoluteSrc = src?.startsWith('/api/media/files/') 
+    const absoluteSrc = (src?.startsWith('/api/media/files/') || src?.startsWith('/api/media/static/files/'))
       ? `${getApiBase().replace(/\/api$/, '')}${src}` 
       : src;
 

@@ -90,6 +90,13 @@ async def auth_middleware(request: Request, call_next):
 
     return await call_next(request)
 
+# Mount media uploads
+uploads_dir = Path(settings.uploads_path)
+if uploads_dir.exists():
+    app.mount("/api/media/files", StaticFiles(directory=uploads_dir), name="media_files_legacy")
+    # Use a more specific path to avoid prefix matching other API routes
+    app.mount("/api/media/static/files", StaticFiles(directory=uploads_dir), name="media_files")
+
 app.include_router(router, prefix=settings.api_prefix)
 
 frontend_dist = resource_root() / "frontend_dist"
@@ -103,13 +110,6 @@ if assets_dir.exists():
     app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
 else:
     print(f"[!] Assets directory not found at {assets_dir}")
-
-# Mount media uploads
-uploads_dir = Path(settings.uploads_path)
-if uploads_dir.exists():
-    # Use a more specific path to avoid prefix matching other API routes
-    app.mount("/api/media/static/files", StaticFiles(directory=uploads_dir), name="media_files")
-    app.mount("/api/media/files", StaticFiles(directory=uploads_dir), name="media_files_legacy")
 
 # Mount music library
 music_dir = Path(settings.music_path)
