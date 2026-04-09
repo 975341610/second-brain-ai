@@ -25,6 +25,10 @@ export const SliderExtension = Node.create<SliderOptions>({
     return {
       images: {
         default: [],
+        parseHTML: element => JSON.parse(element.getAttribute('data-images') || '[]'),
+        renderHTML: attributes => ({
+          'data-images': JSON.stringify(attributes.images || []),
+        }),
       },
       autoPlay: {
         default: true,

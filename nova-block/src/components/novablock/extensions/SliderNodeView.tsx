@@ -3,7 +3,8 @@ import { NodeViewWrapper } from '@tiptap/react';
 import { Settings, ChevronLeft, ChevronRight, Plus, X, Trash2 } from 'lucide-react';
 
 export const SliderNodeView: React.FC<any> = ({ node, updateAttributes }) => {
-  const { images, autoPlay, showDots, showArrows } = node.attrs;
+  const images = Array.isArray(node.attrs.images) ? node.attrs.images : [];
+  const { autoPlay, showDots, showArrows } = node.attrs;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [newImageUrl, setNewImageUrl] = useState('');
