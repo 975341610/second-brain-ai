@@ -549,3 +549,16 @@ Fixed Flip Clock animation pure CSS
 
 ### 遗留提示
 - 路由已修复，目前请求不存在的文件会返回标准的 404 HTML/Text 而非 API JSON 错误。但是，对于特定的历史图片（如 `b714d05c-a849-4f33-b153-37bc2a15794a.png`），由于其在本地 `data/uploads/` 目录中确实**物理缺失**，依然会显示裂图。需要用户同步或重新上传缺失的实体文件。
+
+## [2026-04-09] - 修复输入性能瓶颈与 React 无限循环崩溃 (Maximum update depth exceeded)
+
+### 核心修复
+- **修复输入卡顿与崩溃**: 
+  - **现象**: 在包含较多内容或多次快速输入时，编辑器出现明显掉帧甚至触发 `Maximum update depth exceeded` 导致白屏崩溃。
+  - **根因 1 (死亡螺旋重绘)**: 发现之前我们在 Tiptap 的 `onUpdate` 钩子中，每次按键都会**无条件**执行 `setIsDirty(true)`。这触发了 React 的重绘，而此时大纲或渲染管线同时处理状态，又间接触发了编辑器更新，陷入死循环。
+  - **修复**: 在 `onUpdate` 和 `handleStickersChange` 中加入了保护屏障 `if (!isDirty) setIsDirty(true)`，一旦标记完成便不再重复触发多余的 `setState`。
+- **性能重构: 剥离 `onUpdate` 同步保存**: 废弃了每次 `onUpdate` 直接 await `onSave()` 的高开销行为。现在输入时只维护本地 Ref 状态。真正的保存动作完全交由 `useRef` 控制的 3 秒 Debounce 防抖逻辑后台静默接管。极大提升了打字流畅度，杜绝打字过程中的粘滞感与意外的丢字覆盖。
+- **引入大纲 TOC 防抖 (Debounce)**: 给原本同步提取标题大纲的 `updateOutline` 函数包裹了 `500ms` 的延迟执行。彻底解放主线程，不再因为寻找和生成锚点 ID 而拖慢每次按键的响应速度。
+
+### 细节优化
+- 完善了 `handleSave` 结尾的脏状态 (`isDirty`) 清除逻辑，现在会判断当前编辑器 DOM 中的内容是否与准备保存时完全一致，避免由于网络延迟，将用户在这 3 秒防抖期间新打入的内容误判为已保存。

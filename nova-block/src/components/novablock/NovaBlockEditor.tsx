@@ -176,16 +176,16 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     if (latestNoteRef.current) {
       latestNoteRef.current = { ...latestNoteRef.current, stickers: newStickers };
     }
-    setIsDirty(true);
-  }, []);
+    if (!isDirty) setIsDirty(true);
+  }, [isDirty]);
 
   const handleStickyNotesChange = useCallback((newNotes: StickyNoteData[]) => {
     setStickyNotes(newNotes);
     if (latestNoteRef.current) {
       latestNoteRef.current = { ...latestNoteRef.current, sticky_notes: newNotes };
     }
-    setIsDirty(true);
-  }, []);
+    if (!isDirty) setIsDirty(true);
+  }, [isDirty]);
 
   useEffect(() => {
     const handleAddSticker = (e?: Event) => {
@@ -359,7 +359,11 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     content: note?.content || '<p></p>',
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
-      setIsDirty(true);
+      // 避免重复设置状态导致 React React 死循环
+      if (!isDirty) {
+        setIsDirty(true);
+      }
+      
       const html = editor.getHTML();
       const currentLatestNote = latestNoteRef.current;
       const payload: any = { ...currentLatestNote, content: html };
@@ -384,7 +388,9 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       }
       
       latestNoteRef.current = payload;
-      onSave(payload);
+      // 这里不要在每次按键时立刻 await onSave(payload)，因为 onUpdate 是同步触发的高频事件
+      // 让 handleSave (debounced) 去接管保存逻辑，极大提高输入性能
+      // 只有在需要立即更新大纲时，才调用 updateOutline(editor);
       updateOutline(editor);
     },
     onTransaction: ({ editor }) => {
@@ -432,15 +438,26 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   const handleSave = async (content?: string, updates?: Partial<Note>) => {
     const currentNote = latestNoteRef.current;
     if (!currentNote) return;
+    
+    // 合并最新的编辑器内容和传入的增量更新 (如天气、心情)
+    const html = content || editor?.getHTML() || '';
+    const payloadToSave = { ...currentNote, ...updates, content: html };
+
+    // 如果已经在保存中，避免并发冲突
+    if (isSaving) return;
+    
     setIsSaving(true);
     try {
-      const html = content || editor?.getHTML() || '';
-      // 合并最新的编辑器内容和传入的增量更新 (如天气、心情)
-      const payloadToSave = { ...currentNote, ...updates, content: html };
       await onSave(payloadToSave);
       // 同时更新 latestNoteRef 防止马上下一次输入时拿到旧数据
       latestNoteRef.current = payloadToSave;
-      setIsDirty(false);
+      
+      // 注意：仅当当前编辑器内容与保存时的内容一致时，才取消脏标记
+      // 避免在保存过程中用户输入的内容被覆盖丢失
+      if (!isDirty || editor?.getHTML() === html) {
+        setIsDirty(false);
+      }
+      
       setLastSavedAt(new Date().toLocaleTimeString());
     } catch (err) {
       console.error('Save failed:', err);
@@ -453,9 +470,11 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   // 自动保存 (debounce)
   const timerRef = useRef<any>(null);
   useEffect(() => {
-    if (!isDirty || isSaving) return;
+    // 只要有改动，就设置定时器
+    if (!isDirty) return;
     
     if (timerRef.current) clearTimeout(timerRef.current);
+    
     timerRef.current = setTimeout(() => {
       handleSave();
     }, 3000);
@@ -463,7 +482,7 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [isDirty, isSaving]);
+  }, [isDirty]);
 
   const [blockMenuPos, setBlockMenuPos] = useState({ top: 0, bottom: 'auto' });
   const blockMenuContentRef = useRef<HTMLDivElement>(null);
