@@ -23,8 +23,9 @@ import { FootnoteComponent } from '../components/editor/FootnoteComponent';
 import { CodeBlockComponent } from '../components/editor/CodeBlockComponent';
 
 import { SliderExtension } from '../components/novablock/extensions/SliderExtension';
+import { TextEffect } from '../components/novablock/extensions/TextEffect';
 
-export { TaskList, TaskItem, SliderExtension };
+export { TaskList, TaskItem, SliderExtension, TextEffect };
 
 // --- Widgets ---
 export { CountdownNode } from './novablock/extensions/CountdownNode';

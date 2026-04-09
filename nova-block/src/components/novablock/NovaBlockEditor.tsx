@@ -18,7 +18,7 @@ import type { StickerData, StickyNoteData } from '../../lib/types';
 import { 
     GripVertical, Bold, Italic, 
     Underline, Eraser, Cpu, Strikethrough, Timer,
-    Type, Heading1, Heading2, Heading3, CheckSquare, Table as TableIcon, Code, Quote, Sparkles,
+    Type, Heading1, Heading2, Heading3, CheckSquare, Table as TableIcon, Code, Quote, Sparkles, Zap, Waves,
     Link as LinkIcon, Highlighter, Trash2, Copy, Replace, ListPlus, Minus,
     Trash, Columns, Rows, Film, Music, FileText, MonitorPlay, StickyNote as StickyNoteIcon,
     List, ListOrdered, ArrowUpToLine, ArrowDownToLine, CopyPlus, StickyNote, Smile, X,
@@ -32,7 +32,7 @@ import {
     ColumnGroup, Column, HighlightBlock,
     WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload,
     CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode,
-    Emoticon, SliderExtension, NoteLink
+    Emoticon, SliderExtension, NoteLink, TextEffect
   } from '../../lib/tiptapExtensions';
 
 import type { Note } from '../../lib/types';
@@ -295,6 +295,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     TodoNode,
     Emoticon,
     SliderExtension,
+    TextEffect,
     NoteLink.configure({ suggestion: getNoteLinkSuggestionConfig() }),
     SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
   ], []);
@@ -1063,6 +1064,38 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
                     title="内联代码"
                   >
                     <Code size={16} />
+                  </button>
+
+                  <div className="w-px h-5 bg-border/20 mx-1" />
+
+                  {/* Text Effects */}
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'gradient' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'gradient' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="动态渐变特效"
+                  >
+                    <Sparkles size={16} />
+                  </button>
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'bounce' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'bounce' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="动感跳动特效"
+                  >
+                    <Waves size={16} />
+                  </button>
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'neon' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'neon' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="赛博霓虹特效"
+                  >
+                    <Zap size={16} />
+                  </button>
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'typewriter' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'typewriter' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="打字机特效"
+                  >
+                    <Type size={16} />
                   </button>
 
                   <div className="w-px h-5 bg-border/20 mx-1" />
