@@ -25,3 +25,8 @@
 - 修复了关于 `ResizableImage` 扩展属性定义的 TypeScript 类型警告。
 - 将上述性能修复逻辑与说明更新至 `DEVELOPMENT_LOG.md`，并成功推送到远程仓库 `main` 分支。
 - 根据用户指令执行了最小版本升级，将项目版本从 v0.10.1 更新至 v0.10.2：同步修改了前端 `nova-block/package.json`、根目录 `VERSION.txt` 以及后端 `backend/ipc_bridge.py`，并在开发日志中补充了中文更新说明，已完成本地 Commit 等待后续推送。
+
+## 13:30:44
+- 用户反馈在侧边栏处于收起状态时，顶部的 Logo 图标与下方的功能图标未能居中对齐。
+- 排查发现收起状态下的 Logo 外层容器残留了展开时使用的 `paddingLeft: 16`，导致图标向右偏移；通过在收起状态下强制将左边距设为 `0` 并移除间隙（`gap-0`），确保 Logo 在 64px 宽度内绝对居中。
+- 将上述修复记录同步更新至 `DEVELOPMENT_LOG.md` 并完成本地 Commit，等待用户确认后推送。
