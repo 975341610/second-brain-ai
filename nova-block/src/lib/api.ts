@@ -153,7 +153,7 @@ export const api = {
       onChunk(decoder.decode(value, { stream: true }));
     }
   },
-  upload: async (files: File[]) => {
+  upload: async (files: File[], noteId?: number | string) => {
     const API_BASE = getApiBase();
     const CHUNK_SIZE = 1024 * 256; // 256KB chunks (Strato proxy is extremely strict)
 
@@ -162,6 +162,7 @@ export const api = {
         // Small files, use simple upload
         const formData = new FormData();
         formData.append('file', file);
+        if (noteId) formData.append('note_id', noteId.toString());
         const response = await fetch(`${API_BASE}/media/upload`, { method: 'POST', body: formData });
         if (!response.ok) throw new Error(await response.text());
         return response.json();
@@ -170,6 +171,7 @@ export const api = {
         const initForm = new FormData();
         initForm.append('filename', file.name);
         initForm.append('size', file.size.toString());
+        if (noteId) initForm.append('note_id', noteId.toString());
         
         const initRes = await fetch(`${API_BASE}/media/upload/init`, { method: 'POST', body: initForm });
         if (!initRes.ok) throw new Error('Failed to init upload');
@@ -182,6 +184,7 @@ export const api = {
           chunkForm.append('upload_id', upload_id);
           chunkForm.append('chunk_index', i.toString());
           chunkForm.append('file', chunk);
+          if (noteId) chunkForm.append('note_id', noteId.toString());
           
           const chunkRes = await fetch(`${API_BASE}/media/upload/chunk`, { method: 'POST', body: chunkForm });
           if (!chunkRes.ok) throw new Error(`Failed to upload chunk ${i}`);
@@ -191,6 +194,7 @@ export const api = {
         compForm.append('upload_id', upload_id);
         compForm.append('filename', file.name);
         compForm.append('content_type', file.type);
+        if (noteId) compForm.append('note_id', noteId.toString());
         
         const compRes = await fetch(`${API_BASE}/media/upload/complete`, { method: 'POST', body: compForm });
         if (!compRes.ok) throw new Error('Failed to complete upload');

@@ -380,15 +380,24 @@ async def upload_documents(background_tasks: BackgroundTasks, files: list[Upload
     return UploadResponse(imported_notes=imported)
 
 @router.post("/media/upload")
-async def upload_media_api(file: UploadFile = File(...)):
+async def upload_media_api(file: UploadFile = File(...), note_id: str = Form(None)):
     try:
         ext = os.path.splitext(file.filename)[1]
         unique_name = f"{uuid.uuid4()}{ext}"
-        save_path = Path(settings.uploads_path) / unique_name
+        
+        # Isolate by note_id if provided
+        upload_base = Path(settings.uploads_path)
+        if note_id:
+            upload_base = upload_base / note_id
+            upload_base.mkdir(parents=True, exist_ok=True)
+            
+        save_path = upload_base / unique_name
         with open(save_path, "wb") as f:
             f.write(await file.read())
+            
+        url_path = f"{note_id}/{unique_name}" if note_id else unique_name
         return {
-            "url": f"/api/media/static/files/{unique_name}",
+            "url": f"/api/media/static/files/{url_path}",
             "name": file.filename,
             "size": save_path.stat().st_size,
             "type": file.content_type
@@ -397,7 +406,7 @@ async def upload_media_api(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Upload failed: {str(e)}")
 
 @router.post("/media/upload/init")
-async def upload_media_init(filename: str = Form(...), size: int = Form(...)):
+async def upload_media_init(filename: str = Form(...), size: int = Form(...), note_id: str = Form(None)):
     upload_id = str(uuid.uuid4())
     temp_dir = Path(settings.uploads_path) / "temp" / upload_id
     temp_dir.mkdir(parents=True, exist_ok=True)
@@ -407,7 +416,8 @@ async def upload_media_init(filename: str = Form(...), size: int = Form(...)):
 async def upload_media_chunk(
     upload_id: str = Form(...),
     chunk_index: int = Form(...),
-    file: UploadFile = File(...)
+    file: UploadFile = File(...),
+    note_id: str = Form(None)
 ):
     temp_dir = Path(settings.uploads_path) / "temp" / upload_id
     if not temp_dir.exists():
@@ -421,7 +431,8 @@ async def upload_media_chunk(
 async def upload_media_complete(
     upload_id: str = Form(...),
     filename: str = Form(...),
-    content_type: str = Form(...)
+    content_type: str = Form(...),
+    note_id: str = Form(None)
 ):
     temp_dir = Path(settings.uploads_path) / "temp" / upload_id
     if not temp_dir.exists():
@@ -429,7 +440,14 @@ async def upload_media_complete(
     
     ext = os.path.splitext(filename)[1]
     unique_name = f"{uuid.uuid4()}{ext}"
-    final_path = Path(settings.uploads_path) / unique_name
+    
+    # Isolate by note_id if provided
+    upload_base = Path(settings.uploads_path)
+    if note_id:
+        upload_base = upload_base / note_id
+        upload_base.mkdir(parents=True, exist_ok=True)
+        
+    final_path = upload_base / unique_name
     
     chunks = sorted(temp_dir.glob("chunk_*"), key=lambda p: int(p.name.split("_")[1]))
     with open(final_path, "wb") as outfile:
@@ -438,8 +456,9 @@ async def upload_media_complete(
                 shutil.copyfileobj(infile, outfile)
     
     shutil.rmtree(temp_dir)
+    url_path = f"{note_id}/{unique_name}" if note_id else unique_name
     return {
-        "url": f"/api/media/static/files/{unique_name}",
+        "url": f"/api/media/static/files/{url_path}",
         "name": filename,
         "size": final_path.stat().st_size,
         "type": content_type

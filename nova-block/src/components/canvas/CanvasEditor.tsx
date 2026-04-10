@@ -33,7 +33,9 @@ import {
   File as FileIcon,
   ExternalLink,
   Globe,
-  HardDrive
+  HardDrive,
+  Lock,
+  LockOpen
 } from 'lucide-react';
 import type { Note } from '../../lib/types';
 import { BaseNode } from './BaseNode';
@@ -61,7 +63,7 @@ type CanvasReferenceNodeData = {
 
 type CanvasMediaNodeData = {
   url: string;
-  type: 'image' | 'video' | 'file';
+  type: 'image' | 'video' | 'file' | 'audio' | 'embed';
   title?: string;
   memo?: string;
   source?: 'local' | 'online';
@@ -138,7 +140,7 @@ const createReferenceNode = (id: string, sourceNote: Note, x: number, y: number)
   style: { width: 320, height: 160 },
 });
 
-const createMediaNode = (id: string, url: string, type: 'image' | 'video' | 'file', title: string, x: number, y: number, source: 'local' | 'online' = 'local'): CanvasMediaNode => ({
+const createMediaNode = (id: string, url: string, type: 'image' | 'video' | 'file' | 'audio' | 'embed', title: string, x: number, y: number, source: 'local' | 'online' = 'local'): CanvasMediaNode => ({
   id,
   type: MEDIA_NODE_TYPE,
   position: { x, y },
@@ -289,28 +291,78 @@ function ReferenceCardNode(props: NodeProps<CanvasReferenceNode>) {
 
 function MediaNode(props: NodeProps<CanvasMediaNode>) {
   const { data, selected } = props;
+  const [isInteractive, setIsInteractive] = useState(false);
+
   return (
     <BaseNode {...props} onInfoClick={data.onInfoClick}>
       <div
         className={`group relative h-full w-full overflow-hidden rounded-3xl border border-white/80 shadow-xl transition-all duration-300 ${
           selected ? 'ring-2 ring-primary/70' : ''
-        }`}
+        } ${data.type === 'embed' ? 'bg-black' : 'bg-white/90'}`}
       >
         {data.type === 'image' && (
-          <img src={data.url} alt={data.title} className="h-full w-full object-cover" />
+          <img src={data.url} alt={data.title} className="h-full w-full object-cover" draggable={false} />
         )}
         {data.type === 'video' && (
-          <video src={data.url} controls className="h-full w-full object-cover" />
+          <video src={data.url} controls muted playsInline className="h-full w-full object-cover" />
         )}
-        {data.type === 'file' && (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-white/90 p-4 text-center">
-            <FileIcon size={40} className="mb-2 text-primary/60" />
-            <div className="text-sm font-medium text-foreground truncate w-full">{data.title || '未知文件'}</div>
-            <a href={data.url} target="_blank" rel="noreferrer" className="mt-2 text-xs text-primary underline">下载预览</a>
+        {data.type === 'audio' && (
+          <div className="flex h-full w-full flex-col items-center justify-center p-4">
+            <audio src={data.url} controls className="w-full" />
+            <div className="mt-2 text-sm font-medium text-foreground truncate w-full text-center">{data.title || '音频文件'}</div>
           </div>
         )}
-        <div className="absolute inset-x-0 bottom-0 bg-black/40 px-3 py-2 text-xs text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-          {data.title}
+        {data.type === 'embed' && (
+          <div className="relative h-full w-full">
+            {!isInteractive && (
+              <div 
+                className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 hover:bg-black/10 cursor-pointer transition-colors backdrop-blur-[1px]" 
+                title="点击解锁播放器交互" 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsInteractive(true);
+                }}
+              >
+                <div className="bg-black/60 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Lock size={12} /> 点击解锁播放
+                </div>
+              </div>
+            )}
+            <iframe 
+              src={data.url} 
+              className="absolute inset-0 w-full h-full" 
+              allowFullScreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+            />
+            {isInteractive && (
+              <button 
+                className="absolute top-3 right-3 z-20 p-1.5 rounded bg-white/90 shadow-sm hover:bg-blue-50 text-blue-500 transition-colors opacity-0 group-hover:opacity-100" 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsInteractive(false);
+                }}
+                title="锁定交互 (方便拖拽排版)"
+              >
+                <LockOpen size={14} />
+              </button>
+            )}
+          </div>
+        )}
+        {data.type === 'file' && (
+          <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center cursor-pointer"
+               onClick={(e) => {
+                 e.stopPropagation();
+                 window.open(data.url, '_blank');
+               }}
+          >
+            <FileIcon size={40} className="mb-2 text-primary/60" />
+            <div className="text-sm font-medium text-foreground truncate w-full">{data.title || '未知文件'}</div>
+            <a href={data.url} target="_blank" rel="noreferrer" className="mt-2 text-xs text-primary underline" onClick={e => e.stopPropagation()}>下载预览</a>
+          </div>
+        )}
+        <div className="absolute inset-x-0 bottom-0 bg-black/40 px-3 py-2 text-xs text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity truncate">
+          {data.title || data.url}
         </div>
       </div>
     </BaseNode>
@@ -1029,14 +1081,15 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         setIsUploading(true);
         try {
           const files = Array.from(event.dataTransfer.files);
-          const uploadResults = await api.upload(files);
+          const uploadResults = await api.upload(files, note?.id);
           
           const newNodes: CanvasNode[] = uploadResults.map((res: any, idx: number) => {
             const file = files[idx];
             const mime = file.type;
-            let type: 'image' | 'video' | 'file' = 'file';
+            let type: 'image' | 'video' | 'file' | 'audio' | 'embed' = 'file';
             if (mime.startsWith('image/')) type = 'image';
             else if (mime.startsWith('video/')) type = 'video';
+            else if (mime.startsWith('audio/')) type = 'audio';
             
             return createMediaNode(
               nextId('media'),
@@ -1099,9 +1152,10 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       const newNodes: CanvasNode[] = uploadResults.map((res: any, idx: number) => {
         const file = fileList[idx];
         const mime = file.type;
-        let type: 'image' | 'video' | 'file' = 'file';
+        let type: 'image' | 'video' | 'file' | 'audio' | 'embed' = 'file';
         if (mime.startsWith('image/')) type = 'image';
         else if (mime.startsWith('video/')) type = 'video';
+        else if (mime.startsWith('audio/')) type = 'audio';
         
         return createMediaNode(
           nextId('media'),
@@ -1131,8 +1185,45 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
     try {
       const url = new URL(urlStr);
-      setNodes((prev) => [...prev, createLinkNode(nextId('link'), url.href, url.hostname, contextMenu.flowX, contextMenu.flowY)]);
-      onNotify?.('已成功从链接创建节点', 'success');
+      let isMedia = false;
+      let mediaType: 'image' | 'video' | 'audio' | 'embed' | 'file' = 'file';
+      let mediaSrc = url.href;
+
+      // Check Bilibili
+      const biliMatch = urlStr.match(/(?:https?:\/\/)?(?:www\.)?(?:bilibili\.com\/video\/|b23\.tv\/)(BV[\w]+)/);
+      if (biliMatch) {
+        isMedia = true;
+        mediaType = 'embed';
+        mediaSrc = `https://player.bilibili.com/player.html?bvid=${biliMatch[1]}&high_quality=1&danmaku=0&autoplay=0`;
+      }
+      
+      // Check YouTube
+      const ytMatch = urlStr.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
+      if (ytMatch && !isMedia) {
+        isMedia = true;
+        mediaType = 'embed';
+        mediaSrc = `https://www.youtube.com/embed/${ytMatch[1]}`;
+      }
+
+      if (!isMedia) {
+        const ext = url.pathname.split('.').pop()?.toLowerCase();
+        const imageExts = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'bmp', 'ico'];
+        const videoExts = ['mp4', 'mov', 'webm', 'ogg', 'mkv'];
+        const audioExts = ['mp3', 'wav', 'aac', 'flac', 'm4a', 'ogg'];
+        if (ext) {
+          if (imageExts.includes(ext)) { isMedia = true; mediaType = 'image'; }
+          else if (videoExts.includes(ext)) { isMedia = true; mediaType = 'video'; }
+          else if (audioExts.includes(ext)) { isMedia = true; mediaType = 'audio'; }
+        }
+      }
+
+      if (isMedia) {
+        setNodes((prev) => [...prev, createMediaNode(nextId('media'), mediaSrc, mediaType, url.hostname, contextMenu.flowX, contextMenu.flowY, 'online')]);
+        onNotify?.('已成功插入媒体资源', 'success');
+      } else {
+        setNodes((prev) => [...prev, createLinkNode(nextId('link'), url.href, url.hostname, contextMenu.flowX, contextMenu.flowY)]);
+        onNotify?.('已成功创建链接节点', 'success');
+      }
     } catch {
       onNotify?.('无效的 URL 地址', 'error');
     }
