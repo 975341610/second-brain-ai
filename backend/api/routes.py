@@ -5,7 +5,7 @@ import shutil
 from PIL import Image
 from pathlib import Path
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, Form, BackgroundTasks
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from backend.agent.planner import run_agent
@@ -955,12 +955,9 @@ def stream_bgm(filename: str):
     bgm_path = Path(settings.data_root) / "bgm" / filename
     if not bgm_path.exists():
         raise HTTPException(status_code=404, detail="BGM file not found")
-    
-    def iterfile():
-        with open(bgm_path, mode="rb") as f:
-            yield from f
-            
-    return StreamingResponse(iterfile(), media_type="audio/mpeg")
+
+    # Use FileResponse to avoid tiny line-based chunks produced by iterating a binary file object.
+    return FileResponse(path=str(bgm_path), media_type="audio/mpeg", filename=filename)
 
 # ============================================================
 # 🎨 贴纸系统接口
@@ -1034,15 +1031,12 @@ def get_sticker_file(filename: str):
     file_path = Path(settings.stickers_path) / filename
     if not file_path.exists():
         raise HTTPException(status_code=404, detail="Sticker not found")
-    
+
     import mimetypes
     mime_type, _ = mimetypes.guess_type(filename)
-    
-    def iterfile():
-        with open(file_path, mode="rb") as f:
-            yield from f
-            
-    return StreamingResponse(iterfile(), media_type=mime_type or "image/png")
+
+    # Use FileResponse to avoid tiny line-based chunks produced by iterating a binary file object.
+    return FileResponse(path=str(file_path), media_type=mime_type or "image/png", filename=filename)
 
 @router.delete("/stickers/files/{filename}")
 def delete_sticker_file(filename: str):
@@ -1109,15 +1103,12 @@ def get_emoticon_file(filename: str):
     file_path = emoticons_path / filename
     if not file_path.exists():
         raise HTTPException(status_code=404, detail="Emoticon not found")
-    
+
     import mimetypes
     mime_type, _ = mimetypes.guess_type(filename)
-    
-    def iterfile():
-        with open(file_path, mode="rb") as f:
-            yield from f
-            
-    return StreamingResponse(iterfile(), media_type=mime_type or "image/png")
+
+    # Use FileResponse to avoid tiny line-based chunks produced by iterating a binary file object.
+    return FileResponse(path=str(file_path), media_type=mime_type or "image/png", filename=filename)
 
 @router.delete("/emoticons/files/{filename}")
 def delete_emoticon_file(filename: str):

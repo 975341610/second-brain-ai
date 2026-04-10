@@ -1,5 +1,20 @@
 # Development Log
 
+## [2026-04-10] - 修复贴纸/表情/BGM 资源加载极慢（binary file 按行迭代导致超小 chunk）
+
+### 问题根因
+- `backend/api/routes.py` 中 `get_sticker_file` / `get_emoticon_file` / `stream_bgm` 通过 `yield from f` 迭代 `rb` 文件对象，实际会按“行”产生大量超小 chunk，导致 StreamingResponse 极慢。
+
+### 修复内容
+- `backend/api/routes.py`
+  - 三个路由统一改用 `fastapi.responses.FileResponse` 直接下发文件，避免超小 chunk：
+    - `/api/stickers/files/{filename}`
+    - `/api/emoticons/files/{filename}`
+    - `/api/bgm/stream/{filename}`
+
+### 影响面确认
+- `list_stickers` 返回的贴纸 URL 为 `/api/stickers/files/...`，前端 `StickerPanel.tsx` 使用该 URL 加载，因此本修复可直接显著降低贴纸加载延迟。
+
 ## [2026-04-10] - Canvas 本地文件支持用系统默认软件打开
 
 ### 背景
