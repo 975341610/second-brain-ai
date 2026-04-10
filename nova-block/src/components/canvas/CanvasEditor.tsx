@@ -842,18 +842,11 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       // 现在的做法：将用户的源作为 target，用户的目标作为 source，从而让箭头方向“调转”，
       // 但为了语义不混乱，也可以只将箭头 Marker 放到 start，然后让它呈现反向。
       // 这里直接反转连接关系，使得数据和视觉同时反向：
-      const reversedConnection = {
-        ...connection,
-        source: connection.target,
-        target: connection.source,
-        sourceHandle: connection.targetHandle,
-        targetHandle: connection.sourceHandle,
-      };
       
       setEdges((prev) =>
         addEdge(
           {
-            ...reversedConnection,
+            ...connection,
             type: 'smoothstep',
             markerEnd: { type: MarkerType.ArrowClosed, color: '#d7a685' },
             style: { stroke: '#d7a685', strokeWidth: 2 },
