@@ -175,15 +175,6 @@ const createLinkNode = (id: string, url: string, title: string, x: number, y: nu
   style: { width: 300, height: 80 },
 });
 
-const createGroupNode = (id: string, x: number, y: number, width: number, height: number): CanvasGroupNode => ({
-  id,
-  type: GROUP_NODE_TYPE,
-  position: { x, y },
-  data: { label: '新分组', collapsed: false, expandedHeight: height },
-  style: { width, height },
-  dragHandle: '.canvas-group-drag-handle',
-});
-
 function summarizeNote(note: Note) {
   if (note.type === 'canvas') {
     try {
@@ -448,8 +439,8 @@ function GroupNode(props: NodeProps<CanvasGroupNode>) {
       <div className="absolute -top-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-[60]">
         <div className="flex items-center gap-1.5 rounded-full bg-[#d7a685] pl-2 pr-3 py-1 shadow-md transition-all hover:scale-[1.02] border border-white/20">
           <div
-            className="canvas-group-drag-handle mr-0.5 flex h-5 w-5 items-center justify-center text-white/90 cursor-grab active:cursor-grabbing"
-            title="拖拽移动分组"
+            className="mr-0.5 flex h-5 w-5 items-center justify-center text-white/90"
+            title="分组"
           >
             <LayoutGrid size={14} />
           </div>
@@ -487,7 +478,7 @@ function GroupNode(props: NodeProps<CanvasGroupNode>) {
             e.stopPropagation();
             data.onUngroup?.(id);
           }}
-          className={`flex h-7 w-7 items-center justify-center rounded-full border border-white/50 bg-white text-[#d7a685] shadow-md transition-all hover:bg-red-50 hover:text-red-500 ${
+          className={`nodrag flex h-7 w-7 items-center justify-center rounded-full border border-white/50 bg-white text-[#d7a685] shadow-md transition-all hover:bg-red-50 hover:text-red-500 ${
             selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
           }`}
           title="解散分组 (保留内容)"
@@ -789,7 +780,14 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   const [edges, setEdges, onEdgesChange] = useEdgesState(parsedContent.edges);
   const [viewport, setViewport] = useState<Viewport>(parsedContent.viewport ?? { x: 0, y: 0, zoom: 1 });
   const [pickerMode, setPickerMode] = useState<'toolbar' | 'context' | null>(null);
-  const [contextMenu, setContextMenu] = useState<{ x: number; y: number; flowX: number; flowY: number; groupId: string | null } | null>(null);
+  const [contextMenu, setContextMenu] = useState<{ 
+    x: number; 
+    y: number; 
+    flowX: number; 
+    flowY: number; 
+    groupId: string | null;
+    clickedNodeId?: string | null;
+  } | null>(null);
   const [selection, setSelection] = useState<OnSelectionChangeParams<CanvasNode>>({ nodes: [], edges: [] });
   const [memoOpenId, setMemoOpenId] = useState<string | null>(null);
 
@@ -943,6 +941,119 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       });
     });
   }, [setNodes]);
+
+  const handleRemoveFromGroup = useCallback((nodeId: string) => {
+    setNodes((prev) => {
+      const nodeMap = new Map(prev.map((n) => [n.id, n] as const));
+      const absCache = new Map<string, { x: number; y: number }>();
+
+      const getAbsPos = (node: any): { x: number; y: number } => {
+        const cached = absCache.get(node.id);
+        if (cached) return cached;
+
+        const direct = node.positionAbsolute;
+        if (direct && Number.isFinite(direct.x) && Number.isFinite(direct.y)) {
+          const pos = { x: direct.x, y: direct.y };
+          absCache.set(node.id, pos);
+          return pos;
+        }
+
+        let x = node.position?.x ?? 0;
+        let y = node.position?.y ?? 0;
+
+        if (node.parentId) {
+          const parent: any = nodeMap.get(node.parentId);
+          if (parent) {
+            const pAbs = getAbsPos(parent);
+            x += pAbs.x;
+            y += pAbs.y;
+          }
+        }
+
+        const pos = { x, y };
+        absCache.set(node.id, pos);
+        return pos;
+      };
+
+      const node: any = nodeMap.get(nodeId);
+      if (!node || !node.parentId) return prev;
+
+      const abs = getAbsPos(node);
+      return prev.map((n: any) => {
+        if (n.id !== nodeId) return n;
+        return {
+          ...n,
+          parentId: undefined,
+          extent: undefined,
+          hidden: false,
+          position: abs,
+        };
+      });
+    });
+
+    setContextMenu(null);
+    onNotify?.('已移出分组', 'info');
+  }, [setNodes, setContextMenu, onNotify]);
+
+  const handleMoveIntoGroup = useCallback((nodeId: string, groupId: string) => {
+    setNodes((prev) => {
+      const nodeMap = new Map(prev.map((n) => [n.id, n] as const));
+      const absCache = new Map<string, { x: number; y: number }>();
+
+      const getAbsPos = (node: any): { x: number; y: number } => {
+        const cached = absCache.get(node.id);
+        if (cached) return cached;
+
+        const direct = node.positionAbsolute;
+        if (direct && Number.isFinite(direct.x) && Number.isFinite(direct.y)) {
+          const pos = { x: direct.x, y: direct.y };
+          absCache.set(node.id, pos);
+          return pos;
+        }
+
+        let x = node.position?.x ?? 0;
+        let y = node.position?.y ?? 0;
+
+        if (node.parentId) {
+          const parent: any = nodeMap.get(node.parentId);
+          if (parent) {
+            const pAbs = getAbsPos(parent);
+            x += pAbs.x;
+            y += pAbs.y;
+          }
+        }
+
+        const pos = { x, y };
+        absCache.set(node.id, pos);
+        return pos;
+      };
+
+      const node: any = nodeMap.get(nodeId);
+      const group: any = nodeMap.get(groupId);
+      if (!node || !group || group.type !== GROUP_NODE_TYPE) return prev;
+
+      const nodeAbs = getAbsPos(node);
+      const groupAbs = getAbsPos(group);
+      const shouldHide = !!group.data?.collapsed;
+
+      return prev.map((n: any) => {
+        if (n.id !== nodeId) return n;
+        return {
+          ...n,
+          parentId: groupId,
+          extent: 'parent' as const,
+          hidden: shouldHide,
+          position: {
+            x: nodeAbs.x - groupAbs.x,
+            y: nodeAbs.y - groupAbs.y,
+          },
+        };
+      });
+    });
+
+    setContextMenu(null);
+    onNotify?.('已移入分组', 'success');
+  }, [setNodes, setContextMenu, onNotify]);
 
   const onNodeDragStop = useCallback((_: any, node: Node) => {
     if (node.type === GROUP_NODE_TYPE) return;
@@ -1107,7 +1218,6 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         if (item.type === GROUP_NODE_TYPE) {
           return {
             ...item,
-            dragHandle: '.canvas-group-drag-handle',
             data: {
               ...item.data,
               ...commonData,
@@ -1345,11 +1455,15 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       const paneBounds = canvasWrapperRef.current?.getBoundingClientRect();
       if (!paneBounds) return;
 
-      const nodeEl = (event.target as HTMLElement).closest('.react-flow__node');
-      if (nodeEl && !nodeEl.classList.contains(`react-flow__node-${GROUP_NODE_TYPE}`)) return;
+      const nodeEl = (event.target as HTMLElement).closest('.react-flow__node') as HTMLElement | null;
+      const clickedNodeId =
+        nodeEl?.getAttribute('data-id') ??
+        nodeEl?.getAttribute('data-nodeid') ??
+        nodeEl?.getAttribute('data-node-id') ??
+        null;
 
       const flowPosition = reactFlow.screenToFlowPosition({ x: event.clientX, y: event.clientY });
-      
+
       const toNumber = (value: unknown, fallback = 0) => {
         if (typeof value === 'number' && Number.isFinite(value)) return value;
         if (typeof value === 'string') {
@@ -1360,7 +1474,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       };
 
       // Check if clicking inside a group
-      const targetGroup = nodes.find(n => {
+      const targetGroup = nodes.find((n) => {
         if (n.type !== GROUP_NODE_TYPE) return false;
         const gx = n.position.x;
         const gy = n.position.y;
@@ -1375,10 +1489,11 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
       setContextMenu({
         x: Math.min(x, paneBounds.width - 200),
-        y: Math.min(y, paneBounds.height - 240), // Increased margin for more menu items
+        y: Math.min(y, paneBounds.height - 320),
         flowX: flowPosition.x,
         flowY: flowPosition.y,
-        groupId: targetGroup?.id ?? null
+        groupId: targetGroup?.id ?? null,
+        clickedNodeId,
       });
 
       rightClickGuardRef.current = null;
@@ -1460,7 +1575,20 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       const groupW = Math.max(260, maxX - minX + padding * 2);
       const groupH = Math.max(180, maxY - minY + padding * 2);
 
-      const groupNode = createGroupNode(groupId, groupX, groupY, groupW, groupH);
+      const groupNode: CanvasGroupNode = {
+        id: groupId,
+        type: GROUP_NODE_TYPE,
+        position: { x: groupX, y: groupY },
+        data: {
+          label: '新分组',
+          collapsed: false,
+          expandedHeight: groupH,
+          onChange: updateNodeData,
+          onUngroup: handleUngroup,
+          onToggleCollapse: handleToggleCollapse,
+        },
+        style: { width: groupW, height: groupH },
+      };
 
       const updated = nds.map((node: any) => {
         if (!selectedIdSet.has(node.id)) return node;
@@ -1481,7 +1609,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
     });
 
     onNotify?.('已成功创建节点分组', 'success');
-  }, [selection.nodes, nextId, setNodes, onNotify]);
+  }, [selection.nodes, nextId, setNodes, onNotify, updateNodeData, handleUngroup, handleToggleCollapse]);
 
   const handleCanvasDrop = useCallback(
     async (event: React.DragEvent<HTMLDivElement>) => {
@@ -1708,6 +1836,16 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
     return () => window.removeEventListener('click', hideMenus);
   }, []);
 
+  const clickedNode = useMemo(
+    () => (contextMenu?.clickedNodeId ? nodes.find((n) => n.id === contextMenu.clickedNodeId) : null),
+    [contextMenu?.clickedNodeId, nodes],
+  );
+
+  const availableGroups = useMemo(
+    () => nodes.filter((n) => n.type === GROUP_NODE_TYPE && n.id !== contextMenu?.clickedNodeId),
+    [nodes, contextMenu?.clickedNodeId],
+  );
+
   if (!note) {
     return <div className="flex h-full items-center justify-center text-sm text-muted-foreground">请选择一张画布开始创作</div>;
   }
@@ -1842,7 +1980,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
       {contextMenu && (
         <div
-          className="absolute z-[110] min-w-[200px] overflow-hidden rounded-[24px] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,248,243,0.94))] py-2 shadow-[0_30px_100px_-34px_rgba(220,162,126,0.52)] backdrop-blur-xl"
+          className="absolute z-[110] min-w-[200px] overflow-visible rounded-[24px] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,248,243,0.94))] py-2 shadow-[0_30px_100px_-34px_rgba(220,162,126,0.52)] backdrop-blur-xl"
           style={{ top: contextMenu.y, left: contextMenu.x }}
           onClick={(event) => event.stopPropagation()}
         >
@@ -1912,6 +2050,49 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
             className="hidden"
             onChange={handleFileUpload}
           />
+
+          {clickedNode && clickedNode.type !== GROUP_NODE_TYPE && (
+            <>
+              <div className="my-1.5 mx-2 border-t border-[#f0dfd4]/50" />
+              <div className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#a1806d]/60">编排操作</div>
+              
+              {clickedNode.parentId ? (
+                <button
+                  onClick={() => handleRemoveFromGroup(clickedNode.id)}
+                  className="flex w-full items-center gap-3 px-4 py-2 text-sm text-red-500 transition hover:bg-red-50"
+                >
+                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-50 text-red-500">
+                    <Unlink size={14} />
+                  </div>
+                  移出分组
+                </button>
+              ) : availableGroups.length > 0 ? (
+                <div className="group relative">
+                  <button className="flex w-full items-center justify-between gap-3 px-4 py-2 text-sm text-[#6a4a36] transition hover:bg-[#fff3ea]">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#fff3ea] text-[#cb885d]">
+                        <LayoutGrid size={14} />
+                      </div>
+                      移入分组
+                    </div>
+                    <ChevronRight size={14} className="text-[#a1806d]/40" />
+                  </button>
+                  
+                  <div className="invisible absolute left-full top-0 ml-1 min-w-[160px] rounded-2xl border border-white/80 bg-white/95 py-2 opacity-0 shadow-xl backdrop-blur-md transition-all group-hover:visible group-hover:opacity-100">
+                    {availableGroups.map((g) => (
+                      <button
+                        key={g.id}
+                        onClick={() => handleMoveIntoGroup(clickedNode.id, g.id)}
+                        className="flex w-full items-center gap-3 px-4 py-2 text-sm text-[#6a4a36] transition hover:bg-[#fff3ea]"
+                      >
+                        {(g.data as any)?.label || '未命名分组'}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </>
+          )}
         </div>
       )}
 

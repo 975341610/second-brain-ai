@@ -711,3 +711,21 @@ Fixed Flip Clock animation pure CSS
 
 ### 细节优化
 - 在 `App.tsx` 中每当笔记状态变更时，触发全局事件 `window.dispatchEvent(new Event('nova-notes-updated'))`，打通了编辑器扩展与侧边栏的响应式数据流。
+
+
+## [2026-04-10] - Canvas 右键菜单与分组拖拽体验优化
+
+### 1. Group 拖拽体验优化
+- **移除 Group dragHandle 限制**：移除 `createGroupNode` 与 Group 节点初始化的 `dragHandle: '.canvas-group-drag-handle'`，使用户在分组空白区域也能直接拖拽移动。
+- **UI 细节**：标题前把手恢复为普通 Icon（去掉 drag handle class），并为解散分组按钮补充 `nodrag`，避免误触拖拽。
+
+### 2. 右键菜单新增「移入/移出分组」
+- **ContextMenu 状态增强**：`contextMenu` 新增 `clickedNodeId?: string | null`，右键时记录命中的节点。
+- **右键命中逻辑调整**：取消“只允许 group 节点右键”的拦截；在 `handleCanvasContextMenu` 中从 DOM 命中节点拿到 node id 并写入 `clickedNodeId`。
+- **编排操作实现**：
+  - `handleRemoveFromGroup`：使用绝对坐标换算，将节点从当前分组移出并保持视觉位置不跳动。
+  - `handleMoveIntoGroup`：使用绝对坐标换算，将节点移入目标分组并同步 `parentId/extent`。
+- **菜单渲染**：当右键点击卡片时，根据 `parentId` 渲染「移出分组」（红色按钮）或「移入分组」（二级菜单列出当前所有分组）。
+
+### 3. 构建与产物同步
+- `npm run build` 通过，并同步 `nova-block/dist/*` 到 `frontend_dist/`。
