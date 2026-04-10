@@ -31,6 +31,9 @@ import {
   Trash2,
   X,
   File as FileIcon,
+  ExternalLink,
+  Globe,
+  HardDrive
 } from 'lucide-react';
 import type { Note } from '../../lib/types';
 import { BaseNode } from './BaseNode';
@@ -61,6 +64,7 @@ type CanvasMediaNodeData = {
   type: 'image' | 'video' | 'file';
   title?: string;
   memo?: string;
+  source?: 'local' | 'online';
   onChange?: (id: string, patch: { memo?: string }) => void;
   onInfoClick?: (id: string) => void;
 };
@@ -69,6 +73,7 @@ type CanvasLinkNodeData = {
   url: string;
   title?: string;
   memo?: string;
+  source?: 'local' | 'online';
   onChange?: (id: string, patch: { memo?: string }) => void;
   onInfoClick?: (id: string) => void;
 };
@@ -133,19 +138,19 @@ const createReferenceNode = (id: string, sourceNote: Note, x: number, y: number)
   style: { width: 320, height: 160 },
 });
 
-const createMediaNode = (id: string, url: string, type: 'image' | 'video' | 'file', title: string, x: number, y: number): CanvasMediaNode => ({
+const createMediaNode = (id: string, url: string, type: 'image' | 'video' | 'file', title: string, x: number, y: number, source: 'local' | 'online' = 'local'): CanvasMediaNode => ({
   id,
   type: MEDIA_NODE_TYPE,
   position: { x, y },
-  data: { url, type, title },
+  data: { url, type, title, source },
   style: { width: 300, height: 200 },
 });
 
-const createLinkNode = (id: string, url: string, title: string, x: number, y: number): CanvasLinkNode => ({
+const createLinkNode = (id: string, url: string, title: string, x: number, y: number, source: 'local' | 'online' = 'online'): CanvasLinkNode => ({
   id,
   type: LINK_NODE_TYPE,
   position: { x, y },
-  data: { url, title },
+  data: { url, title, source },
   style: { width: 300, height: 80 },
 });
 
@@ -552,6 +557,36 @@ function MemoDrawer({ nodeId, nodes, onClose, onChange }: {
                 </div>
               </div>
 
+              {/* URL and Source Section */}
+              {((node.data as any).url) && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">资源信息</label>
+                    <div className="flex items-center gap-1.5 rounded-full bg-white/60 px-2 py-0.5 text-[10px] font-semibold text-[#8a5d3f]">
+                      {(node.data as any).source === 'online' ? (
+                        <><Globe size={10} /> 在线</>
+                      ) : (
+                        <><HardDrive size={10} /> 本地</>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="group relative overflow-hidden rounded-xl bg-white/50 border border-[#f0dfd4]">
+                    <div className="truncate px-3 py-2.5 text-[11px] text-[#7a5a42]">
+                      {(node.data as any).url}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => window.open((node.data as any).url, '_blank')}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#fff3ea] px-4 py-2.5 text-xs font-semibold text-[#c17e55] transition-colors hover:bg-[#ffe6d3]"
+                  >
+                    <ExternalLink size={14} />
+                    一键打开 / 跳转
+                  </button>
+                </div>
+              )}
+
               <div>
                 <label className="mb-2 block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">备注 (Data.memo)</label>
                 <textarea
@@ -613,6 +648,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   const [memoOpenId, setMemoOpenId] = useState<string | null>(null);
   const [isDraggingNoteFromSidebar, setIsDraggingNoteFromSidebar] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const reactFlow = useReactFlow();
   const saveTimerRef = useRef<number | null>(null);
   const idRef = useRef(0);
@@ -864,9 +900,14 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       if ((event.target as HTMLElement).closest('.react-flow__node')) return;
 
       const flowPosition = reactFlow.screenToFlowPosition({ x: event.clientX, y: event.clientY });
+      
+      // Calculate position relative to the container for absolute positioning
+      const x = event.clientX - paneBounds.left;
+      const y = event.clientY - paneBounds.top;
+
       setContextMenu({
-        x: Math.min(event.clientX, paneBounds.right - 200),
-        y: Math.min(event.clientY, paneBounds.bottom - 100),
+        x: Math.min(x, paneBounds.width - 200),
+        y: Math.min(y, paneBounds.height - 240), // Increased margin for more menu items
         flowX: flowPosition.x,
         flowY: flowPosition.y,
       });
@@ -1046,6 +1087,58 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
     }
   }, []);
 
+  const handleFileUpload = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0 || !contextMenu) return;
+
+    setIsUploading(true);
+    try {
+      const fileList = Array.from(files);
+      const uploadResults = await api.upload(fileList);
+      
+      const newNodes: CanvasNode[] = uploadResults.map((res: any, idx: number) => {
+        const file = fileList[idx];
+        const mime = file.type;
+        let type: 'image' | 'video' | 'file' = 'file';
+        if (mime.startsWith('image/')) type = 'image';
+        else if (mime.startsWith('video/')) type = 'video';
+        
+        return createMediaNode(
+          nextId('media'),
+          res.url,
+          type,
+          file.name,
+          contextMenu.flowX + idx * 20,
+          contextMenu.flowY + idx * 20
+        );
+      });
+      
+      setNodes((prev) => [...prev, ...newNodes]);
+      onNotify?.(`成功上传并插入 ${newNodes.length} 个媒体文件`, 'success');
+    } catch (err) {
+      onNotify?.('文件上传失败，请稍后重试', 'error');
+    } finally {
+      setIsUploading(false);
+      setContextMenu(null);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  }, [contextMenu, nextId, onNotify, setNodes]);
+
+  const handleInsertLink = useCallback(() => {
+    if (!contextMenu) return;
+    const urlStr = window.prompt('请输入网页链接地址:', 'https://');
+    if (!urlStr) return;
+
+    try {
+      const url = new URL(urlStr);
+      setNodes((prev) => [...prev, createLinkNode(nextId('link'), url.href, url.hostname, contextMenu.flowX, contextMenu.flowY)]);
+      onNotify?.('已成功从链接创建节点', 'success');
+    } catch {
+      onNotify?.('无效的 URL 地址', 'error');
+    }
+    setContextMenu(null);
+  }, [contextMenu, nextId, onNotify, setNodes]);
+
   useEffect(() => {
     const hideMenus = () => setContextMenu(null);
     window.addEventListener('click', hideMenus);
@@ -1175,25 +1268,62 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
       {contextMenu && (
         <div
-          className="fixed z-[110] min-w-[190px] overflow-hidden rounded-[24px] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,248,243,0.94))] py-2 shadow-[0_30px_100px_-34px_rgba(220,162,126,0.52)] backdrop-blur-xl"
+          className="absolute z-[110] min-w-[200px] overflow-hidden rounded-[24px] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,248,243,0.94))] py-2 shadow-[0_30px_100px_-34px_rgba(220,162,126,0.52)] backdrop-blur-xl"
           style={{ top: contextMenu.y, left: contextMenu.x }}
           onClick={(event) => event.stopPropagation()}
         >
+          <div className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#a1806d]/60">新增节点</div>
           <button
             onClick={() => {
               setNodes((prev) => [...prev, createTextNode(nextId('text'), contextMenu.flowX, contextMenu.flowY)]);
               setContextMenu(null);
             }}
-            className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-[#6a4a36] transition hover:bg-[#fff3ea]"
+            className="flex w-full items-center gap-3 px-4 py-2 text-sm text-[#6a4a36] transition hover:bg-[#fff3ea]"
           >
-            <StickyNote size={15} className="text-[#cb885d]" /> 添加文本卡片
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#fff3ea] text-[#cb885d]">
+              <StickyNote size={14} />
+            </div>
+            添加文本卡片
           </button>
           <button
             onClick={() => openNotePicker('context', { x: contextMenu.flowX, y: contextMenu.flowY })}
-            className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-[#5b7d99] transition hover:bg-[#eef7ff]"
+            className="flex w-full items-center gap-3 px-4 py-2 text-sm text-[#5b7d99] transition hover:bg-[#eef7ff]"
           >
-            <FileText size={15} className="text-[#6fa1c7]" /> 添加笔记
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eef7ff] text-[#6fa1c7]">
+              <FileText size={14} />
+            </div>
+            引用已有笔记
           </button>
+          
+          <div className="my-1.5 mx-2 border-t border-[#f0dfd4]/50" />
+          <div className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#a1806d]/60">外部资源</div>
+          
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="flex w-full items-center gap-3 px-4 py-2 text-sm text-[#6a4a36] transition hover:bg-[#fff3ea]"
+          >
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#fff3ea] text-[#cb885d]">
+              <Plus size={14} />
+            </div>
+            插入本地文件
+          </button>
+          <button
+            onClick={handleInsertLink}
+            className="flex w-full items-center gap-3 px-4 py-2 text-sm text-[#5b7d99] transition hover:bg-[#eef7ff]"
+          >
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eef7ff] text-[#6fa1c7]">
+              <Link2 size={14} />
+            </div>
+            插入网页链接
+          </button>
+
+          <input
+            type="file"
+            multiple
+            ref={fileInputRef}
+            className="hidden"
+            onChange={handleFileUpload}
+          />
         </div>
       )}
 
