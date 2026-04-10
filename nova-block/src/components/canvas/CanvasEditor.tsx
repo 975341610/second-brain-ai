@@ -698,6 +698,41 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number; flowX: number; flowY: number } | null>(null);
   const [selection, setSelection] = useState<OnSelectionChangeParams<CanvasNode>>({ nodes: [], edges: [] });
   const [memoOpenId, setMemoOpenId] = useState<string | null>(null);
+
+  const handleSelectionChange = useCallback(
+    (params: OnSelectionChangeParams<CanvasNode>) => {
+      // 需求：左键框选既要选中节点，也要能“带上”框选到的连线。
+      // xyflow 默认框选更偏向 nodes，这里补一层：当一组节点被框选中时，自动选中它们之间的边。
+      const selectedNodeIds = new Set(params.nodes.map((item) => item.id));
+      const explicitEdgeIds = new Set(params.edges.map((item) => item.id));
+
+      const autoEdgeIds = new Set(
+        edges
+          .filter((edge) => selectedNodeIds.size >= 2 && selectedNodeIds.has(edge.source) && selectedNodeIds.has(edge.target))
+          .map((edge) => edge.id),
+      );
+
+      const combinedEdgeIds = new Set<string>([...explicitEdgeIds, ...autoEdgeIds]);
+
+      setEdges((prev) => {
+        let changed = false;
+        const next = prev.map((edge) => {
+          const nextSelected = combinedEdgeIds.has(edge.id);
+          const currentSelected = Boolean((edge as any).selected);
+          if (currentSelected === nextSelected) return edge;
+          changed = true;
+          return { ...edge, selected: nextSelected };
+        });
+        return changed ? next : prev;
+      });
+
+      setSelection({
+        nodes: params.nodes,
+        edges: edges.filter((edge) => combinedEdgeIds.has(edge.id)),
+      });
+    },
+    [edges, setEdges],
+  );
   const [isDraggingNoteFromSidebar, setIsDraggingNoteFromSidebar] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -836,17 +871,29 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
   const handleConnect = useCallback(
     (connection: Connection) => {
-      // 当连线被创建时，如果用户觉得箭头反向了，实际上可以通过对调 source 和 target 来修正。
-      // 因为视觉上从 A 拖到 B，其实就是希望建立从 A 指向 B 的关联。
-      // 这里将其反转为从 source (拉起端) 指向 target (落点)，但把 marker 放在前端或者倒转关系。
-      // 现在的做法：将用户的源作为 target，用户的目标作为 source，从而让箭头方向“调转”，
-      // 但为了语义不混乱，也可以只将箭头 Marker 放到 start，然后让它呈现反向。
-      // 这里直接反转连接关系，使得数据和视觉同时反向：
-      
+      // BaseNode 在同一位置同时渲染了 source / target 两类 handle。
+      // 在某些情况下（尤其是 handle 视觉上重叠时），xyflow 可能会把“从 A 拖到 B”的连线
+      // 以相反的 source/target 传入，从而导致 markerEnd（箭头）指回起点。
+      // 这里根据 handleId 后缀做一次归一化：如果 sourceHandle 实际上是 *-target，且 targetHandle 是 *-source，
+      // 则交换 source/target，保证箭头永远指向落点卡片。
+      const sourceHandle = connection.sourceHandle ?? '';
+      const targetHandle = connection.targetHandle ?? '';
+
+      const shouldSwap = sourceHandle.endsWith('-target') && targetHandle.endsWith('-source');
+      const normalized = shouldSwap
+        ? {
+            ...connection,
+            source: connection.target,
+            target: connection.source,
+            sourceHandle: connection.targetHandle,
+            targetHandle: connection.sourceHandle,
+          }
+        : connection;
+
       setEdges((prev) =>
         addEdge(
           {
-            ...connection,
+            ...normalized,
             type: 'smoothstep',
             markerEnd: { type: MarkerType.ArrowClosed, color: '#d7a685' },
             style: { stroke: '#d7a685', strokeWidth: 2 },
@@ -956,7 +1003,9 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       }
 
       event.preventDefault();
-      const paneBounds = (event.currentTarget as HTMLDivElement).getBoundingClientRect();
+      const paneBounds = canvasWrapperRef.current?.getBoundingClientRect();
+      if (!paneBounds) return;
+
       if ((event.target as HTMLElement).closest('.react-flow__node')) return;
 
       const flowPosition = reactFlow.screenToFlowPosition({ x: event.clientX, y: event.clientY });
@@ -1289,7 +1338,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           onEdgesChange={onEdgesChange}
           onConnect={handleConnect}
           onMoveEnd={(_, currentViewport) => setViewport(currentViewport)}
-          onSelectionChange={setSelection}
+          onSelectionChange={handleSelectionChange}
           fitView={hydratedNodes.length === 0}
           minZoom={0.25}
           maxZoom={2}

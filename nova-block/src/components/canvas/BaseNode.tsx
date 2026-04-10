@@ -42,7 +42,7 @@ export function BaseNode({ id, selected, children, onInfoClick }: BaseNodeProps)
             id={`${key}-source`}
             type="source"
             position={pos}
-            className={`!w-5 !h-5 !bg-transparent !border-none !flex !items-center !justify-center !shadow-none !transition-opacity ${handleVisibilityClass} z-40`}
+            className={`!w-5 !h-5 !bg-transparent !border-none !flex !items-center !justify-center !shadow-none !transition-opacity ${handleVisibilityClass} z-50`}
           >
             <div className="w-2.5 h-2.5 rounded-full bg-[#d7a685] border-2 border-white shadow-sm pointer-events-none" />
           </Handle>

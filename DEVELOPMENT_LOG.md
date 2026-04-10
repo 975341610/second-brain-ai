@@ -3,17 +3,20 @@
 ## [2026-04-10] - 修复画布连线无法连接的严重 Bug (v0.13.3)
 
 ### 问题与修复方案
-- **连线失效修复**: 之前为了修复箭头反向而暴力调转了 `Connection` 里的 `source/target`。由于 ReactFlow 在进行 `isValidConnection` 校验时存在方向性限制（从 source handle 只能连 target handle），强制互换会导致框架拒绝连接，产生“看起来拉出了线但最后没连接上”的 Bug。
-- **回滚与保留**: 现已将 `handleConnect` 中关于 `source/target` 翻转的代码全部回滚，重新恢复 ReactFlow 原生、符合语义的连接方向，从根本上解决无法连线的问题。而原先对于选择高亮、热区扩大、鼠标左键多选删除等体验优化全数予以保留。
+- **连线箭头方向修复**: 由于 `BaseNode` 的 source/target handle 在同一位置渲染，部分情况下 `onConnect` 会拿到反向的 `source/target`，导致箭头（`markerEnd`）指回起点。现在在 `CanvasEditor.tsx` 的 `handleConnect` 中根据 `sourceHandle/targetHandle` 的后缀做归一化：仅当检测到 `*-target -> *-source` 的反向组合时才交换 `source/target`，确保箭头永远指向落点卡片，同时不破坏 ReactFlow 的严格连接校验。
+- **左键框选包含连线**: 保持左键框选卡片能力不变；在 `onSelectionChange` 中补齐逻辑：当一组卡片被框选中时，自动将它们之间的边也置为选中态，从而支持一键删除等操作时连线不遗漏。
+- **右键画布菜单报错修复**: 修复 `onPaneContextMenu` 事件对象不含 `currentTarget.getBoundingClientRect()` 的兼容性问题，改用 `canvasWrapperRef.getBoundingClientRect()` + `clientX/clientY` 计算菜单定位。
 
 ### 核心体验优化
 - **左键框选与连线删除**:
-  - 在 `CanvasEditor` (ReactFlow) 中开启了 `panOnDrag={[1, 2]}`（允许中键和右键拖拽画布），释放了左键用于框选。
-  - 启用了 `selectionOnDrag`、`elementsSelectable` 和 `edgesFocusable`。现在用户可以直接用**鼠标左键拖拽出一个蓝色选框**，同时框中多个卡片和**连线**，并且按 `Backspace / Delete` 一键删除它们，无需再费力逐个点选。
+  - 在 `CanvasEditor` (ReactFlow) 中开启了 `panOnDrag={[1, 2]}`（允许中键或右键拖拽画布），释放了左键用于框选。
+  - 启用了 `selectionOnDrag`、`elementsSelectable` 和 `edgesFocusable`。现在用户可以直接用**鼠标左键拖拽出一个蓝色选框**，框选多个卡片时会**自动同时选中这些卡片之间的连线**，并可按 `Backspace / Delete` 一键删除它们。
 - **连线选中高亮反馈**:
   - 在 `novablock-core.css` 中为 `.react-flow__edge.selected .react-flow__edge-path` 增加了高级视觉反馈：选中连线时，连线颜色会变为醒目的橙金色 `#ff9966`，线宽增加至 `3.5px`，并带有柔和的 `drop-shadow(0 0 6px ...)` 发光效果，明确传达“当前该连线已被选中”。
 - **连线箭头反向修正**:
-  - 用户反馈连线的指向逻辑不符直觉（从 A 连到 B，箭头却反向）。通过在 `handleConnect` 中拦截 `Connection` 对象，物理调转 `source` 和 `target` 的关系，确保视觉拖拽方向与数据结构的指向性完全一致，箭头自然指向落点卡片。
+  - 用户反馈连线的指向逻辑不符直觉（从 A 连到 B，箭头却反向）。通过在 `handleConnect` 中检查 `Connection.sourceHandle/targetHandle` 的后缀，仅在识别到反向组合时对调 `source/target`，保证视觉拖拽方向与箭头指向一致。
+- **画布右键菜单稳定性**:
+  - 修复右键菜单报错 `getBoundingClientRect is not a function`，改用 `canvasWrapperRef` 计算相对位置，避免事件对象差异导致的运行时异常。
 - **命中热区 (Hitbox) 放大**:
   - **缩放把手**: 将卡片右下角的缩放控件 (`NodeResizeControl`) 的容器 `w/h` 加大至 `24px` (`w-6 h-6`)，并增加了内部偏移和 `cursor-se-resize`，解决原先难以精确抓住光标进行缩放的问题（视觉依然保留精致小圆点）。
   - **连线触点**: 将四面的 `Handle` 组件热区加大到 `20px` (`w-5 h-5`)，同样保持视觉圆点小巧（10px），但外部包裹了一层透明可交互的扩大区域。
