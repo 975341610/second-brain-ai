@@ -701,37 +701,9 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
   const handleSelectionChange = useCallback(
     (params: OnSelectionChangeParams<CanvasNode>) => {
-      // 需求：左键框选既要选中节点，也要能“带上”框选到的连线。
-      // xyflow 默认框选更偏向 nodes，这里补一层：当一组节点被框选中时，自动选中它们之间的边。
-      const selectedNodeIds = new Set(params.nodes.map((item) => item.id));
-      const explicitEdgeIds = new Set(params.edges.map((item) => item.id));
-
-      const autoEdgeIds = new Set(
-        edges
-          .filter((edge) => selectedNodeIds.size >= 2 && selectedNodeIds.has(edge.source) && selectedNodeIds.has(edge.target))
-          .map((edge) => edge.id),
-      );
-
-      const combinedEdgeIds = new Set<string>([...explicitEdgeIds, ...autoEdgeIds]);
-
-      setEdges((prev) => {
-        let changed = false;
-        const next = prev.map((edge) => {
-          const nextSelected = combinedEdgeIds.has(edge.id);
-          const currentSelected = Boolean((edge as any).selected);
-          if (currentSelected === nextSelected) return edge;
-          changed = true;
-          return { ...edge, selected: nextSelected };
-        });
-        return changed ? next : prev;
-      });
-
-      setSelection({
-        nodes: params.nodes,
-        edges: edges.filter((edge) => combinedEdgeIds.has(edge.id)),
-      });
+      setSelection(params);
     },
-    [edges, setEdges],
+    [setSelection],
   );
   const [isDraggingNoteFromSidebar, setIsDraggingNoteFromSidebar] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -868,6 +840,37 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
     }),
     [],
   );
+
+  const handleSelectionDrag = useCallback(() => {
+    const selectionEl = document.querySelector('.react-flow__selection');
+    if (!selectionEl) return;
+
+    const rect = selectionEl.getBoundingClientRect();
+    const edgeEls = document.querySelectorAll('.react-flow__edge');
+    const edgeChanges: any[] = [];
+
+    edgeEls.forEach((el) => {
+      const edgeId = el.getAttribute('data-id');
+      if (!edgeId) return;
+
+      const edgeRect = el.getBoundingClientRect();
+      const intersect = !(
+        rect.right < edgeRect.left ||
+        rect.left > edgeRect.right ||
+        rect.bottom < edgeRect.top ||
+        rect.top > edgeRect.bottom
+      );
+
+      const isSelected = el.classList.contains('selected');
+      if (intersect !== isSelected) {
+        edgeChanges.push({ id: edgeId, type: 'select', selected: intersect });
+      }
+    });
+
+    if (edgeChanges.length > 0) {
+      onEdgesChange(edgeChanges);
+    }
+  }, [onEdgesChange]);
 
   const handleConnect = useCallback(
     (connection: Connection) => {
@@ -1339,6 +1342,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           onConnect={handleConnect}
           onMoveEnd={(_, currentViewport) => setViewport(currentViewport)}
           onSelectionChange={handleSelectionChange}
+          onSelectionDrag={handleSelectionDrag}
           fitView={hydratedNodes.length === 0}
           minZoom={0.25}
           maxZoom={2}
