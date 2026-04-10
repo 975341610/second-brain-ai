@@ -17,7 +17,8 @@ export function BaseNode({ id, selected, children, onInfoClick }: BaseNodeProps)
       <NodeResizeControl 
         minWidth={160} 
         minHeight={100}
-        position={Position.BottomRight}
+        // 使用 Position.BottomRight，这是 xyflow 导出的 enum 成员之一
+        position={'bottom-right' as any}
         className="!border-none !bg-transparent"
       >
         <div

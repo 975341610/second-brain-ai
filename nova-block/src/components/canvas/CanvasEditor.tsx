@@ -12,8 +12,6 @@ import {
   useEdgesState,
   useNodesState,
   useReactFlow,
-  getRectOfNodes,
-  getTransformForBounds,
   type Connection,
   type Edge,
   type Node,
@@ -32,11 +30,7 @@ import {
   StickyNote,
   Trash2,
   X,
-  Type,
-  Video,
-  Image as ImageIcon,
   File as FileIcon,
-  MousePointer2,
 } from 'lucide-react';
 import type { Note } from '../../lib/types';
 import { BaseNode } from './BaseNode';
@@ -883,39 +877,90 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   );
 
   const handleGroupSelection = useCallback(() => {
-    if (selection.nodes.length < 2) return;
+    const selectedIds = selection.nodes.map((n) => n.id);
+    if (selectedIds.length < 2) return;
 
-    const nodesToGroup = selection.nodes;
-    const bounds = getRectOfNodes(nodesToGroup);
-    const padding = 40;
-    
+    const selectedIdSet = new Set(selectedIds);
     const groupId = nextId('group');
-    const groupNode = createGroupNode(
-      groupId, 
-      bounds.x - padding, 
-      bounds.y - padding, 
-      bounds.width + padding * 2, 
-      bounds.height + padding * 2
-    );
+    const padding = 40;
+
+    const toNumber = (value: unknown, fallback = 0) => {
+      if (typeof value === 'number' && Number.isFinite(value)) return value;
+      if (typeof value === 'string') {
+        const parsed = Number.parseFloat(value);
+        return Number.isFinite(parsed) ? parsed : fallback;
+      }
+      return fallback;
+    };
 
     setNodes((nds) => {
-      return [
-        ...nds.map((node) => {
-          if (nodesToGroup.find((n) => n.id === node.id)) {
-            return {
-              ...node,
-              parentId: groupId,
-              extent: 'parent' as const,
-              position: {
-                x: node.position.x - (bounds.x - padding),
-                y: node.position.y - (bounds.y - padding),
-              },
-            };
-          }
-          return node;
-        }),
-        groupNode,
-      ];
+      const nodeMap = new Map(nds.map((n) => [n.id, n] as const));
+      const absCache = new Map<string, { x: number; y: number }>();
+
+      const getAbsPos = (node: any): { x: number; y: number } => {
+        const cached = absCache.get(node.id);
+        if (cached) return cached;
+
+        let x = node.position?.x ?? 0;
+        let y = node.position?.y ?? 0;
+        let pid: string | undefined = node.parentId;
+
+        while (pid) {
+          const parent: any = nodeMap.get(pid);
+          if (!parent) break;
+          x += parent.position?.x ?? 0;
+          y += parent.position?.y ?? 0;
+          pid = parent.parentId;
+        }
+
+        const pos = { x, y };
+        absCache.set(node.id, pos);
+        return pos;
+      };
+
+      const selectedNodes = nds.filter((n) => selectedIdSet.has(n.id));
+      const boxes = selectedNodes.map((n: any) => {
+        const pos = getAbsPos(n);
+        const width = toNumber(n.measured?.width ?? n.width ?? (n.style as any)?.width, 0);
+        const height = toNumber(n.measured?.height ?? n.height ?? (n.style as any)?.height, 0);
+        return {
+          x: pos.x,
+          y: pos.y,
+          width,
+          height,
+          right: pos.x + Math.max(0, width),
+          bottom: pos.y + Math.max(0, height),
+        };
+      });
+
+      const minX = Math.min(...boxes.map((b) => b.x));
+      const minY = Math.min(...boxes.map((b) => b.y));
+      const maxX = Math.max(...boxes.map((b) => b.right));
+      const maxY = Math.max(...boxes.map((b) => b.bottom));
+
+      const groupX = minX - padding;
+      const groupY = minY - padding;
+      const groupW = Math.max(260, maxX - minX + padding * 2);
+      const groupH = Math.max(180, maxY - minY + padding * 2);
+
+      const groupNode = createGroupNode(groupId, groupX, groupY, groupW, groupH);
+
+      const updated = nds.map((node: any) => {
+        if (!selectedIdSet.has(node.id)) return node;
+        const abs = getAbsPos(node);
+        return {
+          ...node,
+          parentId: groupId,
+          extent: 'parent' as const,
+          position: {
+            x: abs.x - groupX,
+            y: abs.y - groupY,
+          },
+        };
+      });
+
+      // group 节点放在数组前方，默认作为底层背景框
+      return [groupNode, ...updated];
     });
 
     onNotify?.('已成功创建节点分组', 'success');
@@ -1042,9 +1087,9 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           panOnDrag={[1]}
           panActivationKeyCode="Space"
           panOnScroll
-          panOnScrollMode="free"
+          panOnScrollMode={'free' as any}
           zoomOnScroll={false}
-          selectionMode="partial"
+          selectionMode={'partial' as any}
           elevateNodesOnSelect
           defaultEdgeOptions={{
             type: 'smoothstep',
