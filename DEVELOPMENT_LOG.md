@@ -1,5 +1,15 @@
 # Development Log
 
+## [2026-04-10] - 修复 Canvas 右键事件冲突：禁用原生菜单且不吞自定义菜单 (v0.14.3)
+
+### 1. 事件冲突排查与修复
+- 移除 `CanvasEditor.tsx` 画布 wrapper 上的 `onContextMenuCapture`（捕获阶段拦截），避免误拦截/干扰 ReactFlow 的 `onPaneContextMenu` / `onNodeContextMenu` 等自定义右键逻辑。
+- 将右键统一入口 `handleCanvasContextMenu` 调整为「开头立即 `event.preventDefault()`」并移除 `stopPropagation()`，避免右键事件被过度拦截导致自定义菜单偶发不弹出。
+- 规范 ReactFlow 右键回调签名并统一转发：`onPaneContextMenu(event)`、`onNodeContextMenu(event, node)`，`onEdgeContextMenu(event, edge)` 仅关闭菜单且不再多余 `stopPropagation()`。
+
+### 2. 构建与同步
+- 执行 `npm run build` 并将最新产物同步至 `frontend_dist/`。
+
 ## [2026-04-10] - 彻底禁用 Canvas 原生右键菜单 (v0.14.2)
 
 ### 1. 右键菜单深度清理

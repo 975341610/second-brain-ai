@@ -1445,9 +1445,9 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   }, [removeSelection]);
 
   const handleCanvasContextMenu = useCallback(
-    (event: any) => {
+    (event: MouseEvent | React.MouseEvent) => {
+      // 统一入口：第一时间阻止浏览器原生右键菜单（必须在任何逻辑前执行）
       event.preventDefault();
-      event.stopPropagation();
 
       // 若右键按住拖拽过，视为“右键拖动手势”，不弹出菜单，避免误触。
       if (rightClickGuardRef.current?.moved) {
@@ -1458,7 +1458,8 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       const paneBounds = canvasWrapperRef.current?.getBoundingClientRect();
       if (!paneBounds) return;
 
-      const nodeEl = (event.target as HTMLElement).closest('.react-flow__node') as HTMLElement | null;
+      const target = event.target as HTMLElement | null;
+      const nodeEl = target?.closest('.react-flow__node') as HTMLElement | null;
       const clickedNodeId =
         nodeEl?.getAttribute('data-id') ??
         nodeEl?.getAttribute('data-nodeid') ??
@@ -1862,10 +1863,6 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       <div
         ref={canvasWrapperRef}
         className="relative z-10 h-full w-full"
-        onContextMenuCapture={(event) => {
-          // 兜底（捕获阶段）：无论内部是否 stopPropagation，都强制阻止浏览器原生右键菜单
-          event.preventDefault();
-        }}
         onContextMenu={(event) => {
           // 兜底（冒泡阶段）：阻止画布区域出现浏览器原生右键菜单
           event.preventDefault();
@@ -1908,17 +1905,10 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
             className: 'custom-edge',
           }}
           className="canvas-flow"
-          onPaneContextMenu={(event) => {
+          onPaneContextMenu={(event) => handleCanvasContextMenu(event)}
+          onNodeContextMenu={(event, _node) => handleCanvasContextMenu(event)}
+          onEdgeContextMenu={(event, _edge) => {
             event.preventDefault();
-            handleCanvasContextMenu(event as any);
-          }}
-          onNodeContextMenu={(event) => {
-            event.preventDefault();
-            handleCanvasContextMenu(event as any);
-          }}
-          onEdgeContextMenu={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
             setContextMenu(null);
           }}
         >
