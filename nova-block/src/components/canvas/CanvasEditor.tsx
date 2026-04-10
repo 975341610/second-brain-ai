@@ -446,13 +446,20 @@ function GroupNode(props: NodeProps<CanvasGroupNode>) {
       </NodeResizeControl>
 
       <div className="absolute -top-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-[60]">
-        <div className="canvas-group-drag-handle flex items-center gap-1.5 rounded-full bg-[#d7a685] pl-2 pr-3 py-1 shadow-md transition-all hover:scale-[1.02] border border-white/20 cursor-grab active:cursor-grabbing">
+        <div className="flex items-center gap-1.5 rounded-full bg-[#d7a685] pl-2 pr-3 py-1 shadow-md transition-all hover:scale-[1.02] border border-white/20">
+          <div
+            className="canvas-group-drag-handle mr-0.5 flex h-5 w-5 items-center justify-center text-white/90 cursor-grab active:cursor-grabbing"
+            title="拖拽移动分组"
+          >
+            <LayoutGrid size={14} />
+          </div>
+
           <button
             onClick={(e) => {
               e.stopPropagation();
               data.onToggleCollapse?.(id);
             }}
-            className="text-white/90 hover:text-white transition-colors"
+            className="nodrag text-white/90 hover:text-white transition-colors"
             title={isCollapsed ? '展开分组' : '收纳分组'}
           >
             {isCollapsed ? <ChevronRight size={14} /> : <ChevronDown size={14} />}
@@ -463,7 +470,7 @@ function GroupNode(props: NodeProps<CanvasGroupNode>) {
             onChange={(e) => setDraftLabel(e.target.value)}
             onBlur={() => commitLabel()}
             placeholder="新分组"
-            className="w-32 bg-transparent text-[11px] font-bold text-white outline-none placeholder:text-white/60"
+            className="nodrag w-32 bg-transparent text-[11px] font-bold text-white outline-none placeholder:text-white/60"
             onClick={(e) => e.stopPropagation()}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -850,16 +857,23 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         const cached = absCache.get(node.id);
         if (cached) return cached;
 
+        const direct = node.positionAbsolute;
+        if (direct && Number.isFinite(direct.x) && Number.isFinite(direct.y)) {
+          const pos = { x: direct.x, y: direct.y };
+          absCache.set(node.id, pos);
+          return pos;
+        }
+
         let x = node.position?.x ?? 0;
         let y = node.position?.y ?? 0;
-        let pid: string | undefined = node.parentId;
 
-        while (pid) {
-          const parent: any = nodeMap.get(pid);
-          if (!parent) break;
-          x += parent.position?.x ?? 0;
-          y += parent.position?.y ?? 0;
-          pid = parent.parentId;
+        if (node.parentId) {
+          const parent: any = nodeMap.get(node.parentId);
+          if (parent) {
+            const pAbs = getAbsPos(parent);
+            x += pAbs.x;
+            y += pAbs.y;
+          }
         }
 
         const pos = { x, y };
@@ -897,11 +911,14 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       const nextCollapsed = !group.data.collapsed;
       const currentHeight = (group.measured?.height ?? (group.style as any)?.height ?? 200) as number;
       const expandedHeight = nextCollapsed ? currentHeight : (group.data.expandedHeight ?? currentHeight);
+      const nextHeight = nextCollapsed ? COLLAPSED_GROUP_HEIGHT : expandedHeight;
 
       return nds.map((n: any) => {
         if (n.id === id) {
           return {
             ...n,
+            // xyflow 对节点尺寸有多套来源（height/style/measured），这里同时更新 height + style.height，确保虚线框真实收纳。
+            height: nextHeight,
             data: {
               ...n.data,
               collapsed: nextCollapsed,
@@ -909,7 +926,8 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
             },
             style: {
               ...n.style,
-              height: nextCollapsed ? COLLAPSED_GROUP_HEIGHT : expandedHeight,
+              height: nextHeight,
+              minHeight: nextCollapsed ? COLLAPSED_GROUP_HEIGHT : undefined,
             },
           };
         }
@@ -952,16 +970,23 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         const cached = absCache.get(n.id);
         if (cached) return cached;
 
+        const direct = n.positionAbsolute;
+        if (direct && Number.isFinite(direct.x) && Number.isFinite(direct.y)) {
+          const pos = { x: direct.x, y: direct.y };
+          absCache.set(n.id, pos);
+          return pos;
+        }
+
         let x = n.position?.x ?? 0;
         let y = n.position?.y ?? 0;
-        let pid: string | undefined = n.parentId;
 
-        while (pid) {
-          const parent: any = nodeMap.get(pid);
-          if (!parent) break;
-          x += parent.position?.x ?? 0;
-          y += parent.position?.y ?? 0;
-          pid = parent.parentId;
+        if (n.parentId) {
+          const parent: any = nodeMap.get(n.parentId);
+          if (parent) {
+            const pAbs = getAbsPos(parent);
+            x += pAbs.x;
+            y += pAbs.y;
+          }
         }
 
         const pos = { x, y };
@@ -969,9 +994,9 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         return pos;
       };
 
-      const dragged: any = nodeMap.get(node.id) ?? node;
+      const dragged: any = node;
       const draggedAbs = getAbsPos(dragged);
-      const draggedSize = getNodeSize(dragged);
+      const draggedSize = getNodeSize(nodeMap.get(node.id) ?? node);
       const center = {
         x: draggedAbs.x + draggedSize.width / 2,
         y: draggedAbs.y + draggedSize.height / 2,
@@ -1041,6 +1066,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         if (item.type === TEXT_NODE_TYPE) {
           return {
             ...item,
+            dragHandle: '.canvas-card-drag-handle',
             data: {
               ...commonData,
               title: (item.data as CanvasTextNodeData | undefined)?.title ?? '灵感便签',
@@ -1052,10 +1078,11 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         if (item.type === REFERENCE_NODE_TYPE) {
           const noteId = Number((item.data as Partial<CanvasReferenceNodeData> | undefined)?.noteId);
           const linked = notes.find((candidate) => candidate.id === noteId);
-          if (!linked) return { ...item, data: { ...item.data, ...commonData } } as CanvasReferenceNode;
+          if (!linked) return { ...item, dragHandle: '.canvas-card-drag-handle', data: { ...item.data, ...commonData } } as CanvasReferenceNode;
 
           return {
             ...item,
+            dragHandle: '.canvas-card-drag-handle',
             data: {
               ...commonData,
               noteId: linked.id,
@@ -1080,6 +1107,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         if (item.type === GROUP_NODE_TYPE) {
           return {
             ...item,
+            dragHandle: '.canvas-group-drag-handle',
             data: {
               ...item.data,
               ...commonData,
@@ -1305,13 +1333,15 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
   const handleCanvasContextMenu = useCallback(
     (event: any) => {
+      event.preventDefault?.();
+      event.stopPropagation?.();
+
       // 若右键按住拖拽过，视为“右键拖动手势”，不弹出菜单，避免误触。
       if (rightClickGuardRef.current?.moved) {
         rightClickGuardRef.current = null;
         return;
       }
 
-      event.preventDefault();
       const paneBounds = canvasWrapperRef.current?.getBoundingClientRect();
       if (!paneBounds) return;
 
@@ -1381,16 +1411,23 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         const cached = absCache.get(node.id);
         if (cached) return cached;
 
+        const direct = node.positionAbsolute;
+        if (direct && Number.isFinite(direct.x) && Number.isFinite(direct.y)) {
+          const pos = { x: direct.x, y: direct.y };
+          absCache.set(node.id, pos);
+          return pos;
+        }
+
         let x = node.position?.x ?? 0;
         let y = node.position?.y ?? 0;
-        let pid: string | undefined = node.parentId;
 
-        while (pid) {
-          const parent: any = nodeMap.get(pid);
-          if (!parent) break;
-          x += parent.position?.x ?? 0;
-          y += parent.position?.y ?? 0;
-          pid = parent.parentId;
+        if (node.parentId) {
+          const parent: any = nodeMap.get(node.parentId);
+          if (parent) {
+            const pAbs = getAbsPos(parent);
+            x += pAbs.x;
+            y += pAbs.y;
+          }
         }
 
         const pos = { x, y };
@@ -1722,6 +1759,12 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           }}
           className="canvas-flow"
           onPaneContextMenu={(event) => handleCanvasContextMenu(event as any)}
+          onNodeContextMenu={(event) => handleCanvasContextMenu(event as any)}
+          onEdgeContextMenu={(event) => {
+            (event as any).preventDefault?.();
+            (event as any).stopPropagation?.();
+            setContextMenu(null);
+          }}
         >
           <Background id="dots" variant={BackgroundVariant.Dots} color="rgba(214,170,138,0.28)" gap={24} size={1.4} />
           <MiniMap

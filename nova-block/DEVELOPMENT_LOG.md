@@ -41,6 +41,24 @@
 
 ---
 
+## 2026-04-10 (体验优化与 Bug 修复)
+### Fixed
+- **Group 拖拽体验优化**:
+  - 在 GroupNode 标题栏增加了显式的拖拽把手（使用 `LayoutGrid` 图标），并明确指定了 `.canvas-group-drag-handle`。
+  - 为标题栏内的按钮和输入框添加了 `nodrag` 类，确保点击这些交互元素时不会误触发拖拽。
+- **已经在 Group 内的卡片无法移出修复**:
+  - 重构了 `getAbsPos` 逻辑，优先使用 xyflow 提供的 `positionAbsolute` 属性，确保坐标计算的准确性。
+  - 在 `onNodeDragStop` 中，即使节点在 Group 内拖动，也会实时判断其中心点是否还在 Group 范围内；若移出，则自动解除父子关系并将其转换为绝对坐标，支持 CTRL+拖拽移出逻辑。
+- **右键菜单遮挡修复**:
+  - 在 `handleCanvasContextMenu` 中增加了 `event.stopPropagation()`，防止事件冒泡触发其他菜单。
+  - 显式绑定了 `onNodeContextMenu` 到 ReactFlow，并在 `onEdgeContextMenu` 中调用 `preventDefault`，确保全画布范围内禁用原生右键菜单。
+- **Group 收纳后虚线框尺寸同步修复**:
+  - 点击 Collapse 时，不仅隐藏子节点，还同步更新 Group 节点的 `height` 属性及 `style.height`，确保 xyflow 的虚线选择框能真实收缩到 40px 高度。
+- **代码健壮性**:
+  - 修复了 `CanvasEditor` 中 `useEffect` 初始化逻辑，补全了丢失的 `dragHandle` 注入，确保刷新后节点交互依然可用。
+
+---
+
 ## 🎨 Nova 治愈系手账 UI/UX 升级路线图 (2026-04-04 ~ 2026-04-20)
 
 ### 阶段一：视觉质感换皮 (Done)
