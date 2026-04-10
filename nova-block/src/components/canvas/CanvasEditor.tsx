@@ -422,7 +422,7 @@ function GroupNode(props: NodeProps<CanvasGroupNode>) {
 
   return (
     <div
-      className={`group h-full w-full rounded-[32px] border-2 border-dashed transition-all duration-300 ${
+      className={`group canvas-group-drag-handle h-full w-full rounded-[32px] border-2 border-dashed transition-all duration-300 ${
         selected ? 'border-[#d7a685] bg-[#d7a685]/5 shadow-lg' : 'border-[#d7a685]/30 bg-[#d7a685]/2'
       }`}
     >
@@ -437,7 +437,7 @@ function GroupNode(props: NodeProps<CanvasGroupNode>) {
       </NodeResizeControl>
 
       <div className="absolute -top-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-[60]">
-        <div className="flex items-center gap-1.5 rounded-full bg-[#d7a685] pl-2 pr-3 py-1 shadow-md transition-all hover:scale-[1.02] border border-white/20">
+        <div className="canvas-group-drag-handle flex items-center gap-1.5 rounded-full bg-[#d7a685] pl-2 pr-3 py-1 shadow-md transition-all hover:scale-[1.02] border border-white/20 cursor-grab active:cursor-grabbing">
           <div
             className="mr-0.5 flex h-5 w-5 items-center justify-center text-white/90"
             title="分组"
@@ -810,6 +810,8 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
 
   const handleCanvasMouseDown = useCallback((event: any) => {
     if (event.button !== 2) return;
+    // 右键作为画布平移手势时，浏览器可能仍会弹出原生菜单；这里提前 preventDefault 兜底。
+    event.preventDefault?.();
     rightClickGuardRef.current = { x: event.clientX, y: event.clientY, moved: false };
   }, []);
 
@@ -1218,6 +1220,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         if (item.type === GROUP_NODE_TYPE) {
           return {
             ...item,
+            dragHandle: '.canvas-group-drag-handle',
             data: {
               ...item.data,
               ...commonData,
@@ -1579,6 +1582,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         id: groupId,
         type: GROUP_NODE_TYPE,
         position: { x: groupX, y: groupY },
+        dragHandle: '.canvas-group-drag-handle',
         data: {
           label: '新分组',
           collapsed: false,
@@ -1858,6 +1862,10 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       <div
         ref={canvasWrapperRef}
         className="relative z-10 h-full w-full"
+        onContextMenu={(event) => {
+          // 兜底：阻止画布区域出现浏览器原生右键菜单
+          event.preventDefault();
+        }}
         onDrop={handleCanvasDrop}
         onDragOver={handleCanvasDragOver}
         onDragLeave={handleCanvasDragLeave}

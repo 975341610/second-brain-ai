@@ -1,5 +1,18 @@
 # Development Log
 
+## [2026-04-10] - 修复 Canvas 右键菜单与分组拖拽回归 (v0.14.1)
+
+### 1. 右键菜单：阻止原生浏览器菜单
+- 在 `CanvasEditor.tsx` 的画布 wrapper 上补充 `onContextMenu` 兜底 `preventDefault()`，避免右键点击 Group 外部（或右键平移手势过程中）出现浏览器原生菜单。
+- 在 `handleCanvasMouseDown`（右键按下）阶段提前 `preventDefault()`，进一步降低不同浏览器对右键菜单触发时机差异带来的漏网情况。
+
+### 2. 分组拖拽：确保分组背景可拖动
+- 为 `GroupNode` 外层容器添加 `.canvas-group-drag-handle`，并在 Group 节点数据上统一注入 `dragHandle: '.canvas-group-drag-handle'`（包含新建分组与从存量数据 hydrate）。
+- 这样分组的整个背景区域都能作为拖拽手柄，同时通过 `nodrag` 保持输入框/按钮等交互不被拖拽抢占。
+
+### 3. 构建与产物同步
+- 已执行 `nova-block/npm run build` 并将产物同步至 `frontend_dist/`。
+
 ## [2026-04-10] - Infinite Canvas 分组 (Group) 功能全落地 (v0.14.0)
 
 ### 核心功能补完
