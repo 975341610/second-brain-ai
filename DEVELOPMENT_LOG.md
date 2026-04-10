@@ -1,5 +1,19 @@
 # Development Log
 
+## [2026-04-10] - Canvas 本地文件支持用系统默认软件打开
+
+### 背景
+- 画布中添加本地文件后，点击右侧属性栏「一键打开 / 跳转」或点击文件节点，无法用系统默认软件直接打开（容易被浏览器接管或相对路径导致裂开）。
+
+### 修复内容
+- `nova-block/src/components/canvas/CanvasEditor.tsx`
+  - 为文件节点与属性栏「一键打开 / 跳转」增加智能判断：
+    - `source === 'local'` 或 `url` 包含 `/api/media/static/files/` / `/media/static/files/` 时，优先调用 `api.openFile(url)` 交给后端触发系统默认应用打开；失败则回退 `window.open(formatUrl(url), '_blank')`。
+    - 其他链接直接 `window.open(formatUrl(url), '_blank')`。
+
+### 构建与同步
+- 执行 `nova-block/npm run build`，并同步 `nova-block/dist/*` 到 `frontend_dist/`。
+
 ## [2026-04-10] - 修复图片裂开、Slider 本地图片导致 localStorage 爆仓 (QuotaExceededError)
 
 ### 问题根因

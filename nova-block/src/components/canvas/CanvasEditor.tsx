@@ -123,6 +123,27 @@ const MEDIA_NODE_TYPE = 'canvas-media-node';
 const LINK_NODE_TYPE = 'canvas-link-node';
 const GROUP_NODE_TYPE = 'groupNode';
 
+const isLocalUploadedFile = (url: string | undefined | null, source?: 'local' | 'online') => {
+  if (!url) return false;
+  if (source === 'local') return true;
+  return url.includes('/api/media/static/files/') || url.includes('/media/static/files/');
+};
+
+const openUrlSmartly = async (url: string | undefined | null, source?: 'local' | 'online') => {
+  if (!url) return;
+
+  if (isLocalUploadedFile(url, source)) {
+    try {
+      await api.openFile(url);
+      return;
+    } catch (err) {
+      console.warn('[CanvasEditor] api.openFile failed, fallback to window.open', err);
+    }
+  }
+
+  window.open(formatUrl(url), '_blank');
+};
+
 const createTextNode = (id: string, x: number, y: number, parentId?: string): CanvasTextNode => ({
   id,
   type: TEXT_NODE_TYPE,
@@ -361,15 +382,25 @@ function MediaNode(props: NodeProps<CanvasMediaNode>) {
           </div>
         )}
         {data.type === 'file' && (
-          <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center cursor-pointer"
-               onClick={(e) => {
-                 e.stopPropagation();
-                 window.open(data.url, '_blank');
-               }}
+          <div
+            className="flex h-full w-full flex-col items-center justify-center p-4 text-center cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              void openUrlSmartly(data.url, data.source);
+            }}
           >
             <FileIcon size={40} className="mb-2 text-primary/60" />
             <div className="text-sm font-medium text-foreground truncate w-full">{data.title || '未知文件'}</div>
-            <a href={data.url} target="_blank" rel="noreferrer" className="mt-2 text-xs text-primary underline" onClick={e => e.stopPropagation()}>下载预览</a>
+            <button
+              type="button"
+              className="mt-2 text-xs text-primary underline"
+              onClick={(e) => {
+                e.stopPropagation();
+                void openUrlSmartly(data.url, data.source);
+              }}
+            >
+              下载预览
+            </button>
           </div>
         )}
         <div className="absolute inset-x-0 bottom-0 bg-black/40 px-3 py-2 text-xs text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity truncate">
@@ -715,7 +746,7 @@ function MemoDrawer({ nodeId, nodes, onClose, onChange }: {
                   </div>
 
                   <button
-                    onClick={() => window.open((node.data as any).url, '_blank')}
+                    onClick={() => void openUrlSmartly((node.data as any).url, (node.data as any).source)}
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#fff3ea] px-4 py-2.5 text-xs font-semibold text-[#c17e55] transition-colors hover:bg-[#ffe6d3]"
                   >
                     <ExternalLink size={14} />
