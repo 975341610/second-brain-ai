@@ -1,5 +1,11 @@
 # Development Log
 
+## [2026-04-10] - Canvas 禁用右键拖动，修复右键菜单冲突
+
+- `CanvasEditor.tsx`：将 ReactFlow `panOnDrag` 从 `panOnDrag={[1, 2]}` 调整为 `panOnDrag={[1]}`，彻底移除右键拖动画布，避免与右键菜单手势冲突。
+- 删除右键拖动相关的冗余手势守卫与事件处理：移除 `rightClickGuardRef`，以及 `handleCanvasMouseDown/Move/Up` 与 wrapper 上的对应 mouse 事件绑定。
+- `handleCanvasContextMenu`：确保一进入即 `event.preventDefault()`，并去掉“右键拖动过则不弹菜单”的分支判断，保证自定义右键菜单稳定弹出。
+
 ## [2026-04-10] - 修复 Canvas 右键事件冲突：禁用原生菜单且不吞自定义菜单 (v0.14.3)
 
 ### 1. 事件冲突排查与修复

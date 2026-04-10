@@ -806,30 +806,6 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   const pendingDropPositionRef = useRef<{ x: number; y: number } | null>(null);
   const pendingDropGroupIdRef = useRef<string | null>(null);
   const canvasWrapperRef = useRef<HTMLDivElement>(null);
-  const rightClickGuardRef = useRef<{ x: number; y: number; moved: boolean } | null>(null);
-
-  const handleCanvasMouseDown = useCallback((event: any) => {
-    if (event.button !== 2) return;
-    // 右键作为画布平移手势时，浏览器可能仍会弹出原生菜单；这里提前 preventDefault 兜底。
-    event.preventDefault();
-    rightClickGuardRef.current = { x: event.clientX, y: event.clientY, moved: false };
-  }, []);
-
-  const handleCanvasMouseMove = useCallback((event: any) => {
-    const state = rightClickGuardRef.current;
-    if (!state) return;
-    const dx = Math.abs(event.clientX - state.x);
-    const dy = Math.abs(event.clientY - state.y);
-    if (dx + dy > 6) state.moved = true;
-  }, []);
-
-  const handleCanvasMouseUp = useCallback((event: any) => {
-    if (event.button !== 2) return;
-    // 延迟清理，确保 contextmenu 事件有机会读取 moved 标记
-    window.setTimeout(() => {
-      rightClickGuardRef.current = null;
-    }, 120);
-  }, []);
 
   const updateNodeData = useCallback((id: string, patch: any) => {
     setNodes((prev) =>
@@ -1449,12 +1425,6 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       // 统一入口：第一时间阻止浏览器原生右键菜单（必须在任何逻辑前执行）
       event.preventDefault();
 
-      // 若右键按住拖拽过，视为“右键拖动手势”，不弹出菜单，避免误触。
-      if (rightClickGuardRef.current?.moved) {
-        rightClickGuardRef.current = null;
-        return;
-      }
-
       const paneBounds = canvasWrapperRef.current?.getBoundingClientRect();
       if (!paneBounds) return;
 
@@ -1499,8 +1469,6 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         groupId: targetGroup?.id ?? null,
         clickedNodeId,
       });
-
-      rightClickGuardRef.current = null;
     },
     [reactFlow, nodes],
   );
@@ -1870,9 +1838,6 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
         onDrop={handleCanvasDrop}
         onDragOver={handleCanvasDragOver}
         onDragLeave={handleCanvasDragLeave}
-        onMouseDown={handleCanvasMouseDown}
-        onMouseMove={handleCanvasMouseMove}
-        onMouseUp={handleCanvasMouseUp}
       >
         <ReactFlow
           nodes={hydratedNodes}
@@ -1888,7 +1853,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           minZoom={0.25}
           maxZoom={2}
           selectionOnDrag
-          panOnDrag={[1, 2]} // 允许中键或右键平移
+          panOnDrag={[1]} // 仅允许中键平移（禁用右键拖动，避免与右键菜单冲突）
           panActivationKeyCode="Space"
           panOnScroll
           panOnScrollMode={'free' as any}
