@@ -1184,13 +1184,17 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
     if (!urlStr) return;
 
     try {
-      const url = new URL(urlStr);
+      // 允许用户直接粘贴带或不带协议的链接，我们统一加上 https
+      const safeUrlStr = /^https?:\/\//i.test(urlStr) ? urlStr : `https://${urlStr}`;
+      const url = new URL(safeUrlStr);
+      
       let isMedia = false;
       let mediaType: 'image' | 'video' | 'audio' | 'embed' | 'file' = 'file';
       let mediaSrc = url.href;
 
       // Check Bilibili
-      const biliMatch = urlStr.match(/(?:https?:\/\/)?(?:www\.)?(?:bilibili\.com\/video\/|b23\.tv\/)(BV[\w]+)/);
+      // 支持 B站多类链接：短链 b23.tv，带查询参数的视频页
+      const biliMatch = safeUrlStr.match(/(?:https?:\/\/)?(?:www\.)?(?:bilibili\.com\/video\/|b23\.tv\/)(BV[\w]+)/i);
       if (biliMatch) {
         isMedia = true;
         mediaType = 'embed';
@@ -1198,7 +1202,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       }
       
       // Check YouTube
-      const ytMatch = urlStr.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
+      const ytMatch = safeUrlStr.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/i);
       if (ytMatch && !isMedia) {
         isMedia = true;
         mediaType = 'embed';
@@ -1206,22 +1210,36 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       }
 
       if (!isMedia) {
-        const ext = url.pathname.split('.').pop()?.toLowerCase();
-        const imageExts = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'bmp', 'ico'];
-        const videoExts = ['mp4', 'mov', 'webm', 'ogg', 'mkv'];
+        // 去除查询参数和 hash
+        const cleanPath = url.pathname.split('?')[0].split('#')[0];
+        // 取最后一个后缀名，暂时不需要也可以不用，直接用下面的正则匹配即可
+        // const ext = cleanPath.split('.').pop()?.toLowerCase();
+        
+        const imageExts = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'bmp', 'ico', 'jfif', 'pjpeg', 'pjp'];
+        const videoExts = ['mp4', 'mov', 'webm', 'ogg', 'mkv', 'avi'];
         const audioExts = ['mp3', 'wav', 'aac', 'flac', 'm4a', 'ogg'];
-        if (ext) {
-          if (imageExts.includes(ext)) { isMedia = true; mediaType = 'image'; }
-          else if (videoExts.includes(ext)) { isMedia = true; mediaType = 'video'; }
-          else if (audioExts.includes(ext)) { isMedia = true; mediaType = 'audio'; }
+        
+        // 更稳妥的匹配后缀，不依赖是否有扩展名
+        const extMatch = cleanPath.match(/\.([^.]+)$/);
+        const actualExt = extMatch ? extMatch[1].toLowerCase() : '';
+        
+        if (imageExts.includes(actualExt)) { isMedia = true; mediaType = 'image'; }
+        else if (videoExts.includes(actualExt)) { isMedia = true; mediaType = 'video'; }
+        else if (audioExts.includes(actualExt)) { isMedia = true; mediaType = 'audio'; }
+
+        // 如果没有明确后缀，通过一些常见图床或者 URL 参数来猜测
+        if (!isMedia && (safeUrlStr.includes('image') || safeUrlStr.includes('img') || safeUrlStr.includes('picture') || safeUrlStr.includes('webp'))) {
+            // 这里我们大胆一点，只要看起来像图片链接，就试探性作为图片渲染，总比干瘪的文字链接好
+            isMedia = true;
+            mediaType = 'image';
         }
       }
 
       if (isMedia) {
-        setNodes((prev) => [...prev, createMediaNode(nextId('media'), mediaSrc, mediaType, url.hostname, contextMenu.flowX, contextMenu.flowY, 'online')]);
+        setNodes((prev) => [...prev, createMediaNode(nextId('media'), mediaSrc, mediaType, url.hostname || 'link', contextMenu.flowX, contextMenu.flowY, 'online')]);
         onNotify?.('已成功插入媒体资源', 'success');
       } else {
-        setNodes((prev) => [...prev, createLinkNode(nextId('link'), url.href, url.hostname, contextMenu.flowX, contextMenu.flowY)]);
+        setNodes((prev) => [...prev, createLinkNode(nextId('link'), url.href, url.hostname || 'link', contextMenu.flowX, contextMenu.flowY)]);
         onNotify?.('已成功创建链接节点', 'success');
       }
     } catch {
