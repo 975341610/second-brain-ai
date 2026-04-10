@@ -40,6 +40,8 @@ import {
   LockOpen,
   ChevronDown,
   ChevronRight,
+  ChevronLeft,
+  Palette,
   Unlink
 } from 'lucide-react';
 import type { Note } from '../../lib/types';
@@ -108,6 +110,7 @@ type CanvasSerialized = {
   nodes: CanvasNode[];
   edges: Edge[];
   viewport?: Viewport;
+  backgroundUrl?: string;
 };
 
 type CanvasEditorProps = {
@@ -217,7 +220,7 @@ function summarizeNote(note: Note) {
 
 function parseCanvasContent(content?: string): CanvasSerialized {
   if (!content) {
-    return { version: 'v1', nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } };
+    return { version: 'v1', nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 }, backgroundUrl: undefined };
   }
 
   try {
@@ -227,9 +230,10 @@ function parseCanvasContent(content?: string): CanvasSerialized {
       nodes: Array.isArray(parsed.nodes) ? parsed.nodes : [],
       edges: Array.isArray(parsed.edges) ? parsed.edges : [],
       viewport: parsed.viewport ?? { x: 0, y: 0, zoom: 1 },
+      backgroundUrl: typeof parsed.backgroundUrl === 'string' ? parsed.backgroundUrl : undefined,
     };
   } catch {
-    return { version: 'v1', nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } };
+    return { version: 'v1', nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 }, backgroundUrl: undefined };
   }
 }
 
@@ -810,6 +814,8 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   const [nodes, setNodes, onNodesChange] = useNodesState<CanvasNode>(parsedContent.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(parsedContent.edges);
   const [viewport, setViewport] = useState<Viewport>(parsedContent.viewport ?? { x: 0, y: 0, zoom: 1 });
+  const [backgroundUrl, setBackgroundUrl] = useState<string | undefined>(parsedContent.backgroundUrl);
+  const [isToolbarCollapsed, setIsToolbarCollapsed] = useState(false);
   const [pickerMode, setPickerMode] = useState<'toolbar' | 'context' | null>(null);
   const [contextMenu, setContextMenu] = useState<{ 
     x: number; 
@@ -831,6 +837,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   const [isDraggingNoteFromSidebar, setIsDraggingNoteFromSidebar] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const backgroundInputRef = useRef<HTMLInputElement>(null);
   const reactFlow = useReactFlow();
   const saveTimerRef = useRef<number | null>(null);
   const idRef = useRef(0);
@@ -1242,6 +1249,7 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
     );
     setEdges(parsedContent.edges);
     setViewport(parsedContent.viewport ?? { x: 0, y: 0, zoom: 1 });
+    setBackgroundUrl(parsedContent.backgroundUrl);
   }, [note?.id, notes, parsedContent, setEdges, setNodes, updateNodeData, handleUngroup, handleToggleCollapse]);
 
   const didInitViewportRef = useRef(false);
@@ -1350,6 +1358,41 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
     onNotify?.('已添加文本卡片', 'success');
   }, [getCanvasCenter, nextId, onNotify, setNodes]);
 
+  const canvasBackgroundStyle = useMemo(() => {
+    if (!backgroundUrl) return undefined;
+    return {
+      backgroundImage: `url(${formatUrl(backgroundUrl)})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    } as React.CSSProperties;
+  }, [backgroundUrl]);
+
+  const handleBackgroundUpload = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      setIsUploading(true);
+      try {
+        const results = await api.upload([file], note?.id);
+        const url = results?.[0]?.url;
+        if (!url) {
+          throw new Error('upload returned empty url');
+        }
+        setBackgroundUrl(url);
+        onNotify?.('背景已更新', 'success');
+      } catch (err) {
+        console.warn('[CanvasEditor] background upload failed', err);
+        onNotify?.('背景上传失败，请稍后重试', 'error');
+      } finally {
+        setIsUploading(false);
+        if (backgroundInputRef.current) backgroundInputRef.current.value = '';
+      }
+    },
+    [note?.id, onNotify],
+  );
+
   const openNotePicker = useCallback((mode: 'toolbar' | 'context', position?: { x: number; y: number }, groupId?: string | null) => {
     pendingDropPositionRef.current = position ?? null;
     pendingDropGroupIdRef.current = groupId ?? null;
@@ -1417,8 +1460,9 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
       nodes: serializedNodes,
       edges,
       viewport,
+      backgroundUrl,
     } satisfies CanvasSerialized);
-  }, [edges, hydratedNodes, viewport]);
+  }, [edges, hydratedNodes, viewport, backgroundUrl]);
 
   useEffect(() => {
     if (!note) return;
@@ -1855,13 +1899,14 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
   }
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(255,226,214,0.55),transparent_26%),radial-gradient(circle_at_top_right,rgba(214,236,255,0.52),transparent_28%),linear-gradient(180deg,#fffaf5_0%,#fffdfb_100%)]">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(255,211,186,0.28),transparent_20%),radial-gradient(circle_at_85%_12%,rgba(188,224,255,0.22),transparent_18%),radial-gradient(circle_at_50%_100%,rgba(255,233,210,0.18),transparent_24%)]" />
-      <div className="absolute inset-0 opacity-[0.45]" style={{ backgroundImage: 'var(--paper-texture)' }} />
+    <div className="relative h-full w-full overflow-hidden bg-[#0b0f16]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(99,102,241,0.20),transparent_38%),radial-gradient(circle_at_86%_22%,rgba(14,165,233,0.16),transparent_40%),radial-gradient(circle_at_50%_110%,rgba(236,72,153,0.10),transparent_40%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:56px_56px]" />
 
       <div
         ref={canvasWrapperRef}
         className="relative z-10 h-full w-full"
+        style={canvasBackgroundStyle}
         onContextMenu={(event) => {
           // 兜底（冒泡阶段）：阻止画布区域出现浏览器原生右键菜单
           event.preventDefault();
@@ -1908,18 +1953,19 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
             setContextMenu(null);
           }}
         >
-          <Background id="dots" variant={BackgroundVariant.Dots} color="rgba(214,170,138,0.28)" gap={24} size={1.4} />
+          <Background id="dots" variant={BackgroundVariant.Dots} color="rgba(255,255,255,0.08)" gap={24} size={1.2} />
           <MiniMap
             pannable
             zoomable
             style={{
-              background: 'rgba(255,255,255,0.82)',
-              border: '1px solid rgba(233, 216, 200, 0.8)',
+              background: 'rgba(15, 23, 42, 0.85)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: 24,
-              boxShadow: '0 20px 50px -28px rgba(216, 160, 124, 0.45)',
+              boxShadow: '0 20px 50px -28px rgba(0, 0, 0, 0.5)',
             }}
             nodeBorderRadius={18}
-            nodeColor={(node) => (node.type === REFERENCE_NODE_TYPE ? '#c6e2f7' : '#f7d2b8')}
+            nodeColor={(node) => (node.type === REFERENCE_NODE_TYPE ? 'rgba(99, 102, 241, 0.6)' : 'rgba(245, 158, 11, 0.6)')}
+            maskColor="rgba(0, 0, 0, 0.3)"
           />
           <Controls
             position="bottom-left"
@@ -1928,39 +1974,82 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           />
 
           <Panel position="top-left">
-            <div className="rounded-[28px] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,247,241,0.9))] px-5 py-4 shadow-[0_28px_90px_-34px_rgba(233,173,140,0.52)] backdrop-blur-xl">
-              <div className="flex items-start gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(145deg,#fff1e6,#eef8ff)] text-[#cb8358] shadow-inner">
-                  <LayoutGrid size={20} />
+            <div className={`rounded-2xl border border-white/10 bg-black/40 px-3 py-2.5 shadow-2xl backdrop-blur-xl transition-all ${isToolbarCollapsed ? 'opacity-40 hover:opacity-100' : ''}`}>
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-sky-500/20 text-sky-400 shadow-inner">
+                  <LayoutGrid size={16} />
                 </div>
-                <div>
-                  <div className="text-sm font-semibold text-[#6d4d39]">{note.title || '无标题画布'}</div>
-                  <div className="mt-1 text-xs leading-5 text-[#a1806d]">无界拖拽、框选连线、文本卡片与笔记引用同屏协作，轻量又顺手。</div>
-                </div>
+                {!isToolbarCollapsed && (
+                  <div className="min-w-0 flex-1 overflow-hidden">
+                    <div className="truncate text-xs font-bold tracking-wide text-slate-200 uppercase">{note.title || '无标题画布'}</div>
+                    <div className="truncate text-[10px] text-slate-400 mt-0.5">无界画布 · 自由创作空间</div>
+                  </div>
+                )}
               </div>
             </div>
           </Panel>
 
           <Panel position="top-center" className="flex flex-col items-center gap-4">
-            <div className="flex items-center gap-2 rounded-[28px] border border-white/85 bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(255,248,244,0.92))] px-3 py-2 shadow-[0_30px_90px_-36px_rgba(229,169,134,0.5)] backdrop-blur-xl">
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/40 p-1.5 shadow-2xl backdrop-blur-xl">
               <button
-                onClick={handleAddTextCard}
-                className="flex items-center gap-2 rounded-[22px] bg-[linear-gradient(145deg,#fff3ea,#fffaf6)] px-4 py-2 text-sm font-medium text-[#8a5d3f] transition hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-18px_rgba(231,170,136,0.65)]"
+                onClick={() => setIsToolbarCollapsed(!isToolbarCollapsed)}
+                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition hover:bg-white/10 hover:text-white"
+                title={isToolbarCollapsed ? "展开工具栏" : "收起工具栏"}
               >
-                <Plus size={16} />
-                添加文本卡片
+                {isToolbarCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
               </button>
-              <button
-                onClick={() => openNotePicker('toolbar', getCanvasCenter())}
-                className="flex items-center gap-2 rounded-[22px] bg-[linear-gradient(145deg,#eef7ff,#fbfdff)] px-4 py-2 text-sm font-medium text-[#4f7ea0] transition hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-18px_rgba(150,194,230,0.65)]"
-              >
-                <Search size={16} />
-                引用笔记
-              </button>
-              <div className="hidden items-center gap-2 rounded-full bg-[#fff5ee] px-3 py-2 text-xs text-[#a47b61] sm:flex">
-                <Sparkles size={14} />
-                拖拽文件或链接直接落点
-              </div>
+
+              <AnimatePresence>
+                {!isToolbarCollapsed && (
+                  <motion.div 
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 'auto', opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    className="flex items-center gap-1.5 overflow-hidden"
+                  >
+                    <div className="h-4 w-px bg-white/10 mx-1" />
+                    
+                    <button
+                      onClick={handleAddTextCard}
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-amber-400 transition hover:bg-amber-400/10"
+                      title="添加文本卡片"
+                    >
+                      <Plus size={18} />
+                    </button>
+
+                    <button
+                      onClick={() => openNotePicker('toolbar', getCanvasCenter())}
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-sky-400 transition hover:bg-sky-400/10"
+                      title="引用已有笔记"
+                    >
+                      <Search size={18} />
+                    </button>
+
+                    <button
+                      onClick={() => backgroundInputRef.current?.click()}
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-emerald-400 transition hover:bg-emerald-400/10"
+                      title="更换画布背景"
+                    >
+                      <Palette size={18} />
+                    </button>
+
+                    <input
+                      type="file"
+                      ref={backgroundInputRef}
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleBackgroundUpload}
+                    />
+
+                    <div className="h-4 w-px bg-white/10 mx-1" />
+                    
+                    <div className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-medium text-slate-400">
+                      <Sparkles size={12} className="text-indigo-400" />
+                      支持拖拽文件
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <SelectionToolbar 
@@ -1971,8 +2060,8 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           </Panel>
 
           <Panel position="bottom-center">
-            <div className="rounded-full border border-white/80 bg-white/82 px-4 py-2 text-xs text-[#9c7b67] shadow-[0_18px_50px_-28px_rgba(205,152,116,0.46)] backdrop-blur-xl">
-              框选多个节点后可直接拖拽；按 Delete / Backspace 可快速删除选中元素。
+            <div className="rounded-full border border-white/5 bg-black/20 px-4 py-1.5 text-[10px] text-slate-500 backdrop-blur-sm">
+              按 Delete / Backspace 快速删除 · 空格键配合鼠标平移
             </div>
           </Panel>
         </ReactFlow>
@@ -2126,14 +2215,6 @@ function CanvasBoard({ note, notes, onSave, onNotify }: CanvasEditorProps) {
           </div>
         </div>
       )}
-
-      <button
-        onClick={removeSelection}
-        className="absolute bottom-6 right-6 z-20 flex items-center gap-2 rounded-full border border-white/85 bg-white/90 px-4 py-3 text-sm font-medium text-[#936953] shadow-[0_20px_54px_-28px_rgba(205,148,112,0.5)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-[#744835]"
-      >
-        <Trash2 size={16} />
-        删除选中
-      </button>
     </div>
   );
 }
