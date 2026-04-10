@@ -1,0 +1,318 @@
+A2A Protocol Surpasses 150 Organizations, Lands in Major Cloud Platforms, and Sees Enterprise Production Use in First Year | Morningstar
+
+
+Advertisement
+
+Morningstar brands and products
+
+Company
+
+[![web_image](https://www.morningstar.com/assets/img/morningstar.d826858.svg)](https://www.morningstar.com/)
+
+Get 7 Days Free
+
+* [Portfolio](https://www.morningstar.com/tools/portfolio)
+* Tools
+
+* Sections
+* Markets
+* [Funds](https://www.morningstar.com/funds)
+* [ETFs](https://www.morningstar.com/topics/etfs)
+* [Stocks](https://www.morningstar.com/stocks)
+* [Bonds](https://www.morningstar.com/bonds)
+
+* Investing Ideas
+
+* [Home](https://www.morningstar.com/)
+
+* Tools
+
+  + [Portfolio](https://www.morningstar.com/tools/portfolio)
+  + [Watchlists](https://www.morningstar.com/tools/watchlists)
+  + [Screener](https://www.morningstar.com/tools/screener)
+  + [Chart](https://www.morningstar.com/tools/chart)
+  + [Rating Changes](https://www.morningstar.com/tools/rating-changes)
+
+* Sections
+* Markets
+* [Funds](https://www.morningstar.com/funds)
+* [ETFs](https://www.morningstar.com/topics/etfs)
+* [Stocks](https://www.morningstar.com/stocks)
+* [Bonds](https://www.morningstar.com/bonds)
+
+* Investing Ideas
+
+* Media
+
+* [Help](https://www.morningstar.com/help-center)
+* [What’s New](https://www.morningstar.com/whats-new)
+* [Notifications](https://www.morningstar.com/notifications)
+
+* Products for Investors
+* [All Products and Services](https://www.morningstar.com/business)
+
+1. [Home](https://www.morningstar.com/)
+2. [News](https://www.morningstar.com/news)
+3. [PR Newswire](https://www.morningstar.com/news/pr-newswire)
+4. A2A Protocol Surpasses 150 Organizations, Lands in Major Cloud Platforms, and Sees Enterprise Production Use in First Year
+
+A2A Protocol Surpasses 150 Organizations, Lands in Major Cloud Platforms, and Sees Enterprise Production Use in First Year
+==========================================================================================================================
+
+![web_image](https://www.morningstar.com/assets/img/pr-newswire.11029de.jpg)
+
+Provided by PR Newswire
+ Apr 9, 2026, 12:00:00 PM
+
+A2A Protocol Surpasses 150 Organizations, Lands in Major Cloud Platforms, and Sees Enterprise Production Use in First Year
+A2A Protocol Surpasses 150 Organizations, Lands in Major Cloud Platforms, and Sees Enterprise Production Use in First Year
+--------------------------------------------------------------------------------------------------------------------------
+
+PR Newswire
+
+SAN FRANCISCO, April 9, 2026
+*First production-ready open standard for global AI agent interoperability*
+
+SAN FRANCISCO
+, April 9, 2026
+ /PRNewswire/ -- The[A2A (Agent-to-Agent) Protocol](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=2357783822&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2F&a=A2A+(Agent-to-Agent)+Protocol) project, hosted by the [Linux Foundation,](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=1531243078&u=http%3A%2F%2Fwww.linuxfoundation.org%2F&a=Linux+Foundation%2C) today announced major adoption milestones at its one-year mark, with more than 150 organizations supporting the standard, deep integration across Google, Microsoft and AWS platforms, and active production deployments across multiple industries.
+
+[![web_image](https://mma.prnewswire.com/media/455385/The_Linux_Foundation_Logo.jpg)](https://mma.prnewswire.com/media/455385/The_Linux_Foundation_Logo.html)
+
+In less than a year, A2A has moved from initial release to a production-ready open standard for seamless agent-to-agent communication. Vertical adoption spans supply chain, financial services, insurance, and IT operations, where organizations use A2A to coordinate autonomous systems across tools, vendors, and environments.
+
+This rapid uptake reflects a broader shift toward agent-based architectures. As software systems operate more independently, coordination becomes the bottleneck. A2A removes that bottleneck by providing a common semantic model and version negotiation that standardize how agents discover, communicate, and transact with each other, without being locked into a single vendor's ecosystem.
+
+"AI agents are only as useful as their ability to collaborate, and the adoption of A2A by more than 150 organizations underscores the widespread enthusiasm for an open, interoperable protocol," said Rao Surapaneni, Vice President and General Manager of Business Applications Platform, Google Cloud. "This momentum has quickly moved the project into production-ready use, allowing disparate AI systems to work together across environments and avoid the siloed, custom-built connections that often keep them from scaling."
+
+**Updates and Adoption**  
+A2A's momentum accelerated with the[release of version 1.0](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=958213512&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2Fannouncing-1.0%2F&a=release+of+version+1.0), its first stable specification. The update introduced multi-protocol support, enterprise-grade multi-tenancy, modernized security flows, and a[defined migration path](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=2181700841&u=https%3A%2F%2Fa2a-protocol.org%2F&a=defined+migration+path) for early adopters, removing key barriers to production deployment. Features include[Signed Agent Cards](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=3614958700&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2Fannouncing-1.0%2F%23delivering-on-enterprise-requirements&a=Signed+Agent+Cards) for cryptographic identity verification and a[web-aligned architecture](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=4181114847&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2Fannouncing-1.0%2F%23web-aligned-architecture-for-scale&a=web-aligned+architecture) that supports familiar security and load-balancing patterns for high-scale reliability. Additionally, diverse agents built on various platforms, like [LangGraph](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=257039578&u=https%3A%2F%2Fdocs.langchain.com%2Flangsmith%2Fserver-a2a&a=LangGraph) or [CrewAI](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=1147513743&u=https%3A%2F%2Fdocs.crewai.com%2Fen%2Flearn%2Fa2a-agent-delegation&a=CrewAI), are now able to work together, delegate sub-tasks, and coordinate complex workflows without sharing internal memory.
+
+Cloud providers have reinforced that momentum by embedding A2A directly into their platforms.[Microsoft integrated A2A into Azure AI Foundry and Copilot Studio](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=2728940415&u=https%3A%2F%2Fwww.microsoft.com%2Fen-us%2Fmicrosoft-cloud%2Fblog%2F2025%2F05%2F07%2Fempowering-multi-agent-apps-with-the-open-agent2agent-a2a-protocol%2F%23%3A%7E%3Atext%3DWe%26%2339%3Bre%2520aligning%2520with%2520the%2CSafety%252C%2520and%2520full%2520audit%2520logs.&a=Microsoft+integrated+A2A+into+Azure+AI+Foundry+and+Copilot+Studio) and[AWS added support through Amazon Bedrock AgentCore Runtime](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=3852981650&u=https%3A%2F%2Faws.amazon.com%2Fabout-aws%2Fwhats-new%2F2025%2F11%2Fmarketplace-a2a-server-bedrock-agentcore-runtime%2F&a=AWS+added+support+through+Amazon+Bedrock+AgentCore+Runtime). These integrations position A2A as a default standard for building agent-based systems in the cloud.
+
+The protocol has also expanded beyond communication into economic coordination. The introduction of the[Agent Payments Protocol (AP2)](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=4101971163&u=https%3A%2F%2Fap2-protocol.org%2F&a=Agent+Payments+Protocol+(AP2)) enables secure, agent-driven transactions, with more than 60 organizations across payments and financial services already supporting the initiative. *Additionally,* *UCP is fully compatible with AP2 via its AP2 mandates extension, enabling it to capture strong cryptographic evidence of the user's consent to purchase*.This extends A2A into high-trust, regulated environments where transactional integrity is required.
+
+**Ecosystem Scale**  
+Since April 2025, the number of supporting organizations has grown from more than 50 to over 150 — including AWS, Cisco, Google, IBM, Microsoft, Salesforce, SAP, and ServiceNow. The core repository has surpassed 22,000 GitHub stars, and the SDK ecosystem has expanded from a single Python implementation to five production-ready languages, including JavaScript, Java, Go, and .NET.
+
+At the standards level, A2A is[complementary to the Model Context Protocol (MCP)](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=928637164&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2Fannouncing-1.0%2F%23complementary-to-mcp-not-a-replacement&a=complementary+to+the+Model+Context+Protocol+(MCP)), another Linux Foundation project. A2A defines how agents communicate and coordinate with each other across organizational boundaries, while MCP defines how agents connect to internal tools and data sources. Together, they form a foundational layer for interoperable, multi-agent systems that work across different technology stacks without requiring a single-platform approach.
+
+Looking ahead, the [A2A roadmap](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=752695732&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2Froadmap%2F&a=A2A+roadmap) includes an interoperability specification, consolidation of efforts for registry and expanded testing and tooling, security and deployment best practices.
+
+With a stable specification, embedded cloud support, and growing enterprise use, A2A is shifting from early adoption to becoming a core component of modern AI and distributed system architecture.
+
+To learn more about the A2A Protocol:
+
+* Visit[a2a-protocol.org](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=496304709&u=http%3A%2F%2Fa2a-protocol.org%2F&a=a2a-protocol.org)
+* Review the[technical specification](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=3823944035&u=https%3A%2F%2Fa2a-protocol.org%2F&a=technical+specification)
+* Check out the project's progress and codebase on[GitHub](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=2758834278&u=https%3A%2F%2Fgithub.com%2Fa2aproject%2FA2A&a=GitHub)
+* Enroll in the new DeepLearning.AI short course,[A2A: The Agent2Agent Protocol](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=62822008&u=https%3A%2F%2Fgoo.gle%2Fdlai-a2a&a=A2A%3A+The+Agent2Agent+Protocol)
+* Dive into the[Tutorials and Samples](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=1167034546&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2Ftutorials%2F&a=Tutorials+and+Samples) or consult the[SDK Reference](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=297189507&u=https%3A%2F%2Fa2a-protocol.org%2Flatest%2Fsdk%2F&a=SDK+Reference) to begin developing with the production-ready standard
+
+**Supporting Quotes**
+
+"I began working on agentic AI at the end of 2024, when it was already clear that multi‑agent systems would only scale if discovery and communication were treated as first‑class problems. At Cisco, that led us to create AGNTCY and contribute it to the Linux Foundation to help shape an open foundation for agent collaboration. When A2A was later contributed by Google, the community came together around a shared vision. In less than a year, we've seen several generations of agentic technology evolve at unprecedented speed, and A2A has emerged as the syntactic layer that makes agent‑to‑agent communication reliable and interoperable. What's most exciting is that this is just the beginning — there is enormous opportunity ahead to build richer semantics and interaction models that can turn an Internet of Agents into a planet‑scale reality."
+
+**– Luca Muscariello, Distinguished Engineer, Cisco**
+
+"A2A provides the secure foundation for personal, team, and domain-specific agents to work together seamlessly across any platform. This protocol has established the foundations needed to move fragmented prototypes into a production-ready ecosystem where agents can safely coordinate and transact at scale."
+
+**– Todd Segal, Distinguished Engineer, Google**
+
+"For AI agents to be effective in enterprise environments, they need to operate seamlessly across organisational and platform boundaries. The momentum behind A2A underscores the importance of open, interoperable standards for enabling multi‑agent collaboration. Microsoft looks forward to continued collaboration with the Linux Foundation community to help advance A2A and support an open agent ecosystem."
+
+**– Darrel Miller, Partner API Architect, Microsoft**
+
+**About the A2A Protocol**The Agent-to-Agent (A2A) Protocol is an open standard that enables AI agents to discover, communicate, and transact with each other across different frameworks, vendors, and platforms. Originally developed by Google, the project is now hosted by the Linux Foundation. For more information, visit[a2a-protocol.org](https://edge.prnewswire.com/c/link/?t=0&l=en&o=4660505-1&h=496304709&u=http%3A%2F%2Fa2a-protocol.org%2F&a=a2a-protocol.org).
+
+**About the Linux Foundation**The Linux Foundation is the world's leading home for collaboration on open source software, hardware, standards, and data. Linux Foundation projects, including Linux, Kubernetes, Model Context Protocol (MCP), OpenChain, OpenSearch, OpenSSF, OpenStack, PyTorch, Ray, RISC-V, SPDX and Zephyr, provide the foundation for global infrastructure. The Linux Foundation is focused on leveraging best practices and addressing the needs of contributors, users, and solution providers to create sustainable models for open collaboration. For more information, please visit us at linuxfoundation.org.
+
+*The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of the Linux Foundation, please see its trademark usage page: [www.linuxfoundation.org/trademark-usage](http://www.linuxfoundation.org/trademark-usage). Linux is a registered trademark of Linus Torvalds.*
+
+**Media Contact**The Linux Foundation  
+[pr@linuxfoundation.org](mailto:pr@linuxfoundation.org)
+
+![web_image](https://edge.prnewswire.com/c/img/favicon.png?sn=DC30444&sd=2026-04-09)
+ View original content to download multimedia:<https://www.prnewswire.com/news-releases/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year-302737641.html>
+
+SOURCE The Linux Foundation
+
+Take Action with Morningstar Investor: Screen for best investments using our stock star ratings, fair value estimates, moat ratings, and unbiased analyses.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   Get 7 Days Free
+ 
+
+The articles, information, and content displayed on this webpage may
+include materials prepared and provided by third parties. Such
+third-party content is offered for informational purposes only and
+is not endorsed, reviewed, or verified by Morningstar.
+
+Morningstar makes no representations or warranties regarding the
+accuracy, completeness, timeliness, or reliability of any third-party
+content displayed on this site. The views and opinions expressed in
+third-party content are those of the respective authors and do not
+necessarily reflect the views of Morningstar, its affiliates, or employees.
+
+Morningstar is not responsible for any errors, omissions, or delays
+in this content, nor for any actions taken in reliance thereon.
+Users are advised to exercise their own judgment and seek independent
+financial advice before making any decisions based on such content.
+The third-party providers of this content are not affiliated with
+Morningstar, and their inclusion on this site does not imply any
+form of partnership, agency, or endorsement.
+
+More in Markets
+---------------
+
+[View All](https://www.morningstar.com/markets)
+
+ 
+
+[![web_image](https://morningstar-morningstar-prod.web.arc-cdn.net/resizer/uKswdLZPK2ef_GW0LttX_AjC0Mg=/2400x2400/cloudfront-us-east-1.images.arcpublishing.com/morningstar/RKJWTPFJHFH6ZEX3PJBRFVHFXM.png)
+
+### Stocks Rallied After the US–Iran Ceasefire. Is Your Portfolio Positioned for the Volatility?
+
+How a barbell portfolio helps investors navigate market swings, where we see sector and small‑cap leadership, and risks that could shape 2026.
+
+David Sekera, CFA, Susan Dziubinski, and Jess Bebel
+ Apr 9, 2026](https://www.morningstar.com/markets/stocks-rallied-after-usiran-ceasefire-is-your-portfolio-positioned-volatility)[![web_image](https://morningstar-morningstar-prod.web.arc-cdn.net/resizer/2JDhBQK1T2g9BfQYOLjPvyoHQsM=/2400x2400/cloudfront-us-east-1.images.arcpublishing.com/morningstar/IPDLLII4ARFDRJU3PVH474FRCI.png)
+
+### Stock Markets Jumped, Oil Prices Tumbled on US-Iran Ceasefire
+
+Brent crude oil dropped to a four-week low as investors await more details on shipping recovery.
+
+Karen Gilchrist
+ Apr 8, 2026](https://www.morningstar.com/markets/stock-markets-soar-oil-prices-tumble-us-iran-ceasefire)[![web_image](https://morningstar-morningstar-prod.web.arc-cdn.net/resizer/VeZy4Q37LdykPqa0-d9za4g6zt0=/2400x2400/cloudfront-us-east-1.images.arcpublishing.com/morningstar/H6WWS2ADAFBIPKURTDF6WGCTXM.png)
+
+### Analysts: US-Iran Ceasefire Won’t Mean a Quick Return to Market Normalcy
+
+Oil prices are seen remaining elevated, with market volatility likely continuing.
+
+Karen Gilchrist
+ Apr 8, 2026](https://www.morningstar.com/markets/analysts-us-iran-ceasefire-wont-mean-quick-return-market-normalcy)
+
+More in Stocks
+--------------
+
+[View All](https://www.morningstar.com/stocks)
+
+ 
+
+[![web_image](https://morningstar-morningstar-prod.web.arc-cdn.net/resizer/wmWSuGbjUZXwemlQluY47Nr2uMg=/2400x2400/cloudfront-us-east-1.images.arcpublishing.com/morningstar/PIT5C7O7WFCLTITAJZ4HTDS22A.png)
+
+### The Best Utilities Stocks to Buy
+
+These seven undervalued utilities stocks look attractive today.
+
+Tori Brovet
+ Apr 9, 2026](https://www.morningstar.com/stocks/best-utilities-stocks-buy)[![web_image](https://morningstar-morningstar-prod.web.arc-cdn.net/resizer/Agk79OMMbcpwV3qKszRsMgV3GHE=/2400x2400/cloudfront-us-east-1.images.arcpublishing.com/morningstar/MJ3FSXZXVFDYPHHGXT7LMKSZD4.png)
+
+### The Best AI Stocks to Buy Now
+
+The anything-but-AI sentiment in the market is leaving many of these stocks looking attractive.
+
+Tori Brovet
+ Apr 8, 2026](https://www.morningstar.com/stocks/best-ai-stocks-buy-now)[![web_image](https://morningstar-morningstar-prod.web.arc-cdn.net/resizer/pzQ898grHptActAs6P3TyGUwYaY=/2401x2401/cloudfront-us-east-1.images.arcpublishing.com/morningstar/PJQ2TFVCOFACVODYK7FJ2Q3J2U.png)
+
+### An Unlikely Stock to Buy That’s Trading at a Big Discount
+
+Undervalued by 31%, this wide-moat stock looks attractive despite market conditions.
+
+Nicolas Owens
+ Apr 2, 2026](https://www.morningstar.com/stocks/unlikely-stock-buy-thats-trading-big-discount)
+
+Sponsor Center
+--------------
+
+![web_image](https://www.morningstar.com/assets/img/transparency.25d6319.svg)
+
+Transparency is our policy. Learn how it impacts everything we do
+-----------------------------------------------------------------
+
+   Read More
+
+Transparency is how we protect the integrity of our work and keep empowering investors to achieve their goals and dreams.
+And we have unwavering standards for how we keep that integrity intact, from our research and data to our policies on
+content and your personal data.
+
+We’d like to share more about how we work and what drives our day-to-day business.
+
+![web_image](https://www.morningstar.com/assets/img/make-money.6fa4530.svg)
+
+### How we make money
+
+We sell different types of products and services to both investment professionals and individual investors.
+These products and services are usually sold through license agreements or subscriptions. Our investment management
+business generates asset-based fees, which are calculated as a percentage of assets under management.
+We also sell both admissions and sponsorship packages for our investment conferences and advertising on our websites
+and newsletters.
+
+![web_image](https://www.morningstar.com/assets/img/personal-data.8c2b614.svg)
+
+### How we use your personal data
+
+How we use your information depends on the product and service that you use and your relationship with us. We may use it to:
+
+* Verify your identity, personalize the content you receive, or create and administer your account.
+* Provide specific products and services to you, such as portfolio management or data aggregation.
+* Develop and improve features of our offerings.
+* Gear advertisements and other marketing efforts towards your interests.
+
+To learn more about how we handle and protect your data, visit our [privacy center](https://www.morningstar.com/company/privacy-center).
+
+![web_image](https://www.morningstar.com/assets/img/editorial-content.717b26b.svg)
+
+### How we approach editorial content
+
+Maintaining independence and editorial freedom is essential to our mission of empowering investor success.
+We provide a platform for our authors to report on investments fairly, accurately, and from the investor’s point of view.
+We also respect individual opinions––they represent the unvarnished thinking of our people and exacting analysis of our
+research processes. Our authors can publish views that we may or may not agree with, but they show their work,
+distinguish facts from opinions, and make sure their analysis is clear and in no way misleading or deceptive.
+
+To further protect the integrity of our editorial content, we keep a strict separation between our sales teams and authors to remove any pressure or influence on our analyses and research.
+
+Read our [editorial policy](https://www.morningstar.com/editorial-policy) to learn more about our process.
+
+Site Index
+
+##### What We Do
+
+* [All Products & Services](https://www.morningstar.com/business)
+* [Our Signature Methodologies](https://www.morningstar.com/research/signature)
+* [Morningstar Investment Conference](https://www.morningstar.com/events/mic)
+
+##### Company
+
+* [About Us](https://www.morningstar.com/company/about-us)
+* [Careers](https://www.morningstar.com/careers)
+* [Culture](https://www.morningstar.com/company/culture)
+* [Corporate Sustainability](https://www.morningstar.com/company/corporate-sustainability)
+* [Newsroom](https://newsroom.morningstar.com)
+* [Investor Relations](https://shareholders.morningstar.com)
+
+##### Get Help
+
+* [Advertising Opportunities](https://www.morningstar.com/company/media-kit)
+* Feedback
+* [Reprints](mailto:reprints@morningstar.com)
+* [Investing Terms and Definitions](https://www.morningstar.com/investing-terms)
+* [Global Contacts](https://www.morningstar.com/company/global-contacts)
+* [Affiliate Program](https://www.morningstar.com/business/lp/investor-affiliate-program)
+
+[United States](https://www.morningstar.com/company/location)
+
+© Copyright 2026 Morningstar, Inc. All rights reserved.
+Dow Jones Industrial Average, S&P 500, Nasdaq, and Morningstar Index (Market Barometer) quotes are real-time.
+
+* [Terms and Conditions](https://www.morningstar.com/company/terms-and-conditions)
+* [Privacy Center](https://www.morningstar.com/company/privacy-center)
+* [Disclosures](https://www.morningstar.com/company/disclosures)
+* [Member User Agreement](https://www.morningstar.com/user-agreement)
+* [Corrections](https://www.morningstar.com/corrections)
+* [Do Not Sell or Share My Personal Information](https://www.morningstar.com/company/privacy-policy/do-not-sell-or-share)
+* [Accessibility](https://www.morningstar.com/company/accessibility)
+
+# Reference
+- [207] [A2A Protocol Surpasses 150 Organizations, Lands in Major Cloud Platforms, and Sees Enterprise Production Use in First Year](https://www.morningstar.com/news/pr-newswire/20260409dc30444/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year)

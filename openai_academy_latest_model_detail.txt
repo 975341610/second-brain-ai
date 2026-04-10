@@ -1,0 +1,520 @@
+Introducing GPT-5.3 Instant, GPT-5.4 Thinking, and GPT-5.4 Pro - Resource | OpenAI Academy
+
+
+[![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/OpenAI-black-monoblossom-743de6c6-b680-4334-8cd5-fee30f7a2202-1739890376705.png?fit=scale-down&width=50)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/OpenAI-black-monoblossom-743de6c6-b680-4334-8cd5-fee30f7a2202-1739890376705.png?fit=scale-down&width=50)](https://academy.openai.com/)
+
+OpenAI Academy
+
+Search
+
+SIGN IN
+
+* [Home](https://academy.openai.com/)
+* [Events](https://academy.openai.com/public/events)
+* [Content](https://academy.openai.com/public/content)
+* [Communities](https://academy.openai.com/public/clubs)
+* [What's new](https://academy.openai.com/public/collections/whats-new?linkMenu=What%27s%2520new)
+* Stories
+* Work
+* Education
+* [Small business](https://academy.openai.com/public/clubs/small-business-ipf4m?linkMenu=Small%2520business)
+* [Nonprofits](https://academy.openai.com/public/clubs/nonprofits-8kc1e/overview?linkMenu=Nonprofits)
+* [Government](https://academy.openai.com/public/clubs/government-25yzc/overview?linkMenu=Government)
+* [News organizations](https://academy.openai.com/public/clubs/news-organizations-b9osl/overview?linkMenu=News%2520organizations)
+* Help
+
+* [Home](https://academy.openai.com/)
+* [Events](https://academy.openai.com/public/events)
+* [Content](https://academy.openai.com/public/content)
+* [Communities](https://academy.openai.com/public/clubs)
+* [What's new](https://academy.openai.com/public/collections/whats-new?linkMenu=What%27s%2520new)
+* Stories
+* Work
+* Education
+* [Small business](https://academy.openai.com/public/clubs/small-business-ipf4m?linkMenu=Small%2520business)
+* [Nonprofits](https://academy.openai.com/public/clubs/nonprofits-8kc1e/overview?linkMenu=Nonprofits)
+* [Government](https://academy.openai.com/public/clubs/government-25yzc/overview?linkMenu=Government)
+* [News organizations](https://academy.openai.com/public/clubs/news-organizations-b9osl/overview?linkMenu=News%2520organizations)
+* Help
+
+[Communities](https://academy.openai.com/home/clubs)
+
+/
+
+[Work Users](https://academy.openai.com/public/clubs/work-users-ynjqu/overview)
+
+/
+
+[Content](https://academy.openai.com/public/clubs/work-users-ynjqu/content)
+
+Article
+
+March 6, 2026
+
+Introducing GPT-5.3 Instant, GPT-5.4 Thinking, and GPT-5.4 Pro
+==============================================================
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Work-Users-Cover-Images-86--0907b8cf-43b1-49eb-a8bb-a062957ba267-1772732495225.jpeg?fit=scale-down&width=400)
+
+# Work Users
+
+The latest upgrade to the GPT-5 series
+--------------------------------------
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Work-Users-Cover-Images-86--0907b8cf-43b1-49eb-a8bb-a062957ba267-1772732495225.jpeg?fit=scale-down&width=400)
+
+We’ve recently released three new models in the in the GPT-5 family—so you can pick the right tradeoff between speed and depth.
+
+* **GPT-5.3 Instant**
+  for fast, everyday work
+
+* **GPT-5.4 Thinking**
+  for difficult, real-world professional tasks and longer workflows
+
+* **GPT-5.4 Pro**
+  for the most demanding work where you want the highest-capability option available
+
+**GPT-5.3 Instant: more helpful, more natural everyday conversations**
+----------------------------------------------------------------------
+
+It’s tuned to make everyday chats feel easier: more accurate answers, better web results, and fewer moments where the conversation stalls out or gets weighed down by caveats.
+
+View our
+[blog post](https://openai.com/index/gpt-5-3-instant/).
+
+GPT-5.3 Instant is tuned to get to a safe, useful answer more directly. In practice, this helps when you’re doing real work—drafting customer responses, writing internal comms, summarizing policies, or asking for guidance on a sensitive topic where a normal, compliant answer is appropriate.
+Use the same question twice: once “plain,” once with the guardrails. Compare how quickly you get to something usable.
+
+```
+
+
+Can you help me write a response to a customer who is upset about [issue]?
+
+
+```
+
+```
+
+
+Help me write a response to a customer who is upset about [issue].
+
+
+
+Keep it professional and compliant. Don’t add a preamble—start with the draft.
+
+
+
+If you can’t do something directly, offer the closest safe alternative.
+
+
+```
+
+GPT-5.3 Instant also improves how it
+**searches and uses information from the web**
+. It’s better at balancing what it finds online with its own reasoning—for example, using existing understanding to contextualize recent updates rather than simply summarizing results.
+
+More broadly, it’s less likely to return a long list of links. It does a stronger job of recognizing what you’re really asking and surfacing the most important information upfront, resulting in answers that are more immediately usable without sacrificing speed or tone.
+Pick a topic where recency matters (a competitor change, a regulation update, a product announcement), and ask for a decision-ready summary.
+
+```
+
+
+Search the web for the latest on [topic]. Then give me:
+
+
+
+Bottom line (2–3 sentences)
+
+
+
+What changed recently vs what’s unchanged
+
+
+
+Why it matters for a [team/function] team
+
+
+
+3 risks or misconceptions to watch for
+
+
+
+The 3 most credible sources you used
+
+
+```
+
+* Ask the same prompt but change only one variable: “for a finance team” vs “for a support team.”
+
+* You should see the same facts, but a different emphasis and “so what.”
+
+### **A smoother, more to-the-point conversational style**
+
+This update has a more focused yet natural conversational style. It cuts back on unnecessary proclamations and stays closer to the task you’re trying to complete.
+
+As always, you can adjust the way the model responds—like its warmth and enthusiasm—within
+[settings](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/customizing-chatgpt).
+Use ChatGPT as a “tight editor” for something you actually send.
+
+```
+
+
+Rewrite this for a work audience. Goals: clearer, shorter, and more direct. Keep the meaning the same.
+Output:
+
+
+
+Version 1: concise
+
+
+
+Version 2: slightly warmer but still professional
+
+
+
+Then list 5 specific edits you made (not general advice)
+[paste text]
+
+
+```
+
+### **Stronger creative writing, with more range and texture**
+
+GPT-5.3 Instant is also better at writing that needs voice and variation—useful for internal narratives, launch notes, scripts, and long-form drafts where you want the writing to feel less templated while staying clear.
+Turn a dry outline into two distinct drafts you can choose from.
+
+```
+
+
+Draft an internal announcement about [change].
+Requirements: practical, not marketing-y, and easy to skim with short paragraphs.
+Give me two drafts:
+
+
+
+Draft A: straightforward and concise
+
+
+
+Draft B: more narrative, but still professional
+Then provide a one-paragraph “what I’d say live” talk track.
+
+
+```
+
+﻿
+
+**GPT-5.4 Thinking: for difficult, real-world professional tasks**
+------------------------------------------------------------------
+
+GPT-5.4 Thinking is designed for work that’s harder to do in a single pass: multi-step reasoning, long context, tool-heavy workflows, and outputs that need to be accurate
+*and*
+usable. In ChatGPT, it’s the smartest and most efficient model yet for difficult professional tasks—better at delivering what you actually asked for with less back and forth.
+
+It also brings stronger coding capabilities into the flagship frontier model, and is built to handle longer, tool-heavy workflows with lower latency.
+
+### **Better at long, tool-heavy workflows**
+
+When your task spans multiple steps—gather context, use tools, verify, then produce a final output—GPT-5.4 Thinking is tuned to stay coherent and complete the workflow more reliably.
+Use it for a work task that normally takes multiple “back-and-forth” turns.
+
+```
+
+
+I’m trying to complete [task].
+
+
+
+Context: [paste relevant details].
+
+
+
+Requirements: [constraints, stakeholders, tone, format].
+
+
+
+Do this in one pass:
+
+
+
+Ask up to 3 clarifying questions (only if truly necessary)
+
+
+
+Propose a plan
+
+
+
+Produce the first draft output
+
+
+
+List what you’d verify if you had access to my sources/tools
+
+
+
+﻿
+
+
+```
+
+### **Improved computer use and tool search (for agentic tasks)**
+
+GPT-5.4 introduces improved computer-use capabilities, enabling agents to interact with software to complete and verify real tasks. It also improves “tool search,” helping agents scale to larger tool ecosystems without paying a tax in tokens or intelligence.
+Give it a workflow that involves tools/systems, and ask for a verifiable plan plus checks.
+
+```
+
+
+Help me run this workflow end-to-end: [workflow].
+List:
+
+
+
+the tools/systems you’d use at each step
+
+
+
+what you would look for to verify success
+
+
+
+likely failure points and how you’d detect them
+Then draft the final deliverable: [doc/email/plan].
+
+
+```
+
+﻿
+
+**GPT-5.4 Pro: premium option for the most demanding work**
+
+GPT-5.4 Pro is the highest-cost, highest-capability option in this set. Use it for tasks where you’re optimizing for quality and depth over speed—especially when the output needs to be decision-ready or hard to revise after the fact.
+Use it when the output needs to be “exec-safe” with low iteration.
+
+```
+
+
+Create a decision memo on [topic].
+Audience: [exec/team].
+Include:
+
+
+
+Recommendation (top)
+
+
+
+Options considered + tradeoffs
+
+
+
+Risks + mitigations
+
+
+
+What would change your mind
+
+
+
+Draft comms plan (internal + external)
+
+
+```
+
+﻿
+
+**Availability**
+----------------
+
+* **GPT-5.3 Instant**
+  is available in ChatGPT for Plus, Pro, Business, and Enterprise/Edu (and rolls out to additional tiers shortly after).
+
+* **GPT-5.4 Thinking**
+  is available in ChatGPT (Plus, Pro, Business, Enterprise) and is also available to developers in the API and Codex.
+
+* **GPT-5.4 Pro**
+  is available to
+  **Pro and Enterprise**
+  users, and is also available to developers in the API and Codex.
+
+**API model IDs (for developers)**
+
+* GPT-5.3 in the API:
+  gpt-5.3-chat-latest
+
+* GPT-5.4 in the API:
+  gpt-5.4
+  and
+  gpt-5.4-pro
+
+**Admin FAQ**
+-------------
+
+#### **What is the “Early access” toggle?**
+
+Early access is an admin control that determines whether users in your workspace can access newly released models during the early access window. This is now a persistent toggle.
+
+#### **What happens when Early access is ON?**
+
+Once enabled, eligible users can automatically receive new models as they launch and see them in the model picker during the early access window.
+
+#### **What happens when Early access is OFF?**
+
+Users won’t see early access models in their model picker until the early access period ends (typically about 7 days post-launch).
+
+#### **Where do I manage Early access?**
+
+In workspace admin settings under Permissions + Roles.
+
+#### **How does Early access relate to Legacy Models?**
+
+They’re separate:
+
+* **Early access**
+  governs availability of newly released models during rollout.
+
+* **Legacy models**
+  governs continued access to older models (when available) for a limited period.
+
+﻿
+
+﻿
+
+Table Of Contents
+
+* [GPT-5.3 Instant: more helpful, more natural everyday conversations](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#4t9xtTVnhJ)
+  + [A smoother, more to-the-point conversational style](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#5vUMsC2CwX)
+  + [Stronger creative writing, with more range and texture](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#uIl98AHJWY)
+* [GPT-5.4 Thinking: for difficult, real-world professional tasks](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#WTn34v8rE_)
+  + [Better at long, tool-heavy workflows](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#JqDKROZ2yz)
+  + [Improved computer use and tool search (for agentic tasks)](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#QyXaYb5a_s)
+* [Availability](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#vA5M98NEt9)
+* [Admin FAQ](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model#hVvCjrm1Ih)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/52-212315c6-2a5f-476d-9c57-071efec17447-1744381706389.png?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Cover-Image-Ads-Template-for-OAI-Academy-7--f1efdecc-00a6-4ada-86ad-f46bb0f71276-1754593876484.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Cover-Image-Ads-Template-for-OAI-Academy-3--d624f8d6-ff05-4a73-9260-3052d65ee598-1754582885148.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Cover-Image-Ads-Template-for-OAI-Academy-6--a46ca925-14d4-4415-a58b-fc68a4c53a71-1754583943749.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/chatgpt-fundamentals-de8f344b-4f84-4f2e-b352-3b995fd68407-1754414334447.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/52-212315c6-2a5f-476d-9c57-071efec17447-1744381706389.png?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Cover-Image-Ads-Template-for-OAI-Academy-7--f1efdecc-00a6-4ada-86ad-f46bb0f71276-1754593876484.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Cover-Image-Ads-Template-for-OAI-Academy-3--d624f8d6-ff05-4a73-9260-3052d65ee598-1754582885148.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/Cover-Image-Ads-Template-for-OAI-Academy-6--a46ca925-14d4-4415-a58b-fc68a4c53a71-1754583943749.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/chatgpt-fundamentals-de8f344b-4f84-4f2e-b352-3b995fd68407-1754414334447.jpeg?fit=scale-down&width=345)
+
+![web_image](https://cdn.gradual.com/images/https://d2xo500swnpgl1.cloudfront.net/uploads/oaiacademy/52-212315c6-2a5f-476d-9c57-071efec17447-1744381706389.png?fit=scale-down&width=345)
+
+Popular
+-------
+
+Resource
+
+[ChatGPT for any role](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/chatgpt-for-any-role)
+
+Resource
+
+[ChatGPT for marketing](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/use-cases-marketing)
+
+Resource
+
+[Prompting](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/prompting)
+
+Dive in
+
+Related
+-------
+
+Resource
+
+[ChatGPT 102: Webinar Resource Guide](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/chatgpt-102-webinar-resource-guide-interactive)
+
+By Juliann Igo
+• Feb 26th, 2026
+•Views 5.8K
+
+[40:09](https://academy.openai.com/public/clubs/work-users-ynjqu/videos/chatgpt-102-leveraging-ai-to-do-your-best-work-recording)
+
+Video
+
+[ChatGPT 102: Leveraging AI to Do Your Best Work [Recording]](https://academy.openai.com/public/clubs/work-users-ynjqu/videos/chatgpt-102-leveraging-ai-to-do-your-best-work-recording)
+
+Feb 5th, 2026
+•Views 52.5K
+
+Resource
+
+[Skills](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/skills)
+
+Feb 25th, 2026
+•Views 17.3K
+
+Resource
+
+[ChatGPT 101: Webinar Resource Guide](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/chatgpt-101-webinar-resource-guide-interactive)
+
+By Juliann Igo
+• Feb 20th, 2026
+•Views 8.5K
+
+Resource
+
+[ChatGPT 102: Webinar Resource Guide](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/chatgpt-102-webinar-resource-guide-interactive)
+
+By Juliann Igo
+• Feb 26th, 2026
+•Views 5.8K
+
+Resource
+
+[Skills](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/skills)
+
+Feb 25th, 2026
+•Views 17.3K
+
+Resource
+
+[ChatGPT 101: Webinar Resource Guide](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/chatgpt-101-webinar-resource-guide-interactive)
+
+By Juliann Igo
+• Feb 20th, 2026
+•Views 8.5K
+
+[40:09](https://academy.openai.com/public/clubs/work-users-ynjqu/videos/chatgpt-102-leveraging-ai-to-do-your-best-work-recording)
+
+Video
+
+[ChatGPT 102: Leveraging AI to Do Your Best Work [Recording]](https://academy.openai.com/public/clubs/work-users-ynjqu/videos/chatgpt-102-leveraging-ai-to-do-your-best-work-recording)
+
+Feb 5th, 2026
+•Views 52.5K
+
+We use cookies 🍪 for analytics and to provide better services.[Learn more.](https://openai.com/policies/privacy-policy)
+
+Got it
+
+[Terms of Service](https://academy.openai.com/home/resources/openai-academy-code-of-conduct-2025-10-08)
+
+[Privacy Policy](https://openai.com/policies/privacy-policy)
+
+[Code of Conduct](https://academy.openai.com/home/resources/openai-academy-code-of-conduct-2025-10-08)
+IFRAME https://platform.twitter.com/widgets/widget_iframe.2f70fb173b9000da126c79afe2098f02.html?origin=https%3A%2F%2Facademy.openai.com:
+Twitter Widget Iframe
+IFRAME about:blank:
+
+IFRAME about:blank:
+
+
+# Reference
+- [220] [Introducing GPT-5.3 Instant, GPT-5.4 Thinking, and GPT-5.4 Pro - Resource | OpenAI Academy](https://academy.openai.com/public/clubs/work-users-ynjqu/resources/latest-model)

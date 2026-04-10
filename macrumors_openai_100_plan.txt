@@ -1,0 +1,495 @@
+OpenAI Adds New $100/Month ChatGPT Subscription Tier for Heavier Codex Use - MacRumors
+
+
+
+
+[Skip to Content](https://www.macrumors.com/2026/04/09/openai-pro-subscription-tiers/#maincontent)
+
+Got a tip for us?[Let us know](mailto:tips@macrumors.com?Subject=MacRumors%20Submission)
+
+* **a. [Send us an email](mailto:tips@macrumors.com?Subject=MacRumors Submission)**
+* **b. [Anonymous form](https://www.macrumors.com/share.php)**
+* close
+
+* [Front Page](https://www.macrumors.com/ "Front")
+* [Roundups](https://www.macrumors.com/roundup/)
+* [Guides](https://www.macrumors.com/guide/ "Guides")
+* [How Tos](https://www.macrumors.com/how-to/ "How Tos")
+* [Reviews](https://www.macrumors.com/review/ "Reviews")
+* [Buyer's Guide](https://buyersguide.macrumors.com/ "Buyer's Guide")
+* [Forums](https://forums.macrumors.com/)
+  [Forums](https://forums.macrumors.com/)
+
+  + [Login](https://forums.macrumors.com/login/)
+  + [Register](https://forums.macrumors.com/login/register)
+  + [New Posts](https://forums.macrumors.com/whats-new/posts/)
+  + [Visit Forums](https://forums.macrumors.com/)
+
+* [New Posts](https://forums.macrumors.com/whats-new/posts/)
+* [Login](https://forums.macrumors.com/login/)
+* [Register](https://forums.macrumors.com/login/register)
+* [Visit Forums](https://forums.macrumors.com/)
+
+[](https://forums.macrumors.com/)
+
+
+
+* [Alerts](https://forums.macrumors.com/account/alerts)
+* [Direct messages](https://forums.macrumors.com/direct-messages/)
+* [Watched](https://forums.macrumors.com/watched/threads)
+* [New Posts](https://forums.macrumors.com/whats-new/posts/)
+* [Visit Forums](https://forums.macrumors.com/)
+
+* [iOS 27](https://www.macrumors.com/roundup/ios-27/)
+* [iPhone 18 Pro](https://www.macrumors.com/roundup/iphone-18-pro/)
+* [iPhone Fold](https://www.macrumors.com/roundup/iphone-fold/)
+* [MacBook Neo](https://www.macrumors.com/roundup/macbook-neo/)
+* [iPhone 17e](https://www.macrumors.com/roundup/iphone-17e/)
+* [AirTag](https://www.macrumors.com/roundup/airtag/)
+* [iPhone 18](https://www.macrumors.com/roundup/iphone-18/)
+* [iOS 26](https://www.macrumors.com/roundup/ios-26/)
+* [macOS Tahoe](https://www.macrumors.com/roundup/macos-26/)
+* [iPhone 17](https://www.macrumors.com/roundup/iphone-17/)
+* [iPhone 17 Pro](https://www.macrumors.com/roundup/iphone-17-pro/)
+* [MacBook Pro](https://www.macrumors.com/roundup/macbook-pro/)
+* [iPadOS 26](https://www.macrumors.com/roundup/ipados-26/)
+* [iMac](https://www.macrumors.com/roundup/imac/)
+* [Mac mini](https://www.macrumors.com/roundup/mac-mini/)
+* [HomePod](https://www.macrumors.com/roundup/homepod/)
+* [Apple TV](https://www.macrumors.com/roundup/apple-tv/)
+* [iPad Pro](https://www.macrumors.com/roundup/ipad-pro/)
+* [iPhone Air](https://www.macrumors.com/roundup/iphone-air/)
+* [WWDC 2026](https://www.macrumors.com/roundup/wwdc/)
+* [macOS 27](https://www.macrumors.com/roundup/macos-27/)
+* [Apple Vision Pro](https://www.macrumors.com/roundup/apple-vision-pro/)
+* [iPhone 16](https://www.macrumors.com/roundup/iphone-16/)
+* [AirPods 4](https://www.macrumors.com/roundup/airpods/)
+* [Apple Watch Ultra 3](https://www.macrumors.com/roundup/apple-watch-ultra/)
+* [HomePod mini](https://www.macrumors.com/roundup/homepod-mini/)
+* [MacBook Air](https://www.macrumors.com/roundup/macbook-air/)
+* [iPad](https://www.macrumors.com/roundup/ipad/)
+* [AirPods Max 2](https://www.macrumors.com/roundup/airpods-max/)
+* [AirPods Pro 3](https://www.macrumors.com/roundup/airpods-pro/)
+* [Apple Deals](https://www.macrumors.com/roundup/best-apple-deals/)
+* [Apple Watch 11](https://www.macrumors.com/roundup/apple-watch/)
+* [Apple Watch SE 3](https://www.macrumors.com/roundup/apple-watch-se/)
+* [Mac Studio](https://www.macrumors.com/roundup/mac-studio/)
+* [Studio Display](https://www.macrumors.com/roundup/studio-display/)
+* [iPad Air](https://www.macrumors.com/roundup/ipad-air/)
+* [iPad mini](https://www.macrumors.com/roundup/ipad-mini/)
+* [CarPlay](https://www.macrumors.com/roundup/carplay/)
+* [Apple Pay](https://www.macrumors.com/roundup/apple-pay/)
+* [watchOS 26](https://www.macrumors.com/roundup/watchos-26/)
+
+[All >](https://www.macrumors.com/roundup/ "View all Roundups")
+
+* [Front Page](https://www.macrumors.com/ "Front")
+* [Roundups](https://www.macrumors.com/roundup/ "Roundups")
+* [Guides](https://www.macrumors.com/guide/ "Guides")
+* [How Tos](https://www.macrumors.com/how-to/ "How Tos")
+* [Reviews](https://www.macrumors.com/review/ "Reviews")
+* [Buyer's Guide](https://buyersguide.macrumors.com/ "Buyer's Guide")
+* [Upcoming Products](https://www.macrumors.com/guide/upcoming-apple-products/ "Upcoming Products")
+* [Forums](https://forums.macrumors.com/ "Forums")
+* [Archives](https://www.macrumors.com/archive/ "Story Archive")
+* [Tips / Contact Us](mailto:tips@macrumors.com "Contact Us / Tips")
+
+OpenAI Adds New $100/Month ChatGPT Subscription Tier for Heavier Codex Use
+==========================================================================
+
+Thursday April 9, 2026 4:50 pm PDT by [Juli Clover](https://www.macrumors.com/author/juli-clover/)
+
+OpenAI today added a [new subscription tier](https://x.com/OpenAI/status/2042295688323875316), which the company says is meant to support increasing Codex use. Codex is OpenAI's AI coding agent that's integrated into ChatGPT, and it competes with Anthropic's Claude Code.
+
+![web_image](https://images.macrumors.com/t/OMwG5C7C0FmGxsfTJYCWmxAL_90=/400x0/article-new/2025/12/openai-logo-blue.jpg?lossy)
+
+  
+The new $100/month Pro tier provides 5x more Codex usage than the $20/month ChatGPT Plus plan. OpenAI says that it is best for longer, high-effort Codex sessions. ChatGPT also has a $200 Pro tier with a 20x higher usage allowance, and the $100/month plan is a new middle-tier option. Both the $100 and $200 plans share the "Pro" name.
+
+Pro subscribers will have access to all Pro features, including the Pro model and unlimited access to Instant and Thinking models.
+
+To celebrate the launch of the new plan, OpenAI is increasing Codex usage for a limited time. Through May 31, customers who subscribe to the $100/month Pro plan will get up to 10x usage of ChatGPT Plus on Codex.
+
+In addition to introducing the new plan, OpenAI is "rebalancing" Codex usage in Plus to support more sessions throughout the week, instead of longer sessions in a single day. OpenAI says the ChatGPT Plus plan is the best offer for steady, day-to-day usage of Codex, while the more expensive $100/month plan is a "more accessible" upgrade path for heavier daily use.
+
+With the $100 plan, OpenAI has pricing tiers similar to Anthropic. Anthropic has a $20/month Pro plan, a Max 5x plan for $100/month, and a Max 20x plan for $200/month.
+
+Tags: [ChatGPT](https://www.macrumors.com/guide/chatgpt/), [OpenAI](https://www.macrumors.com/guide/openai/)
+
+[ [8 comments](https://forums.macrumors.com/threads/openai-adds-new-100-month-chatgpt-subscription-tier-for-heavier-codex-use.2480709/) ]
+
+Get weekly top MacRumors stories in your inbox.
+
+Leave this field empty
+
+Popular Stories
+---------------
+
+![web_image](https://images.macrumors.com/t/AIBRGpN29Xb0cPV9dklDV7_WH5g=/400x400/smart/article-new/2026/03/macbook-neo-product-film-feature.jpg)
+
+### [Apple is Reportedly Facing a 'Massive Dilemma' With the MacBook Neo](https://www.macrumors.com/2026/04/07/macbook-neo-massive-dilemma/)
+
+Tuesday April 7, 2026 7:56 am PDT by [Joe Rossignol](https://www.macrumors.com/author/joe-rossignol/)
+
+The all-new MacBook Neo has been such a hit that Apple is facing a "massive dilemma," according to Taiwan-based tech columnist and former Bloomberg reporter Tim Culpan.
+In the iPhone 16 Pro models, the A18 Pro chip has a 6-core GPU. During the chip manufacturing process, however, sometimes a CPU or GPU core can turn out to be faulty. Rather than discarding the leftover A18 Pro chips with...
+
+[Read Full Article](https://www.macrumors.com/2026/04/07/macbook-neo-massive-dilemma/) • [227 comments](https://forums.macrumors.com/threads/apple-is-reportedly-facing-a-massive-dilemma-with-the-macbook-neo.2480585/)
+
+![web_image](https://images.macrumors.com/t/AgijmvpdbpP4H3bmTDmUpt7sdeo=/400x400/smart/article-new/2026/04/Apple-Towson-Town-Center.jpeg)
+
+### [Apple is Permanently Closing Three U.S. Stores in June](https://www.macrumors.com/2026/04/09/three-apple-stores-permanently-closing/)
+
+Thursday April 9, 2026 9:30 am PDT by [Joe Rossignol](https://www.macrumors.com/author/joe-rossignol/)
+
+Apple today announced it will be permanently closing three retail stores in the U.S. in June, including Apple Trumbull in Trumbull, Connecticut, Apple North County in Escondido, California, and Apple Towson Town Center in Towson, Maryland.
+Apple Towson Town Center in Maryland
+Apple issued the following statement to MacRumors:At Apple, we are constantly striving to deliver exceptional service...
+
+[Read Full Article](https://www.macrumors.com/2026/04/09/three-apple-stores-permanently-closing/) • [51 comments](https://forums.macrumors.com/threads/apple-is-permanently-closing-three-u-s-stores-in-june.2480696/)
+
+![web_image](https://images.macrumors.com/t/ID0HsKglGdBQfN3eMdX2PLYJZVc=/400x400/smart/article-new/2026/04/iOS-26.4.1-Feature-1.jpg)
+
+### [iOS 26.4.1 Includes These Two Changes for iPhones](https://www.macrumors.com/2026/04/08/ios-26-4-1-has-two-changes-for-iphones/)
+
+Wednesday April 8, 2026 7:17 pm PDT by [Joe Rossignol](https://www.macrumors.com/author/joe-rossignol/)
+
+Apple today released a minor iOS 26.4.1 update for the iPhone 11 and newer. While the release notes for the update only mention unspecified "bug fixes," we have since learned about two specific changes that are included in it.
+First, 9to5Mac spotted an Apple Developer Forums thread suggesting that iOS 26.4.1 fixes an iOS 26.4 bug that affected iCloud syncing in some apps.
+Second, an...
+
+[Read Full Article](https://www.macrumors.com/2026/04/08/ios-26-4-1-has-two-changes-for-iphones/) • [39 comments](https://forums.macrumors.com/threads/ios-26-4-1-includes-these-two-changes-for-iphones.2480675/)
+
+Popular Stories
+---------------
+
+![web_image](https://images.macrumors.com/t/vs6zH7UNsBBjoAlfxpZ5ckqvvMo=/400x400/smart/article-new/2026/03/carplay-chatgpt-2.jpg)
+
+### [OpenAI Brings ChatGPT to CarPlay for Hands-Free Voice Conversations](https://www.macrumors.com/2026/03/31/openai-chatgpt-carplay/)
+
+Tuesday March 31, 2026 12:34 pm PDT by [Juli Clover](https://www.macrumors.com/author/juli-clover/)
+
+OpenAI has updated ChatGPT with support for CarPlay, which means CarPlay users can now ask ChatGPT questions and make requests directly from their vehicle dashboard.
+Apple began allowing third-party voice-based conversational apps to interface with CarPlay in iOS 26.4, but apps need to implement the feature and get a special entitlement from Apple.
+For the ChatGPT app and other apps...
+
+[Read Full Article](https://www.macrumors.com/2026/03/31/openai-chatgpt-carplay/) • [73 comments](https://forums.macrumors.com/threads/openai-brings-chatgpt-to-carplay-for-hands-free-voice-conversations.2480262/)
+
+![web_image](https://images.macrumors.com/t/g48-5TX3uPvxVIZN7uRkl_VjFcA=/400x400/smart/article-new/2022/01/Apple-Logo-Cash-Feature-Mint.jpg)
+
+### [Apple Gives iPhone Designers Bonuses Up to $400K to Counter OpenAI Poaching](https://www.macrumors.com/2026/03/26/apple-iphone-designer-bonuses/)
+
+Thursday March 26, 2026 4:28 pm PDT by [Juli Clover](https://www.macrumors.com/author/juli-clover/)
+
+Apple gave its iPhone Product Design team bonuses worth "several hundred thousand dollars" in an effort to keep them from being poached by other companies, reports Bloomberg. The bonuses were provided as restricted stock units (RSUs) that will vest over a four-year period.
+Hardware designers given bonuses will need to stay with Apple to get the full value of the stock award, which can range...
+
+[Read Full Article](https://www.macrumors.com/2026/03/26/apple-iphone-designer-bonuses/) • [56 comments](https://forums.macrumors.com/threads/apple-gives-iphone-designers-bonuses-up-to-400k-to-counter-openai-poaching.2479996/)
+
+![web_image](https://images.macrumors.com/t/Nw9B8i-eJEjRerYlGNKRLv4OP3M=/400x400/smart/article-new/2024/03/google-gemini.jpg)
+
+### [Google Launches Gemini Import Tool for Switching From ChatGPT, Claude, and Other AI Apps](https://www.macrumors.com/2026/03/26/gemini-import-tool/)
+
+Thursday March 26, 2026 3:58 pm PDT by [Juli Clover](https://www.macrumors.com/author/juli-clover/)
+
+Google is adding a new memory import feature to Gemini, making it easier for customers to switch to Gemini AI from another AI service. Users can import memories, context, and chat history from other AI apps.
+Importing memory will provide Gemini with an understanding of a user's preferences, relationships, and personal context. Google says that Gemini will understand the same key facts that...
+
+[Read Full Article](https://www.macrumors.com/2026/03/26/gemini-import-tool/) • [21 comments](https://forums.macrumors.com/threads/google-launches-gemini-import-tool-for-switching-from-chatgpt-claude-and-other-ai-apps.2479993/)
+
+Top Rated Comments
+------------------
+
+[D](https://forums.macrumors.com/threads/openai-adds-new-100-month-chatgpt-subscription-tier-for-heavier-codex-use.2480709/post-34534974)
+
+[discofuel](https://forums.macrumors.com/threads/openai-adds-new-100-month-chatgpt-subscription-tier-for-heavier-codex-use.2480709/post-34534974)
+
+1 hour ago at 04:57 pm
+
+Already switched to Claude and not looking back
+
+**Score:** 2 Votes ([Like](https://forums.macrumors.com/posts/34534974/react?reaction_id=1) | [Disagree](https://forums.macrumors.com/posts/34534974/react?reaction_id=8))
+
+[Happy\_John](https://forums.macrumors.com/threads/openai-adds-new-100-month-chatgpt-subscription-tier-for-heavier-codex-use.2480709/post-34535010)
+
+33 minutes ago at 05:28 pm
+
+> Once that “big product” comes out that Sammy and Johnny keep hinting at, then it will all be smooth sailing. Right?
+
+Of course. Unless it turns out that it’s redundant, because anyone who wants portable AI **already has a smartphones in their pocket**.  
+  
+And of course, this AI device won’t need a premium subscription plan with OpenAI to function and burn silly quantities of tokens 24/7, right?  
+  
+I somehow think Apple’s failure with their home-grown Apple Intelligence will turn out to be the most **profitable** failure in Apple’s 50 year history.  
+  
+The awkward truth is the the compute cost for AI is multiples higher than what AI providers are charging their users. And that’s simply not sustainable.
+
+**Score:** 1 Votes ([Like](https://forums.macrumors.com/posts/34535010/react?reaction_id=1) | [Disagree](https://forums.macrumors.com/posts/34535010/react?reaction_id=8))
+
+[M](https://forums.macrumors.com/threads/openai-adds-new-100-month-chatgpt-subscription-tier-for-heavier-codex-use.2480709/post-34534983)
+
+[McScooby](https://forums.macrumors.com/threads/openai-adds-new-100-month-chatgpt-subscription-tier-for-heavier-codex-use.2480709/post-34534983)
+
+55 minutes ago at 05:06 pm
+
+> Already switched to Claude and not looking back
+
+Similar until I saw Perplexity Computer today, looks interesting.
+
+**Score:** 1 Votes ([Like](https://forums.macrumors.com/posts/34534983/react?reaction_id=1) | [Disagree](https://forums.macrumors.com/posts/34534983/react?reaction_id=8))
+
+[Read All Comments](https://forums.macrumors.com/threads/openai-adds-new-100-month-chatgpt-subscription-tier-for-heavier-codex-use.2480709/)
+
+Next Article
+------------
+
+[Mac OS X Cheetah Successfully Ported to Nintendo Wii](https://www.macrumors.com/2026/04/09/mac-os-x-cheetah-nintendo-wii/)
+
+Videos
+------
+
+play
+
+  
+
+[iPhone 18 Pro LEAKS… Here’s What’s Coming](https://www.youtube.com/watch?v=tW2Ecn3R7Fk)
+
+[Apple Delayed HomePod Mini 2 on Purpose…Here’s Why](https://www.youtube.com/watch?v=XgZJIxk6aYw)
+
+[CyboPal ONE: The First AI Robotic Monitor is Wild](https://www.youtube.com/watch?v=vsctaiLQor8)
+
+[Everything We Know About iPhone 18 Pro | Episode 188](https://www.youtube.com/watch?v=G-q_e085Y1Y)
+
+[iOS 27 LEAKS: Apple’s New Siri is Basically ChatGPT](https://www.youtube.com/watch?v=p3mzsfYtRBw)
+
+[See more videos](https://www.youtube.com/macrumors)
+
+Guides
+------
+
+[iOS 26 Features](https://www.macrumors.com/guide/ios-26-mega-guide/)
+
+Our comprehensive guide highlighting every major new addition in iOS 26, plus how-tos that walk you through using the new features.
+
+[iOS 26.4 Features](https://www.macrumors.com/guide/ios-26-4-features/)
+
+Playlist Playground and concerts in Apple Music, new emoji characters, video podcasts, and more.
+
+[50 macOS Tahoe Features](https://www.macrumors.com/2025/09/24/all-the-new-macos-tahoe-features/)
+
+New features and lesser-known changes to check out if you're upgrading.
+
+[iPhone 17 vs iPhone 17 Pro vs iPhone Air](https://www.macrumors.com/guide/iphone-17-air-pro-or-pro-max/)
+
+Apple's four new iPhones feature more differences between the latest models than ever before, so which one should you buy?
+
+• [Apple Intelligence Guide](https://www.macrumors.com/guide/apple-intelligence/)
+
+• [Image Playground Guide](https://www.macrumors.com/guide/image-playground/)
+
+• [iPhone Mirroring Not Working?](https://www.macrumors.com/how-to/iphone-mirroring-not-working-in-macos-fix/)
+
+• [21 Time-Saving iPhone Tips](https://www.macrumors.com/2024/11/01/time-saving-iphone-tips/)
+
+• [14 macOS Tips to Make Your Life Easier](https://www.macrumors.com/2023/11/14/10-macos-tips-make-life-easier/)
+
+• [One AirPod Not Working?](https://www.macrumors.com/how-to/fix-only-one-airpod-working/)
+
+[See more guides](https://www.macrumors.com/guide/)
+
+Upcoming
+--------
+
+[WWDC 2026](https://www.macrumors.com/roundup/wwdc/)
+
+June 8–12
+
+Apple's annual developer conference where it will unveil iOS 27, macOS 27, and more.
+
+[iOS 27](https://www.macrumors.com/roundup/ios-27/)
+
+June 2026
+
+Siri improvements, optimizations for future foldable iPhone, and more. June introduction at WWDC with fall release.
+
+[macOS 27](https://www.macrumors.com/roundup/macos-27/)
+
+June 2026
+
+Smarter Siri, touch optimizations for a future MacBook Pro, stability-focused updates, and more. June introduction at WWDC with fall release.
+
+[Mac Studio](https://www.macrumors.com/roundup/mac-studio/)
+
+Mid-2026
+
+M5 Max and M5 Ultra chips for blazing-fast performance.
+
+• [Mac mini](https://www.macrumors.com/roundup/mac-mini/)
+
+• [iPhone Fold](https://www.macrumors.com/roundup/iphone-fold/)
+
+• [iPhone 18 Pro](https://www.macrumors.com/roundup/iphone-18-pro/)
+
+• [Smart Home Hub](https://www.macrumors.com/guide/apple-command-center/)
+
+• [Apple TV](https://www.macrumors.com/guide/2025-apple-tv/)
+
+• [HomePod mini](https://www.macrumors.com/roundup/homepod-mini/)
+
+• [iPhone 18](https://www.macrumors.com/roundup/iphone-18/)
+
+[See full product calendar](https://www.macrumors.com/guide/upcoming-apple-products/)
+
+Other Stories
+-------------
+
+[First Apple Store in the U.S. to Unionize is Permanently Closing Soon](https://www.macrumors.com/2026/04/09/unionized-apple-store-permanently-closing/)
+
+6 hours ago by MacRumors Staff
+
+[Apple Is Warning iPhone Users to Update Now: Here's Why](https://www.macrumors.com/2026/04/09/apple-warning-iphone-users-to-update-now/)
+
+14 hours ago by Hartley Charlton
+
+[Apple Had to Heavily Discount the iPhone Air to Sell It](https://www.macrumors.com/2026/04/09/iphone-air-needed-discount-to-sell/)
+
+14 hours ago by Hartley Charlton
+
+[iPhone Ultra Will Solve Two Key Problems](https://www.macrumors.com/2026/04/08/iphone-ultra-will-solve-two-key-problems/)
+
+1 day ago by Joe Rossignol
+
+[Apple to Unveil iOS 27 in June With These New Features Beyond Siri](https://www.macrumors.com/2026/04/04/ios-27-new-iphone-features-coming/)
+
+5 days ago by Joe Rossignol
+
+MacRumors attracts a broad audience of both consumers and professionals interested in the latest technologies and products. We also boast an active community focused on purchasing decisions and technical aspects of the iPhone, iPad, Mac, and other Apple platforms.
+
+[About MacRumors.com](https://www.macrumors.com/about/)  
+  
+[Advertise on MacRumors](https://www.macrumors.com/contact.php)  
+  
+  
+
+Our Staff
+---------
+
+[Arnold Kim](https://www.macrumors.com/author/arnold-kim/)
+
+Editorial Director
+
+[Email](mailto:arn@normalkid.com) •
+ [X.com](https://x.com/arnoldkim)
+
+[Eric Slivka](https://www.macrumors.com/author/eric-slivka/)
+
+Editor in Chief
+
+[Email](mailto:ericslivka@macrumors.com) •
+ [X.com](https://x.com/eslivka)
+
+[Juli Clover](https://www.macrumors.com/author/juli-clover/)
+
+Managing Editor
+
+[Email](mailto:juli@macrumors.com) •
+ [X.com](https://x.com/julipuli)
+
+[Joe Rossignol](https://www.macrumors.com/author/joe-rossignol/)
+
+Senior Reporter
+
+[Email](mailto:joe@macrumors.com) •
+ [X.com](https://x.com/rsgnl)
+
+[Mitchel Broussard](https://www.macrumors.com/author/mitchel-broussard/)
+
+Deals Editor
+
+[Email](mailto:mitchel@macrumors.com) •
+ [X.com](https://x.com/mbrsrd)
+
+[Tim Hardwick](https://www.macrumors.com/author/tim-hardwick/)
+
+Senior Editor
+
+[Email](mailto:tim@macrumors.com) •
+ [X.com](https://x.com/waxeditorial)
+
+[Hartley Charlton](https://www.macrumors.com/author/hartley-charlton/)
+
+Senior Editor
+
+[Email](mailto:hartley@macrumors.com) •
+ [X.com](https://x.com/ihxrtlxy)
+
+[Marianne Schultz](https://www.macrumors.com/author/marianne-schultz/)
+
+Project Manager
+
+[Email](mailto:marianne@macrumors.com) •
+ [X.com](https://x.com/emschultz)
+
+[Dan Barbera](https://www.macrumors.com/author/dan-barbera/)
+
+Video Content Producer
+
+[Email](mailto:dan@macrumors.com) •
+ [X.com](https://x.com/danbarbera)
+
+[Ryan Barrieau](https://www.macrumors.com/author/ryan-barrieau/)
+
+Graphic Designer
+
+[Email](mailto:ryan@macrumors.com) •
+ [X.com](https://x.com/graphicalryan)
+
+[Steve Moser](https://www.macrumors.com/author/steve-moser/)
+
+Contributing Writer
+
+[Email](mailto:contact@stevemoser.org) •
+ [X.com](https://x.com/SteveMoser)
+
+[Aaron Perris](https://www.macrumors.com/author/aaron-perris/)
+
+Contributor
+
+[Email](mailto:aaron@macrumors.com) •
+ [X.com](https://x.com/aaronp613)
+
+Related Links
+-------------
+
+[YouTube](https://www.youtube.com/MacRumors "YouTube Channel")
+
+[iPhone 18 Pro LEAKS… Here’s What’s Coming](https://www.youtube.com/watch?v=tW2Ecn3R7Fk)
+
+[Apple Delayed HomePod Mini 2 on Purpose…Here’s Why](https://www.youtube.com/watch?v=XgZJIxk6aYw)
+
+[CyboPal ONE: The First AI Robotic Monitor is Wild](https://www.youtube.com/watch?v=vsctaiLQor8)
+
+[iOS 27 LEAKS: Apple’s New Siri is Basically ChatGPT](https://www.youtube.com/watch?v=p3mzsfYtRBw)
+
+[AirPods Max 2 Review: Huge Upgrade… With One BIG Problem](https://www.youtube.com/watch?v=sP8wcqG2GbQ)
+
+[The MacRumors Show](https://www.youtube.com/@TheMacRumorsShow "MacRumors Podcast")
+
+[Everything We Know About iPhone 18 Pro | Episode 188](https://www.youtube.com/watch?v=G-q_e085Y1Y)
+
+[Apple Announces WWDC 2026 & Teases New AI Features | Episode 187](https://www.youtube.com/watch?v=M3P8zzeDdeE)
+
+[Surprise AirPods Max 2 Announcement —Worth Upgrading? | Episode 186](https://www.youtube.com/watch?v=UVGyachuCNY)
+
+[MacBook Neo Is Here — Should You Buy Apple’s $599 Laptop? | Episode 185](https://www.youtube.com/watch?v=uDhiEpDUVGQ)
+
+[Apple Experience Recap: $599 MacBook Neo Announced! | Episode 184](https://www.youtube.com/watch?v=Kq9C_q5ZDR8)
+
+Copyright © 2000-2026 MacRumors.com, LLC.
+
+[Privacy / DMCA contact / Affiliate and FTC Disclosure](https://www.macrumors.com/privacydmca.html)  
+[Accessibility Statement](https://www.macrumors.com/accessibility/)  
+[ [Featured On/Off](https://www.macrumors.com/mr-toggleFeatured.php) ] [ [Full Articles On/Off](https://www.macrumors.com/mr-toggleExpand.php) ] [ [Fluid](https://www.macrumors.com/mr-toggleFluid.php?fluid=0) | [Fluid HD](https://www.macrumors.com/mr-toggleFluid.php?fluid=2) ] [ [Auto](https://www.macrumors.com/mr-toggleDark.php?mode=0) | [Light](https://www.macrumors.com/mr-toggleDark.php?mode=2) | [Dark](https://www.macrumors.com/mr-toggleDark.php?mode=1) ]
+
+# Reference
+- [178] [OpenAI Adds New $100/Month ChatGPT Subscription Tier for Heavier Codex Use](https://www.macrumors.com/2026/04/09/openai-pro-subscription-tiers/)

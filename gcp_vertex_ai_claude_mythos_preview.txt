@@ -1,0 +1,202 @@
+Claude Mythos Preview on Vertex AI | Google Cloud Blog
+
+cloud.google.com uses cookies to deliver and enhance the quality of its services and to analyze traffic. If you agree, cookies are also used to serve advertising and to personalize the content and advertisements that you see.
+[Learn more](https://policies.google.com/technologies/cookies?hl=en)
+
+AgreeNo thanks
+
+[Jump to Content](https://cloud.google.com/blog/products/ai-machine-learning/#content)
+
+[Cloud](https://cloud.google.com/ "Google Cloud")
+
+[Blog](https://cloud.google.com/blog/ "Google Cloud Blog")
+
+[Contact sales](https://cloud.google.com/contact/) [Get started for free](https://console.cloud.google.com/freetrial/)
+
+[Cloud](https://cloud.google.com/ "Google Cloud")
+
+[Blog](https://cloud.google.com/blog/ "Google Cloud Blog")
+
+Solutions & technology
+
+Security
+
+Ecosystem
+
+Industries
+
+* Solutions & technology
+* Ecosystem
+* [Developers & Practitioners](https://cloud.google.com/blog/topics/developers-practitioners)
+* [Transform with Google Cloud](https://cloud.google.com/transform)
+
+* [AI & Machine Learning](https://cloud.google.com/blog/products/ai-machine-learning)
+* [API Management](https://cloud.google.com/blog/products/api-management)
+* [Application Development](https://cloud.google.com/blog/products/application-development)
+* [Application Modernization](https://cloud.google.com/blog/products/application-modernization)
+* [Chrome Enterprise](https://cloud.google.com/blog/products/chrome-enterprise)
+* [Compute](https://cloud.google.com/blog/products/compute)
+* [Containers & Kubernetes](https://cloud.google.com/blog/products/containers-kubernetes)
+* [Data Analytics](https://cloud.google.com/blog/products/data-analytics)
+* [Databases](https://cloud.google.com/blog/products/databases)
+* [DevOps & SRE](https://cloud.google.com/blog/products/devops-sre)
+* [Maps & Geospatial](https://cloud.google.com/blog/topics/maps-geospatial)
+* Security
+* [Infrastructure](https://cloud.google.com/blog/products/infrastructure)
+* [Infrastructure Modernization](https://cloud.google.com/blog/products/infrastructure-modernization)
+* [Networking](https://cloud.google.com/blog/products/networking)
+* [Productivity & Collaboration](https://cloud.google.com/blog/products/productivity-collaboration)
+* [SAP on Google Cloud](https://cloud.google.com/blog/products/sap-google-cloud)
+* [Storage & Data Transfer](https://cloud.google.com/blog/products/storage-data-transfer)
+* [Sustainability](https://cloud.google.com/blog/topics/sustainability)
+
+* [Security & Identity](https://cloud.google.com/blog/products/identity-security)
+* [Threat Intelligence](https://cloud.google.com/blog/topics/threat-intelligence)
+
+* [IT Leaders](https://cloud.google.com/transform)
+* Industries
+* [Partners](https://cloud.google.com/blog/topics/partners)
+* [Startups & SMB](https://cloud.google.com/blog/topics/startups)
+* [Training & Certifications](https://cloud.google.com/blog/topics/training-certifications)
+* [Inside Google Cloud](https://cloud.google.com/blog/topics/inside-google-cloud)
+* [Google Cloud Next & Events](https://cloud.google.com/blog/topics/google-cloud-next)
+* [Google Cloud Consulting](https://cloud.google.com/blog/topics/consulting)
+* [Google Maps Platform](https://mapsplatform.google.com/resources/blog/)
+* [Google Workspace](https://workspace.google.com/blog)
+
+* [Financial Services](https://cloud.google.com/blog/topics/financial-services)
+* [Healthcare & Life Sciences](https://cloud.google.com/blog/topics/healthcare-life-sciences)
+* [Manufacturing](https://cloud.google.com/blog/topics/manufacturing)
+* [Media & Entertainment](https://cloud.google.com/blog/products/media-entertainment)
+* [Public Sector](https://cloud.google.com/blog/topics/public-sector)
+* [Retail](https://cloud.google.com/blog/topics/retail)
+* [Supply Chain](https://cloud.google.com/blog/topics/supply-chain-logistics)
+* [Telecommunications](https://cloud.google.com/blog/topics/telecommunications)
+
+* Solutions & technology
+  + [AI & Machine Learning](https://cloud.google.com/blog/products/ai-machine-learning)
+  + [API Management](https://cloud.google.com/blog/products/api-management)
+  + [Application Development](https://cloud.google.com/blog/products/application-development)
+  + [Application Modernization](https://cloud.google.com/blog/products/application-modernization)
+  + [Chrome Enterprise](https://cloud.google.com/blog/products/chrome-enterprise)
+  + [Compute](https://cloud.google.com/blog/products/compute)
+  + [Containers & Kubernetes](https://cloud.google.com/blog/products/containers-kubernetes)
+  + [Data Analytics](https://cloud.google.com/blog/products/data-analytics)
+  + [Databases](https://cloud.google.com/blog/products/databases)
+  + [DevOps & SRE](https://cloud.google.com/blog/products/devops-sre)
+  + [Maps & Geospatial](https://cloud.google.com/blog/topics/maps-geospatial)
+  + Security
+    - [Security & Identity](https://cloud.google.com/blog/products/identity-security)
+    - [Threat Intelligence](https://cloud.google.com/blog/topics/threat-intelligence)
+  + [Infrastructure](https://cloud.google.com/blog/products/infrastructure)
+  + [Infrastructure Modernization](https://cloud.google.com/blog/products/infrastructure-modernization)
+  + [Networking](https://cloud.google.com/blog/products/networking)
+  + [Productivity & Collaboration](https://cloud.google.com/blog/products/productivity-collaboration)
+  + [SAP on Google Cloud](https://cloud.google.com/blog/products/sap-google-cloud)
+  + [Storage & Data Transfer](https://cloud.google.com/blog/products/storage-data-transfer)
+  + [Sustainability](https://cloud.google.com/blog/topics/sustainability)
+* Ecosystem
+  + [IT Leaders](https://cloud.google.com/transform)
+  + Industries
+    - [Financial Services](https://cloud.google.com/blog/topics/financial-services)
+    - [Healthcare & Life Sciences](https://cloud.google.com/blog/topics/healthcare-life-sciences)
+    - [Manufacturing](https://cloud.google.com/blog/topics/manufacturing)
+    - [Media & Entertainment](https://cloud.google.com/blog/products/media-entertainment)
+    - [Public Sector](https://cloud.google.com/blog/topics/public-sector)
+    - [Retail](https://cloud.google.com/blog/topics/retail)
+    - [Supply Chain](https://cloud.google.com/blog/topics/supply-chain-logistics)
+    - [Telecommunications](https://cloud.google.com/blog/topics/telecommunications)
+  + [Partners](https://cloud.google.com/blog/topics/partners)
+  + [Startups & SMB](https://cloud.google.com/blog/topics/startups)
+  + [Training & Certifications](https://cloud.google.com/blog/topics/training-certifications)
+  + [Inside Google Cloud](https://cloud.google.com/blog/topics/inside-google-cloud)
+  + [Google Cloud Next & Events](https://cloud.google.com/blog/topics/google-cloud-next)
+  + [Google Cloud Consulting](https://cloud.google.com/blog/topics/consulting)
+  + [Google Maps Platform](https://mapsplatform.google.com/resources/blog/)
+  + [Google Workspace](https://workspace.google.com/blog)
+* [Developers & Practitioners](https://cloud.google.com/blog/topics/developers-practitioners)
+* [Transform with Google Cloud](https://cloud.google.com/transform)
+
+[Contact sales](https://cloud.google.com/contact/) [Get started for free](https://console.cloud.google.com/freetrial/)
+
+AI & Machine Learning
+
+Claude Mythos Preview: Available in private preview on Vertex AI
+================================================================
+
+April 8, 2026
+
+![web_image](https://storage.googleapis.com/gweb-cloudblog-publish/images/033026c_HF1473_GC_Social_Anthropic_Multi-r.max-2400x2400.jpg)
+
+##### Michael Gerstenhaber
+
+VP of Product Management, Vertex AI
+
+Claude Mythos Preview, Anthropic’s newest and most powerful model, is now available in Private Preview to a select group of Google Cloud customers, as part of Project Glasswing.
+
+The availability of Claude Mythos Preview on Vertex AI underscores our commitment to offer our customers access to models from frontier AI labs. Combined with the enterprise-grade power of Vertex AI to build, scale, and govern AI applications and agents, this new general-purpose model offers high performance capabilities across a variety of use cases, with new focus on reducing cybersecurity risk.
+
+For more information about this release, visit
+[Anthropic’s blog](https://anthropic.com/glasswing).
+
+Build with other Claude
+models — including
+[Claude Opus 4.6](https://console.cloud.google.com/vertex-ai/publishers/anthropic/model-garden/claude-opus-4-6)and
+[Claude Sonnet 4.6](https://console.cloud.google.com/vertex-ai/publishers/anthropic/model-garden/claude-sonnet-4-6)—today on
+[Vertex AI](http://goo.gle/anthropic).
+
+Posted in
+
+* [AI & Machine Learning](https://cloud.google.com/blog/products/ai-machine-learning)
+
+##### Related articles
+
+[![web_image](https://storage.googleapis.com/gweb-cloudblog-publish/images/17_-_Security__Identity_NrORvDT.max-700x700.jpg)
+
+Security & Identity
+
+### Guardrails at the gateway: Securing AI inference on GKE with Model Armor
+
+By Sunny Song • 5-minute read](https://cloud.google.com/blog/products/identity-security/securing-ai-inference-on-gke-with-model-armor)
+
+[![web_image](https://storage.googleapis.com/gweb-cloudblog-publish/images/31_-_Serverless_jUYyB2k.max-700x700.jpg)
+
+Serverless
+
+### How Estée Lauder Companies uses Cloud Run worker pools for its pull-based agentic workloads
+
+By Sagar Randive • 5-minute read](https://cloud.google.com/blog/products/serverless/cloud-run-worker-pools-at-estee-lauder-companies)
+
+[![web_image](https://storage.googleapis.com/gweb-cloudblog-publish/images/07_-_Containers__Kubernetes_iY4YTLa.max-700x700.jpg)
+
+Containers & Kubernetes
+
+### New GKE Cloud Storage FUSE Profiles take the guesswork out of configuring AI storage
+
+By Nishtha Jain • 4-minute read](https://cloud.google.com/blog/products/containers-kubernetes/optimize-aiml-workloads-with-gke-cloud-storage-fuse-profiles)
+
+[![web_image](https://storage.googleapis.com/gweb-cloudblog-publish/images/lyria_3_models.max-700x700.png)
+
+AI & Machine Learning
+
+### Ultimate prompting guide for Lyria 3 models
+
+By Katie Nguyen • 8-minute read](https://cloud.google.com/blog/products/ai-machine-learning/ultimate-prompting-guide-for-lyria-3-pro)
+
+### Footer Links
+
+#### Follow us
+
+* [Google Cloud](https://cloud.google.com/)
+* [Google Cloud Products](https://cloud.google.com/products/)
+* [Privacy](https://myaccount.google.com/privacypolicy?hl=en-US)
+* [Terms](https://myaccount.google.com/termsofservice?hl=en-US)
+* [Manage cookies](https://cloud.google.com/blog/products/ai-machine-learning/claude-mythos-preview-on-vertex-ai)
+
+* [Help](https://support.google.com)
+* Language‪English‬‪Deutsch‬‪Français‬‪한국어‬‪日本語‬
+IFRAME https://feedback-pa.clients6.google.com/static/proxy.html?usegapi=1&jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.zh_CN.aX7P7dhjOBo.O%2Fd%3D1%2Frs%3DAHpOoo_McmCtjXX0VhMeaxrzdsFBWD99IA%2Fm%3D__features__#parent=https%3A%2F%2Fcloud.google.com&rpctoken=1942392144:
+
+
+# Reference
+- [209] [Claude Mythos Preview on Vertex AI | Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/claude-mythos-preview-on-vertex-ai)

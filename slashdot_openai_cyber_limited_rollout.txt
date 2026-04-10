@@ -1,0 +1,629 @@
+OpenAI To Limit New Model Release On Cybersecurity Fears - Slashdot
+
+
+
+
+
+
+
+
+
+
+
+
+[Slashdot](https://slashdot.org)
+--------------------------------
+
+* [Stories](https://slashdot.org)
+* + Firehose
+  + [All](https://slashdot.org/recent)
+  + [Popular](https://slashdot.org/popular)
+* [Polls](https://slashdot.org/polls)
+* [Software](https://slashdot.org/software/)
+* [Thought Leadership](https://slashdot.org/content/)
+
+[Submit](https://slashdot.org/submission)
+
+
+Search Slashdot
+
+* [Login](https://slashdot.org/my/login)
+* or
+* [Sign up](https://slashdot.org/my/newuser)
+
+* Topics:
+* [Devices](https://devices.slashdot.org)
+* [Build](https://build.slashdot.org)
+* [Entertainment](https://entertainment.slashdot.org)
+* [Technology](https://technology.slashdot.org)
+* [Open Source](https://slashdot.org/?fhfilter=opensource)
+* [Science](https://science.slashdot.org)
+* [YRO](https://yro.slashdot.org)
+
+
+* Follow us:
+* [RSS](https://rss.slashdot.org/Slashdot/slashdotMain)
+* [Facebook](https://www.facebook.com/slashdot)
+* [LinkedIn](https://www.linkedin.com/company/slashdot)
+* [Twitter](https://x.com/slashdot)
+* [Youtube](https://www.youtube.com/channel/UCsW36751Gy-EAbHQwe9WBNw)
+* [Mastodon](https://mastodon.cloud/@slashdot)
+* [Bluesky](https://bsky.app/profile/slashdot.org)
+
+Nickname:
+
+Password:
+
+ Public Terminal
+  
+
+
+---
+
+ [Forgot your password?](https://slashdot.org/my/mailpassword)
+
+Close
+
+
+
+
+binspamdupenotthebestofftopicslownewsdaystalestupid
+
+freshfunnyinsightfulinterestingmaybe
+
+offtopicflamebaittrollredundantoverrated
+
+insightfulinterestinginformativefunnyunderrated
+
+descriptive
+
+typodupeerror
+
+
+
+
+
+
+**[MongoDB Atlas: Multi-cloud, modern database on AWS, Azure, and Google Cloud. Get access to our most high performance version ever, with faster and easier scaling at lower cost.](https://www.mongodb.com/cloud/atlas/lp/try3?utm_campaign=display_sourceforge_pl_evergreen_atlas_sourceforge-sponsored-banner_prosp_sourceforge_ww-all_dev_dv-all_eng_leadgen&utm_source=display&utm_medium=display&utm_contentbuild-fast)**
+
+×
+
+181499156
+story
+
+
+
+[OpenAI To Limit New Model Release On Cybersecurity Fears](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears) [(axios.com)](https://www.axios.com/2026/04/09/openai-new-model-cyber-mythos-anthopic "External link - https://www.axios.com/2026/04/09/openai-new-model-cyber-mythos-anthopic")
+
+
+[24](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears#comments)
+===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+
+Posted
+by
+[BeauHD](https://www.linkedin.com/in/beauhd/)
+on Thursday April 09, 2026 @04:00PM
+from the familiar-moves
+ dept.
+
+OpenAI is reportedly [preparing a new cybersecurity product for a small group of partners](https://www.axios.com/2026/04/09/openai-new-model-cyber-mythos-anthopic), out of concern that a broader rollout could wreak havoc if it were released more widely. If that move sounds familiar, it's because Anthropic took a [similar limited-release approach](https://it.slashdot.org/story/26/04/07/2115208/anthropic-unveils-claude-mythos-powerful-ai-with-major-cyber-implications) with its Mythos model and Project Glasswing initiative. Axios reports:  *OpenAI introduced its "Trusted Access for Cyber" pilot program in February after rolling out GPT-5.3-Codex, the company's most cyber-capable reasoning model. Organizations in the invite-only program are given access to "even more cyber capable or permissive models to accelerate legitimate defensive work," according to a blog post. At the time, OpenAI committed $10 million in API credits to participants. [...]
+  
+   
+Restricting the rollout of a new frontier model makes "more sense" if companies are concerned about models' ability to write new exploits -- rather than about their ability to find bugs in the first place, Stanislav Fort, CEO of security firm Aisle, told Axios. Staggering the release of new AI models looks a lot like how cybersecurity vendors currently handle the disclosure of security flaws in software, Lee added. "It's the same debate we've had for decades around responsible vulnerability disclosure," Lee said.*
+
+### [←](https://yro.slashdot.org/story/26/04/09/1720203/hacker-steals-10-petabytes-of-data-from-chinas-tianjin-supercomputer-center?sdsrc=prev "Previous story")
+
+### Related Links
+
+### [→](https://hardware.slashdot.org/story/26/04/09/1916209/amazon-may-sell-trainium-ai-chips-to-third-parties-in-shot-at-nvidia?sdsrc=next "Next story")
+
+[Hacker Steals 10 Petabytes of Data From China's Tianjin Supercomputer Center](https://yro.slashdot.org/story/26/04/09/1720203/hacker-steals-10-petabytes-of-data-from-chinas-tianjin-supercomputer-center?sdsrc=prev)
+
+### [Anthropic Unveils 'Claude Mythos', Powerful AI With Major Cyber Implications](https://it.slashdot.org/story/26/04/07/2115208/anthropic-unveils-claude-mythos-powerful-ai-with-major-cyber-implications?sdsrc=rel)
+
+[Amazon May Sell Trainium AI Chips To Third Parties In Shot At Nvidia](https://hardware.slashdot.org/story/26/04/09/1916209/amazon-may-sell-trainium-ai-chips-to-third-parties-in-shot-at-nvidia?sdsrc=next)
+
+Sponsored Content
+ ?
+
+[Compare the top business software of 2026](https://slashdot.org/software/link?oaparams=2__bannerid%3D90951__zoneid%3D88359__cb%3D6acb0ed6d3__oadest%3Dhttps%3A%2F%2Fslashdot.org%2Fsoftware%2F%3Fpk_campaign%3DSDBSL-NEL%26pk_source%3DSD-NEL&ident_s=latswt91hR "Compare the top business software of 2026")
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Posted by Slashdot
+
+![web_image](https://slashdot.org/software/tp3/?cb=6acb0ed6d3&b=90951&c=16457&z=88359&rand=0K2dtSp18J)
+
+**Did you know Slashdot offers the world’s largest business software comparison directory?**
+  
+Find the right software tools for you or your business using the Slashdot Business Software Comparison engine. Slashdot’s comparison engine contains over 100,000 software products, and over 4000 categories. Filter by pricing, features, integrations, user reviews, and more.
+  
+Compare Now
+
+ARRAY(0x5591001d1b98)
+
+
+
+Featured Content
+ ?
+
+[Compare the top business software of 2026](https://slashdot.org/software/link?oaparams=2__bannerid%3D90951__zoneid%3D88359__cb%3D6acb0ed6d3__oadest%3Dhttps%3A%2F%2Fslashdot.org%2Fsoftware%2F%3Fpk_campaign%3DSDBSL-NEL%26pk_source%3DSD-NEL&ident_s=wq69h6ysLU "Compare the top business software of 2026")
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Posted by Slashdot
+
+![web_image](https://slashdot.org/software/tp3/?cb=6acb0ed6d3&b=90951&c=16457&z=88359&rand=7yRn0nRyHv)
+
+**Did you know Slashdot offers the world’s largest business software comparison directory?**
+  
+Find the right software tools for you or your business using the Slashdot Business Software Comparison engine. Slashdot’s comparison engine contains over 100,000 software products, and over 4000 categories. Filter by pricing, features, integrations, user reviews, and more.
+  
+Compare Now
+
+ARRAY(0x55c304c34f50)
+
+
+
+
+
+
+#### [OpenAI To Limit New Model Release On Cybersecurity Fears](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears "Back to Article - OpenAI To Limit New Model Release On Cybersecurity Fears") [More](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears) | [Reply](https://it.slashdot.org/comments.pl?sid=23961980&op=reply&threshold=1&commentsort=0&mode=thread&pid=) [Login](https://it.slashdot.org/login.pl)
+
+[OpenAI To Limit New Model Release On Cybersecurity Fears](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears "Back to Article - OpenAI To Limit New Model Release On Cybersecurity Fears")
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Post](https://it.slashdot.org/comments.pl?sid=23961980&op=reply&threshold=1&commentsort=0&mode=thread&pid=)
+
+[Load All Comments](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+4
+Full
+19
+Abbreviated
+1
+Hidden
+
+/Sea
+
+Score:
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+
+-1
+
+[More](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+| [Reply](https://it.slashdot.org/comments.pl?sid=23961980&op=reply&threshold=1&commentsort=0&mode=thread&pid=)
+[Login](https://it.slashdot.org/login.pl)
+
+Nickname:
+
+Password:
+
+ Public Terminal
+  
+
+
+---
+
+ [Forgot your password?](https://slashdot.org/my/mailpassword)
+
+Close
+
+[Close](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+[Search 24
+ Comments](https://it.slashdot.org/search.pl?op=comments&sid=23961980)
+[Log In/Create an Account](https://it.slashdot.org/users.pl)
+
+Comments Filter:
+
+* [All](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+* Insightful
+* Informative
+* Interesting
+* Funny
+
+**The Fine Print:** The following comments are owned by whoever posted them. We are not responsible for them in any way.
+
+
+
+* ›
+
+  #### [Hey what a coincidence...](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085856) ([Score: 5](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears), Insightful)
+
+  by
+  [Junta](https://slashdot.org/~Junta) [( 36770 )](https://slashdot.org/~Junta)
+  writes:
+  on Thursday April 09, 2026 @04:06PM ([#66085856](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085856))
+
+  Anthropic announces that they have a super awesome AI product that's just too awesome for anyone for anyone to see.
+
+  And then immediately OpenAI has the exact same thing.
+
+  FOMO on "my technology is too scary to exist" is a fun twist.
+
+  I know, it's not the first time, someone even linked an article where OpenAI said the same sort of thing about GPT-2 back in 2019...
+
+  [Reply to This](https://it.slashdot.org/comments.pl?sid=23961980&op=Reply&threshold=1&commentsort=0&mode=thread&pid=66085856) [Share](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+  [twitter](https://x.com/intent/tweet?text=Hey what a coincidence...%20by%20Junta%20%40slashdot%20https://it.slashdot.org/comments.pl?sid=23961980&cid=66085856)
+  [facebook](https://www.facebook.com/sharer/sharer.php?u=https://it.slashdot.org/comments.pl?sid=23961980&cid=66085856)
+
+  [Flag as Inappropriate](https://it.slashdot.org/comments.pl?sid=23961980&op=flag&threshold=1&commentsort=0&mode=thread&pid=66085856 "Flag this comment as Inappropriate")
+
+
+  + #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085878) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+    by
+    [anonymouscoward52236](https://slashdot.org/~anonymouscoward52236) [( 6163996 )](https://slashdot.org/~anonymouscoward52236)
+    writes:
+
+    OpenAI: "This is just for a few select companies to have..."
+
+    Wait, doesn't that go against OpenAI's mission statement of OPEN ACCESS???
+
+
+    - #### [Re: Hey what a coincidence...](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085890) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears), Informative)
+
+      by
+      [in70x](https://slashdot.org/~in70x) [( 6043178 )](https://slashdot.org/~in70x)
+      writes:
+
+      I recently used codex latest model with my agentic augmented vuln research method. I found 6 high security bugs and produced PoCs for them in a very short period of time. Itâ(TM)s a set of open source networking utils Iâ(TM)m sure youâ(TM)ve heard ofâ¦. This is a real threat. It made me find bugs that would take weeks or months find them in a couple hoursâ¦
+    - #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085934) ([Score: 3](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+      by
+      [Powercntrl](https://slashdot.org/~Powercntrl) [( 458442 )](https://slashdot.org/~Powercntrl)
+      writes:
+
+      Wait, doesn't that go against OpenAI's mission statement of OPEN ACCESS???
+
+      I'm pretty sure the "open" part now refers to *opening your wallet*.
+  + #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085916) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+    by
+    [nomadic](https://slashdot.org/~nomadic) [( 141991 )](https://slashdot.org/~nomadic)
+    writes:
+
+    The difference is we can see what OpenAI puts out generally and see what Anthropic puts out and see pretty clearly which one is miles ahead of the other. I believe Anthropic, not so sure about OpenAI.
+
+
+    - #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086018) ([Score: 3](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+      by
+      [Junta](https://slashdot.org/~Junta) [( 36770 )](https://slashdot.org/~Junta)
+      writes:
+
+      While Anthropic is generally more credible, they have indulged in performative bullshit for the sake of the hype train.
+
+      Frankly, if they didn't, they would have been screwed over no matter how well they actually made a product.
+
+      Not crazy about the "do things to open source projects, but obfuscate the fact that it's LLM originated" Anthropic thing either way.
+* #### [Us too](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085860) ([Score: 1](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+  by
+  [DarkOx](https://slashdot.org/~DarkOx) [( 621550 )](https://slashdot.org/~DarkOx)
+  writes:
+
+  So Anthropic demos Mythos and OpenAI has to say put out a press release.
+
+  Altman's house of cards is collapsing...
+
+
+  + #### [Re:Us too](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085906) ([Score: 4](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears), Insightful)
+
+    by
+    [Junta](https://slashdot.org/~Junta) [( 36770 )](https://slashdot.org/~Junta)
+    writes:
+    on Thursday April 09, 2026 @04:28PM ([#66085906](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085906))
+
+    I do suspect that OpenAI will be the 'Netscape' of this bubble pop. Early mover that in many ways sparked something significant that got left behind by others that did it better.
+
+    I am so eager for a bubble pop to recalibrate expectations to properly leverage LLM as appropriate instead of the current madness. It will be an adjustment, but without the craze it won't be nearly so obnoxious.
+
+    [Reply to This](https://it.slashdot.org/comments.pl?sid=23961980&op=Reply&threshold=1&commentsort=0&mode=thread&pid=66085906) [Parent](https://it.slashdot.org/comments.pl?sid=23961980&threshold=1&commentsort=0&mode=thread&cid=66085860) [Share](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+    [twitter](https://x.com/intent/tweet?text=Re:Us too%20by%20Junta%20%40slashdot%20https://it.slashdot.org/comments.pl?sid=23961980&cid=66085906)
+    [facebook](https://www.facebook.com/sharer/sharer.php?u=https://it.slashdot.org/comments.pl?sid=23961980&cid=66085906)
+
+    [Flag as Inappropriate](https://it.slashdot.org/comments.pl?sid=23961980&op=flag&threshold=1&commentsort=0&mode=thread&pid=66085906 "Flag this comment as Inappropriate")
+
+
+    - #### [Re: Us too](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086052) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+      by
+      [toutankh](https://slashdot.org/~toutankh) [( 1544253 )](https://slashdot.org/~toutankh)
+      writes:
+
+      Who do you have in mind who did better than Netscape back then? The one thing IE did better was insert itself everywhere.
+    - #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086200) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+      by
+      [Zero\_\_Kelvin](https://slashdot.org/~Zero__Kelvin) [( 151819 )](https://slashdot.org/~Zero__Kelvin)
+      writes:
+
+      This is a core misunderstanding that is often repeated by people who haven't researched AI system design. The new models are not LLMs, though they do have one component in [the stack](https://www.youtube.com/watch?v=ESBMgZHzfG0 "youtube.com") [youtube.com] that is an LLM. What you are doing is talking about a web stack as though it was just a database, then talking about what databases can and cannot do ... essentially saying "databases can't create user interfaces!" ..."I really hope people will stop over-hyping these database thingys." For the record, the linked video doesn't p
+
+
+      * #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086252) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+        by
+        [Junta](https://slashdot.org/~Junta) [( 36770 )](https://slashdot.org/~Junta)
+        writes:
+
+        The problem being I haven't seen a good term that refers to the extended LLM scenario that is specific enough to exclude other things like machine vision.
+
+        Everyone is referring to the extended LLM scenario and despite things feeding improvements, it still cannot do everything that people promise/believe it can do. I have been inundated by project proposals that largely center around "screw everyone but my job, AI can replace everyone but me", and they are just full of bad ideas.
+
+        Basically, the good old "I ha
+  + #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086024) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+    by
+    [nightflameauto](https://slashdot.org/~nightflameauto) [( 6607976 )](https://slashdot.org/~nightflameauto)
+    writes:
+
+    So Anthropic demos Mythos and OpenAI has to say put out a press release.
+
+    Altman's house of cards is collapsing...
+
+    Dude, the next model is gonna be so scary that they won't even let THEMSELVES use it.
+* #### [Prolossus: The Beforbin Preject](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085870) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+  by
+  [Pseudonymous Powers](https://slashdot.org/~Pseudonymous+Powers) [( 4097097 )](https://slashdot.org/~Pseudonymous+Powers)
+  writes:
+
+  Our spendthrift would-be oligarchs are now fighting over which one of them gets to push the Blow Up Everything button, which may be entirely imaginary.
+* #### [Firesign Theatre Got It Right](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085872) ([Score: 3](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+  by
+  [crunchy\_one](https://slashdot.org/~crunchy_one) [( 1047426 )](https://slashdot.org/~crunchy_one)
+  writes:
+  on Thursday April 09, 2026 @04:14PM ([#66085872](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085872))
+
+  As the Firesign Theatre said so many years ago, "A power so great, it can only be used for good, or evil."
+
+  [Reply to This](https://it.slashdot.org/comments.pl?sid=23961980&op=Reply&threshold=1&commentsort=0&mode=thread&pid=66085872) [Share](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+  [twitter](https://x.com/intent/tweet?text=Firesign Theatre Got It Right%20by%20crunchy_one%20%40slashdot%20https://it.slashdot.org/comments.pl?sid=23961980&cid=66085872)
+  [facebook](https://www.facebook.com/sharer/sharer.php?u=https://it.slashdot.org/comments.pl?sid=23961980&cid=66085872)
+
+  [Flag as Inappropriate](https://it.slashdot.org/comments.pl?sid=23961980&op=flag&threshold=1&commentsort=0&mode=thread&pid=66085872 "Flag this comment as Inappropriate")
+
+  + [1 hidden comment](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+  + **[1 reply](https://it.slashdot.org/comments.pl?sid=23961980&threshold=-1&commentsort=0&mode=thread&pid=66085872) beneath your current threshold.**
+* #### [This isn't a mirage](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085902) ([Score: 3](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+  by
+  [LindleyF](https://slashdot.org/~LindleyF) [( 9395567 )](https://slashdot.org/~LindleyF)
+  writes:
+  on Thursday April 09, 2026 @04:26PM ([#66085902](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085902))
+
+  Tech companies are running scared on this. Exploits are getting way too easy and there are few clear mitigations. Right now limiting the release might work, but what happens in a year when the open models have caught up?
+
+  [Reply to This](https://it.slashdot.org/comments.pl?sid=23961980&op=Reply&threshold=1&commentsort=0&mode=thread&pid=66085902) [Share](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+  [twitter](https://x.com/intent/tweet?text=This isn't a mirage%20by%20LindleyF%20%40slashdot%20https://it.slashdot.org/comments.pl?sid=23961980&cid=66085902)
+  [facebook](https://www.facebook.com/sharer/sharer.php?u=https://it.slashdot.org/comments.pl?sid=23961980&cid=66085902)
+
+  [Flag as Inappropriate](https://it.slashdot.org/comments.pl?sid=23961980&op=flag&threshold=1&commentsort=0&mode=thread&pid=66085902 "Flag this comment as Inappropriate")
+
+
+  + #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085920) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+    by
+    [nomadic](https://slashdot.org/~nomadic) [( 141991 )](https://slashdot.org/~nomadic)
+    writes:
+
+    I mean in theory you can have the AI identify and fix the exploits. Yeah it's an arms race but as some point the defense will probably win.
+  + #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66085948) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+    by
+    [ceoyoyo](https://slashdot.org/~ceoyoyo) [( 59147 )](https://slashdot.org/~ceoyoyo)
+    writes:
+
+    > there are few clear mitigations.
+
+    Other than fixing your bugs.
+
+
+    - #### [Or don't computer](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086190) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+      by
+      [ebunga](https://slashdot.org/~ebunga) [( 95613 )](https://slashdot.org/~ebunga)
+      writes:
+
+      Just get everything off the internet. Shouldn't we be up to Internet 2027 already?
+  + #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086032) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+    by
+    [Junta](https://slashdot.org/~Junta) [( 36770 )](https://slashdot.org/~Junta)
+    writes:
+
+    The same argument could be made around automated fuzzing. A new class of security misbehavior may be identified automatically, and it turns out you can use such tools to identify things to fix as well.
+
+    Of course, it could be a problem if it has a high false positive rate, where the attacker can hit false positives and barely be impacted but the false positives drive an impossible churn to keep up with on the defense side... Which frankly could be a thing based on my experience with LLM code review that can
+  + #### [Re:](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086284) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+    by
+    [Hentes](https://slashdot.org/~Hentes) [( 2461350 )](https://slashdot.org/~Hentes)
+    writes:
+
+    IF models get that good at coding, that will probably mean the end of purpose built software anyway. At that point, everybody will be able to roll their own, tailored to the user's exact needs.
+* #### [Supposedly limited-release](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086030) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+  by
+  [Alain Williams](https://slashdot.org/~Alain+Williams) [( 2972 )](https://slashdot.org/~Alain+Williams)
+  writes:
+
+  Nation states will have sleeper agents who will grab a copy, send it home and go back to sleep waiting for the next big thing. How really dangerous it is - time will tell.
+* #### [any guardrails on this model?](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086172) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+  by
+  [sziring](https://slashdot.org/~sziring) [( 2245650 )](https://slashdot.org/~sziring)
+  writes:
+
+  The real question is if this model doesn't have guardrails to "do no harm" or attempt to crack password or was tuned to specifically allow what they block the general public from.
+
+  Another bone headed move that we are starting to see from our AI overlords. Build powerful models that they gate keep and possibly lend to governments first.
+
+  I bet this will play out quite nicely as foreign countries and anyone with enough money to build a similar model, even a watered down model to fine the same security holes and
+* #### [Walled gardens](https://it.slashdot.org/comments.pl?sid=23961980&cid=66086244) ([Score: 2](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears))
+
+  by
+  [CAIMLAS](https://slashdot.org/~CAIMLAS) [( 41445 )](https://slashdot.org/~CAIMLAS)
+  writes:
+
+  The big frontier model providers are all moving towards an Enterprise-first approach to their products, gradually nerfing the 'value' lines and eliminating any subsidization paid plans may have previously (and currently) have. The free ride of investment subsidy couldn't have continued much longer and allow the companies to remain solvent.
+
+  This is just a part of that: super special tools and models will be kept amongst a small subset of enterprise companies and governments at a high premium, and they will gr
+
+**There may be more comments in this discussion. Without JavaScript enabled, you might want to [turn on Classic Discussion System](https://it.slashdot.org/users.pl?op=editcomm) in your preferences instead.**
+
+#### Related Links Top of the: day, week, month.
+
+* 243comments
+  ['USB-A Isn't Going Anywhere, So Stop Removing the Port'](https://it.slashdot.org/story/25/09/15/1510250/usb-a-isnt-going-anywhere-so-stop-removing-the-port?sdsrc=popbyskidbtmprev)
+* 209comments
+  [New Book Argues Hybrid Schedules 'Don't Work', Return-to-Office Brings Motivation and Learning](https://it.slashdot.org/story/25/08/25/0628205/new-book-argues-hybrid-schedules-dont-work-return-to-office-brings-motivation-and-learning?sdsrc=popbyskidbtmprev)
+* 200comments
+  ['A Black Hole': America's New Graduates Discover a Dismal Job Market](https://it.slashdot.org/story/25/08/04/0048214/a-black-hole-americas-new-graduates-discover-a-dismal-job-market?sdsrc=popbyskidbtmprev)
+* 187comments
+  [Toxic Workplaces Are Worsening: 80% of U.S. Workers Say Their Job Hurts Mental Health](https://it.slashdot.org/story/25/10/12/2016234/toxic-workplaces-are-worsening-80-of-us-workers-say-their-job-hurts-mental-health?sdsrc=popbyskidbtmprev)
+* 166comments
+  [WSJ: Tech-Industry Workers Now 'Miserable', Fearing Layoffs, Working Longer Hours](https://it.slashdot.org/story/25/04/27/088238/wsj-tech-industry-workers-now-miserable-fearing-layoffs-working-longer-hours?sdsrc=popbyskidbtmprev)
+
+##### [next](https://hardware.slashdot.org/story/26/04/09/1916209/amazon-may-sell-trainium-ai-chips-to-third-parties-in-shot-at-nvidia?sdsrc=nextbtmnext)
+
+[Amazon May Sell Trainium AI Chips To Third Parties In Shot At Nvidia](https://hardware.slashdot.org/story/26/04/09/1916209/amazon-may-sell-trainium-ai-chips-to-third-parties-in-shot-at-nvidia?sdsrc=nextbtmprev)
+
+4comments
+
+##### [previous](https://yro.slashdot.org/story/26/04/09/1720203/hacker-steals-10-petabytes-of-data-from-chinas-tianjin-supercomputer-center?sdsrc=prevbtmprev)
+
+[Hacker Steals 10 Petabytes of Data From China's Tianjin Supercomputer Center](https://yro.slashdot.org/story/26/04/09/1720203/hacker-steals-10-petabytes-of-data-from-chinas-tianjin-supercomputer-center?sdsrc=prevbtmprev)
+
+45comments
+
+Slashdot Top Deals
+------------------
+
+[![web_image](https://cdnp1.stackassets.com/30ae0b9eb9f94cbf17ae33f701bcf56c3b6e1bd1/store/24100dcec28cd9049c10a4def9ac7944f75f040db8643f5e6b8a9d652453/sale_327085_primary_image.jpg)](http://deals.slashdot.org/sales/the-2024-all-in-one-comptia-certifications-prep-courses-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-2024-all-in-one-comptia-certifications-prep-courses-bundle)
+
+[The All-in-One CompTIA Certification Prep Courses Bundle](http://deals.slashdot.org/sales/the-2024-all-in-one-comptia-certifications-prep-courses-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-2024-all-in-one-comptia-certifications-prep-courses-bundle)
+
+$25
+
+[![web_image](https://cdnp2.stackassets.com/c15d318e348cfd209ac47819427f45ab44e1311e/store/a19e69bafb381fb30e54757f04015997452b50acad93991f8e93870c30f2/sale_327053_primary_image.jpg)](http://deals.slashdot.org/sales/the-2024-master-herbalist-course-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-2024-master-herbalist-course-bundle)
+
+[The 2026 Master Herbalist Course Bundle](http://deals.slashdot.org/sales/the-2024-master-herbalist-course-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-2024-master-herbalist-course-bundle)
+
+$15
+
+[![web_image](https://cdnp2.stackassets.com/0c83ecc89af3bf92e526f553804484db4b95ab97/store/af1b8c4ffdf28571fa1bb72261f1805f26bc753b65520a6e4be87fb5e49e/sale_327195_primary_image.jpg)](http://deals.slashdot.org/sales/the-ultimate-unity-game-development-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-ultimate-unity-game-development-bundle)
+
+[The Ultimate Unity Game Development Bundle](http://deals.slashdot.org/sales/the-ultimate-unity-game-development-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-ultimate-unity-game-development-bundle)
+
+$25
+
+[![web_image](https://cdnp2.stackassets.com/42a439e48c8dd1fd6be47ba0755892dc93dd5643/store/d4e027e97f8337dd3bab87d6a4de2cd1ef22e354436bb834b1beacc98512/sale_327152_primary_image.jpg)](http://deals.slashdot.org/sales/pdf-reader-pro-permanent-license-for-mac-lifetime-subscription?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=pdf-reader-pro-permanent-license-for-mac-lifetime-subscription)
+
+[PDF Reader Pro Permanent License: Lifetime Subscription](http://deals.slashdot.org/sales/pdf-reader-pro-permanent-license-for-mac-lifetime-subscription?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=pdf-reader-pro-permanent-license-for-mac-lifetime-subscription)
+
+$60
+
+[![web_image](https://cdnp3.stackassets.com/d9165cc6185b2d4c1f99363497d5148fdad20b56/store/6f0a5cba2cc53499e6330eda5bbd3d409e0220a28052a4ec1a31b6890d0f/sale_327118_primary_image.jpg)](http://deals.slashdot.org/sales/the-mern-full-stack-developer-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-mern-full-stack-developer-bundle)
+
+[The 2026 MERN Full Stack Developer Bundle](http://deals.slashdot.org/sales/the-mern-full-stack-developer-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-mern-full-stack-developer-bundle)
+
+$40
+
+[![web_image](https://cdnp3.stackassets.com/23e8bcb4d2c2f63258a22eb4c78064605afa899a/store/bc52c0aab8b54d4e81762ae4f23afe02feea1ba363e120e07ed6206fb47c/sale_327185_primary_image.jpg)](http://deals.slashdot.org/sales/the-yoga-teacher-training-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-yoga-teacher-training-bundle)
+
+[The 2026 Yoga Teacher Training Bundle](http://deals.slashdot.org/sales/the-yoga-teacher-training-bundle?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign=the-yoga-teacher-training-bundle)
+
+$15
+
+
+
+
+
+
+[Slashdot](https://slashdot.org)
+
+[Post](https://it.slashdot.org/comments.pl?sid=23961980&op=reply&threshold=1&commentsort=0&mode=thread&pid=)
+Moderate
+Moderator Help
+Delete
+
+
+* [Get more comments](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+* 24
+   of 24
+   loaded
+
+* [SubmitStory](https://it.slashdot.org/submit)
+
+> Help! I'm trapped in a PDP 11/70!
+
+* [FAQ](https://slashdot.org/faq)
+* [Story Archive](https://slashdot.org/archive.pl)
+* [Hall of Fame](https://slashdot.org/hof.shtml)
+* [Advertising](https://slashdotmedia.com/advertising-and-marketing-services/)
+* [Terms](https://slashdotmedia.com/terms-of-use/)
+* [Privacy Statement](https://slashdotmedia.com/privacy-statement/)
+* [About](https://slashdot.org/faq/slashmeta.shtml)
+* [Feedback](mailto:feedback@slashdot.org)
+* [Mobile View](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+* [Blog](https://slashdot.org/blog)
+* [[Opt Out](https://slashdotmedia.com/opt-out-choices "Opt Out")](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+* ![web_image](https://a.fsdn.com/sd/ccpa-optout.png)
+
+  Do Not Sell or Share My Personal Information
+  
+
+Copyright © 2026 Slashdot Media. All Rights Reserved.
+
+×
+
+[Close](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+[Close](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)
+
+### [Slashdot](https://slashdot.org)
+
+
+
+
+
+
+
+
+
+
+
+
+
+![web_image](https://slashdot.org/images/js.gif?80)
+
+
+
+
+![web_image](https://slashdot.org/images/njs.gif?771)
+
+Working...
+IFRAME about:blank:
+
+
+# Reference
+- [176] [OpenAI To Limit New Model Release On Cybersecurity Fears](https://it.slashdot.org/story/26/04/09/194221/openai-to-limit-new-model-release-on-cybersecurity-fears)

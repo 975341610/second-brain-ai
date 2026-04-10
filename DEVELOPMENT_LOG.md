@@ -1,4 +1,56 @@
-# Development Log
+## [2026-04-09] - 性能优化：后端动图缩略图缓存机制
+
+### 1. 后端一次性提取并缓存缩略图
+- **首帧提取算法**: 在 `nova_repo/backend/api/routes.py` 中引入 `Pillow` (PIL) 库。针对 `.gif` 和 `.webp` 动图，自动提取第一帧并保存为 `<filename>.thumb.png`。
+- **自动化生成机制**: 当调用 `/emoticons/list` 或 `/stickers/list` 时，后端会自动检查是否存在缩略图。若不存在则即时生成并缓存，后续请求直接返回缓存路径，彻底消除前端 Canvas 提取的 CPU 开销。
+- **列表接口增强**: 接口返回的 JSON 对象新增 `thumb_url` 字段。非动图格式（`.png`, `.jpg`, `.svg`）的 `thumb_url` 与原图一致，确保前端处理逻辑统一。
+- **资源过滤**: 自动在列表接口中排除 `.thumb.png` 文件，防止其作为独立资源在面板中重复显示。
+
+### 2. 前端组件极简重构 (HoverPlayImage)
+- **移除 Canvas 逻辑**: 彻底删除了原先在前端使用 `<canvas>` 动态提取动图第一帧的复杂 `useEffect` 和 DOM 操作。
+- **纯图片切换方案**: `HoverPlayImage` 组件现在仅接收 `src` (原图) 和 `thumbSrc` (缩略图) 两个必需属性。
+- **Hover 态交互**: 
+  - 默认状态仅加载轻量级的 `thumbSrc` 缩略图，大幅减少初始渲染时的网络带宽与内存占用。
+  - 仅在鼠标悬停 (Hover) 时按需加载并显示 `src` 动图原图，实现“即看即播”的丝滑体验。
+- **性能提升**: 即使在拥有数百个表情包的面板中，也能实现瞬间打开，无任何掉帧感。
+
+### 3. 类型安全与构建
+- **类型定义更新**: 同步更新了 `EmoticonResource` 和 `StickerResource` 的 TypeScript 接口定义，包含 `thumb_url` 字段。
+- **编译验证**: 通过 `npm run build` 完整构建测试，确保全流程类型安全。
+
+---
+
+
+### 1. 后端 API 补全
+- **修复路由导入**: 在 `nova_repo/backend/api/routes.py` 中补充了缺失的 `from sqlalchemy import select` 导入，修复了导致 404/500 的运行时错误。
+- **关联逻辑增强**: 确保 `/notes/{note_id}/links` 和 `/notes/{note_id}/backlinks` 接口能够正确查询 `NoteLink` 表并返回包含笔记标题 (`title`) 的完整数据结构。
+
+### 2. 前端渲染重构 (莫兰迪胶囊)
+- **React NodeView 迁移**: 将 `NoteLink.ts` 从简单的 `renderHTML` 静态渲染重构为 `ReactNodeViewRenderer`。
+- **新建 NoteLinkNode 组件**: 创建了 `NoteLinkNode.tsx` 专门负责双向链接的 UI 展示。
+  - **莫兰迪色系**: 采用浅米色 (#E6E2D3) 背景与深咖啡灰 (#6B5B4B) 文字，营造治愈系视觉风格。
+  - **交互反馈**: 实现了 Hover 态的位移与阴影效果，以及选中态 (Selected) 的边框高亮。
+- **全局样式同步**: 更新了 `index.css`，将 `note-link-capsule` 类名统一为莫兰迪配色方案。
+
+### 3. 跨模块解耦跳转方案
+- **自定义事件通信**: 放弃在 `nova-block` 模块中直接依赖主项目的 `useAppStore` (避免循环依赖与编译报错)，改用 `window.dispatchEvent(new CustomEvent('nova-select-note'))` 发送跳转请求。
+- **多环境适配**: 
+  - 在 `nova-block` 预览环境 (`App.tsx`) 中通过监听该事件实现内部笔记切换。
+  - 预留给主应用 (`frontend`) 的集成接口，只需监听同名事件即可调用全局 `selectNote` 函数。
+
+### 4. 质量保证
+- **编译验证**: 通过了 `npx tsc --noEmit` 严格类型检查。
+- **构建测试**: `npm run build` 流程完整通过，无任何资源丢失或打包错误。
+
+---
+
+
+### 核心修复
+- **API 兼容性修复**：修复了在 `NoteLink.ts` 的 `suggestion.command` 中错误调用 `replaceRangeWith` 导致崩溃的问题。
+- **改用标准 Tiptap API**：将非法的链式调用替换为 `editor.chain().focus().insertContentAt(range, { type: 'noteLink', attrs: { ... } }).run()`。这确保了在选中建议项时，ProseMirror 能够正确执行节点插入操作。
+- **验证通过**：通过了 `npx tsc --noEmit` 类型检查和 `npm run build` 构建流程。
+
+---
 
 ## [2026-04-09] - 重构 Slider 为 2.5D Coverflow 画廊模式
 
