@@ -344,7 +344,12 @@ Bot 端快捷发起对话&任务，获取任务结果通知</td>
 <!-- BLOCK_28 | doxcn1rbXIcOx8d99f5UzDr2ZTf -->
 ### 3.2 让Aime助理执行任务的能力list<!-- END_BLOCK_28 -->
 
-<!-- BLOCK_29 | XrGUdZflsoQ532xon9Cc80kAnuc -->
+<!-- BLOCK_29 | PuSzdg3saoxjtexPZB8ceQPKnwf -->
+> 详见 Aime skill 精选-> https://aime.bytedance.net/chat/knowledge
+> 
+<!-- END_BLOCK_29 -->
+
+<!-- BLOCK_30 | XrGUdZflsoQ532xon9Cc80kAnuc -->
 <table header-row="true" col-widths="153,251,443,100">
     <tr>
         <td>场景</td>
@@ -395,8 +400,9 @@ Bot 端快捷发起对话&任务，获取任务结果通知</td>
     </tr>
     <tr>
         <td>邮件</td>
-        <td>代发邮件、读取总结邮件信息</td>
-        <td>incoming</td>
+        <td>代发邮件、读取总结邮件信息
+支持获取用户飞书工作邮箱的正文内容（受限于安全审核原因暂不支持获取附件内容）</td>
+        <td>✅</td>
     </tr>
     <tr>
         <td>代发消息</td>
@@ -441,10 +447,10 @@ Bot 端快捷发起对话&任务，获取任务结果通知</td>
         <td>✅</td>
     </tr>
     <tr>
-        <td rowspan="4">**数据**</td>
+        <td rowspan="5">**数据**</td>
         <td rowspan="2">风神 Aeolus
 [AIME 助理 + 风神 ：随时问数、自由跟踪](https://bytedance.larkoffice.com/wiki/CinEw82cDit15bk2TbDcHEXonI4)</td>
-        <td>调取看板数据、查询关键指标</td>
+        <td>调取风神看板、可视化查询数据、查询关键指标，自动下钻</td>
         <td>✅</td>
     </tr>
     <tr>
@@ -454,7 +460,12 @@ Bot 端快捷发起对话&任务，获取任务结果通知</td>
     <tr>
         <td>Libra</td>
         <td>[Libra 技能功能与日常用法指南](https://bytedance.larkoffice.com/docx/CyB1dgGgroz8MfxEwPVcj5rznBc)</td>
-        <td></td>
+        <td>✅</td>
+    </tr>
+    <tr>
+        <td>Coral</td>
+        <td>技能：coral-hive-metric-explorer 已上线</td>
+        <td>✅</td>
     </tr>
     <tr>
         <td>DevMind</td>
@@ -535,106 +546,106 @@ Bot 端快捷发起对话&任务，获取任务结果通知</td>
         <td> incoming</td>
     </tr>
 </table>
-<!-- END_BLOCK_29 -->
+<!-- END_BLOCK_30 -->
 
 
 
-<!-- BLOCK_30 | doxcn9uiuVZ9h0fQGmQ0p9Pngwg -->
-## 四、快速上手<!-- END_BLOCK_30 -->
+<!-- BLOCK_31 | doxcn9uiuVZ9h0fQGmQ0p9Pngwg -->
+## 四、快速上手<!-- END_BLOCK_31 -->
 
-<!-- BLOCK_31 | V3xMdlXajoLW1uxY6x8cdS0jnQh -->
-### 4.1 初次见面，相互认识<!-- END_BLOCK_31 -->
+<!-- BLOCK_32 | V3xMdlXajoLW1uxY6x8cdS0jnQh -->
+### 4.1 初次见面，相互认识<!-- END_BLOCK_32 -->
 
-<!-- BLOCK_32 | JZ0DdflXQoraWlxv8LQcGa0OnNh -->
+<!-- BLOCK_33 | JZ0DdflXQoraWlxv8LQcGa0OnNh -->
 - **快速磨合，让 Aime 认识你：**让它分析你的历史记录来了解你：
-<!-- END_BLOCK_32 -->
-
-<!-- BLOCK_33 | WZ1ndagHQogY81xn7oCcrzU7nGo -->
-> `基于我以往的 Aime 使用记录，分析一下我是什么样的人，以及你应该是什么样的个人助理。`
-> 
 <!-- END_BLOCK_33 -->
 
-<!-- BLOCK_34 | JVK7d8kxto8sXyxAq6bcnO3xnxf -->
-- **主动定义你的偏好：**告诉 Aime 你的角色和习惯
+<!-- BLOCK_34 | WZ1ndagHQogY81xn7oCcrzU7nGo -->
+> `基于我以往的 Aime 使用记录，分析一下我是什么样的人，以及你应该是什么样的个人助理。`
+> 
 <!-- END_BLOCK_34 -->
 
-<!-- BLOCK_35 | PF8gdBiTaoqeKPxkTLyczIUZnuh -->
-> `我是产品运营，日常需要写文档、拉数据、发飞书卡片。回复请结论先行，多用表格，输出结果时直接给我飞书链接。`
-> 
+<!-- BLOCK_35 | JVK7d8kxto8sXyxAq6bcnO3xnxf -->
+- **主动定义你的偏好：**告诉 Aime 你的角色和习惯
 <!-- END_BLOCK_35 -->
 
-<!-- BLOCK_36 | UPhudjfRGo9eG9xSelccdU7In4d -->
-### 4.2 设置定时任务，让日常工作成为彼此的默契<!-- END_BLOCK_36 -->
-
-<!-- BLOCK_37 | SiXrdBjbXoDaUWxnmOkcYw3Znld -->
-- **竞品与市场监控**
-<!-- END_BLOCK_37 -->
-
-<!-- BLOCK_38 | CR0odikghoK8Ntx4bZzcQqmMnOd -->
-> `每个工作日上午 11 点，帮我查询 Lovable / Nocode / 秒搭在 Similarweb 上的流量数据，生成对比报告发飞书文档给我。`
+<!-- BLOCK_36 | PF8gdBiTaoqeKPxkTLyczIUZnuh -->
+> `我是产品运营，日常需要写文档、拉数据、发飞书卡片。回复请结论先行，多用表格，输出结果时直接给我飞书链接。`
 > 
+<!-- END_BLOCK_36 -->
+
+<!-- BLOCK_37 | UPhudjfRGo9eG9xSelccdU7In4d -->
+### 4.2 设置定时任务，让日常工作成为彼此的默契<!-- END_BLOCK_37 -->
+
+<!-- BLOCK_38 | SiXrdBjbXoDaUWxnmOkcYw3Znld -->
+- **竞品与市场监控**
 <!-- END_BLOCK_38 -->
 
-<!-- BLOCK_39 | DTNkdKNVqoud77x30D9cnIyEn9c -->
-- **数据日报**
+<!-- BLOCK_39 | CR0odikghoK8Ntx4bZzcQqmMnOd -->
+> `每个工作日上午 11 点，帮我查询 Lovable / Nocode / 秒搭在 Similarweb 上的流量数据，生成对比报告发飞书文档给我。`
+> 
 <!-- END_BLOCK_39 -->
 
-<!-- BLOCK_40 | SD4Yd5pe5o4b4nxTIugcxXrNnsh -->
-> `每天早上 9:30，帮我从风神看板拉取昨日 DAU、新增用户、会话数，生成一份 300 字以``内的数据简报发给我。`
-> 
+<!-- BLOCK_40 | DTNkdKNVqoud77x30D9cnIyEn9c -->
+- **数据日报**
 <!-- END_BLOCK_40 -->
 
-<!-- BLOCK_41 | Nn8jdCkYKomYySxwWqJct6lFnWe -->
-💡 小贴士：定时任务设置后会持续执行，建议告知有效期，例如「持续到 2026 年 6 月」
+<!-- BLOCK_41 | SD4Yd5pe5o4b4nxTIugcxXrNnsh -->
+> `每天早上 9:30，帮我从风神看板拉取昨日 DAU、新增用户、会话数，生成一份 300 字以``内的数据简报发给我。`
+> 
 <!-- END_BLOCK_41 -->
 
-<!-- BLOCK_42 | Jm0UdsyayontFMxlO6LcC7wTnJf -->
-### 4.3 开始执行任务吧<!-- END_BLOCK_42 -->
+<!-- BLOCK_42 | Nn8jdCkYKomYySxwWqJct6lFnWe -->
+💡 小贴士：定时任务设置后会持续执行，建议告知有效期，例如「持续到 2026 年 6 月」
+<!-- END_BLOCK_42 -->
 
-<!-- BLOCK_43 | Hu11dBPyEoMeY0x4vXAc3LSDnPh -->
+<!-- BLOCK_43 | Jm0UdsyayontFMxlO6LcC7wTnJf -->
+### 4.3 开始执行任务吧<!-- END_BLOCK_43 -->
+
+<!-- BLOCK_44 | Hu11dBPyEoMeY0x4vXAc3LSDnPh -->
 **研发场景**
-<!-- END_BLOCK_43 -->
-
-<!-- BLOCK_44 | BLkudWiRRoS7J9xoy0lcfJijnjc -->
-- **代码检索与理解：**一句话搞定指定仓库内的代码查询，再也不用逐行费力寻找。
 <!-- END_BLOCK_44 -->
 
-<!-- BLOCK_45 | D7AhdiIvvo40cDxOGyTc9CEQnyf -->
+<!-- BLOCK_45 | BLkudWiRRoS7J9xoy0lcfJijnjc -->
+- **代码检索与理解：**一句话搞定指定仓库内的代码查询，再也不用逐行费力寻找。
+<!-- END_BLOCK_45 -->
+
+<!-- BLOCK_46 | D7AhdiIvvo40cDxOGyTc9CEQnyf -->
 > `帮我找 user_center 服务里调用了 GetUserInfo 的所有地方`
 > 
 > `这个报错栈是哪个文件里的代码引起的？`
 > 
 > `enable_feature_x 这个配置是在哪里被使用的？`
 > 
-<!-- END_BLOCK_45 -->
-
-<!-- BLOCK_46 | TpKJdfiHUom2JlxvKHEc5hR2nLb -->
-- **技术资料与研发资产查询：**遇到技术难题直接问，服务信息随手查。 框架用法、内外场知识库一网打尽；服务元信息、PSM、发布单也能快速调取。
 <!-- END_BLOCK_46 -->
 
-<!-- BLOCK_47 | H1ccdnI6LooEsLx1KSec6SiDn4b -->
+<!-- BLOCK_47 | TpKJdfiHUom2JlxvKHEc5hR2nLb -->
+- **技术资料与研发资产查询：**遇到技术难题直接问，服务信息随手查。 框架用法、内外场知识库一网打尽；服务元信息、PSM、发布单也能快速调取。
+<!-- END_BLOCK_47 -->
+
+<!-- BLOCK_48 | H1ccdnI6LooEsLx1KSec6SiDn4b -->
 > `hertz client 如何添加自定义中间件？`
 > 
 > `查一下 faas-function-abc 这个函数的负责人是谁？`
 > 
-<!-- END_BLOCK_47 -->
-
-<!-- BLOCK_48 | SwYSdwKxjoaXl1xeswCctRXunEc -->
-- **需求与代码联动：**快速同步需求和开发进度，沟通更高效。
 <!-- END_BLOCK_48 -->
 
-<!-- BLOCK_49 | RrCvdvJd5otQzRxCFxqccFENnac -->
+<!-- BLOCK_49 | SwYSdwKxjoaXl1xeswCctRXunEc -->
+- **需求与代码联动：**快速同步需求和开发进度，沟通更高效。
+<!-- END_BLOCK_49 -->
+
+<!-- BLOCK_50 | RrCvdvJd5otQzRxCFxqccFENnac -->
 > `我负责的 "用户个人主页改版" 关联的开发任务都上线了吗？`
 > 
 > `项目 "订单系统重构" 下还有哪些待合入的 MR？`
 > 
-<!-- END_BLOCK_49 -->
-
-<!-- BLOCK_50 | FLiNd2IXUoDLGLxgRUOc1A2UnXm -->
-- **故障排查与告警分析：**日志拉取、Trace 调用链分析、告警解读全支持，快速锁定根因，缩短排障时间。
 <!-- END_BLOCK_50 -->
 
-<!-- BLOCK_51 | JnRjd3epgoOgq5xtFM0cC6K2nte -->
+<!-- BLOCK_51 | FLiNd2IXUoDLGLxgRUOc1A2UnXm -->
+- **故障排查与告警分析：**日志拉取、Trace 调用链分析、告警解读全支持，快速锁定根因，缩短排障时间。
+<!-- END_BLOCK_51 -->
+
+<!-- BLOCK_52 | JnRjd3epgoOgq5xtFM0cC6K2nte -->
 > `xx-service 近 10 分钟有 error 日志吗？关键词 timeout`
 > 
 > `分析一下这个告警链接（附 Argos 告警链接）`
@@ -643,214 +654,210 @@ Bot 端快捷发起对话&任务，获取任务结果通知</td>
 > 
 > `请你调用slardar-web-autofix，来帮我修复这个报错（附报错链接）`
 > 
-<!-- END_BLOCK_51 -->
-
-<!-- BLOCK_52 | XhMadBr9yoyklTxldZEcZxOxnNg -->
-- **协同提效：**简化项目管理与审批流程，一句话搞定 Meego 和工单。
 <!-- END_BLOCK_52 -->
 
-<!-- BLOCK_53 | ZrejdesD5oVtCoxj0pxck9a4ndh -->
+<!-- BLOCK_53 | XhMadBr9yoyklTxldZEcZxOxnNg -->
+- **协同提效：**简化项目管理与审批流程，一句话搞定 Meego 和工单。
+<!-- END_BLOCK_53 -->
+
+<!-- BLOCK_54 | ZrejdesD5oVtCoxj0pxck9a4ndh -->
 > `帮我创建一个需求，标题是 "优化首页加载速度"，优先级 P0`
 > 
 > `查一下我最近未完成的 Meego 需求`
 > 
 > `我有哪些待审批的工单？`
 > 
-<!-- END_BLOCK_53 -->
-
-<!-- BLOCK_54 | Z0vEdfBvMoiiKYxf8pqcxqqQnVc -->
-- **🆕 本地工作：**本地仓库完成代码撰写和 CR
 <!-- END_BLOCK_54 -->
 
-<!-- BLOCK_55 | XG04dWPNDoIprcxII6rc1lPJn5e -->
+<!-- BLOCK_55 | Z0vEdfBvMoiiKYxf8pqcxqqQnVc -->
+- **🆕 本地工作：**本地仓库完成代码撰写和 CR
+<!-- END_BLOCK_55 -->
+
+<!-- BLOCK_56 | XG04dWPNDoIprcxII6rc1lPJn5e -->
 > `【选择代码仓库工作目录】{产品需求描述} 帮我在本地仓库完成这个项目，利用现有的 button、tooltip 组件和 icon，不要自己新写`
 > 
 > `【选择代码仓库工作目录】Review 下当前分支改动的代码`
 > 
-<!-- END_BLOCK_55 -->
-
-<!-- BLOCK_56 | LjmbdvoARooPzJx29mtcduvMnzc -->
-**产品/运营场景**
 <!-- END_BLOCK_56 -->
 
-<!-- BLOCK_57 | BwpDd43pgoXzDOxbG7GchA70nTd -->
-- **用户反馈聚合：**群里 @Aime 个人助理，自动分类汇总，不用人肉爬楼。
+<!-- BLOCK_57 | LjmbdvoARooPzJx29mtcduvMnzc -->
+**产品/运营场景**
 <!-- END_BLOCK_57 -->
 
-<!-- BLOCK_58 | Ov1tdfeCiof0xuxa3yycKMlQnFf -->
-> `帮我总结一下这个群近 ``3``0 分钟的用户反馈，按问题类型分类`
-> 
+<!-- BLOCK_58 | BwpDd43pgoXzDOxbG7GchA70nTd -->
+- **用户反馈聚合：**群里 @Aime 个人助理，自动分类汇总，不用人肉爬楼。
 <!-- END_BLOCK_58 -->
 
-<!-- BLOCK_59 | GchIdNZqBoJyfSxNJSacXPGYnSh -->
-- **数据分析与复盘：**一句话调取风神看板，结合历史上下文智能归因。
+<!-- BLOCK_59 | Ov1tdfeCiof0xuxa3yycKMlQnFf -->
+> `帮我总结一下这个群近 ``3``0 分钟的用户反馈，按问题类型分类`
+> 
 <!-- END_BLOCK_59 -->
 
-<!-- BLOCK_60 | BVhNdK17hoVBENxSe5FcyqYUnzf -->
-> `帮我拉一下 Aime 助理近 7 天 DAU 的变化趋势，重点分析 3.10 宣发当天的数据`
-> 
+<!-- BLOCK_60 | GchIdNZqBoJyfSxNJSacXPGYnSh -->
+- **数据分析与复盘：**一句话调取风神看板，结合历史上下文智能归因。
 <!-- END_BLOCK_60 -->
 
-<!-- BLOCK_61 | Vm75dIO6JoDDaXxOy7mcys5qneh -->
-- **宣发物料生成：**丢给它活动文档，快速产出物料清单、文案、Banner。
+<!-- BLOCK_61 | BVhNdK17hoVBENxSe5FcyqYUnzf -->
+> `帮我拉一下 Aime 助理近 7 天 DAU 的变化趋势，重点分析 3.10 宣发当天的数据`
+> 
 <!-- END_BLOCK_61 -->
 
-<!-- BLOCK_62 | ClEqd4eLRo4w1bxoTsBcpbFtndg -->
-> `基于这个活动文档，帮我梳理物料清单，并生成宣发文案和``图片`
-> 
+<!-- BLOCK_62 | Vm75dIO6JoDDaXxOy7mcys5qneh -->
+- **宣发物料生成：**丢给它活动文档，快速产出物料清单、文案、Banner。
 <!-- END_BLOCK_62 -->
 
-<!-- BLOCK_63 | H4uqdhVlAoECmVxa6yZc8aVJnYg -->
-- **产品规划辅助：**不用一次想清楚，和 Aime 多聊几轮，逐步拆解成可执行的 Meego 需求。
+<!-- BLOCK_63 | ClEqd4eLRo4w1bxoTsBcpbFtndg -->
+> `基于这个活动文档，帮我梳理物料清单，并生成宣发文案和``图片`
+> 
 <!-- END_BLOCK_63 -->
 
-<!-- BLOCK_64 | Bcq3dPuuyoMwGHxYnWIcNNgqnsf -->
-> `基于我们刚才的聊天，帮我生成 Q3 的产品规划文档，并拆解需求 list，明确研发负责人评估工作量，需求同步创建到 Meego 空间`
-> 
+<!-- BLOCK_64 | H4uqdhVlAoECmVxa6yZc8aVJnYg -->
+- **产品规划辅助：**不用一次想清楚，和 Aime 多聊几轮，逐步拆解成可执行的 Meego 需求。
 <!-- END_BLOCK_64 -->
 
-<!-- BLOCK_65 | IOgKd2uymoS4UTxw3pCcKREsnhh -->
-- **定时调研：**设置一次，长期执行，告别重复手动操作。
+<!-- BLOCK_65 | Bcq3dPuuyoMwGHxYnWIcNNgqnsf -->
+> `基于我们刚才的聊天，帮我生成 Q3 的产品规划文档，并拆解需求 list，明确研发负责人评估工作量，需求同步创建到 Meego 空间`
+> 
 <!-- END_BLOCK_65 -->
 
-<!-- BLOCK_66 | PxqPdfnDmoXPTxxSqxEc5lKxnnd -->
-> `对 {竞品名称1} {竞品名称2} 或 {业务领域}的其他竞品进行全维度分析，包括功能流程、界面设计、商业化价值等，创建图文并茂的报告`
-> 
+<!-- BLOCK_66 | IOgKd2uymoS4UTxw3pCcKREsnhh -->
+- **定时调研：**设置一次，长期执行，告别重复手动操作。
 <!-- END_BLOCK_66 -->
 
-<!-- BLOCK_67 | EogedYQ2EoGI1mxNj5Ic1FQjnSg -->
-- **🆕 本地工作：**连接本地完成文件管理、批量处理
+<!-- BLOCK_67 | PxqPdfnDmoXPTxxSqxEc5lKxnnd -->
+> `对 {竞品名称1} {竞品名称2} 或 {业务领域}的其他竞品进行全维度分析，包括功能流程、界面设计、商业化价值等，创建图文并茂的报告`
+> 
 <!-- END_BLOCK_67 -->
 
-<!-- BLOCK_68 | VBwodlaz8os5GAxk5RYcX6Pln4e -->
+<!-- BLOCK_68 | EogedYQ2EoGI1mxNj5Ic1FQjnSg -->
+- **🆕 本地工作：**连接本地完成文件管理、批量处理
+<!-- END_BLOCK_68 -->
+
+<!-- BLOCK_69 | VBwodlaz8os5GAxk5RYcX6Pln4e -->
 > `我电脑桌面上有很多散落的文件，包含「发票」「入住」之类的是发票，帮我整理到一个文件夹里`
 > 
 > `【选择工作路径】这个文件夹里有好几个 excel，把数据汇总，根据「用户来源」分流，把分流结果整理成新的 excel`
 > 
-<!-- END_BLOCK_68 -->
+<!-- END_BLOCK_69 -->
 
-<!-- BLOCK_69 | T8Oxd2gWBoso7oxFExecs18pnDb -->
-### 4.4 不断培养你的专属助理<!-- END_BLOCK_69 -->
+<!-- BLOCK_70 | T8Oxd2gWBoso7oxFExecs18pnDb -->
+### 4.4 不断培养你的专属助理<!-- END_BLOCK_70 -->
 
-<!-- BLOCK_70 | LMaMdx31aolUFYxFfR0cMvDSnYL -->
+<!-- BLOCK_71 | LMaMdx31aolUFYxFfR0cMvDSnYL -->
 - **管理长期记忆：**Aime 有透明的长期记忆库，你可以随时查看和编辑，它会记住你的习惯和项目背景。
-<!-- END_BLOCK_70 -->
-
-<!-- BLOCK_71 | CSxfdkdhuoUu96xQYhmcPypmnHc -->
-- **对话式调教（随时纠正）：**用自然语言设置规则，Aime 会记住
 <!-- END_BLOCK_71 -->
 
-<!-- BLOCK_72 | VOtTdDdoqoya9zxEobkcYIKfnqf -->
-> `关于资讯查询，我喜欢简洁的总结，一般不要超过 300 字。`
-> 
+<!-- BLOCK_72 | CSxfdkdhuoUu96xQYhmcPypmnHc -->
+- **对话式调教（随时纠正）：**用自然语言设置规则，Aime 会记住
 <!-- END_BLOCK_72 -->
 
-<!-- BLOCK_73 | JQ3edQKULoHD9BxoP4NcDaICnse -->
-- **要求 Aime 主动推荐工具：**每完成一批任务后，让 Aime 自检
+<!-- BLOCK_73 | VOtTdDdoqoya9zxEobkcYIKfnqf -->
+> `关于资讯查询，我喜欢简洁的总结，一般不要超过 300 字。`
+> 
 <!-- END_BLOCK_73 -->
 
-<!-- BLOCK_74 | I7Pud1dzuoBu48x3L5ic8jbqn6e -->
-> `你觉得我近期有哪些高频需求，有什么 Skill 可以帮我更好地完成？`
-> 
+<!-- BLOCK_74 | JQ3edQKULoHD9BxoP4NcDaICnse -->
+- **要求 Aime 主动推荐工具：**每完成一批任务后，让 Aime 自检
 <!-- END_BLOCK_74 -->
 
-<!-- BLOCK_75 | A8uBdBaNbo1F4xx3elBc2gDanMh -->
-- **接入专属 Skill：**支持安装自定义 MCP/Skill，实现定制能力。
+<!-- BLOCK_75 | I7Pud1dzuoBu48x3L5ic8jbqn6e -->
+> `你觉得我近期有哪些高频需求，有什么 Skill 可以帮我更好地完成？`
+> 
 <!-- END_BLOCK_75 -->
 
-<!-- BLOCK_76 | OuBgdzpsHohfe4xIfhFcOr1Mnig -->
-### 4.5 遇到问题，可使用Aime个人助理自查<!-- END_BLOCK_76 -->
+<!-- BLOCK_76 | A8uBdBaNbo1F4xx3elBc2gDanMh -->
+- **接入专属 Skill：**支持安装自定义 MCP/Skill，实现定制能力。
+<!-- END_BLOCK_76 -->
 
-<!-- BLOCK_77 | ZrYBddMYGosn3bxchT8c5SWxnlc -->
+<!-- BLOCK_77 | OuBgdzpsHohfe4xIfhFcOr1Mnig -->
+### 4.5 遇到问题，可使用Aime个人助理自查<!-- END_BLOCK_77 -->
+
+<!-- BLOCK_78 | ZrYBddMYGosn3bxchT8c5SWxnlc -->
 - **直接问Aime助理**
-<!-- END_BLOCK_77 -->
+<!-- END_BLOCK_78 -->
 
-<!-- BLOCK_78 | CzyKdMPpsoO01gxvGEMcjoD3nHh -->
+<!-- BLOCK_79 | CzyKdMPpsoO01gxvGEMcjoD3nHh -->
 > `这个问题需要的权限你都有了吗？`
 > 
 > `为什么你读取不到xx群聊的信息？`
 > 
-<!-- END_BLOCK_78 -->
+<!-- END_BLOCK_79 -->
 
 
 
-<!-- BLOCK_79 | YzfDdVit5o4m4KxOiUocijIYnZg -->
-## 五、最佳实践（建设中）<!-- END_BLOCK_79 -->
+<!-- BLOCK_80 | YzfDdVit5o4m4KxOiUocijIYnZg -->
+## 五、最佳实践（建设中）<!-- END_BLOCK_80 -->
 
-<!-- BLOCK_80 | M2G2drgItoCb1ExDt8LcCW6andg -->
+<!-- BLOCK_81 | YEupdwlMLoIs1Nx9Mfyca4dZn6e -->
+> 投稿可联系@(wangxin.5@bytedance.com)
+> 
+<!-- END_BLOCK_81 -->
+
+<!-- BLOCK_82 | Pzl0doIGmo6N5KxpIAicGtNHngf -->
+- **用 Aime 承担本地端到端的开发交付**。@(yangwenjing.fh@bytedance.com)
+<!-- END_BLOCK_82 -->
+
+<!-- BLOCK_83 | ERtQdLvVwozDsEx1p3ycraX5ndg -->
+> 经过前期基础规则与上下文的“训练”后，您只需将需求转发给助理并指定本地环境，它即可实现从代码开发、部署到协助创建 Bits 任务的全链路闭环。由于具备稳定的记忆积累，它的准确率会持续提升，最终做到“一次执行、符合预期”，成为越用越顺手的数字研发搭档。[Aime 小助手本地研发流程](https://bytedance.larkoffice.com/wiki/DSILwRFq1itj7tk3blkcn3sunTc)
+> 
+> - **物理隔离**：为助理在本机创建专属工作目录并固化长期记忆，避免操作干扰日常开发。
+> 
+> - **明确规矩**：提前对齐团队红线（如严禁直接提交 master、切分支前必须 pull）及核心依赖（主仓库、Bits 微应用等信息）。
+> 
+> - **投喂上下文**：依托长期记忆和知识库/文档的定时更新，持续强化助理对您工作区的认知。
+> 
+<!-- END_BLOCK_83 -->
+
+<!-- BLOCK_84 | M2G2drgItoCb1ExDt8LcCW6andg -->
 - **从工具升级为同事：Aime 个人助理真正好用的地方**@(hongyang.hy@bytedance.com)
-<!-- END_BLOCK_80 -->
+<!-- END_BLOCK_84 -->
 
-<!-- BLOCK_81 | DTqRdxJ6hobuMixlocTcehg2neh -->
+<!-- BLOCK_85 | DTqRdxJ6hobuMixlocTcehg2neh -->
 > 以前用 Aime，要打开网页、想好 Prompt 再发任务；现在的 Aime 个人助理**直接住进了飞书——拍照、发语音、转发群消息**，随手一甩就能让它干活，信息检索、行研投研、数据清洗、多媒体创作全部搞定。我感觉最大的升级是记忆：它会持续记住我的偏好和历史，不用每次重复背景，越用越默契。不需要写长指令，像和同事聊天一样一步步把结果聊出来，再像带实习生一样给反馈——“脏”活“累”活，长期稳定地交给它。
 > 
 > [A神（Aime助手）使用场景介绍](https://bytedance.larkoffice.com/wiki/SXMvwyGIIiHMi0kp31vcAQsenKJ)
 > 
-<!-- END_BLOCK_81 -->
-
-<!-- BLOCK_82 | FxmVd3VuhojqcPxURtfcJXe6n1e -->
-- **一个不用担心安全问题，上手即适配工作场景的助理**@(gaoxuying@bytedance.com)
-<!-- END_BLOCK_82 -->
-
-<!-- BLOCK_83 | BglgdHaIJo7qoSx4LTbcZOywnGe -->
-> Aime个人助理直接集成了各种skill，也把内部的一些**研发平台都打通了**，可以直接上手帮我处理一些工作场景，比如我通过它给 meego 的字段增加选项、devmind 里一些基础字段的维护，这和传统的 openclaw 相比，节约了不少前期配置和上手的成本。当然还有一个比较关键的点是，**使用Aime个人助理再也不用考虑安全的问题**了。
-> 
-<!-- END_BLOCK_83 -->
-
-<!-- BLOCK_84 | MOwEd7BjFoPziwxJg6xcQTvTnBd -->
-- **终于有了一个可以随时随地查询研发流程进展的助理了**@(xiexiaosong0015@bytedance.com)
-<!-- END_BLOCK_84 -->
-
-<!-- BLOCK_85 | NOXudisqwo0ECcxCOBXcyILWnMd -->
-> <grid cols="2">
-> <column width="64">
->   > > Aime个人助理可以**在&nbsp;Bits&nbsp;以及&nbsp;Meego&nbsp;上查询研发流程**，这个对于项目同学非常友好。我可以随时让他查询某个项目研发流程的项目进展，他就能帮我搜索Meego及Bits上的信息，总结成一个简单的进展报告，包含关键时间节点、进展状态、当前执行关键信息以及关键干系人等。
->   > 
->   > 
-> </column>
-> <column width="35">
->   > > ![图片](img_K8pab1QEaokylux2Mw9cWCYXnxf.png)
->   > 
->   > 
-> </column>
-> </grid>
 <!-- END_BLOCK_85 -->
 
-<!-- BLOCK_86 | BK2Ndu3zeoofyQxegt6cqHb1nHf -->
-- **让&nbsp;Aime&nbsp;助理更聪明，和它直接对话就能安装&nbsp;skill**@(zengduju@bytedance.com)
+<!-- BLOCK_86 | FxmVd3VuhojqcPxURtfcJXe6n1e -->
+- **一个不用担心安全问题，上手即适配工作场景的助理**@(gaoxuying@bytedance.com)
 <!-- END_BLOCK_86 -->
 
-<!-- BLOCK_87 | APuPd9uKvoEnQ0xHBTecgvZdnYg -->
+<!-- BLOCK_87 | BglgdHaIJo7qoSx4LTbcZOywnGe -->
+> Aime个人助理直接集成了各种skill，也把内部的一些**研发平台都打通了**，可以直接上手帮我处理一些工作场景，比如我通过它给 meego 的字段增加选项、devmind 里一些基础字段的维护，这和传统的 openclaw 相比，节约了不少前期配置和上手的成本。当然还有一个比较关键的点是，**使用Aime个人助理再也不用考虑安全的问题**了。
+> 
+<!-- END_BLOCK_87 -->
+
+<!-- BLOCK_88 | BK2Ndu3zeoofyQxegt6cqHb1nHf -->
+- **让&nbsp;Aime&nbsp;助理更聪明，和它直接对话就能安装&nbsp;skill**@(zengduju@bytedance.com)
+<!-- END_BLOCK_88 -->
+
+<!-- BLOCK_89 | APuPd9uKvoEnQ0xHBTecgvZdnYg -->
 > 想给 Aime 助理**加一个资讯与社媒的搜索&nbsp;skill（**[SenSight Skill - 给 OpenClaw 连上全网资讯和社媒信息](https://bytedance.larkoffice.com/wiki/Qy87wY0eNiK8rcktZ2QcOOwenLc)**）**，我**直接发给&nbsp;Aime&nbsp;助理对应的&nbsp;skill&nbsp;文档**，它就能快速理解和完成安装，随后就能基于 skill 帮我完成相应的检索任务了，非常方便。
 > 
 > <grid cols="3">
-> <column width="41">
+> <column width="33">
 >   > > ![图片](img_IBLYb6uL9oe9gSxbk5pc7Q6Bnve.png)
 >   > 
 >   > 
+>   > 
+>   > 
+>   > 
 > </column>
-> <column width="31">
+> <column width="33">
 >   > > ![图片](img_WGZVb8Z1do55aUxT02Wc9833ngg.png)
 >   > 
 >   > 
+>   > 
+>   > 
+>   > 
 > </column>
-> <column width="26">
+> <column width="33">
 >   > > ![图片](img_Jx0BbgEbpoxDTNxDm0jc0V9hnLe.png)
 >   > 
 >   > 
 > </column>
 > </grid>
-> 💡 tips：官方 skill 精选集建设中，敬请期待
-> 
-<!-- END_BLOCK_87 -->
-
-<!-- BLOCK_88 | AwiCdc65to8uLWxh3NGcBwwcnld -->
-- **可以并发执行的Aime个人助理，效率真的太高了**@(tangying.0425@bytedance.com)
-<!-- END_BLOCK_88 -->
-
-<!-- BLOCK_89 | Merld5pXgoloV2xsT0DcEQzznbg -->
-> Aime个人助理可以并发执行任务。任务执行过程中可以调整，可以随时查询任务中的状态，跟其他openclaw 差距很明显。我用来做报告，同一份报告可以随时起很多个任务修改不同章节，做不同事情，比如一个任务补充信息，另一个任务同时在 check 文档中的数字是否有具体的权威来源，特别好用。所以他出来之后我整理资料都用它了不用其他 agent，因为可以直接手机用，效率也高很多。还用它做技术架构调研，可以同一时间产出好几份～
-> 
 <!-- END_BLOCK_89 -->
 
 <!-- BLOCK_90 | S8KTdHCOlo4RFexQrMJc9FXxnIf -->
@@ -890,6 +897,8 @@ Bot 端快捷发起对话&任务，获取任务结果通知</td>
 > </column>
 > </grid>
 <!-- END_BLOCK_93 -->
+
+
 
 
 

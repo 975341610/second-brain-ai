@@ -1,4 +1,4 @@
-import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Image as ImageIcon, Upload, Palette, Trash2, Check } from 'lucide-react';
+import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Image as ImageIcon, Upload, Palette, Trash2, Check, Cpu } from 'lucide-react';
 import { useEffect, useState, useRef, ChangeEvent } from 'react';
 import type { ModelConfig } from '../lib/types';
 import { api } from '../lib/api';
@@ -11,8 +11,10 @@ type SettingsPanelProps = {
 };
 
 export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPanelProps) {
-  const { userStats, updateUserWallpaper, updateUserTheme } = useAppStore();
+  const { userStats, updateUserWallpaper, updateUserTheme, aiPluginEnabled, setAIPluginEnabled } = useAppStore();
   const [config, setConfig] = useState(modelConfig);
+  const [isCheckingHardware, setIsCheckingHardware] = useState(false);
+  const [hwInfo, setHwInfo] = useState<{ compatible: boolean; memory_gb: number; cpu_count: number; os: string; message: string } | null>(null);
   const [dataPath, setDataPath] = useState('');
   const [accessToken, setAccessToken] = useState(() => localStorage.getItem('access_token') || '');
   const [logs, setLogs] = useState<string[]>([]);
@@ -24,6 +26,35 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
   const [wallpaperPreviews, setWallpaperPreviews] = useState<Record<string, string>>({});
   const logContainerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const checkHardware = async () => {
+    setIsCheckingHardware(true);
+    try {
+      const res = await api.checkHardware();
+      setHwInfo(res);
+      return res;
+    } catch (e: any) {
+      alert('硬件检测失败: ' + e.message);
+      return null;
+    } finally {
+      setIsCheckingHardware(false);
+    }
+  };
+
+  const handleToggleAIPlugin = async () => {
+    const nextState = !aiPluginEnabled;
+    if (nextState) {
+      const hw = await checkHardware();
+      if (!hw || !hw.compatible) {
+        return; // 不开启
+      }
+    }
+    try {
+      await setAIPluginEnabled(nextState);
+    } catch (e) {
+      // Error handled by store toast
+    }
+  };
 
   const themes = [
     { id: 'default', name: '默认 (Reflect)', color: 'bg-[#fcfbf9]' },
@@ -196,6 +227,57 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
               <input value={config.base_url} onChange={(e) => setConfig({ ...config, base_url: e.target.value })} className="w-full rounded-2xl border border-stone-200 px-3 py-2 text-sm" placeholder="接口地址 (需包含 /v1)" />
               <input value={config.api_key} onChange={(e) => setConfig({ ...config, api_key: e.target.value })} className="w-full rounded-2xl border border-stone-200 px-3 py-2 text-sm" placeholder="API Key" />
               <button onClick={() => onUpdateModelConfig(config)} className="w-full rounded-2xl bg-stone-900 px-4 py-3 text-sm font-medium text-white hover:bg-stone-800 transition-colors">保存设置</button>
+            </div>
+          </div>
+
+          {/* 本地 AI 引擎 */}
+          <div className="rounded-[24px] bg-white/85 p-5">
+            <div className="mb-3 flex items-center justify-between">
+              <div className="flex items-center gap-2 text-sm font-medium text-stone-500"><Cpu size={16} /> 本地 AI 引擎</div>
+              <div className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${aiPluginEnabled ? 'bg-green-100 text-green-700' : 'bg-stone-100 text-stone-400'}`}>
+                {aiPluginEnabled ? 'RUNNING' : 'OFF'}
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="pr-4">
+                  <div className="text-sm font-medium text-stone-700">启用本地 Llama 引擎</div>
+                  <div className="text-[11px] text-stone-400 leading-tight mt-0.5">使用本地硬件推理，保护隐私且无需联网。</div>
+                </div>
+                <button
+                  onClick={handleToggleAIPlugin}
+                  disabled={isCheckingHardware}
+                  className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors focus:outline-none ${
+                    aiPluginEnabled ? 'bg-stone-900' : 'bg-stone-200'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      aiPluginEnabled ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+              
+              {hwInfo && (
+                <div className="rounded-xl bg-stone-50 p-3 text-[11px] text-stone-500 space-y-1 border border-stone-100">
+                   <div className="flex justify-between"><span>系统架构:</span> <span className="font-mono text-stone-700">{hwInfo.os} ({hwInfo.cpu_count} Cores)</span></div>
+                   <div className="flex justify-between"><span>可用内存:</span> <span className="font-mono text-stone-700">{hwInfo.memory_gb} GB</span></div>
+                   <div className="flex justify-between"><span>硬件兼容:</span> <span className={hwInfo.compatible ? 'text-green-600 font-bold' : 'text-rose-600 font-bold'}>{hwInfo.compatible ? '通过' : '未通过'}</span></div>
+                   {!hwInfo.compatible && <div className="text-rose-500 mt-1 font-medium">{hwInfo.message}</div>}
+                </div>
+              )}
+              
+              {!hwInfo && (
+                 <button 
+                   onClick={checkHardware}
+                   disabled={isCheckingHardware}
+                   className="w-full py-2 border border-dashed border-stone-300 rounded-xl text-xs text-stone-500 hover:bg-stone-50 transition-colors flex items-center justify-center gap-2"
+                 >
+                   {isCheckingHardware ? <RefreshCw size={12} className="animate-spin" /> : null}
+                   {isCheckingHardware ? '正在检测...' : '检查硬件兼容性'}
+                 </button>
+              )}
             </div>
           </div>
 

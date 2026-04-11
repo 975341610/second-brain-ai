@@ -256,3 +256,13 @@ class ThemeUpdatePayload(BaseModel):
 
 class UserWallpaperUpdateRequest(BaseModel):
     wallpaper_url: Optional[str] = None
+
+class HardwareCheckResponse(BaseModel):
+    compatible: bool
+    memory_gb: float
+    cpu_count: int
+    os: str
+    message: str
+
+class AIPluginStatus(BaseModel):
+    enabled: bool

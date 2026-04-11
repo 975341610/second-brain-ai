@@ -15,3 +15,18 @@
 - 技术实现：修改 `NovaBlockEditor.tsx`，在 `EmoticonPanel` 和 `StickerPanel` 的 `onSelect` 事件中注入 `getApiBase()`，将原有的 `/api/emoticons/...` 相对路径动态转换为包含代理域名的绝对路径；同时修改 `StickerPanel.tsx` 的 `onDragStart` 事件对 URL 进行同步处理，以支持拖拽插入无缝显示。
 - 构建更新：在 `nova-block` 目录下执行 `npm run build`，将最新编译产物同步至 `nova_repo/frontend_dist` 目录，并记录至 `DEVELOPMENT_LOG.md`。
 - 代码提交：经用户确认后，创建子任务将修复代码提交并推送至 GitHub 远程仓库，Commit 信息为 `fix(editor): resolve broken image paths for emoticons and stickers using getApiBase`。
+
+## 13:45:09
+- 响应用户新增“无界画布（Canvas）”功能的需求，代理提出了底层架构与交互方案并获用户确认。
+- 技术选型：引入 `@xyflow/react` (React Flow) 作为底层高性能画布引擎，支持节点拖拽、连线、缩放与框选。
+- 数据库更新：不新建独立表，而是修改现有的 `notes` 表，新增 `type` 字段（区分 `note` 和 `canvas`），将画布的节点与连线数据以 JSON 格式存储在现有的 `content` 字段中，以复用现有目录树和拖拽移动逻辑。
+- 交互与UI设计：在“新建笔记”按钮旁和文件夹右键菜单增加“新建白板”入口；统一卡片节点风格（支持图片、视频、PDF、链接等）并提供可编辑文字备注区；支持框选归类（生成带标题的虚线大框 Group Node）；严格遵循 `ui-ux-pro-max` 规范，应用点阵底纹、圆滑曲线与彩色弥散阴影。
+- 任务执行：代理已创建多个子任务（如 `Backend schema migration for canvas` 和 `Implement Canvas Frontend`），开始推进后端数据库表结构迁移与前端 `CanvasEditor` 组件的开发。
+
+## 20:56:36
+- 完善画布（Canvas）媒体预览功能，支持视频与音频在画布内联播放（含视频静音自动播放），并可解析在线视频（如 B站/YouTube）和媒体直链生成带有播放器的媒体节点。
+- 为 iframe 嵌入的外部视频增加半透明交互锁定遮罩，解决用户拖拽画布时鼠标被 iframe 拦截遮挡导致交互卡住的问题，点击解锁即可正常操作。
+- 升级画布在线链接解析逻辑：全面支持 `.jpg`、`.gif`、`.webp`、`.svg` 等主流图片格式；增加无后缀图床链接探测逻辑（通过匹配 `image`、`picture` 等关键词渲染）；增强 Bilibili 链接解析，兼容 `b23.tv` 短链及带参数长链（忽略大小写）；支持为纯文本链接自动补全 `http://` 或 `https://` 协议头。
+- 优化画布节点与连线交互细节：放大节点连线触点（Handle）与右下角缩放把手（ResizeControl）的热区以方便选中；调整 ReactFlow 连线配置修复指向箭头反转的问题；支持通过左键框选多选并删除连线，并为被选中状态的连线增加加粗与高亮视觉反馈。
+- 修复因附件全类型上传接口 `api.upload` 中偶发缺失 `note.id` 导致的 TypeScript 严格非空校验编译报错，增加严格参数校验以确保所有附件均正确落盘于 `data/media/{note_id}/` 目录。
+- 构建更新：相关代码已完成本地 Commit，重新执行构建打包并将最新产物同步覆盖至外层 `frontend_dist` 目录供云端预览。

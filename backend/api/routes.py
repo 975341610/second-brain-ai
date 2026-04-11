@@ -42,7 +42,11 @@ from backend.models.schemas import (
     AchievementResponse,
     UserAchievementResponse,
     ThemeUpdatePayload,
+    HardwareCheckResponse,
+    AIPluginStatus,
 )
+import psutil
+import platform
 from backend.database import get_db, SessionLocal, engine
 from backend.utils import log_buffer
 import subprocess
@@ -98,6 +102,46 @@ from backend.services.vector_store import vector_store
 router = APIRouter()
 settings = get_settings()
 ai_client = AIClient()
+
+# 本地 AI 插件状态 (Mock)
+_ai_plugin_enabled = False
+
+@router.get("/ai/hardware-check", response_model=HardwareCheckResponse)
+async def hardware_check_api():
+    mem = psutil.virtual_memory()
+    memory_gb = mem.total / (1024 ** 3)
+    cpu_count = psutil.cpu_count(logical=True)
+    os_name = platform.system()
+    
+    compatible = True
+    message = "设备满足要求"
+    
+    if memory_gb < 4:
+        compatible = False
+        message = f"内存不足 (当前 {memory_gb:.1f}GB, 需要至少 4GB)"
+    
+    return HardwareCheckResponse(
+        compatible=compatible,
+        memory_gb=round(memory_gb, 1),
+        cpu_count=cpu_count,
+        os=os_name,
+        message=message
+    )
+
+@router.get("/ai/plugin-status", response_model=AIPluginStatus)
+async def get_plugin_status_api():
+    return AIPluginStatus(enabled=_ai_plugin_enabled)
+
+@router.post("/ai/plugin-status", response_model=AIPluginStatus)
+async def update_plugin_status_api(payload: AIPluginStatus):
+    global _ai_plugin_enabled
+    if payload.enabled:
+        # 如果尝试开启，先检测硬件
+        check = await hardware_check_api()
+        if not check.compatible:
+            raise HTTPException(status_code=400, detail=check.message)
+    _ai_plugin_enabled = payload.enabled
+    return AIPluginStatus(enabled=_ai_plugin_enabled)
 
 async def background_index_note(note_id: int, title: str, content: str, tags: list[str] | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False):
     """异步执行 AI 处理：摘要、向量化、自动链接"""

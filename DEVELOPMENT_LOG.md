@@ -191,3 +191,46 @@
   - 编辑框支持 `Cmd/Ctrl + Enter` 快捷保存。
   - Tooltip 采用 `bg-white/90` 半透明设计，增加 `shadow-[0_20px_50px_rgba(0,0,0,0.15)]` 增强悬浮感。
   - 蓝色序号在悬停时具备 `scale-110` 的动态反馈。
+
+
+## [2026-04-11] - 本地 AI 插件脚手架搭建 (路线 B: llama-cpp-python)
+
+### 1. 后端：硬件检测与状态管理
+- **新增硬件检测接口** (`GET /api/ai/hardware-check`): 
+  - 集成 `psutil` 库，实现系统可用内存、CPU 核心数及操作系统架构的实时获取。
+  - 设定最低 4GB 内存门槛，不满足时 `compatible` 返回 `false` 并提供原因说明。
+- **插件状态持久化 (Mock)**: 
+  - 实现 `GET /api/ai/plugin-status` 和 `POST /api/ai/plugin-status`。
+  - **开启拦截机制**: 在 POST 开启插件时，后端会先执行内部硬件检测。若硬件不达标，直接返回 `400 Bad Request` 并通过 `detail` 字段传达兼容性错误。
+
+### 2. 前端：UI 开关与拦截逻辑
+- **设置面板集成**: 在 `SettingsPanel.tsx` 中新增「本地 AI 引擎」卡片。
+- **极简 Switch 开关**:
+  - 点击开启时自动触发硬件兼容性检测。
+  - 成功开启后通过 `useAppStore` 发出炫酷的成功通知（Toast）。
+- **硬件信息可视化**: 检测完成后，在开关下方展示详细的系统架构、可用内存及兼容性结果。
+- **API 封装**: 在 `frontend/src/lib/api.ts` 中补全了对应的后端调用函数。
+
+### 3. 构建与部署
+- **全链路跑通**: 确保前端开关状态与后端内存变量同步。
+- **产物同步**: 执行 `npm run build` 并将产物同步至 `frontend_dist`，支持 FastAPI 直接挂载。
+- **依赖更新**: 后端环境需安装 `psutil`。
+
+---
+
+## [2026-04-10] - Canvas 右键菜单与分组拖拽体验优化
+
+### 1. Group 拖拽体验优化
+- **移除 Group dragHandle 限制**：删除 `createGroupNode` 并移除对 Group 节点注入的 `dragHandle: '.canvas-group-drag-handle'`，使用户在分组空白区域也能直接拖拽移动。
+- **UI 细节**：标题前把手恢复为普通 Icon（去掉 drag handle class），并为解散分组按钮补充 `nodrag`，避免误触拖拽。
+
+### 2. 右键菜单新增「移入/移出分组」
+- **ContextMenu 状态增强**：`contextMenu` 新增 `clickedNodeId?: string | null`，右键时记录命中的节点。
+- **右键命中逻辑调整**：取消“只允许 group 节点右键”的拦截；改为在 `handleCanvasContextMenu` 中通过 DOM 命中获取 node id。
+- **编排操作实现**：
+  - `handleRemoveFromGroup`：使用绝对坐标换算，将节点从当前分组移出并保持视觉位置不跳动。
+  - `handleMoveIntoGroup`：使用绝对坐标换算，将节点移入目标分组并同步 `parentId/extent`。
+- **菜单渲染**：当右键点击卡片时，根据 `parentId` 渲染「移出分组」（红色按钮）或「移入分组」（二级菜单列出当前所有分组）。
+
+### 3. 构建与产物同步
+- 执行 `npm run build` 通过后，将前端产物同步至 `frontend_dist`。

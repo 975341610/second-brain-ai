@@ -1,0 +1,561 @@
+Cline · GitHub
+
+
+
+[Skip to content](https://github.com/cline/#start-of-content)
+
+
+
+
+
+
+
+
+
+
+
+Navigation Menu
+---------------
+
+Toggle navigation
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcline%2F)
+
+Appearance settings
+
+[cline](https://github.com/cline)
+
+* Platform
+
+  + AI CODE CREATION
+    - [GitHub Copilot
+      Write better code with AI](https://github.com/features/copilot)
+    - [GitHub Spark
+      Build and deploy intelligent apps](https://github.com/features/spark)
+    - [GitHub Models
+      Manage and compare prompts](https://github.com/features/models)
+    - [MCP RegistryNew
+      Integrate external tools](https://github.com/mcp)
+  + DEVELOPER WORKFLOWS
+    - [Actions
+      Automate any workflow](https://github.com/features/actions)
+    - [Codespaces
+      Instant dev environments](https://github.com/features/codespaces)
+    - [Issues
+      Plan and track work](https://github.com/features/issues)
+    - [Code Review
+      Manage code changes](https://github.com/features/code-review)
+  + APPLICATION SECURITY
+    - [GitHub Advanced Security
+      Find and fix vulnerabilities](https://github.com/security/advanced-security)
+    - [Code security
+      Secure your code as you build](https://github.com/security/advanced-security/code-security)
+    - [Secret protection
+      Stop leaks before they start](https://github.com/security/advanced-security/secret-protection)
+  + EXPLORE
+    - [Why GitHub](https://github.com/why-github)
+    - [Documentation](https://docs.github.com)
+    - [Blog](https://github.blog)
+    - [Changelog](https://github.blog/changelog)
+    - [Marketplace](https://github.com/marketplace)
+
+  [View all features](https://github.com/features)
+* Solutions
+
+  + BY COMPANY SIZE
+    - [Enterprises](https://github.com/enterprise)
+    - [Small and medium teams](https://github.com/team)
+    - [Startups](https://github.com/enterprise/startups)
+    - [Nonprofits](https://github.com/solutions/industry/nonprofits)
+  + BY USE CASE
+    - [App Modernization](https://github.com/solutions/use-case/app-modernization)
+    - [DevSecOps](https://github.com/solutions/use-case/devsecops)
+    - [DevOps](https://github.com/solutions/use-case/devops)
+    - [CI/CD](https://github.com/solutions/use-case/ci-cd)
+    - [View all use cases](https://github.com/solutions/use-case)
+  + BY INDUSTRY
+    - [Healthcare](https://github.com/solutions/industry/healthcare)
+    - [Financial services](https://github.com/solutions/industry/financial-services)
+    - [Manufacturing](https://github.com/solutions/industry/manufacturing)
+    - [Government](https://github.com/solutions/industry/government)
+    - [View all industries](https://github.com/solutions/industry)
+
+  [View all solutions](https://github.com/solutions)
+* Resources
+
+  + EXPLORE BY TOPIC
+    - [AI](https://github.com/resources/articles?topic=ai)
+    - [Software Development](https://github.com/resources/articles?topic=software-development)
+    - [DevOps](https://github.com/resources/articles?topic=devops)
+    - [Security](https://github.com/resources/articles?topic=security)
+    - [View all topics](https://github.com/resources/articles)
+  + EXPLORE BY TYPE
+    - [Customer stories](https://github.com/customer-stories)
+    - [Events & webinars](https://github.com/resources/events)
+    - [Ebooks & reports](https://github.com/resources/whitepapers)
+    - [Business insights](https://github.com/solutions/executive-insights)
+    - [GitHub Skills](https://skills.github.com)
+  + SUPPORT & SERVICES
+    - [Documentation](https://docs.github.com)
+    - [Customer support](https://support.github.com)
+    - [Community forum](https://github.com/orgs/community/discussions)
+    - [Trust center](https://github.com/trust-center)
+    - [Partners](https://github.com/partners)
+
+  [View all resources](https://github.com/resources)
+* Open Source
+
+  + COMMUNITY
+    - [GitHub Sponsors
+      Fund open source developers](https://github.com/sponsors)
+  + PROGRAMS
+    - [Security Lab](https://securitylab.github.com)
+    - [Maintainer Community](https://maintainers.github.com)
+    - [Accelerator](https://github.com/accelerator)
+    - [GitHub Stars](https://stars.github.com)
+    - [Archive Program](https://archiveprogram.github.com)
+  + REPOSITORIES
+    - [Topics](https://github.com/topics)
+    - [Trending](https://github.com/trending)
+    - [Collections](https://github.com/collections)
+* Enterprise
+
+  + ENTERPRISE SOLUTIONS
+    - [Enterprise platform
+      AI-powered developer platform](https://github.com/enterprise)
+  + AVAILABLE ADD-ONS
+    - [GitHub Advanced Security
+      Enterprise-grade security features](https://github.com/security/advanced-security)
+    - [Copilot for Business
+      Enterprise-grade AI features](https://github.com/features/copilot/copilot-business)
+    - [Premium Support
+      Enterprise-grade 24/7 support](https://github.com/premium-support)
+* [Pricing](https://github.com/pricing)
+
+Search or jump to...
+
+
+Search code, repositories, users, issues, pull requests...
+==========================================================
+
+Search
+
+Clear
+
+[Search syntax tips](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax)
+
+Provide feedback
+================
+
+We read every piece of feedback, and take your input very seriously.
+
+
+Include my email address so I can be contacted
+
+Cancel
+ Submit feedback
+
+
+
+
+
+Saved searches
+==============
+
+Use saved searches to filter your results more quickly
+------------------------------------------------------
+
+Name
+
+Query
+
+To see all available qualifiers, see our [documentation](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax).
+
+Cancel
+ Create saved search
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcline%2F)
+
+[Sign up](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Corg-login%3E&source=header)
+
+Appearance settings
+
+Resetting focus
+
+You signed in with another tab or window. Reload to refresh your session.
+You signed out in another tab or window. Reload to refresh your session.
+You switched accounts on another tab or window. Reload to refresh your session.
+ 
+Dismiss alert
+
+{{ message }}
+
+Cline
+=====
+
+
+
+* [1.6k
+  followers](https://github.com/orgs/cline/followers)
+* [https://cline.bot](https://cline.bot "https://cline.bot")
+
+* [Overview](https://github.com/cline)
+* [Repositories
+  19](https://github.com/orgs/cline/repositories)
+* [Projects](https://github.com/orgs/cline/projects)
+* [Packages](https://github.com/orgs/cline/packages)
+* [People](https://github.com/orgs/cline/people)
+
+More
+
+
+
+* [Overview](https://github.com/cline)
+* [Repositories](https://github.com/orgs/cline/repositories)
+* [Projects](https://github.com/orgs/cline/projects)
+* [Packages](https://github.com/orgs/cline/packages)
+* [People](https://github.com/orgs/cline/people)
+
+Popular repositories
+Loading
+----------------------------
+
+1. [cline](https://github.com/cline/cline) cline
+    Public
+
+   Autonomous coding agent right in your IDE, capable of creating/editing files, executing commands, using the browser, and more with your permission every step of the way.
+
+   TypeScript
+   [60.1k](https://github.com/cline/cline/stargazers)
+   [6.1k](https://github.com/cline/cline/forks)
+2. [prompts](https://github.com/cline/prompts) prompts
+    Public
+
+   Library of prompts from the Cline community
+
+   [1.1k](https://github.com/cline/prompts/stargazers)
+   [237](https://github.com/cline/prompts/forks)
+3. [mcp-marketplace](https://github.com/cline/mcp-marketplace) mcp-marketplace
+    Public
+
+   This is the official repository for submitting MCP servers to be included in Cline's MCP Marketplace. If you’ve built an MCP server and want it to be discoverable and easily installable by millions…
+
+   [763](https://github.com/cline/mcp-marketplace/stargazers)
+   [93](https://github.com/cline/mcp-marketplace/forks)
+4. [kanban](https://github.com/cline/kanban) kanban
+    Public
+
+   Launch a local web app that runs CLI agents in parallel
+
+   TypeScript
+   [607](https://github.com/cline/kanban/stargazers)
+   [125](https://github.com/cline/kanban/forks)
+5. [linear-mcp](https://github.com/cline/linear-mcp) linear-mcp
+    Public
+
+   a private MCP server for accessing Linear
+
+   TypeScript
+   [129](https://github.com/cline/linear-mcp/stargazers)
+   [53](https://github.com/cline/linear-mcp/forks)
+6. [cline-bench](https://github.com/cline/cline-bench) cline-bench
+    Public
+
+   Real-world coding benchmarks derived from actual Cline user sessions. Tasks are challenging, verified, and represent genuine engineering problems solved in production.
+
+   Python
+   [28](https://github.com/cline/cline-bench/stargazers)
+
+### Repositories
+
+Loading
+
+Type
+
+ 
+
+Select type
+
+All
+
+
+
+Public
+
+
+
+Sources
+
+
+
+Forks
+
+
+
+Archived
+
+
+
+Mirrors
+
+
+
+Templates
+
+
+ Language
+
+ 
+
+Select language
+
+All
+
+
+
+COBOL
+
+
+
+Go
+
+
+
+JavaScript
+
+
+
+Python
+
+
+
+Ruby
+
+
+
+Shell
+
+
+
+TypeScript
+
+
+ Sort
+
+ 
+
+Select order
+
+Last updated
+
+
+
+Name
+
+
+
+Stars
+
+Showing 10 of 19 repositories
+
+* [cline](https://github.com/cline/cline)
+  Public
+
+  Autonomous coding agent right in your IDE, capable of creating/editing files, executing commands, using the browser, and more with your permission every step of the way.
+
+  [](https://github.com/cline/cline/graphs/commit-activity) cline/cline’s past year of commit activity
+
+  TypeScript
+  [60,136](https://github.com/cline/cline/stargazers)
+  Apache-2.0
+  [6,129](https://github.com/cline/cline/forks)
+  [348](https://github.com/cline/cline/issues)
+  [(17 issues need help)](https://github.com/cline/cline/issues?q=label%3A%22Help+Wanted%22+is%3Aissue+is%3Aopen)
+  [324](https://github.com/cline/cline/pulls)
+  Updated Apr 10, 2026
+* [kanban](https://github.com/cline/kanban)
+  Public
+
+  Launch a local web app that runs CLI agents in parallel
+
+  [](https://github.com/cline/kanban/graphs/commit-activity)
+
+  [### Uh oh!](https://github.com/cline/kanban/graphs/commit-activity)
+
+  [There was an error while loading.](https://github.com/cline/kanban/graphs/commit-activity) Please reload this page.
+
+  cline/kanban’s past year of commit activity
+
+  TypeScript
+  [607](https://github.com/cline/kanban/stargazers)
+  Apache-2.0
+  [125](https://github.com/cline/kanban/forks)
+  [79](https://github.com/cline/kanban/issues)
+  [31](https://github.com/cline/kanban/pulls)
+  Updated Apr 10, 2026
+* [harbor](https://github.com/cline/harbor)
+  Public
+  Forked from
+  [harbor-framework/harbor](https://github.com/harbor-framework/harbor)
+
+  Harbor is a framework for running agent evaluations and creating and using RL environments.
+
+  [](https://github.com/cline/harbor/graphs/commit-activity)
+
+  [### Uh oh!](https://github.com/cline/harbor/graphs/commit-activity)
+
+  [There was an error while loading.](https://github.com/cline/harbor/graphs/commit-activity) Please reload this page.
+
+  cline/harbor’s past year of commit activity
+
+  Python
+  [1](https://github.com/cline/harbor/stargazers)
+  Apache-2.0
+  [892](https://github.com/cline/harbor/forks)
+  [0](https://github.com/cline/harbor/issues)
+  [0](https://github.com/cline/harbor/pulls)
+  Updated Mar 31, 2026
+* [cline-booth-demo](https://github.com/cline/cline-booth-demo)
+  Public
+
+  [](https://github.com/cline/cline-booth-demo/graphs/commit-activity)
+
+  [### Uh oh!](https://github.com/cline/cline-booth-demo/graphs/commit-activity)
+
+  [There was an error while loading.](https://github.com/cline/cline-booth-demo/graphs/commit-activity) Please reload this page.
+
+  cline/cline-booth-demo’s past year of commit activity
+
+  Shell
+  0
+  0
+  [0](https://github.com/cline/cline-booth-demo/issues)
+  [0](https://github.com/cline/cline-booth-demo/pulls)
+  Updated Mar 24, 2026
+* [sdk](https://github.com/cline/sdk)
+  Public
+
+  Cline SDK
+
+  [### Uh oh!](https://github.com/cline/sdk/graphs/commit-activity)
+
+  [There was an error while loading.](https://github.com/cline/sdk/graphs/commit-activity) Please reload this page.
+
+  cline/sdk’s past year of commit activity
+
+  [1](https://github.com/cline/sdk/stargazers)
+  0
+  [0](https://github.com/cline/sdk/issues)
+  [0](https://github.com/cline/sdk/pulls)
+  Updated Mar 18, 2026
+* [clinerules](https://github.com/cline/clinerules)
+  Public
+
+  Library of rules, skills, workflows, and AGENTS.md files from the Cline community
+
+  [](https://github.com/cline/clinerules/graphs/commit-activity)
+
+  [### Uh oh!](https://github.com/cline/clinerules/graphs/commit-activity)
+
+  [There was an error while loading.](https://github.com/cline/clinerules/graphs/commit-activity) Please reload this page.
+
+  cline/clinerules’s past year of commit activity
+
+  0
+  0
+  [0](https://github.com/cline/clinerules/issues)
+  [0](https://github.com/cline/clinerules/pulls)
+  Updated Feb 27, 2026
+* [prompts](https://github.com/cline/prompts)
+  Public
+
+  Library of prompts from the Cline community
+
+  [](https://github.com/cline/prompts/graphs/commit-activity) cline/prompts’s past year of commit activity
+
+  [1,126](https://github.com/cline/prompts/stargazers)
+  [237](https://github.com/cline/prompts/forks)
+  [2](https://github.com/cline/prompts/issues)
+  [4](https://github.com/cline/prompts/pulls)
+  Updated Feb 27, 2026
+* [openclaw](https://github.com/cline/openclaw)
+  Public
+  Forked from
+  [openclaw/openclaw](https://github.com/openclaw/openclaw)
+
+  Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞
+
+  [](https://github.com/cline/openclaw/graphs/commit-activity) cline/openclaw’s past year of commit activity
+
+  TypeScript
+  [5](https://github.com/cline/openclaw/stargazers)
+  MIT
+  [71,923](https://github.com/cline/openclaw/forks)
+  [0](https://github.com/cline/openclaw/issues)
+  [0](https://github.com/cline/openclaw/pulls)
+  Updated Feb 6, 2026
+* [homebrew-cline](https://github.com/cline/homebrew-cline)
+  Public
+
+  cline CLI homebrew tap
+
+  [](https://github.com/cline/homebrew-cline/graphs/commit-activity) cline/homebrew-cline’s past year of commit activity
+
+  Ruby
+  0
+  Apache-2.0
+  0
+  [0](https://github.com/cline/homebrew-cline/issues)
+  [0](https://github.com/cline/homebrew-cline/pulls)
+  Updated Feb 2, 2026
+* [cline-bench](https://github.com/cline/cline-bench)
+  Public
+
+  Real-world coding benchmarks derived from actual Cline user sessions. Tasks are challenging, verified, and represent genuine engineering problems solved in production.
+
+  [](https://github.com/cline/cline-bench/graphs/commit-activity) cline/cline-bench’s past year of commit activity
+
+  Python
+  [28](https://github.com/cline/cline-bench/stargazers)
+  0
+  [0](https://github.com/cline/cline-bench/issues)
+  [0](https://github.com/cline/cline-bench/pulls)
+  Updated Dec 11, 2025
+
+[View all repositories](https://github.com/orgs/cline/repositories?type=all)
+
+[#### People](https://github.com/orgs/cline/people)
+
+This organization has no public members. You must be a member to see who’s a part of this organization.
+
+#### Top languages
+
+[TypeScript](https://github.com/orgs/cline/repositories?language=typescript&type=all)
+[JavaScript](https://github.com/orgs/cline/repositories?language=javascript&type=all)
+[Python](https://github.com/orgs/cline/repositories?language=python&type=all)
+[Go](https://github.com/orgs/cline/repositories?language=go&type=all)
+[Shell](https://github.com/orgs/cline/repositories?language=shell&type=all)
+
+Footer
+------
+
+© 2026 GitHub, Inc.
+
+### Footer navigation
+
+* [Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)
+* [Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)
+* [Security](https://github.com/security)
+* [Status](https://www.githubstatus.com/)
+* [Community](https://github.community/)
+* [Docs](https://docs.github.com/)
+* [Contact](https://support.github.com?tags=dotcom-footer)
+* Manage cookies
+* Do not share my personal information
+
+
+
+You can’t perform that action at this time.
+
+# Reference
+- [221] [Cline](https://github.com/cline/)

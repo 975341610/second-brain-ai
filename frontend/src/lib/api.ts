@@ -187,4 +187,7 @@ export const api = {
     return `${API_BASE}/bgm/stream/${encodeURIComponent(filename)}`;
   },
   getSystemVersion: () => invoke<{ version: string; git_commit?: string; build_time?: string; executable?: string }>('system:version', '/system/version'),
+  checkHardware: () => invoke<{ compatible: boolean; memory_gb: number; cpu_count: number; os: string; message: string }>('ai:hardware-check', '/ai/hardware-check'),
+  getAIPluginStatus: () => invoke<{ enabled: boolean }>('ai:plugin-status', '/ai/plugin-status'),
+  updateAIPluginStatus: (enabled: boolean) => invoke<{ enabled: boolean }>('ai:plugin-status', '/ai/plugin-status', { method: 'POST', body: JSON.stringify({ enabled }) }),
 };

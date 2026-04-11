@@ -138,6 +138,7 @@ type AppState = {
   userAchievements: UserAchievement[];
   appStatus: AppStatus;
   bgm: BGMState;
+  aiPluginEnabled: boolean;
   setAppStatus: (status: AppStatus) => void;
   loadInitialData: () => Promise<void>;
   loadBgmTracks: () => Promise<void>;
@@ -180,6 +181,7 @@ type AppState = {
   deleteChatSession: (sessionId: string) => void;
   notify: (message: string) => void;
   clearToast: () => void;
+  setAIPluginEnabled: (enabled: boolean) => Promise<void>;
 };
 
 const defaultModelConfig: ModelConfig = {
@@ -218,6 +220,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     tracks: [],
     currentTrack: null,
   },
+  aiPluginEnabled: false,
   setAppStatus: (status) => set({ appStatus: status }),
   loadInitialData: async () => {
     // 优先从缓存加载，实现离线瞬间看到内容
@@ -244,7 +247,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         return { version: get().appVersion, git_commit: 'unknown', build_time: 'unknown', executable: 'unknown' };
       });
 
-      const [versionData, notes, notebooks, tasks, modelConfig, trash, userStats, userAchievements, bgmTracks] = await Promise.all([
+      const [versionData, notes, notebooks, tasks, modelConfig, trash, userStats, userAchievements, bgmTracks, aiPluginStatus] = await Promise.all([
         versionPromise,
         api.listNotes().catch(e => { console.warn('listNotes failed:', e); return get().notes; }),
         api.listNotebooks().catch(e => { console.warn('listNotebooks failed:', e); return get().notebooks; }),
@@ -254,6 +257,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         api.getUserStats().catch(e => { console.warn('getUserStats failed:', e); return get().userStats; }),
         api.listUserAchievements().catch(e => { console.warn('listUserAchievements failed:', e); return get().userAchievements; }),
         api.listBgm().catch(e => { console.warn('listBgm failed:', e); return []; }),
+        api.getAIPluginStatus().catch(e => { console.warn('getAIPluginStatus failed:', e); return { enabled: false }; }),
       ]);
 
       // 异步更新缓存（只有当获取到有效数据时才更新，防止空数据覆盖缓存）
@@ -282,6 +286,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         selectedNoteId: get().selectedNoteId || (notes && notes.length > 0 ? notes[0].id : null),
         assistant: latestAssistantFromSession(get().chatSessions.find((session) => session.id === get().activeChatSessionId)),
         bgm: { ...get().bgm, tracks: bgmTracks },
+        aiPluginEnabled: aiPluginStatus?.enabled ?? false,
         appStatus: 'READY'
       });
     } catch (error) {
@@ -829,4 +834,18 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
   notify: (message) => set({ toast: { id: Date.now(), tone: 'info', text: message } }),
   clearToast: () => set({ toast: null }),
+  setAIPluginEnabled: async (enabled) => {
+    try {
+      const res = await api.updateAIPluginStatus(enabled);
+      set({ aiPluginEnabled: res.enabled });
+      if (enabled) {
+        set({ toast: { id: Date.now(), tone: 'success', text: '🚀 本地 AI 引擎已启动！' } });
+      } else {
+        set({ toast: { id: Date.now(), tone: 'info', text: '本地 AI 引擎已关闭。' } });
+      }
+    } catch (error) {
+      set({ toast: { id: Date.now(), tone: 'error', text: `${error instanceof Error ? error.message : '开启失败'}` } });
+      throw error;
+    }
+  },
 }));
