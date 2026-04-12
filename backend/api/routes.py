@@ -584,7 +584,12 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
                     context=payload.context,
                     action=payload.action
                 ),
-                media_type="text/event-stream"
+                media_type="text/event-stream",
+                headers={
+                    "X-Accel-Buffering": "no",
+                    "Cache-Control": "no-cache",
+                    "Connection": "keep-alive"
+                }
             )
 
     model_config = await run_in_threadpool(get_or_create_model_config, db)

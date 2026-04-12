@@ -1,5 +1,15 @@
 # Development Log
 
+## [2026-04-12] - 修复本地 AI 流式输出、System Prompts 与停止符
+- [x] **实时流式输出修复**:
+  - 修复了 `backend/services/local_ai.py` 中 `generate_chat_stream_messages` 内部由于线程 `queue.get()` 阻塞导致的卡顿现象，改为非阻塞轮询加 `asyncio.sleep(0.01)`。
+  - 在 `backend/api/routes.py` 的 `inline_ai` 接口中，给 `StreamingResponse` 增加了 `X-Accel-Buffering: no`、`Cache-Control: no-cache`、`Connection: keep-alive` 头，彻底解决前端接收数据时的缓冲（憋大招）问题。
+- [x] **屏蔽系统标签泄漏**:
+  - 在 `backend/services/local_ai.py` 的 `self.llm.create_chat_completion` 调用中加入了 `stop=["<end_of_turn>", "</start_of_turn>", "<start_of_turn>", "<eos>"]`，防止底层模型的控制标签泄漏到用户界面。
+- [x] **修复复读机现象**:
+  - 优化了 `backend/services/local_ai.py` 中的 `system_prompts`，对 `continue`（续写）和 `rewrite`（重写）指令增加了强制约束（`CRITICAL: Do NOT repeat the input text...`），防止模型把上下文又复述一遍。
+
+
 ## [2026-04-12] - AI 编辑器指令增强与流式解析器优化
 - [x] **后端指令拦截与引导**:
   - 在 `backend/services/local_ai.py` 中增加了对用户 prompt 的拦截。
