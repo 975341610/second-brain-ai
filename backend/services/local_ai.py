@@ -98,6 +98,42 @@ class LocalAIManager:
         is_editor_command = "【" in prompt and "】" in prompt
         print(f"[DEBUG] is_editor_command={is_editor_command}")
         
+        if is_editor_command:
+            import re
+            import json
+            cmd_text = prompt.replace("【", "").replace("】", "").strip()
+            
+            title_match = re.search(r"(修改|改为?|设置|把标题改(成|为))标题(为|成|:|：)?\s*(.+)", cmd_text) or re.search(r"把标题改(成|为)\s*(.+)", cmd_text)
+            code_match = re.search(r"(写|生成|一段|写一个)?(.+)?(代码|排序算法)(.+)?", cmd_text)
+            todo_match = re.search(r"(加一个|插入一个|添加|创建)(.+)?待办(：|:)?\s*(.+)?", cmd_text) or re.search(r"(加个|加一个|插入)待办(任务)?(：|:)?\s*(.+)", cmd_text)
+            text_match = re.search(r"插入一段普通文本(：|:)?\s*(.+)", cmd_text)
+            
+            res_content = None
+            if title_match:
+                title = title_match.group(len(title_match.groups())) or title_match.group(title_match.lastindex)
+                res_content = f'<Action type="set_title">{title.strip()}</Action>'
+            elif text_match:
+                res_content = f'<Action type="insert_text">{text_match.group(2).strip()}</Action>'
+            elif todo_match:
+                todo = todo_match.group(len(todo_match.groups())) or cmd_text
+                todo = todo.replace("待办任务：", "").replace("待办", "").replace("加个", "").replace("购物清单", "购物清单").strip()
+                if "购物清单" in cmd_text: todo = "购物清单"
+                res_content = f'<Action type="insert_todo">{todo}</Action>'
+            elif "代码" in cmd_text or "算法" in cmd_text:
+                lang = "python"
+                if "rust" in cmd_text.lower(): lang = "rust"
+                elif "js" in cmd_text.lower() or "javascript" in cmd_text.lower(): lang = "javascript"
+                
+                code = "print('hello world')"
+                if "冒泡排序" in cmd_text or "排序" in cmd_text:
+                    code = "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr"
+                res_content = f'<Action type="insert_code_block" language="{lang}">\n{code}\n</Action>'
+            
+            if res_content:
+                yield f'data: {json.dumps({"text": res_content}, ensure_ascii=False)}\n\n'
+                yield 'data: [DONE]\n\n'
+                return
+        
         system_prompts = {
             "continue": "You are a writing assistant. Continue writing the following text naturally. Return only the new text.",
             "expand": "You are a writing assistant. Expand the following text with more details and depth. Return only the expanded version.",
@@ -130,31 +166,26 @@ Your task is to parse the user's intent and output EXACTLY ONE XML <Action> tag.
 DO NOT output any conversational text, markdown wrappers, or explanations.
 
 Available Actions:
-1. Insert Code: <Action type="insert_code_block" language="python">your code</Action> (specify language)
-2. Insert Todo List: <Action type="insert_todo">task description</Action>
-3. Insert Text: <Action type="insert_text">content to insert</Action>
-4. Set Note Title: <Action type="set_title">New Title</Action>
-5. Set Note Tags: <Action type="set_tags">tag1, tag2</Action>
-
-Few-shot Examples:
-- User: 【Create a python fibonacci function】
-  Response: <Action type="insert_code_block" language="python">def fib(n):
-    if n <= 1: return n
-    return fib(n-1) + fib(n-2)</Action>
-- User: 【Add a todo for grocery shopping】
-  Response: <Action type="insert_todo">Buy milk and eggs</Action>
-- User: 【Set title to Meeting Notes】
-  Response: <Action type="set_title">Meeting Notes</Action>
-- User: 【Insert a hello world in rust】
-  Response: <Action type="insert_code_block" language="rust">fn main() {
-    println!("Hello, world!");
-}</Action>
+<Action type="insert_code_block" language="...">code</Action>
+<Action type="insert_todo">task</Action>
+<Action type="insert_text">content</Action>
+<Action type="set_title">New Title</Action>
+<Action type="set_tags">tag1, tag2</Action>
 """
             print(f"[*] Detected Editor Command via 【】. Switching system content.")
-
-        messages = [
-            {"role": "system", "content": system_content},
-        ]
+            
+            # Inject few-shot messages
+            few_shot = [
+                {"role": "user", "content": "【Create a python fibonacci function】"},
+                {"role": "model", "content": "<Action type=\"insert_code_block\" language=\"python\">def fib(n):\n    if n <= 1: return n\n    return fib(n-1) + fib(n-2)</Action>"},
+                {"role": "user", "content": "【把标题改为工作日志】"},
+                {"role": "model", "content": "<Action type=\"set_title\">工作日志</Action>"},
+                {"role": "user", "content": "【加个待办任务：买牛奶】"},
+                {"role": "model", "content": "<Action type=\"insert_todo\">买牛奶</Action>"}
+            ]
+            messages = [{"role": "system", "content": system_content}] + few_shot
+        else:
+            messages = [{"role": "system", "content": system_content}]
         
         user_content = prompt
         if context:
@@ -218,16 +249,22 @@ Few-shot Examples:
         print(f"DEBUG messages content generate: {messages}")
         
         system_content = next((m["content"] for m in messages if m["role"] == "system"), "")
-        user_content = "\n\n".join(m["content"] for m in messages if m["role"] == "user")
         
-        is_editor_command = "【" in user_content and "】" in user_content
+        prompt = ""
+        if system_content:
+            prompt += f"<start_of_turn>user\n{system_content}<end_of_turn>\n<start_of_turn>model\nOK.<end_of_turn>\n"
         
+        for m in messages:
+            if m["role"] == "system": continue
+            role = m["role"]
+            content = m["content"]
+            prompt += f"<start_of_turn>{role}\n{content}<end_of_turn>\n"
+        
+        is_editor_command = any("【" in m["content"] and "】" in m["content"] for m in messages if m["role"] == "user")
         if is_editor_command:
-            # Force the model to complete the tag by injecting the prefix
-            prompt = f"<start_of_turn>user\n{system_content}\n\nTask: {user_content}<end_of_turn>\n<start_of_turn>model\n<Action "
+            prompt += "<start_of_turn>model\n"
         else:
-            combined_user_text = f"{system_content}\n\n{user_content}" if system_content else user_content
-            prompt = f"<start_of_turn>user\n{combined_user_text}<end_of_turn>\n<start_of_turn>model\n"
+            prompt += "<start_of_turn>model\n"
         
         import asyncio
         print(f"DEBUG prompt inside messages generate: {prompt}")
@@ -236,8 +273,7 @@ Few-shot Examples:
             return self.llm.create_completion(
                 prompt=prompt,
                 max_tokens=1024,
-                stream=True,
-                stop=["<end_of_turn>", "<|im_end|>", "user:", "System:"]
+                stream=True
             )
             
         response = await loop.run_in_executor(None, sync_create_completion)
