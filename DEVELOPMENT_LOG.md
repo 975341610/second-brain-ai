@@ -1,13 +1,23 @@
 # Development Log
 
-## [2026-04-12] - AI Editor Interaction & Command Stream Parser
-- [x] **Backend Prompt Update**: Updated `backend/services/local_ai.py` to instruct Gemma-4-E2B to output structured XML-like commands (e.g., `<Action type="set_title">Title</Action>`) for editor integration.
-- [x] **Frontend Stream Command Parser**: Implemented a buffering logic in `NovaBlockEditor.tsx` within the `streamInlineAI` call to intercept and parse `<Action>` tags from the SSE stream.
-- [x] **Action Interceptor**: Action commands are now extracted from the text stream and dispatched via a custom `ai-action` event, ensuring they are not rendered as plain text in the editor.
-- [x] **Automated Title & Tag Updates**:
-  - `set_title`: Automatically updates the note's H1 title and metadata when the AI generates a title suggestion.
-  - `set_tags`: Automatically parses and updates the note's tags based on AI-generated categories.
-- [x] **Robustness**: The parser handles fragmented XML tags across multiple SSE chunks and ensures UI performance is not blocked during complex action executions.
+## [2026-04-12] - AI 编辑器指令增强与流式解析器优化
+- [x] **后端指令拦截与引导**:
+  - 在 `backend/services/local_ai.py` 中增加了对用户 prompt 的拦截。
+  - 当检测到用户使用 `【】` 包裹文本时，自动注入强制性的 System Prompt，要求 AI 必须且只能输出 XML `<Action>` 标签。
+  - 丰富了 Action 列表，新增支持 `insert_code_block` (带语言属性)、`insert_todo` 和 `insert_text`。
+- [x] **前端流式解析器重构**:
+  - 在 `NovaBlockEditor.tsx` 中重构了 `Stream Command Parser`。
+  - 引入了基于正则的全局匹配与缓冲区 (`streamBuffer`) 机制，能够稳健地处理跨 SSE 数据块的 XML 标签。
+  - 增强了对带属性标签（如 `<Action type="..." language="...">`）的解析能力。
+  - 实现了普通文本与 Action 标签的交替解析处理，确保 Action 标签不会作为普通文本插入编辑器。
+- [x] **编辑器 Action 处理器扩展**:
+  - 扩展了 `handleAIAction` 逻辑，支持：
+    - `insert_code_block`: 在当前光标处插入 Tiptap 代码块，并自动设置语法高亮语言。
+    - `insert_todo`: 插入带选框的待办事项。
+    - `insert_text`: 插入 AI 生成的普通文本内容。
+- [x] **鲁棒性与性能**:
+  - 解决了之前流式解析可能因为标签被截断而失效的问题。
+  - 优化了缓冲区清理逻辑，防止非法标签残留干扰后续解析。
 
 ## [2026-04-12] - Local AI Inference Fixes & Web Search Integration
 - [x] Fix local AI fallback failure (`AI Config missing` error) when plugin is enabled.

@@ -56,46 +56,49 @@ const NOVA_BLOCK_SLASH_ITEMS = [
       try {
         const { api } = await import('../../lib/api');
         
-        let actionBuffer = '';
-        let isInsideAction = false;
+        let streamBuffer = '';
         
         await api.streamInlineAI(
           { prompt, context: editor.getText(), action: 'ask' },
           (chunk: string) => {
-            // 指令流拦截器逻辑 (Stream Command Parser)
-            let textToInsert = '';
-            for (let i = 0; i < chunk.length; i++) {
-              const char = chunk[i];
+            // 指令流拦截器逻辑 (Stream Command Parser) - 增强鲁棒性
+            streamBuffer += chunk;
+            
+            let lastProcessedIndex = 0;
+            
+            // 使用正则匹配完整的 <Action ...>...</Action>
+            // g 标志允许全局匹配，我们按顺序处理
+            const actionRegex = /<Action\s+type="([^"]+)"(?:\s+language="([^"]+)")?>([\s\S]*?)<\/Action>/g;
+            let match;
+            
+            while ((match = actionRegex.exec(streamBuffer)) !== null) {
+              const matchIndex = match.index;
               
-              if (char === '<' && chunk.slice(i, i + 8) === '<Action ') {
-                isInsideAction = true;
-                actionBuffer = '<';
-                continue;
-              }
-              
-              if (isInsideAction) {
-                actionBuffer += char;
-                if (char === '>' && actionBuffer.endsWith('</Action>')) {
-                  // 匹配完整 Action
-                  const match = actionBuffer.match(/<Action type="([^"]+)">([\s\S]*?)<\/Action>/);
-                  if (match) {
-                    const [, type, value] = match;
-                    console.log(`[AI Action] ${type}: ${value}`);
-                    // 触发外部定义的 Action 处理逻辑
-                    window.dispatchEvent(new CustomEvent('ai-action', { detail: { type, value } }));
-                  }
-                  actionBuffer = '';
-                  isInsideAction = false;
+              // 1. 处理 Action 之前的普通文本
+              const textBefore = streamBuffer.slice(lastProcessedIndex, matchIndex);
+              if (textBefore.trim()) {
+                // 移除任何未闭合的标签残留，防止干扰
+                const cleanText = textBefore.replace(/<Action[^>]*$/g, '');
+                if (cleanText) {
+                  editor.chain().focus().insertContent(cleanText).run();
                 }
-                continue;
               }
               
-              // 只有不在 Action 内部的内容才插入编辑器
-              textToInsert += char;
+              // 2. 处理 Action
+              const [, type, language, value] = match;
+              console.log(`[AI Action] ${type} (lang=${language}): ${value}`);
+              window.dispatchEvent(new CustomEvent('ai-action', { detail: { type, value, attrs: { language } } }));
+              
+              lastProcessedIndex = actionRegex.lastIndex;
             }
             
-            if (textToInsert) {
-              editor.chain().focus().insertContent(textToInsert).run();
+            // 3. 更新 buffer，保留未处理的部分（可能是半截标签）
+            streamBuffer = streamBuffer.slice(lastProcessedIndex);
+            
+            // 4. 如果 buffer 中不包含 '<'，说明是纯文本，可以直接插入并清空 buffer
+            if (streamBuffer.length > 0 && !streamBuffer.includes('<')) {
+              editor.chain().focus().insertContent(streamBuffer).run();
+              streamBuffer = '';
             }
           }
         );
@@ -298,7 +301,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     window.addEventListener('open-emoticon-panel', handleOpenEmoticon);
 
     const handleAIAction = (e: any) => {
-      const { type, value } = e.detail;
+      const { type, value, attrs } = e.detail;
       if (type === 'set_title') {
         const newTitle = value.trim();
         if (newTitle) {
@@ -318,6 +321,29 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
             onSave(payload);
             latestNoteRef.current = payload;
           }
+        }
+      } else if (type === 'insert_code_block') {
+        if (editor) {
+          editor.chain().focus().insertContent({
+            type: 'codeBlock',
+            attrs: { language: attrs?.language || 'plain' },
+            content: [{ type: 'text', text: value }]
+          }).run();
+        }
+      } else if (type === 'insert_todo') {
+        if (editor) {
+          editor.chain().focus().insertContent({
+            type: 'taskList',
+            content: [{
+              type: 'taskItem',
+              attrs: { checked: false },
+              content: [{ type: 'paragraph', content: [{ type: 'text', text: value }] }]
+            }]
+          }).run();
+        }
+      } else if (type === 'insert_text') {
+        if (editor) {
+          editor.chain().focus().insertContent(value).run();
         }
       }
     };

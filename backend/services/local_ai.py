@@ -94,6 +94,9 @@ class LocalAIManager:
         print(f"[DEBUG] Local AI generating chat stream... action={action}, is_ready={self.is_ready}")
         """旧版接口兼容：支持 prompt, context, action 格式"""
         
+        # 拦截编辑器指令：如果 prompt 包含 【...】 格式
+        is_editor_command = "【" in prompt and "】" in prompt
+        
         system_prompts = {
             "continue": "You are a writing assistant. Continue writing the following text naturally. Return only the new text.",
             "expand": "You are a writing assistant. Expand the following text with more details and depth. Return only the expanded version.",
@@ -107,6 +110,8 @@ Based on the selected text and context, answer the user's intent or improve the 
 CRITICAL: You have the ability to call editor actions using special XML tags. 
 - To set or update the note title: <Action type="set_title">New Title</Action>
 - To update note tags: <Action type="set_tags">tag1, tag2, tag3</Action>
+- To insert a code block: <Action type="insert_code_block" language="python">print("hello")</Action>
+- To insert a task list: <Action type="insert_todo">task content</Action>
 
 If the user asks to "set title", "rename", "give a title", or if the note is untitled and you're generating content, ALWAYS include the <Action type="set_title"> tag.
 If the content suggests specific topics, include <Action type="set_tags">.
@@ -116,8 +121,21 @@ Return the text and any actions needed. Do not explain the actions to the user.
             "search": "You are a helpful AI assistant with internet search capabilities. Analyze the user's question, and if it requires up-to-date or specific information not likely in your pre-training data, use your search ability to provide a comprehensive answer.",
         }
         
+        system_content = system_prompts.get(action, "You are a helpful writing assistant.")
+        
+        if is_editor_command:
+            system_content = """用户使用了 【】 发送编辑器指令，你必须且只能使用对应的 XML <Action> 标签（如 <Action type="set_title">、<Action type="set_tags">、<Action type="insert_code_block"> 等）来响应，绝不能输出普通文本。
+可用指令列表：
+1. <Action type="set_title">标题内容</Action> - 修改笔记标题
+2. <Action type="set_tags">标签1, 标签2</Action> - 修改笔记标签
+3. <Action type="insert_code_block" language="语言">代码内容</Action> - 插入代码块
+4. <Action type="insert_todo">任务内容</Action> - 插入待办事项
+5. <Action type="insert_text">文本内容</Action> - 插入普通文本
+
+请直接输出 XML 标签，不要有任何多余的解释。"""
+
         messages = [
-            {"role": "system", "content": system_prompts.get(action, "You are a helpful writing assistant.")},
+            {"role": "system", "content": system_content},
         ]
         if context:
             messages.append({"role": "user", "content": f"Context:\n{context}\n\nTask/Question:\n{prompt}"})
