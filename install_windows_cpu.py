@@ -4,13 +4,12 @@ import os
 
 def install_llama_cpp():
     print("[*] Installing llama-cpp-python for Windows CPU...")
-    # Using the official pre-compiled wheels for Windows CPU
-    # Source: https://abetlen.github.io/llama-cpp-python/whl/cpu
-    whl_source = "https://abetlen.github.io/llama-cpp-python/whl/cpu"
+    # Using the official pre-compiled wheels for Windows CPU (pinning to 0.3.19 to avoid source build)
+    # Source: https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.19/llama_cpp_python-0.3.19-cp311-cp311-win_amd64.whl
+    whl_url = "https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.19/llama_cpp_python-0.3.19-cp311-cp311-win_amd64.whl"
     
     command = [
-        sys.executable, "-m", "pip", "install", "llama-cpp-python",
-        "--extra-index-url", whl_source,
+        sys.executable, "-m", "pip", "install", whl_url,
         "--force-reinstall", "--no-cache-dir"
     ]
     

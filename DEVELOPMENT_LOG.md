@@ -1,5 +1,10 @@
 # Development Log
 
+## [2026-04-12] - 修复 llama-cpp-python Windows CPU 安装版本冲突 (0.3.19 Pinned)
+- [x] **锁定版本与直连安装**:
+  - 由于 `llama-cpp-python` 官方 pre-built cpu wheel 目前仅更新至 `0.3.19`，而 PyPI 已有 `0.3.20+`，导致 pip 在默认安装时会尝试从源码编译最新版从而触发 CMake 缺失错误。
+  - 修改 `install_windows_cpu.bat` 和 `install_windows_cpu.py`，直接指定 `v0.3.19` 的 Windows cp311 wheel 直链进行安装，确保 CPU 环境下的稳定性和免编译特性。
+
 
 ## [2026-04-12] - 解决 llama-cpp-python Windows CPU 免编译安装问题
 - [x] **Windows CPU 安装脚本**:
