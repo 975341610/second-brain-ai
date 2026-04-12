@@ -68,11 +68,12 @@ class LocalAIManager:
                     if resp.status_code != 200:
                         return False
                     
-                    # 检查模型是否已存在 (避免重复创建)
+                    # 检查模型是否已存在 (避免重复创建，但考虑到模板可能更新，我们可以根据配置决定是否强制覆盖)
                     models_data = resp.json().get("models", [])
-                    if any(m.get("name") == f"{model_name}:latest" or m.get("name") == model_name for m in models_data):
-                        print(f"[*] Local model '{model_name}' is already registered in Ollama.")
-                        return True
+                    # 暂时注释掉直接返回 True 的逻辑，确保新的 Modelfile(携带模板) 能够生效覆盖旧模型
+                    # if any(m.get("name") == f"{model_name}:latest" or m.get("name") == model_name for m in models_data):
+                    #    print(f"[*] Local model '{model_name}' is already registered in Ollama.")
+                    #    return True
                 except Exception as e:
                     print(f"[!] Ollama not reachable: {e}")
                     return False
@@ -82,10 +83,21 @@ class LocalAIManager:
             # 注意: Windows 下 tempfile 可能有权限问题, 这里用简单的 context manager
             fd, modelfile_path = tempfile.mkstemp(suffix='.modelfile')
             try:
-                with os.fdopen(fd, 'w') as f:
+                with os.fdopen(fd, 'w', encoding='utf-8') as f:
                     # 路径转义，Windows 路径在 Modelfile 中需使用正斜杠
                     abs_path = str(self.model_path.absolute()).replace("\\", "/")
                     f.write(f'FROM "{abs_path}"\n')
+                    # 为 Gemma 模型配置必须的模板和停止词，防止无限重复循环输出
+                    f.write('TEMPLATE """<start_of_turn>user\n')
+                    f.write('{{ if .System }}{{ .System }}\n')
+                    f.write('{{ end }}{{ .Prompt }}<end_of_turn>\n')
+                    f.write('<start_of_turn>model\n')
+                    f.write('{{ .Response }}<end_of_turn>\n')
+                    f.write('"""\n')
+                    f.write('PARAMETER stop "<end_of_turn>"\n')
+                    f.write('PARAMETER stop "<eos>"\n')
+                    f.write('PARAMETER temperature 0.7\n')
+                    f.write('PARAMETER top_p 0.9\n')
                 
                 # 寻找内置的 ollama.exe
                 base_dir = Path(__file__).resolve().parent.parent.parent

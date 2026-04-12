@@ -1051,3 +1051,13 @@ Fixed Flip Clock animation pure CSS
 - **更正升级版本号**:
   - 发现前一次热更新中将目标版本号误写为了 `v0.5.7`（2024年的老版本），导致升级后依然无法识别 `gemma4` 架构。
   - 现已在 `ensure_ollama.py` 中将目标版本更正为最新的 `v0.20.5`（支持最新的 Gemma 4 及相关指令集）。用户再次运行 `start_windows.bat` 将自动拉取并应用真正的最新版引擎，彻底解决模型加载失败（`unknown model architecture: 'gemma4'`）的问题。
+## [2026-04-12] - 修复 AI 流式输出和无限循环 Bug (Phase 4)
+
+### Bug 原因分析
+- 之前的 Fallback 引擎 (Ollama) 在导入 `.gguf` 模型时，未提供对应的 `Modelfile` 模板 (`TEMPLATE`) 和停止词 (`stop words`)。
+- 当 AI 没有停止词 (`<end_of_turn>`, `<eos>`) 时，它不知道自己在何处应当停止生成，因此会不断重复提示词，陷入无限循环输出。
+- 因为这个无限重复循环包含了用户原样输入的 `Context: 快速测试...`，打破了预期的 XML `<Action>` 输出格式，导致前端只能原样流式输出文字，而未能识别成插入代码块操作。
+
+### 核心修复
+- **配置 Modelfile 模板与停止词**: 在 `nova_repo/backend/services/local_ai.py` 中生成 Modelfile 时，针对 Gemma 4 模型显式追加了完整的 `TEMPLATE` 以及 `PARAMETER stop "<end_of_turn>"`。
+- **强制覆盖旧模型**: 暂时移除了启动时“如果模型存在就跳过”的逻辑，确保在下一次启动时强制使用带模板的 Modelfile 重新生成并覆盖旧的 `nova-local` 模型。
