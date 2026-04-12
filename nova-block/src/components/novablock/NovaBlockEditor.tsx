@@ -253,7 +253,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     Emoticon,
     SliderExtension,
     TextEffect,
-    AISpellcheck.configure({ debounceMs: 2500 }),
+    AISpellcheck.configure({ debounceMs: 800 }),
     NoteLink.configure({ suggestion: getNoteLinkSuggestionConfig() }),
     SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
   ], []);

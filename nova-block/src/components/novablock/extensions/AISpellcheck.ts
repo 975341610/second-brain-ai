@@ -20,6 +20,51 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
     return {
       errors: [] as Array<{ word: string; suggestion: string; reason: string; from: number; to: number }>,
       isChecking: false,
+      runCheck: async (view: any, startPos: number, text: string) => {
+        this.storage.isChecking = true;
+        try {
+          const result = await api.spellcheck(text);
+          const errors = result.errors || [];
+          
+          const mappedErrors: any[] = [];
+          const decorations: Decoration[] = [];
+          
+          // Use a better way to find the actual position of words to avoid mismatches
+          let lastIndex = 0;
+          errors.forEach(err => {
+            const index = text.indexOf(err.word, lastIndex);
+            if (index !== -1) {
+              const from = startPos + 1 + index;
+              const to = from + err.word.length;
+              
+              mappedErrors.push({ ...err, from, to });
+              decorations.push(
+                Decoration.inline(from, to, {
+                  class: 'ai-spellcheck-error',
+                  style: 'text-decoration: underline wavy red; cursor: pointer;',
+                })
+              );
+              lastIndex = index + err.word.length;
+            }
+          });
+          
+          this.storage.errors = mappedErrors;
+          
+          // Dispatch transaction to update decorations
+          const tr = view.state.tr;
+          const pluginKey = new PluginKey('ai-spellcheck-plugin');
+          tr.setMeta(pluginKey, { 
+            type: 'setDecorations', 
+            decorations: DecorationSet.create(tr.doc, decorations) 
+          });
+          view.dispatch(tr);
+          
+        } catch (e) {
+          console.error('Spellcheck failed:', e);
+        } finally {
+          this.storage.isChecking = false;
+        }
+      }
     };
   },
 
@@ -54,6 +99,20 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
             return spellcheckPluginKey.getState(state);
           },
           handleDOMEvents: {
+            compositionend: (view, event) => {
+              // Trigger spellcheck immediately when Chinese input method completion
+              const { selection } = view.state;
+              const $pos = selection.$from;
+              const node = $pos.parent;
+              
+              if (node.type.name === 'paragraph' && node.textContent.trim()) {
+                // We use a small delay to let the DOM update before reading content
+                setTimeout(() => {
+                  this.storage.runCheck(view, $pos.before(), node.textContent);
+                }, 50);
+              }
+              return false;
+            },
             mouseover: (view, event) => {
               const pos = view.posAtCoords({ left: event.clientX, top: event.clientY });
               if (!pos) return false;
@@ -119,48 +178,7 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
                 // Only check if it's a paragraph and has content
                 if (node.type.name !== 'paragraph' || !node.textContent.trim()) return;
                 
-                const startPos = $pos.before();
-                const text = node.textContent;
-                
-                storage.isChecking = true;
-                try {
-                  const result = await api.spellcheck(text);
-                  const errors = result.errors || [];
-                  
-                  const mappedErrors: any[] = [];
-                  const decorations: Decoration[] = [];
-                  
-                  errors.forEach(err => {
-                    const index = text.indexOf(err.word);
-                    if (index !== -1) {
-                      const from = startPos + 1 + index;
-                      const to = from + err.word.length;
-                      
-                      mappedErrors.push({ ...err, from, to });
-                      decorations.push(
-                        Decoration.inline(from, to, {
-                          class: 'ai-spellcheck-error',
-                          style: 'text-decoration: underline wavy red; cursor: pointer;',
-                        })
-                      );
-                    }
-                  });
-                  
-                  storage.errors = mappedErrors;
-                  
-                  // Dispatch transaction to update decorations
-                  const tr = view.state.tr;
-                  tr.setMeta(spellcheckPluginKey, { 
-                    type: 'setDecorations', 
-                    decorations: DecorationSet.create(tr.doc, decorations) 
-                  });
-                  view.dispatch(tr);
-                  
-                } catch (e) {
-                  console.error('Spellcheck failed:', e);
-                } finally {
-                  storage.isChecking = false;
-                }
+                await storage.runCheck(view, $pos.before(), node.textContent);
               }, options.debounceMs);
             },
             destroy: () => {
