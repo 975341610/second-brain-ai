@@ -461,48 +461,51 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
             }
             streamBuffer += chunk;
             
-            // 扫描并处理完整的 <Action> 标签
-            const scanAndExecute = () => {
-              const startTag = '<Action';
-              const endTag = '</Action>';
+            // 循环处理 buffer
+            const processBuffer = () => {
+              // 1. 寻找 <Action 标签的开始
+              const actionStart = streamBuffer.toLowerCase().indexOf('<action');
               
-              const startIndex = streamBuffer.toLowerCase().indexOf(startTag.toLowerCase());
-              
-              if (startIndex === -1) {
-                // 如果没找到 <Action，我们需要确定 buffer 中是否有“潜在”的标签开始（如 "<" 或 "<A"）
+              if (actionStart === -1) {
+                // 没找到 <action，但可能 buffer 末尾有部分匹配，比如 "<ac"
+                // 我们需要保留末尾可能匹配 <action 的部分，其余全部输出
                 const lastBracket = streamBuffer.lastIndexOf('<');
                 if (lastBracket !== -1) {
-                  // 如果有 <，只保留从 < 开始的部分，前面的全部插入
-                  const textBefore = streamBuffer.slice(0, lastBracket);
-                  if (textBefore) {
-                    editor.chain().focus().insertContent(textBefore).run();
-                  }
-                  streamBuffer = streamBuffer.slice(lastBracket);
+                  // 如果有 <，检查从它开始的部分是否可能是 <action 的前缀
+                  const potential = streamBuffer.slice(lastBracket).toLowerCase();
+                  const target = '<action';
                   
-                  // 如果保留的部分已经明确不是 <Action 的前缀，则全部插入
-                  // 比如 "<p" 或 "<div"
-                  const lowerBuffer = streamBuffer.toLowerCase();
-                  if (!startTag.toLowerCase().startsWith(lowerBuffer)) {
+                  if (target.startsWith(potential)) {
+                    // 是前缀，输出 < 之前的所有内容，保留 < 及其后的部分
+                    const before = streamBuffer.slice(0, lastBracket);
+                    if (before) editor.chain().focus().insertContent(before).run();
+                    streamBuffer = streamBuffer.slice(lastBracket);
+                    return; // 等待下一块
+                  } else {
+                    // 不是前缀，直接全部输出
                     editor.chain().focus().insertContent(streamBuffer).run();
                     streamBuffer = '';
                   }
                 } else {
-                  // 完全没有 <，直接全部插入
+                  // 完全没找到 <，全部输出
                   editor.chain().focus().insertContent(streamBuffer).run();
                   streamBuffer = '';
                 }
               } else {
-                // 找到了 <Action，处理它之前的所有文本
-                if (startIndex > 0) {
-                  const textBefore = streamBuffer.slice(0, startIndex);
-                  editor.chain().focus().insertContent(textBefore).run();
-                  streamBuffer = streamBuffer.slice(startIndex);
+                // 找到了 <action 开始位置
+                // 首先输出 <action 之前的所有文本
+                if (actionStart > 0) {
+                  const before = streamBuffer.slice(0, actionStart);
+                  editor.chain().focus().insertContent(before).run();
+                  streamBuffer = streamBuffer.slice(actionStart);
                 }
                 
-                // 此时 streamBuffer 以 <Action 开头，寻找结束标签
-                const endIndex = streamBuffer.toLowerCase().indexOf(endTag.toLowerCase());
-                if (endIndex !== -1) {
-                  const fullTag = streamBuffer.slice(0, endIndex + endTag.length);
+                // 现在 streamBuffer 以 <action 开头
+                // 寻找对应的结束标签 </action>
+                const actionEnd = streamBuffer.toLowerCase().indexOf('</action>');
+                if (actionEnd !== -1) {
+                  // 找到了完整的标签
+                  const fullTag = streamBuffer.slice(0, actionEnd + 9);
                   const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>([\s\S]*?)<\/Action>/i.exec(fullTag);
                   
                   if (match) {
@@ -511,19 +514,29 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
                       detail: { type, value: value.trim(), attrs: { language } } 
                     }));
                   } else {
-                    // 匹配失败，作为普通文本
+                    // 如果正则匹配失败（标签格式不对），直接作为文本输出
                     editor.chain().focus().insertContent(fullTag).run();
                   }
                   
-                  streamBuffer = streamBuffer.slice(endIndex + endTag.length);
-                  scanAndExecute(); // 继续扫描
+                  // 移除已处理的部分并继续循环
+                  streamBuffer = streamBuffer.slice(actionEnd + 9);
+                  processBuffer();
+                } else {
+                  // 标签没结束，等待更多数据
+                  return;
                 }
               }
             };
 
-            scanAndExecute();
+            processBuffer();
           }
         );
+        
+        // 最后冲刷 buffer 中剩余的所有内容（比如未闭合的标签）
+        if (streamBuffer) {
+          editor.chain().focus().insertContent(streamBuffer).run();
+          streamBuffer = '';
+        }
       } catch (err: any) {
         console.error(err);
         setIsAILoading(false);

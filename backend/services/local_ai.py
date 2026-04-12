@@ -349,12 +349,18 @@ Available Actions:
                 response = self.llm.create_completion(
                     prompt=prompt,
                     max_tokens=1024,
-                    stream=True
+                    stream=True,
+                    stop=["<end_of_turn>", "<start_of_turn>", "<eos>", "<|endoftext|>"]
                 )
                 for chunk in response:
                     text = chunk["choices"][0]["text"]
                     if text:
-                        queue.put(text)
+                        # Even with stop tokens, sometimes models leak them at the very end
+                        # or if they were already in the context. We keep a light cleanup but
+                        # stop tokens handle the core issue.
+                        text = text.replace("<end_of_turn>", "").replace("</start_of_turn>", "").replace("<start_of_turn>", "")
+                        if text:
+                            queue.put(text)
             except Exception as e:
                 queue.put(f"\n[Error: {str(e)}]")
             finally:

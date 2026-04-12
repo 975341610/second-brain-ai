@@ -110,7 +110,7 @@ import platform
 import psutil
 
 # AI 插件状态全局变量
-ai_enabled = False
+ai_enabled = True
 
 def extract_manual_links(content: str) -> list[int]:
     """
@@ -574,6 +574,8 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
         from backend.services.local_ai import local_ai_manager
         logging.warning(f"[DEBUG] inline_ai local_ai_manager id: {id(local_ai_manager)}")
         logging.warning(f"[DEBUG] local_ai_manager.is_ready={local_ai_manager.is_ready}")
+        if not local_ai_manager.is_ready:
+            await local_ai_manager.initialize_model()
         if local_ai_manager.is_ready:
             # We pass the full messages so the system prompt can be properly injected
             return StreamingResponse(
