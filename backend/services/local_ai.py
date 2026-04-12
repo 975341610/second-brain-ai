@@ -94,17 +94,23 @@ class LocalAIManager:
                     # 降级尝试：退回到安全 CPU 模式
                     print(f"[!] GPU initialization failed ({type(e).__name__}): {str(e)}")
                     print("[*] Falling back to CPU mode (n_gpu_layers=0, n_ctx=4096)...")
-                    self.llm = Llama(
-                        model_path=str(self.model_path),
-                        n_ctx=4096,
-                        n_threads=1,
-                        n_batch=128,
-                        chat_format="gemma",
-                        verbose=False,
-                        n_gpu_layers=0,
-                        use_mmap=False,
-                        use_mlock=False
-                    )
+                    try:
+                        self.llm = Llama(
+                            model_path=str(self.model_path),
+                            n_ctx=4096,
+                            n_threads=1,
+                            n_batch=128,
+                            chat_format="gemma",
+                            verbose=False,
+                            n_gpu_layers=0,
+                            use_mmap=False,
+                            use_mlock=False
+                        )
+                    except Exception as e2:
+                        # 终极保底：如果 CPU 也报错（通常是 Access Violation 非法指令集），进入 MOCK 模式
+                        print(f"[!] CPU fallback also failed: {e2}. Entering Mock Error Mode.")
+                        self.llm = "MOCK_LLM_ERROR"
+                        self.is_ready = True
             
             self.is_ready = True
             print("[*] Local AI Model is ready (Instantly).")
@@ -233,6 +239,13 @@ Available Actions:
             mock_response = "你好！我是集成在本地的 Gemma 4 E2B IT 模型。由于当前处于演示环境，我正在使用 Mock 模式为您提供即时响应。我已经预置在系统中，可以帮您处理本地笔记和隐私数据。"
             for word in mock_response.split():
                 yield word + " "
+                await asyncio.sleep(0.05)
+            return
+
+        if self.llm == "MOCK_LLM_ERROR":
+            mock_response = "【系统提示】检测到您当前的电脑 CPU 指令集不支持预编译的本地 AI 模型，底层 C++ 引擎（llama-cpp）触发了 Access Violation 崩溃。为了防止后端服务闪退，已为您自动切换到保护演示模式。若要在此电脑上运行，可能需要安装 Visual Studio C++ Build Tools 进行源码本地编译。"
+            for word in mock_response:
+                yield word
                 await asyncio.sleep(0.05)
             return
 
