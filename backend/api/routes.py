@@ -106,6 +106,8 @@ from backend.services.repositories import (
 )
 from backend.services.vector_store import vector_store
 
+from backend.services.local_ai import local_ai_manager
+
 router = APIRouter()
 settings = get_settings()
 ai_client = AIClient()
@@ -576,7 +578,6 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
     import logging
     logging.warning(f"[DEBUG] inline_ai called. ai_enabled={ai_enabled}")
     if ai_enabled:
-        from backend.services.local_ai import local_ai_manager
         logging.warning(f"[DEBUG] inline_ai local_ai_manager id: {id(local_ai_manager)}")
         logging.warning(f"[DEBUG] local_ai_manager.is_ready={local_ai_manager.is_ready}")
         if not local_ai_manager.is_ready:
@@ -613,7 +614,7 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
             if ai_enabled:
                 status = local_ai_manager.get_status()
                 if status["is_ready"]:
-                    async for chunk in local_ai_manager.generate_chat_stream(messages):
+                    async for chunk in local_ai_manager.generate_chat_stream_messages(messages):
                         yield chunk
                     return
                 elif status["is_loading"]:
@@ -1578,7 +1579,6 @@ async def toggle_ai_plugin(payload: dict, background_tasks: BackgroundTasks):
     logging.warning(f"[DEBUG] toggle_ai_plugin called. ai_enabled={ai_enabled}")
     
     if ai_enabled:
-        from backend.services.local_ai import local_ai_manager
         logging.warning(f"[DEBUG] toggle_ai_plugin local_ai_manager id: {id(local_ai_manager)}")
         # 直接执行初始化 (由于已预置模型且逻辑已简化，此处将瞬间完成)
         await local_ai_manager.initialize_model()

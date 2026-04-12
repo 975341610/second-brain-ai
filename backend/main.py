@@ -26,6 +26,7 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy import inspect, text
 
 from backend.api.routes import router
+from backend.services.local_ai import local_ai_manager
 from backend.config import get_settings, resource_root, runtime_root
 from backend.database import Base, SessionLocal, engine
 from backend.sample_data import seed_database, seed_files
