@@ -20,8 +20,8 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
     return {
       errors: [] as Array<{ word: string; suggestion: string; reason: string; from: number; to: number }>,
       isChecking: false,
-      runCheck: async (view: any, startPos: number, text: string) => {
-        this.storage.isChecking = true;
+      async runCheck(view: any, startPos: number, text: string) {
+        this.isChecking = true;
         try {
           const result = await api.spellcheck(text);
           const errors = result.errors || [];
@@ -48,7 +48,7 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
             }
           });
           
-          this.storage.errors = mappedErrors;
+          this.errors = mappedErrors;
           
           // Dispatch transaction to update decorations
           const tr = view.state.tr;
@@ -62,7 +62,7 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
         } catch (e) {
           console.error('Spellcheck failed:', e);
         } finally {
-          this.storage.isChecking = false;
+          this.isChecking = false;
         }
       }
     };
