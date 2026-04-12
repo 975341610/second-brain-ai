@@ -69,9 +69,9 @@ const NOVA_BLOCK_SLASH_ITEMS = [
               const startTag = '<Action';
               const endTag = '</Action>';
               
-              const startIndex = streamBuffer.indexOf(startTag);
+              const startIndex = streamBuffer.toLowerCase().indexOf(startTag.toLowerCase());
               if (startIndex !== -1) {
-                const endIndex = streamBuffer.indexOf(endTag, startIndex);
+                const endIndex = streamBuffer.toLowerCase().indexOf(endTag.toLowerCase(), startIndex);
                 
                 if (endIndex !== -1) {
                   // 1. 提取 Action 之前的文本并插入编辑器
@@ -80,9 +80,9 @@ const NOVA_BLOCK_SLASH_ITEMS = [
                     editor.chain().focus().insertContent(textBefore).run();
                   }
                   
-                  // 2. 解析 Action 标签
+                  // 2. 解析 Action 标签 (增强版正则，兼容单双引号、大小写和多空格)
                   const fullTag = streamBuffer.slice(startIndex, endIndex + endTag.length);
-                  const match = /<Action\s+type="([^"]+)"(?:\s+language="([^"]+)")?>([\s\S]*?)<\/Action>/.exec(fullTag);
+                  const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>([\s\S]*?)<\/Action>/i.exec(fullTag);
                   
                   if (match) {
                     const [, type, language, value] = match;
@@ -90,6 +90,10 @@ const NOVA_BLOCK_SLASH_ITEMS = [
                     window.dispatchEvent(new CustomEvent('ai-action', { 
                       detail: { type, value: value.trim(), attrs: { language } } 
                     }));
+                  } else {
+                    // 如果正则匹配失败，作为普通文本插入，避免丢失内容
+                    console.warn('[AI Action] Failed to match Action tag structure:', fullTag);
+                    editor.chain().focus().insertContent(fullTag).run();
                   }
                   
                   // 3. 消费 Buffer
@@ -110,7 +114,7 @@ const NOVA_BLOCK_SLASH_ITEMS = [
                 // 没找到标签开头，如果 buffer 中没有半截标签前缀，直接插入文本
                 // 注意：要防止 '<Act' 这种分片被当作普通文本
                 const possibleStart = streamBuffer.lastIndexOf('<');
-                if (possibleStart !== -1 && startTag.startsWith(streamBuffer.slice(possibleStart))) {
+                if (possibleStart !== -1 && startTag.toLowerCase().startsWith(streamBuffer.slice(possibleStart).toLowerCase())) {
                   // 可能是半截标签，保留 buffer
                   if (possibleStart > 0) {
                     const textBefore = streamBuffer.slice(0, possibleStart);
@@ -418,7 +422,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
       window.removeEventListener('open-emoticon-panel', handleOpenEmoticon);
       window.removeEventListener('ai-action', handleAIAction);
     };
-  }, [stickers, stickyNotes, handleStickersChange, handleStickyNotesChange, onSave]);
+  }, [editor, stickers, stickyNotes, handleStickersChange, handleStickyNotesChange, onSave]);
 
   const slashItemsRef = useRef<any[]>(NOVA_BLOCK_SLASH_ITEMS);
   slashItemsRef.current = NOVA_BLOCK_SLASH_ITEMS;

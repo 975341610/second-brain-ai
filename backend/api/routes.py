@@ -575,6 +575,7 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
         logging.warning(f"[DEBUG] inline_ai local_ai_manager id: {id(local_ai_manager)}")
         logging.warning(f"[DEBUG] local_ai_manager.is_ready={local_ai_manager.is_ready}")
         if local_ai_manager.is_ready:
+            # We pass the full messages so the system prompt can be properly injected
             return StreamingResponse(
                 local_ai_manager.generate_chat_stream(
                     prompt=payload.prompt,

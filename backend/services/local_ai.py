@@ -91,70 +91,69 @@ class LocalAIManager:
             self.is_loading = False
 
     async def generate_chat_stream(self, prompt: str, context: Optional[str] = None, action: str = "ask") -> AsyncGenerator[str, None]:
+        """Generate a chat stream using the local LLM."""
         print(f"[DEBUG] Local AI generating chat stream... action={action}, is_ready={self.is_ready}")
-        """旧版接口兼容：支持 prompt, context, action 格式"""
         
-        # 拦截编辑器指令：如果 prompt 包含 【...】 格式
-        is_editor_command = "【" in prompt and "】" in prompt
+        # 0. Check if it's an editor command
+        # Support both full-width and half-width brackets for robustness
+        is_editor_command = ("【" in prompt and "】" in prompt) or ("[" in prompt and "]" in prompt)
         print(f"[DEBUG] is_editor_command={is_editor_command}")
         
         if is_editor_command:
             import json
-            cmd_text = prompt.replace("【", "").replace("】", "").strip()
+            # Extract content from brackets
+            cmd_text = prompt.replace("【", "").replace("】", "").replace("[", "").replace("]", "").strip()
             
             res_content = None
             
-            # 1. 标题匹配
-            title_keywords = ["标题", "名字", "题目", "名为", "改为", "改名"]
-            title_actions = ["修改", "设置", "改成", "变成", "定为", "增加", "添加"]
+            # Simple keyword-based intent detection
+            title_keywords = ["标题", "名字", "题目", "名为", "改为", "改名", "改标题", "重命名"]
+            tag_keywords = ["标签", "分类", "tag", "tags", "归类"]
+            todo_keywords = ["待办", "任务", "清单", "todo", "列表", "list"]
+            code_keywords = ["代码", "算法", "程序", "函数", "实现", "写一个", "生成", "编写"]
+            
+            # 1. set_title matching
             if any(k in cmd_text for k in title_keywords):
                 clean_title = cmd_text
-                # 优先级移除：先长后短
+                # Remove common prefixes/suffixes
                 for k in ["把标题改名为", "把标题改为", "把标题改成", "把标题改", "把名字改为", "把名字改成", "把名字改", "改名为", "改为", "改成", "设置标题为", "设置标题", "标题为", "标题"]:
                     if k in clean_title:
                         clean_title = clean_title.replace(k, "")
                         break
-                for k in title_actions + title_keywords + ["把", "为", "：", ":", "成", "这篇", "笔记"]:
-                    clean_title = clean_title.replace(k, "")
-                if clean_title.strip():
-                    res_content = f'<Action type="set_title">{clean_title.strip()}</Action>'
-
-            # 2. 标签匹配
-            tag_keywords = ["标签", "分类", "tag", "tags", "归类"]
+                clean_title = clean_title.replace("设置为", "").replace("为", "").replace("：", "").replace(":", "").strip()
+                if clean_title:
+                    res_content = f'<Action type="set_title">{clean_title}</Action>'
+            
+            # 2. set_tags matching
             if not res_content and any(k in cmd_text for k in tag_keywords):
                 clean_tags = cmd_text
-                for k in ["插入标签为", "设置标签为", "添加标签为", "标签为", "分类为"]:
-                    if k in clean_tags:
-                        clean_tags = clean_tags.replace(k, "")
-                        break
-                for k in tag_keywords + ["插入", "设置", "添加", "增加", "：", ":", "为", "成", "个", "把"]:
+                for k in ["插入标签为", "设置标签为", "添加标签为", "标签为", "分类为", "标签"]:
                     clean_tags = clean_tags.replace(k, "")
-                if clean_tags.strip():
-                    res_content = f'<Action type="set_tags">{clean_tags.strip()}</Action>'
+                clean_tags = clean_tags.replace("插入", "").replace("设置", "").replace("添加", "").replace("：", "").replace(":", "").replace("为", "").strip()
+                if clean_tags:
+                    res_content = f'<Action type="set_tags">{clean_tags}</Action>'
 
-            # 3. 待办匹配
-            todo_keywords = ["待办", "任务", "todo", "计划", "清单"]
+            # 3. insert_todo matching
             if not res_content and any(k in cmd_text for k in todo_keywords):
-                clean_todo = cmd_text
-                for k in ["增加一个待办任务", "添加一个待办任务", "插入一个待办任务", "增加一个待办", "添加一个待办", "插入一个待办", "加一个待办", "加个待办", "待办任务为", "待办为"]:
-                    if k in clean_todo:
-                        clean_todo = clean_todo.replace(k, "")
-                        break
-                for k in todo_keywords + ["加一个", "插入一个", "添加", "创建", "加个", "插入", "：", ":", "为", "成", "个", "增加"]:
-                    clean_todo = clean_todo.replace(k, "")
-                if clean_todo.strip():
-                    res_content = f'<Action type="insert_todo">{clean_todo.strip()}</Action>'
-
-            # 4. 代码块匹配
-            code_keywords = ["代码", "算法", "程序", "函数", "实现", "写一个", "生成"]
+                todo_text = cmd_text
+                for k in ["增加一个待办任务", "添加一个待办任务", "插入一个待办任务", "增加一个待办", "添加一个待办", "插入一个待办", "加一个待办", "加个待办", "待办任务为", "待办为", "待办"]:
+                    todo_text = todo_text.replace(k, "")
+                todo_text = todo_text.replace("插入", "").replace("增加", "").replace("一个", "").replace("：", "").replace(":", "").strip()
+                if todo_text:
+                    res_content = f'<Action type="insert_todo">{todo_text}</Action>'
+                
+            # 4. insert_code_block matching
             if not res_content and any(k in cmd_text for k in code_keywords):
                 lang = "python"
-                if "rust" in cmd_text.lower(): lang = "rust"
-                elif "js" in cmd_text.lower() or "javascript" in cmd_text.lower(): lang = "javascript"
-                elif "c语言" in cmd_text.lower() or " c " in cmd_text.lower(): lang = "c"
-                elif "cpp" in cmd_text.lower() or "c++" in cmd_text.lower(): lang = "cpp"
-                elif "java" in cmd_text.lower(): lang = "java"
-                elif "go" in cmd_text.lower() or "golang" in cmd_text.lower(): lang = "go"
+                cmd_lower = cmd_text.lower()
+                if "python" in cmd_lower: lang = "python"
+                elif "javascript" in cmd_lower or " js " in cmd_lower: lang = "javascript"
+                elif "typescript" in cmd_lower or " ts " in cmd_lower: lang = "typescript"
+                elif "c语言" in cmd_lower or " c " in cmd_lower or " c " in f" {cmd_lower} ": lang = "c"
+                elif "cpp" in cmd_lower or "c++" in cmd_lower: lang = "cpp"
+                elif "java" in cmd_lower: lang = "java"
+                elif "rust" in cmd_lower: lang = "rust"
+                elif "go" in cmd_lower or "golang" in cmd_lower: lang = "go"
                 
                 code = "print('hello world')"
                 if "冒泡排序" in cmd_text:
@@ -166,12 +165,6 @@ class LocalAIManager:
                         code = "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr"
                 
                 res_content = f'<Action type="insert_code_block" language="{lang}">\n{code}\n</Action>'
-
-            # 5. 普通文本 (后置兜底)
-            if not res_content and "文本" in cmd_text:
-                clean_text = cmd_text.replace("插入一段普通文本", "").replace("插入", "").replace("文本", "").replace("：", "").replace(":", "").strip()
-                if clean_text:
-                    res_content = f'<Action type="insert_text">{clean_text}</Action>'
             
             if res_content:
                 yield f'data: {json.dumps({"text": res_content}, ensure_ascii=False)}\n\n'
