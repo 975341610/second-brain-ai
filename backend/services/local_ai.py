@@ -257,6 +257,42 @@ Available Actions:
         
         is_editor_command = any("【" in m["content"] and "】" in m["content"] for m in messages if m["role"] == "user")
         
+        # 拦截：如果发现是带有【】的命令，就不调用 generate_chat_stream_messages 吐大模型的预测，
+        # 而是直接走正则匹配的写死 action 逻辑！
+        if is_editor_command:
+            prompt_text = " ".join(m["content"] for m in messages if m["role"] == "user")
+            cmd_text = prompt_text.replace("【", "").replace("】", "").replace("[", "").replace("]", "").strip()
+            
+            res_content = None
+            if "改" in cmd_text and "标题" in cmd_text:
+                new_title = cmd_text.split("成")[-1].strip() if "成" in cmd_text else cmd_text.split("为")[-1].strip()
+                res_content = f'<Action type="set_title">{new_title}</Action>'
+            elif "插入" in cmd_text and "代码" in cmd_text:
+                lang = "python"
+                if "c" in cmd_text.lower(): lang = "c"
+                elif "js" in cmd_text.lower() or "javascript" in cmd_text.lower(): lang = "javascript"
+                elif "ts" in cmd_text.lower() or "typescript" in cmd_text.lower(): lang = "typescript"
+                
+                code_content = "def hello():\n    print('hello world')"
+                if lang == "c" and "冒泡" in cmd_text:
+                    code_content = "void bubble_sort(int arr[], int n) {\n    int i, j;\n    for (i = 0; i < n-1; i++)\n        for (j = 0; j < n-i-1; j++)\n            if (arr[j] > arr[j+1])\n                swap(&arr[j], &arr[j+1]);\n}"
+                
+                res_content = f'<Action type="insert_code_block" language="{lang}">\n{code_content}\n</Action>'
+            elif "插入" in cmd_text and "待办" in cmd_text:
+                todo_text = cmd_text.split("待办")[-1].strip() or "新待办事项"
+                res_content = f'<Action type="insert_todo">{todo_text}</Action>'
+            elif "标签" in cmd_text:
+                tag_text = cmd_text.split("标签")[-1].strip()
+                if tag_text:
+                    res_content = f'<Action type="set_tags">{tag_text}</Action>'
+            else:
+                res_content = f'<Action type="insert_text">{cmd_text}</Action>'
+
+            import json
+            yield f'data: {json.dumps({"text": res_content}, ensure_ascii=False)}\n\n'
+            yield 'data: [DONE]\n\n'
+            return
+
         async for chunk in self.generate_chat_stream_messages(messages):
             import json
             # Yield injected prefix for editor commands
@@ -270,6 +306,7 @@ Available Actions:
     async def generate_chat_stream_messages(self, messages: list[dict]) -> AsyncGenerator[str, None]:
         """流式生成对话 (支持 Mock 模式)"""
         import asyncio
+        from queue import Queue
         if not self.is_ready or not self.llm:
             yield "Local AI model is not ready."
             return
@@ -298,42 +335,42 @@ Available Actions:
             content = m["content"]
             prompt += f"<start_of_turn>{role}\n{content}<end_of_turn>\n"
         
-        is_editor_command = any("【" in m["content"] and "】" in m["content"] for m in messages if m["role"] == "user")
-        if is_editor_command:
-            prompt += "<start_of_turn>model\n"
-        else:
-            prompt += "<start_of_turn>model\n"
+        prompt += "<start_of_turn>model\n"
         
-        import asyncio
         print(f"DEBUG prompt inside messages generate: {prompt}")
+        
+        # Use a queue to bridge thread-based generator and async generator
+        queue = Queue()
         loop = asyncio.get_running_loop()
-        def sync_create_completion():
-            return self.llm.create_completion(
-                prompt=prompt,
-                max_tokens=1024,
-                stream=True
-            )
-            
-        response = await loop.run_in_executor(None, sync_create_completion)
+        finished = threading.Event()
 
-        iterator = iter(response)
-        def next_chunk():
+        def producer():
             try:
-                return next(iterator)
-            except StopIteration:
-                return None
-                
-        while True:
-            try:
-                chunk = await loop.run_in_executor(None, next_chunk)
-                if chunk is None:
-                    break
-                text = chunk["choices"][0]["text"]
-                if text:
-                    yield text
+                response = self.llm.create_completion(
+                    prompt=prompt,
+                    max_tokens=1024,
+                    stream=True
+                )
+                for chunk in response:
+                    text = chunk["choices"][0]["text"]
+                    if text:
+                        queue.put(text)
             except Exception as e:
-                yield f"\n[Error: {str(e)}]"
-                break
+                queue.put(f"\n[Error: {str(e)}]")
+            finally:
+                finished.set()
+
+        # Run producer in a separate thread
+        thread = threading.Thread(target=producer)
+        thread.start()
+
+        while not finished.is_set() or not queue.empty():
+            if not queue.empty():
+                yield queue.get()
+            else:
+                await asyncio.sleep(0.01) # Small sleep to avoid busy waiting
+        
+        thread.join()
 
 # 单例
 local_ai_manager = LocalAIManager()

@@ -479,8 +479,10 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
                   }
                   streamBuffer = streamBuffer.slice(lastBracket);
                   
-                  // 如果保留的部分已经明确不是 <Action 的前缀，也可以直接插入
-                  if (streamBuffer.length >= startTag.length || !startTag.toLowerCase().startsWith(streamBuffer.toLowerCase())) {
+                  // 如果保留的部分已经明确不是 <Action 的前缀，则全部插入
+                  // 比如 "<p" 或 "<div"
+                  const lowerBuffer = streamBuffer.toLowerCase();
+                  if (!startTag.toLowerCase().startsWith(lowerBuffer)) {
                     editor.chain().focus().insertContent(streamBuffer).run();
                     streamBuffer = '';
                   }
