@@ -136,26 +136,31 @@ Available Actions:
 4. Set Note Title: <Action type="set_title">New Title</Action>
 5. Set Note Tags: <Action type="set_tags">tag1, tag2</Action>
 
-Examples:
+Few-shot Examples:
 - User: 【Create a python fibonacci function】
-  Response: <Action type="insert_code_block" language="python">def fib(n): ...</Action>
+  Response: <Action type="insert_code_block" language="python">def fib(n):
+    if n <= 1: return n
+    return fib(n-1) + fib(n-2)</Action>
 - User: 【Add a todo for grocery shopping】
   Response: <Action type="insert_todo">Buy milk and eggs</Action>
 - User: 【Set title to Meeting Notes】
   Response: <Action type="set_title">Meeting Notes</Action>
+- User: 【Insert a hello world in rust】
+  Response: <Action type="insert_code_block" language="rust">fn main() {
+    println!("Hello, world!");
+}</Action>
 """
-            
-            prompt_injection = f"System Instructions:\n{system_content}\n\nUser Request:\n{prompt}\n\nOutput only the <Action> tag:"
-            prompt = prompt_injection
-            print(f"[*] Detected Editor Command via 【】. Switching system content. Prompt starts with: {prompt[:50]}...")
+            print(f"[*] Detected Editor Command via 【】. Switching system content.")
 
         messages = [
             {"role": "system", "content": system_content},
         ]
+        
+        user_content = prompt
         if context:
-            messages.append({"role": "user", "content": f"Context:\n{context}\n\nTask/Question:\n{prompt}"})
-        else:
-            messages.append({"role": "user", "content": prompt})
+            user_content = f"Context:\n{context}\n\nTask/Question:\n{prompt}"
+        
+        messages.append({"role": "user", "content": user_content})
         
         if action == "search":
             yield 'data: {"text": "[Searching the web for latest information...]\\n\\n"}\n\n'
@@ -181,8 +186,14 @@ Examples:
             except Exception as e:
                 yield f'data: {{"text": "\\n[Web search failed: {str(e)}. Falling back to local knowledge...]\\n"}}\n\n'
         
+        is_editor_command = any("【" in m["content"] and "】" in m["content"] for m in messages if m["role"] == "user")
+        
         async for chunk in self.generate_chat_stream_messages(messages):
             import json
+            # Yield injected prefix for editor commands
+            if is_editor_command:
+                yield f'data: {json.dumps({"text": "<Action "}, ensure_ascii=False)}\n\n'
+                is_editor_command = False # Only yield once
             yield f'data: {json.dumps({"text": chunk}, ensure_ascii=False)}\n\n'
             
         yield 'data: [DONE]\n\n'
@@ -206,29 +217,18 @@ Examples:
         # <start_of_turn>user\n...<end_of_turn>\n<start_of_turn>model\n
         print(f"DEBUG messages content generate: {messages}")
         
-        # Override the system prompt with the last system message if it was modified
-        if len(messages) > 0 and messages[0]["role"] == "system":
-            system_prompts = [messages[0]["content"]]
-        else:
-            system_prompts = [m["content"] for m in messages if m["role"] == "system"]
+        system_content = next((m["content"] for m in messages if m["role"] == "system"), "")
+        user_content = "\n\n".join(m["content"] for m in messages if m["role"] == "user")
         
-        user_prompts = [m["content"] for m in messages if m["role"] == "user"]
+        is_editor_command = "【" in user_content and "】" in user_content
         
-        system_text = "\n\n".join(system_prompts)
-        user_text = "\n\n".join(user_prompts)
-        
-        combined_user_text = ""
-        if system_text:
-            combined_user_text += f"{system_text}\n\n"
-        combined_user_text += f"{user_text}"
-        
-        prompt = f"<start_of_turn>user\n{combined_user_text}<end_of_turn>\n<start_of_turn>model\n"
-        
-        # Override for strict instruction mode
-        is_editor_command = any("【" in m["content"] and "】" in m["content"] for m in messages if m["role"] == "user")
         if is_editor_command:
-            prompt = f"<start_of_turn>user\nOutput EXACTLY ONE XML <Action> tag based on the following request. DO NOT output conversational text or markdown code blocks.\n\nTask: {user_text}\n\n<end_of_turn>\n<start_of_turn>model\n"
-
+            # Force the model to complete the tag by injecting the prefix
+            prompt = f"<start_of_turn>user\n{system_content}\n\nTask: {user_content}<end_of_turn>\n<start_of_turn>model\n<Action "
+        else:
+            combined_user_text = f"{system_content}\n\n{user_content}" if system_content else user_content
+            prompt = f"<start_of_turn>user\n{combined_user_text}<end_of_turn>\n<start_of_turn>model\n"
+        
         import asyncio
         print(f"DEBUG prompt inside messages generate: {prompt}")
         loop = asyncio.get_running_loop()
