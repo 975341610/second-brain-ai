@@ -340,7 +340,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
           editor.chain().focus().insertContent({
             type: 'codeBlock',
             attrs: { language: attrs?.language || 'plain' },
-            content: [{ type: 'text', text: value }]
+            content: [{ type: 'text', text: value.replace(/^\s*```\w*\n?/, '').replace(/\n?```\s*$/, '') }]
           }).run();
         }
       } else if (type === 'insert_todo') {
@@ -350,7 +350,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
             content: [{
               type: 'taskItem',
               attrs: { checked: false },
-              content: [{ type: 'paragraph', content: [{ type: 'text', text: value }] }]
+              content: [{ type: 'paragraph', content: [{ type: 'text', text: value.replace(/^\s*```\w*\n?/, '').replace(/\n?```\s*$/, '') }] }]
             }]
           }).run();
         }
