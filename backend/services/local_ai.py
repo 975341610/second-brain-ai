@@ -35,7 +35,7 @@ class LocalAIManager:
         self.error = None
         
         # 默认模型配置
-        self.repo_id = "bartowski/gemma-4-E2B-it-GGUF"
+        self.repo_id = "unsloth/gemma-4-E2B-it-GGUF"
         self.filename = "gemma-4-E2B-it-Q4_K_M.gguf"
         
         self._initialized = True
@@ -78,6 +78,7 @@ class LocalAIManager:
                     model_path=str(self.model_path),
                     n_ctx=2048,
                     n_threads=os.cpu_count() or 4,
+                    chat_format="gemma",
                     verbose=False
                 )
             

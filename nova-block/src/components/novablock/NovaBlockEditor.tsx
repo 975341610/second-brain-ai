@@ -53,78 +53,76 @@ const NOVA_BLOCK_SLASH_ITEMS = [
     
     setTimeout(async () => {
       if (!editor) return;
+      setIsAILoading(true);
       try {
         const { api } = await import('../../lib/api');
         
         let streamBuffer = '';
+        let isFirstToken = true;
         
         await api.streamInlineAI(
           { prompt, context: editor.getText(), action: 'ask' },
           (chunk: string) => {
+            if (isFirstToken) {
+              setIsAILoading(false);
+              isFirstToken = false;
+            }
             streamBuffer += chunk;
             
             // 扫描并处理完整的 <Action> 标签
-            // 我们需要处理可能在同一个 chunk 中的多个标签
             const scanAndExecute = () => {
               const startTag = '<Action';
               const endTag = '</Action>';
               
               const startIndex = streamBuffer.toLowerCase().indexOf(startTag.toLowerCase());
-              if (startIndex !== -1) {
-                const endIndex = streamBuffer.toLowerCase().indexOf(endTag.toLowerCase(), startIndex);
-                
-                if (endIndex !== -1) {
-                  // 1. 提取 Action 之前的文本并插入编辑器
-                  const textBefore = streamBuffer.slice(0, startIndex);
-                  if (textBefore.trim()) {
+              
+              if (startIndex === -1) {
+                // 如果没找到 <Action，我们需要确定 buffer 中是否有“潜在”的标签开始（如 "<" 或 "<A"）
+                const lastBracket = streamBuffer.lastIndexOf('<');
+                if (lastBracket !== -1) {
+                  // 如果有 <，只保留从 < 开始的部分，前面的全部插入
+                  const textBefore = streamBuffer.slice(0, lastBracket);
+                  if (textBefore) {
                     editor.chain().focus().insertContent(textBefore).run();
                   }
+                  streamBuffer = streamBuffer.slice(lastBracket);
                   
-                  // 2. 解析 Action 标签 (增强版正则，兼容单双引号、大小写和多空格)
-                  const fullTag = streamBuffer.slice(startIndex, endIndex + endTag.length);
+                  // 如果保留的部分已经明确不是 <Action 的前缀，也可以直接插入
+                  if (streamBuffer.length >= startTag.length || !startTag.toLowerCase().startsWith(streamBuffer.toLowerCase())) {
+                    editor.chain().focus().insertContent(streamBuffer).run();
+                    streamBuffer = '';
+                  }
+                } else {
+                  // 完全没有 <，直接全部插入
+                  editor.chain().focus().insertContent(streamBuffer).run();
+                  streamBuffer = '';
+                }
+              } else {
+                // 找到了 <Action，处理它之前的所有文本
+                if (startIndex > 0) {
+                  const textBefore = streamBuffer.slice(0, startIndex);
+                  editor.chain().focus().insertContent(textBefore).run();
+                  streamBuffer = streamBuffer.slice(startIndex);
+                }
+                
+                // 此时 streamBuffer 以 <Action 开头，寻找结束标签
+                const endIndex = streamBuffer.toLowerCase().indexOf(endTag.toLowerCase());
+                if (endIndex !== -1) {
+                  const fullTag = streamBuffer.slice(0, endIndex + endTag.length);
                   const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>([\s\S]*?)<\/Action>/i.exec(fullTag);
                   
                   if (match) {
                     const [, type, language, value] = match;
-                    console.log(`[AI Action parsed] ${type}: ${value}`);
                     window.dispatchEvent(new CustomEvent('ai-action', { 
                       detail: { type, value: value.trim(), attrs: { language } } 
                     }));
                   } else {
-                    // 如果正则匹配失败，作为普通文本插入，避免丢失内容
-                    console.warn('[AI Action] Failed to match Action tag structure:', fullTag);
+                    // 匹配失败，作为普通文本
                     editor.chain().focus().insertContent(fullTag).run();
                   }
                   
-                  // 3. 消费 Buffer
                   streamBuffer = streamBuffer.slice(endIndex + endTag.length);
-                  
-                  // 递归扫描，处理紧随其后的标签
-                  scanAndExecute();
-                } else {
-                  // 找到了开头但没找到结尾，说明标签还在流中，暂不处理
-                  // 但如果 buffer 开头到 startIndex 之间有内容，可以先插入
-                  if (startIndex > 0) {
-                    const textBefore = streamBuffer.slice(0, startIndex);
-                    editor.chain().focus().insertContent(textBefore).run();
-                    streamBuffer = streamBuffer.slice(startIndex);
-                  }
-                }
-              } else {
-                // 没找到标签开头，如果 buffer 中没有半截标签前缀，直接插入文本
-                // 注意：要防止 '<Act' 这种分片被当作普通文本
-                const possibleStart = streamBuffer.lastIndexOf('<');
-                if (possibleStart !== -1 && startTag.toLowerCase().startsWith(streamBuffer.slice(possibleStart).toLowerCase())) {
-                  // 可能是半截标签，保留 buffer
-                  if (possibleStart > 0) {
-                    const textBefore = streamBuffer.slice(0, possibleStart);
-                    editor.chain().focus().insertContent(textBefore).run();
-                    streamBuffer = streamBuffer.slice(possibleStart);
-                  }
-                } else {
-                  // 确认不是标签，全部插入
-                  editor.chain().focus().insertContent(streamBuffer).run();
-                  streamBuffer = '';
+                  scanAndExecute(); // 继续扫描
                 }
               }
             };
@@ -134,6 +132,7 @@ const NOVA_BLOCK_SLASH_ITEMS = [
         );
       } catch (err: any) {
         console.error(err);
+        setIsAILoading(false);
         editor.chain().focus().insertContent(`\n[AI 生成失败: ${err.message}]`).run();
       }
     }, 10);
@@ -251,6 +250,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
   note, onSave, onNotify
 }) => {
   const [isSaving, setIsSaving] = useState(false);
+  const [isAILoading, setIsAILoading] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(note?.created_at || null);
   const [viewMode, setViewMode] = useState<'edit' | 'preview'>('edit');
@@ -1400,6 +1400,18 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
           >
             <div className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
             <span className="text-xs font-bold tracking-widest uppercase">手写记忆同步中...</span>
+          </motion.div>
+        )}
+
+        {isAILoading && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 bg-purple-600 text-white px-6 py-3 rounded-2xl shadow-soft"
+          >
+            <Bot size={18} className="animate-bounce" />
+            <span className="text-xs font-bold tracking-widest uppercase">⏳ AI is thinking...</span>
           </motion.div>
         )}
       </AnimatePresence>
