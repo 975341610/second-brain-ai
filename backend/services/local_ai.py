@@ -5,6 +5,9 @@ except ImportError:
 
 import os
 import threading
+import asyncio
+import subprocess
+import tempfile
 from pathlib import Path
 from typing import Optional, AsyncGenerator
 
@@ -48,6 +51,63 @@ class LocalAIManager:
             "error": self.error,
             "model_path": str(self.model_path) if self.model_path else None
         }
+
+    async def _ensure_ollama_model(self) -> bool:
+        """确保本地 GGUF 模型已注册到 Ollama (nova-local)"""
+        if not self.model_path or not self.model_path.exists():
+            return False
+            
+        model_name = "nova-local"
+        try:
+            import httpx
+            
+            # 1. 检查 Ollama 服务是否可用
+            async with httpx.AsyncClient() as client:
+                try:
+                    resp = await client.get("http://127.0.0.1:11434/api/tags", timeout=2.0)
+                    if resp.status_code != 200:
+                        return False
+                    
+                    # 检查模型是否已存在 (避免重复创建)
+                    models_data = resp.json().get("models", [])
+                    if any(m.get("name") == f"{model_name}:latest" or m.get("name") == model_name for m in models_data):
+                        print(f"[*] Local model '{model_name}' is already registered in Ollama.")
+                        return True
+                except Exception as e:
+                    print(f"[!] Ollama not reachable: {e}")
+                    return False
+
+            # 2. 创建 Modelfile 并注册
+            print(f"[*] Registering local model to Ollama: {self.model_path}")
+            # 注意: Windows 下 tempfile 可能有权限问题, 这里用简单的 context manager
+            fd, modelfile_path = tempfile.mkstemp(suffix='.modelfile')
+            try:
+                with os.fdopen(fd, 'w') as f:
+                    # 路径转义，Windows 路径在 Modelfile 中需使用正斜杠
+                    abs_path = str(self.model_path.absolute()).replace("\\", "/")
+                    f.write(f'FROM "{abs_path}"\n')
+                
+                # 执行 ollama create
+                process = await asyncio.create_subprocess_exec(
+                    "ollama", "create", model_name, "-f", modelfile_path,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE
+                )
+                stdout, stderr = await process.communicate()
+                
+                if process.returncode == 0:
+                    print(f"[*] Ollama create success: {stdout.decode().strip()}")
+                    return True
+                else:
+                    print(f"[!] Ollama create failed: {stderr.decode().strip()}")
+                    return False
+            finally:
+                if os.path.exists(modelfile_path):
+                    os.remove(modelfile_path)
+                    
+        except Exception as e:
+            print(f"[!] Error ensuring Ollama model: {e}")
+            return False
 
     async def initialize_model(self):
         """异步初始化模型：直接加载本地预置模型"""
@@ -110,6 +170,11 @@ class LocalAIManager:
                         # 终极保底：如果 CPU 也报错（通常是 Access Violation 非法指令集），进入 MOCK 模式
                         print(f"[!] CPU fallback also failed: {e2}. Entering Mock Error Mode.")
                         self.llm = "MOCK_LLM_ERROR"
+                        
+                        # 在出错模式下，尝试提前为 Ollama 注册模型以减少后续响应延迟
+                        print("[*] Pre-registering local model to Ollama for fallback...")
+                        await self._ensure_ollama_model()
+                        
                         self.is_ready = True
             
             self.is_ready = True
@@ -243,16 +308,19 @@ Available Actions:
             return
 
         if self.llm == "MOCK_LLM_ERROR":
+            # 自动将本项目 gguf 注册给 Ollama
+            success = await self._ensure_ollama_model()
+            model_to_use = "nova-local" if success else "gemma:2b"
+
             # Try to connect to local Ollama if available
             try:
                 import httpx
                 import json
-                print("[*] MOCK_LLM_ERROR detected. Attempting to connect to local Ollama (127.0.0.1:11434)...")
+                print(f"[*] MOCK_LLM_ERROR detected. Attempting to connect to local Ollama (127.0.0.1:11434) using model '{model_to_use}'...")
                 
                 ollama_url = "http://127.0.0.1:11434/api/chat"
-                # Note: We use gemma:2b as a default fallback model in Ollama
                 payload = {
-                    "model": "gemma:2b",
+                    "model": model_to_use,
                     "messages": messages,
                     "stream": True
                 }

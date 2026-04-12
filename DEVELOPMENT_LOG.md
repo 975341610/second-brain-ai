@@ -1,5 +1,15 @@
 # Development Log
 
+## [2026-04-12] - 自动同步本地模型至 Ollama (Ollama Fallback Enhanced)
+- [x] **本地模型自动注册**:
+  - 在 `backend/services/local_ai.py` 中新增 `_ensure_ollama_model` 方法。
+  - 当 `llama-cpp` 加载失败（`MOCK_LLM_ERROR`）触发 Ollama 代理模式时，系统会自动生成临时 `Modelfile`。
+  - 通过 `ollama create nova-local -f Modelfile` 命令，将项目自带的 `gemma-4-E2B-it-Q4_K_M.gguf` 注册为 Ollama 模型。
+- [x] **Fallback 逻辑优化**:
+  - 修改 `generate_chat_stream_messages`，在代理请求中优先使用 `nova-local` 模型。
+  - 仅当 Ollama 注册失败或服务不可用时，才回退到公版 `gemma:2b`。
+  - 在 `initialize_model` 阶段增加预注册逻辑，大幅缩短首个对话请求的等待时间。
+
 ## [2026-04-12] - 修复 Windows 平台模型加载 Access Violation 0x00000000
 - [x] **禁用内存映射与锁定**:
   - 在 `backend/services/local_ai.py` 中为 `Llama` 实例化添加 `use_mmap=False` 和 `use_mlock=False`。
