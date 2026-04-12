@@ -1,0 +1,775 @@
+Sora (text-to-video model) - Wikipedia
+
+[Jump to content](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#bodyContent)
+
+Main menu
+
+Main menu
+
+move to sidebar
+hide
+
+Navigation
+
+* [Main page](https://en.wikipedia.org/wiki/Main_Page "Visit the main page [ctrl-option-z]")
+* [Contents](https://en.wikipedia.org/wiki/Wikipedia:Contents "Guides to browsing Wikipedia")
+* [Current events](https://en.wikipedia.org/wiki/Portal:Current_events "Articles related to current events")
+* [Random article](https://en.wikipedia.org/wiki/Special:Random "Visit a randomly selected article [ctrl-option-x]")
+* [About Wikipedia](https://en.wikipedia.org/wiki/Wikipedia:About "Learn about Wikipedia and how it works")
+* [Contact us](https://en.wikipedia.org/wiki/Wikipedia:Contact_us "How to contact Wikipedia")
+
+Contribute
+
+* [Help](https://en.wikipedia.org/wiki/Help:Contents "Guidance on how to use and edit Wikipedia")
+* [Learn to edit](https://en.wikipedia.org/wiki/Help:Introduction "Learn how to edit Wikipedia")
+* [Community portal](https://en.wikipedia.org/wiki/Wikipedia:Community_portal "The hub for editors")
+* [Recent changes](https://en.wikipedia.org/wiki/Special:RecentChanges "A list of recent changes to Wikipedia [ctrl-option-r]")
+* [Upload file](https://en.wikipedia.org/wiki/Wikipedia:File_upload_wizard "Add images or other media for use on Wikipedia")
+* [Special pages](https://en.wikipedia.org/wiki/Special:SpecialPages "A list of all special pages [ctrl-option-q]")
+
+[Search](https://en.wikipedia.org/wiki/Special:Search "Search Wikipedia [ctrl-option-f]")
+
+Search
+
+Appearance
+
+* [Donate](https://donate.wikimedia.org/?wmf_source=donate&wmf_medium=sidebar&wmf_campaign=en.wikipedia.org&uselang=en)
+* [Create account](https://en.wikipedia.org/w/index.php?title=Special:CreateAccount&returnto=Sora+%28text-to-video+model%29 "You are encouraged to create an account and log in; however, it is not mandatory")
+* [Log in](https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Sora+%28text-to-video+model%29 "You're encouraged to log in; however, it's not mandatory. [ctrl-option-o]")
+
+Personal tools
+
+* [Donate](https://donate.wikimedia.org/?wmf_source=donate&wmf_medium=sidebar&wmf_campaign=en.wikipedia.org&uselang=en)
+* [Create account](https://en.wikipedia.org/w/index.php?title=Special:CreateAccount&returnto=Sora+%28text-to-video+model%29 "You are encouraged to create an account and log in; however, it is not mandatory")
+* [Log in](https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Sora+%28text-to-video+model%29 "You're encouraged to log in; however, it's not mandatory. [ctrl-option-o]")
+
+Contents
+--------
+
+move to sidebar
+hide
+
+* [(Top)](https://en.wikipedia.org/wiki/Sora_(text-to-video_model))
+* [1
+  Background](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Background)
+* [2
+  History](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#History)
+
+
+  Toggle History subsection
+  + [2.1
+    Initial release](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Initial_release)
+  + [2.2
+    Sora 2](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Sora_2)
+  + [2.3
+    Discontinuation](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Discontinuation)
+* [3
+  Legal regulation](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Legal_regulation)
+* [4
+  Capabilities and limitations](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Capabilities_and_limitations)
+
+
+  Toggle Capabilities and limitations subsection
+  + [4.1
+    Comparison with other models](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Comparison_with_other_models)
+* [5
+  Reception](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Reception)
+
+
+  Toggle Reception subsection
+  + [5.1
+    Positive](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Positive)
+  + [5.2
+    Negative](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#Negative)
+* [6
+  In popular culture](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#In_popular_culture)
+* [7
+  See also](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#See_also)
+* [8
+  References](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#References)
+* [9
+  External links](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#External_links)
+
+Toggle the table of contents
+
+Sora (text-to-video model)
+==========================
+
+29 languages
+
+* [العربية](https://ar.wikipedia.org/wiki/%D8%B3%D9%88%D8%B1%D8%A7_(%D9%86%D9%85%D9%88%D8%B0%D8%AC_%D8%AA%D8%AD%D9%88%D9%8A%D9%84_%D9%86%D8%B5_%D8%A5%D9%84%D9%89_%D9%81%D9%8A%D8%AF%D9%8A%D9%88) "سورا (نموذج تحويل نص إلى فيديو) – Arabic")
+* [الدارجة](https://ary.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A7_(%D9%85%D9%88%D8%B6%D9%8A%D9%84_%D8%AA%D9%8A%D8%B3%D9%83%D8%AA_%D9%84_%DA%A4%D9%8A%D8%AF%D9%8A%D9%88) "صورا (موضيل تيسكت ل ڤيديو) – Moroccan Arabic")
+* [বাংলা](https://bn.wikipedia.org/wiki/%E0%A6%B8%E0%A7%8B%E0%A6%B0%E0%A6%BE_(%E0%A6%9F%E0%A7%87%E0%A6%95%E0%A7%8D%E0%A6%B8%E0%A6%9F-%E0%A6%9F%E0%A7%81-%E0%A6%AD%E0%A6%BF%E0%A6%A1%E0%A6%BF%E0%A6%93_%E0%A6%AE%E0%A6%A1%E0%A7%87%E0%A6%B2) "সোরা (টেক্সট-টু-ভিডিও মডেল) – Bangla")
+* [Català](https://ca.wikipedia.org/wiki/Sora_(model_de_text_a_v%C3%ADdeo) "Sora (model de text a vídeo) – Catalan")
+* [Čeština](https://cs.wikipedia.org/wiki/Sora_(um%C4%9Bl%C3%A1_inteligence) "Sora (umělá inteligence) – Czech")
+* [Deutsch](https://de.wikipedia.org/wiki/Sora_(k%C3%BCnstliche_Intelligenz) "Sora (künstliche Intelligenz) – German")
+* [Esperanto](https://eo.wikipedia.org/wiki/Sora_(artefarita_intelekto) "Sora (artefarita intelekto) – Esperanto")
+* [Español](https://es.wikipedia.org/wiki/Sora_(inteligencia_artificial) "Sora (inteligencia artificial) – Spanish")
+* [فارسی](https://fa.wikipedia.org/wiki/%D8%B3%D9%88%D8%B1%D8%A7_(%D9%85%D8%AF%D9%84_%D9%85%D8%AA%D9%86_%D8%A8%D9%87_%D9%88%DB%8C%D8%AF%D8%A6%D9%88) "سورا (مدل متن به ویدئو) – Persian")
+* [Suomi](https://fi.wikipedia.org/wiki/Sora_(teko%C3%A4lymalli) "Sora (tekoälymalli) – Finnish")
+* [Français](https://fr.wikipedia.org/wiki/Sora_(IA) "Sora (IA) – French")
+* [עברית](https://he.wikipedia.org/wiki/%D7%A1%D7%95%D7%A8%D7%94_(%D7%9E%D7%95%D7%93%D7%9C_%D7%98%D7%A7%D7%A1%D7%98_%D7%9C%D7%95%D7%95%D7%99%D7%93%D7%90%D7%95) "סורה (מודל טקסט לווידאו) – Hebrew")
+* [Bahasa Indonesia](https://id.wikipedia.org/wiki/Sora_(model_teks-ke-video) "Sora (model teks-ke-video) – Indonesian")
+* [Ido](https://io.wikipedia.org/wiki/Sora_(artifical_inteligenteso) "Sora (artifical inteligenteso) – Ido")
+* [日本語](https://ja.wikipedia.org/wiki/Sora_(%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E3%83%A2%E3%83%87%E3%83%AB) "Sora (人工知能モデル) – Japanese")
+* [Қазақша](https://kk.wikipedia.org/wiki/Sora "Sora – Kazakh")
+* [한국어](https://ko.wikipedia.org/wiki/%EC%86%8C%EB%9D%BC_(%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%B9%84%EB%94%94%EC%98%A4_%EB%AA%A8%EB%8D%B8) "소라 (텍스트-비디오 모델) – Korean")
+* [Nederlands](https://nl.wikipedia.org/wiki/Sora_(tekst-naar-video-model) "Sora (tekst-naar-video-model) – Dutch")
+* [Polski](https://pl.wikipedia.org/wiki/Sora_(sztuczna_inteligencja) "Sora (sztuczna inteligencja) – Polish")
+* [Português](https://pt.wikipedia.org/wiki/Sora_(modelo_de_texto_para_v%C3%ADdeo) "Sora (modelo de texto para vídeo) – Portuguese")
+* [Runa Simi](https://qu.wikipedia.org/wiki/Sora "Sora – Quechua")
+* [Русский](https://ru.wikipedia.org/wiki/Sora "Sora – Russian")
+* [Simple English](https://simple.wikipedia.org/wiki/Sora_(text-to-video_model) "Sora (text-to-video model) – Simple English")
+* [Српски / srpski](https://sr.wikipedia.org/wiki/%D0%A1%D0%BE%D1%80%D0%B0_(%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB_%D0%B7%D0%B0_%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%81%D0%B0%D1%9A%D0%B5_%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE_%D1%81%D0%B0%D0%B4%D1%80%D0%B6%D0%B0%D1%98%D0%B0) "Сора (модел за генерисање видео садржаја) – Serbian")
+* [Svenska](https://sv.wikipedia.org/wiki/Sora_(artificiell_intelligens) "Sora (artificiell intelligens) – Swedish")
+* [ไทย](https://th.wikipedia.org/wiki/%E0%B9%82%E0%B8%8B%E0%B8%A3%E0%B8%B0_(%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B4%E0%B8%A9%E0%B8%90%E0%B9%8C) "โซระ (ปัญญาประดิษฐ์) – Thai")
+* [Українська](https://uk.wikipedia.org/wiki/Sora_(%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C_%D0%BF%D0%B5%D1%80%D0%B5%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F_%D1%82%D0%B5%D0%BA%D1%81%D1%82%D1%83_%D1%83_%D0%B2%D1%96%D0%B4%D0%B5%D0%BE) "Sora (модель перетворення тексту у відео) – Ukrainian")
+* [Oʻzbekcha / ўзбекча](https://uz.wikipedia.org/wiki/Sora_(matndan_videoga_o%CA%BBtkazish_modeli) "Sora (matndan videoga oʻtkazish modeli) – Uzbek")
+* [中文](https://zh.wikipedia.org/wiki/Sora_(%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%A8%A1%E5%9E%8B) "Sora (人工智能模型) – Chinese")
+
+[Edit links](https://www.wikidata.org/wiki/Special:EntityPage/Q124544998#sitelinks-wikipedia "Edit interlanguage links")
+
+* [Article](https://en.wikipedia.org/wiki/Sora_(text-to-video_model) "View the content page [ctrl-option-c]")
+* [Talk](https://en.wikipedia.org/wiki/Talk:Sora_(text-to-video_model) "Discuss improvements to the content page [ctrl-option-t]")
+
+English
+
+* [Read](https://en.wikipedia.org/wiki/Sora_(text-to-video_model))
+* [Edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit "Edit this page [ctrl-option-e]")
+* [View history](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=history "Past revisions of this page [ctrl-option-h]")
+
+
+
+Tools
+
+Tools
+
+move to sidebar
+hide
+
+Actions
+
+* [Read](https://en.wikipedia.org/wiki/Sora_(text-to-video_model))
+* [Edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit "Edit this page [ctrl-option-e]")
+* [View history](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=history)
+
+General
+
+* [What links here](https://en.wikipedia.org/wiki/Special:WhatLinksHere/Sora_(text-to-video_model) "List of all English Wikipedia pages containing links to this page [ctrl-option-j]")
+* [Related changes](https://en.wikipedia.org/wiki/Special:RecentChangesLinked/Sora_(text-to-video_model) "Recent changes in pages linked from this page [ctrl-option-k]")
+* [Upload file](https://en.wikipedia.org/wiki/Wikipedia:File_Upload_Wizard "Upload files [ctrl-option-u]")
+* [Permanent link](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&oldid=1348032603 "Permanent link to this revision of this page")
+* [Page information](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=info "More information about this page")
+* [Cite this page](https://en.wikipedia.org/w/index.php?title=Special:CiteThisPage&page=Sora_%28text-to-video_model%29&id=1348032603&wpFormIdentifier=titleform "Information on how to cite this page")
+* [Get shortened URL](https://en.wikipedia.org/w/index.php?title=Special:UrlShortener&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FSora_%28text-to-video_model%29)
+* [Expand all](https://en.wikipedia.org/wiki/Sora_(text-to-video_model) "Expand all collapsible elements on the current page")
+* [Edit interlanguage links](https://www.wikidata.org/wiki/Special:EntityPage/Q124544998#sitelinks-wikipedia "Edit interlanguage links")
+
+Print/export
+
+* [Download as PDF](https://en.wikipedia.org/w/index.php?title=Special:DownloadAsPdf&page=Sora_%28text-to-video_model%29&action=show-download-screen "Download this page as a PDF file")
+* [Printable version](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&printable=yes "Printable version of this page [ctrl-option-p]")
+
+In other projects
+
+* [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Sora_(text-to-video_model))
+* [Wikidata item](https://www.wikidata.org/wiki/Special:EntityPage/Q124544998 "Structured data on this page hosted by Wikidata [ctrl-option-g]")
+
+Appearance
+
+move to sidebar
+hide
+
+Text
+
+* Small
+
+  Standard
+
+  Large
+
+This page always uses small font size
+
+Width
+
+* Standard
+
+  Wide
+
+The content is as wide as possible for your browser window.
+
+Color (beta)
+
+* Automatic
+
+  Light
+
+  Dark
+
+This page is always in light mode.
+
+From Wikipedia, the free encyclopedia
+
+Video-generating machine learning model
+
+| Sora | |
+| --- | --- |
+|  | |
+| [Developer](https://en.wikipedia.org/wiki/Programmer "Programmer") | [OpenAI](https://en.wikipedia.org/wiki/OpenAI "OpenAI") |
+| Initial release | December 9, 2024; 16 months ago (2024-12-09 ) |
+|  | |
+| [Stable release](https://en.wikipedia.org/wiki/Software_release_life_cycle "Software release life cycle") | Sora 2 / September 30, 2025; 6 months ago (2025-09-30 ) |
+|  | |
+| [Platform](https://en.wikipedia.org/wiki/Computing_platform "Computing platform") | OpenAI |
+| [Type](https://en.wikipedia.org/wiki/Software_categories#Categorization_approaches "Software categories") | [Text-to-video model](https://en.wikipedia.org/wiki/Text-to-video_model "Text-to-video model") |
+| Website | [sora.chatgpt.com](https://sora.chatgpt.com/) |
+
+|  |
+| --- |
+| Part of a series on |
+| [OpenAI](https://en.wikipedia.org/wiki/OpenAI "OpenAI") |
+|  |
+| [Products](https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI "Products and applications of OpenAI") |
+| * [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT "ChatGPT")   + [Search](https://en.wikipedia.org/wiki/ChatGPT_Search "ChatGPT Search")   + [Deep Research](https://en.wikipedia.org/wiki/ChatGPT_Deep_Research "ChatGPT Deep Research")   + [GPTs](https://en.wikipedia.org/wiki/GPTs "GPTs") * [DALL-E](https://en.wikipedia.org/wiki/DALL-E "DALL-E") * Sora * [Whisper](https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system) "Whisper (speech recognition system)") |
+| [Models](https://en.wikipedia.org/wiki/ChatGPT#Model_versions "ChatGPT") |
+| * [GPT-3](https://en.wikipedia.org/wiki/GPT-3 "GPT-3") * [GPT-4](https://en.wikipedia.org/wiki/GPT-4 "GPT-4") * [GPT-4o](https://en.wikipedia.org/wiki/GPT-4o "GPT-4o") * [GPT-4.5](https://en.wikipedia.org/wiki/GPT-4.5 "GPT-4.5") * [GPT-4.1](https://en.wikipedia.org/wiki/GPT-4.1 "GPT-4.1") * [GPT-5](https://en.wikipedia.org/wiki/GPT-5 "GPT-5") * [GPT-5.1](https://en.wikipedia.org/wiki/GPT-5.1 "GPT-5.1") * [GPT-5.2](https://en.wikipedia.org/wiki/GPT-5.2 "GPT-5.2") * [GPT-5.4](https://en.wikipedia.org/wiki/GPT-5.4 "GPT-5.4") * [o1](https://en.wikipedia.org/wiki/OpenAI_o1 "OpenAI o1") * [o3](https://en.wikipedia.org/wiki/OpenAI_o3 "OpenAI o3") * [o4-mini](https://en.wikipedia.org/wiki/OpenAI_o4-mini "OpenAI o4-mini") |
+| People |
+| * [Sam Altman](https://en.wikipedia.org/wiki/Sam_Altman "Sam Altman") * [Greg Brockman](https://en.wikipedia.org/wiki/Greg_Brockman "Greg Brockman") * [Jessica Livingston](https://en.wikipedia.org/wiki/Jessica_Livingston "Jessica Livingston") * [Peter Thiel](https://en.wikipedia.org/wiki/Peter_Thiel "Peter Thiel") * [Elon Musk](https://en.wikipedia.org/wiki/Elon_Musk "Elon Musk") * [Andrej Karpathy](https://en.wikipedia.org/wiki/Andrej_Karpathy "Andrej Karpathy") |
+| Concepts |
+| * [Hallucination](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence) "Hallucination (artificial intelligence)") * [Large language model](https://en.wikipedia.org/wiki/Large_language_model "Large language model") * [Word embedding](https://en.wikipedia.org/wiki/Word_embedding "Word embedding") * [Training](https://en.wikipedia.org/wiki/Foundation_model#Training "Foundation model") |
+| * [v](https://en.wikipedia.org/wiki/Template:OpenAI_series "Template:OpenAI series") * [t](https://en.wikipedia.org/wiki/Template_talk:OpenAI_series "Template talk:OpenAI series") * [e](https://en.wikipedia.org/wiki/Special:EditPage/Template:OpenAI_series "Special:EditPage/Template:OpenAI series") |
+
+|  |
+| --- |
+| Part of [a series](https://en.wikipedia.org/wiki/Category:Artificial_intelligence "Category:Artificial intelligence") on |
+| [Artificial intelligence (AI)](https://en.wikipedia.org/wiki/Artificial_intelligence "Artificial intelligence") |
+|  |
+| show  [Major goals](https://en.wikipedia.org/wiki/Artificial_intelligence#Goals "Artificial intelligence")  * [Artificial general intelligence](https://en.wikipedia.org/wiki/Artificial_general_intelligence "Artificial general intelligence") * [Intelligent agent](https://en.wikipedia.org/wiki/Intelligent_agent "Intelligent agent") * [Recursive self-improvement](https://en.wikipedia.org/wiki/Recursive_self-improvement "Recursive self-improvement") * [Planning](https://en.wikipedia.org/wiki/Automated_planning_and_scheduling "Automated planning and scheduling") * [Computer vision](https://en.wikipedia.org/wiki/Computer_vision "Computer vision") * [General game playing](https://en.wikipedia.org/wiki/General_game_playing "General game playing") * [Knowledge representation](https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning "Knowledge representation and reasoning") * [Natural language processing](https://en.wikipedia.org/wiki/Natural_language_processing "Natural language processing") * [Robotics](https://en.wikipedia.org/wiki/Robotics "Robotics") * [AI safety](https://en.wikipedia.org/wiki/AI_safety "AI safety") |
+| show  Approaches  * [Machine learning](https://en.wikipedia.org/wiki/Machine_learning "Machine learning") * [Symbolic](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence "Symbolic artificial intelligence") * [Deep learning](https://en.wikipedia.org/wiki/Deep_learning "Deep learning") * [Bayesian networks](https://en.wikipedia.org/wiki/Bayesian_network "Bayesian network") * [Evolutionary algorithms](https://en.wikipedia.org/wiki/Evolutionary_algorithm "Evolutionary algorithm") * [Hybrid intelligent systems](https://en.wikipedia.org/wiki/Hybrid_intelligent_system "Hybrid intelligent system") * [Systems integration](https://en.wikipedia.org/wiki/Artificial_intelligence_systems_integration "Artificial intelligence systems integration") * [Open-source](https://en.wikipedia.org/wiki/Open-source_artificial_intelligence "Open-source artificial intelligence") * [AI data centers](https://en.wikipedia.org/wiki/AI_data_center "AI data center") |
+| show  [Applications](https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence "Applications of artificial intelligence")  * [Bioinformatics](https://en.wikipedia.org/wiki/Machine_learning_in_bioinformatics "Machine learning in bioinformatics") * [Deepfake](https://en.wikipedia.org/wiki/Deepfake "Deepfake") * [Earth sciences](https://en.wikipedia.org/wiki/Machine_learning_in_earth_sciences "Machine learning in earth sciences") * [Finance](https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence#Finance "Applications of artificial intelligence") * [Generative AI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence "Generative artificial intelligence")   + [Art](https://en.wikipedia.org/wiki/Artificial_intelligence_art "Artificial intelligence art")   + [Audio](https://en.wikipedia.org/wiki/Generative_audio "Generative audio")   + [Music](https://en.wikipedia.org/wiki/Music_and_artificial_intelligence "Music and artificial intelligence") * [Government](https://en.wikipedia.org/wiki/Artificial_intelligence_in_government "Artificial intelligence in government") * [Healthcare](https://en.wikipedia.org/wiki/Artificial_intelligence_in_healthcare "Artificial intelligence in healthcare")   + [Mental health](https://en.wikipedia.org/wiki/Artificial_intelligence_in_mental_health "Artificial intelligence in mental health") * [Industry](https://en.wikipedia.org/wiki/Artificial_intelligence_in_industry "Artificial intelligence in industry") * [Software development](https://en.wikipedia.org/wiki/AI-assisted_software_development "AI-assisted software development") * [Translation](https://en.wikipedia.org/wiki/Machine_translation "Machine translation") * [Military](https://en.wikipedia.org/wiki/Artificial_intelligence_arms_race "Artificial intelligence arms race") * [Physics](https://en.wikipedia.org/wiki/Machine_learning_in_physics "Machine learning in physics") * [Projects](https://en.wikipedia.org/wiki/List_of_artificial_intelligence_projects "List of artificial intelligence projects") |
+| show  [Philosophy](https://en.wikipedia.org/wiki/Philosophy_of_artificial_intelligence "Philosophy of artificial intelligence")  * [AI alignment](https://en.wikipedia.org/wiki/AI_alignment "AI alignment") * [Artificial consciousness](https://en.wikipedia.org/wiki/Artificial_consciousness "Artificial consciousness") * [The bitter lesson](https://en.wikipedia.org/wiki/Bitter_lesson "Bitter lesson") * [Chinese room](https://en.wikipedia.org/wiki/Chinese_room "Chinese room") * [Friendly AI](https://en.wikipedia.org/wiki/Friendly_artificial_intelligence "Friendly artificial intelligence") * [Ethics](https://en.wikipedia.org/wiki/Ethics_of_artificial_intelligence "Ethics of artificial intelligence") * [Existential risk](https://en.wikipedia.org/wiki/Existential_risk_from_artificial_general_intelligence "Existential risk from artificial general intelligence") * [Turing test](https://en.wikipedia.org/wiki/Turing_test "Turing test") * [Uncanny valley](https://en.wikipedia.org/wiki/Uncanny_valley "Uncanny valley") * [Human–AI interaction](https://en.wikipedia.org/wiki/Human%E2%80%93AI_interaction "Human–AI interaction") |
+| show  [History](https://en.wikipedia.org/wiki/History_of_artificial_intelligence "History of artificial intelligence")  * [Timeline](https://en.wikipedia.org/wiki/Timeline_of_artificial_intelligence "Timeline of artificial intelligence") * [Progress](https://en.wikipedia.org/wiki/Progress_in_artificial_intelligence "Progress in artificial intelligence") * [AI winter](https://en.wikipedia.org/wiki/AI_winter "AI winter") * [AI boom](https://en.wikipedia.org/wiki/AI_boom "AI boom") * [AI bubble](https://en.wikipedia.org/wiki/AI_bubble "AI bubble") |
+| show  [Controversies](https://en.wikipedia.org/wiki/Artificial_intelligence_controversies "Artificial intelligence controversies")  * [Deepfake pornography](https://en.wikipedia.org/wiki/Deepfake_pornography "Deepfake pornography")   + [Taylor Swift deepfake pornography controversy](https://en.wikipedia.org/wiki/Taylor_Swift_deepfake_pornography_controversy "Taylor Swift deepfake pornography controversy")   + [Grok sexual deepfake scandal](https://en.wikipedia.org/wiki/Grok_sexual_deepfake_scandal "Grok sexual deepfake scandal") * [Google Gemini image generation controversy](https://en.wikipedia.org/wiki/Google_Gemini_image_generation_controversy "Google Gemini image generation controversy") * *[It's the Most Terrible Time of the Year](https://en.wikipedia.org/wiki/It%27s_the_Most_Terrible_Time_of_the_Year "It's the Most Terrible Time of the Year")* * [Pause Giant AI Experiments](https://en.wikipedia.org/wiki/Pause_Giant_AI_Experiments:_An_Open_Letter "Pause Giant AI Experiments: An Open Letter") * [Removal of Sam Altman from OpenAI](https://en.wikipedia.org/wiki/Removal_of_Sam_Altman_from_OpenAI "Removal of Sam Altman from OpenAI") * [Statement on AI Risk](https://en.wikipedia.org/wiki/Statement_on_AI_Risk "Statement on AI Risk") * [Tay (chatbot)](https://en.wikipedia.org/wiki/Tay_(chatbot) "Tay (chatbot)") * *[Théâtre D'opéra Spatial](https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial "Théâtre D'opéra Spatial")* * [Voiceverse NFT plagiarism scandal](https://en.wikipedia.org/wiki/Voiceverse_NFT_plagiarism_scandal "Voiceverse NFT plagiarism scandal") |
+| show  Glossary  * [Glossary](https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence "Glossary of artificial intelligence") |
+| * [v](https://en.wikipedia.org/wiki/Template:Artificial_intelligence "Template:Artificial intelligence") * [t](https://en.wikipedia.org/wiki/Template_talk:Artificial_intelligence "Template talk:Artificial intelligence") * [e](https://en.wikipedia.org/wiki/Special:EditPage/Template:Artificial_intelligence "Special:EditPage/Template:Artificial intelligence") |
+
+**Sora** is a [text-to-video model](https://en.wikipedia.org/wiki/Text-to-video_model "Text-to-video model") and [social media](https://en.wikipedia.org/wiki/Social_media "Social media") app developed by [OpenAI](https://en.wikipedia.org/wiki/OpenAI "OpenAI"). Using artificial intelligence, the model generates [short video clips](https://en.wikipedia.org/wiki/Short_video "Short video") based on [prompts](https://en.wikipedia.org/wiki/Prompt_engineering "Prompt engineering"), and can also extend existing short videos. In February 2024, OpenAI previewed examples of its output to the public,[[
+1]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-1) with the first generation of Sora released publicly for [ChatGPT Plus](https://en.wikipedia.org/wiki/ChatGPT_Plus "ChatGPT Plus") and ChatGPT Pro users in the United States and Canada in December 2024.[[
+2]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-:0-2)[[
+3]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-3)
+
+The second generation of Sora was released to select users in the US and Canada at the end of September 2025.[[
+4]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-OpenAI-2025-4) Sora 2 integrated social media features into the app.[[
+5]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-5)[[
+6]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-6) On March 24, 2026, OpenAI announced that the Sora app and API would be shutting down.[[
+7]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-7) The app is planned to shut down on April 26, 2026 and the API on September 24, 2026.[[
+8]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-OpenAI-2026-8)
+
+By default, the generator uses [copyrighted](https://en.wikipedia.org/wiki/Copyrighted "Copyrighted") material in its videos, unless copyright holders actively opt out of having their content included. Videos contain a visible, moving [digital watermark](https://en.wikipedia.org/wiki/Digital_watermarking "Digital watermarking") to prevent misuse, but a week after Sora 2's release, third-party programs became available which could remove the watermark.
+
+Background
+----------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=1 "Edit section: Background")]
+
+![](//upload.wikimedia.org/wikipedia/commons/thumb/0/0e/OpenAI_Sora_in_Action-_Tokyo_Walk.webm/250px--OpenAI_Sora_in_Action-_Tokyo_Walk.webm.jpg)
+
+A woman walking down a Tokyo street at night, first generation, February 2024
+
+Several other models capable of generating video from text had been created prior to Sora, including [Meta](https://en.wikipedia.org/wiki/Meta_Platforms "Meta Platforms")'s Make‑A‑Video, [Runway](https://en.wikipedia.org/wiki/Runway_(company) "Runway (company)")'s Gen‑2 and [Google Veo](https://en.wikipedia.org/wiki/Veo_(text-to-video_model) "Veo (text-to-video model)").[[
+9]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Levy-2024-9) [OpenAI](https://en.wikipedia.org/wiki/OpenAI "OpenAI"), the company behind Sora, had released [DALL·E 3](https://en.wikipedia.org/wiki/DALL-E "DALL-E"), the third of its DALL-E [text-to-image models](https://en.wikipedia.org/wiki/Text-to-image_model "Text-to-image model"), in September 2023.[[
+10]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Lacy-2024-10)
+
+History
+-------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=2 "Edit section: History")]
+
+### Initial release
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=3 "Edit section: Initial release")]
+
+The team that developed Sora named it after the Japanese word for 'sky' to signify its "limitless creative potential".[[
+11]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Metz-2024-11) On February 15, 2024, OpenAI first previewed Sora by releasing multiple clips of [high-definition videos](https://en.wikipedia.org/wiki/High-definition_video "High-definition video") that it had created, including an [SUV](https://en.wikipedia.org/wiki/SUV "SUV") driving down a mountain road, an animation of a "short fluffy monster" next to a candle, two people walking through [Tokyo](https://en.wikipedia.org/wiki/Tokyo "Tokyo") in the snow, and fake historical footage of the [California gold rush](https://en.wikipedia.org/wiki/California_gold_rush "California gold rush"). OpenAI stated that it was able to generate videos as long as one minute.[[
+9]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Levy-2024-9) The company then shared a technical report that highlighted the methods used to [train the model](https://en.wikipedia.org/wiki/Model_training "Model training").[[
+12]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-12)[[
+13]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Edwards-2024-13) OpenAI CEO [Sam Altman](https://en.wikipedia.org/wiki/Sam_Altman "Sam Altman") also posted a series of tweets responding to [Twitter](https://en.wikipedia.org/wiki/Twitter "Twitter") users' prompts with Sora-generated videos of the prompts.
+
+As of December 9, 2024, OpenAI had gradually made Sora available to the public for ChatGPT Pro and ChatGPT Plus users in the U.S. and Canada. Prior to this, the company had provided limited access to a small "[red team](https://en.wikipedia.org/wiki/Red_team "Red team")", including experts in [misinformation](https://en.wikipedia.org/wiki/Misinformation "Misinformation") and bias, to perform [adversarial testing](https://en.wikipedia.org/wiki/Adversarial_machine_learning "Adversarial machine learning") on the model.[[
+10]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Lacy-2024-10) The company also shared Sora with a small group of creative professionals, including video makers and artists, to seek feedback on its usefulness in creative fields.[[
+14]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Heaven-2024-14) In February 2025, OpenAI announced plans to integrate Sora into ChatGPT by letting users generate Sora videos from the [chatbot](https://en.wikipedia.org/wiki/Chatbot "Chatbot").[[
+15]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-15)
+
+### Sora 2
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=4 "Edit section: Sora 2")]
+
+![](//upload.wikimedia.org/wikipedia/commons/thumb/5/5b/OpenAI_-_This_is_Sora_2.webm/250px--OpenAI_-_This_is_Sora_2.webm.jpg)
+
+A compilation video generated using Sora 2
+
+Sora 2 was unveiled on September 30, 2025, with an [iOS](https://en.wikipedia.org/wiki/IOS "IOS") app at the same time, as well as an [Android](https://en.wikipedia.org/wiki/Android_(operating_system) "Android (operating system)") app two months later.[[
+4]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-OpenAI-2025-4) All videos generated by the model feature a visible, moving [watermark](https://en.wikipedia.org/wiki/Digital_watermarking "Digital watermarking") to prevent [misuse](https://en.wikipedia.org/wiki/Deepfake "Deepfake") behaviors of the tool.[[
+16]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-16) The previous version of Sora also added a safety watermark to allow viewers to distinguish between real and fictional content.[[
+17]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-17) On October 7, *[404 Media](https://en.wikipedia.org/wiki/404_Media "404 Media")* reported that third-party programs that could remove the watermark from Sora 2 videos had become prevalent.[[
+18]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-18)
+
+Many outlets, such as *[Wired](https://en.wikipedia.org/wiki/Wired_(magazine) "Wired (magazine)")* magazine, have noted that the Sora 2 app is overtly similar to [TikTok](https://en.wikipedia.org/wiki/TikTok "TikTok") in style and features.[[
+2]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-:0-2)[[
+19]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-19)[[
+20]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-20)
+
+### Discontinuation
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=5 "Edit section: Discontinuation")]
+
+On March 24, 2026, OpenAI announced on [X](https://en.wikipedia.org/wiki/X_(social_network) "X (social network)") that it was discontinuing Sora in both the mobile app and the API. OpenAI noted that the app is planned to shut down on April 26, 2026, and the API on September 24, 2026.[[
+8]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-OpenAI-2026-8) OpenAI's partnership with [Disney](https://en.wikipedia.org/wiki/Disney "Disney"), which included a [licensing agreement](https://en.wikipedia.org/wiki/Licensing_agreement "Licensing agreement") allowing Disney characters to be used within Sora, was also coming to an end.[[
+21]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-21)[[
+22]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-22)[[
+23]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-23)
+
+The decision prompted British technology news website *[The Register](https://en.wikipedia.org/wiki/The_Register "The Register")* to label OpenAI a "product-killer", following in the footsteps of other technology companies such as [Google](https://en.wikipedia.org/wiki/Google "Google"), [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services "Amazon Web Services"), [Broadcom](https://en.wikipedia.org/wiki/Broadcom "Broadcom"), [Cloud Software Group](https://en.wikipedia.org/wiki/Cloud_Software_Group "Cloud Software Group"), and [Netscape](https://en.wikipedia.org/wiki/Netscape "Netscape").[[
+24]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-24)
+
+OpenAI did not provide a specific reason for discontinuing Sora in its shutdown notice.[[
+8]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-OpenAI-2026-8)[[
+25]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-25) The reports that emerged regarding this discontinuity linked the decision to compute shortages, cost pressures, and a broader shift toward core enterprise products.[[
+26]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-26)[[
+27]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-27)
+
+Following its public launch, Sora's worldwide users peaked at around a million before declining to fewer than 500,000, while the service cost an estimated $1 million per day to operate due to the computational demands of video generation.[[
+28]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-28)
+
+Legal regulation
+----------------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=6 "Edit section: Legal regulation")]
+
+In November 2024, an [API](https://en.wikipedia.org/wiki/API "API") key for Sora access was leaked by a group of testers on [Hugging Face](https://en.wikipedia.org/wiki/Hugging_Face "Hugging Face") who posted a [manifesto](https://en.wikipedia.org/wiki/Manifesto "Manifesto") stating that they were protesting that Sora was used for "[art washing](https://en.wikipedia.org/wiki/Artwashing "Artwashing")". OpenAI revoked all access three hours after the leak was made public and stated that "hundreds of artists" have shaped the development and that "participation is voluntary".[[
+29]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-29)[[
+30]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-30)[[
+31]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-31)
+
+At the time of its launch, Sora 2 allowed copyrighted content by default unless copyright holders contacted OpenAI to restrict the generation of their content on the platform.[[
+32]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-32) On October 3, 2025, OpenAI stated that a future update to Sora 2 would give copyright holders "more granular control" over the generation of copyrighted content, but the company did not state whether existing content would be removed.[[
+33]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-33) On October 6, the chairman of the [MPA](https://en.wikipedia.org/wiki/Motion_Picture_Association "Motion Picture Association") criticized OpenAI's approach to copyright with Sora 2.[[
+34]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-34)
+
+On December 11, 2025, the [Walt Disney Company](https://en.wikipedia.org/wiki/Walt_Disney_Company "Walt Disney Company") announced that it would invest $1 billion in OpenAI to allow users to generate more than 200 of its copyrighted characters on Sora 2. These characters include those from [Disney Animation](https://en.wikipedia.org/wiki/Walt_Disney_Animation_Studios "Walt Disney Animation Studios"), [Pixar](https://en.wikipedia.org/wiki/Pixar "Pixar"), [Marvel Studios](https://en.wikipedia.org/wiki/Marvel_Studios "Marvel Studios"), and *[Star Wars](https://en.wikipedia.org/wiki/Star_Wars "Star Wars")*.[[
+35]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-35)
+
+Capabilities and limitations
+----------------------------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=7 "Edit section: Capabilities and limitations")]
+
+![](//upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Cat-on-bed.webm/330px--Cat-on-bed.webm.jpg)
+
+A video generated by Sora of someone lying in a bed with a cat on it, containing several mistakes
+
+The technology behind Sora is an adaptation of the technology behind [DALL-E 3](https://en.wikipedia.org/wiki/DALL-E_3 "DALL-E 3"). According to OpenAI, Sora is a diffusion transformer,[[
+36]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-36) a [denoising latent diffusion model](https://en.wikipedia.org/wiki/Diffusion_model "Diffusion model") with one [transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture) "Transformer (deep learning architecture)") as its denoiser. A video is generated in latent space by denoising 3D "patches", then transformed to standard space by a video decompressor. Recaptioning is employed to [augment training data](https://en.wikipedia.org/wiki/Data_augmentation "Data augmentation") by using a video-to-text model to create detailed captions for videos.[[
+13]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Edwards-2024-13)
+
+OpenAI trained the model using publicly available videos as well as copyrighted videos licensed for the purpose, but did not reveal the number or the exact source of the videos.[[
+11]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Metz-2024-11) Upon its release, OpenAI acknowledged some of Sora's shortcomings, including its limited capacity to simulate complex physics, to understand [causality](https://en.wikipedia.org/wiki/Causality "Causality") and to differentiate left from right.[[
+37]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-37) OpenAI also stated that, in adherence to the company's existing safety practices, Sora will restrict text prompts for sexual, violent, hateful or celebrity imagery, as well as content featuring existing [intellectual property](https://en.wikipedia.org/wiki/Intellectual_property "Intellectual property").[[
+10]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Lacy-2024-10)
+
+Sora researcher Tim Brooks stated that the model learned how to create [3D graphics](https://en.wikipedia.org/wiki/3D_computer_graphics "3D computer graphics") from its dataset alone, while fellow Sora researcher Bill Peebles said that the model automatically created different video angles without being prompted.[[
+9]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Levy-2024-9) According to OpenAI, Sora-generated videos are also tagged with [C2PA metadata](https://en.wikipedia.org/wiki/Content_Authenticity_Initiative "Content Authenticity Initiative") to indicate that they are AI-processed.[[
+11]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Metz-2024-11)
+
+### Comparison with other models
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=8 "Edit section: Comparison with other models")]
+
+The Artificial Analysis have placed Sora 2 pro lower than other text-to-video AI generators in the market on its leaderboard. Other models, such as Seedance 2.0 from ByteDance, Runaway 4.5 from Runaway, and Kling 3.0 from KlingAI, have ranked higher than Sora 2.0.[[
+38]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-38)
+
+Reception
+---------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=9 "Edit section: Reception")]
+
+### Positive
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=10 "Edit section: Positive")]
+
+In 2024, Will Douglas Heaven of the *[MIT Technology Review](https://en.wikipedia.org/wiki/MIT_Technology_Review "MIT Technology Review")* called the demonstration videos "impressive", but noted that they must have been [cherry-picked](https://en.wikipedia.org/wiki/Cherry_picking "Cherry picking") and may not be representative of Sora's typical output.[[
+14]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Heaven-2024-14) Lisa Lacy of [CNET](https://en.wikipedia.org/wiki/CNET "CNET") called its example videos "remarkably realistic – except perhaps when a human face appears close up or when sea creatures are swimming".[[
+10]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Lacy-2024-10)
+
+In October 2025, *[The New York Times](https://en.wikipedia.org/wiki/The_New_York_Times "The New York Times")* remarked that the release of the Sora 2 app in September 2025 was "jaw-dropping (for better and worse)" though also remarked that the app was a "social network in disguise" and "the type of product that companies like Meta and X have sought to build: a way to bring A.I. to the masses that people can share." The article expressed concern regarding the product's potential impact on society and its potential use to promote misinformation, disinformation, and scams.[[
+39]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-39)
+
+A 2025 study in Science Advances found that generative AI tools can lower barriers to entry in creative work. It enables users with diverse skill sets to act on their creative and imaginative ideas. Including people with less formal artistic training and technical skills. The lower barrier to entry allows such users previously locked out of the creative industry to produce content and easily act on their creative ideas [[
+40]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-40)
+
+### Negative
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=11 "Edit section: Negative")]
+
+Some internet users and online content creators, such as [Hank Green](https://en.wikipedia.org/wiki/Hank_Green "Hank Green"), called the mobile app "SlopTok", a reference to both the popular mobile app [TikTok](https://en.wikipedia.org/wiki/TikTok "TikTok") and the popular term [AI slop](https://en.wikipedia.org/wiki/AI_slop "AI slop").[[
+41]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-41)
+
+Filmmaker [Tyler Perry](https://en.wikipedia.org/wiki/Tyler_Perry "Tyler Perry") announced he would be putting a planned $800 million expansion of his [Atlanta](https://en.wikipedia.org/wiki/Atlanta "Atlanta") studio on hold, expressing concern about Sora's potential impact on the film industry.[[
+42]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-42)[[
+43]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-43)
+
+OpenAI came under controversy over character generation after Sora 2 produced several videos that featured copyrighted characters. The company stated it would work with rights holders to block characters from Sora at their request, giving copyright holders more control.[[
+44]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-44) In October 2025, Japan's [Content Overseas Distribution Association](https://en.wikipedia.org/wiki/Content_Overseas_Distribution_Association "Content Overseas Distribution Association") submitted a request to OpenAI demanding that it stop using the copyrighted content of its member companies, including [Studio Ghibli](https://en.wikipedia.org/wiki/Studio_Ghibli "Studio Ghibli") and [Square Enix](https://en.wikipedia.org/wiki/Square_Enix "Square Enix").[[
+45]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-45)[[
+46]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-46)
+
+Various estates of celebrities have threatened legal action against OpenAI's Sora 2 app, due to deepfake videos being created of their likeness, including celebrities that have died.[[
+47]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-47) Family members of the late comedians [Robin Williams](https://en.wikipedia.org/wiki/Robin_Williams "Robin Williams") and [George Carlin](https://en.wikipedia.org/wiki/George_Carlin "George Carlin") also urged OpenAI to take action against "hurtful videos" and to restrict deepfakes of their loved ones.[[
+48]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-48) OpenAI restricted users from making videos of the late [Martin Luther King Jr.](https://en.wikipedia.org/wiki/Martin_Luther_King_Jr. "Martin Luther King Jr.") and gave estates the ability to opt out of those they represent.[[
+49]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-49)
+
+American academic [Oren Etzioni](https://en.wikipedia.org/wiki/Oren_Etzioni "Oren Etzioni") expressed concerns over the technology's ability to create online [disinformation](https://en.wikipedia.org/wiki/Disinformation "Disinformation") for political campaigns.[[
+11]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Metz-2024-11) For *[Wired](https://en.wikipedia.org/wiki/Wired_(magazine) "Wired (magazine)")*, [Steven Levy](https://en.wikipedia.org/wiki/Steven_Levy "Steven Levy") similarly wrote that it had the potential to become "a misinformation train wreck" and opined that its preview clips were "impressive" but "not perfect" and that it "show[ed] an emergent grasp of cinematic grammar" due to its unprompted shot changes. Levy added, "[i]t will be a very long time, if ever, before text-to-video threatens actual filmmaking."[[
+9]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-Levy-2024-9)
+
+A commentary by the Brookings Institution argued that tools such as Sora and other AI video and image generators can create job losses in creative industries by automating production tasks previously performed by writers, designers, editors, artists, and other film-production workers. The Brookings Institution also talked about a 2024 study. This study reported that 75% of film companies that had adopted AI reduced the workload by a great margin till the need for employees lowered, which led to these companies reducing, consolidating, or eliminating jobs. More than 100,000 U.S. entertainment jobs could be at risk of disappearing by 2026.[[
+50]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-50)
+
+In popular culture
+------------------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=12 "Edit section: In popular culture")]
+
+The episode "[Sora Not Sorry](https://en.wikipedia.org/wiki/Sora_Not_Sorry "Sora Not Sorry")" from [*South Park*](https://en.wikipedia.org/wiki/South_Park "South Park") is a satire that critiques AI [deepfake](https://en.wikipedia.org/wiki/Deepfake "Deepfake") videos and copyright issues surrounding generative AI models, with the title being a reference to Sora.[[
+51]](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_note-51)
+
+See also
+--------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=13 "Edit section: See also")]
+
+* [Runway Gen](https://en.wikipedia.org/wiki/Runway_Gen "Runway Gen")
+* [VideoPoet](https://en.wikipedia.org/wiki/VideoPoet "VideoPoet")
+* [Google Veo](https://en.wikipedia.org/wiki/Veo_(text-to-video_model) "Veo (text-to-video model)")
+* [Dream Machine](https://en.wikipedia.org/wiki/Dream_Machine_(text-to-video_model) "Dream Machine (text-to-video model)")
+* [Seedance 2.0](https://en.wikipedia.org/wiki/Seedance_2.0 "Seedance 2.0")
+
+References
+----------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=14 "Edit section: References")]
+
+1. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-1 "Jump up")**
+    ["Sora: Creating video from text"](https://openai.com/index/sora/). *openai.com*. Retrieved October 7,
+    2025
+   .
+2. ^ [Jump up to:
+   ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-:0_2-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-:0_2-1)
+    ["Sora | OpenAI"](https://openai.com/sora/). *openai.com*. Retrieved December 9,
+    2024
+   .
+3. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-3 "Jump up")**
+    Wang, Gerui. ["How Sora And AI Videos Transform Media: Strengths And Challenges"](https://www.forbes.com/sites/geruiwang/2024/12/12/ai-videos-are-changing-media--strengths-limitations-and-potential/). *Forbes*. Retrieved December 24,
+    2024
+   .
+4. ^ [Jump up to:
+   ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-OpenAI-2025_4-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-OpenAI-2025_4-1)
+    ["Sora 2 is here"](https://openai.com/index/sora-2/). *OpenAI*. September 30, 2025. Retrieved September 30,
+    2025
+   .
+5. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-5 "Jump up")**
+    Walsh, Bryan (October 3, 2025). ["OpenAI's Sora 2 is an unholy abomination"](https://www.vox.com/future-perfect/463596/openai-sora2-reels-videos-tiktok-chatgpt-deepfakes). *Vox*. Retrieved October 8,
+    2025
+   .
+6. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-6 "Jump up")**
+    ["OpenAI's AI video app stirs copyright questions, pumping out videos of Mario and Pikachu"](https://www.nbcnews.com/tech/tech-news/openai-sora-2-app-video-chatgpt-creation-rcna234973). *NBC News*. October 2, 2025. Retrieved October 8,
+    2025
+   .
+7. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-7 "Jump up")**
+    Jin, Berber (March 24, 2026). ["Exclusive | OpenAI Set to Discontinue Sora Video Platform App"](https://www.wsj.com/tech/ai/openai-set-to-discontinue-sora-video-platform-app-a82a9e4e). *The Wall Street Journal*. Retrieved March 24,
+    2026
+   .
+8. ^ [Jump up to:
+   ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-OpenAI-2026_8-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-OpenAI-2026_8-1) [***c***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-OpenAI-2026_8-2)
+    ["What to know about the Sora discontinuation"](https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation). *OpenAI Help Center*. Retrieved March 28,
+    2026
+   .
+9. ^ [Jump up to:
+   ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Levy-2024_9-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Levy-2024_9-1) [***c***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Levy-2024_9-2) [***d***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Levy-2024_9-3)
+    [Levy, Steven](https://en.wikipedia.org/wiki/Steven_Levy "Steven Levy") (February 15, 2024). ["OpenAI's Sora Turns AI Prompts Into Photorealistic Videos"](https://www.wired.com/story/openai-sora-generative-ai-video/). *[Wired](https://en.wikipedia.org/wiki/Wired_(magazine) "Wired (magazine)")*. [Archived](https://web.archive.org/web/20240215234655/https://www.wired.com/story/openai-sora-generative-ai-video/) from the original on February 15, 2024. Retrieved February 16,
+    2024
+   .
+10. ^ [Jump up to:
+    ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Lacy-2024_10-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Lacy-2024_10-1) [***c***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Lacy-2024_10-2) [***d***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Lacy-2024_10-3)
+     Lacy, Lisa (February 15, 2024). ["Meet Sora, OpenAI's Text-to-Video Generator"](https://www.cnet.com/tech/meet-sora-openais-text-to-video-generator/). *[CNET](https://en.wikipedia.org/wiki/CNET "CNET")*. [Archived](https://web.archive.org/web/20240216004932/https://www.cnet.com/tech/meet-sora-openais-text-to-video-generator/) from the original on February 16, 2024. Retrieved February 16,
+     2024
+    .
+11. ^ [Jump up to:
+    ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Metz-2024_11-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Metz-2024_11-1) [***c***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Metz-2024_11-2) [***d***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Metz-2024_11-3)
+     Metz, Cade (February 15, 2024). ["OpenAI Unveils A.I. That Instantly Generates Eye-Popping Videos"](https://www.nytimes.com/2024/02/15/technology/openai-sora-videos.html). *[The New York Times](https://en.wikipedia.org/wiki/The_New_York_Times "The New York Times")*. [Archived](https://web.archive.org/web/20240215220626/https://www.nytimes.com/2024/02/15/technology/openai-sora-videos.html) from the original on February 15, 2024. Retrieved February 15,
+     2024
+    .
+12. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-12 "Jump up")**
+     Brooks, Tim; Peebles, Bill; Holmes, Connor; DePue, Will; Guo, Yufei; Jing, Li; Schnurr, David; Taylor, Joe; Luhman, Troy; Luhman, Eric; Ng, Clarence Wing Yin; Wang, Ricky; Ramesh, Aditya (February 15, 2024). ["Video generation models as world simulators"](https://openai.com/research/video-generation-models-as-world-simulators). *[OpenAI](https://en.wikipedia.org/wiki/OpenAI "OpenAI")*. [Archived](https://web.archive.org/web/20240216072133/https://openai.com/research/video-generation-models-as-world-simulators) from the original on February 16, 2024. Retrieved February 16,
+     2024
+    .
+13. ^ [Jump up to:
+    ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Edwards-2024_13-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Edwards-2024_13-1)
+     Edwards, Benj (February 16, 2024). ["OpenAI collapses media reality with Sora, a photorealistic AI video generator"](https://arstechnica.com/information-technology/2024/02/openai-collapses-media-reality-with-sora-a-photorealistic-ai-video-generator/). *[Ars Technica](https://en.wikipedia.org/wiki/Ars_Technica "Ars Technica")*. [Archived](https://web.archive.org/web/20240217000922/https://arstechnica.com/information-technology/2024/02/openai-collapses-media-reality-with-sora-a-photorealistic-ai-video-generator/) from the original on February 17, 2024. Retrieved February 17,
+     2024
+    .
+14. ^ [Jump up to:
+    ***a***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Heaven-2024_14-0) [***b***](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-Heaven-2024_14-1)
+     Heaven, Will Douglas (February 15, 2024). ["OpenAI teases an amazing new generative video model called Sora"](https://www.technologyreview.com/2024/02/15/1088401/openai-amazing-new-generative-ai-video-model-sora/). *[MIT Technology Review](https://en.wikipedia.org/wiki/MIT_Technology_Review "MIT Technology Review")*. [Archived](https://web.archive.org/web/20240215220619/https://www.technologyreview.com/2024/02/15/1088401/openai-amazing-new-generative-ai-video-model-sora/) from the original on February 15, 2024. Retrieved February 15,
+     2024
+    .
+15. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-15 "Jump up")**
+     Zeff, Maxwell (February 28, 2025). ["OpenAI plans to bring Sora's video generator to ChatGPT"](https://techcrunch.com/2025/02/28/openai-plans-to-bring-soras-video-generator-to-chatgpt/). *TechCrunch*. Retrieved March 4,
+     2025
+    .
+16. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-16 "Jump up")**
+     Perlo, Jared; Yang, Angela (September 30, 2025). ["OpenAI announces Sora 2 and AI video and audio app that allows for user 'cameos'"](https://www.nbcnews.com/tech/tech-news/openai-announces-sora-2-ai-video-audio-app-rcna234753). [NBC News](https://en.wikipedia.org/wiki/NBC_News "NBC News"). Retrieved October 2,
+     2025
+    .
+17. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-17 "Jump up")**
+     Harding, Xavier (February 26, 2024). ["Was This Video Generated Using AI? Here's How To Tell"](https://mozillafoundation.org/en/blog/sora-ai-video). Mozilla Foundation.
+18. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-18 "Jump up")**
+     Gault, Matthew (October 7, 2025). ["Sora 2 Watermark Removers Flood the Web"](https://www.404media.co/sora-2-watermark-removers-flood-the-web/). *404 Media*. Retrieved October 7,
+     2025
+    .
+19. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-19 "Jump up")**
+     Schiffer, Zoë. ["OpenAI Is Preparing to Launch a Social App for AI-Generated Videos"](https://www.wired.com/story/openai-launches-sora-2-tiktok-like-app/). *Wired*. [ISSN](https://en.wikipedia.org/wiki/ISSN_(identifier) "ISSN (identifier)") [1059-1028](https://search.worldcat.org/issn/1059-1028). Retrieved November 23,
+     2025
+    .
+20. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-20 "Jump up")**
+     Felton, Kennedy (September 30, 2025). ["OpenAI launches Sora 2, a TikTok-style app powered by AI video"](https://san.com/cc/openai-launches-sora-2-a-tiktok-style-app-powered-by-ai-video/). *Straight Arrow News*. Retrieved November 23,
+     2025
+    .
+21. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-21 "Jump up")**
+     ["OpenAI pulls the plug on its Sora AI video app - CBS News"](https://www.cbsnews.com/news/sora-ai-openai-discontinues/). *www.cbsnews.com*. March 24, 2026. Retrieved March 24,
+     2026
+    .
+22. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-22 "Jump up")**
+     ["OpenAI discontinues Sora video platform to sharpen focus on enterprise products"](https://www.reuters.com/technology/openai-set-discontinue-sora-video-platform-app-wsj-reports-2026-03-24/). *Reuters*. March 24, 2026.
+23. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-23 "Jump up")**
+     ["OpenAI just gave up Sora and its billion-dollar Disney deal"](https://www.theverge.com/ai-artificial-intelligence/899850/openai-sora-ai-chatgpt). *The Verge*. March 24, 2026.
+24. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-24 "Jump up")**
+     Sharwood, Simon (March 25, 2026). ["OpenAI now gets to decide which type of product assassin it will become"](https://www.theregister.com/2026/03/25/openai_kills_sora_product_assassin/). *[The Register](https://en.wikipedia.org/wiki/The_Register "The Register")*. Retrieved March 26,
+     2026
+    .
+25. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-25 "Jump up")**
+     ["OpenAI's Sora was the creepiest app on your phone — now it's shutting down"](https://techcrunch.com/2026/03/24/openais-sora-was-the-creepiest-app-on-your-phone-now-its-shutting-down/). *TechCrunch*. March 24, 2026.
+26. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-26 "Jump up")**
+     Spirlet, Thibault (April 2, 2026). ["OpenAI's CFO says the company is passing on opportunities because it does not have enough compute"](https://www.businessinsider.com/openai-cfo-says-compute-crunch-is-forcing-tough-trade-offs-2026-4). *Business Insider*. Retrieved April 5,
+     2026
+    .
+27. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-27 "Jump up")**
+     Singal, Nidhi (March 25, 2026). ["OpenAI's Sora exit signals enterprise-first AI shift"](https://www.computerworld.com/article/4149925/openais-sora-exit-signals-enterprise-first-ai-shift.html). *Computerworld*. Retrieved April 5,
+     2026
+    .
+28. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-28 "Jump up")**
+     ["Why OpenAI really shut down Sora"](https://techcrunch.com/2026/03/29/why-openai-really-shut-down-sora/). TechCrunch. March 29, 2026.
+29. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-29 "Jump up")**
+     ["After 3 hours, OpenAI shut down Sora's early access temporarily for all artists"](https://huggingface.co/spaces/PR-Puppets/PR-Puppet-Sora). *Hugging Face Spaces*. Retrieved March 1,
+     2025
+    .
+30. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-30 "Jump up")**
+     Spangler, Todd (November 27, 2024). ["OpenAI Shuts Down Sora Access After Artists Released Video-Generation Tool in Protest: 'We Are Not Your PR Puppets'"](https://variety.com/2024/digital/news/openai-shuts-down-sora-artists-protest-leak-1236224878/). *[Variety](https://en.wikipedia.org/wiki/Variety_(magazine) "Variety (magazine)")*. Retrieved December 2,
+     2024
+    .
+31. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-31 "Jump up")**
+     Tiku, Nitasha (November 26, 2024). ["OpenAI hits pause on video model Sora after artists leak access in protest"](https://www.washingtonpost.com/technology/2024/11/26/openai-sora-ai-video-model-artists-protest/). *The Washington Post*. Retrieved March 1,
+     2025
+    .
+32. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-32 "Jump up")**
+     Binder, Matt (October 6, 2025). ["Sora update: OpenAI will require copyright holders to opt out"](https://mashable.com/article/openai-sora-intellectual-property-copyright-holders-opt-out). *Mashable*. Retrieved October 7,
+     2025
+    .
+33. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-33 "Jump up")**
+     Maddaus, Gene (October 7, 2025). ["Motion Picture Association Blasts OpenAI Over Sora 2 Video Copyright Opt-Outs"](https://variety.com/2025/film/news/motion-picture-association-openai-sora-2-copyright-1236541775/). *Variety*. Retrieved October 7,
+     2025
+    .
+34. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-34 "Jump up")**
+     Johnson, Ted (October 7, 2025). ["MPA Chairman Says OpenAI Bears Responsibility For Preventing Sora 2 From Infringing On Copyright"](https://deadline.com/2025/10/mpa-sora-2-openai-copyright-infringement-1236571849/). *Deadline*. Retrieved October 7,
+     2025
+    .
+35. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-35 "Jump up")**
+     Capoot, Ashley (December 11, 2025). ["Disney making $1 billion investment in OpenAI, will allow characters on Sora AI video generator"](https://www.cnbc.com/2025/12/11/disney-openai-sora-characters-video.html). *CNBC*. Retrieved December 12,
+     2025
+    .
+36. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-36 "Jump up")**
+     Peebles, William; Xie, Saining (2023). ["Scalable Diffusion Models with Transformers"](https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html). *2023 IEEE/CVF International Conference on Computer Vision (ICCV)*. pp. 4172–
+    4182. [arXiv](https://en.wikipedia.org/wiki/ArXiv_(identifier) "ArXiv (identifier)"):[2212.09748](https://arxiv.org/abs/2212.09748)
+    . [doi](https://en.wikipedia.org/wiki/Doi_(identifier) "Doi (identifier)"):[10.1109/ICCV51070.2023.00387](https://doi.org/10.1109%2FICCV51070.2023.00387). [ISBN](https://en.wikipedia.org/wiki/ISBN_(identifier) "ISBN (identifier)") [979-8-3503-0718-4](https://en.wikipedia.org/wiki/Special:BookSources/979-8-3503-0718-4 "Special:BookSources/979-8-3503-0718-4"). [ISSN](https://en.wikipedia.org/wiki/ISSN_(identifier) "ISSN (identifier)") [2380-7504](https://search.worldcat.org/issn/2380-7504). [S2CID](https://en.wikipedia.org/wiki/S2CID_(identifier) "S2CID (identifier)") [254854389](https://api.semanticscholar.org/CorpusID:254854389). [Archived](https://web.archive.org/web/20240217080434/https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html) from the original on February 17, 2024. Retrieved February 17,
+     2024
+    .
+37. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-37 "Jump up")**
+     Pequeño IV, Antonio (February 15, 2024). ["OpenAI Reveals 'Sora': AI Video Model Capable Of Realistic Text-To-Video Prompts"](https://www.forbes.com/sites/antoniopequenoiv/2024/02/15/openai-reveals-sora-ai-video-model-capable-of-realistic-text-to-video-prompts/). *[Forbes](https://en.wikipedia.org/wiki/Forbes "Forbes")*. [Archived](https://web.archive.org/web/20240215220634/https://www.forbes.com/sites/antoniopequenoiv/2024/02/15/openai-reveals-sora-ai-video-model-capable-of-realistic-text-to-video-prompts/) from the original on February 15, 2024. Retrieved February 15,
+     2024
+    .
+38. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-38 "Jump up")**
+     ["Text to Video Leaderboard - Top AI Video Models"](https://artificialanalysis.ai/video/leaderboard/text-to-video). *Artificial Analysis*. Retrieved April 5,
+     2026
+    .
+39. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-39 "Jump up")**
+     ["OpenAI's Sora Video App Is Jaw-Dropping (for Better and Worse)"](https://web.archive.org/web/20251002200503/https://www.nytimes.com/2025/10/02/technology/openai-sora-video-app.html). October 2, 2025. Archived from [the original](https://www.nytimes.com/2025/10/02/technology/openai-sora-video-app.html) on October 2, 2025. Retrieved October 4,
+     2025
+    .
+40. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-40 "Jump up")**
+     Zhou, Eric B.; Lee, Dokyun; Gu, Bin (2025). ["Who expands the human creative frontier with generative AI: Hive minds or masterminds?"](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12407059). *Science Advances*. **11** (36): eadu5800. [doi](https://en.wikipedia.org/wiki/Doi_(identifier) "Doi (identifier)"):[10.1126/sciadv.adu5800](https://doi.org/10.1126%2Fsciadv.adu5800). [PMC](https://en.wikipedia.org/wiki/PMC_(identifier) "PMC (identifier)") [12407059](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12407059)
+    .`{{cite journal}}`: CS1 maint: article number as page number ([link](https://en.wikipedia.org/wiki/Category:CS1_maint:_article_number_as_page_number "Category:CS1 maint: article number as page number"))
+41. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-41 "Jump up")**
+     Harding, Rebekah (October 11, 2025). [""Pure fad, pure novelty": Hank Green gives a bleak "SlopTok" report back after scrolling through Sora 2"](https://www.dailydot.com/news/hank-green-sora-2-sloptok/). *The Daily Dot*. Retrieved November 23,
+     2025
+    .
+42. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-42 "Jump up")**
+     Kilkenny, Katie (February 23, 2024). ["Tyler Perry Puts $800M Studio Expansion on Hold After Seeing OpenAI's Sora: "Jobs Are Going to Be Lost""](https://www.hollywoodreporter.com/business/business-news/tyler-perry-ai-alarm-1235833276/). *The Hollywood Reporter*. [Archived](https://web.archive.org/web/20240226021123/https://www.hollywoodreporter.com/business/business-news/tyler-perry-ai-alarm-1235833276/) from the original on February 26, 2024. Retrieved February 26,
+     2024
+    .
+43. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-43 "Jump up")**
+     Edwards, Benj (February 23, 2024). ["Tyler Perry puts $800 million studio expansion on hold because of OpenAI's Sora"](https://arstechnica.com/information-technology/2024/02/i-just-dont-see-how-we-survive-tyler-perry-issues-hollywood-warning-over-ai-video-tech/). *Ars Technica*. [Archived](https://web.archive.org/web/20240226021124/https://arstechnica.com/information-technology/2024/02/i-just-dont-see-how-we-survive-tyler-perry-issues-hollywood-warning-over-ai-video-tech/) from the original on February 26, 2024. Retrieved February 26,
+     2024
+    .
+44. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-44 "Jump up")**
+     Taylor, Josh (October 6, 2025). ["OpenAI promises more 'granular control' to copyright owners after Sora 2 generates videos of popular characters"](https://www.theguardian.com/technology/2025/oct/06/open-ai-promises-more-granular-control-copyright-owners-sora-2-generates-videos-popular-characters). *The Guardian*. [ISSN](https://en.wikipedia.org/wiki/ISSN_(identifier) "ISSN (identifier)") [0261-3077](https://search.worldcat.org/issn/0261-3077). [Archived](https://web.archive.org/web/20251006051250/https://www.theguardian.com/technology/2025/oct/06/open-ai-promises-more-granular-control-copyright-owners-sora-2-generates-videos-popular-characters) from the original on October 6, 2025. Retrieved October 8,
+     2025
+    .
+45. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-45 "Jump up")**
+     V, Amber (October 30, 2025). ["Sony's Aniplex, Bandai Namco and other Japanese publishers demand end to unauthorized training of OpenAI's Sora 2 through CODA"](https://automaton-media.com/en/news/sonys-aniplex-bandai-namco-and-other-japanese-publishers-demand-end-to-unauthorized-training-of-openais-sora2-through-coda/). *[Automaton West](https://en.wikipedia.org/wiki/Automaton_West "Automaton West")*. Retrieved November 3,
+     2025
+    .
+46. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-46 "Jump up")**
+     Landymore, Frank (November 3, 2025). ["Studio Ghibli Demands That OpenAI Stop Ripping Off Its Work"](https://futurism.com/artificial-intelligence/studio-ghibli-openai-stop-ripping-work). *[Futurism](https://en.wikipedia.org/wiki/Futurism_(website) "Futurism (website)")*. Retrieved November 3,
+     2025
+    .
+47. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-47 "Jump up")**
+     ["Has the AI dead celebs trend gone too far?"](https://www.bbc.co.uk/bitesize/articles/zktm9ty). *[BBC Bitesize](https://en.wikipedia.org/wiki/BBC_Bitesize "BBC Bitesize")*. October 10, 2025. Retrieved October 10,
+     2025
+    .
+48. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-48 "Jump up")**
+     Walker, Josephine (October 8, 2025). ["OpenAI's Sora deepfakes of Robin Williams, George Carlin spark outrage"](https://www.axios.com/2025/10/08/openai-sora-deepfakes-robin-williams-george-carlin). *[Axios](https://en.wikipedia.org/wiki/Axios_(website) "Axios (website)")*. Retrieved October 10,
+     2025
+    .
+49. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-49 "Jump up")**
+     Hart, Robert (October 17, 2025). ["OpenAI halts MLK deepfakes on Sora"](https://www.theverge.com/news/801539/open-ai-sora-mlk). *The Verge*. Retrieved October 17,
+     2025
+    .
+50. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-50 "Jump up")**
+     Turner Lee, Nicol; White, Natasha (May 15, 2024). ["How OpenAI's Sora hurts the creative industries"](https://www.brookings.edu/articles/how-openais-sora-hurts-the-creative-industries/). *Brookings Institution*. Retrieved April 5,
+     2026
+    .
+51. **[^](https://en.wikipedia.org/wiki/Sora_(text-to-video_model)#cite_ref-51 "Jump up")**
+     ["'South Park' addresses AI-generated videos and copyright with Totoro, Trump and Bluey"](https://www.latimes.com/entertainment-arts/tv/story/2025-11-13/south-park-totoro-bluey-trump-ai-videos). *Los Angeles Times*. November 13, 2025. Retrieved December 9,
+     2025
+    .
+
+External links
+--------------
+
+[
+[edit](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&action=edit&section=15 "Edit section: External links")]
+
+Wikimedia Commons has media related to [Sora](https://commons.wikimedia.org/wiki/Category:Sora_(text-to-video_model) "commons:Category:Sora (text-to-video model)")
+.
+
+* [Official website](https://openai.com/index/sora)
+
+| show  * [v](https://en.wikipedia.org/wiki/Template:OpenAI "Template:OpenAI") * [t](https://en.wikipedia.org/wiki/Template_talk:OpenAI "Template talk:OpenAI") * [e](https://en.wikipedia.org/wiki/Special:EditPage/Template:OpenAI "Special:EditPage/Template:OpenAI")  [OpenAI](https://en.wikipedia.org/wiki/OpenAI "OpenAI") | |
+| --- | --- |
+| [Products](https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI "Products and applications of OpenAI") | |  |  | | --- | --- | | [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT "ChatGPT") | * [Atlas](https://en.wikipedia.org/wiki/ChatGPT_Atlas "ChatGPT Atlas") * [Deep Research](https://en.wikipedia.org/wiki/ChatGPT_Deep_Research "ChatGPT Deep Research") * [GPT Store](https://en.wikipedia.org/wiki/GPT_Store "GPT Store") * [Search](https://en.wikipedia.org/wiki/ChatGPT_Search "ChatGPT Search") | | [Foundation models](https://en.wikipedia.org/wiki/Foundation_model "Foundation model") | |  |  | | --- | --- | | [GPT models](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer "Generative pre-trained transformer") | * [GPT-1](https://en.wikipedia.org/wiki/GPT-1 "GPT-1") * [GPT-2](https://en.wikipedia.org/wiki/GPT-2 "GPT-2") * [GPT-3](https://en.wikipedia.org/wiki/GPT-3 "GPT-3") * [GPT-4](https://en.wikipedia.org/wiki/GPT-4 "GPT-4") * [GPT-4o](https://en.wikipedia.org/wiki/GPT-4o "GPT-4o") * [o1](https://en.wikipedia.org/wiki/OpenAI_o1 "OpenAI o1") * [o3](https://en.wikipedia.org/wiki/OpenAI_o3 "OpenAI o3") * [GPT-4.5](https://en.wikipedia.org/wiki/GPT-4.5 "GPT-4.5") * [GPT-4.1](https://en.wikipedia.org/wiki/GPT-4.1 "GPT-4.1") * [o4-mini](https://en.wikipedia.org/wiki/OpenAI_o4-mini "OpenAI o4-mini") * [GPT-OSS](https://en.wikipedia.org/wiki/GPT-OSS "GPT-OSS") * [GPT-5](https://en.wikipedia.org/wiki/GPT-5 "GPT-5") * [GPT-5.1](https://en.wikipedia.org/wiki/GPT-5.1 "GPT-5.1") * [GPT-5.2](https://en.wikipedia.org/wiki/GPT-5.2 "GPT-5.2") * [GPT-5.4](https://en.wikipedia.org/wiki/GPT-5.4 "GPT-5.4") | | Specialized | * [DALL-E](https://en.wikipedia.org/wiki/DALL-E "DALL-E") * [Codex](https://en.wikipedia.org/wiki/OpenAI_Codex_(language_model) "OpenAI Codex (language model)") * [GPT Image](https://en.wikipedia.org/wiki/GPT_Image "GPT Image") * Sora * [Whisper](https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system) "Whisper (speech recognition system)") | | | [Intelligent agents](https://en.wikipedia.org/wiki/Intelligent_agent "Intelligent agent") | * [Codex](https://en.wikipedia.org/wiki/OpenAI_Codex_(AI_agent) "OpenAI Codex (AI agent)") * [Operator](https://en.wikipedia.org/wiki/OpenAI_Operator "OpenAI Operator") | |
+| People | |  |  |  |  |  |  | | --- | --- | --- | --- | --- | --- | | [Senior management](https://en.wikipedia.org/wiki/Senior_management "Senior management") | |  |  | | --- | --- | | Current | * [Sam Altman](https://en.wikipedia.org/wiki/Sam_Altman "Sam Altman")   + [removal](https://en.wikipedia.org/wiki/Removal_of_Sam_Altman_from_OpenAI "Removal of Sam Altman from OpenAI") * [Greg Brockman](https://en.wikipedia.org/wiki/Greg_Brockman "Greg Brockman") * [Sarah Friar](https://en.wikipedia.org/wiki/Sarah_Friar "Sarah Friar") * [Jakub Pachocki](https://en.wikipedia.org/wiki/Jakub_Pachocki "Jakub Pachocki") * [Scott Schools](https://en.wikipedia.org/wiki/Scott_Schools "Scott Schools") | | Former | * [Mira Murati](https://en.wikipedia.org/wiki/Mira_Murati "Mira Murati") * [Emmett Shear](https://en.wikipedia.org/wiki/Emmett_Shear "Emmett Shear") | | | [Board of directors](https://en.wikipedia.org/wiki/Board_of_directors "Board of directors") | |  |  | | --- | --- | | Current | * [Sam Altman](https://en.wikipedia.org/wiki/Sam_Altman "Sam Altman") * [Adam D'Angelo](https://en.wikipedia.org/wiki/Adam_D%27Angelo "Adam D'Angelo") * [Sue Desmond-Hellmann](https://en.wikipedia.org/wiki/Sue_Desmond-Hellmann "Sue Desmond-Hellmann") * [Zico Kolter](https://en.wikipedia.org/wiki/Zico_Kolter "Zico Kolter") * [Paul Nakasone](https://en.wikipedia.org/wiki/Paul_Nakasone "Paul Nakasone") * [Adebayo Ogunlesi](https://en.wikipedia.org/wiki/Adebayo_Ogunlesi "Adebayo Ogunlesi") * [Nicole Seligman](https://en.wikipedia.org/wiki/Nicole_Seligman "Nicole Seligman") * [Fidji Simo](https://en.wikipedia.org/wiki/Fidji_Simo "Fidji Simo") * [Bret Taylor](https://en.wikipedia.org/wiki/Bret_Taylor "Bret Taylor") (chair) | | Former | * [Greg Brockman](https://en.wikipedia.org/wiki/Greg_Brockman "Greg Brockman") (2017–2023) * [Reid Hoffman](https://en.wikipedia.org/wiki/Reid_Hoffman "Reid Hoffman") (2019–2023) * [Will Hurd](https://en.wikipedia.org/wiki/Will_Hurd "Will Hurd") (2021–2023) * [Holden Karnofsky](https://en.wikipedia.org/wiki/Holden_Karnofsky "Holden Karnofsky") (2017–2021) * [Elon Musk](https://en.wikipedia.org/wiki/Elon_Musk "Elon Musk") (2015–2018) * [Ilya Sutskever](https://en.wikipedia.org/wiki/Ilya_Sutskever "Ilya Sutskever") (2017–2023) * [Helen Toner](https://en.wikipedia.org/wiki/Helen_Toner "Helen Toner") (2021–2023) * [Shivon Zilis](https://en.wikipedia.org/wiki/Shivon_Zilis "Shivon Zilis") (2019–2023) * [Lawrence Summers](https://en.wikipedia.org/wiki/Lawrence_Summers "Lawrence Summers") (2023-2025) | | |
+| [JVs](https://en.wikipedia.org/wiki/Joint_venture "Joint venture") | * [Stargate LLC](https://en.wikipedia.org/wiki/Stargate_LLC "Stargate LLC") |
+| Related | * [ChatGPT in education](https://en.wikipedia.org/wiki/ChatGPT_in_education "ChatGPT in education") * [Apple Intelligence](https://en.wikipedia.org/wiki/Apple_Intelligence "Apple Intelligence") * *[AI Dungeon](https://en.wikipedia.org/wiki/AI_Dungeon "AI Dungeon")* * [AutoGPT](https://en.wikipedia.org/wiki/AutoGPT "AutoGPT") * [GitHub Copilot](https://en.wikipedia.org/wiki/GitHub_Copilot "GitHub Copilot") * [Contrastive Language-Image Pre-training](https://en.wikipedia.org/wiki/Contrastive_Language-Image_Pre-training "Contrastive Language-Image Pre-training") * "[Deep Learning](https://en.wikipedia.org/wiki/Deep_Learning_(South_Park) "Deep Learning (South Park)")" * [LangChain](https://en.wikipedia.org/wiki/LangChain "LangChain") * [Microsoft Copilot](https://en.wikipedia.org/wiki/Microsoft_Copilot "Microsoft Copilot") * [OpenAI and unions](https://en.wikipedia.org/wiki/OpenAI_and_unions "OpenAI and unions") * [OpenAI Five](https://en.wikipedia.org/wiki/OpenAI_Five "OpenAI Five") * [Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture) "Transformer (deep learning architecture)") |
+| * [Category](https://en.wikipedia.org/wiki/Category:OpenAI "Category:OpenAI") | |
+
+| show  * [v](https://en.wikipedia.org/wiki/Template:Generative_AI "Template:Generative AI") * [t](https://en.wikipedia.org/wiki/Template_talk:Generative_AI "Template talk:Generative AI") * [e](https://en.wikipedia.org/wiki/Special:EditPage/Template:Generative_AI "Special:EditPage/Template:Generative AI")  [Generative AI](https://en.wikipedia.org/wiki/Generative_AI "Generative AI") | |
+| --- | --- |
+| Concepts | * [Autoencoder](https://en.wikipedia.org/wiki/Autoencoder "Autoencoder") * [Deep learning](https://en.wikipedia.org/wiki/Deep_learning "Deep learning") * [Fine-tuning](https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning) "Fine-tuning (deep learning)") * [Foundation model](https://en.wikipedia.org/wiki/Foundation_model "Foundation model") * [Generative adversarial network](https://en.wikipedia.org/wiki/Generative_adversarial_network "Generative adversarial network") * [Generative pre-trained transformer](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer "Generative pre-trained transformer") * [Large language model](https://en.wikipedia.org/wiki/Large_language_model "Large language model") * [Model Context Protocol](https://en.wikipedia.org/wiki/Model_Context_Protocol "Model Context Protocol") * [Neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning) "Neural network (machine learning)") * [Prompt engineering](https://en.wikipedia.org/wiki/Prompt_engineering "Prompt engineering") * [Reinforcement learning from human feedback](https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback "Reinforcement learning from human feedback") * [Retrieval-augmented generation](https://en.wikipedia.org/wiki/Retrieval-augmented_generation "Retrieval-augmented generation") * [Self-supervised learning](https://en.wikipedia.org/wiki/Self-supervised_learning "Self-supervised learning") * [Slop](https://en.wikipedia.org/wiki/AI_slop "AI slop") * [Stochastic parrot](https://en.wikipedia.org/wiki/Stochastic_parrot "Stochastic parrot") * [Synthetic data](https://en.wikipedia.org/wiki/Synthetic_data "Synthetic data") * [Top-p sampling](https://en.wikipedia.org/wiki/Top-p_sampling "Top-p sampling") * [Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture) "Transformer (deep learning architecture)") * [Variational autoencoder](https://en.wikipedia.org/wiki/Variational_autoencoder "Variational autoencoder") * [Vibe coding](https://en.wikipedia.org/wiki/Vibe_coding "Vibe coding") * [Vision transformer](https://en.wikipedia.org/wiki/Vision_transformer "Vision transformer") * [Word embedding](https://en.wikipedia.org/wiki/Word_embedding "Word embedding") |
+| Models | |  |  | | --- | --- | | [Large Language](https://en.wikipedia.org/wiki/List_of_large_language_models "List of large language models") | * [Apertus](https://en.wikipedia.org/wiki/Apertus_(LLM) "Apertus (LLM)") * [Claude](https://en.wikipedia.org/wiki/Claude_(language_model) "Claude (language model)") * [Command](https://en.wikipedia.org/wiki/Cohere#Products "Cohere") * [Gemma](https://en.wikipedia.org/wiki/Gemma_(language_model) "Gemma (language model)") * [Gemini](https://en.wikipedia.org/wiki/Gemini_(language_model) "Gemini (language model)") * [GPT](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer "Generative pre-trained transformer")   + [1](https://en.wikipedia.org/wiki/GPT-1 "GPT-1")   + [2](https://en.wikipedia.org/wiki/GPT-2 "GPT-2")   + [3](https://en.wikipedia.org/wiki/GPT-3 "GPT-3")   + [J](https://en.wikipedia.org/wiki/GPT-J "GPT-J")   + [3.5](https://en.wikipedia.org/wiki/GPT-3.5 "GPT-3.5")   + [4](https://en.wikipedia.org/wiki/GPT-4 "GPT-4")   + [4o](https://en.wikipedia.org/wiki/GPT-4o "GPT-4o")   + [o1](https://en.wikipedia.org/wiki/OpenAI_o1 "OpenAI o1")   + [o3](https://en.wikipedia.org/wiki/OpenAI_o3 "OpenAI o3")   + [4.5](https://en.wikipedia.org/wiki/GPT-4.5 "GPT-4.5")   + [4.1](https://en.wikipedia.org/wiki/GPT-4.1 "GPT-4.1")   + [o4-mini](https://en.wikipedia.org/wiki/OpenAI_o4-mini "OpenAI o4-mini")   + [OSS](https://en.wikipedia.org/wiki/GPT-OSS "GPT-OSS")   + [5](https://en.wikipedia.org/wiki/GPT-5 "GPT-5")   + [5.1](https://en.wikipedia.org/wiki/GPT-5.1 "GPT-5.1")   + [5.2](https://en.wikipedia.org/wiki/GPT-5.2 "GPT-5.2")   + [5.4](https://en.wikipedia.org/wiki/GPT-5.4 "GPT-5.4") * [Hunyuan](https://en.wikipedia.org/wiki/Tencent#2021–present:_Regulatory_scrutiny "Tencent") * [Llama](https://en.wikipedia.org/wiki/Llama_(language_model) "Llama (language model)") * [Mistral Large](https://en.wikipedia.org/wiki/Mistral_AI#Mistral_Large_3_and_Ministral_3 "Mistral AI") * [Qwen](https://en.wikipedia.org/wiki/Qwen "Qwen") * [Solar Pro](https://en.wikipedia.org/wiki/Upstage_(company)#Models "Upstage (company)") * [Xiaomi MiMo](https://en.wikipedia.org/wiki/Xiaomi_MiMo "Xiaomi MiMo") | | [Image](https://en.wikipedia.org/wiki/Text-to-image_model "Text-to-image model") | * [Firefly](https://en.wikipedia.org/wiki/Adobe_Firefly "Adobe Firefly") * [Flux](https://en.wikipedia.org/wiki/Flux_(text-to-image_model) "Flux (text-to-image model)") * [GPT Image](https://en.wikipedia.org/wiki/GPT_Image "GPT Image") * [Grok Imagine](https://en.wikipedia.org/wiki/Grok_(chatbot)#Grok_Imagine "Grok (chatbot)") * [HunyuanImage](https://en.wikipedia.org/wiki/Tencent#Research "Tencent") * [Ideogram](https://en.wikipedia.org/wiki/Ideogram_(text-to-image_model) "Ideogram (text-to-image model)") * [Leonardo](https://en.wikipedia.org/wiki/Canva#Acquisitions "Canva") * [Midjourney](https://en.wikipedia.org/wiki/Midjourney "Midjourney") * [Nano Banana](https://en.wikipedia.org/wiki/Nano_Banana "Nano Banana") * [Qwen-Image](https://en.wikipedia.org/wiki/Qwen "Qwen") * [Recraft](https://en.wikipedia.org/wiki/Recraft "Recraft") * [Seedream](https://en.wikipedia.org/wiki/Seedream "Seedream") * [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion "Stable Diffusion") | | [Video](https://en.wikipedia.org/wiki/Text-to-video_model "Text-to-video model") | * [Dream Machine](https://en.wikipedia.org/wiki/Dream_Machine_(text-to-video_model) "Dream Machine (text-to-video model)") * [Genie](https://en.wikipedia.org/wiki/Genie_(AI_model) "Genie (AI model)") * [Hailuo AI](https://en.wikipedia.org/wiki/MiniMax_(company)#Hailuo_AI "MiniMax (company)") * [Kling AI](https://en.wikipedia.org/wiki/Kling_AI "Kling AI") * [LTX-2](https://en.wikipedia.org/wiki/LTX-2 "LTX-2") * [Luma Ray](https://en.wikipedia.org/wiki/Luma_Labs "Luma Labs") * [Runway Gen](https://en.wikipedia.org/wiki/Runway_(company)#Services_and_technologies "Runway (company)") * [Seedance](https://en.wikipedia.org/wiki/Seedance_2.0 "Seedance 2.0") * Sora * [Veo](https://en.wikipedia.org/wiki/Veo_(text-to-video_model) "Veo (text-to-video model)") * [Wan](https://en.wikipedia.org/wiki/Alibaba_Group#Cloud_computing_and_artificial_intelligence_technology "Alibaba Group") | | [Speech](https://en.wikipedia.org/wiki/Speech_synthesis#Text-to-speech_systems "Speech synthesis") | * [15.ai](https://en.wikipedia.org/wiki/15.ai "15.ai") * [Eleven](https://en.wikipedia.org/wiki/ElevenLabs#Products "ElevenLabs") * [Gemini Speech](https://en.wikipedia.org/wiki/Gemini_(language_model) "Gemini (language model)") * [GPT-4o mini TTS](https://en.wikipedia.org/wiki/GPT-4o_mini "GPT-4o mini") * [MiniMax Speech](https://en.wikipedia.org/wiki/MiniMax_(company)#Technology "MiniMax (company)") * [Speechify](https://en.wikipedia.org/wiki/Speechify "Speechify") | | Music | * [Eleven Music](https://en.wikipedia.org/wiki/ElevenLabs#Products "ElevenLabs") * [Endel](https://en.wikipedia.org/wiki/Endel_(app) "Endel (app)") * [Lyria](https://en.wikipedia.org/wiki/Google_DeepMind#Music_generation "Google DeepMind") * [MiniMax Music](https://en.wikipedia.org/wiki/MiniMax_(company)#Technology "MiniMax (company)") * [Riffusion](https://en.wikipedia.org/wiki/Riffusion "Riffusion") * [Stable Audio](https://en.wikipedia.org/wiki/Stability_AI#Product_and_application "Stability AI") * [Suno](https://en.wikipedia.org/wiki/Suno_(platform) "Suno (platform)") * [Udio](https://en.wikipedia.org/wiki/Udio "Udio") | |
+| Products | |  |  | | --- | --- | | [Chatbots](https://en.wikipedia.org/wiki/List_of_chatbots "List of chatbots") | * [Brave Leo](https://en.wikipedia.org/wiki/Brave_Leo "Brave Leo") * [Character.ai](https://en.wikipedia.org/wiki/Character.ai "Character.ai") * [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT "ChatGPT") * [Claude](https://en.wikipedia.org/wiki/Claude_(language_model) "Claude (language model)") * [Copilot](https://en.wikipedia.org/wiki/Microsoft_Copilot "Microsoft Copilot") * [DeepSeek](https://en.wikipedia.org/wiki/DeepSeek_(chatbot) "DeepSeek (chatbot)") * [Duck.ai](https://en.wikipedia.org/wiki/DuckDuckGo#Duck.ai "DuckDuckGo") * [Ernie](https://en.wikipedia.org/wiki/Ernie_Bot "Ernie Bot") * [Gemini](https://en.wikipedia.org/wiki/Google_Gemini "Google Gemini") * [GLM](https://en.wikipedia.org/wiki/Z.ai#History "Z.ai") * [Grok](https://en.wikipedia.org/wiki/Grok_(chatbot) "Grok (chatbot)") * [HKChat](https://en.wikipedia.org/wiki/HKChat "HKChat") * [Lumo](https://en.wikipedia.org/wiki/Lumo_(AI_assistant) "Lumo (AI assistant)") * [Kimi](https://en.wikipedia.org/wiki/Kimi_(chatbot) "Kimi (chatbot)") * [MiniMax](https://en.wikipedia.org/wiki/MiniMax_(company)#Technology "MiniMax (company)") * [Mistral](https://en.wikipedia.org/wiki/Mistral_AI "Mistral AI") * [Perplexity](https://en.wikipedia.org/wiki/Perplexity_AI "Perplexity AI") * [Poe](https://en.wikipedia.org/wiki/Quora#Poe "Quora") * [Qwen](https://en.wikipedia.org/wiki/Qwen "Qwen") * [Velvet](https://en.wikipedia.org/wiki/Velvet_AI "Velvet AI") * [You.com](https://en.wikipedia.org/wiki/You.com "You.com") | | [Coding](https://en.wikipedia.org/wiki/Vibe_coding "Vibe coding") | * [Claude Code](https://en.wikipedia.org/wiki/Claude_Code "Claude Code") * [Cursor](https://en.wikipedia.org/wiki/Cursor_(code_editor) "Cursor (code editor)") * [Devstral](https://en.wikipedia.org/wiki/Mistral_AI "Mistral AI") * [GitHub Copilot](https://en.wikipedia.org/wiki/GitHub_Copilot "GitHub Copilot") * [Google Antigravity](https://en.wikipedia.org/wiki/Google_Antigravity "Google Antigravity") * [Grok Code Fast 1](https://en.wikipedia.org/wiki/Grok_(chatbot) "Grok (chatbot)") * [Lovable](https://en.wikipedia.org/wiki/Lovable_(company) "Lovable (company)") * [Kimi Code](https://en.wikipedia.org/wiki/Moonshot_AI "Moonshot AI") * [Qwen3-Coder](https://en.wikipedia.org/wiki/Qwen "Qwen") * [Replit](https://en.wikipedia.org/wiki/Replit "Replit") | | [Agents](https://en.wikipedia.org/wiki/Intelligent_agent "Intelligent agent") | * [Agentforce](https://en.wikipedia.org/wiki/Salesforce#Artificial_intelligence "Salesforce") * [AutoGLM](https://en.wikipedia.org/wiki/Zhipu_AI#AutoGLM "Zhipu AI") * [AutoGPT](https://en.wikipedia.org/wiki/AutoGPT "AutoGPT") * [ChatGPT agent](https://en.wikipedia.org/wiki/ChatGPT_agent "ChatGPT agent") * [Devin AI](https://en.wikipedia.org/wiki/Devin_AI "Devin AI") * [Manus](https://en.wikipedia.org/wiki/Manus_(AI_agent) "Manus (AI agent)") * [MiniMax Agent](https://en.wikipedia.org/wiki/MiniMax_(company)#Technology "MiniMax (company)") * [OpenAI Codex](https://en.wikipedia.org/wiki/OpenAI_Codex_(AI_agent) "OpenAI Codex (AI agent)") * [OpenClaw](https://en.wikipedia.org/wiki/OpenClaw "OpenClaw") * [Replit Agent](https://en.wikipedia.org/wiki/Replit "Replit") * [MiMO Claw](https://en.wikipedia.org/wiki/Xiaomi_MiMo "Xiaomi MiMo") | |
+| [Companies](https://en.wikipedia.org/wiki/List_of_artificial_intelligence_companies "List of artificial intelligence companies") | * [Adobe](https://en.wikipedia.org/wiki/Adobe_Inc. "Adobe Inc.") * [Aleph Alpha](https://en.wikipedia.org/wiki/Aleph_Alpha "Aleph Alpha") * [Anthropic](https://en.wikipedia.org/wiki/Anthropic "Anthropic") * [Anysphere](https://en.wikipedia.org/wiki/Anysphere "Anysphere") * [Baichuan](https://en.wikipedia.org/wiki/Baichuan "Baichuan") * [Canva](https://en.wikipedia.org/wiki/Canva "Canva") * [Cognition AI](https://en.wikipedia.org/wiki/Cognition_AI "Cognition AI") * [Cohere](https://en.wikipedia.org/wiki/Cohere "Cohere") * [Contextual AI](https://en.wikipedia.org/wiki/Contextual_AI "Contextual AI") * [DeepSeek](https://en.wikipedia.org/wiki/DeepSeek "DeepSeek") * [DeepL](https://en.wikipedia.org/wiki/DeepL_Translator "DeepL Translator") * [EleutherAI](https://en.wikipedia.org/wiki/EleutherAI "EleutherAI") * [ElevenLabs](https://en.wikipedia.org/wiki/ElevenLabs "ElevenLabs") * [Google DeepMind](https://en.wikipedia.org/wiki/Google_DeepMind "Google DeepMind") * [HeyGen](https://en.wikipedia.org/wiki/HeyGen "HeyGen") * [Hugging Face](https://en.wikipedia.org/wiki/Hugging_Face "Hugging Face") * [Inflection AI](https://en.wikipedia.org/wiki/Inflection_AI "Inflection AI") * [Kuaishou](https://en.wikipedia.org/wiki/Kuaishou "Kuaishou") * [Lightricks](https://en.wikipedia.org/wiki/Lightricks "Lightricks") * [Lovable](https://en.wikipedia.org/wiki/Lovable_(company) "Lovable (company)") * [Luma Labs](https://en.wikipedia.org/wiki/Luma_Labs "Luma Labs") * [Meta AI](https://en.wikipedia.org/wiki/Meta_AI "Meta AI") * [MiniMax](https://en.wikipedia.org/wiki/MiniMax_(company) "MiniMax (company)") * [Mistral AI](https://en.wikipedia.org/wiki/Mistral_AI "Mistral AI") * [Moonshot AI](https://en.wikipedia.org/wiki/Moonshot_AI "Moonshot AI") * [OpenAI](https://en.wikipedia.org/wiki/OpenAI "OpenAI") * [Perplexity AI](https://en.wikipedia.org/wiki/Perplexity_AI "Perplexity AI") * [Runway](https://en.wikipedia.org/wiki/Runway_(company) "Runway (company)") * [Safe Superintelligence](https://en.wikipedia.org/wiki/Safe_Superintelligence_Inc. "Safe Superintelligence Inc.") * [Sakana AI](https://en.wikipedia.org/wiki/Sakana_AI "Sakana AI") * [Salesforce](https://en.wikipedia.org/wiki/Salesforce "Salesforce") * [Scale AI](https://en.wikipedia.org/wiki/Scale_AI "Scale AI") * [ServiceNow](https://en.wikipedia.org/wiki/ServiceNow "ServiceNow") * [SoundHound](https://en.wikipedia.org/wiki/SoundHound "SoundHound") * [Stability AI](https://en.wikipedia.org/wiki/Stability_AI "Stability AI") * [StepFun](https://en.wikipedia.org/wiki/StepFun "StepFun") * [Synthesia](https://en.wikipedia.org/wiki/Synthesia_(company) "Synthesia (company)") * [Thinking Machines Lab](https://en.wikipedia.org/wiki/Thinking_Machines_Lab "Thinking Machines Lab") * [Upstage](https://en.wikipedia.org/wiki/Upstage_(company) "Upstage (company)") * [xAI](https://en.wikipedia.org/wiki/XAI_(company) "XAI (company)") * [Xiaomi](https://en.wikipedia.org/wiki/Xiaomi "Xiaomi") * [Z.ai](https://en.wikipedia.org/wiki/Z.ai "Z.ai") |
+| [Controversies](https://en.wikipedia.org/wiki/Artificial_intelligence_controversies "Artificial intelligence controversies") | * [Generative AI pornography](https://en.wikipedia.org/wiki/Generative_AI_pornography "Generative AI pornography")   + [Deepfake pornography](https://en.wikipedia.org/wiki/Deepfake_pornography "Deepfake pornography")     - [on Grok](https://en.wikipedia.org/wiki/Grok_sexual_deepfake_scandal "Grok sexual deepfake scandal")     - [of Taylor Swift](https://en.wikipedia.org/wiki/Taylor_Swift_deepfake_pornography_controversy "Taylor Swift deepfake pornography controversy") * [Google Gemini image generation](https://en.wikipedia.org/wiki/Google_Gemini_image_generation_controversy "Google Gemini image generation controversy") * [Pause Giant AI Experiments](https://en.wikipedia.org/wiki/Pause_Giant_AI_Experiments:_An_Open_Letter "Pause Giant AI Experiments: An Open Letter") * [Removal of Sam Altman from OpenAI](https://en.wikipedia.org/wiki/Removal_of_Sam_Altman_from_OpenAI "Removal of Sam Altman from OpenAI") * [Statement on AI Risk](https://en.wikipedia.org/wiki/Statement_on_AI_Risk "Statement on AI Risk") * [Tay (chatbot)](https://en.wikipedia.org/wiki/Tay_(chatbot) "Tay (chatbot)") * *[Théâtre D'opéra Spatial](https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial "Théâtre D'opéra Spatial")* * [Voiceverse NFT plagiarism](https://en.wikipedia.org/wiki/Voiceverse_NFT_plagiarism_scandal "Voiceverse NFT plagiarism scandal") |
+| * [Category](https://en.wikipedia.org/wiki/Category:Generative_AI "Category:Generative AI") * [Commons](https://commons.wikimedia.org/wiki/Category:Generative_artificial_intelligence "commons:Category:Generative artificial intelligence") | |
+
+| show  * [v](https://en.wikipedia.org/wiki/Template:Artificial_intelligence_navbox "Template:Artificial intelligence navbox") * [t](https://en.wikipedia.org/wiki/Template_talk:Artificial_intelligence_navbox "Template talk:Artificial intelligence navbox") * [e](https://en.wikipedia.org/wiki/Special:EditPage/Template:Artificial_intelligence_navbox "Special:EditPage/Template:Artificial intelligence navbox")  [Artificial intelligence](https://en.wikipedia.org/wiki/Artificial_intelligence "Artificial intelligence") (AI) | |
+| --- | --- |
+| * [History](https://en.wikipedia.org/wiki/History_of_artificial_intelligence "History of artificial intelligence")   + [timeline](https://en.wikipedia.org/wiki/Timeline_of_artificial_intelligence "Timeline of artificial intelligence") * [Glossary](https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence "Glossary of artificial intelligence") * [Companies](https://en.wikipedia.org/wiki/List_of_artificial_intelligence_companies "List of artificial intelligence companies") * [Projects](https://en.wikipedia.org/wiki/List_of_artificial_intelligence_projects "List of artificial intelligence projects") | |
+| Concepts | * [Automated reasoning](https://en.wikipedia.org/wiki/Automated_reasoning "Automated reasoning") * [Parameter](https://en.wikipedia.org/wiki/Parameter "Parameter")   + [Hyperparameter](https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning) "Hyperparameter (machine learning)") * [Loss functions](https://en.wikipedia.org/wiki/Loss_functions_for_classification "Loss functions for classification") * [Regression](https://en.wikipedia.org/wiki/Regression_analysis "Regression analysis")   + [Bias–variance tradeoff](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff "Bias–variance tradeoff")   + [Double descent](https://en.wikipedia.org/wiki/Double_descent "Double descent")   + [Overfitting](https://en.wikipedia.org/wiki/Overfitting "Overfitting") * [Clustering](https://en.wikipedia.org/wiki/Cluster_analysis "Cluster analysis") * [Gradient descent](https://en.wikipedia.org/wiki/Gradient_descent "Gradient descent")   + [SGD](https://en.wikipedia.org/wiki/Stochastic_gradient_descent "Stochastic gradient descent")   + [Quasi-Newton method](https://en.wikipedia.org/wiki/Quasi-Newton_method "Quasi-Newton method")   + [Conjugate gradient method](https://en.wikipedia.org/wiki/Conjugate_gradient_method "Conjugate gradient method") * [Backpropagation](https://en.wikipedia.org/wiki/Backpropagation "Backpropagation") * [Attention](https://en.wikipedia.org/wiki/Attention_(machine_learning) "Attention (machine learning)") * [Convolution](https://en.wikipedia.org/wiki/Convolution "Convolution") * [Normalization](https://en.wikipedia.org/wiki/Normalization_(machine_learning) "Normalization (machine learning)")   + [Batchnorm](https://en.wikipedia.org/wiki/Batch_normalization "Batch normalization") * [Activation](https://en.wikipedia.org/wiki/Activation_function "Activation function")   + [Softmax](https://en.wikipedia.org/wiki/Softmax_function "Softmax function")   + [Sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function "Sigmoid function")   + [Rectifier](https://en.wikipedia.org/wiki/Rectifier_(neural_networks) "Rectifier (neural networks)") * [Gating](https://en.wikipedia.org/wiki/Gating_mechanism "Gating mechanism") * [Weight initialization](https://en.wikipedia.org/wiki/Weight_initialization "Weight initialization") * [Regularization](https://en.wikipedia.org/wiki/Regularization_(mathematics) "Regularization (mathematics)") * [Datasets](https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets "Training, validation, and test data sets")   + [Augmentation](https://en.wikipedia.org/wiki/Data_augmentation "Data augmentation") * [Prompt engineering](https://en.wikipedia.org/wiki/Prompt_engineering "Prompt engineering") * [Reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning "Reinforcement learning")   + [Q-learning](https://en.wikipedia.org/wiki/Q-learning "Q-learning")   + [SARSA](https://en.wikipedia.org/wiki/State%E2%80%93action%E2%80%93reward%E2%80%93state%E2%80%93action "State–action–reward–state–action")   + [Imitation](https://en.wikipedia.org/wiki/Imitation_learning "Imitation learning")   + [Policy gradient](https://en.wikipedia.org/wiki/Policy_gradient_method "Policy gradient method") * [Diffusion](https://en.wikipedia.org/wiki/Diffusion_process "Diffusion process") * [Latent diffusion model](https://en.wikipedia.org/wiki/Latent_diffusion_model "Latent diffusion model") * [Autoregression](https://en.wikipedia.org/wiki/Autoregressive_model "Autoregressive model") * [Adversary](https://en.wikipedia.org/wiki/Adversarial_machine_learning "Adversarial machine learning") * [RAG](https://en.wikipedia.org/wiki/Retrieval-augmented_generation "Retrieval-augmented generation") * [Uncanny valley](https://en.wikipedia.org/wiki/Uncanny_valley "Uncanny valley") * [RLHF](https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback "Reinforcement learning from human feedback") * [Self-supervised learning](https://en.wikipedia.org/wiki/Self-supervised_learning "Self-supervised learning") * [Reflection](https://en.wikipedia.org/wiki/Reflection_(artificial_intelligence) "Reflection (artificial intelligence)") * [Recursive self-improvement](https://en.wikipedia.org/wiki/Recursive_self-improvement "Recursive self-improvement") * [Hallucination](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence) "Hallucination (artificial intelligence)") * [Word embedding](https://en.wikipedia.org/wiki/Word_embedding "Word embedding") * [Vibe coding](https://en.wikipedia.org/wiki/Vibe_coding "Vibe coding") * [Symbolic AI](https://en.wikipedia.org/wiki/Symbolic_artificial_intelligence "Symbolic artificial intelligence") |
+| [Applications](https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence "Applications of artificial intelligence") | * [Automated theorem proving](https://en.wikipedia.org/wiki/Automated_theorem_proving "Automated theorem proving") * [Machine learning](https://en.wikipedia.org/wiki/Machine_learning "Machine learning")   + [In-context learning](https://en.wikipedia.org/wiki/Prompt_engineering#In-context_learning "Prompt engineering") * [Artificial neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning) "Neural network (machine learning)")   + [Deep learning](https://en.wikipedia.org/wiki/Deep_learning "Deep learning") * [Language model](https://en.wikipedia.org/wiki/Language_model "Language model")   + [Large](https://en.wikipedia.org/wiki/Large_language_model "Large language model")   + [NMT](https://en.wikipedia.org/wiki/Neural_machine_translation "Neural machine translation")   + [Reasoning](https://en.wikipedia.org/wiki/Reasoning_model "Reasoning model") * [Model Context Protocol](https://en.wikipedia.org/wiki/Model_Context_Protocol "Model Context Protocol") * [Intelligent agent](https://en.wikipedia.org/wiki/Intelligent_agent "Intelligent agent")   + [AI agent](https://en.wikipedia.org/wiki/AI_agent "AI agent") * [Artificial human companion](https://en.wikipedia.org/wiki/Artificial_human_companion "Artificial human companion") * [Humanity's Last Exam](https://en.wikipedia.org/wiki/Humanity%27s_Last_Exam "Humanity's Last Exam") * [Lethal autonomous weapons (LAWs)](https://en.wikipedia.org/wiki/Lethal_autonomous_weapon "Lethal autonomous weapon") * [Generative artificial intelligence (GenAI)](https://en.wikipedia.org/wiki/Generative_artificial_intelligence "Generative artificial intelligence") * [Weak AI](https://en.wikipedia.org/wiki/Weak_artificial_intelligence "Weak artificial intelligence") * (Hypothetical: [Artificial general intelligence (AGI)](https://en.wikipedia.org/wiki/Artificial_general_intelligence "Artificial general intelligence")) * (Hypothetical: [Artificial superintelligence (ASI)](https://en.wikipedia.org/wiki/Artificial_superintelligence "Artificial superintelligence")) * [Agent2Agent protocol](https://en.wikipedia.org/wiki/Agent2Agent "Agent2Agent") |
+| Implementations | |  |  | | --- | --- | | Audio–visual | * [AlexNet](https://en.wikipedia.org/wiki/AlexNet "AlexNet") * [WaveNet](https://en.wikipedia.org/wiki/WaveNet "WaveNet") * [Human image synthesis](https://en.wikipedia.org/wiki/Human_image_synthesis "Human image synthesis") * [HWR](https://en.wikipedia.org/wiki/Handwriting_recognition "Handwriting recognition") * [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition "Optical character recognition") * [Computer vision](https://en.wikipedia.org/wiki/Computer_vision "Computer vision") * [Speech synthesis](https://en.wikipedia.org/wiki/Deep_learning_speech_synthesis "Deep learning speech synthesis")   + [15.ai](https://en.wikipedia.org/wiki/15.ai "15.ai")   + [ElevenLabs](https://en.wikipedia.org/wiki/ElevenLabs "ElevenLabs") * [Speech recognition](https://en.wikipedia.org/wiki/Speech_recognition "Speech recognition")   + [Whisper](https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system) "Whisper (speech recognition system)") * [Facial recognition](https://en.wikipedia.org/wiki/Facial_recognition_system "Facial recognition system") * [AlphaFold](https://en.wikipedia.org/wiki/AlphaFold "AlphaFold") * [Text-to-image models](https://en.wikipedia.org/wiki/Text-to-image_model "Text-to-image model")   + [Aurora](https://en.wikipedia.org/wiki/Aurora_(text-to-image_model) "Aurora (text-to-image model)")   + [DALL-E](https://en.wikipedia.org/wiki/DALL-E "DALL-E")   + [Firefly](https://en.wikipedia.org/wiki/Adobe_Firefly "Adobe Firefly")   + [Flux](https://en.wikipedia.org/wiki/Flux_(text-to-image_model) "Flux (text-to-image model)")   + [GPT Image](https://en.wikipedia.org/wiki/GPT_Image "GPT Image")   + [Ideogram](https://en.wikipedia.org/wiki/Ideogram_(text-to-image_model) "Ideogram (text-to-image model)")   + [Imagen](https://en.wikipedia.org/wiki/Imagen_(text-to-image_model) "Imagen (text-to-image model)")   + [Midjourney](https://en.wikipedia.org/wiki/Midjourney "Midjourney")   + [Recraft](https://en.wikipedia.org/wiki/Recraft "Recraft")   + [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion "Stable Diffusion") * [Text-to-video models](https://en.wikipedia.org/wiki/Text-to-video_model "Text-to-video model")   + [Dream Machine](https://en.wikipedia.org/wiki/Dream_Machine_(text-to-video_model) "Dream Machine (text-to-video model)")   + [Runway Gen](https://en.wikipedia.org/wiki/Runway_(company)#Services_and_technologies "Runway (company)")   + [Hailuo AI](https://en.wikipedia.org/wiki/MiniMax_(company)#Hailuo_AI "MiniMax (company)")   + [Kling](https://en.wikipedia.org/wiki/Kling_AI "Kling AI")   + Sora   + [Seedance](https://en.wikipedia.org/wiki/Seedance_2.0 "Seedance 2.0")   + [Veo](https://en.wikipedia.org/wiki/Veo_(text-to-video_model) "Veo (text-to-video model)") * [Music generation](https://en.wikipedia.org/wiki/Music_and_artificial_intelligence "Music and artificial intelligence")   + [Riffusion](https://en.wikipedia.org/wiki/Riffusion "Riffusion")   + [Suno](https://en.wikipedia.org/wiki/Suno_(platform) "Suno (platform)")   + [Udio](https://en.wikipedia.org/wiki/Udio "Udio") | | Text | * [Word2vec](https://en.wikipedia.org/wiki/Word2vec "Word2vec") * [Seq2seq](https://en.wikipedia.org/wiki/Seq2seq "Seq2seq") * [GloVe](https://en.wikipedia.org/wiki/GloVe "GloVe") * [BERT](https://en.wikipedia.org/wiki/BERT_(language_model) "BERT (language model)") * [T5](https://en.wikipedia.org/wiki/T5_(language_model) "T5 (language model)") * [Llama](https://en.wikipedia.org/wiki/Llama_(language_model) "Llama (language model)") * [Chinchilla AI](https://en.wikipedia.org/wiki/Chinchilla_(language_model) "Chinchilla (language model)") * [PaLM](https://en.wikipedia.org/wiki/PaLM "PaLM") * [GPT](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer "Generative pre-trained transformer") * [Claude](https://en.wikipedia.org/wiki/Claude_(language_model) "Claude (language model)") * [Gemini](https://en.wikipedia.org/wiki/Gemini_(chatbot) "Gemini (chatbot)")   + [Gemini (language model)](https://en.wikipedia.org/wiki/Gemini_(language_model) "Gemini (language model)")   + [Gemma](https://en.wikipedia.org/wiki/Gemma_(language_model) "Gemma (language model)") * [Grok](https://en.wikipedia.org/wiki/Grok_(chatbot) "Grok (chatbot)") * [LaMDA](https://en.wikipedia.org/wiki/LaMDA "LaMDA") * [BLOOM](https://en.wikipedia.org/wiki/BLOOM_(language_model) "BLOOM (language model)") * [DBRX](https://en.wikipedia.org/wiki/DBRX "DBRX") * [Project Debater](https://en.wikipedia.org/wiki/Project_Debater "Project Debater") * [IBM Watson](https://en.wikipedia.org/wiki/IBM_Watson "IBM Watson") * [IBM Watsonx](https://en.wikipedia.org/wiki/IBM_Watsonx "IBM Watsonx") * [Granite](https://en.wikipedia.org/wiki/IBM_Granite "IBM Granite") * [PanGu-Σ](https://en.wikipedia.org/wiki/Huawei_PanGu "Huawei PanGu") * [DeepSeek](https://en.wikipedia.org/wiki/DeepSeek_(chatbot) "DeepSeek (chatbot)") * [Qwen](https://en.wikipedia.org/wiki/Qwen "Qwen") * [Xiaomi MiMo](https://en.wikipedia.org/wiki/Xiaomi_MiMo "Xiaomi MiMo") | | Decisional | * [AlphaGo](https://en.wikipedia.org/wiki/AlphaGo "AlphaGo") * [AlphaZero](https://en.wikipedia.org/wiki/AlphaZero "AlphaZero") * [OpenAI Five](https://en.wikipedia.org/wiki/OpenAI_Five "OpenAI Five") * [Self-driving car](https://en.wikipedia.org/wiki/Self-driving_car "Self-driving car") * [MuZero](https://en.wikipedia.org/wiki/MuZero "MuZero") * [Action selection](https://en.wikipedia.org/wiki/Action_selection "Action selection")   + [AutoGPT](https://en.wikipedia.org/wiki/AutoGPT "AutoGPT") * [Robot control](https://en.wikipedia.org/wiki/Robot_control "Robot control") | |
+| People | * [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing "Alan Turing") * [Warren Sturgis McCulloch](https://en.wikipedia.org/wiki/Warren_Sturgis_McCulloch "Warren Sturgis McCulloch") * [Walter Pitts](https://en.wikipedia.org/wiki/Walter_Pitts "Walter Pitts") * [John von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann "John von Neumann") * [Christopher D. Manning](https://en.wikipedia.org/wiki/Christopher_D._Manning "Christopher D. Manning") * [Claude Shannon](https://en.wikipedia.org/wiki/Claude_Shannon "Claude Shannon") * [Shun'ichi Amari](https://en.wikipedia.org/wiki/Shun%27ichi_Amari "Shun'ichi Amari") * [Kunihiko Fukushima](https://en.wikipedia.org/wiki/Kunihiko_Fukushima "Kunihiko Fukushima") * [Takeo Kanade](https://en.wikipedia.org/wiki/Takeo_Kanade "Takeo Kanade") * [Marvin Minsky](https://en.wikipedia.org/wiki/Marvin_Minsky "Marvin Minsky") * [John McCarthy](https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist) "John McCarthy (computer scientist)") * [Nathaniel Rochester](https://en.wikipedia.org/wiki/Nathaniel_Rochester_(computer_scientist) "Nathaniel Rochester (computer scientist)") * [Allen Newell](https://en.wikipedia.org/wiki/Allen_Newell "Allen Newell") * [Cliff Shaw](https://en.wikipedia.org/wiki/Cliff_Shaw "Cliff Shaw") * [Herbert A. Simon](https://en.wikipedia.org/wiki/Herbert_A._Simon "Herbert A. Simon") * [Oliver Selfridge](https://en.wikipedia.org/wiki/Oliver_Selfridge "Oliver Selfridge") * [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt "Frank Rosenblatt") * [Bernard Widrow](https://en.wikipedia.org/wiki/Bernard_Widrow "Bernard Widrow") * [Joseph Weizenbaum](https://en.wikipedia.org/wiki/Joseph_Weizenbaum "Joseph Weizenbaum") * [Seymour Papert](https://en.wikipedia.org/wiki/Seymour_Papert "Seymour Papert") * [Seppo Linnainmaa](https://en.wikipedia.org/wiki/Seppo_Linnainmaa "Seppo Linnainmaa") * [Paul Werbos](https://en.wikipedia.org/wiki/Paul_Werbos "Paul Werbos") * [Geoffrey Hinton](https://en.wikipedia.org/wiki/Geoffrey_Hinton "Geoffrey Hinton") * [John Hopfield](https://en.wikipedia.org/wiki/John_Hopfield "John Hopfield") * [Jürgen Schmidhuber](https://en.wikipedia.org/wiki/J%C3%BCrgen_Schmidhuber "Jürgen Schmidhuber") * [Yann LeCun](https://en.wikipedia.org/wiki/Yann_LeCun "Yann LeCun") * [Yoshua Bengio](https://en.wikipedia.org/wiki/Yoshua_Bengio "Yoshua Bengio") * [Lotfi A. Zadeh](https://en.wikipedia.org/wiki/Lotfi_A._Zadeh "Lotfi A. Zadeh") * [Stephen Grossberg](https://en.wikipedia.org/wiki/Stephen_Grossberg "Stephen Grossberg") * [Alex Graves](https://en.wikipedia.org/wiki/Alex_Graves_(computer_scientist) "Alex Graves (computer scientist)") * [James Goodnight](https://en.wikipedia.org/wiki/James_Goodnight "James Goodnight") * [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng "Andrew Ng") * [Fei-Fei Li](https://en.wikipedia.org/wiki/Fei-Fei_Li "Fei-Fei Li") * [Alex Krizhevsky](https://en.wikipedia.org/wiki/Alex_Krizhevsky "Alex Krizhevsky") * [Ilya Sutskever](https://en.wikipedia.org/wiki/Ilya_Sutskever "Ilya Sutskever") * [Oriol Vinyals](https://en.wikipedia.org/wiki/Oriol_Vinyals "Oriol Vinyals") * [Quoc V. Le](https://en.wikipedia.org/wiki/Quoc_V._Le "Quoc V. Le") * [Ian Goodfellow](https://en.wikipedia.org/wiki/Ian_Goodfellow "Ian Goodfellow") * [Demis Hassabis](https://en.wikipedia.org/wiki/Demis_Hassabis "Demis Hassabis") * [David Silver](https://en.wikipedia.org/wiki/David_Silver_(computer_scientist) "David Silver (computer scientist)") * [Andrej Karpathy](https://en.wikipedia.org/wiki/Andrej_Karpathy "Andrej Karpathy") * [Ashish Vaswani](https://en.wikipedia.org/wiki/Ashish_Vaswani "Ashish Vaswani") * [Noam Shazeer](https://en.wikipedia.org/wiki/Noam_Shazeer "Noam Shazeer") * [Aidan Gomez](https://en.wikipedia.org/wiki/Aidan_Gomez "Aidan Gomez") * [John Schulman](https://en.wikipedia.org/wiki/John_Schulman "John Schulman") * [Mustafa Suleyman](https://en.wikipedia.org/wiki/Mustafa_Suleyman "Mustafa Suleyman") * [Jan Leike](https://en.wikipedia.org/wiki/Jan_Leike "Jan Leike") * [Daniel Kokotajlo](https://en.wikipedia.org/wiki/Daniel_Kokotajlo_(researcher) "Daniel Kokotajlo (researcher)") * [François Chollet](https://en.wikipedia.org/wiki/Fran%C3%A7ois_Chollet "François Chollet") |
+| Architectures | * [Neural Turing machine](https://en.wikipedia.org/wiki/Neural_Turing_machine "Neural Turing machine") * [Differentiable neural computer](https://en.wikipedia.org/wiki/Differentiable_neural_computer "Differentiable neural computer") * [Transformer](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture) "Transformer (deep learning architecture)")   + [Vision transformer (ViT)](https://en.wikipedia.org/wiki/Vision_transformer "Vision transformer") * [Recurrent neural network (RNN)](https://en.wikipedia.org/wiki/Recurrent_neural_network "Recurrent neural network") * [Long short-term memory (LSTM)](https://en.wikipedia.org/wiki/Long_short-term_memory "Long short-term memory") * [Gated recurrent unit (GRU)](https://en.wikipedia.org/wiki/Gated_recurrent_unit "Gated recurrent unit") * [Echo state network](https://en.wikipedia.org/wiki/Echo_state_network "Echo state network") * [Multilayer perceptron (MLP)](https://en.wikipedia.org/wiki/Multilayer_perceptron "Multilayer perceptron") * [Convolutional neural network (CNN)](https://en.wikipedia.org/wiki/Convolutional_neural_network "Convolutional neural network") * [Residual neural network (RNN)](https://en.wikipedia.org/wiki/Residual_neural_network "Residual neural network") * [Highway network](https://en.wikipedia.org/wiki/Highway_network "Highway network") * [Mamba](https://en.wikipedia.org/wiki/Mamba_(deep_learning_architecture) "Mamba (deep learning architecture)") * [Autoencoder](https://en.wikipedia.org/wiki/Autoencoder "Autoencoder") * [Variational autoencoder (VAE)](https://en.wikipedia.org/wiki/Variational_autoencoder "Variational autoencoder") * [Generative adversarial network (GAN)](https://en.wikipedia.org/wiki/Generative_adversarial_network "Generative adversarial network") * [Graph neural network (GNN)](https://en.wikipedia.org/wiki/Graph_neural_network "Graph neural network") |
+| Political | * [AI Cold War](https://en.wikipedia.org/wiki/Artificial_Intelligence_Cold_War "Artificial Intelligence Cold War") * [AI safety](https://en.wikipedia.org/wiki/AI_safety "AI safety") ([Alignment](https://en.wikipedia.org/wiki/AI_alignment "AI alignment")) * [AI takeover](https://en.wikipedia.org/wiki/AI_takeover "AI takeover") * [Elections](https://en.wikipedia.org/wiki/Artificial_intelligence_and_elections "Artificial intelligence and elections") * [Ethics of AI](https://en.wikipedia.org/wiki/Ethics_of_artificial_intelligence "Ethics of artificial intelligence") * EU [AI Act](https://en.wikipedia.org/wiki/Artificial_Intelligence_Act "Artificial Intelligence Act") * [Nationalism](https://en.wikipedia.org/wiki/AI_nationalism "AI nationalism") * [Precautionary principle](https://en.wikipedia.org/wiki/Precautionary_principle "Precautionary principle") * [Regulation of AI](https://en.wikipedia.org/wiki/Regulation_of_artificial_intelligence "Regulation of artificial intelligence")   + [US](https://en.wikipedia.org/wiki/Regulation_of_artificial_intelligence_in_the_United_States "Regulation of artificial intelligence in the United States") * [Virtual politician](https://en.wikipedia.org/wiki/Virtual_politician "Virtual politician") |
+| Social and economic | * [AI boom](https://en.wikipedia.org/wiki/AI_boom "AI boom") * [AI bubble](https://en.wikipedia.org/wiki/AI_bubble "AI bubble") * [AI data center](https://en.wikipedia.org/wiki/AI_data_center "AI data center") * [AI effect](https://en.wikipedia.org/wiki/AI_effect "AI effect") * [AI literacy](https://en.wikipedia.org/wiki/AI_literacy "AI literacy") * [AI slop](https://en.wikipedia.org/wiki/AI_slop "AI slop") * [AI veganism](https://en.wikipedia.org/wiki/AI_veganism "AI veganism") * [AI winter](https://en.wikipedia.org/wiki/AI_winter "AI winter") * [Anthropomorphism](https://en.wikipedia.org/wiki/AI_anthropomorphism "AI anthropomorphism") * [Arms race](https://en.wikipedia.org/wiki/Artificial_intelligence_arms_race "Artificial intelligence arms race") * [Competition](https://en.wikipedia.org/wiki/Competition_in_artificial_intelligence "Competition in artificial intelligence") * [Environmental impact](https://en.wikipedia.org/wiki/Environmental_impact_of_artificial_intelligence "Environmental impact of artificial intelligence") * [Generative engine optimization](https://en.wikipedia.org/wiki/Generative_engine_optimization "Generative engine optimization") * [In architecture](https://en.wikipedia.org/wiki/Artificial_intelligence_in_architecture "Artificial intelligence in architecture") * [In education](https://en.wikipedia.org/wiki/Artificial_intelligence_in_education "Artificial intelligence in education") * [In fiction](https://en.wikipedia.org/wiki/Artificial_intelligence_in_fiction "Artificial intelligence in fiction") * [In healthcare](https://en.wikipedia.org/wiki/Artificial_intelligence_in_healthcare "Artificial intelligence in healthcare")   + [Chatbot psychosis](https://en.wikipedia.org/wiki/Chatbot_psychosis "Chatbot psychosis")   + [Mental health](https://en.wikipedia.org/wiki/Artificial_intelligence_in_mental_health "Artificial intelligence in mental health") * [In video games](https://en.wikipedia.org/wiki/Artificial_intelligence_in_video_games "Artificial intelligence in video games") * [In visual art](https://en.wikipedia.org/wiki/Artificial_intelligence_visual_art "Artificial intelligence visual art") * [Workplace impact](https://en.wikipedia.org/wiki/Workplace_impact_of_artificial_intelligence "Workplace impact of artificial intelligence") |
+| * [Category](https://en.wikipedia.org/wiki/Category:Artificial_intelligence "Category:Artificial intelligence") | |
+
+Retrieved from "<https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&oldid=1348032603>"
+
+[Categories](https://en.wikipedia.org/wiki/Help:Category "Help:Category"):
+
+* [OpenAI](https://en.wikipedia.org/wiki/Category:OpenAI "Category:OpenAI")
+* [Applications of artificial intelligence](https://en.wikipedia.org/wiki/Category:Applications_of_artificial_intelligence "Category:Applications of artificial intelligence")
+* [2024 software](https://en.wikipedia.org/wiki/Category:2024_software "Category:2024 software")
+* [Video processing](https://en.wikipedia.org/wiki/Category:Video_processing "Category:Video processing")
+* [Film and video technology](https://en.wikipedia.org/wiki/Category:Film_and_video_technology "Category:Film and video technology")
+* [Text-to-video generation](https://en.wikipedia.org/wiki/Category:Text-to-video_generation "Category:Text-to-video generation")
+* [Generative AI](https://en.wikipedia.org/wiki/Category:Generative_AI "Category:Generative AI")
+* [2024 in artificial intelligence](https://en.wikipedia.org/wiki/Category:2024_in_artificial_intelligence "Category:2024 in artificial intelligence")
+* [Products and services discontinued in 2026](https://en.wikipedia.org/wiki/Category:Products_and_services_discontinued_in_2026 "Category:Products and services discontinued in 2026")
+
+Hidden categories:
+
+* [CS1 maint: article number as page number](https://en.wikipedia.org/wiki/Category:CS1_maint:_article_number_as_page_number "Category:CS1 maint: article number as page number")
+* [Articles with short description](https://en.wikipedia.org/wiki/Category:Articles_with_short_description "Category:Articles with short description")
+* [Short description is different from Wikidata](https://en.wikipedia.org/wiki/Category:Short_description_is_different_from_Wikidata "Category:Short description is different from Wikidata")
+* [Use mdy dates from February 2024](https://en.wikipedia.org/wiki/Category:Use_mdy_dates_from_February_2024 "Category:Use mdy dates from February 2024")
+* [Use American English from July 2025](https://en.wikipedia.org/wiki/Category:Use_American_English_from_July_2025 "Category:Use American English from July 2025")
+* [All Wikipedia articles written in American English](https://en.wikipedia.org/wiki/Category:All_Wikipedia_articles_written_in_American_English "Category:All Wikipedia articles written in American English")
+* [Commons category link is on Wikidata](https://en.wikipedia.org/wiki/Category:Commons_category_link_is_on_Wikidata "Category:Commons category link is on Wikidata")
+* [Official website different in Wikidata and Wikipedia](https://en.wikipedia.org/wiki/Category:Official_website_different_in_Wikidata_and_Wikipedia "Category:Official website different in Wikidata and Wikipedia")
+* [Articles containing video clips](https://en.wikipedia.org/wiki/Category:Articles_containing_video_clips "Category:Articles containing video clips")
+
+* This page was last edited on 10 April 2026, at 08:34(UTC)
+  .
+* Text is available under the [Creative Commons Attribution-ShareAlike 4.0 License](https://en.wikipedia.org/wiki/Wikipedia:Text_of_the_Creative_Commons_Attribution-ShareAlike_4.0_International_License "Wikipedia:Text of the Creative Commons Attribution-ShareAlike 4.0 International License");
+  additional terms may apply. By using this site, you agree to the [Terms of Use](https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use "foundation:Special:MyLanguage/Policy:Terms of Use") and [Privacy Policy](https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy "foundation:Special:MyLanguage/Policy:Privacy policy"). Wikipedia® is a registered trademark of the [Wikimedia Foundation, Inc.](https://wikimediafoundation.org/), a non-profit organization.
+
+* [Privacy policy](https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy)
+* [About Wikipedia](https://en.wikipedia.org/wiki/Wikipedia:About)
+* [Disclaimers](https://en.wikipedia.org/wiki/Wikipedia:General_disclaimer)
+* [Contact Wikipedia](https://en.wikipedia.org/wiki/Wikipedia:Contact_us)
+* [Legal & safety contacts](https://foundation.wikimedia.org/wiki/Special:MyLanguage/Legal:Wikimedia_Foundation_Legal_and_Safety_Contact_Information)
+* [Code of Conduct](https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Universal_Code_of_Conduct)
+* [Developers](https://developer.wikimedia.org)
+* [Statistics](https://stats.wikimedia.org/#/en.wikipedia.org)
+* [Cookie statement](https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Cookie_statement)
+* [Mobile view](https://en.wikipedia.org/w/index.php?title=Sora_(text-to-video_model)&mobileaction=toggle_view_mobile)
+* [Edit preview settings](https://en.wikipedia.org/wiki/Sora_(text-to-video_model))
+
+Search
+
+Search
+
+Toggle the table of contents
+
+Sora (text-to-video model)
+
+29 languages
+[Add topic](https://en.wikipedia.org/wiki/Sora_(text-to-video_model))
+
+# Reference
+- [135] [Sora (text-to-video model) - Wikipedia](https://en.wikipedia.org/wiki/Sora_(text-to-video_model))

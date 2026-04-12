@@ -1,0 +1,142 @@
+OpenAI Launches $100 Pro Subscription Tier Between Plus and the $200 Plan - gHacks Tech News
+
+
+
+
+[g
+hacks.net](https://www.ghacks.net)
+
+* [Tech News](https://www.ghacks.net/)
+* [Big Tech](https://www.ghacks.net/category/companies/)
+* [Windows](https://www.ghacks.net/category/windows/)
+* [Software](https://www.ghacks.net/category/software/)
+* [Cybersecurity](https://www.ghacks.net/category/software/security/)
+* [AI](https://www.ghacks.net/category/ai/)
+* [Gaming](https://www.ghacks.net/category/gaming/)
+* [Browsers](https://www.ghacks.net/category/browsers/)
+* [Mobile](https://www.ghacks.net/category/mobile-computing/)
+* [Linux](https://www.ghacks.net/category/linux/)
+* [Internet](https://www.ghacks.net/category/the-web/)
+
+OpenAI Launches $100 Pro Subscription Tier Between Plus and the $200 Plan
+=========================================================================
+
+![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-11T095527.583.png)
+
+[Arthur Kay](https://www.ghacks.net/author/arthur/)
+
+Apr 11, 2026
+
+Updated •
+Apr 11, 2026
+
+[AI](https://www.ghacks.net/category/ai/)
+
+[OpenAI](https://www.ghacks.net/category/ai/openai-ai/) has launched a new **$100 per month** Pro subscription for [ChatGPT](https://www.ghacks.net/2026/03/24/openai-introduces-chatgpt-library-to-store-uploaded-files-in-one-place/), creating a middle option between the existing $20 Plus and $200 plans. This new tier caters to users who depend on advanced AI tools for complex, recurring tasks and directly competes with Anthropic's $100 Max plan, which has gained popularity among coding-focused users.
+
+Updated ChatGPT Subscription Tiers and What They Include
+--------------------------------------------------------
+
+OpenAI offers three subscription tiers. The tiers:
+
+* **Plus plan costs $20 per month** and is suitable for lighter use, providing access to advanced features like [Codex](https://www.ghacks.net/2026/04/03/openai-adds-pay-as-you-go-codex-seats-for-chatgpt-business-and-enterprise-teams/) and Deep Research for select projects during the week
+* **Pro plan is priced at $100 per month** and is designed for sustained use of advanced tools and models, with usage limits five times higher than Plus and, for a limited time, Codex usage ten times higher than Plus.
+* **The highest tier, priced at $200 per month**, is intended for continuous, demanding workflows across multiple projects, offering usage limits twenty times higher than Plus
+
+All three plans include access to Pro models, Codex, Deep Research, image creation, Memory, and file uploads.
+
+OpenAI states that the $100 Pro plan provides unlimited access to GPT-5 and legacy models, although standard Terms of Use still apply, including restrictions on account sharing. The tenfold increase in Codex usage compared to Plus is described as a limited-time offer with no end date specified.
+
+How the New $100 Pro Tier Fits Into the AI Pricing Landscape
+------------------------------------------------------------
+
+OpenAI previously did not offer a tier between $20 and $200, leaving a gap of $180. Anthropic's offerings include a $20 plan and a $100 Max plan, along with a $200 tier. OpenAI has not commented on whether the new Pro tier was created in response to Anthropic's pricing, but the $100 price point and focus on Codex usage closely resemble Anthropic's competing plan.
+
+[![web_image](https://www.ghacks.net/wp-content/themes/new-ghacks-preview/images/google-preferred-source-badge-light.png)](https://google.com/preferences/source?q=https://www.ghacks.net/)
+
+
+
+* Previous: [Microsoft Removes Copilot Branding From Notepad in Windows 11, Replaces It With New “Writing Tools” Menu](https://www.ghacks.net/2026/04/10/microsoft-removes-copilot-branding-from-notepad-in-windows-11-replaces-it-with-new-writing-tools-menu/)
+
+### Comments
+
+1. **Allwynd** said on  April 11, 2026 at 5:03 pm
+
+   [Reply](https://www.ghacks.net/2026/04/11/openai-launches-100-pro-subscription-tier-between-plus-and-the-200-plan/#comment-4621459)
+
+   I have a friend who buys subscriptions for this AI crap. I don’t get it, but if he can afford it, it’s not my business.
+
+   It can be a bit useful, but not worth paying for. I prefer Deepseek, because it’s Chinese and if they collect my data it’s OK as long as the filthy West isn’t getting it and if it helps China, only the better.
+
+### Leave a Reply [Cancel reply](https://www.ghacks.net/2026/04/11/openai-launches-100-pro-subscription-tier-between-plus-and-the-200-plan/#respond)
+
+Comment
+
+By commenting, you accept our [privacy policy](https://www.ghacks.net/privacy-policy/) and keep the discussion respectful and on topic.
+
+Name
+
+Email
+
+Save my name, email, and website in this browser for the next time I comment.
+
+Δ
+
+Trending Tech News
+------------------
+
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-10T100929.420.png)
+
+  [Microsoft Removes Copilot Branding From Notepad in Windows 11, Replaces It With New “Writing Tools” Menu](https://www.ghacks.net/2026/04/10/microsoft-removes-copilot-branding-from-notepad-in-windows-11-replaces-it-with-new-writing-tools-menu/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-09T105053.229.png)
+
+  [Microsoft Fixes Broken Windows 11 Start Menu Search Caused by Faulty Bing Server Update](https://www.ghacks.net/2026/04/09/microsoft-fixes-broken-windows-11-start-menu-search-caused-by-faulty-bing-server-update/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-09T092326.093.png)
+
+  [Amazon Cuts Kindle Store Access for 2012 and Older Kindle Models Starting May 20](https://www.ghacks.net/2026/04/09/amazon-cuts-kindle-store-access-for-2012-and-older-kindle-models-starting-may-20/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-09T093921.590.png)
+
+  [Meta Launches Muse Spark, Its First Proprietary AI Model With No Open Source](https://www.ghacks.net/2026/04/09/meta-launches-muse-spark-its-first-proprietary-ai-model-with-no-open-source/)
+
+
+Recently Updated
+----------------
+
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-10T100929.420.png)
+
+  [Microsoft Removes Copilot Branding From Notepad in Windows 11, Replaces It With New “Writing Tools” Menu](https://www.ghacks.net/2026/04/10/microsoft-removes-copilot-branding-from-notepad-in-windows-11-replaces-it-with-new-writing-tools-menu/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-10T091822.392.png)
+
+  [Google Gemini Launches Notebooks Feature With Automatic NotebookLM Sync for Projects](https://www.ghacks.net/2026/04/10/google-gemini-adds-notebooks-feature-with-automatic-notebooklm-sync-for-projects/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-09T093921.590.png)
+
+  [Meta Launches Muse Spark, Its First Proprietary AI Model With No Open Source](https://www.ghacks.net/2026/04/09/meta-launches-muse-spark-its-first-proprietary-ai-model-with-no-open-source/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-08T113717.248.png)
+
+  [Google Launches AI Edge Eloquent Dictation App on iOS With Offline Transcription and Filler Word Removal](https://www.ghacks.net/2026/04/08/google-launches-ai-edge-eloquent-dictation-app-on-ios-with-offline-transcription-and-filler-word-removal/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-07T091159.786.png)
+
+  [Google Opens Veo 3.1 AI Video Generation to All Users With Free Monthly Access](https://www.ghacks.net/2026/04/07/google-opens-veo-3-1-ai-video-generation-to-all-users-with-free-monthly-access/)
+* ![web_image](https://www.ghacks.net/wp-content/uploads/2026/04/gHacks-articles-2026-04-06T114340.629.png)
+
+  [Google Releases Gemma 4 in Four Model Sizes Under Apache 2.0 License](https://www.ghacks.net/2026/04/06/google-releases-gemma-4-in-four-model-sizes-under-apache-2-0-license/)
+
+g
+hacks.net
+
+Ghacks is a technology news, analysis, and information website offering daily in-depth coverage of software, AI, gaming, operating systems, privacy, security, and consumer tech.
+
+* [About gHacks](https://www.ghacks.net/about-us/)
+* [RSS Feeds](https://www.ghacks.net/ghacksnet-feed-list/)
+* [Privacy Policy](https://www.ghacks.net/privacy-policy/)
+
+Ghacks 
+
+
+
+* [Ghacks Nederland](https://www.ghacks.net/nl/)
+* [Ghacks Deutschland](https://www.ghacks.net/de/)
+* [Ghacks Italia](https://www.ghacks.net/it/)
+
+# Reference
+- [376] [OpenAI Launches $100 Pro Subscription Tier Between Plus and the $200 Plan](https://www.ghacks.net/2026/04/11/openai-launches-100-pro-subscription-tier-between-plus-and-the-200-plan/)

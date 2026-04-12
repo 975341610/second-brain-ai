@@ -1,0 +1,246 @@
+ OpenAI Warns macOS Users to Update ChatGPT and Codex Immediately - Cybernoz  
+
+ 
+      [Skip to content](https://cybernoz.com/openai-warns-macos-users-to-update-chatgpt-and-codex-immediately/#main-content)
+
+April 12, 2026
+
+[☍
+CyberNoz](https://cybernoz.com/)
+
+
+
+
+* [Home](https://cybernoz.com)
+
+Search
+
+[Home](https://cybernoz.com/)›
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)›
+OpenAI Warns macOS Users to Update ChatGPT and Codex Immediately
+
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+
+OpenAI Warns macOS Users to Update ChatGPT and Codex Immediately
+================================================================
+
+[Cybernoz](https://cybernoz.com/author/cybernoz/)
+
+April 11, 2026 3 min read
+
+Share
+[X / Twitter](https://twitter.com/intent/tweet?url=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F&text=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately)[LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F)[Reddit](https://www.reddit.com/submit?url=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F&title=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately)[WhatsApp](https://wa.me/?text=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately%20https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F)[Email](mailto:?subject=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately&body=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F)
+
+Copy Link
+
+OpenAI has disclosed a security incident tied to the compromise of Axios, a widely used third-party JavaScript developer library, as part of a broader software supply chain attack detected on March 31, 2026.
+
+While the company confirmed no user data, API keys, or systems were compromised, it is taking aggressive precautionary measures to protect its macOS application certification infrastructure.
+
+On March 31, 2026 (UTC), threat actors believed to be linked to North Korea hijacked the npm account of an Axios library maintainer and pushed malicious updates, specifically versions v1.14.1 and v0.30.4.
+
+These compromised versions silently introduced a hidden dependency called `plain-crypto-js`, which functioned as a cross-platform Remote Access Trojan (RAT) capable of targeting Windows, macOS, and Linux environments.
+
+According to Palo Alto Networks’ Unit 42, the malware was engineered to perform system reconnaissance, establish persistence, and then self-destruct to evade forensic detection.
+
+Axios is one of the most widely downloaded JavaScript libraries, with over 100 million weekly downloads, making the blast radius of this supply chain attack particularly significant.
+
+**OpenAI’s Incident Response**
+------------------------------
+
+OpenAI’s internal build pipeline leveraged Axios as part of its GitHub Actions workflow. When the workflow automatically pulled the now-malicious Axios update, the compromised library gained access to certificate and notarization material used to digitally sign OpenAI’s macOS applications, including ChatGPT Desktop, Codex, and Atlas.
+
+This type of access is critical: code-signing certificates are the trust anchors that verify to Apple’s systems and the App Store that an application is genuinely from its claimed publisher.
+
+Had an attacker exploited this access, they could theoretically have fabricated counterfeit OpenAI applications carrying a legitimate certificate, deceiving both end-user devices and the App Store into treating them as authentic. OpenAI confirmed the root cause was a misconfiguration in its GitHub Actions workflow, which has since been remediated.
+
+> We recently identified a security issue involving the third-party developer library Axios that was part of a broader industry incident. We found no evidence that OpenAI user data was accessed, that our systems were compromised, or that our software was altered.
+>
+> Out of an…
+>
+> — OpenAI (@OpenAI) [April 11, 2026](https://twitter.com/OpenAI/status/2042780052669239782?ref_src=twsrc%5Etfw)
+
+OpenAI has moved quickly to contain the potential fallout. The company is revoking and rotating all macOS security certificates to invalidate any trust material that may have been exposed during the incident.
+
+All macOS users are now required to update their OpenAI applications ChatGPT, Codex, Atlas, and Codex CLI to the latest versions to receive the refreshed certificates. OpenAI emphasized that users do not need to change passwords, as passwords and API keys were entirely unaffected by this incident.
+
+Critically, after May 8, 2026, older versions of these macOS applications will cease to receive updates and support, and may become fully non-functional. Users can update safely via an in-app update prompt or through official download links provided by OpenAI.
+
+The attack’s impact on OpenAI was confined exclusively to macOS applications. Applications on Android, Linux, and Windows platforms were not affected. OpenAI reiterated that it found no evidence of user data exfiltration, system compromise, or software tampering.
+
+This incident underscores the growing threat of software supply chain attacks targeting developer tooling, a vector increasingly favored by sophisticated state-linked threat actors.
+
+Organizations relying on open-source libraries via automated CI/CD pipelines should implement dependency pinning, integrity verification, and workflow audits as standard security hygiene to reduce exposure to similar incidents.
+
+**Follow us on Google News, LinkedIn, and X for daily cybersecurity updates. Contact us to feature your stories.**
+
+[Source link](https://cybersecuritynews.com/openai-macos-users/)
+
+Share
+[X / Twitter](https://twitter.com/intent/tweet?url=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F&text=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately)[LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F)[Reddit](https://www.reddit.com/submit?url=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F&title=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately)[WhatsApp](https://wa.me/?text=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately%20https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F)[Email](mailto:?subject=OpenAI+Warns+macOS+Users+to+Update+ChatGPT+and+Codex+Immediately&body=https%3A%2F%2Fcybernoz.com%2Fopenai-warns-macos-users-to-update-chatgpt-and-codex-immediately%2F)
+
+Copy Link
+
+« Previous
+  
+[Middle East Espionage Attack Uses Fake Secure Messaging Apps to Deliver ProSpy](https://cybernoz.com/middle-east-espionage-attack-uses-fake-secure-messaging-apps-to-deliver-prospy/)
+
+Next »
+  
+[Google Chrome adds infostealer protection against session cookie theft](https://cybernoz.com/google-chrome-adds-infostealer-protection-against-session-cookie-theft/)
+
+Related Articles
+----------------
+
+[All CyberSecurityNews →](https://cybernoz.com/category/cybersecuritynews/)
+
+[![web_image](https://image.cybernoz.com/wp-content/uploads/2024/08/US-to-offer-10-million-for-Info-on-Iranian-CyberAv3ngers.webp.jpeg)](https://cybernoz.com/us-to-offer-10-million-for-info-on-iranian-cyberav3ngers-hackers/) 
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+
+### [US to offer $10 million for Info on Iranian CyberAv3ngers Hackers](https://cybernoz.com/us-to-offer-10-million-for-info-on-iranian-cyberav3ngers-hackers/)
+
+Table of Contents Reward for Justice Program Key Figures and Sanctions CyberAv3ngers’ Activities The United States has intensified its efforts to combat cyber threats by…
+
+August 8, 2024 
+[Cybernoz](https://cybernoz.com/author/cybernoz/)
+2 min read
+
+[![web_image](https://image.cybernoz.com/wp-content/uploads/2024/09/Godzilla-Fileless-Backdoor-Exploits-Atlassian-Confluence-Vulnerability.webp.jpeg)](https://cybernoz.com/godzilla-fileless-backdoor-exploits-atlassian-confluence-vulnerability/) 
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+
+### [Godzilla Fileless Backdoor Exploits Atlassian Confluence Vulnerability](https://cybernoz.com/godzilla-fileless-backdoor-exploits-atlassian-confluence-vulnerability/)
+
+Table of Contents Understanding CVE-2023-22527 The Godzilla Backdoor: A Sophisticated Threat Exploitation Process The Role of MemGodValueShell Mitigation and Response A new attack vector has…
+
+September 2, 2024 
+[Cybernoz](https://cybernoz.com/author/cybernoz/)
+3 min read
+
+[![web_image](https://image.cybernoz.com/wp-content/uploads/2023/11/Firefox-120-Released-With-Security-Updates.webp.jpeg)](https://cybernoz.com/firefox-120-released-with-security-updates/) 
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+
+### [Firefox 120 Released With Security Updates](https://cybernoz.com/firefox-120-released-with-security-updates/)
+
+With the release of Mozilla Firefox 120, 10 vulnerabilities are patched, including six ‘High Severity’ issues and two moderate and low severity issues. The key…
+
+November 23, 2023 
+[Cybernoz](https://cybernoz.com/author/cybernoz/)
+2 min read
+
+[![web_image](https://image.cybernoz.com/wp-content/uploads/2026/03/Hackers-Attack-Employees-Over-Microsoft-Teams-to-Trick-Them-Into.webp.jpeg)](https://cybernoz.com/hackers-attack-employees-over-microsoft-teams-to-trick-them-into-granting-remote-access/) 
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+
+### [Hackers Attack Employees Over Microsoft Teams to Trick Them Into Granting Remote Access](https://cybernoz.com/hackers-attack-employees-over-microsoft-teams-to-trick-them-into-granting-remote-access/)
+
+Hackers Attack Over Microsoft Teams A social-engineering campaign abusing Microsoft Teams and Windows Quick Assist is evolving again, with BlueVoyant warning that the attackers are…
+
+March 10, 2026 
+[Cybernoz](https://cybernoz.com/author/cybernoz/)
+3 min read
+
+[![web_image](https://image.cybernoz.com/wp-content/uploads/2025/08/WinRAR-0-Day-in-Phishing-Attacks-to-Deploy-RomCom-Malware.webp.jpeg)](https://cybernoz.com/winrar-0-day-in-phishing-attacks-to-deploy-romcom-malware/) 
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+
+### [WinRAR 0-Day in Phishing Attacks to Deploy RomCom Malware](https://cybernoz.com/winrar-0-day-in-phishing-attacks-to-deploy-romcom-malware/)
+
+A critical zero-day vulnerability has been identified in WinRAR that cybercriminals are actively exploiting through sophisticated phishing campaigns to distribute RomCom malware.  The flaw, designated…
+
+August 11, 2025 
+[Cybernoz](https://cybernoz.com/author/cybernoz/)
+3 min read
+
+[CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+
+### [India Continues to Be the Top Target for Mobile Attacks with 38% Increase in Threats](https://cybernoz.com/india-continues-to-be-the-top-target-for-mobile-attacks-with-38-increase-in-threats/)
+
+India faces an unprecedented surge in mobile malware attacks, with a staggering 38% increase in threats compared to the previous year, according to the latest…
+
+January 12, 2026 
+[Cybernoz](https://cybernoz.com/author/cybernoz/)
+2 min read
+
+Latest Posts
+------------
+
+* [HPE Aruba Private 5G Vulnerability Opens Door to Credential Theft Attacks](https://cybernoz.com/hpe-aruba-private-5g-vulnerability-opens-door-to-credential-theft-attacks/)
+* [Product showcase: Session, a messenger without phone numbers or metadata](https://cybernoz.com/product-showcase-session-a-messenger-without-phone-numbers-or-metadata/)
+* [The Hidden Cost of Recurring Credential Incidents](https://cybernoz.com/the-hidden-cost-of-recurring-credential-incidents/)
+* [Censys finds 5,219 devices exposed to attacks by Iranian APTs, majority in U.S.](https://cybernoz.com/censys-finds-5219-devices-exposed-to-attacks-by-iranian-apts-majority-in-u-s/)
+* [CMMC compliance in the age of AI](https://cybernoz.com/cmmc-compliance-in-the-age-of-ai/)
+
+* [Agbi](https://cybernoz.com/category/agbi/)
+* [ArsTechnica](https://cybernoz.com/category/arstechnica/)
+* [AttackDefense](https://cybernoz.com/category/attackdefense/)
+* [Australiancybersecuritymagazine](https://cybernoz.com/category/australiancybersecuritymagazine/)
+* [Bankinfosecurity](https://cybernoz.com/category/bankinfosecurity/)
+* [Bleeping Computer](https://cybernoz.com/category/bleeping-computer/)
+* [CISOOnline](https://cybernoz.com/category/cisoonline/)
+* [CloudSecurity](https://cybernoz.com/category/cloudsecurity/)
+* [ComputerWeekly](https://cybernoz.com/category/computerweekly/)
+* [Crowdstrike](https://cybernoz.com/category/crowdstrike/)
+* [Cyber Security Ventures](https://cybernoz.com/category/cybersecurityventures/)
+* [CyberDefenseMagazine](https://cybernoz.com/category/cyberdefensemagazine/)
+* [CyberNews](https://cybernoz.com/category/cybernews/)
+* [Cyberscoop](https://cybernoz.com/category/cyberscoop/)
+* [CyberSecurity-Insiders](https://cybernoz.com/category/cybersecurity-insiders/)
+* [CyberSecurityDive](https://cybernoz.com/category/cybersecuritydive/)
+* [CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+* [CyberWire](https://cybernoz.com/category/cyberwire/)
+* [DarkReading](https://cybernoz.com/category/darkreading/)
+* [ExploitOne](https://cybernoz.com/category/exploitone/)
+* [GBHackers](https://cybernoz.com/category/gbhackers/)
+* [Genel](https://cybernoz.com/category/genel/)
+* [HackerCombat](https://cybernoz.com/category/hackercombat/)
+* [HackRead](https://cybernoz.com/category/hackread/)
+* [HelpnetSecurity](https://cybernoz.com/category/helpnetsecurity/)
+* [IndustrialCyber](https://cybernoz.com/category/industrialcyber/)
+* [InfoSecurity](https://cybernoz.com/category/infosecurity/)
+* [ITnews](https://cybernoz.com/category/itnews/)
+* [ITSecurityGuru](https://cybernoz.com/category/itsecurityguru/)
+* [Krebson](https://cybernoz.com/category/krebson/)
+* [MalwareBytes](https://cybernoz.com/category/malwarebytes/)
+* [Mix](https://cybernoz.com/category/mix/)
+* [OTSecurity](https://cybernoz.com/category/otsecurity/)
+* [PortSwigger](https://cybernoz.com/category/portswigger/)
+* [Rapid7](https://cybernoz.com/category/rapid7/)
+* [SCMP](https://cybernoz.com/category/scmp/)
+* [securelist](https://cybernoz.com/category/securelirt/)
+* [Securityaffairs](https://cybernoz.com/category/securityaffairs/)
+* [SecurityWeek](https://cybernoz.com/category/securityweek/)
+* [techcrunch](https://cybernoz.com/category/techcrunch/)
+* [TheCyberExpress](https://cybernoz.com/category/thecyberexpress/)
+* [TheHackerNews](https://cybernoz.com/category/thehackernews/)
+* [ThreatIntelligence-IncidentResponse](https://cybernoz.com/category/threatintelligence-incidentresponse/)
+* [Tldrsec](https://cybernoz.com/category/tldrsec/)
+* [Unit42](https://cybernoz.com/category/unit42/)
+* [VendorResearch](https://cybernoz.com/category/vendorresearch/)
+* [welivesecurity](https://cybernoz.com/category/welivesecurity/)
+* [Wired](https://cybernoz.com/category/wired/)
+* [Zerosalarium](https://cybernoz.com/category/zerosalarium/)
+
+[☍
+CyberNoz](https://cybernoz.com/)
+
+Cybersecurity News
+
+* [Agbi](https://cybernoz.com/category/agbi/)
+* [ArsTechnica](https://cybernoz.com/category/arstechnica/)
+* [AttackDefense](https://cybernoz.com/category/attackdefense/)
+* [Australiancybersecuritymagazine](https://cybernoz.com/category/australiancybersecuritymagazine/)
+* [Bankinfosecurity](https://cybernoz.com/category/bankinfosecurity/)
+* [Bleeping Computer](https://cybernoz.com/category/bleeping-computer/)
+* [CISOOnline](https://cybernoz.com/category/cisoonline/)
+* [CloudSecurity](https://cybernoz.com/category/cloudsecurity/)
+* [ComputerWeekly](https://cybernoz.com/category/computerweekly/)
+* [Crowdstrike](https://cybernoz.com/category/crowdstrike/)
+* [Cyber Security Ventures](https://cybernoz.com/category/cybersecurityventures/)
+* [CyberDefenseMagazine](https://cybernoz.com/category/cyberdefensemagazine/)
+* [CyberNews](https://cybernoz.com/category/cybernews/)
+* [Cyberscoop](https://cybernoz.com/category/cyberscoop/)
+* [CyberSecurity-Insiders](https://cybernoz.com/category/cybersecurity-insiders/)
+* [CyberSecurityDive](https://cybernoz.com/category/cybersecuritydive/)
+* [CyberSecurityNews](https://cybernoz.com/category/cybersecuritynews/)
+* [CyberWire](https://cybernoz.com/category/cyberwire/)
+
+# Reference
+- [374] [OpenAI Warns macOS Users to Update ChatGPT and Codex Immediately](https://cybernoz.com/openai-warns-macos-users-to-update-chatgpt-and-codex-immediately/)
