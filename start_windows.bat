@@ -39,6 +39,10 @@ if errorlevel 1 (
 :: 4. 确保集成的本地 AI 引擎就绪
 echo [*] Checking for integrated Ollama engine...
 call python ensure_ollama.py
+if errorlevel 2 (
+    echo [*] AI is disabled, skipping Ollama startup.
+    goto skip_ollama
+)
 if errorlevel 1 (
     echo [!] Failed to download or setup the integrated Ollama engine.
     pause
@@ -48,6 +52,7 @@ if errorlevel 1 (
 echo [*] Starting Integrated AI Engine in the background...
 start "Nova Local AI (Integrated)" cmd /c "set OLLAMA_HOST=127.0.0.1:11434&& set OLLAMA_MODELS=%cd%\data\ollama_models&& cd bin && ollama.exe serve"
 
+:skip_ollama
 :: 5. Start backend service in a new window
 echo [*] Starting backend service in a new window...
 start "Nova Backend" cmd /k "python start_backend.py"

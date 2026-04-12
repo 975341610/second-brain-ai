@@ -140,9 +140,21 @@ class LocalAIManager:
         self.error = None
         
         try:
+            # 0. 读取 config
+            preferred_engine = "auto"
+            config_path = self.settings.data_root / "ai_config.json"
+            if config_path.exists():
+                try:
+                    import json
+                    with open(config_path, "r") as f:
+                        config = json.load(f)
+                        preferred_engine = config.get("preferred_engine", "auto")
+                except:
+                    pass
+
             # 1. 检查本地模型是否存在 (预置路径)
             self.model_path = self.model_dir / self.filename
-            print(f"[*] Checking pre-installed model: {self.model_path}")
+            print(f"[*] Checking pre-installed model: {self.model_path}, preferred_engine: {preferred_engine}")
             
             if not self.model_path.exists():
                 # 如果不存在，报错提示需要预置
@@ -158,47 +170,73 @@ class LocalAIManager:
                 if Llama is None:
                     raise ImportError("llama-cpp-python not installed")
                 
-                try:
-                    # 第一阶段尝试：开启 GPU 全量加速
-                    print("[*] Attempting GPU acceleration (n_gpu_layers=-1, n_ctx=8192)...")
-                    self.llm = Llama(
-                        model_path=str(self.model_path),
-                        n_ctx=8192,
-                        n_threads=os.cpu_count() or 4,
-                        chat_format="gemma",
-                        verbose=False,
-                        n_gpu_layers=-1,
-                        use_mmap=False,
-                        use_mlock=False
-                    )
-                    print("[*] GPU acceleration enabled successfully.")
-                except (ValueError, OSError, RuntimeError, Exception) as e:
-                    # 降级尝试：退回到安全 CPU 模式
-                    print(f"[!] GPU initialization failed ({type(e).__name__}): {str(e)}")
-                    print("[*] Falling back to CPU mode (n_gpu_layers=0, n_ctx=4096)...")
+                # Preferred Engine Logic
+                current_engine = None
+
+                if preferred_engine == "ollama":
+                    print("[*] preferred_engine is 'ollama'. Skipping llama_cpp and falling back to Ollama proxy.")
+                    self.llm = "MOCK_LLM_ERROR"
+                    current_engine = "ollama"
+                else:
                     try:
+                        # 第一阶段尝试：开启 GPU 全量加速
+                        print("[*] Attempting GPU acceleration (n_gpu_layers=-1, n_ctx=8192)...")
                         self.llm = Llama(
                             model_path=str(self.model_path),
-                            n_ctx=4096,
-                            n_threads=1,
-                            n_batch=128,
+                            n_ctx=8192,
+                            n_threads=os.cpu_count() or 4,
                             chat_format="gemma",
                             verbose=False,
-                            n_gpu_layers=0,
+                            n_gpu_layers=-1,
                             use_mmap=False,
                             use_mlock=False
                         )
-                    except Exception as e2:
-                        # 终极保底：如果 CPU 也报错（通常是 Access Violation 非法指令集），进入 MOCK 模式
-                        print(f"[!] CPU fallback also failed: {e2}. Entering Mock Error Mode.")
-                        self.llm = "MOCK_LLM_ERROR"
+                        print("[*] GPU acceleration enabled successfully.")
+                        current_engine = "llama"
+                    except (ValueError, OSError, RuntimeError, Exception) as e:
+                        # 降级尝试：退回到安全 CPU 模式
+                        print(f"[!] GPU initialization failed ({type(e).__name__}): {str(e)}")
+                        print("[*] Falling back to CPU mode (n_gpu_layers=0, n_ctx=4096)...")
+                        try:
+                            self.llm = Llama(
+                                model_path=str(self.model_path),
+                                n_ctx=4096,
+                                n_threads=1,
+                                n_batch=128,
+                                chat_format="gemma",
+                                verbose=False,
+                                n_gpu_layers=0,
+                                use_mmap=False,
+                                use_mlock=False
+                            )
+                            current_engine = "llama"
+                        except Exception as e2:
+                            # 终极保底：如果 CPU 也报错（通常是 Access Violation 非法指令集），进入 MOCK 模式
+                            print(f"[!] CPU fallback also failed: {e2}. Entering Mock Error Mode (Ollama Proxy).")
+                            self.llm = "MOCK_LLM_ERROR"
+                            current_engine = "ollama"
+                
+                # Save the detected engine if it was 'auto'
+                if preferred_engine == "auto" and current_engine:
+                    print(f"[*] Auto-detected engine: {current_engine}. Saving to config.")
+                    try:
+                        import json
+                        config_path = self.settings.data_root / "ai_config.json"
+                        config = {}
+                        if config_path.exists():
+                            with open(config_path, "r") as f:
+                                config = json.load(f)
+                        config["preferred_engine"] = current_engine
+                        with open(config_path, "w") as f:
+                            json.dump(config, f, indent=2)
+                    except:
+                        pass
+
+                if self.llm == "MOCK_LLM_ERROR":
+                    # 在出错模式下，尝试提前为 Ollama 注册模型以减少后续响应延迟
+                    print("[*] Pre-registering local model to Ollama for fallback...")
+                    await self._ensure_ollama_model()
                         
-                        # 在出错模式下，尝试提前为 Ollama 注册模型以减少后续响应延迟
-                        print("[*] Pre-registering local model to Ollama for fallback...")
-                        await self._ensure_ollama_model()
-                        
-                        self.is_ready = True
-            
             self.is_ready = True
             print("[*] Local AI Model is ready (Instantly).")
             

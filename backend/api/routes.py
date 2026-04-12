@@ -707,6 +707,79 @@ async def suggest_tags(payload: TagSuggestRequest, db: Session = Depends(get_db)
     tags = await ai_client.tags(payload.content, llm_config)
     return TagSuggestResponse(tags=tags)
 
+@router.post("/ai/spellcheck")
+async def ai_spellcheck(payload: dict):
+    """Context-Aware Spell Check"""
+    text = payload.get("text", "")
+    if not text:
+        return {"errors": []}
+    
+    # 构造 Prompt
+    prompt = f"""Identify typos and context-aware errors in the following text. 
+Return the result as a JSON array of objects, each with 'word', 'suggestion', and 'reason'.
+Text: {text}
+
+JSON Format Example: [{"word": "wrong", "suggestion": "right", "reason": "context"}]
+ONLY return the JSON array, no other text."""
+    
+    full_response = ""
+    try:
+        async for chunk in local_ai_manager.generate_chat_stream_messages([
+            {"role": "system", "content": "You are a professional editor. You only output valid JSON arrays."},
+            {"role": "user", "content": prompt}
+        ]):
+            full_response += chunk
+            
+        # 尝试解析 JSON
+        # 清洗可能存在的 markdown 代码块包裹
+        clean_json = full_response.strip()
+        if clean_json.startswith("```json"):
+            clean_json = clean_json[7:]
+        if clean_json.endswith("```"):
+            clean_json = clean_json[:-3]
+        clean_json = clean_json.strip()
+        
+        # 找到第一个 [ 和最后一个 ]
+        start = clean_json.find("[")
+        end = clean_json.rfind("]")
+        if start != -1 and end != -1:
+            clean_json = clean_json[start:end+1]
+            
+        errors = json.loads(clean_json)
+        return {"errors": errors}
+    except Exception as e:
+        print(f"[!] Error spellchecking: {e}, response: {full_response}")
+        return {"errors": []}
+
+@router.post("/ai/suggest-tags")
+async def ai_suggest_tags(payload: dict):
+    """AI 智能标签建议"""
+    content = payload.get("content", "")
+    if not content:
+        return {"tags": []}
+    
+    # 构造 Prompt
+    prompt = f"Generate up to 3 tags, each max 5 characters long, based on the following text. Return them as a comma-separated string only.\n\nText: {content[:1000]}"
+    
+    full_response = ""
+    try:
+        # 使用 blocking equivalent (collecting stream)
+        async for chunk in local_ai_manager.generate_chat_stream_messages([
+            {"role": "system", "content": "You are a tagging assistant. Return ONLY a comma-separated list of tags."},
+            {"role": "user", "content": prompt}
+        ]):
+            full_response += chunk
+            
+        # 解析结果
+        tags = [t.strip() for t in full_response.split(",") if t.strip()]
+        # 限制长度和数量
+        tags = [t[:5] for t in tags][:3]
+        
+        return {"tags": tags}
+    except Exception as e:
+        print(f"[!] Error suggesting tags: {e}")
+        return {"tags": []}
+
 @router.get("/notes/{note_id}/links", response_model=list[NoteResponse])
 def get_note_links(note_id: int, db: Session = Depends(get_db)) -> list[NoteResponse]:
     """获取当前笔记引用了哪些笔记"""
@@ -1575,11 +1648,38 @@ async def toggle_ai_plugin(payload: dict, background_tasks: BackgroundTasks):
     enabled = payload.get("enabled", False)
     ai_enabled = enabled
     
+    # 持久化到 ai_config.json
+    config_path = Path(settings.data_root) / "ai_config.json"
+    config = {"enabled": ai_enabled, "preferred_engine": "auto"}
+    if config_path.exists():
+        try:
+            with open(config_path, "r") as f:
+                old_config = json.load(f)
+                config["preferred_engine"] = old_config.get("preferred_engine", "auto")
+        except:
+            pass
+    
+    with open(config_path, "w") as f:
+        json.dump(config, f, indent=2)
+
     import logging
     logging.warning(f"[DEBUG] toggle_ai_plugin called. ai_enabled={ai_enabled}")
     
     if ai_enabled:
         logging.warning(f"[DEBUG] toggle_ai_plugin local_ai_manager id: {id(local_ai_manager)}")
+        
+        # 动态运行 ensure_ollama.py 如果需要 (只有在启用且 Ollama 服务没起来时才可能需要)
+        # 这里简单起见，每次开启都跑一次 ensure_ollama (它自带有版本检查)
+        try:
+            base_dir = Path(__file__).resolve().parent.parent.parent
+            script_path = base_dir / "ensure_ollama.py"
+            if script_path.exists():
+                print(f"[*] Dynamically running {script_path}...")
+                # 注意: ensure_ollama.py 现在在 disabled 时会返回 2, 这里我们已经 enable 了所以应该返回 0 或 1
+                subprocess.run([sys.executable, str(script_path)], cwd=str(base_dir))
+        except Exception as e:
+            print(f"[!] Failed to run ensure_ollama dynamically: {e}")
+
         # 直接执行初始化 (由于已预置模型且逻辑已简化，此处将瞬间完成)
         await local_ai_manager.initialize_model()
             

@@ -291,12 +291,12 @@ export const api = {
   toggleAIPlugin: (enabled: boolean) => 
     invoke<{ enabled: boolean }>('ai:toggle-plugin', '/ai/toggle-plugin', { method: 'POST', body: JSON.stringify({ enabled }) }),
   checkAIHardware: () => invoke<{ compatible: boolean; details: string }>('ai:hardware-check', '/ai/hardware-check'),
+  spellcheck: (text: string) =>
+    invoke<{ errors: Array<{ word: string; suggestion: string; reason: string }> }>('ai:spellcheck', '/ai/spellcheck', { method: 'POST', body: JSON.stringify({ text }) }),
   
   // Dummy implementations for PropertyPanel
-  suggestTags: async (content: string) => {
-    console.log('Dummy suggestTags called with content length:', content.length);
-    return { tags: [] as string[] };
-  },
+  suggestTags: (content: string) => 
+    invoke<{ tags: string[] }>('ai:suggest-tags', '/ai/suggest-tags', { method: 'POST', body: JSON.stringify({ content }) }),
   updateNoteProperty: async (noteId: number, propertyId: number, payload: any) => {
     console.log('Dummy updateNoteProperty called for note:', noteId, 'propertyId:', propertyId, 'payload:', payload);
     return { id: propertyId, ...payload } as NoteProperty;

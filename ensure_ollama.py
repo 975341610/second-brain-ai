@@ -30,6 +30,19 @@ def download_with_progress(url, dest):
 
 def install_ollama():
     base_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(base_dir, "data")
+    config_path = os.path.join(data_dir, "ai_config.json")
+    
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r") as f:
+                config = json.load(f)
+                if not config.get("enabled", True):
+                    print("[*] AI is disabled in ai_config.json")
+                    sys.exit(2)
+        except Exception as e:
+            print(f"[!] Error reading ai_config.json: {e}")
+
     bin_dir = os.path.join(base_dir, "bin")
     os.makedirs(bin_dir, exist_ok=True)
     ollama_exe = os.path.join(bin_dir, "ollama.exe")

@@ -33,8 +33,8 @@ import {
     ColumnGroup, Column, HighlightBlock,
     WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload,
     CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode,
-    Emoticon, SliderExtension, NoteLink, TextEffect
-  } from '../../lib/tiptapExtensions';
+    Emoticon, SliderExtension, NoteLink, TextEffect, AISpellcheck
+   } from '../../lib/tiptapExtensions';
 
 import type { Note } from '../../lib/types';
 
@@ -253,6 +253,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     Emoticon,
     SliderExtension,
     TextEffect,
+    AISpellcheck.configure({ debounceMs: 2500 }),
     NoteLink.configure({ suggestion: getNoteLinkSuggestionConfig() }),
     SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
   ], []);

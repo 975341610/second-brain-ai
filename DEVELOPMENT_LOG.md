@@ -1,5 +1,19 @@
 # Development Log
 
+## [2026-04-12] - Phase 4/5: AI Config, Smart Tags, and Context Spellcheck
+- [x] **AI Initialization & Memory**:
+  - Added `data/ai_config.json` for persistent AI settings (`enabled`, `preferred_engine`).
+  - Optimized `ensure_ollama.py` to exit with status 2 when disabled, and updated `start_windows.bat` to skip background service startup.
+  - Implemented engine auto-detection (GPU > CPU > Ollama) in `local_ai.py` with persistence of the "best" engine to `preferred_engine`.
+  - Enabled dynamic AI initialization when toggling the plugin in the UI.
+- [x] **Smart Tags**:
+  - Implemented `/api/ai/suggest-tags` endpoint using LLM to generate up to 3 concise tags (max 5 chars) from note content.
+  - Connected frontend `PropertyPanel` to the real tag suggestion API.
+- [x] **Context-Aware Spellcheck (Feishu Style)**:
+  - Implemented `/api/ai/spellcheck` backend to identify typos and context-sensitive errors using LLM.
+  - Created `AISpellcheck` Tiptap extension with heavy debouncing (2.5s) and active-paragraph-only scanning.
+  - Added visual feedback (red wavy underline) and interactive correction (tooltip on hover, replacement on click).
+
 ## [2026-04-12] - 自动同步本地模型至 Ollama (Ollama Fallback Enhanced)
 - [x] **本地模型自动注册**:
   - 在 `backend/services/local_ai.py` 中新增 `_ensure_ollama_model` 方法。
