@@ -254,4 +254,4 @@ if __name__ == '__main__':
     host = os.environ.get("HOST", args.host)
     
     print(f"[*] Starting backend server on {host}:{port}")
-    uvicorn.run(app, host=host, port=port)
+    uvicorn.run(app, host=host, port=port, timeout_keep_alive=65)

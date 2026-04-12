@@ -1,5 +1,14 @@
 # Development Log
 
+
+## [2026-04-12] - 修复 Nginx 代理 SSE 流式超时与缓冲问题 (ERR_INCOMPLETE_CHUNKED_ENCODING)
+- [x] **心跳保活机制**:
+  - 修改 `backend/services/local_ai.py`，加入 `asyncio.wait_for` 2秒超时轮询。在模型长时思考未产出 token 时，主动向前端发送 `: ping\n\n` 心跳包，防止 Strato Proxy / Nginx 判定连接空闲而强制掐断（502 / Chunked Encoding Error）。
+- [x] **TTFB 代理缓冲区冲刷**:
+  - 在流式连接建立之初，抢先发送携带 4KB 空格字符的心跳注释，瞬间填满并强制冲刷反向代理的底层缓冲区，确保首个字节穿透网关。
+- [x] **网关缓存与连接寿命增强**:
+  - 更新 `backend/api/routes.py` 中的 Header 注入 `Cache-Control: no-cache, no-transform`，禁止中间代理缓存或整形。
+  - 调整 `backend/main.py` 的 Uvicorn 配置，强行延长 `timeout_keep_alive=65`。
 ## [2026-04-12] - 修复本地 AI 流式输出、System Prompts 与停止符
 - [x] **实时流式输出修复**:
   - 修复了 `backend/services/local_ai.py` 中 `generate_chat_stream_messages` 内部由于线程 `queue.get()` 阻塞导致的卡顿现象，改为非阻塞轮询加 `asyncio.sleep(0.01)`。

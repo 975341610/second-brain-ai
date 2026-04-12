@@ -452,6 +452,16 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
         let streamBuffer = '';
         let isFirstToken = true;
         
+        // --- 实时流式解析状态 ---
+        let currentStreamingAction: { type: string; language?: string; startPos: number } | null = null;
+        let lastActionValue = ''; // 记录上一次 Action 累积的内容，用于增量插入
+
+        const flushText = (text: string) => {
+          if (text && editor) {
+            editor.chain().focus().insertContent(text).run();
+          }
+        };
+
         await api.streamInlineAI(
           { prompt, context: editor.getText(), action: 'ask' },
           (chunk: string) => {
@@ -461,67 +471,130 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
             }
             streamBuffer += chunk;
             
-            // 循环处理 buffer
             const processBuffer = () => {
-              // 1. 寻找 <Action 标签的开始 (不区分大小写)
-              const actionStart = streamBuffer.search(/<Action/i);
-              
-              if (actionStart === -1) {
-                // 没找到 <Action，但可能 buffer 末尾有部分匹配，比如 "<Ac"
-                // 我们需要保留末尾可能匹配 <Action 的部分，其余全部输出
-                const lastBracket = streamBuffer.lastIndexOf('<');
-                if (lastBracket !== -1) {
-                  const potential = streamBuffer.slice(lastBracket).toLowerCase();
-                  const target = '<action';
-                  
-                  if (target.startsWith(potential)) {
-                    // 是前缀，输出 < 之前的所有内容，保留 < 及其后的部分
-                    const before = streamBuffer.slice(0, lastBracket);
-                    if (before) editor.chain().focus().insertContent(before).run();
-                    streamBuffer = streamBuffer.slice(lastBracket);
-                  } else {
-                    // 虽然有 < 但不是 <action 的前缀，直接全部输出
-                    editor.chain().focus().insertContent(streamBuffer).run();
-                    streamBuffer = '';
-                  }
-                } else {
-                  // 完全没找到 <，全部作为普通文本实时输出
-                  editor.chain().focus().insertContent(streamBuffer).run();
-                  streamBuffer = '';
-                }
-              } else {
-                // 找到了 <Action 开始位置
-                // 首先输出 <Action 之前的所有普通文本
-                if (actionStart > 0) {
-                  const before = streamBuffer.slice(0, actionStart);
-                  editor.chain().focus().insertContent(before).run();
-                  streamBuffer = streamBuffer.slice(actionStart);
-                }
-                
-                // 现在 streamBuffer 以 <Action 开头
-                // 寻找对应的结束标签 </Action>
+              if (currentStreamingAction) {
+                // 我们正处于一个 Action 标签内部
                 const actionEnd = streamBuffer.toLowerCase().indexOf('</action>');
+                
                 if (actionEnd !== -1) {
-                  // 找到了完整的 Action 标签
-                  const fullTag = streamBuffer.slice(0, actionEnd + 9);
-                  const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>([\s\S]*?)<\/Action>/i.exec(fullTag);
+                  // Action 结束了！
+                  const innerContent = streamBuffer.slice(0, actionEnd);
+                  const incremental = innerContent.slice(lastActionValue.length);
                   
-                  if (match) {
+                  if (incremental) {
+                    // 补齐最后一点增量
+                    if (currentStreamingAction.type === 'insert_code_block' || currentStreamingAction.type === 'insert_text' || currentStreamingAction.type === 'insert_todo') {
+                       // 移除可能有的 markdown 代码块包裹符 (仅在 insert_code_block/insert_todo 时)
+                       let cleanInc = incremental;
+                       if (currentStreamingAction.type !== 'insert_text') {
+                         cleanInc = cleanInc.replace(/```[a-z]*\n?/gi, '').replace(/\n?```$/gi, '');
+                       }
+                       if (cleanInc) flushText(cleanInc);
+                    }
+                  }
+
+                  // 这里的逻辑可以保留 handleAIAction 原有的非流式 Action 处理逻辑 (如 set_title)
+                  // 但为了支持全量 Action，我们还是 dispatch 一个完整的事件
+                  const fullTag = `<Action type="${currentStreamingAction.type}"${currentStreamingAction.language ? ` language="${currentStreamingAction.language}"` : ''}>${innerContent}</Action>`;
+                  const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>([\s\S]*?)<\/Action>/i.exec(fullTag);
+                  if (match && !['insert_code_block', 'insert_text', 'insert_todo'].includes(match[1])) {
+                    // 只有非实时流式的 Action 才重新触发 handleAIAction
                     const [, type, language, value] = match;
                     window.dispatchEvent(new CustomEvent('ai-action', { 
                       detail: { type, value: value.trim(), attrs: { language } } 
                     }));
-                  } else {
-                    // 如果正则匹配失败（例如标签格式奇葩），降级作为文本输出
-                    editor.chain().focus().insertContent(fullTag).run();
                   }
-                  
-                  // 移除已处理的标签部分并递归处理剩余 buffer
+
+                  // 重置状态
+                  currentStreamingAction = null;
+                  lastActionValue = '';
                   streamBuffer = streamBuffer.slice(actionEnd + 9);
                   if (streamBuffer.length > 0) processBuffer();
                 } else {
-                  // 标签尚未结束，在 buffer 中等待后续数据，不输出内容
-                  return;
+                  // 还在 Action 内部，尝试流式输出
+                  // 寻找内容部分的起始（跳过可能还在 buffer 里的标签开头）
+                  // 这里的 innerContent 就是 Action 标签里的文本
+                  const incremental = streamBuffer.slice(lastActionValue.length);
+                  
+                  // 只有特定的 Action 类型支持实时流式输出到编辑器
+                  if (['insert_code_block', 'insert_text', 'insert_todo'].includes(currentStreamingAction.type)) {
+                    // 简单的增量输出。注意：如果这里有复杂的 markdown 包裹符，流式时会带出来
+                    // 只有当积累到一定长度或者检测到换行时才输出，避免过于零碎的事务
+                    if (incremental.length > 5 || incremental.includes('\n')) {
+                      let cleanInc = incremental;
+                      // 简单处理：如果是 insert_code_block，流式过程中不显示 ```
+                      if (currentStreamingAction.type !== 'insert_text') {
+                        cleanInc = cleanInc.replace(/```[a-z]*\n?/gi, '').replace(/\n?```$/gi, '');
+                      }
+                      
+                      if (cleanInc) {
+                        flushText(cleanInc);
+                        lastActionValue += incremental; // 记录已处理的原始部分
+                      }
+                    }
+                  }
+                }
+              } else {
+                // 没在 Action 内部，寻找标签开始
+                const actionStart = streamBuffer.search(/<Action/i);
+                
+                if (actionStart === -1) {
+                  // 没找到标签开始，看看末尾是否可能是前缀
+                  const lastBracket = streamBuffer.lastIndexOf('<');
+                  if (lastBracket !== -1 && '<action'.startsWith(streamBuffer.slice(lastBracket).toLowerCase())) {
+                    const before = streamBuffer.slice(0, lastBracket);
+                    if (before) flushText(before);
+                    streamBuffer = streamBuffer.slice(lastBracket);
+                  } else {
+                    flushText(streamBuffer);
+                    streamBuffer = '';
+                  }
+                } else {
+                  // 找到了 <Action
+                  if (actionStart > 0) {
+                    flushText(streamBuffer.slice(0, actionStart));
+                    streamBuffer = streamBuffer.slice(actionStart);
+                  }
+                  
+                  // 检查标签头是否完整 (直到 >)
+                  const tagHeaderEnd = streamBuffer.indexOf('>');
+                  if (tagHeaderEnd !== -1) {
+                    const tagHeader = streamBuffer.slice(0, tagHeaderEnd + 1);
+                    const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>/i.exec(tagHeader);
+                    
+                    if (match) {
+                      const [, type, language] = match;
+                      currentStreamingAction = { type, language, startPos: editor.state.selection.from };
+                      lastActionValue = ''; 
+                      
+                      // 针对不同的 Action 类型，流式开始前先做些准备
+                      if (type === 'insert_code_block') {
+                        editor.chain().focus().insertContent({
+                          type: 'codeBlock',
+                          attrs: { language: language || 'plain' },
+                          content: []
+                        }).run();
+                        // Tiptap 插入 block 后光标会自动进入，所以接下来的 flushText 会插入到 codeBlock 内部
+                      } else if (type === 'insert_todo') {
+                        editor.chain().focus().insertContent({
+                          type: 'taskList',
+                          content: [{
+                            type: 'taskItem',
+                            attrs: { checked: false },
+                            content: [{ type: 'paragraph', content: [] }]
+                          }]
+                        }).run();
+                      }
+                      
+                      streamBuffer = streamBuffer.slice(tagHeaderEnd + 1);
+                      if (streamBuffer.length > 0) processBuffer();
+                    } else {
+                      // 奇怪的标签，按文本处理
+                      flushText(tagHeader);
+                      streamBuffer = streamBuffer.slice(tagHeaderEnd + 1);
+                      if (streamBuffer.length > 0) processBuffer();
+                    }
+                  }
                 }
               }
             };
@@ -530,10 +603,8 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
           }
         );
         
-        // 最后冲刷 buffer 中剩余的所有内容（比如未闭合的标签）
         if (streamBuffer) {
-          editor.chain().focus().insertContent(streamBuffer).run();
-          streamBuffer = '';
+          flushText(streamBuffer);
         }
       } catch (err: any) {
         console.error(err);

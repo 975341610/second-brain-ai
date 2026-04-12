@@ -577,7 +577,6 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
         if not local_ai_manager.is_ready:
             await local_ai_manager.initialize_model()
         if local_ai_manager.is_ready:
-            # We pass the full messages so the system prompt can be properly injected
             return StreamingResponse(
                 local_ai_manager.generate_chat_stream(
                     prompt=payload.prompt,
@@ -587,8 +586,9 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
                 media_type="text/event-stream",
                 headers={
                     "X-Accel-Buffering": "no",
-                    "Cache-Control": "no-cache",
-                    "Connection": "keep-alive"
+                    "Cache-Control": "no-cache, no-transform",
+                    "Connection": "keep-alive",
+                    "Content-Type": "text/event-stream"
                 }
             )
 
@@ -619,7 +619,8 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
                     pass
 
             async for chunk in ai_client.stream_chat(messages, llm_config):
-                yield chunk
+                yield f'data: {json.dumps({"text": chunk}, ensure_ascii=False)}\n\n'
+            yield 'data: [DONE]\n\n'
         except Exception as e:
             import json
             error_msg = f"Inline AI Error: {str(e)}"
@@ -627,7 +628,7 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
     
     return StreamingResponse(
         generate(), 
-        media_type="text/plain", 
+        media_type="text/event-stream", 
         headers={
             "X-Accel-Buffering": "no",
             "Cache-Control": "no-cache",

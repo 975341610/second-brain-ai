@@ -76,10 +76,11 @@ class LocalAIManager:
                     raise ImportError("llama-cpp-python not installed")
                 self.llm = Llama(
                     model_path=str(self.model_path),
-                    n_ctx=2048,
+                    n_ctx=8192,
                     n_threads=os.cpu_count() or 4,
                     chat_format="gemma",
-                    verbose=False
+                    verbose=False,
+                    n_gpu_layers=-1 # 尝试使用 GPU（如果有）
                 )
             
             self.is_ready = True
@@ -182,16 +183,24 @@ Available Actions:
             except Exception as e:
                 yield f'data: {{"text": "\\n[Web search failed: {str(e)}. Falling back to local knowledge...]\\n"}}\n\n'
         
+        # Yield an immediate ping to satisfy reverse proxy TTFB and flush any intermediate proxy buffers
+        buffer_flush = " " * 4096
+        yield f': ping {buffer_flush}\n\n'
+        yield 'data: {"text": ""}\n\n'
+
         async for chunk in self.generate_chat_stream_messages(messages):
             import json
-            yield f'data: {json.dumps({"text": chunk}, ensure_ascii=False)}\n\n'
+            if chunk == "":
+                # Keep-alive ping, we can just send an empty SSE comment
+                yield ': ping\n\n'
+            else:
+                yield f'data: {json.dumps({"text": chunk}, ensure_ascii=False)}\n\n'
             
         yield 'data: [DONE]\n\n'
 
     async def generate_chat_stream_messages(self, messages: list[dict]) -> AsyncGenerator[str, None]:
-        """流式生成对话 (支持 Mock 模式)"""
+        """流式生成对话 (更高效的非阻塞异步桥接)"""
         import asyncio
-        from queue import Queue
         if not self.is_ready or not self.llm:
             yield "Local AI model is not ready."
             return
@@ -206,46 +215,51 @@ Available Actions:
 
         print(f"DEBUG messages content generate: {messages}")
         
-        # Use a queue to bridge thread-based generator and async generator
-        queue = Queue()
+        async_queue = asyncio.Queue()
         loop = asyncio.get_running_loop()
-        finished = threading.Event()
-
+        
         def producer():
             try:
-                # Use create_chat_completion to automatically handle Gemma template
+                # 使用 Llama-cpp 建议的采样参数以获得更好效果
                 response = self.llm.create_chat_completion(
                     messages=messages,
-                    max_tokens=1024,
+                    max_tokens=2048, # 增加输出限制
                     stream=True,
-                    stop=["<end_of_turn>", "</start_of_turn>", "<start_of_turn>", "<eos>"]
+                    stop=["<end_of_turn>", "</start_of_turn>", "<start_of_turn>", "<eos>"],
+                    temperature=0.7,
+                    top_p=0.9,
+                    repeat_penalty=1.1
                 )
                 for chunk in response:
                     if "choices" in chunk and len(chunk["choices"]) > 0:
                         delta = chunk["choices"][0].get("delta", {})
                         text = delta.get("content", "")
                         if text:
-                            # Filter out system tags that might leak
+                            # 过滤系统标签
                             for tag in ["<end_of_turn>", "</start_of_turn>", "<start_of_turn>", "<eos>"]:
                                 text = text.replace(tag, "")
                             if text:
-                                queue.put(text)
+                                loop.call_soon_threadsafe(async_queue.put_nowait, text)
             except Exception as e:
-                queue.put(f"\n[Error: {str(e)}]")
+                loop.call_soon_threadsafe(async_queue.put_nowait, f"\n[Error: {str(e)}]")
             finally:
-                finished.set()
+                # 发送结束信号
+                loop.call_soon_threadsafe(async_queue.put_nowait, None)
 
-        # Run producer in a separate thread
-        thread = threading.Thread(target=producer)
-        thread.start()
+        # 启动线程执行阻塞的 LLM 生成
+        threading.Thread(target=producer, daemon=True).start()
 
-        while not finished.is_set() or not queue.empty():
-            if not queue.empty():
-                yield queue.get()
-            else:
-                await asyncio.sleep(0.01) # Small sleep to avoid busy waiting
-        
-        thread.join()
+        while True:
+            try:
+                # Wait for data with a timeout to send keep-alive pings
+                chunk = await asyncio.wait_for(async_queue.get(), timeout=2.0)
+                if chunk is None:
+                    break
+                yield chunk
+            except asyncio.TimeoutError:
+                # Yield an empty string to keep the proxy connection alive
+                yield ""
+
 
 # 单例
 local_ai_manager = LocalAIManager()
