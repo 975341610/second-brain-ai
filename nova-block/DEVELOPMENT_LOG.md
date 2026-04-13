@@ -1,3 +1,24 @@
+## [2026-04-13] - 修复块手柄与标题折叠箭头重叠及命中逻辑错乱 (v0.16.5)
+
+### 1. 前端 UI 与交互优化 (NovaBlockEditor & HeadingView)
+- **HeadingView 布局重构**:
+  - 移除了标题组件上的负边距（`-ml-[1.8rem]`）与补偿内边距（`pl-[1.8rem]`），回归标准文档流。
+  - 将折叠箭头按钮从相对定位改为绝对定位 (`absolute -left-8`)，确保其在左侧 Gutter 区域独立显示，不再物理挤压正文。
+- **DragHandle 坐标对齐**:
+  - 调整 `DragHandle` 配置，将 `placement` 从 `left-start` 改为 `left` 中心对齐。
+  - 增加 `offset: [-2, 40]`，使拖拽手柄向左侧偏移 40px，完美避开位于 `-left-8` (32px) 的折叠箭头，彻底解决两者重叠导致的点击冲突。
+  - 强制启用 `strategy: 'fixed'`，确保在长文档滚动时手柄位置不产生漂移。
+- **Block 命中逻辑重构 (handleGripClick)**:
+  - 废弃了基于编辑器左边距的硬编码 X 轴偏移算法。
+  - 改用 `editor.view.posAtCoords` 直接结合鼠标点击的精确坐标 (`e.clientX / e.clientY`) 来寻找目标节点。
+  - 使用 `resolve(pos).before(1)` 强制锁定顶层块级节点，解决了在复杂嵌套结构（如列表、分栏）中点击手柄时菜单定位到内部子节点的逻辑错乱问题。
+
+### 2. 样式与工程化
+- **CSS 精简**: 移除了 `novablock-core.css` 中 `.drag-handle` 的 `margin-right: 22px`，防止该样式干扰 Tippy.js 的自动偏移计算。
+- **版本发布**: 将 `nova-block/package.json` 升级至 `v0.16.5`，同步记录本次关键交互修复。
+
+---
+
 # Second Brain AI - 开发进度与状态日志
 
 > 老大的最新训示：**一定要认准死理：高效、性能；不管应用再好用、再好看，要是配置门槛高、卡顿卡死，流畅度低，那么它就是垃圾就是没人用**。

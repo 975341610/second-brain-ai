@@ -332,10 +332,7 @@ textarea {
   cursor: text !important;
 }
 
-/* Tiptap Drag Handle 间距调整 */
-.drag-handle {
-  margin-right: 22px;
-}
+/* Tiptap Drag Handle 间距调整 (已整合到 .drag-handle) */
 .tiptap-editor .tippy-box[data-animation='fade'] {
   transform: translateY(-10px) !important; /* 强制所有气泡菜单向上偏移，减少遮挡 */
 }
@@ -1130,7 +1127,7 @@ input {
 }
 
 /* uipro Block Handle */
-.novablock-editor .tiptap-drag-handle {
+.drag-handle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1138,9 +1135,10 @@ input {
   height: 24px;
   border-radius: 6px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  /* 移除原来的 margin-right，由 Tippy 的 offset 统一管理 */
 }
 
-.novablock-editor .tiptap-drag-handle:hover {
+.drag-handle:hover {
   background-color: rgba(0, 0, 0, 0.06);
   color: #000;
 }

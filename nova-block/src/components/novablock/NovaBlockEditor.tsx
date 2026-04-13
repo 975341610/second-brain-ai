@@ -400,18 +400,14 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     if (!isBlockMenuOpen) {
       // 通过点击坐标找到对应的 Tiptap 节点位置
       const view = editor.view;
-      const editorRect = view.dom.getBoundingClientRect();
       
-      // X 轴稍微往编辑器内部偏一点，Y 轴用点击位置
-      const x = editorRect.left + 50; 
-      const y = e.clientY;
-      
-      const posAtCoords = view.posAtCoords({ left: x, top: y });
+      const posAtCoords = view.posAtCoords({ left: e.clientX, top: e.clientY });
       if (posAtCoords) {
-        const $pos = editor.state.doc.resolve(posAtCoords.pos);
-        // 找到当前层级的 block 节点起始位置 (depth 1 为根节点的直接子节点，即 block)
-        // 在 Tiptap 中，大部分 block 位于 depth 1
-        const blockPos = $pos.before(1);
+        // 找到当前位置所在的最顶层块级节点
+        let $pos = editor.state.doc.resolve(posAtCoords.pos);
+        // depth 为 1 表示顶层块节点
+        let blockPos = $pos.before(1);
+        
         setTargetPos(blockPos);
         
         // 选中该节点以示反馈并为后续指令做准备
@@ -529,14 +525,24 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
             )}
           </div>
 
-          <div className="relative group/editor mt-2 w-full">
+          <div className="group/editor mt-2 w-full">
             {/* Block 拖拽手柄 */}
             {editor && (
               <DragHandle 
                 editor={editor} 
                 pluginKey="DragHandle"
+                tippyOptions={{
+                  duration: 100,
+                  zIndex: 100,
+                  offset: [-2, 40], // 这里的 40px 偏移是为了避开 Heading 的折叠按钮，并保持在正文左侧 Gutter 中
+                }}
+                // 强制使用 fixed 定位策略，防止在长文档滚动时产生坐标漂移
+                computePositionConfig={{
+                  strategy: 'fixed',
+                  placement: 'left', // 改为正左侧对齐
+                }}
               >
-                <div className="flex items-center gap-1 group/handle relative" ref={blockMenuRef}>
+                <div className="flex items-center gap-1 group/handle" ref={blockMenuRef}>
                   <div 
                     onClick={handleGripClick}
                     className="p-1 rounded-md hover:bg-black/5 dark:hover:bg-white/10 cursor-grab active:cursor-grabbing text-stone-400 group-hover/handle:text-stone-600 transition-colors drag-handle"
