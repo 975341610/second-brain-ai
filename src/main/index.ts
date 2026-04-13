@@ -246,6 +246,9 @@ function handleIPC() {
   ipcMain.handle('tasks:delete', async (_, params) => await callPythonBridge('tasks:delete', params));
   ipcMain.handle('tasks:clear-completed', async () => await callPythonBridge('tasks:clear-completed'));
   ipcMain.handle('ai:ask', async (_, params) => await callPythonBridge('ai:ask', params));
+  ipcMain.handle('ai:plugin-status', async () => await callPythonBridge('ai:plugin-status'));
+  ipcMain.handle('ai:toggle-plugin', async (_, params) => await callPythonBridge('ai:toggle-plugin', params));
+  ipcMain.handle('text:spellcheck', async (_, params) => await callPythonBridge('text:spellcheck', params));
   ipcMain.handle('config:get-model', async () => await callPythonBridge('config:get-model'));
   ipcMain.handle('config:update-model', async (_, params) => await callPythonBridge('config:update-model', params));
   ipcMain.handle('user:get-stats', async () => await callPythonBridge('user:get-stats'));
