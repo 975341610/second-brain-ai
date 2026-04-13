@@ -21,6 +21,25 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
       errors: [] as Array<{ word: string; suggestion: string; reason: string; from: number; to: number }>,
       isChecking: false,
       async runCheck(view: any, startPos: number, text: string) {
+        // Check if AI is enabled before running
+        try {
+          const status = await api.getAIPluginStatus();
+          if (!status.enabled) {
+            // Clear existing errors if disabled
+            if (this.errors.length > 0) {
+              this.errors = [];
+              const tr = view.state.tr;
+              const pluginKey = new PluginKey('ai-spellcheck-plugin');
+              tr.setMeta(pluginKey, { type: 'setDecorations', decorations: DecorationSet.empty });
+              view.dispatch(tr);
+            }
+            return;
+          }
+        } catch (e) {
+          console.error('Failed to check AI status:', e);
+          return;
+        }
+
         this.isChecking = true;
         try {
           const result = await api.spellcheck(text);
@@ -29,14 +48,14 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
           const mappedErrors: any[] = [];
           const decorations: Decoration[] = [];
           
-          // Use a better way to find the actual position of words to avoid mismatches
-          let lastIndex = 0;
           errors.forEach(err => {
-            const index = text.indexOf(err.word, lastIndex);
-            if (index !== -1) {
-              const from = startPos + 1 + index;
-              const to = from + err.word.length;
-              
+            // Use the offset directly from the backend
+            const from = startPos + 1 + err.offset;
+            const to = from + err.word.length;
+            
+            // Validate that the word at this position matches (safety check)
+            const wordAtPos = text.substring(err.offset, err.offset + err.word.length);
+            if (wordAtPos === err.word) {
               mappedErrors.push({ ...err, from, to });
               decorations.push(
                 Decoration.inline(from, to, {
@@ -44,7 +63,6 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
                   style: 'text-decoration: underline wavy red; cursor: pointer;',
                 })
               );
-              lastIndex = index + err.word.length;
             }
           });
           

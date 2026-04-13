@@ -109,10 +109,17 @@ class SpellcheckEngine:
         occupied_offsets = {r["offset"] for r in existing_results}
         
         # 1. 动词/形容词 + 的 -> 可能是 '得'
-        # 简单判定：...跑的(很|真|太|极|非常|十分)...
+        # 排除掉常见的代词前缀，减少误报
+        pronouns = "我你他她它咱们谁这那"
+        # 匹配 1-2 个中文字符，但第一个字符不能是代名词
         de_pattern = re.compile(r"([\u4e00-\u9fa5]{1,2})(的)(很|真|太|极|非常|十分)")
         for m in de_pattern.finditer(text):
-            offset = m.start(2)
+            prefix = m.group(1)
+            # 改进：仅当紧邻 '的' 的那个字符是代词时才跳过
+            if prefix[-1] in pronouns:
+                continue
+            
+            offset = m.start(2) # "的" 是第 2 个分组
             if offset not in occupied_offsets:
                 template_results.append({
                     "word": "的",

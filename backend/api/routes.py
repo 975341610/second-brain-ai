@@ -119,6 +119,21 @@ import psutil
 # AI 插件状态全局变量
 ai_enabled = True
 
+def load_ai_status():
+    """从 ai_config.json 加载 AI 启用状态"""
+    global ai_enabled
+    config_path = Path(settings.data_root) / "ai_config.json"
+    if config_path.exists():
+        try:
+            with open(config_path, "r") as f:
+                config = json.load(f)
+                ai_enabled = config.get("enabled", True)
+        except Exception as e:
+            print(f"[!] Error loading AI status: {e}")
+
+# 初始化加载
+load_ai_status()
+
 def extract_manual_links(content: str) -> list[int]:
     """
     Extract note IDs from content.
@@ -142,6 +157,9 @@ def extract_manual_links(content: str) -> list[int]:
 
 async def background_index_note_async(note_id: int, title: str, content: str, tags: list[str] | None = None, icon: str = "\U0001f4dd", type: str = "note", parent_id: int | None = None, is_title_manually_edited: bool = False):
     """异步执行 AI 处理：摘要、向量化、自动链接"""
+    if not ai_enabled:
+        return
+        
     db = SessionLocal()
     try:
         # 获取最新的 AI 配置
@@ -532,6 +550,9 @@ def upload_media_complete(
 
 @router.post("/ask", response_model=AskResponse)
 async def ask_question(payload: AskRequest, db: Session = Depends(get_db)) -> AskResponse:
+    if not ai_enabled:
+        return AskResponse(answer="AI is disabled in settings.", citations=[], mode=payload.mode)
+        
     model_config = await run_in_threadpool(get_or_create_model_config, db)
     llm_config = {
         "provider": model_config.provider,
@@ -554,11 +575,17 @@ async def ask_question(payload: AskRequest, db: Session = Depends(get_db)) -> As
 
 @router.post("/search")
 async def search_api(payload: SearchRequest, db: Session = Depends(get_db)) -> dict:
+    if not ai_enabled:
+        return {"results": []}
+        
     results = await search_knowledge(payload.query, ai_client=ai_client, top_k=payload.top_k)
     return {"results": await run_in_threadpool(citations_from_results, db, results)}
 
 @router.post("/ai/inline")
 async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
+    if not ai_enabled:
+        return StreamingResponse(iter([f"data: {{\"error\": \"AI is disabled in settings.\"}}\n\n"]), media_type="text/event-stream")
+        
     system_prompts = {
         "continue": "You are a writing assistant. Continue writing the following text naturally. Return only the new text.",
         "expand": "You are a writing assistant. Expand the following text with more details and depth. Return only the expanded version.",
@@ -648,6 +675,9 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
 
 @router.post("/chat")
 async def global_chat(payload: AskRequest, db: Session = Depends(get_db)):
+    if not ai_enabled:
+        return StreamingResponse(iter(["AI is disabled in settings."]), media_type="text/plain")
+        
     model_config = await run_in_threadpool(get_or_create_model_config, db)
     llm_config = {
         "provider": model_config.provider,
@@ -697,6 +727,9 @@ async def global_chat(payload: AskRequest, db: Session = Depends(get_db)):
 
 @router.post("/tags/suggest", response_model=TagSuggestResponse)
 async def suggest_tags(payload: TagSuggestRequest, db: Session = Depends(get_db)):
+    if not ai_enabled:
+        return TagSuggestResponse(tags=[])
+        
     model_config = await run_in_threadpool(get_or_create_model_config, db)
     llm_config = {
         "provider": model_config.provider,
@@ -712,6 +745,9 @@ from backend.services.spellcheck_engine import spellcheck_engine
 @router.post("/ai/spellcheck")
 async def ai_spellcheck(payload: dict):
     """Context-Aware Spell Check using Rule Engine"""
+    if not ai_enabled:
+        return {"errors": []}
+        
     text = payload.get("text", "")
     if not text:
         return {"errors": []}
@@ -728,6 +764,9 @@ async def ai_spellcheck(payload: dict):
 @router.post("/ai/suggest-tags")
 async def ai_suggest_tags(payload: dict):
     """AI 智能标签建议"""
+    if not ai_enabled:
+        return {"tags": []}
+        
     content = payload.get("content", "")
     if not content:
         return {"tags": []}
@@ -1656,6 +1695,9 @@ async def toggle_ai_plugin(payload: dict, background_tasks: BackgroundTasks):
 
         # 直接执行初始化 (由于已预置模型且逻辑已简化，此处将瞬间完成)
         await local_ai_manager.initialize_model()
+    else:
+        # 如果关闭，则释放资源并停止 Ollama
+        local_ai_manager.shutdown()
             
     return {"status": "success", "enabled": ai_enabled}
 

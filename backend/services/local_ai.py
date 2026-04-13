@@ -131,6 +131,22 @@ class LocalAIManager:
             print(f"[!] Error ensuring Ollama model: {e}")
             return False
 
+    def shutdown(self):
+        """释放资源并尝试停止本地 Ollama 进程"""
+        print("[*] Local AI Manager shutting down...")
+        self.is_ready = False
+        self.llm = None
+        
+        # 尝试停止本地 Ollama 进程 (针对 Windows 环境)
+        try:
+            import psutil
+            for proc in psutil.process_iter(['name']):
+                if proc.info['name'] and 'ollama' in proc.info['name'].lower():
+                    print(f"[*] Terminating background process: {proc.info['name']}")
+                    proc.terminate()
+        except Exception as e:
+            print(f"[!] Failed to stop Ollama processes: {e}")
+
     async def initialize_model(self):
         """异步初始化模型：直接加载本地预置模型"""
         if self.is_ready or self.is_loading:
