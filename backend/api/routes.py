@@ -583,6 +583,7 @@ async def search_api(payload: SearchRequest, db: Session = Depends(get_db)) -> d
 
 @router.post("/ai/inline")
 async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
+    global ai_enabled
     if not ai_enabled:
         return StreamingResponse(iter([f"data: {{\"error\": \"AI is disabled in settings.\"}}\n\n"]), media_type="text/event-stream")
         
@@ -601,7 +602,6 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
     ]
 
     # check local ai plugin first
-    global ai_enabled
     import logging
     logging.warning(f"[DEBUG] inline_ai called. ai_enabled={ai_enabled}")
     if ai_enabled:

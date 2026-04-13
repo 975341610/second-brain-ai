@@ -2,6 +2,9 @@
 
 ## [2026-04-13] - 深度修复拼写检查偏移量与 AI 插件开关逻辑
 
+### 0. 热修复：API 声明错误 (SyntaxError)
+- **修复 global 声明顺序**: 修复了 `backend/api/routes.py` 中 `inline_ai` 函数因 `global ai_enabled` 声明位于其首次使用之后导致的 `SyntaxError`。现已将声明移至函数开头。
+
 ### 1. 拼写检查 (Spellcheck) 逻辑优化
 - **前端偏移量重构**: 修复了 `AISpellcheck.ts` 忽略后端返回的 `offset` 而错误使用 `indexOf` 重新计算位置的问题。现在直接使用后端精确计算的字符偏移量，彻底解决了多处相同错词时的定位错乱。
 - **后端规则引擎增强**: 
