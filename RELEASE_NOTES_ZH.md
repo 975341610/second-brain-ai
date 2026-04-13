@@ -1,5 +1,13 @@
 # Release Notes
 
+## [0.16.3] - 2026-04-13
+
+### 修复
+- **TableOfContents**: 修复了由于 Tiptap 渲染延迟导致大纲 ID 重复引发的 React key 重复报错。
+- **具体实现**: 
+  - 在大纲提取逻辑中引入了包含 `pos` 和 `level` 的复合唯一 Key，确保 React Key 的绝对唯一性。
+  - 增强了 `TableOfContents` 组件的列表渲染稳定性。
+
 ## [0.16.1] - 2026-04-13
 
 ### 修复

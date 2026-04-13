@@ -1,7 +1,7 @@
 {
   "name": "nova-block",
   "private": true,
-  "version": "0.16.1",
+  "version": "0.16.3",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -57,7 +57,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
-    "jsdom": "^29.0.1",
+    "jsdom": "^29.0.2",
     "markdown-it-container": "^4.0.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-texmath": "^1.0.0",

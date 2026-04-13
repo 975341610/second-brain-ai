@@ -1164,3 +1164,12 @@ Fixed Flip Clock animation pure CSS
 ### 核心修复
 - **配置 Modelfile 模板与停止词**: 在 `nova_repo/backend/services/local_ai.py` 中生成 Modelfile 时，针对 Gemma 4 模型显式追加了完整的 `TEMPLATE` 以及 `PARAMETER stop "<end_of_turn>"`。
 - **强制覆盖旧模型**: 暂时移除了启动时“如果模型存在就跳过”的逻辑，确保在下一次启动时强制使用带模板的 Modelfile 重新生成并覆盖旧的 `nova-local` 模型。
+### 4. "严重漂移" (Severe Drift) Drag Handle Bug 修复
+- **发现问题**: Tiptap 默认的 `@tiptap/extension-drag-handle-react` 组件默认使用了 Floating UI 的 `placement: 'left'` 配置。这导致拖拽手柄会始终在段落的“垂直居中”位置对齐。当用户输入多行文本（段落变高）时，手柄会随着高度增加不断向下“漂移”，导致偏离段落首行，产生严重的视觉错位感。
+- **解决方案**: 在 `NovaBlockEditor.tsx` 中，通过强制传入 `computePositionConfig={{ placement: 'left-start' }}`，覆盖了默认的居中对齐逻辑，使手柄严格吸附并对齐在 Block 渲染盒的左上角（首行位置），彻底消除了因内容高度变化导致的垂直漂移问题，对齐体验追平 Notion。
+
+### 5. TableOfContents React Key Duplicate Fix
+- **修复背景**: 当编辑器快速输入或 Tiptap 异步生成标题 ID 时，偶尔会出现 `h-pending-X` 临时 ID 重复的情况，导致 `TableOfContents` 组件在映射渲染时触发 React Key 重复报错。
+- **具体实现**: 
+  - 修改 `NovaBlockEditor.tsx` 中的 `updateOutline` 提取逻辑，为每个 Item 显式构建 `key: baseId + '-' + pos + '-' + currentLevel` 复合唯一 Key，融合了元素 ID、文档绝对位置和层级信息，确保全局唯一。
+  - 修改 `TableOfContents.tsx` 组件，优先读取 Item 的 `key` 属性作为 React 渲染 Key，彻底隔离了业务 ID 冲突对 UI 渲染层的影响。

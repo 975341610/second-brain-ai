@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface OutlineItem {
   id: string;
+  key?: string;
   text: string;
   level: number;
 }
@@ -187,12 +188,12 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         }
       `}</style>
       <nav className="flex flex-col gap-2 items-end w-full px-4 overflow-y-auto custom-scrollbar max-h-[80vh] overflow-x-hidden">
-        {outline.map((item) => {
+        {outline.map((item, index) => {
           const isActive = activeId === item.id;
           
           return (
             <button
-              key={item.id}
+              key={item.key || item.id || `toc-${index}`}
               onClick={() => handleClick(item.id)}
               className="group relative flex items-center justify-end h-8 w-full outline-none transition-all duration-300 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 px-2"
             >

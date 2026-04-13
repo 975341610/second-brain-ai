@@ -289,10 +289,11 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
 
           const text = node.textContent;
           const displayText = text.trim() === '' ? '无标题' : text;
-          const id = node.attrs.id || `h-pending-${pos}`;
+          const baseId = node.attrs.id || `h-pending-${pos}`;
           
           items.push({
-            id,
+            id: baseId,
+            key: baseId + '-' + pos + '-' + currentLevel, // Ensure absolute uniqueness for React Key
             text: displayText,
             level: currentLevel,
           });
@@ -1024,6 +1025,11 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
               <DragHandle 
                 editor={editor} 
                 pluginKey="DragHandle"
+                tippyOptions={{ placement: 'left-start' } as any}
+                // @ts-ignore
+                computePositionConfig={{
+                  placement: 'left-start'
+                }}
               >
                 <div className="flex items-center gap-1 group/handle relative" ref={blockMenuRef}>
                   <div 
