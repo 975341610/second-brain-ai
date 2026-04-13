@@ -62,6 +62,12 @@
 - **Slash 命令过滤**: `SlashMenuConfig.tsx` 已支持基于 `item.requiresAI` + `isAiEnabled` 的过滤逻辑，AI 插件关闭时自动剔除需要 AI 支持的 Slash 命令（如 “AI 写作”）。
 - **交互拦截与提示**: 在 `NovaBlockEditor.tsx` 中为 Slash AI 指令执行链路增加状态拦截，若 AI 禁用则通过 `onNotify` 提示用户先在设置中开启。
 
+### 4. 热修复：播放列表弹窗滚动异常 (Playlist Popover Scrolling Fix)
+- **修复滚动逻辑**: 解决了黑胶播放器播放列表弹出框在滚动内部内容时会自动关闭的问题。
+- **具体实现**: 
+  - 在 `PlaylistPopover.tsx` 中为容器增加了 `playlist-popover-container` 类名。
+  - 在 `MusicContext.tsx` 的全局滚动监听中，增加了对该类名的点击/滚动拦截，确保用户在查看长播放列表时能顺畅滚动而不触发关闭逻辑。
+
 ---
 
 - [x] **高性能规则引擎实现 (`spellcheck_engine.py`)**:

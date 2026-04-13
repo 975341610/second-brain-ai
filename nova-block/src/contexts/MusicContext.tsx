@@ -84,7 +84,11 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   // 监听滚动自动关闭
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (e: Event) => {
+      // 忽略弹窗内部的滚动事件，防止歌单过长时一滑动就消失
+      if (e.target && (e.target as HTMLElement).closest?.('.playlist-popover-container')) {
+        return;
+      }
       closePlaylist();
     };
     window.addEventListener('scroll', handleScroll, { capture: true });

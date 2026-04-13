@@ -18,7 +18,7 @@ export const PlaylistPopover: React.FC<PlaylistPopoverProps> = ({ onClose, ancho
       initial={{ opacity: 0, scale: 0.9, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 10 }}
-      className={`${portal ? 'fixed' : 'absolute bottom-full right-0 mb-4'} w-72 max-h-[400px] overflow-hidden bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl flex flex-col z-[1000]`}
+      className={`${portal ? 'fixed' : 'absolute bottom-full right-0 mb-4'} w-72 max-h-[400px] overflow-hidden bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl flex flex-col z-[1000] playlist-popover-container`}
       style={portal && anchorRect ? (() => {
         let left = anchorRect.left;
         let top = anchorRect.bottom + 8; // 默认下方
