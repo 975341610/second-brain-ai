@@ -110,6 +110,30 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
           decorations(state) {
             return spellcheckPluginKey.getState(state);
           },
+          handleClick: (view, pos, event) => {
+            const errors = storage.errors;
+            const error = errors.find(e => pos >= e.from && pos <= e.to);
+            
+            if (error) {
+              // Get precise coordinates from ProseMirror
+              const coords = view.coordsAtPos(error.from);
+              const endCoords = view.coordsAtPos(error.to);
+              
+              window.dispatchEvent(new CustomEvent('open-spellcheck-suggestion', {
+                detail: {
+                  error,
+                  rect: {
+                    top: coords.top,
+                    left: coords.left,
+                    width: endCoords.right - coords.left,
+                    height: coords.bottom - coords.top
+                  }
+                }
+              }));
+              return true;
+            }
+            return false;
+          },
           handleDOMEvents: {
             compositionend: (view, event) => {
               // Trigger spellcheck immediately when Chinese input method completion
@@ -134,33 +158,6 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
               if (error) {
                 // Simplified: use browser title for tooltip
                 (event.target as HTMLElement).title = `Suggestion: ${error.suggestion} (${error.reason})`;
-              }
-              return false;
-            },
-            click: (view, event) => {
-              const pos = view.posAtCoords({ left: event.clientX, top: event.clientY });
-              if (!pos) return false;
-              
-              const errors = storage.errors;
-              const errorIdx = errors.findIndex(e => pos.pos >= e.from && pos.pos <= e.to);
-              
-              if (errorIdx !== -1) {
-                const error = errors[errorIdx];
-                const rect = (event.target as HTMLElement).getBoundingClientRect();
-                
-                // Dispatch event instead of window.confirm
-                window.dispatchEvent(new CustomEvent('open-spellcheck-suggestion', {
-                  detail: {
-                    error,
-                    rect: {
-                      top: rect.top,
-                      left: rect.left,
-                      width: rect.width,
-                      height: rect.height
-                    }
-                  }
-                }));
-                return true;
               }
               return false;
             }

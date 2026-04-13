@@ -26,16 +26,46 @@ export const SpellcheckSuggestionCard: React.FC<SpellcheckSuggestionCardProps> =
   onReplace,
   onClose,
 }) => {
+  const cardRef = React.useRef<HTMLDivElement>(null);
+  const [position, setPosition] = React.useState({ top: rect.top - 120, left: rect.left + rect.width / 2 });
+
+  React.useLayoutEffect(() => {
+    if (cardRef.current) {
+      const cardRect = cardRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const viewportWidth = window.innerWidth;
+
+      let top = rect.top - cardRect.height - 12; // 12px gap
+      let left = rect.left + rect.width / 2;
+
+      // Flip to bottom if there's no space at top
+      if (top < 10) {
+        top = rect.top + rect.height + 12;
+      }
+
+      // Keep within horizontal bounds
+      const halfWidth = cardRect.width / 2;
+      if (left - halfWidth < 10) {
+        left = halfWidth + 10;
+      } else if (left + halfWidth > viewportWidth - 10) {
+        left = viewportWidth - halfWidth - 10;
+      }
+
+      setPosition({ top, left });
+    }
+  }, [rect]);
+
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, scale: 0.95, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 10 }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       style={{
         position: 'fixed',
-        top: rect.top - 100, // Position above the word
-        left: rect.left + rect.width / 2,
+        top: position.top,
+        left: position.left,
         translateX: '-50%',
         zIndex: 1000,
       }}

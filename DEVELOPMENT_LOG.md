@@ -19,7 +19,15 @@
   - 当用户在设置中关闭 AI 插件时，系统会自动终止后台运行的 `ollama.exe` 相关进程并释放 LLM 显存资源。
 - **状态持久化修复**: 确保后端启动时正确从 `data/ai_config.json` 加载 `enabled` 状态，而非硬编码为 `True`。
 
-### 3. [待确认] 错别字修改建议悬浮卡片 (Suggestion Card UI)
+### 3. 错别字修改建议悬浮卡片 (Suggestion Card UI) - [2026-04-13] 热修复
+- **修复触发机制 (Reliable Trigger)**:
+  - 在 `AISpellcheck.ts` 插件中引入 `props.handleClick` 拦截逻辑。
+  - 弃用不稳定的 DOM 事件监听，通过 ProseMirror 原生 `view.coordsAtPos(pos)` 获取精确的字符级视口坐标。
+  - 确保 100% 拦截对 `spellcheck-error` 节点的点击，不再被选区或光标事件吞噬。
+- **重构定位算法 (Precise Positioning)**:
+  - 修改 `SpellcheckSuggestionCard.tsx`，通过 `useLayoutEffect` 动态测量卡片高度。
+  - 实现“智能吸附”定位：默认渲染在错词正上方（12px 间距），若上方空间不足则自动翻转至下方。
+  - 增加了视口边界溢出处理（Horizontal Edge Snapping），确保卡片在任何滚动位置均能精准贴合红线位置。
 - **UI/UX 进化 (Linear/Apple 风格)**: 
   - 实现了 `SpellcheckSuggestionCard.tsx` 组件，采用 `backdrop-blur-xl`、`rounded-2xl` 和 `shadow-soft` 设计语言。
   - 引入 `framer-motion` 弹性动画（Spring Animation），提升卡片弹出与消失的丝滑感。
