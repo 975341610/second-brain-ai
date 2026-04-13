@@ -288,8 +288,9 @@ export const api = {
   
   // AI Plugin status and hardware check
   getAIPluginStatus: () => invoke<{ enabled: boolean }>('ai:plugin-status', '/ai/plugin-status'),
-  toggleAIPlugin: (enabled: boolean) => 
-    invoke<{ enabled: boolean }>('ai:toggle-plugin', '/ai/toggle-plugin', { method: 'POST', body: JSON.stringify({ enabled }) }),
+  updateAIPluginConfig: (payload: { enabled?: boolean; num_ctx?: number }) => 
+    invoke<{ enabled: boolean; num_ctx: number }>('ai:toggle-plugin', '/ai/toggle-plugin', { method: 'POST', body: JSON.stringify(payload) }),
+  updateOllama: () => invoke<{ status: string; output?: string; message?: string }>('ai:update-ollama', '/ai/update-ollama', { method: 'POST' }),
   checkAIHardware: () => invoke<{ compatible: boolean; details: string }>('ai:hardware-check', '/ai/hardware-check'),
   spellcheck: (text: string) =>
     invoke<{ errors: Array<{ word: string; suggestion: string; reason: string; offset: number }> }>('text:spellcheck', '/text/spellcheck', { method: 'POST', body: JSON.stringify({ text }) }),

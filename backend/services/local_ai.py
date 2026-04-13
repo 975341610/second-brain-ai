@@ -275,6 +275,7 @@ class LocalAIManager:
         try:
             # 0. 读取 config
             preferred_engine = "auto"
+            num_ctx = 8192
             config_path = self.settings.data_root / "ai_config.json"
             if config_path.exists():
                 try:
@@ -282,12 +283,13 @@ class LocalAIManager:
                     with open(config_path, "r") as f:
                         config = json.load(f)
                         preferred_engine = config.get("preferred_engine", "auto")
+                        num_ctx = config.get("num_ctx", 8192)
                 except:
                     pass
 
             # 1. 检查本地模型是否存在 (预置路径)
             self.model_path = self.model_dir / self.filename
-            print(f"[*] Checking pre-installed model: {self.model_path}, preferred_engine: {preferred_engine}")
+            print(f"[*] Checking pre-installed model: {self.model_path}, preferred_engine: {preferred_engine}, num_ctx: {num_ctx}")
             
             if not self.model_path.exists():
                 # 如果不存在，报错提示需要预置
@@ -313,10 +315,10 @@ class LocalAIManager:
                 else:
                     try:
                         # 第一阶段尝试：开启 GPU 全量加速
-                        print("[*] Attempting GPU acceleration (n_gpu_layers=-1, n_ctx=8192)...")
+                        print(f"[*] Attempting GPU acceleration (n_gpu_layers=-1, n_ctx={num_ctx})...")
                         self.llm = Llama(
                             model_path=str(self.model_path),
-                            n_ctx=8192,
+                            n_ctx=num_ctx,
                             n_threads=os.cpu_count() or 4,
                             chat_format="gemma",
                             verbose=False,
@@ -329,11 +331,13 @@ class LocalAIManager:
                     except (ValueError, OSError, RuntimeError, Exception) as e:
                         # 降级尝试：退回到安全 CPU 模式
                         print(f"[!] GPU initialization failed ({type(e).__name__}): {str(e)}")
-                        print("[*] Falling back to CPU mode (n_gpu_layers=0, n_ctx=4096)...")
+                        # 对于 CPU 模式，我们如果用户设置的 num_ctx 太大，强制限制在 4096 以防内存溢出崩溃
+                        safe_num_ctx = min(num_ctx, 4096)
+                        print(f"[*] Falling back to CPU mode (n_gpu_layers=0, n_ctx={safe_num_ctx})...")
                         try:
                             self.llm = Llama(
                                 model_path=str(self.model_path),
-                                n_ctx=4096,
+                                n_ctx=safe_num_ctx,
                                 n_threads=1,
                                 n_batch=128,
                                 chat_format="gemma",
@@ -344,7 +348,7 @@ class LocalAIManager:
                             )
                             current_engine = "llama"
                         except Exception as e2:
-                            # 终极保底：如果 CPU 也报错（通常是 Access Violation 非法指令集），进入 MOCK 模式
+                            # 终极保底
                             print(f"[!] CPU fallback also failed: {e2}. Entering Mock Error Mode (Ollama Proxy).")
                             self.llm = "MOCK_LLM_ERROR"
                             current_engine = "ollama"
@@ -505,17 +509,32 @@ Available Actions:
             success = await self._ensure_ollama_model()
             model_to_use = "nova-local" if success else "gemma:2b"
 
+            # 获取 num_ctx 配置
+            num_ctx = 8192
+            config_path = self.settings.data_root / "ai_config.json"
+            if config_path.exists():
+                try:
+                    import json
+                    with open(config_path, "r") as f:
+                        config = json.load(f)
+                        num_ctx = config.get("num_ctx", 8192)
+                except:
+                    pass
+
             # Try to connect to local Ollama if available
             try:
                 import httpx
                 import json
-                print(f"[*] MOCK_LLM_ERROR detected. Attempting to connect to local Ollama (127.0.0.1:11434) using model '{model_to_use}'...")
+                print(f"[*] MOCK_LLM_ERROR detected. Attempting to connect to local Ollama (127.0.0.1:11434) using model '{model_to_use}' with num_ctx={num_ctx}...")
                 
                 ollama_url = "http://127.0.0.1:11434/api/chat"
                 payload = {
                     "model": model_to_use,
                     "messages": messages,
-                    "stream": True
+                    "stream": True,
+                    "options": {
+                        "num_ctx": num_ctx
+                    }
                 }
                 
                 async with httpx.AsyncClient() as client:

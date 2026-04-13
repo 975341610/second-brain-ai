@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Cpu, ToggleLeft, ToggleRight, CheckCircle2, AlertCircle, Loader2, Settings, BookOpen, Upload, Database } from 'lucide-react';
+import { X, Cpu, ToggleLeft, ToggleRight, CheckCircle2, AlertCircle, Loader2, Settings, BookOpen, Upload, Database, RefreshCw, Zap } from 'lucide-react';
 import { api } from '../lib/api';
 import { useAI } from '../contexts/AIContext';
 
@@ -10,10 +10,11 @@ interface SettingsDialogProps {
 }
 
 export const SettingsDialog: React.FC<SettingsDialogProps> = ({ isOpen, onClose }) => {
-  const { isAiEnabled, setIsAiEnabled, refreshAiStatus } = useAI();
+  const { isAiEnabled, setIsAiEnabled, contextLength, setContextLength, refreshAiStatus } = useAI();
   const [hwStatus, setHwStatus] = useState<{ compatible: boolean; details: string } | null>(null);
   const [checking, setChecking] = useState(false);
   const [toggling, setToggling] = useState(false);
+  const [updatingOllama, setUpdatingOllama] = useState(false);
   const [activeTab, setActiveTab] = useState<'ai' | 'dictionary'>('ai');
   
   // Dictionary Import State
@@ -31,12 +32,38 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ isOpen, onClose 
   const handleToggle = async () => {
     setToggling(true);
     try {
-      const res = await api.toggleAIPlugin(!isAiEnabled);
+      const res = await api.updateAIPluginConfig({ enabled: !isAiEnabled });
       setIsAiEnabled(res.enabled);
     } catch (err) {
       console.error('Failed to toggle AI plugin:', err);
     } finally {
       setToggling(false);
+    }
+  };
+
+  const handleContextLengthChange = async (val: number) => {
+    setContextLength(val);
+    try {
+      await api.updateAIPluginConfig({ num_ctx: val });
+    } catch (err) {
+      console.error('Failed to update context length:', err);
+    }
+  };
+
+  const handleUpdateOllama = async () => {
+    setUpdatingOllama(true);
+    try {
+      const res = await api.updateOllama();
+      if (res.status === 'success') {
+        alert('Ollama 更新成功！');
+      } else {
+        alert('Ollama 更新失败: ' + (res.message || res.output));
+      }
+    } catch (err) {
+      console.error('Failed to update Ollama:', err);
+      alert('Ollama 更新请求失败');
+    } finally {
+      setUpdatingOllama(false);
     }
   };
 
@@ -163,6 +190,39 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ isOpen, onClose 
                     </motion.div>
                   )}
 
+                  {/* Context Length Slider */}
+                  <div className="p-4 bg-accent/10 rounded-2xl border border-border/20 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Zap className="w-4 h-4 text-primary" />
+                        <h3 className="text-sm font-bold">上下文长度 (Context Length)</h3>
+                      </div>
+                      <span className="text-xs font-mono bg-primary/10 text-primary px-2 py-0.5 rounded-md">
+                        {contextLength} tokens
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      <input
+                        type="range"
+                        min="2048"
+                        max="32768"
+                        step="1024"
+                        value={contextLength}
+                        onChange={(e) => handleContextLengthChange(parseInt(e.target.value))}
+                        className="w-full h-1.5 bg-accent/30 rounded-lg appearance-none cursor-pointer accent-primary"
+                      />
+                      <div className="flex justify-between text-[10px] text-muted-foreground font-medium px-1">
+                        <span>2048</span>
+                        <span>8192</span>
+                        <span>16384</span>
+                        <span>32768</span>
+                      </div>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      更大的上下文长度允许 AI 处理更长的笔记和更多的引用背景，但会占用更多显存。建议 8GB 显存用户设为 8192 或以上。
+                    </p>
+                  </div>
+
                   {/* Hardware Check */}
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -276,7 +336,23 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ isOpen, onClose 
               )}
             </div>
 
-            <div className="px-6 py-4 bg-muted/30 border-t border-border/50 flex justify-end">
+            <div className="px-6 py-4 bg-muted/30 border-t border-border/50 flex justify-between items-center">
+              <div className="flex gap-2">
+                {activeTab === 'ai' && (
+                  <button
+                    onClick={handleUpdateOllama}
+                    disabled={updatingOllama}
+                    className="flex items-center gap-2 px-4 py-2 bg-accent/20 hover:bg-accent/40 text-xs font-bold rounded-xl transition-all disabled:opacity-50"
+                  >
+                    {updatingOllama ? (
+                      <Loader2 className="w-3 h-3 animate-spin" />
+                    ) : (
+                      <RefreshCw className="w-3 h-3" />
+                    )}
+                    检查并更新 Ollama 版本
+                  </button>
+                )}
+              </div>
               <button
                 onClick={onClose}
                 className="px-6 py-2 bg-foreground text-background rounded-xl text-sm font-bold hover:opacity-90 transition-opacity"

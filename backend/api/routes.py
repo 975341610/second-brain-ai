@@ -1674,29 +1674,39 @@ async def import_data(payload: dict):
 
 @router.post("/ai/toggle-plugin")
 async def toggle_ai_plugin(payload: dict, background_tasks: BackgroundTasks):
-    """切换 AI 插件启用状态 (集成预置模型，实现瞬间就绪)"""
+    """切换 AI 插件启用状态或更新配置 (集成预置模型，实现瞬间就绪)"""
     global ai_enabled
-    enabled = payload.get("enabled", False)
+    enabled = payload.get("enabled", ai_enabled)
+    num_ctx = payload.get("num_ctx")
+    
     ai_enabled = enabled
     
     # 持久化到 ai_config.json
     config_path = Path(settings.data_root) / "ai_config.json"
-    config = {"enabled": ai_enabled, "preferred_engine": "auto"}
+    config = {"enabled": ai_enabled, "preferred_engine": "auto", "num_ctx": 8192}
     if config_path.exists():
         try:
             with open(config_path, "r") as f:
                 old_config = json.load(f)
-                config["preferred_engine"] = old_config.get("preferred_engine", "auto")
+                config.update(old_config)
         except:
             pass
+    
+    config["enabled"] = ai_enabled
+    if num_ctx is not None:
+        config["num_ctx"] = num_ctx
     
     with open(config_path, "w") as f:
         json.dump(config, f, indent=2)
 
     import logging
-    logging.warning(f"[DEBUG] toggle_ai_plugin called. ai_enabled={ai_enabled}")
+    logging.warning(f"[DEBUG] toggle_ai_plugin called. ai_enabled={ai_enabled}, num_ctx={num_ctx}")
     
     if ai_enabled:
+        # 如果只是更新 num_ctx，我们也需要重新初始化模型以使配置生效
+        if num_ctx is not None:
+            await local_ai_manager.stop_ollama_server() # 重启以应用新配置
+
         logging.warning(f"[DEBUG] toggle_ai_plugin local_ai_manager id: {id(local_ai_manager)}")
 
         # 1) 确保集成的 Ollama 引擎已下载（ensure_ollama.py）
@@ -1705,7 +1715,6 @@ async def toggle_ai_plugin(payload: dict, background_tasks: BackgroundTasks):
             script_path = base_dir / "ensure_ollama.py"
             if script_path.exists():
                 print(f"[*] Dynamically running {script_path}...")
-                # 注意: ensure_ollama.py 现在在 disabled 时会返回 2, 这里我们已经 enable 了所以应该返回 0 或 1
                 subprocess.run([sys.executable, str(script_path)], cwd=str(base_dir))
         except Exception as e:
             print(f"[!] Failed to run ensure_ollama dynamically: {e}")
@@ -1716,26 +1725,64 @@ async def toggle_ai_plugin(payload: dict, background_tasks: BackgroundTasks):
         except Exception as e:
             print(f"[!] Failed to start Ollama server: {e}")
 
-        # 3) 初始化本地 AI（如果 llama-cpp 不可用会自动走 Ollama fallback）
+        # 3) 初始化本地 AI
         await local_ai_manager.initialize_model()
     else:
         # 物理级解耦：如果关闭，则彻底停止后端 AI 进程
         print("[*] AI Plugin disabled. Killing AI processes for physical decoupling...")
         await local_ai_manager.stop_ollama_server()
             
-    return {"status": "success", "enabled": ai_enabled}
+    return {"status": "success", "enabled": ai_enabled, "num_ctx": config.get("num_ctx", 8192)}
 
 @router.post("/ai/toggle")
 async def ai_toggle_api(payload: dict, background_tasks: BackgroundTasks):
     """Alias for toggle-plugin to match Phase 2 requirements"""
     return await toggle_ai_plugin(payload, background_tasks)
 
+@router.post("/ai/update-ollama")
+async def update_ollama_api():
+    """手动触发强制更新 Ollama 引擎"""
+    try:
+        base_dir = Path(__file__).resolve().parent.parent.parent
+        script_path = base_dir / "ensure_ollama.py"
+        if not script_path.exists():
+            raise HTTPException(status_code=404, detail="Update script not found")
+        
+        # 强制更新逻辑：带上 --force 参数
+        process = await asyncio.create_subprocess_exec(
+            sys.executable, str(script_path), "--force",
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            cwd=str(base_dir)
+        )
+        stdout, stderr = await process.communicate()
+        
+        if process.returncode == 0:
+            return {"status": "success", "output": stdout.decode()}
+        else:
+            return {"status": "error", "message": stderr.decode()}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @router.get("/ai/plugin-status")
 async def get_ai_plugin_status():
     """获取 AI 插件启用状态"""
     local_status = local_ai_manager.get_status()
+    
+    # 读取 num_ctx
+    num_ctx = 8192
+    config_path = Path(settings.data_root) / "ai_config.json"
+    if config_path.exists():
+        try:
+            with open(config_path, "r") as f:
+                config = json.load(f)
+                num_ctx = config.get("num_ctx", 8192)
+        except:
+            pass
+            
     return {
         "enabled": ai_enabled,
+        "num_ctx": num_ctx,
         "local_ai_ready": local_status["is_ready"],
         "local_ai_loading": local_status["is_loading"],
         "local_ai_error": local_status["error"]

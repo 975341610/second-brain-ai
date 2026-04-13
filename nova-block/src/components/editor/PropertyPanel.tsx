@@ -56,7 +56,9 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
   
   // Sync local tags with prop when note changes
   useEffect(() => {
-    setLocalTags(note.tags || []);
+    // 使用 Set 进行去重，确保 localTags 中没有重复标签
+    const uniqueTags = Array.from(new Set(note.tags || []));
+    setLocalTags(uniqueTags);
   }, [note.id, note.tags]);
 
   // 初始化时读取一次
@@ -112,7 +114,10 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
     setIsSuggestionsExpanded(true);
     try {
       const response = await api.suggestTags(note.content || "");
-      setSuggestedTags(response.tags);
+      // AI 建议的标签也要去重，且不能包含已有的标签
+      const uniqueSuggestedTags = Array.from(new Set(response.tags || []))
+        .filter(tag => !localTags.includes(tag));
+      setSuggestedTags(uniqueSuggestedTags);
     } catch (error) {
       console.error('Failed to suggest tags:', error);
     } finally {
@@ -120,8 +125,9 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
     }
   };
 
-  const applyTag = async (tag: string) => {
-    if (localTags.includes(tag)) return;
+  const applyTag = async (tagName: string) => {
+    const tag = tagName.trim();
+    if (!tag || localTags.includes(tag)) return;
     
     const newTags = [...localTags, tag];
     setLocalTags(newTags);

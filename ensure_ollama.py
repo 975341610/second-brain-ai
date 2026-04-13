@@ -4,6 +4,38 @@ import zipfile
 import sys
 import shutil
 import json
+import subprocess
+
+MIN_REQUIRED_OLLAMA_VERSION = "0.1.29"
+
+def get_local_ollama_version(ollama_exe):
+    if not os.path.exists(ollama_exe):
+        return None
+    try:
+        result = subprocess.run([ollama_exe, "--version"], capture_output=True, text=True, check=True)
+        # Output is usually "ollama version is 0.1.29"
+        version_str = result.stdout.strip().split()[-1]
+        return version_str
+    except Exception as e:
+        print(f"[!] Error checking local Ollama version: {e}")
+        return None
+
+def is_version_older(current, required):
+    if not current: return True
+    def parse_version(v):
+        # Remove 'v' prefix if present
+        v = v.lstrip('v')
+        return [int(x) for x in v.split('.')]
+    
+    try:
+        curr_parts = parse_version(current)
+        req_parts = parse_version(required)
+        for c, r in zip(curr_parts, req_parts):
+            if c < r: return True
+            if c > r: return False
+        return len(curr_parts) < len(req_parts)
+    except:
+        return True
 
 def get_latest_ollama_version():
     print("[*] Checking latest Ollama version from GitHub...")
@@ -28,7 +60,7 @@ def download_with_progress(url, dest):
     urllib.request.urlretrieve(url, dest, reporthook=reporthook)
     print("\n[*] Download completed.")
 
-def install_ollama():
+def install_ollama(force=False):
     base_dir = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(base_dir, "data")
     config_path = os.path.join(data_dir, "ai_config.json")
@@ -48,6 +80,14 @@ def install_ollama():
     ollama_exe = os.path.join(bin_dir, "ollama.exe")
     
     version_file = os.path.join(bin_dir, "ollama_version.txt")
+    
+    # 检查本地版本
+    local_version = get_local_ollama_version(ollama_exe)
+    if not force and local_version:
+        if not is_version_older(local_version, MIN_REQUIRED_OLLAMA_VERSION):
+            print(f"[*] Integrated Ollama engine (v{local_version}) meets minimum requirements (v{MIN_REQUIRED_OLLAMA_VERSION}). Ready.")
+            return
+
     current_version = get_latest_ollama_version()
     print(f"[*] Target Ollama version: {current_version}")
 
@@ -55,8 +95,8 @@ def install_ollama():
         # 检查是否为旧版本，如果是旧版本，我们需要重新下载
         if os.path.exists(version_file):
             with open(version_file, "r") as f:
-                if f.read().strip() == current_version:
-                    print("[*] Integrated Ollama engine is ready.")
+                if f.read().strip() == current_version and not force:
+                    print("[*] Integrated Ollama engine is already at latest version.")
                     return
         print("[*] Upgrading integrated Ollama engine...")
     else:
@@ -91,4 +131,5 @@ def install_ollama():
         sys.exit(1)
 
 if __name__ == "__main__":
-    install_ollama()
+    force_update = "--force" in sys.argv
+    install_ollama(force=force_update)
