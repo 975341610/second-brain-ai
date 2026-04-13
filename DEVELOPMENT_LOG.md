@@ -22,6 +22,11 @@
 - **前端拼写检查解绑**: `AISpellcheck` 扩展移除了运行前校验 AI 状态的逻辑，确保拼写检查始终作为核心规则能力运行。
 - **IPC 通道支持**: 适配了 `text:spellcheck` 通道，使得 Electron 本地模式下也能正常进行拼写检查。
 
+### 3. AI 插件动态 UI 解绑
+- **智能标签按钮隐藏**: 在 `PropertyPanel.tsx` 中引入 `useAI()`，当 AI 插件禁用时，动态隐藏“AI 建议标签”按钮（Sparkles 图标），避免用户误点。
+- **Slash 命令过滤**: `SlashMenuConfig.tsx` 已支持基于 `item.requiresAI` + `isAiEnabled` 的过滤逻辑，AI 插件关闭时自动剔除需要 AI 支持的 Slash 命令（如 “AI 写作”）。
+- **交互拦截与提示**: 在 `NovaBlockEditor.tsx` 中为 Slash AI 指令执行链路增加状态拦截，若 AI 禁用则通过 `onNotify` 提示用户先在设置中开启。
+
 ---
 
 - [x] **高性能规则引擎实现 (`spellcheck_engine.py`)**:

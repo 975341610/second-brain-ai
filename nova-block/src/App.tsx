@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { MusicProvider, useMusicControls } from './contexts/MusicContext'
 import { HabitProvider } from './contexts/HabitContext'
 import { TodoProvider } from './contexts/TodoContext'
+import { AIProvider } from './contexts/AIContext'
 import { FloatingMusicCapsule } from './components/widgets/FloatingMusicCapsule'
 import { PlaylistPopover } from './components/widgets/PlaylistPopover'
 
@@ -340,6 +341,7 @@ function App() {
   }
 
   return (
+    <AIProvider>
     <MusicProvider>
       <HabitProvider>
         <TodoProvider>
@@ -459,9 +461,10 @@ function App() {
         {/* 全局音乐列表 (单例) */}
          <MusicGlobalUI />
        </div>
-       </TodoProvider>
-       </HabitProvider>
-     </MusicProvider>
+        </TodoProvider>
+        </HabitProvider>
+      </MusicProvider>
+    </AIProvider>
   )
 }
 

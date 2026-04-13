@@ -42,12 +42,13 @@ import { EditorHeader } from '../editor/EditorHeader';
 import { PropertyPanel } from '../editor/PropertyPanel';
 import { getSuggestionConfig } from '../notion/SlashMenuConfig';
 import { getNoteLinkSuggestionConfig } from './extensions/NoteLinkConfig';
+import { useAI } from '../../contexts/AIContext';
 import { TableOfContents } from './components/TableOfContents';
 import { EmoticonPanel } from '../editor/EmoticonPanel';
 
 const NOVA_BLOCK_SLASH_ITEMS = [
   // 0. AI 助理 (AI Assistant)
-  { label: 'AI 写作', description: '向本地大模型提问 (Gemma-4-E2B)', group: '🤖 AI 助理', icon: <Bot size={18} className="text-purple-500" />, keywords: ['ai', 'write', 'bot', 'gemma'], action: (chain: ChainedCommands) => {
+  { label: 'AI 写作', description: '向本地大模型提问 (Gemma-4-E2B)', group: '🤖 AI 助理', icon: <Bot size={18} className="text-purple-500" />, keywords: ['ai', 'write', 'bot', 'gemma'], requiresAI: true, action: (chain: ChainedCommands) => {
     const prompt = window.prompt('告诉 AI 你想写什么 (Gemma-4-E2B-it):');
     if (!prompt) return chain;
     
@@ -164,6 +165,7 @@ interface NovaBlockEditorProps {
 export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
   note, onSave, onNotify
 }) => {
+  const { isAiEnabled } = useAI();
   const [isSaving, setIsSaving] = useState(false);
   const [isAILoading, setIsAILoading] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
@@ -255,8 +257,8 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     TextEffect,
     AISpellcheck.configure({ debounceMs: 800 }),
     NoteLink.configure({ suggestion: getNoteLinkSuggestionConfig() }),
-    SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
-  ], []);
+    SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef, isAiEnabled) }),
+  ], [isAiEnabled]);
 
   const [outline, setOutline] = useState<any[]>([]);
   const outlineTimerRef = useRef<any>(null);
@@ -446,6 +448,11 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
       const { prompt } = e.detail;
       if (!editor) return;
 
+      if (!isAiEnabled) {
+        onNotify?.('请先在设置中开启 AI 插件', 'info');
+        return;
+      }
+
       setIsAILoading(true);
       try {
         const { api } = await import('../../lib/api');
@@ -619,6 +626,11 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
       const { type, value, attrs } = e.detail;
       console.log(`[NovaBlock] Handling AI Action: ${type}`, { value, attrs });
       
+      if (!isAiEnabled) {
+        onNotify?.('请先在设置中开启 AI 插件', 'info');
+        return;
+      }
+
       if (type === 'set_title') {
         const newTitle = value.trim();
         if (newTitle) {

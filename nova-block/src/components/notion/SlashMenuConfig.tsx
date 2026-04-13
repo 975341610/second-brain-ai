@@ -2,10 +2,13 @@ import { ReactRenderer } from '@tiptap/react';
 import tippy, { sticky } from 'tippy.js';
 import { SlashMenu, type SlashItem } from './SlashMenu';
 
-export const getSuggestionConfig = (itemsRef: React.MutableRefObject<SlashItem[]>) => ({
+export const getSuggestionConfig = (itemsRef: React.MutableRefObject<SlashItem[]>, isAiEnabled: boolean = true) => ({
   items: ({ query }: { query: string }) => {
     const items = itemsRef.current;
     const filtered = items.filter(item => {
+      // AI 过滤逻辑
+      if (item.requiresAI && !isAiEnabled) return false;
+
       const q = query.toLowerCase();
       return item.label.toLowerCase().includes(q) || item.keywords.some(k => k.toLowerCase().includes(q));
     });

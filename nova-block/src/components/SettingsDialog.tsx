@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Cpu, ToggleLeft, ToggleRight, CheckCircle2, AlertCircle, Loader2, Settings } from 'lucide-react';
 import { api } from '../lib/api';
+import { useAI } from '../contexts/AIContext';
 
 interface SettingsDialogProps {
   isOpen: boolean;
@@ -9,31 +10,22 @@ interface SettingsDialogProps {
 }
 
 export const SettingsDialog: React.FC<SettingsDialogProps> = ({ isOpen, onClose }) => {
-  const [aiEnabled, setAiEnabled] = useState(false);
+  const { isAiEnabled, setIsAiEnabled, refreshAiStatus } = useAI();
   const [hwStatus, setHwStatus] = useState<{ compatible: boolean; details: string } | null>(null);
   const [checking, setChecking] = useState(false);
   const [toggling, setToggling] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
-      fetchStatus();
+      refreshAiStatus();
     }
-  }, [isOpen]);
-
-  const fetchStatus = async () => {
-    try {
-      const status = await api.getAIPluginStatus();
-      setAiEnabled(status.enabled);
-    } catch (err) {
-      console.error('Failed to fetch AI status:', err);
-    }
-  };
+  }, [isOpen, refreshAiStatus]);
 
   const handleToggle = async () => {
     setToggling(true);
     try {
-      const res = await api.toggleAIPlugin(!aiEnabled);
-      setAiEnabled(res.enabled);
+      const res = await api.toggleAIPlugin(!isAiEnabled);
+      setIsAiEnabled(res.enabled);
     } catch (err) {
       console.error('Failed to toggle AI plugin:', err);
     } finally {
@@ -104,7 +96,7 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ isOpen, onClose 
                   disabled={toggling}
                   className="p-1 hover:scale-110 transition-transform disabled:opacity-50"
                 >
-                  {aiEnabled ? (
+                  {isAiEnabled ? (
                     <ToggleRight className="w-8 h-8 text-primary" />
                   ) : (
                     <ToggleLeft className="w-8 h-8 text-muted-foreground" />

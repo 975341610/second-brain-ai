@@ -21,6 +21,7 @@ import {
   Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAI } from '../../contexts/AIContext';
 
 interface PropertyPanelProps {
   note: Note;
@@ -46,6 +47,7 @@ const MOOD_OPTIONS = [
 ];
 
 export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, onUpdateTags, onFlushSave }) => {
+  const { isAiEnabled } = useAI();
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [suggestedTags, setSuggestedTags] = useState<string[]>([]);
   const [isSuggestionsExpanded, setIsSuggestionsExpanded] = useState(false);
@@ -302,6 +304,7 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
         </div>
 
         {/* AI Suggest Button */}
+        {isAiEnabled && (
         <button 
           onClick={handleSuggestTags}
           disabled={isSuggesting}
@@ -310,6 +313,7 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
         >
           <Sparkles size={13} />
         </button>
+        )}
 
         {/* Suggestion Toggle */}
         {suggestedTags.length > 0 && (

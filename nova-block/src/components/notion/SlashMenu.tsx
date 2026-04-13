@@ -8,6 +8,7 @@ export type SlashItem = {
   icon?: React.ReactNode;
   keywords: string[];
   action: (chain: any, editor?: any) => void;
+  requiresAI?: boolean;
 };
 
 interface SlashMenuProps {
