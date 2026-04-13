@@ -22,7 +22,8 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
     return {
       errors: [] as Array<{ word: string; suggestion: string; reason: string; from: number; to: number }>,
       isChecking: false,
-      async runCheck(view: any, startPos: number, text: string) {
+      async runCheck(view: any, text: string) {
+        if (this.isChecking) return;
         this.isChecking = true;
         try {
           const result = await api.spellcheck(text);
@@ -31,9 +32,22 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
           const mappedErrors: any[] = [];
           const decorations: Decoration[] = [];
           
+          // Re-find the node in current document state to get latest position
+          const { tr } = view.state;
+          let latestStartPos = -1;
+          
+          view.state.doc.descendants((node: any, pos: number) => {
+            if (node.isBlock && node.textContent === text) {
+              latestStartPos = pos;
+              return false;
+            }
+          });
+          
+          if (latestStartPos === -1) return;
+
           errors.forEach(err => {
             // Use the offset directly from the backend
-            const from = startPos + 1 + err.offset;
+            const from = latestStartPos + 1 + err.offset;
             const to = from + err.word.length;
             
             // Validate that the word at this position matches (safety check)
@@ -43,7 +57,7 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
               decorations.push(
                 Decoration.inline(from, to, {
                   class: 'ai-spellcheck-error',
-                  style: 'text-decoration: underline wavy red; cursor: pointer;',
+                  style: 'text-decoration: underline wavy red; cursor: pointer; background: rgba(255,0,0,0.05);',
                 })
               );
             }
@@ -52,12 +66,12 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
           this.errors = mappedErrors;
           
           // Dispatch transaction to update decorations
-          const tr = view.state.tr;
-          tr.setMeta(spellcheckPluginKey, { 
+          const dispatchTr = view.state.tr;
+          dispatchTr.setMeta(spellcheckPluginKey, { 
             type: 'setDecorations', 
-            decorations: DecorationSet.create(tr.doc, decorations) 
+            decorations: DecorationSet.create(dispatchTr.doc, decorations) 
           });
-          view.dispatch(tr);
+          view.dispatch(dispatchTr);
           
         } catch (e) {
           console.error('Spellcheck failed:', e);
@@ -100,14 +114,13 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
             compositionend: (view, event) => {
               // Trigger spellcheck immediately when Chinese input method completion
               const { selection } = view.state;
-              const $pos = selection.$from;
-              const node = $pos.parent;
+              const node = selection.$from.parent;
               
-              if (node.type.name === 'paragraph' && node.textContent.trim()) {
+              if (node.type.name === 'paragraph' && node.textContent.trim().length > 0) {
                 // We use a small delay to let the DOM update before reading content
                 setTimeout(() => {
-                  this.storage.runCheck(view, $pos.before(), node.textContent);
-                }, 50);
+                  this.storage.runCheck(view, node.textContent);
+                }, 100);
               }
               return false;
             },
@@ -169,14 +182,13 @@ export const AISpellcheck = Extension.create<AISpellcheckOptions>({
               if (debounceTimer) clearTimeout(debounceTimer);
               
               debounceTimer = setTimeout(async () => {
-                const { selection } = view.state;
-                const $pos = selection.$from;
-                const node = $pos.parent;
+                const { state } = view;
+                const node = state.selection.$from.parent;
                 
                 // Only check if it's a paragraph and has content
-                if (node.type.name !== 'paragraph' || !node.textContent.trim()) return;
+                if (node.type.name !== 'paragraph' || node.textContent.trim().length === 0) return;
                 
-                await storage.runCheck(view, $pos.before(), node.textContent);
+                await storage.runCheck(view, node.textContent);
               }, options.debounceMs);
             },
             destroy: () => {
