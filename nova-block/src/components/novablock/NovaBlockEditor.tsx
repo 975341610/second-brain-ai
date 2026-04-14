@@ -1233,8 +1233,13 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
       return;
     }
 
-    const tr = editor.state.tr.setMeta('lockDragHandle', isBlockMenuOpen);
-    editor.view.dispatch(tr);
+    try {
+      if (editor.isDestroyed) return;
+      const tr = editor.state.tr.setMeta('lockDragHandle', isBlockMenuOpen);
+      editor.view.dispatch(tr);
+    } catch (e) {
+      // Ignore if view is not ready or unmounted
+    }
   }, [editor, isBlockMenuOpen]);
 
   // 鐐瑰嚮澶栭儴鍏抽棴琛ㄦ儏闈㈡澘
@@ -1404,7 +1409,14 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     }
 
     const scrollContainer = scrollContainerRef.current;
-    const editorElement = editor.view.dom;
+    let editorElement: Element | null = null;
+    try {
+      // Accessing editor.view throws an error in Tiptap if the view is not mounted yet
+      if (editor.isDestroyed) return;
+      editorElement = editor.view.dom;
+    } catch (e) {
+      return;
+    }
 
     if (!scrollContainer || !editorElement) {
       return;
