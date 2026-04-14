@@ -1,9 +1,11 @@
+import { formatUrl } from "../../lib/api";
 import React, { useEffect, useMemo, useRef, useState, useCallback, useLayoutEffect } from 'react';
 import { EditorContent, useEditor, Editor } from '@tiptap/react';
 import { NodeSelection } from '@tiptap/pm/state';
 import type { ChainedCommands } from '@tiptap/core';
 import { BubbleMenu } from '@tiptap/react/menus';
 import DragHandle from '@tiptap/extension-drag-handle-react';
+import { sticky } from 'tippy.js';
 import StarterKit from '@tiptap/starter-kit';
 import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
@@ -11,16 +13,18 @@ import UnderlineExtension from '@tiptap/extension-underline';
 import { Table as TiptapTable } from '@tiptap/extension-table';
 import { TableRow } from '@tiptap/extension-table-row';
 import { motion, AnimatePresence } from 'framer-motion';
+import { StickerLayer } from '../editor/StickerLayer';
 import { StickyNotesLayer } from '../editor/StickyNotesLayer';
-import type { StickyNoteData } from '../../lib/types';
+import { StickerPanel } from '../editor/StickerPanel';
+import type { StickerData, StickyNoteData } from '../../lib/types';
 import { 
-  GripVertical, Bold, Italic, 
-  Underline, Eraser, Cpu, Strikethrough,
-  Type, Heading1, Heading2, Heading3, CheckSquare, Table as TableIcon, Code, Quote, Sparkles,
-  Link as LinkIcon, Highlighter, Trash2, Copy, Replace, ListPlus, Minus,
-  Trash, Columns, Rows, Film, Music, FileText, MonitorPlay, StickyNote as StickyNoteIcon,
-  List, ListOrdered, ArrowUpToLine, ArrowDownToLine, CopyPlus, StickyNote,
-  Layout
+    GripVertical, Bold, Italic, 
+    Underline, Eraser, Cpu, Strikethrough, Timer,
+    Type, Heading1, Heading2, Heading3, CheckSquare, Table as TableIcon, Code, Quote, Sparkles, Zap, Waves,
+    Link as LinkIcon, Highlighter, Trash2, Copy, Replace, ListPlus, Minus,
+    Trash, Columns, Rows, Film, Music, FileText, MonitorPlay, StickyNote as StickyNoteIcon,
+    List, ListOrdered, ArrowUpToLine, ArrowDownToLine, CopyPlus, StickyNote, Smile, X,
+    Layout, Bot
 } from 'lucide-react';
 
 import { 
@@ -29,17 +33,31 @@ import {
     SlashCommands, FileNode, Heading, MathInline, MathBlock, Footnote, 
     ColumnGroup, Column, HighlightBlock,
     WashiTape, JournalStamp, Blockquote, CodeBlock, FilePlaceholder, FileUpload,
-    SliderExtension
-  } from '../../lib/tiptapExtensions';
+    CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode,
+    Emoticon, SliderExtension, NoteLink, TextEffect, AISpellcheck
+   } from '../../lib/tiptapExtensions';
 
 import type { Note } from '../../lib/types';
 
 import { EditorHeader } from '../editor/EditorHeader';
 import { PropertyPanel } from '../editor/PropertyPanel';
 import { getSuggestionConfig } from '../notion/SlashMenuConfig';
+import { getNoteLinkSuggestionConfig } from './extensions/NoteLinkConfig';
+import { useAI } from '../../contexts/AIContext';
 import { TableOfContents } from './components/TableOfContents';
+import { EmoticonPanel } from '../editor/EmoticonPanel';
+import { SpellcheckSuggestionCard } from './components/SpellcheckSuggestionCard';
 
 const NOVA_BLOCK_SLASH_ITEMS = [
+  // 0. AI 助理 (AI Assistant)
+  { label: 'AI 写作', description: '向本地大模型提问 (Gemma-4-E2B)', group: '🤖 AI 助理', icon: <Bot size={18} className="text-purple-500" />, keywords: ['ai', 'write', 'bot', 'gemma'], requiresAI: true, action: (chain: ChainedCommands) => {
+    const prompt = window.prompt('告诉 AI 你想写什么 (Gemma-4-E2B-it):');
+    if (!prompt) return chain;
+    
+    window.dispatchEvent(new CustomEvent('ai-write', { detail: { prompt } }));
+    return chain;
+  } },
+
   // 1. 文本格式 (Text Formatting)
   { label: '加粗', description: '选中文本并加粗', group: '文本格式', icon: <Bold size={18} />, keywords: ['bold', 'b'], action: (chain: ChainedCommands) => chain.toggleBold() },
   { label: '倾斜', description: '选中文本并倾斜', group: '文本格式', icon: <Italic size={18} />, keywords: ['italic', 'i'], action: (chain: ChainedCommands) => chain.toggleItalic() },
@@ -47,7 +65,7 @@ const NOVA_BLOCK_SLASH_ITEMS = [
   { label: '高亮', description: '背景着色', group: '文本格式', icon: <Highlighter size={18} />, keywords: ['highlight'], action: (chain: ChainedCommands) => chain.toggleHighlight() },
   { label: '代码', description: '内联代码样式', group: '文本格式', icon: <Code size={18} />, keywords: ['code', 'inline'], action: (chain: ChainedCommands) => chain.toggleCode() },
   { label: '数学公式', description: '内联 LaTeX 公式', group: '文本格式', icon: <Sparkles size={18} />, keywords: ['math', 'latex'], action: (chain: ChainedCommands) => chain.setMark('mathInline', { latex: 'E=mc^2' }) },
-  { label: '清除格式', description: '移除所有格式', group: '文本格式', icon: <Eraser size={18} />, keywords: ['clear'], action: (chain: ChainedCommands) => chain.unsetAllMarks() },
+  { label: '清除格式', description: '移除所有格式', group: '文本格式', icon: <Eraser size={18} />, keywords: ['clear', 'remove'], action: (chain: ChainedCommands) => chain.unsetAllMarks().unsetCode().unsetLink() },
 
   // 2. 段落设置 (Paragraph Settings)
   { label: '正文', description: '普通文本段落', group: '段落设置', icon: <Type size={18} />, keywords: ['p', 'text'], action: (chain: ChainedCommands) => chain.setNode('paragraph') },
@@ -60,6 +78,11 @@ const NOVA_BLOCK_SLASH_ITEMS = [
   { label: '有序列表', description: '数字编号列表', group: '段落设置', icon: <ListPlus size={18} className="rotate-180" />, keywords: ['ol', 'ordered'], action: (chain: ChainedCommands) => chain.toggleOrderedList() },
   { label: '无序列表', description: '圆点符号列表', group: '段落设置', icon: <ListPlus size={18} />, keywords: ['ul', 'bullet'], action: (chain: ChainedCommands) => chain.toggleBulletList() },
   { label: '待办事项', description: '复选框任务', group: '段落设置', icon: <CheckSquare size={18} />, keywords: ['todo', 'task'], action: (chain: ChainedCommands) => chain.toggleTaskList() },
+  { label: '表情', description: '插入内联表情', group: '段落设置', icon: <Smile size={18} />, keywords: ['emoji', 'emoticon', 'bqb'], action: (chain: ChainedCommands) => {
+    // 使用标准的 TipTap 命令触发
+    // @ts-ignore
+    return chain.openEmoticonPanel();
+  } },
   { label: '引用', description: '块级引用', group: '段落设置', icon: <Quote size={18} />, keywords: ['quote', 'blockquote'], action: (chain: ChainedCommands) => chain.toggleBlockquote() },
 
   // 3. 插入 (Insert)
@@ -97,6 +120,7 @@ const NOVA_BLOCK_SLASH_ITEMS = [
     if (url) return chain.insertContent({ type: 'fileNode', attrs: { src: url, name: name || '未命名文件' } });
     return chain;
   } },
+  { label: '链接到笔记', description: '搜索并引用其他笔记', group: '插入', icon: <LinkIcon size={18} />, keywords: ['link', 'note', 'backlink', 'gl'], action: (chain: ChainedCommands) => chain.insertContent('[[') },
   { label: '嵌入 (B站/YouTube)', description: '嵌入外站视频或网页', group: '插入', icon: <MonitorPlay size={18} />, keywords: ['embed', 'bilibili', 'youtube', 'iframe', 'bzhan'], action: (chain: ChainedCommands) => {
     const url = window.prompt('请输入 B站、YouTube 或其他可嵌入网页的链接:');
     if (!url) return chain;
@@ -120,6 +144,14 @@ const NOVA_BLOCK_SLASH_ITEMS = [
   // 4. 手账装饰 (Scrapbook Decoration)
   { label: '和纸胶带', description: '插入装饰性胶带', group: '手账装饰', icon: <Highlighter size={18} className="text-pink-400" />, keywords: ['tape', 'washi'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'washiTape' }) },
   { label: '便利贴', description: '独立浮动的彩色便利贴', group: '手账装饰', icon: <StickyNoteIcon size={18} className="text-yellow-400" />, keywords: ['note', 'sticky'], action: () => window.dispatchEvent(new CustomEvent('add-sticky-note')) },
+
+  // 5. 🧩 精致小组件 (Exquisite Widgets)
+  { label: '倒计时', description: '莫兰迪配色倒计时', group: '🧩 精致小组件', icon: <Timer size={18} />, keywords: ['countdown', 'djs'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'countdown' }) },
+  { label: '黑胶播放器', description: '带动画的音乐播放器', group: '🧩 精致小组件', icon: <Music size={18} />, keywords: ['music', 'player'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'musicPlayer' }) },
+  { label: '迷你日历', description: '极简月历打卡', group: '🧩 精致小组件', icon: <List size={18} />, keywords: ['calendar', 'checkin'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'miniCalendar' }) },
+  { label: '打卡日历 (V2)', description: '多维拟物打卡日历', group: '🧩 精致小组件', icon: <CheckSquare size={18} />, keywords: ['habit', 'tracker', 'dk'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'habitTracker' }) },
+  { label: '全局待办 (Sync)', description: '多笔记同步待办清单', group: '🧩 精致小组件', icon: <CheckSquare size={18} className="text-[#8BA494]" />, keywords: ['todo', 'widget', 'sync', 'task'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'todoWidget' }) },
+  { label: '多列看板 (Kanban)', description: '手账风进度看板', group: '🧩 精致小组件', icon: <Columns size={18} />, keywords: ['kanban', 'kb'], action: (chain: ChainedCommands) => chain.insertContent({ type: 'kanban' }) },
 ];
 
 interface NovaBlockEditorProps {
@@ -132,47 +164,27 @@ interface NovaBlockEditorProps {
  * NovaBlockEditor (Sprint 3 Core)
  * 极致性能、uipro 专业视觉
  */
-export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
+export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
   note, onSave, onNotify
 }) => {
+  const { isAiEnabled } = useAI();
   const [isSaving, setIsSaving] = useState(false);
+  const [isAILoading, setIsAILoading] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(note?.created_at || null);
   const [viewMode, setViewMode] = useState<'edit' | 'preview'>('edit');
   const [fps, setFps] = useState(0);
   const [isBlockMenuOpen, setIsBlockMenuOpen] = useState(false);
   const [targetPos, setTargetPos] = useState<number | null>(null);
+  const [stickers, setStickers] = useState<StickerData[]>([]);
   const [stickyNotes, setStickyNotes] = useState<StickyNoteData[]>([]);
+  const [isStickerMode, setIsStickerMode] = useState(false);
+  const [isStickerPanelOpen, setIsStickerPanelOpen] = useState(false);
+  const [isEmoticonPanelOpen, setIsEmoticonPanelOpen] = useState(false);
+  const [spellcheckError, setSpellcheckError] = useState<{ error: any, rect: any } | null>(null);
   const blockMenuRef = useRef<HTMLDivElement>(null);
+  const emoticonPanelRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setStickyNotes(note?.sticky_notes || []);
-  }, [note?.id, note?.sticky_notes]);
-
-  const handleStickyNotesChange = useCallback((newNotes: StickyNoteData[]) => {
-    setStickyNotes(newNotes);
-    onSave({ sticky_notes: newNotes });
-  }, [onSave]);
-
-  useEffect(() => {
-    const handleAddStickyNote = (e?: Event) => {
-      const detail = (e as CustomEvent<{ content?: string }>)?.detail;
-      const initialContent = detail?.content || '<p></p>';
-      
-      const newNote: StickyNoteData = {
-        id: Math.random().toString(36).substring(7),
-        x: scrollContainerRef.current ? scrollContainerRef.current.clientWidth / 2 - 130 : 100,
-        y: scrollContainerRef.current ? scrollContainerRef.current.scrollTop + 100 : 100,
-        color: 'rgba(254, 240, 138, 1)',
-        rotation: (Math.random() - 0.5) * 4,
-        content: initialContent,
-      };
-      handleStickyNotesChange([...stickyNotes, newNote]);
-    };
-    window.addEventListener('add-sticky-note', handleAddStickyNote as EventListener);
-    return () => window.removeEventListener('add-sticky-note', handleAddStickyNote as EventListener);
-  }, [stickyNotes, handleStickyNotesChange]);
 
   const slashItemsRef = useRef<any[]>(NOVA_BLOCK_SLASH_ITEMS);
   slashItemsRef.current = NOVA_BLOCK_SLASH_ITEMS;
@@ -183,12 +195,30 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     latestNoteRef.current = note;
   }, [note]);
 
+  const handleStickersChange = useCallback((newStickers: StickerData[]) => {
+    setStickers(newStickers);
+    if (latestNoteRef.current) {
+      latestNoteRef.current = { ...latestNoteRef.current, stickers: newStickers };
+    }
+    if (!isDirty) setIsDirty(true);
+  }, [isDirty]);
+
+  const handleStickyNotesChange = useCallback((newNotes: StickyNoteData[]) => {
+    setStickyNotes(newNotes);
+    if (latestNoteRef.current) {
+      latestNoteRef.current = { ...latestNoteRef.current, sticky_notes: newNotes };
+    }
+    if (!isDirty) setIsDirty(true);
+  }, [isDirty]);
+
   // 核心 Tiptap 扩展配置 (高性能 memo 模式)
   const extensions = useMemo(() => [
     StarterKit.configure({
       heading: false,
       codeBlock: false,
       blockquote: false,
+      link: false,
+      underline: false,
     }),
     Heading.configure({ levels: [1, 2, 3, 4, 5, 6] }),
     Blockquote,
@@ -219,62 +249,83 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     JournalStamp,
     FilePlaceholder,
     FileUpload,
+    CountdownNode,
+    MusicPlayerNode,
+    MiniCalendarNode,
+    KanbanNode,
+    HabitTrackerNode,
+    TodoNode,
+    Emoticon,
     SliderExtension,
-    SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef) }),
-  ], []);
+    TextEffect,
+    AISpellcheck.configure({ debounceMs: 800 }),
+    NoteLink.configure({ suggestion: getNoteLinkSuggestionConfig() }),
+    SlashCommands.configure({ suggestion: getSuggestionConfig(slashItemsRef, isAiEnabled) }),
+  ], [isAiEnabled]);
 
   const [outline, setOutline] = useState<any[]>([]);
+  const outlineTimerRef = useRef<any>(null);
+
+  // 记录最后一次 hover 的 block 位置，用于解决漂移时的定位丢失
+  const [hoveredBlockPos, setHoveredBlockPos] = useState<number | null>(null);
 
   // 提取大纲数据用于 TOC
   const updateOutline = useCallback((editorInstance: Editor) => {
-    const items: any[] = [];
-    let foldLevel: number | null = null;
+    if (outlineTimerRef.current) {
+      clearTimeout(outlineTimerRef.current);
+    }
     
-    editorInstance.state.doc.descendants((node, pos) => {
-      if (node.type.name === 'heading') {
-        const currentLevel = node.attrs.level;
-        
-        // 逻辑与 CollapsibleHeading 保持一致
-        if (foldLevel !== null && currentLevel <= foldLevel) {
-          foldLevel = null;
-        }
-
-        // 如果处于折叠范围内，不加入大纲
-        if (foldLevel !== null) return false;
-
-        const text = node.textContent;
-        const displayText = text.trim() === '' ? '无标题' : text;
-        const id = node.attrs.id || `h-pending-${pos}`;
-        
-        items.push({
-          id,
-          text: displayText,
-          level: currentLevel,
-        });
-
-        if (node.attrs.collapsed) {
-          foldLevel = currentLevel;
-        }
-        return false;
-      }
+    outlineTimerRef.current = setTimeout(() => {
+      const items: any[] = [];
+      let foldLevel: number | null = null;
       
-      if (node.isBlock && foldLevel !== null) return false;
-      return true;
-    });
+      editorInstance.state.doc.descendants((node, pos) => {
+        if (node.type.name === 'heading') {
+          const currentLevel = node.attrs.level;
+          
+          // 逻辑与 CollapsibleHeading 保持一致
+          if (foldLevel !== null && currentLevel <= foldLevel) {
+            foldLevel = null;
+          }
 
-    // 只有在结构或核心数据发生变化时才更新状态
-    setOutline((prev) => {
-      // 关键：如果当前包含 pending ID，或者之前包含 pending ID，必须允许更新以达到最终稳定状态
-      const hasPending = items.some(it => it.id.startsWith('h-pending-'));
-      const prevHasPending = prev.some(it => it.id.startsWith('h-pending-'));
+          // 如果处于折叠范围内，不加入大纲
+          if (foldLevel !== null) return false;
 
-      if (!hasPending && !prevHasPending && 
-          prev.length === items.length && 
-          prev.every((item, i) => item.id === items[i].id && item.text === items[i].text && item.level === items[i].level)) {
-        return prev;
-      }
-      return items;
-    });
+          const text = node.textContent;
+          const displayText = text.trim() === '' ? '无标题' : text;
+          const baseId = node.attrs.id || `h-pending-${pos}`;
+          
+          items.push({
+            id: baseId,
+            key: baseId + '-' + pos + '-' + currentLevel, // Ensure absolute uniqueness for React Key
+            text: displayText,
+            level: currentLevel,
+          });
+
+          if (node.attrs.collapsed) {
+            foldLevel = currentLevel;
+          }
+          return false;
+        }
+        
+        if (node.isBlock && foldLevel !== null) return false;
+        return true;
+      });
+
+      // 只有在结构或核心数据发生变化时才更新状态
+      setOutline((prev) => {
+        // 关键：如果当前包含 pending ID，或者之前包含 pending ID，必须允许更新以达到最终稳定状态
+        const hasPending = items.some(it => it.id.startsWith('h-pending-'));
+        const prevHasPending = prev.some(it => it.id.startsWith('h-pending-'));
+
+        if (!hasPending && !prevHasPending && 
+            prev.length === items.length && 
+            prev.every((item, i) => item.id === items[i].id && item.text === items[i].text && item.level === items[i].level)) {
+          return prev;
+        }
+        return items;
+      });
+    }, 500); // 500ms 防抖，大幅提升输入性能，杜绝 React 渲染死锁
   }, []);
 
   const editor = useEditor({
@@ -282,7 +333,11 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     content: note?.content || '<p></p>',
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
-      setIsDirty(true);
+      // 避免重复设置状态导致 React React 死循环
+      if (!isDirty) {
+        setIsDirty(true);
+      }
+      
       const html = editor.getHTML();
       const currentLatestNote = latestNoteRef.current;
       const payload: any = { ...currentLatestNote, content: html };
@@ -307,7 +362,9 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       }
       
       latestNoteRef.current = payload;
-      onSave(payload);
+      // 这里不要在每次按键时立刻 await onSave(payload)，因为 onUpdate 是同步触发的高频事件
+      // 让 handleSave (debounced) 去接管保存逻辑，极大提高输入性能
+      // 只有在需要立即更新大纲时，才调用 updateOutline(editor);
       updateOutline(editor);
     },
     onTransaction: ({ editor }) => {
@@ -315,6 +372,13 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       updateOutline(editor);
     },
     onCreate: ({ editor }) => {
+      // 绑定表情面板开启逻辑到 extension storage
+      if (editor.storage.emoticon) {
+        editor.storage.emoticon.onOpenPanel = () => {
+          setIsEmoticonPanelOpen(true);
+        };
+      }
+
       // 强制运行一次 ID 补全
       // @ts-ignore
       editor.commands.ensureHeadingIds();
@@ -322,23 +386,392 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     },
     editorProps: {
       attributes: {
-        class: 'novablock-editor prose prose-stone dark:prose-invert max-w-none focus:outline-none min-h-[500px] w-full mx-auto pt-4 px-12 mb-32 font-sans text-foreground selection:bg-primary/20'
-      }
+        class: 'novablock-editor prose prose-stone dark:prose-invert max-w-none focus:outline-none min-h-[500px] w-full mx-auto pt-4 pl-24 pr-12 mb-32 font-sans text-foreground selection:bg-primary/20'
+      },
+      handleKeyDown: (view, event) => {
+        // `/e` + Enter -> 打开表情面板（阻止换行，并删除触发文本）
+        if (event.key !== 'Enter') return false;
+
+        const { state } = view;
+        const { selection } = state;
+        if (!selection.empty) return false;
+
+        const { from } = selection;
+        if (from < 2) return false;
+
+        const trigger = state.doc.textBetween(from - 2, from, '\0', '\0');
+        if (trigger !== '/e') return false;
+
+        // 确保 `/e` 是一个独立触发（前一个字符为空或空白）
+        const prevChar = from - 3 >= 0 ? state.doc.textBetween(from - 3, from - 2, '\0', '\0') : '';
+        if (prevChar && !/\s/.test(prevChar)) return false;
+
+        event.preventDefault();
+        const tr = state.tr.delete(from - 2, from);
+        view.dispatch(tr);
+        // @ts-ignore
+        editor?.commands.openEmoticonPanel();
+        return true;
+      },
     }
   }, [extensions, updateOutline]);
 
+  useEffect(() => {
+    const handleAddSticker = (e?: Event) => {
+      const detail = (e as CustomEvent<{ content?: string; url?: string; type?: 'image' | 'text'; x?: number; y?: number }>)?.detail;
+      const type = detail?.type || (detail?.url ? 'image' : 'text');
+      
+      const defaultX = scrollContainerRef.current ? scrollContainerRef.current.clientWidth / 2 - 100 : 100;
+      const defaultY = scrollContainerRef.current ? scrollContainerRef.current.scrollTop + 100 : 100;
+
+      const x = detail?.x ?? defaultX;
+      const y = detail?.y ?? defaultY;
+
+      if (type === 'image' && detail?.url) {
+        const newSticker: StickerData = {
+          id: Math.random().toString(36).substring(7),
+          type: 'image',
+          url: detail.url,
+          x,
+          y,
+          scale: 1,
+          rotation: (Math.random() - 0.5) * 10,
+          opacity: 1,
+        };
+        handleStickersChange([...stickers, newSticker]);
+      } else {
+        const newSticky: StickyNoteData = {
+          id: Math.random().toString(36).substring(7),
+          x,
+          y,
+          color: 'rgba(254, 240, 138, 1)',
+          rotation: (Math.random() - 0.5) * 10,
+          content: detail?.content || '<p></p>',
+        };
+        handleStickyNotesChange([...stickyNotes, newSticky]);
+      }
+    };
+    window.addEventListener('add-sticky-note', handleAddSticker as EventListener);
+    
+    const handleOpenEmoticon = (e?: any) => {
+      if (e && e.stopPropagation) e.stopPropagation();
+      setIsEmoticonPanelOpen(true);
+    };
+    window.addEventListener('open-emoticon-panel', handleOpenEmoticon);
+
+    const handleAIWrite = async (e: any) => {
+      const { prompt } = e.detail;
+      if (!editor) return;
+
+      if (!isAiEnabled) {
+        onNotify?.('请先在设置中开启 AI 插件', 'info');
+        return;
+      }
+
+      setIsAILoading(true);
+      try {
+        const { api } = await import('../../lib/api');
+        
+        let streamBuffer = '';
+        let isFirstToken = true;
+        
+        // --- 实时流式解析状态 ---
+        let currentStreamingAction: { type: string; language?: string; startPos: number } | null = null;
+        let lastActionValue = ''; // 记录上一次 Action 累积的内容，用于增量插入
+
+        const flushText = (text: string) => {
+          if (text && editor) {
+            editor.chain().focus().insertContent(text).run();
+          }
+        };
+
+        await api.streamInlineAI(
+          { prompt, context: editor.getText(), action: 'ask' },
+          (chunk: string) => {
+            if (isFirstToken) {
+              setIsAILoading(false);
+              isFirstToken = false;
+            }
+            streamBuffer += chunk;
+            
+            const processBuffer = () => {
+              if (currentStreamingAction) {
+                // 我们正处于一个 Action 标签内部
+                const actionEnd = streamBuffer.toLowerCase().indexOf('</action>');
+                
+                if (actionEnd !== -1) {
+                  // Action 结束了！
+                  const innerContent = streamBuffer.slice(0, actionEnd);
+                  const incremental = innerContent.slice(lastActionValue.length);
+                  
+                  if (incremental) {
+                    // 补齐最后一点增量
+                    if (currentStreamingAction.type === 'insert_code_block' || currentStreamingAction.type === 'insert_text' || currentStreamingAction.type === 'insert_todo') {
+                       // 移除可能有的 markdown 代码块包裹符 (仅在 insert_code_block/insert_todo 时)
+                       let cleanInc = incremental;
+                       if (currentStreamingAction.type !== 'insert_text') {
+                         cleanInc = cleanInc.replace(/```[a-z]*\n?/gi, '').replace(/\n?```$/gi, '');
+                       }
+                       if (cleanInc) flushText(cleanInc);
+                    }
+                  }
+
+                  // 这里的逻辑可以保留 handleAIAction 原有的非流式 Action 处理逻辑 (如 set_title)
+                  // 但为了支持全量 Action，我们还是 dispatch 一个完整的事件
+                  const fullTag = `<Action type="${currentStreamingAction.type}"${currentStreamingAction.language ? ` language="${currentStreamingAction.language}"` : ''}>${innerContent}</Action>`;
+                  const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>([\s\S]*?)<\/Action>/i.exec(fullTag);
+                  if (match && !['insert_code_block', 'insert_text', 'insert_todo'].includes(match[1])) {
+                    // 只有非实时流式的 Action 才重新触发 handleAIAction
+                    const [, type, language, value] = match;
+                    window.dispatchEvent(new CustomEvent('ai-action', { 
+                      detail: { type, value: value.trim(), attrs: { language } } 
+                    }));
+                  }
+
+                  // 重置状态
+                  currentStreamingAction = null;
+                  lastActionValue = '';
+                  streamBuffer = streamBuffer.slice(actionEnd + 9);
+                  if (streamBuffer.length > 0) processBuffer();
+                } else {
+                  // 还在 Action 内部，尝试流式输出
+                  // 寻找内容部分的起始（跳过可能还在 buffer 里的标签开头）
+                  // 这里的 innerContent 就是 Action 标签里的文本
+                  const incremental = streamBuffer.slice(lastActionValue.length);
+                  
+                  // 只有特定的 Action 类型支持实时流式输出到编辑器
+                  if (['insert_code_block', 'insert_text', 'insert_todo'].includes(currentStreamingAction.type)) {
+                    // 简单的增量输出。注意：如果这里有复杂的 markdown 包裹符，流式时会带出来
+                    // 只有当积累到一定长度或者检测到换行时才输出，避免过于零碎的事务
+                    if (incremental.length > 5 || incremental.includes('\n')) {
+                      let cleanInc = incremental;
+                      // 简单处理：如果是 insert_code_block，流式过程中不显示 ```
+                      if (currentStreamingAction.type !== 'insert_text') {
+                        cleanInc = cleanInc.replace(/```[a-z]*\n?/gi, '').replace(/\n?```$/gi, '');
+                      }
+                      
+                      if (cleanInc) {
+                        flushText(cleanInc);
+                        lastActionValue += incremental; // 记录已处理的原始部分
+                      }
+                    }
+                  }
+                }
+              } else {
+                // 没在 Action 内部，寻找标签开始
+                const actionStart = streamBuffer.search(/<Action/i);
+                
+                if (actionStart === -1) {
+                  // 没找到标签开始，看看末尾是否可能是前缀
+                  const lastBracket = streamBuffer.lastIndexOf('<');
+                  if (lastBracket !== -1 && '<action'.startsWith(streamBuffer.slice(lastBracket).toLowerCase())) {
+                    const before = streamBuffer.slice(0, lastBracket);
+                    if (before) flushText(before);
+                    streamBuffer = streamBuffer.slice(lastBracket);
+                  } else {
+                    flushText(streamBuffer);
+                    streamBuffer = '';
+                  }
+                } else {
+                  // 找到了 <Action
+                  if (actionStart > 0) {
+                    flushText(streamBuffer.slice(0, actionStart));
+                    streamBuffer = streamBuffer.slice(actionStart);
+                  }
+                  
+                  // 检查标签头是否完整 (直到 >)
+                  const tagHeaderEnd = streamBuffer.indexOf('>');
+                  if (tagHeaderEnd !== -1) {
+                    const tagHeader = streamBuffer.slice(0, tagHeaderEnd + 1);
+                    const match = /<Action\s+type=(?:"|')([^"']+)(?:"|')(?:\s+language=(?:"|')([^"']+)(?:"|'))?\s*>/i.exec(tagHeader);
+                    
+                    if (match) {
+                      const [, type, language] = match;
+                      currentStreamingAction = { type, language, startPos: editor.state.selection.from };
+                      lastActionValue = ''; 
+                      
+                      // 针对不同的 Action 类型，流式开始前先做些准备
+                      if (type === 'insert_code_block') {
+                        editor.chain().focus().insertContent({
+                          type: 'codeBlock',
+                          attrs: { language: language || 'plain' },
+                          content: []
+                        }).run();
+                        // Tiptap 插入 block 后光标会自动进入，所以接下来的 flushText 会插入到 codeBlock 内部
+                      } else if (type === 'insert_todo') {
+                        editor.chain().focus().insertContent({
+                          type: 'taskList',
+                          content: [{
+                            type: 'taskItem',
+                            attrs: { checked: false },
+                            content: [{ type: 'paragraph', content: [] }]
+                          }]
+                        }).run();
+                      }
+                      
+                      streamBuffer = streamBuffer.slice(tagHeaderEnd + 1);
+                      if (streamBuffer.length > 0) processBuffer();
+                    } else {
+                      // 奇怪的标签，按文本处理
+                      flushText(tagHeader);
+                      streamBuffer = streamBuffer.slice(tagHeaderEnd + 1);
+                      if (streamBuffer.length > 0) processBuffer();
+                    }
+                  }
+                }
+              }
+            };
+
+            processBuffer();
+          }
+        );
+        
+        if (streamBuffer) {
+          flushText(streamBuffer);
+        }
+      } catch (err: any) {
+        console.error(err);
+        setIsAILoading(false);
+        editor.chain().focus().insertContent(`\n[AI 生成失败: ${err.message}]`).run();
+      }
+    };
+    window.addEventListener('ai-write', handleAIWrite as EventListener);
+
+    const handleAIAction = (e: any) => {
+      const { type, value, attrs } = e.detail;
+      console.log(`[NovaBlock] Handling AI Action: ${type}`, { value, attrs });
+      
+      if (!isAiEnabled) {
+        onNotify?.('请先在设置中开启 AI 插件', 'info');
+        return;
+      }
+
+      if (type === 'set_title') {
+        const newTitle = value.trim();
+        if (newTitle) {
+          const currentNote = latestNoteRef.current;
+          if (currentNote) {
+            const payload = { ...currentNote, title: newTitle, is_title_manually_edited: true };
+            onSave(payload);
+            latestNoteRef.current = payload;
+          }
+          // 同步更新编辑器内容顶部的 H1
+          if (editor) {
+            const firstNode = editor.state.doc.firstChild;
+            if (firstNode && firstNode.type.name === 'heading' && firstNode.attrs.level === 1) {
+              // 更新已存在的 H1
+              editor.chain().setNodeSelection(0).insertContent({
+                type: 'heading',
+                attrs: { level: 1 },
+                content: [{ type: 'text', text: newTitle }]
+              }).run();
+            } else {
+              // 在顶部插入新的 H1
+              editor.chain().insertContentAt(0, {
+                type: 'heading',
+                attrs: { level: 1 },
+                content: [{ type: 'text', text: newTitle }]
+              }).run();
+            }
+          }
+        }
+      } else if (type === 'set_tags') {
+        const tags = value.split(',').map((t: string) => t.trim()).filter((t: string) => t !== '');
+        if (tags.length > 0) {
+          const currentNote = latestNoteRef.current;
+          if (currentNote) {
+            const payload = { ...currentNote, tags };
+            onSave(payload);
+            latestNoteRef.current = payload;
+          }
+          // 在编辑器中插入标签（通常在标题下方）
+          if (editor) {
+            const tagText = tags.map((t: string) => `#${t}`).join(' ');
+            // 查找是否有 H1，如果有，在 H1 后面插入
+            const firstNode = editor.state.doc.firstChild;
+            let insertPos = 0;
+            if (firstNode && firstNode.type.name === 'heading' && firstNode.attrs.level === 1) {
+              insertPos = firstNode.nodeSize;
+            }
+            editor.chain().insertContentAt(insertPos, {
+              type: 'paragraph',
+              content: [{ type: 'text', text: tagText }]
+            }).run();
+          }
+        }
+      } else if (type === 'insert_code_block') {
+        if (editor) {
+          // 内容清理：剥离可能存在的 ``` 包装
+          const cleanValue = value.replace(/```[a-z]*\n?/gi, '').replace(/\n?```$/gi, '').trim();
+          editor.chain().focus().insertContent({
+            type: 'codeBlock',
+            attrs: { language: attrs?.language || 'plain' },
+            content: [{ type: 'text', text: cleanValue }]
+          }).run();
+        }
+      } else if (type === 'insert_todo') {
+        if (editor) {
+          const cleanValue = value.replace(/```[a-z]*\n?/gi, '').replace(/\n?```$/gi, '').trim();
+          editor.chain().focus().insertContent({
+            type: 'taskList',
+            content: [{
+              type: 'taskItem',
+              attrs: { checked: false },
+              content: [{ type: 'paragraph', content: [{ type: 'text', text: cleanValue }] }]
+            }]
+          }).run();
+        }
+      } else if (type === 'insert_text') {
+        if (editor) {
+          editor.chain().focus().insertContent(value).run();
+        }
+      }
+    };
+    window.addEventListener('ai-action', handleAIAction);
+
+    const handleSpellcheckOpen = (e: any) => {
+      setSpellcheckError(e.detail);
+    };
+    window.addEventListener('open-spellcheck-suggestion', handleSpellcheckOpen);
+
+    return () => {
+      window.removeEventListener('add-sticky-note', handleAddSticker as EventListener);
+      window.removeEventListener('open-emoticon-panel', handleOpenEmoticon);
+      window.removeEventListener('ai-write', handleAIWrite as EventListener);
+      window.removeEventListener('ai-action', handleAIAction);
+      window.removeEventListener('open-spellcheck-suggestion', handleSpellcheckOpen);
+    };
+  }, [editor, stickers, stickyNotes, handleStickersChange, handleStickyNotesChange, onSave]);
+
+  useEffect(() => {
+    setStickers(note?.stickers || []);
+    setStickyNotes(note?.sticky_notes || []);
+  }, [note?.id, note?.stickers, note?.sticky_notes]);
+
   // 保存逻辑
-  const handleSave = async (content?: string) => {
+  const handleSave = async (content?: string, updates?: Partial<Note>) => {
     const currentNote = latestNoteRef.current;
     if (!currentNote) return;
+    
+    // 合并最新的编辑器内容和传入的增量更新 (如天气、心情)
+    const html = content || editor?.getHTML() || '';
+    const payloadToSave = { ...currentNote, ...updates, content: html };
+
+    // 如果已经在保存中，避免并发冲突
+    if (isSaving) return;
+    
     setIsSaving(true);
     try {
-      const html = content || editor?.getHTML() || '';
-      const payloadToSave = { ...currentNote, content: html };
       await onSave(payloadToSave);
       // 同时更新 latestNoteRef 防止马上下一次输入时拿到旧数据
       latestNoteRef.current = payloadToSave;
-      setIsDirty(false);
+      
+      // 注意：仅当当前编辑器内容与保存时的内容一致时，才取消脏标记
+      // 避免在保存过程中用户输入的内容被覆盖丢失
+      if (!isDirty || editor?.getHTML() === html) {
+        setIsDirty(false);
+      }
+      
       setLastSavedAt(new Date().toLocaleTimeString());
     } catch (err) {
       console.error('Save failed:', err);
@@ -349,15 +782,21 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
   };
 
   // 自动保存 (debounce)
+  const timerRef = useRef<any>(null);
   useEffect(() => {
-    if (!isDirty || isSaving) return;
+    // 只要有改动，就设置定时器
+    if (!isDirty) return;
     
-    const timer = setTimeout(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    
+    timerRef.current = setTimeout(() => {
       handleSave();
     }, 3000);
 
-    return () => clearTimeout(timer);
-  }, [isDirty, isSaving]);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [isDirty]);
 
   const [blockMenuPos, setBlockMenuPos] = useState({ top: 0, bottom: 'auto' });
   const blockMenuContentRef = useRef<HTMLDivElement>(null);
@@ -393,6 +832,22 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     };
   }, [isBlockMenuOpen]);
 
+  // 点击外部关闭表情面板
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (emoticonPanelRef.current && !emoticonPanelRef.current.contains(event.target as Node)) {
+        setIsEmoticonPanelOpen(false);
+      }
+    };
+
+    if (isEmoticonPanelOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isEmoticonPanelOpen]);
+
   // 处理拖拽手柄点击：捕获当前 Block 位置
   const handleGripClick = (e: React.MouseEvent) => {
     if (!editor) return;
@@ -400,14 +855,18 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
     if (!isBlockMenuOpen) {
       // 通过点击坐标找到对应的 Tiptap 节点位置
       const view = editor.view;
+      const editorRect = view.dom.getBoundingClientRect();
       
-      const posAtCoords = view.posAtCoords({ left: e.clientX, top: e.clientY });
+      // X 轴稍微往编辑器内部偏一点，Y 轴用点击位置
+      const x = editorRect.left + 50; 
+      const y = e.clientY;
+      
+      const posAtCoords = view.posAtCoords({ left: x, top: y });
       if (posAtCoords) {
-        // 找到当前位置所在的最顶层块级节点
-        let $pos = editor.state.doc.resolve(posAtCoords.pos);
-        // depth 为 1 表示顶层块节点
-        let blockPos = $pos.before(1);
-        
+        const $pos = editor.state.doc.resolve(posAtCoords.pos);
+        // 找到当前层级的 block 节点起始位置 (depth 1 为根节点的直接子节点，即 block)
+        // 在 Tiptap 中，大部分 block 位于 depth 1
+        const blockPos = $pos.before(1);
         setTargetPos(blockPos);
         
         // 选中该节点以示反馈并为后续指令做准备
@@ -475,6 +934,58 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
       <div 
         ref={scrollContainerRef}
         className="flex-1 overflow-y-auto relative scrollbar-hide pt-0 custom-scrollbar"
+        onScroll={() => {
+          // 强制让 tiptap-extension-drag-handle 重新计算位置，解决滚动漂移问题
+          // 我们使用更精准的同步机制，确保 floating-ui 能够感知容器滚动
+          if (editor && editor.view) {
+            // 触发 tippy 的位置重算
+            const dragHandlePlugin = (editor.view as any).plugins.find((p: any) => p.key && p.key.startsWith('DragHandle'));
+            if (dragHandlePlugin && dragHandlePlugin.getState(editor.state)?.tippy) {
+              dragHandlePlugin.getState(editor.state).tippy.setProps({
+                getReferenceClientRect: () => {
+                   // 如果有被选中的或者正在 hover 的 block，返回其 rect
+                   // 否则返回默认行为
+                   return null; 
+                }
+              });
+            }
+          }
+          window.dispatchEvent(new Event('scroll'));
+        }}
+        onDragOver={(e) => {
+          if (isStickerMode) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+          }
+        }}
+        onDrop={(e) => {
+          if (!isStickerMode) return;
+          e.preventDefault();
+          
+          try {
+            const dataStr = e.dataTransfer.getData('application/json');
+            if (!dataStr) return;
+            
+            const stickerData = JSON.parse(dataStr);
+            if (stickerData.type === 'image' && stickerData.url) {
+              // 计算相对于 scrollContainer 的坐标
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top + e.currentTarget.scrollTop;
+
+              window.dispatchEvent(new CustomEvent('add-sticky-note', { 
+                detail: { 
+                  url: stickerData.url, 
+                  type: 'image',
+                  x: x - 50, // 居中落点
+                  y: y - 50 
+                } 
+              }));
+            }
+          } catch (err) {
+            console.error('Failed to handle sticker drop:', err);
+          }
+        }}
       >
         <div className="flex flex-col w-full max-w-[900px] mx-auto pb-40">
           <div className="px-12 mt-6">
@@ -490,6 +1001,7 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
               showRelations={false}
               showOutline={false}
               viewMode={viewMode}
+              isStickerMode={isStickerMode}
               onSave={() => handleSave()}
               onUpdateTitle={(newTitle, isManual) => {
                 const currentNote = latestNoteRef.current;
@@ -503,6 +1015,14 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
               onOutlineEnter={() => {}}
               onOutlineLeave={() => {}}
               onSetViewMode={setViewMode}
+              onToggleStickerMode={() => {
+                const newMode = !isStickerMode;
+                setIsStickerMode(newMode);
+                if (newMode) setIsStickerPanelOpen(true);
+                else setIsStickerPanelOpen(false);
+              }}
+              onOpenStickerPanel={() => setIsStickerPanelOpen(true)}
+              onClearStickers={() => handleStickersChange([])}
             />
 
             {note && (
@@ -519,30 +1039,33 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                       onSave(payload);
                       latestNoteRef.current = { ...currentNote, ...updated };
                     }
-                  }} 
+                  }}
+                  onFlushSave={(updates) => {
+                    if (timerRef.current) clearTimeout(timerRef.current);
+                    handleSave(editor?.getHTML(), updates);
+                  }}
                 />
               </div>
             )}
           </div>
 
-          <div className="group/editor mt-2 w-full">
+          <div className="relative group/editor mt-2 w-full">
             {/* Block 拖拽手柄 */}
             {editor && (
               <DragHandle 
                 editor={editor} 
                 pluginKey="DragHandle"
-                tippyOptions={{
-                  duration: 100,
-                  zIndex: 100,
-                  offset: [-2, 40], // 这里的 40px 偏移是为了避开 Heading 的折叠按钮，并保持在正文左侧 Gutter 中
-                }}
-                // 强制使用 fixed 定位策略，防止在长文档滚动时产生坐标漂移
-                computePositionConfig={{
-                  strategy: 'fixed',
-                  placement: 'left', // 改为正左侧对齐
+                // @ts-ignore
+                tippyOptions={{ 
+                  placement: 'left-start',
+                  offset: [-12, 12], // 稍微调整偏移量，让手柄在内容左侧
+                  zIndex: 110,
+                  duration: [150, 0],
+                  sticky: true,
+                  plugins: [sticky],
                 }}
               >
-                <div className="flex items-center gap-1 group/handle" ref={blockMenuRef}>
+                <div className="flex items-center gap-1 group/handle relative" ref={blockMenuRef}>
                   <div 
                     onClick={handleGripClick}
                     className="p-1 rounded-md hover:bg-black/5 dark:hover:bg-white/10 cursor-grab active:cursor-grabbing text-stone-400 group-hover/handle:text-stone-600 transition-colors drag-handle"
@@ -643,14 +1166,7 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                                 if (targetPos !== null) {
                                   const node = editor.state.doc.nodeAt(targetPos);
                                   if (node) {
-                                    // 获取当前块的 HTML 内容
-                                    const slice = editor.state.doc.slice(targetPos, targetPos + node.nodeSize);
-                                    const fragment = slice.content;
-                                    const div = document.createElement('div');
-                                    // Tiptap 处理 fragment 为 HTML 的简便方法
-                                    const html = editor.options.element.ownerDocument.createElement('div');
-                                    // 这里我们简单转换节点
-                                    const blockHtml = editor.storage.markdown?.serializer?.serialize(node) || node.textContent; // 降级方案
+                                    // 获取当前块的 HTML 内容进行复制操作
                                     
                                     // 更好的获取 HTML 方式
                                     const tempEditor = new Editor({
@@ -885,6 +1401,38 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                   </button>
 
                   <div className="w-px h-5 bg-border/20 mx-1" />
+
+                  {/* Text Effects */}
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'gradient' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'gradient' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="动态渐变特效"
+                  >
+                    <Sparkles size={16} />
+                  </button>
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'bounce' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'bounce' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="动感跳动特效"
+                  >
+                    <Waves size={16} />
+                  </button>
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'neon' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'neon' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="赛博霓虹特效"
+                  >
+                    <Zap size={16} />
+                  </button>
+                  <button 
+                    onClick={() => editor.chain().focus().toggleTextEffect({ effect: 'typewriter' }).run()} 
+                    className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${editor.isActive('textEffect', { effect: 'typewriter' }) ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                    title="打字机特效"
+                  >
+                    <Type size={16} />
+                  </button>
+
+                  <div className="w-px h-5 bg-border/20 mx-1" />
                   
                   <button 
                     onClick={() => editor.chain().focus().unsetAllMarks().run()} 
@@ -893,18 +1441,122 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
                   >
                     <Eraser size={16} />
                   </button>
+
+                  <div className="w-px h-5 bg-border/20 mx-1" />
+
+                  <div className="relative">
+                    <button
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setIsEmoticonPanelOpen((v) => !v);
+                      }}
+                      className={`p-2 rounded-xl hover:bg-accent transition-all duration-300 ${isEmoticonPanelOpen ? 'text-primary bg-primary/10' : 'text-muted-foreground'}`}
+                      title="表情包"
+                    >
+                      <Smile size={16} />
+                    </button>
+                  </div>
                 </motion.div>
               </BubbleMenu>
             )}
             
-            <StickyNotesLayer notes={stickyNotes} onChange={handleStickyNotesChange} />
-            <EditorContent editor={editor} className="relative z-0" />
+            {/* 三层架构渲染 */}
+            {/* Layer 2: Stickers (Decorations) */}
+            <StickerLayer 
+              stickers={stickers} 
+              isEditable={isStickerMode}
+              onChange={handleStickersChange} 
+            />
+
+            {/* Layer 1: Tiptap Editor */}
+            <EditorContent 
+              editor={editor} 
+              className={`relative z-30 transition-all duration-500 ${isStickerMode ? 'opacity-40 blur-[1px] pointer-events-none' : 'opacity-100 blur-0'}`} 
+            />
+
+            {/* Layer 0: Sticky Notes (Top Layer) - Independent of Sticker Mode blur */}
+            <StickyNotesLayer
+              notes={stickyNotes}
+              onChange={handleStickyNotesChange}
+            />
+
+            {/* Global Emoticon Panel (Detached from BubbleMenu) */}
+            <AnimatePresence>
+              {isEmoticonPanelOpen && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: 8 }}
+                  className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99999]"
+                  ref={emoticonPanelRef}
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  <EmoticonPanel
+                    onSelect={(emoticon) => {
+                      editor?.chain().focus().setEmoticon({ src: formatUrl(emoticon.url), alt: emoticon.name }).run();
+                      setIsEmoticonPanelOpen(false);
+                    }}
+                  />
+                  <button
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setIsEmoticonPanelOpen(false);
+                    }}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-background border border-border rounded-full flex items-center justify-center shadow-md hover:bg-accent transition-colors"
+                    aria-label="关闭表情面板"
+                  >
+                    <X size={14} />
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
         
         {/* TOC 挂载在滚动容器内部，相对定位 */}
         <TableOfContents outline={outline} scrollContainerRef={scrollContainerRef as React.RefObject<HTMLDivElement>} />
       </div>
+
+      <AnimatePresence>
+        {isStickerPanelOpen && (
+          <StickerPanel 
+            onClose={() => setIsStickerPanelOpen(false)}
+            onSelect={(url) => {
+              window.dispatchEvent(new CustomEvent('add-sticky-note', { 
+                detail: { url: formatUrl(url), type: 'image' } 
+              }));
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {spellcheckError && (
+          <SpellcheckSuggestionCard
+            error={spellcheckError.error}
+            rect={spellcheckError.rect}
+            onClose={() => setSpellcheckError(null)}
+            onReplace={(suggestion) => {
+              if (editor && spellcheckError) {
+                const { error } = spellcheckError;
+                editor.chain().focus().insertContentAt({ from: error.from, to: error.to }, suggestion).run();
+                setSpellcheckError(null);
+                onNotify?.('已修正错别字', 'success');
+              }
+            }}
+          />
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isSaving && (
@@ -918,7 +1570,19 @@ export const NovaBlockEditor: React.FC<NovaBlockEditorProps> = ({
             <span className="text-xs font-bold tracking-widest uppercase">手写记忆同步中...</span>
           </motion.div>
         )}
+
+        {isAILoading && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 bg-purple-600 text-white px-6 py-3 rounded-2xl shadow-soft"
+          >
+            <Bot size={18} className="animate-bounce" />
+            <span className="text-xs font-bold tracking-widest uppercase">⏳ AI is thinking...</span>
+          </motion.div>
+        )}
       </AnimatePresence>
     </motion.div>
   );
-};
+});
