@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useRef, useState, useCallback, useLayoutEffe
 import { EditorContent, useEditor, Editor } from '@tiptap/react';
 import { NodeSelection } from '@tiptap/pm/state';
 import type { ChainedCommands } from '@tiptap/core';
+import { Node, mergeAttributes } from '@tiptap/core';
 import { BubbleMenu } from '@tiptap/react/menus';
 import DragHandle from '@tiptap/extension-drag-handle-react';
 import StarterKit from '@tiptap/starter-kit';
@@ -28,6 +29,8 @@ import {
     Layout, Bot
 } from 'lucide-react';
 
+import pixelMaidUrl from '../../assets/pixel-maid.webp';
+
 import { 
     AudioNode, CalloutNode, DatabaseTableCell, DatabaseTableHeader, 
     EmbedNode, ResizableImage, TaskItem, TaskList, VideoNode, WikiLink,
@@ -37,6 +40,16 @@ import {
     CountdownNode, MusicPlayerNode, MiniCalendarNode, KanbanNode, HabitTrackerNode, TodoNode,
     Emoticon, SliderExtension, NoteLink, TextEffect, AISpellcheck, spellcheckPluginKey
    } from '../../lib/tiptapExtensions';
+const AILoadingNode = Node.create({
+  name: "aiLoadingPlaceholder",
+  inline: true,
+  group: "inline",
+  atom: true,
+  parseHTML() { return [{ tag: "img[data-ai-loading]" }]; },
+  renderHTML({ HTMLAttributes }) {
+    return ["img", mergeAttributes(HTMLAttributes, { src: pixelMaidUrl, "data-ai-loading": "true", alt: "AI Thinking...", width: 40, height: 40, style: "display:inline-block; vertical-align:middle; margin:0 4px;" })];
+  }
+});
 
 import type { Note } from '../../lib/types';
 
@@ -67,7 +80,9 @@ const NOVA_BLOCK_SLASH_ITEMS = [
     action: (chain: ChainedCommands) => {
       const prompt = window.prompt('告诉 AI 你想写什么？');
       if (!prompt) return chain;
-      window.dispatchEvent(new CustomEvent('ai-write', { detail: { prompt } }));
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent("ai-write", { detail: { prompt } }));
+      }, 0);
       return chain;
     },
   },
@@ -460,7 +475,6 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
 }) => {
   const { isAiEnabled } = useAI();
   const [isSaving, setIsSaving] = useState(false);
-  const [isAILoading, setIsAILoading] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(note?.created_at || null);
   const [viewMode, setViewMode] = useState<'edit' | 'preview'>('edit');
@@ -564,6 +578,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
       underline: false,
       dropcursor: false,
     }),
+    AILoadingNode,
     Dropcursor.configure({
       color: 'hsl(var(--primary))',
       width: 2,
@@ -825,20 +840,26 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
       if (!editor) return;
 
       if (!isAiEnabled) {
-        onNotify?.('璇峰厛鍦ㄨ缃腑寮€鍚?AI 鎻掍欢', 'info');
+        onNotify?.('请先在设置中开启 AI 插件', 'info');
         return;
       }
+      
+      // 在当前光标位置插入像素女仆动图加载占位
+      try {
+        editor.chain().insertContent({ type: "aiLoadingPlaceholder" }).run();
+      } catch(e) {
+        console.error('Failed to insert AI placeholder:', e);
+      }
 
-      setIsAILoading(true);
       try {
         const { api } = await import('../../lib/api');
         
         let streamBuffer = '';
         let isFirstToken = true;
         
-        // --- 瀹炴椂娴佸紡瑙ｆ瀽鐘舵€?---
+        // --- 实时流式解析状态 ---
         let currentStreamingAction: { type: string; language?: string; startPos: number } | null = null;
-        let lastActionValue = ''; // 璁板綍涓婁竴娆?Action 绱Н鐨勫唴瀹癸紝鐢ㄤ簬澧為噺鎻掑叆
+        let lastActionValue = ''; // 记录上一次 Action 累积的内容，用于增量插入
 
         const flushText = (text: string) => {
           if (text && editor) {
@@ -850,8 +871,21 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
           { prompt, context: editor.getText(), action: 'ask' },
           (chunk: string) => {
             if (isFirstToken) {
-              setIsAILoading(false);
               isFirstToken = false;
+
+              // 查找并删除像素女仆动图
+              const { tr } = editor.state;
+              let foundPos = -1;
+              tr.doc.descendants((node, pos) => {
+                if (node.type.name === 'aiLoadingPlaceholder') {
+                  foundPos = pos;
+                  return false;
+                }
+                return true;
+              });
+              if (foundPos !== -1) {
+                editor.chain().deleteRange({ from: foundPos, to: foundPos + 1 }).focus().run();
+              }
             }
             streamBuffer += chunk;
             
@@ -992,8 +1026,22 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
         }
       } catch (err: any) {
         console.error(err);
-        setIsAILoading(false);
-        editor.chain().focus().insertContent(`\n[AI 鐢熸垚澶辫触: ${err.message}]`).run();
+
+        // 查找并删除像素女仆动图 (清理)
+        const { tr } = editor.state;
+        let foundPos = -1;
+        tr.doc.descendants((node, pos) => {
+          if (node.type.name === 'aiLoadingPlaceholder') {
+            foundPos = pos;
+            return false;
+          }
+          return true;
+        });
+        if (foundPos !== -1) {
+          editor.chain().deleteRange({ from: foundPos, to: foundPos + 1 }).run();
+        }
+
+        editor.chain().focus().insertContent(`\n[AI 生成失败: ${err.message}]`).run();
       }
     };
     window.addEventListener('ai-write', handleAIWrite as EventListener);
@@ -1211,7 +1259,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
   // 鐐瑰嚮澶栭儴鍏抽棴鍧楄彍鍗?
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
+      const target = event.target as unknown as HTMLElement;
       const clickedHandle = blockMenuRef.current?.contains(target);
       const clickedMenu = blockMenuContentRef.current?.contains(target);
 
@@ -1245,7 +1293,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
   // 鐐瑰嚮澶栭儴鍏抽棴琛ㄦ儏闈㈡澘
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (emoticonPanelRef.current && !emoticonPanelRef.current.contains(event.target as Node)) {
+      if (emoticonPanelRef.current && !emoticonPanelRef.current.contains(event.target as unknown as HTMLElement)) {
         setIsEmoticonPanelOpen(false);
       }
     };
@@ -2085,17 +2133,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
           </motion.div>
         )}
 
-        {isAILoading && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 bg-purple-600 text-white px-6 py-3 rounded-2xl shadow-soft"
-          >
-            <Bot size={18} className="animate-bounce" />
-            <span className="text-xs font-bold tracking-widest uppercase">鈴?AI is thinking...</span>
-          </motion.div>
-        )}
+        {/* AI Loading is now handled inline by pixel-maid.webp */}
       </AnimatePresence>
     </motion.div>
   );

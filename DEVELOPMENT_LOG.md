@@ -1205,3 +1205,18 @@ Fixed Flip Clock animation pure CSS
 - **具体实现**: 
   - 修改 `NovaBlockEditor.tsx` 中的 `updateOutline` 提取逻辑，为每个 Item 显式构建 `key: baseId + '-' + pos + '-' + currentLevel` 复合唯一 Key，融合了元素 ID、文档绝对位置和层级信息，确保全局唯一。
   - 修改 `TableOfContents.tsx` 组件，优先读取 Item 的 `key` 属性作为 React 渲染 Key，彻底隔离了业务 ID 冲突对 UI 渲染层的影响。
+
+## [2026-04-14] - AI 斜杠菜单加载动图替换与事务错配修复
+
+### 核心功能
+- **自定义像素女仆加载动图**: 
+  - 响应老大需求，将原有的 AI 思考浮窗替换为直接在光标处插入自定义的像素女仆动图（`img_v3_...webp`）。
+  - 使用 `@tiptap/core` 正式注册了自定义行内节点 `aiLoadingPlaceholder`，解决了直接插入 HTML 字符串被 TipTap 清洗过滤导致“只有黑框一闪”的问题。
+- **完美流式生命周期**: 
+  - 当用户在 Slash 菜单触发 AI 写作时，动图以行内节点形式立即在光标处占位展示。
+  - 当 AI 接口返回第一块（First Token）内容时，系统精确查找到该占位节点并将其安全销毁，随后无缝接力流式文本输出。
+
+### 痛点修复
+- **修复 `Uncaught RangeError: Applying a mismatched transaction`**: 
+  - 之前触发 Slash 菜单命令时会产生事务冲突崩溃。原因是 TipTap 的 Slash 插件内部在执行命令时是一个同步事务流（包含清空触发词等操作），而我们的 `handleAIWrite` 会立即插入图片，直接打断并污染了原来的命令事务。
+  - **解决方案**: 将 `ai-write` 的事件派发包裹在一层 `setTimeout(..., 0)` 中，让 TipTap 的前置事务彻底执行完毕后再触发占位图插入，从根本上消除了事务错配报错。
