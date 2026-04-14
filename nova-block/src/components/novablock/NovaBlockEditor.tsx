@@ -464,6 +464,7 @@ interface NovaBlockEditorProps {
   note: Note | null;
   onSave: (payload: any) => Promise<void>;
   onNotify?: (text: string, tone?: 'success' | 'error' | 'info') => void;
+  onSaveAsTemplate?: () => void;
 }
 
 /**
@@ -471,7 +472,7 @@ interface NovaBlockEditorProps {
  * 鏋佽嚧鎬ц兘銆乽ipro 涓撲笟瑙嗚
  */
 export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
-  note, onSave, onNotify
+  note, onSave, onNotify, onSaveAsTemplate
 }) => {
   const { isAiEnabled } = useAI();
   const [isSaving, setIsSaving] = useState(false);
@@ -1587,6 +1588,7 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
               }}
               onOpenStickerPanel={() => setIsStickerPanelOpen(true)}
               onClearStickers={() => handleStickersChange([])}
+              onSaveAsTemplate={onSaveAsTemplate}
             />
 
             {note && (

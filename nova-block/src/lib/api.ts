@@ -2,6 +2,7 @@ import type {
   AskResponse, 
   ModelConfig, 
   Note, 
+  NoteTemplate,
   Notebook, 
   NoteProperty, 
   Task, 
@@ -308,4 +309,12 @@ export const api = {
     console.log('Dummy createNoteProperty called for note:', noteId, 'property:', property);
     return { ...property, id: Math.random() } as NoteProperty;
   },
+
+  // Template APIs
+  listTemplates: () => invoke<NoteTemplate[]>('templates:list', '/templates'),
+  createTemplate: (payload: { name: string; content: string; icon?: string; category?: string }) =>
+    invoke<NoteTemplate>('templates:create', '/templates', { method: 'POST', body: JSON.stringify(payload) }),
+  updateTemplate: (templateId: number, payload: { name?: string; content?: string; icon?: string; category?: string }) =>
+    invoke<NoteTemplate>('templates:update', `/templates/${templateId}`, { method: 'PATCH', params: { id: templateId, ...payload } }),
+  deleteTemplate: (templateId: number) => invoke('templates:delete', `/templates/${templateId}`, { method: 'DELETE', params: { id: templateId } }),
 };

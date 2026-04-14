@@ -37,6 +37,9 @@ from backend.models.schemas import (
     NotePropertyResponse,
     NotePropertyUpdate,
     NoteResponse,
+    NoteTemplateCreate,
+    NoteTemplateResponse,
+    NoteTemplateUpdate,
     NoteListItemResponse,
     NoteTreeResponse,
     NoteUpdate,
@@ -81,11 +84,14 @@ from backend.services.repositories import (
     list_notes,
     list_notes_tree,
     list_notebooks,
+    list_templates,
     list_trashed_notes,
     list_trashed_notebooks,
     list_tasks,
     bulk_move_notes,
     bulk_soft_delete_notes,
+    create_template,
+    delete_template,
     move_note,
     purge_note,
     purge_notebook,
@@ -97,6 +103,7 @@ from backend.services.repositories import (
     purge_trash,
     update_notebook,
     update_note,
+    update_template,
     update_model_config,
     update_note_property,
     update_task,
@@ -1816,3 +1823,48 @@ async def hardware_check():
             "compatible": False,
             "details": f"检测失败: {str(e)}"
         }
+
+
+# --- Template Routes ---
+
+@router.get("/templates", response_model=list[NoteTemplateResponse])
+def list_templates_api(db: Session = Depends(get_db)):
+    """List all note templates."""
+    return list_templates(db)
+
+
+@router.post("/templates", response_model=NoteTemplateResponse)
+def create_template_api(payload: NoteTemplateCreate, db: Session = Depends(get_db)):
+    """Create a new note template."""
+    return create_template(
+        db,
+        name=payload.name,
+        content=payload.content,
+        icon=payload.icon,
+        category=payload.category
+    )
+
+
+@router.patch("/templates/{template_id}", response_model=NoteTemplateResponse)
+def update_template_api(template_id: int, payload: NoteTemplateUpdate, db: Session = Depends(get_db)):
+    """Update an existing note template."""
+    template = update_template(
+        db,
+        template_id=template_id,
+        name=payload.name,
+        content=payload.content,
+        icon=payload.icon,
+        category=payload.category
+    )
+    if not template:
+        raise HTTPException(status_code=404, detail="Template not found")
+    return template
+
+
+@router.delete("/templates/{template_id}")
+def delete_template_api(template_id: int, db: Session = Depends(get_db)):
+    """Delete a note template."""
+    success = delete_template(db, template_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Template not found")
+    return {"status": "success"}

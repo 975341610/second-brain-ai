@@ -154,3 +154,13 @@ export type BGMState = {
   tracks: string[];
   currentTrack: string | null;
 };
+
+export type NoteTemplate = {
+  id: number;
+  name: string;
+  content: string;
+  icon: string;
+  category: string;
+  created_at: string;
+  updated_at: string;
+};

@@ -5,7 +5,8 @@ import { SidebarTree } from './components/sidebar/SidebarTree'
 import { MoodboardView } from './components/moodboard/MoodboardView'
 import CommandPalette from './components/search/CommandPalette'
 import { SettingsDialog } from './components/SettingsDialog'
-import type { Note } from './lib/types'
+import { TemplatePicker } from './components/editor/TemplatePicker'
+import type { Note, NoteTemplate } from './lib/types'
 import { api } from './lib/api'
 import { AnimatePresence, motion } from 'framer-motion'
 import { MusicProvider, useMusicControls } from './contexts/MusicContext'
@@ -118,6 +119,11 @@ function App() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const [templateModal, setTemplateModal] = useState<{
+    isOpen: boolean;
+    mode: 'select' | 'save';
+    parentId: string | null;
+  }>({ isOpen: false, mode: 'select', parentId: null });
 
   // 对侧边栏切换进行简单的节流处理，防止动画堆积
   const toggleSidebar = (collapsed: boolean) => {
@@ -336,6 +342,56 @@ function App() {
     setActiveView('moodboard')
   }
 
+  const handleTemplateCreate = (parentId: string | null) => {
+    setTemplateModal({ isOpen: true, mode: 'select', parentId });
+  };
+
+  const handleSaveAsTemplate = () => {
+    setTemplateModal({ isOpen: true, mode: 'save', parentId: null });
+  };
+
+  const handleSelectTemplate = (template: NoteTemplate) => {
+    const newId = Math.max(...notes.map(n => n.id), 0) + 1;
+    const newNote: Note = {
+      id: newId,
+      title: template.name,
+      icon: template.icon || '📝',
+      content: template.content,
+      tags: [],
+      properties: [],
+      links: [],
+      notebook_id: null,
+      parent_id: templateModal.parentId ? parseInt(templateModal.parentId) : null,
+      position: 0,
+      sort_key: 'm',
+      summary: '',
+      is_title_manually_edited: false,
+      is_folder: false,
+      created_at: new Date().toISOString(),
+    };
+
+    setNotes([...notes, newNote]);
+    setCurrentNoteId(newId);
+    setActiveView('notes');
+    setTemplateModal({ ...templateModal, isOpen: false });
+  };
+
+  const handleSaveTemplate = async (name: string) => {
+    if (!currentNote) return;
+    try {
+      await api.createTemplate({
+        name,
+        content: currentNote.content || '',
+        icon: currentNote.icon,
+        category: '用户模板'
+      });
+      // 可以添加 Toast 通知
+      console.log('Template saved successfully');
+    } catch (err) {
+      console.error('Failed to save template:', err);
+    }
+  };
+
   const handleSave = async (payload: Partial<Note>) => {
     setNotes(prev => prev.map(n => n.id === currentNoteId ? { ...n, ...payload } : n))
   }
@@ -360,6 +416,7 @@ function App() {
           onNodeRename={handleNodeRename}
           onNodeDelete={handleNodeDelete}
           onNodeDuplicate={handleNodeDuplicate}
+          onTemplateCreate={handleTemplateCreate}
           onMoodboardSelect={handleMoodboardSelect}
           onQuickSearchOpen={() => setIsCommandPaletteOpen(true)}
           onSettingsOpen={() => setIsSettingsOpen(true)}
@@ -417,6 +474,7 @@ function App() {
                     note={currentNote} 
                     onSave={handleSave}
                     onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
+                    onSaveAsTemplate={handleSaveAsTemplate}
                   />
                 )}
               </motion.div>
@@ -460,6 +518,14 @@ function App() {
         
         {/* 全局音乐列表 (单例) */}
          <MusicGlobalUI />
+
+         <TemplatePicker 
+           isOpen={templateModal.isOpen}
+           mode={templateModal.mode}
+           onClose={() => setTemplateModal({ ...templateModal, isOpen: false })}
+           onSelect={handleSelectTemplate}
+           onSave={handleSaveTemplate}
+         />
        </div>
         </TodoProvider>
         </HabitProvider>

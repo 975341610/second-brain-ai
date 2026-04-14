@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Layers, Settings, ChevronLeft, ChevronRight, Sparkles, FilePlus, FolderPlus, Edit2, Copy, Trash2, FolderOutput, FileText, Waypoints, LayoutGrid } from 'lucide-react';
+import { Search, Layers, Settings, ChevronLeft, ChevronRight, Sparkles, FilePlus, FolderPlus, Edit2, Copy, Trash2, FolderOutput, FileText, Waypoints, LayoutGrid, Layout } from 'lucide-react';
 import { buildTree, moveNode, isDescendant } from '../../lib/novablock/treeUtils';
 import type { TreeNode } from '../../lib/novablock/treeUtils';
 import { TreeNodeItem } from './TreeNodeItem';
@@ -18,6 +18,7 @@ interface SidebarTreeProps {
   onNodeRename?: (nodeId: string, newTitle: string) => void;
   onNodeDelete?: (nodeId: string, deleteChildren: boolean) => void;
   onNodeDuplicate?: (nodeId: string) => void;
+  onTemplateCreate?: (parentId: string | null) => void;
   onMoodboardSelect?: () => void;
   onQuickSearchOpen?: () => void;
   onSettingsOpen?: () => void;
@@ -52,6 +53,7 @@ export const SidebarTree = ({
   onNodeRename,
   onNodeDelete,
   onNodeDuplicate,
+  onTemplateCreate,
   onMoodboardSelect,
   onQuickSearchOpen,
   onSettingsOpen,
@@ -356,6 +358,13 @@ export const SidebarTree = ({
                     <FilePlus size={14} />
                   </button>
                   <button 
+                    onClick={() => onTemplateCreate?.(null)}
+                    className="p-1 rounded-md hover:bg-accent/60 text-primary hover:text-primary transition-all duration-200 hover:scale-110"
+                    title="从模板创建"
+                  >
+                    <Layout size={14} />
+                  </button>
+                  <button 
                     onClick={() => onNodeAdd?.(null, 'canvas')}
                     className="p-1 rounded-md hover:bg-accent/60 text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-110"
                     title="新建画布"
@@ -380,6 +389,13 @@ export const SidebarTree = ({
                    title="新建笔记"
                  >
                    <FilePlus size={16} />
+                 </button>
+                 <button 
+                   onClick={() => onTemplateCreate?.(null)}
+                   className="p-2 rounded-xl bg-primary text-white hover:scale-105 transition-all flex items-center justify-center w-10 h-10 shadow-lg shadow-primary/20"
+                   title="从模板创建"
+                 >
+                   <Layout size={16} />
                  </button>
                  <button 
                    onClick={() => onNodeAdd?.(null, 'canvas')}

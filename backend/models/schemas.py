@@ -283,4 +283,31 @@ class ThemeUpdatePayload(BaseModel):
     theme: str
 
 class UserWallpaperUpdateRequest(BaseModel):
-    wallpaper_url: Optional[str] = None
+     wallpaper_url: Optional[str] = None
+
+
+class NoteTemplateBase(BaseModel):
+    name: str
+    content: str
+    icon: str = "📄"
+    category: str = "general"
+
+
+class NoteTemplateCreate(NoteTemplateBase):
+    pass
+
+
+class NoteTemplateUpdate(BaseModel):
+    name: str | None = None
+    content: str | None = None
+    icon: str | None = None
+    category: str | None = None
+
+
+class NoteTemplateResponse(NoteTemplateBase):
+    id: int
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True

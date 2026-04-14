@@ -10,6 +10,7 @@ from backend.models.db_models import (
     ModelConfig,
     Note,
     NoteLink,
+    NoteTemplate,
     Notebook,
     NoteProperty,
     Task,
@@ -682,3 +683,53 @@ def update_user_wallpaper(db: Session, wallpaper_url: str) -> UserStats:
     db.commit()
     db.refresh(stats)
     return stats
+
+
+def list_templates(db: Session) -> list[NoteTemplate]:
+    return list(db.scalars(select(NoteTemplate).order_by(NoteTemplate.category.asc(), NoteTemplate.name.asc())))
+
+
+def get_template(db: Session, template_id: int) -> NoteTemplate | None:
+    return db.get(NoteTemplate, template_id)
+
+
+def create_template(db: Session, name: str, content: str, icon: str = "📄", category: str = "general") -> NoteTemplate:
+    template = NoteTemplate(name=name, content=content, icon=icon, category=category)
+    db.add(template)
+    db.commit()
+    db.refresh(template)
+    return template
+
+
+def update_template(
+    db: Session,
+    template_id: int,
+    name: str | None = None,
+    content: str | None = None,
+    icon: str | None = None,
+    category: str | None = None,
+) -> NoteTemplate | None:
+    template = db.get(NoteTemplate, template_id)
+    if not template:
+        return None
+    if name is not None:
+        template.name = name
+    if content is not None:
+        template.content = content
+    if icon is not None:
+        template.icon = icon
+    if category is not None:
+        template.category = category
+    db.add(template)
+    db.commit()
+    db.refresh(template)
+    return template
+
+
+def delete_template(db: Session, template_id: int) -> bool:
+    template = db.get(NoteTemplate, template_id)
+    if not template:
+        return False
+    db.delete(template)
+    db.commit()
+    return True

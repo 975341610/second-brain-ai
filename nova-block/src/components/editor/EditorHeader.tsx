@@ -1,4 +1,4 @@
-import { BookMarked, Save, ChevronRight, Pen, Eye, Sticker, Library, Trash2 } from 'lucide-react';
+import { BookMarked, Save, ChevronRight, Pen, Eye, Sticker, Library, Trash2, Copy } from 'lucide-react';
 
 type Breadcrumb = {
   id: number;
@@ -28,6 +28,7 @@ type EditorHeaderProps = {
   onToggleStickerMode: () => void;
   onOpenStickerPanel?: () => void;
   onClearStickers?: () => void;
+  onSaveAsTemplate?: () => void;
 };
 
 export function EditorHeader(props: EditorHeaderProps) {
@@ -36,7 +37,8 @@ export function EditorHeader(props: EditorHeaderProps) {
     savePhase, isDirty, lastSavedAt, showOutline, 
     viewMode, isStickerMode, onSave,
     onOutlineEnter, onOutlineLeave, onSetViewMode,
-    onToggleStickerMode, onOpenStickerPanel, onClearStickers
+    onToggleStickerMode, onOpenStickerPanel, onClearStickers,
+    onSaveAsTemplate
   } = props;
 
   return (
@@ -141,6 +143,14 @@ export function EditorHeader(props: EditorHeaderProps) {
             )}
           </div>
           
+          <button
+            onClick={onSaveAsTemplate}
+            title="另存为模板"
+            className="flex items-center justify-center w-[30px] h-[30px] rounded-lg border bg-accent/30 border-border/40 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300"
+          >
+            <Copy size={16} />
+          </button>
+
           {/* Actions */}
           <div className="flex items-center gap-1 border-l border-border/40 pl-3 ml-1">
             <button onClick={onSave} title="Save" className="p-2 hover:bg-accent rounded-lg text-muted-foreground hover:text-foreground transition-colors">

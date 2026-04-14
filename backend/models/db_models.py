@@ -149,3 +149,15 @@ class UserAchievement(Base):
     unlocked_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     achievement: Mapped[Achievement] = relationship()
+
+
+class NoteTemplate(Base):
+    __tablename__ = "note_templates"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String(255), index=True)
+    content: Mapped[str] = mapped_column(Text)
+    icon: Mapped[str] = mapped_column(String(500), default="📄")
+    category: Mapped[str] = mapped_column(String(50), default="general")
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

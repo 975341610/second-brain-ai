@@ -1,5 +1,13 @@
 # Development Log
 
+## [2026-04-14] - 模板管理功能修复 (Hotfix)
+
+### 1. 修复模板删除与更新 404 错误
+- **前端 API 调用修正**: 修复了 `nova-block/src/lib/api.ts` 中 `deleteTemplate` 和 `updateTemplate` 方法缺失 HTTP 方法声明的问题。
+  - `deleteTemplate`: 显式添加了 `method: 'DELETE'`，解决了原先默认使用 `GET` 请求导致后端路由匹配失败报 404 的问题。
+  - `updateTemplate`: 显式添加了 `method: 'PATCH'`，确保与后端定义的 `@router.patch` 路由保持一致。
+- **接口验证**: 通过 `curl` 模拟 `DELETE` 请求验证了后端 `/api/templates/{id}` 接口逻辑正常，响应 `{"status": "success"}`，确认修复有效。
+
 ## [2026-04-14] - UI 交互与性能深度修复 (v0.17.1)
 
 ### 1. 拖拽幽灵线条 (Drop Cursor Ghosting) 终极修复
