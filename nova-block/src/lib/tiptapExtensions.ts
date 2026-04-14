@@ -23,8 +23,24 @@ import { FootnoteComponent } from '../components/editor/FootnoteComponent';
 import { CodeBlockComponent } from '../components/editor/CodeBlockComponent';
 
 import { SliderExtension } from '../components/novablock/extensions/SliderExtension';
+import { TextEffect } from '../components/novablock/extensions/TextEffect';
 
-export { TaskList, TaskItem, SliderExtension };
+export { TaskList, TaskItem, SliderExtension, TextEffect };
+
+// --- Widgets ---
+export { CountdownNode } from './novablock/extensions/CountdownNode';
+export { MusicPlayerNode } from './novablock/extensions/MusicPlayerNode';
+export { MiniCalendarNode } from './novablock/extensions/MiniCalendarNode';
+export { KanbanNode } from './novablock/extensions/KanbanNode';
+export { HabitTrackerNode } from './novablock/extensions/HabitTrackerNode';
+export { TodoNode } from './novablock/extensions/TodoNode';
+export { Emoticon } from '../components/novablock/extensions/Emoticon';
+export { NoteLink } from '../components/novablock/extensions/NoteLink';
+export { AISpellcheck } from '../components/novablock/extensions/AISpellcheck';
+
+// Keep WikiLink for backward compatibility if needed, or replace it. 
+// The user asked for a Tiptap Extension with capsule style and ID. 
+// NoteLink (from NoteLink.ts) is our new implementation.
 
 // --- 基础扩展增强 ---
 export { Heading };
@@ -369,23 +385,18 @@ export const SlashCommands = Extension.create({
       suggestion: {
         char: '/',
         command: ({ editor, range, props }: any) => {
-          // 1. First, delete the slash and its trigger text
-          // Using a single transaction is key here.
-          // We must ensure the selection is updated AFTER deletion.
-          const { tr } = editor.state;
-          tr.deleteRange(range.from, range.to);
-          editor.view.dispatch(tr);
-
-          // 2. Now run the command with focus
-          editor.chain().focus();
+          // 统一使用 chain 确保事务完整性，解决闪退和光标丢失问题
+          const chain = editor.chain()
+            .focus()
+            .deleteRange(range);
           
-          // props.action expects a chain, so we provide one
-          const chain = editor.chain().focus();
+          // 执行项目定义的 action
           const result = props.action(chain, editor);
           
+          // 如果 action 返回了 chain（或者已经修改了传入的 chain），则运行它
           if (result && typeof result.run === 'function') {
             result.run();
-          } else if (chain && typeof chain.run === 'function') {
+          } else {
             chain.run();
           }
         },
@@ -489,6 +500,21 @@ export const DatabaseTableCell = BaseTableCell.extend({
 
 export const ResizableImage = Image.extend({
   draggable: true,
+  addOptions() {
+    return {
+      ...(this.parent?.() || {}),
+      inline: false,
+      allowBase64: false,
+      HTMLAttributes: {},
+    } as any;
+  },
+  parseHTML() {
+    return [
+      {
+        tag: 'img[src]:not([data-emoticon]):not([src*="/api/emoticons/"])',
+      },
+    ]
+  },
   addAttributes() {
     return {
       ...this.parent?.(),

@@ -630,3 +630,26 @@ def update_user_wallpaper(db: Session, wallpaper_url: str) -> UserStats:
     db.commit()
     db.refresh(stats)
     return stats
+
+
+def import_dictionary(db: Session, text: str) -> dict:
+    """
+    Import user-defined dictionary text.
+    Currently, we'll store this to a local JSON file or just mock a successful import
+    to maintain system compatibility and fix the 405 error.
+    """
+    try:
+        lines = [line.strip() for line in text.split('\n') if line.strip()]
+        # Mocking processing: in future, we could save this to a dedicated table
+        # For now, we'll just save it to a JSON file in the data root
+        from backend.config import get_settings
+        import json
+        settings = get_settings()
+        dict_path = settings.data_root / "user_dictionary.json"
+        
+        with open(dict_path, "w", encoding="utf-8") as f:
+            json.dump({"words": lines, "updated_at": datetime.utcnow().isoformat()}, f, ensure_ascii=False, indent=2)
+            
+        return {"status": "success", "count": len(lines), "message": f"成功导入 {len(lines)} 条词条"}
+    except Exception as e:
+        return {"status": "error", "count": 0, "message": str(e)}

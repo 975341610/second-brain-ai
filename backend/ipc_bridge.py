@@ -228,6 +228,10 @@ def main():
             stats = repositories.update_user_wallpaper(db, params.get("wallpaper_url"))
             print(json.dumps({"exp": stats.exp, "level": stats.level, "wallpaper_url": stats.wallpaper_url}))
 
+        elif command == "text:dictionary:import":
+            result = repositories.import_dictionary(db, params.get("text", ""))
+            print(json.dumps(result))
+
         elif command == "system:version":
             print(json.dumps({
                 "version": "0.5.5",

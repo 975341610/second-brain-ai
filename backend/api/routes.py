@@ -56,46 +56,47 @@ from backend.rag.pipeline import citations_from_results, cosine_similarity, sear
 from backend.services.ai_client import AIClient
 from backend.services.document_service import chunk_text, parse_document
 from backend.services.repositories import (
-    add_exp,
-    create_note,
-    create_notebook,
-    create_note_property,
-    create_task,
-    delete_note_property,
-    delete_task,
-    clear_completed_tasks,
-    get_note,
-    get_note_properties,
-    get_or_create_default_notebook,
-    get_or_create_inbox_notebook,
-    get_or_create_model_config,
-    get_or_create_user_stats,
-    list_notes,
-    list_notes_tree,
-    list_notebooks,
-    list_trashed_notes,
-    list_trashed_notebooks,
-    list_tasks,
-    bulk_move_notes,
-    bulk_soft_delete_notes,
-    move_note,
-    purge_note,
-    purge_notebook,
-    replace_note_links,
-    restore_note,
-    restore_notebook,
-    soft_delete_note,
-    soft_delete_notebook,
-    purge_trash,
-    update_notebook,
-    update_note,
-    update_model_config,
-    update_note_property,
-    update_task,
-    list_user_achievements,
-    check_and_unlock_achievements,
-    update_user_theme,
-    update_user_wallpaper,
+     add_exp,
+     create_note,
+     create_notebook,
+     create_note_property,
+     create_task,
+     clear_completed_tasks,
+     delete_note_property,
+     delete_task,
+     get_note,
+     get_note_properties,
+     get_or_create_default_notebook,
+     get_or_create_inbox_notebook,
+     get_or_create_model_config,
+     get_or_create_user_stats,
+     list_notes,
+     list_notes_tree,
+     list_notebooks,
+     list_trashed_notes,
+     list_trashed_notebooks,
+     list_tasks,
+     bulk_move_notes,
+     bulk_soft_delete_notes,
+     move_note,
+     purge_note,
+     purge_notebook,
+     replace_note_links,
+     restore_note,
+     restore_notebook,
+     soft_delete_note,
+     soft_delete_notebook,
+     purge_trash,
+     update_notebook,
+     update_note,
+     update_model_config,
+     update_note_property,
+     update_task,
+     list_user_achievements,
+     check_and_unlock_achievements,
+     update_user_theme,
+     update_user_wallpaper,
+     import_dictionary,
 )
 from backend.services.vector_store import vector_store
 
@@ -448,7 +449,7 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
     async def generate():
         try:
             async for chunk in ai_client.stream_chat(messages, llm_config):
-                yield chunk
+                yield f"data: {json.dumps({'text': chunk})}\n\n"
         except Exception as e:
             import json
             error_msg = f"Inline AI Error: {str(e)}"
@@ -456,7 +457,7 @@ async def inline_ai(payload: InlineAIRequest, db: Session = Depends(get_db)):
     
     return StreamingResponse(
         generate(), 
-        media_type="text/plain", 
+        media_type="text/event-stream", 
         headers={
             "X-Accel-Buffering": "no",
             "Cache-Control": "no-cache",
@@ -495,9 +496,9 @@ async def global_chat(payload: AskRequest, db: Session = Depends(get_db)):
         try:
             if payload.mode == "rag":
                 import json
-                yield f"__CITATIONS__:{json.dumps(citations)}\n"
+                yield f"data: {json.dumps({'citations': citations})}\n\n"
             async for chunk in ai_client.stream_chat(messages, llm_config):
-                yield chunk
+                yield f"data: {json.dumps({'text': chunk})}\n\n"
         except Exception as e:
             import json
             error_msg = f"Streaming Error: {str(e)}"
@@ -505,7 +506,7 @@ async def global_chat(payload: AskRequest, db: Session = Depends(get_db)):
             
     return StreamingResponse(
         generate(), 
-        media_type="text/plain", 
+        media_type="text/event-stream", 
         headers={
             "X-Accel-Buffering": "no",
             "Cache-Control": "no-cache",
@@ -524,6 +525,13 @@ async def suggest_tags(payload: TagSuggestRequest, db: Session = Depends(get_db)
     }
     tags = await ai_client.tags(payload.content, llm_config)
     return TagSuggestResponse(tags=tags)
+
+class DictionaryImportRequest(BaseModel):
+    text: str
+
+@router.post("/text/dictionary/import")
+async def import_dictionary_api(payload: DictionaryImportRequest, db: Session = Depends(get_db)):
+    return import_dictionary(db, payload.text)
 
 @router.get("/notes/tree", response_model=list[NoteTreeResponse])
 def get_notes_tree(db: Session = Depends(get_db)) -> list[NoteTreeResponse]:

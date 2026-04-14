@@ -8,6 +8,7 @@ export type SlashItem = {
   icon?: React.ReactNode;
   keywords: string[];
   action: (chain: any, editor?: any) => void;
+  requiresAI?: boolean;
 };
 
 interface SlashMenuProps {
@@ -36,6 +37,8 @@ export const SlashMenu = forwardRef<SlashMenuHandle, SlashMenuProps>(({ items, c
 
   useImperativeHandle(ref, () => ({
     onKeyDown: ({ event }) => {
+      if (items.length === 0) return false;
+
       if (event.key === 'ArrowUp') {
         setSelectedIndex((selectedIndex + items.length - 1) % items.length);
         return true;
@@ -62,7 +65,13 @@ export const SlashMenu = forwardRef<SlashMenuHandle, SlashMenuProps>(({ items, c
     }
   }, [selectedIndex]);
 
-  if (items.length === 0) return null;
+  if (items.length === 0) {
+    return (
+      <div className="notion-slash-menu slash-menu-glass z-[120] min-w-[320px] p-4 text-center text-xs text-muted-foreground/60 font-medium rounded-3xl border border-border/20 bg-popover/80 backdrop-blur-2xl shadow-soft">
+        无匹配结果...
+      </div>
+    );
+  }
 
   // 将项目按组分类
   const groups: { name: string; items: { item: SlashItem; originalIndex: number }[] }[] = [];

@@ -1,5 +1,5 @@
 # 当前关注 (Top Priority)
-1. **Second Brain AI 进阶升级 (Phase 1)**:
+1. **Nova 进阶升级 (Phase 1)**:
    - **目标**: 交付 Windows 客户端 MVP，跑通多端同步与安全外网访问。
    - **8 大升级点**:
      1. **多端同步**: 离线优先，CRDT 无冲突合并。
@@ -10,13 +10,18 @@
      6. **灵感碎片捕捉 (Quick Capture)**: 全局快捷键 (`Alt+Q`)，看板娘投喂，语音速记。
      7. **二次元/游戏化系统**: RPG 元素（成就、EXP/等级、技能树、看板娘互动）。
      8. **自定义主题/图标**: 一键换装，创意工坊支持。
-   - **蓝图文档**: [Second Brain AI 进阶升级蓝图与第一阶段执行计划](https://bytedance.larkoffice.com/docx/CTZwd4K7VoMJOextyIOcvqOnnJe)
+   - **蓝图文档**: [Nova 进阶升级蓝图与第一阶段执行计划](https://bytedance.larkoffice.com/docx/CTZwd4K7VoMJOextyIOcvqOnnJe)
    - **可视化页面**: [升级蓝图预览](https://8bfdd3c16844.aime-app.bytedance.net)
 
 2. **Windows 桌面客户端开发（路线 AB 并行）**: 
    - 路线 A：本地后端优先（Python + SQLite + ChromaDB 打包进 Electron）。
    - 路线 B：纯前端离线优先（IndexedDB 缓存，轻量化）。
    - 技术方案文档：https://bytedance.larkoffice.com/docx/ZAJsdHiK0oAGJox6n6zc0PbKnsb
+
+3. **近期开发重点**:
+   - **Task C: Markdown 全面支持与编辑体验升级**：强化所见即所得编辑器。
+   - **Task D: 知识图谱与双向链接**：实现文档间的高效跳转与组织。
+   - **Task E: 长文创作/自动续写引擎**：突破大模型生成长度限制（`num_predict`），通过后台自动拼接上下文和接力请求，实现几万字小说的无缝生成，支持“无限续写”或“打字机继续写”交互。
 
 # 待办/后续计划 (优先级调后)
 - **Phase 4: 桌面究极体改造 (Electron化)**: 弃用 `PyWebView` 和 `系统默认浏览器` 的过渡方案，引入 Electron 框架进行重构，实现类似 Obsidian/Notion 的商业级独立桌面窗口，支持无边框窗口、原生系统托盘(Tray)驻留、更稳定的全局快捷键接管，并彻底解决环境依赖打包问题。
@@ -40,7 +45,7 @@
 - **Git 流程**：代码改动后先本地预览，询问用户确认后再执行推送。
 
 # 积累的上下文
-- 用户的核心目标是把 second-brain-ai 做成一个真正能跨端、离线使用的个人知识管理工具。
+- 用户的核心目标是把 Nova 做成一个真正能跨端、离线使用的个人知识管理工具。
 - 当前最高优先级是 Windows 客户端 + 多端同步，而非 UI 美化。
 
 # 工作流铁律 (Iron Rules)
@@ -52,7 +57,7 @@
 - **告别直男审美 (UI/UX Pro Max)**：以后凡是遇到需要 UI 设计、新写前端组件、调整页面布局的任务，**强制调用 `ui-ux-pro-max` (uipro) 技能规则库**。不要自行凭空想象样式，务必参考该插件提供的高级配色、排版和 UX 规范，确保生成的代码自带专业设计质感。
 
 # 用户偏好/约定
-- Windows 端后续统一更新与运行目录：`C:\\AI\\SecondBrainAI`（只运行该目录下的 `SecondBrainAI.exe`，`dist` 仅作为临时构建产物，不直接运行）。
+- Windows 端后续统一更新与运行目录：`C:\\AI\\Nova`（只运行该目录下的 `Nova.exe`，`dist` 仅作为临时构建产物，不直接运行）。
 - **链接自动解析**：编辑器必须具备链接自动解析的能力，对于用户复制粘贴的任何网页链接，需要能自动识别并解析为卡片（如视频播放器卡片等），提供所见即所得的极速体验。
 - **修 Bug 原则**：不要用写死配置、粗暴 `!important`、硬编码 class 或掩盖问题的方式修复 Bug；必须优先采用可维护、低耦合、便于后续升级和调整的正轨逻辑方案。
-- **默认项目约定**: 除非老大特别说明，以后所有的开发、排查和操作默认都只在处理 **nova项目**（即 `nova_repo` 相关的后端和前端代码）。
+- **默认项目约定**: 除非老大特别说明，以后所有的开发、排查和操作默认都只在处理 **Nova 项目**（即 `nova_repo` 相关的后端和前端代码）。在与用户（老大）交流时，**必须统一称呼项目为 Nova，严禁再使用 Second Brain AI 这个旧称**。

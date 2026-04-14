@@ -1,0 +1,933 @@
+Releases · abetlen/llama-cpp-python
+
+
+
+[Skip to content](https://github.com/abetlen/llama-cpp-python/releases#start-of-content)
+
+
+
+
+
+
+
+
+
+
+
+Navigation Menu
+---------------
+
+Toggle navigation
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fabetlen%2Fllama-cpp-python%2Freleases)
+
+Appearance settings
+
+* Platform
+
+  + AI CODE CREATION
+    - [GitHub Copilot
+      Write better code with AI](https://github.com/features/copilot)
+    - [GitHub Spark
+      Build and deploy intelligent apps](https://github.com/features/spark)
+    - [GitHub Models
+      Manage and compare prompts](https://github.com/features/models)
+    - [MCP RegistryNew
+      Integrate external tools](https://github.com/mcp)
+  + DEVELOPER WORKFLOWS
+    - [Actions
+      Automate any workflow](https://github.com/features/actions)
+    - [Codespaces
+      Instant dev environments](https://github.com/features/codespaces)
+    - [Issues
+      Plan and track work](https://github.com/features/issues)
+    - [Code Review
+      Manage code changes](https://github.com/features/code-review)
+  + APPLICATION SECURITY
+    - [GitHub Advanced Security
+      Find and fix vulnerabilities](https://github.com/security/advanced-security)
+    - [Code security
+      Secure your code as you build](https://github.com/security/advanced-security/code-security)
+    - [Secret protection
+      Stop leaks before they start](https://github.com/security/advanced-security/secret-protection)
+  + EXPLORE
+    - [Why GitHub](https://github.com/why-github)
+    - [Documentation](https://docs.github.com)
+    - [Blog](https://github.blog)
+    - [Changelog](https://github.blog/changelog)
+    - [Marketplace](https://github.com/marketplace)
+
+  [View all features](https://github.com/features)
+* Solutions
+
+  + BY COMPANY SIZE
+    - [Enterprises](https://github.com/enterprise)
+    - [Small and medium teams](https://github.com/team)
+    - [Startups](https://github.com/enterprise/startups)
+    - [Nonprofits](https://github.com/solutions/industry/nonprofits)
+  + BY USE CASE
+    - [App Modernization](https://github.com/solutions/use-case/app-modernization)
+    - [DevSecOps](https://github.com/solutions/use-case/devsecops)
+    - [DevOps](https://github.com/solutions/use-case/devops)
+    - [CI/CD](https://github.com/solutions/use-case/ci-cd)
+    - [View all use cases](https://github.com/solutions/use-case)
+  + BY INDUSTRY
+    - [Healthcare](https://github.com/solutions/industry/healthcare)
+    - [Financial services](https://github.com/solutions/industry/financial-services)
+    - [Manufacturing](https://github.com/solutions/industry/manufacturing)
+    - [Government](https://github.com/solutions/industry/government)
+    - [View all industries](https://github.com/solutions/industry)
+
+  [View all solutions](https://github.com/solutions)
+* Resources
+
+  + EXPLORE BY TOPIC
+    - [AI](https://github.com/resources/articles?topic=ai)
+    - [Software Development](https://github.com/resources/articles?topic=software-development)
+    - [DevOps](https://github.com/resources/articles?topic=devops)
+    - [Security](https://github.com/resources/articles?topic=security)
+    - [View all topics](https://github.com/resources/articles)
+  + EXPLORE BY TYPE
+    - [Customer stories](https://github.com/customer-stories)
+    - [Events & webinars](https://github.com/resources/events)
+    - [Ebooks & reports](https://github.com/resources/whitepapers)
+    - [Business insights](https://github.com/solutions/executive-insights)
+    - [GitHub Skills](https://skills.github.com)
+  + SUPPORT & SERVICES
+    - [Documentation](https://docs.github.com)
+    - [Customer support](https://support.github.com)
+    - [Community forum](https://github.com/orgs/community/discussions)
+    - [Trust center](https://github.com/trust-center)
+    - [Partners](https://github.com/partners)
+
+  [View all resources](https://github.com/resources)
+* Open Source
+
+  + COMMUNITY
+    - [GitHub Sponsors
+      Fund open source developers](https://github.com/sponsors)
+  + PROGRAMS
+    - [Security Lab](https://securitylab.github.com)
+    - [Maintainer Community](https://maintainers.github.com)
+    - [Accelerator](https://github.com/accelerator)
+    - [GitHub Stars](https://stars.github.com)
+    - [Archive Program](https://archiveprogram.github.com)
+  + REPOSITORIES
+    - [Topics](https://github.com/topics)
+    - [Trending](https://github.com/trending)
+    - [Collections](https://github.com/collections)
+* Enterprise
+
+  + ENTERPRISE SOLUTIONS
+    - [Enterprise platform
+      AI-powered developer platform](https://github.com/enterprise)
+  + AVAILABLE ADD-ONS
+    - [GitHub Advanced Security
+      Enterprise-grade security features](https://github.com/security/advanced-security)
+    - [Copilot for Business
+      Enterprise-grade AI features](https://github.com/features/copilot/copilot-business)
+    - [Premium Support
+      Enterprise-grade 24/7 support](https://github.com/premium-support)
+* [Pricing](https://github.com/pricing)
+
+Search or jump to...
+
+
+Search code, repositories, users, issues, pull requests...
+==========================================================
+
+Search
+
+Clear
+
+[Search syntax tips](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax)
+
+Provide feedback
+================
+
+We read every piece of feedback, and take your input very seriously.
+
+
+Include my email address so I can be contacted
+
+Cancel
+ Submit feedback
+
+
+
+
+
+Saved searches
+==============
+
+Use saved searches to filter your results more quickly
+------------------------------------------------------
+
+Name
+
+Query
+
+To see all available qualifiers, see our [documentation](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax).
+
+Cancel
+ Create saved search
+
+[Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fabetlen%2Fllama-cpp-python%2Freleases)
+
+[Sign up](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Freleases%2Findex&source=header-repo&source_repo=abetlen%2Fllama-cpp-python)
+
+Appearance settings
+
+Resetting focus
+
+You signed in with another tab or window. Reload to refresh your session.
+You signed out in another tab or window. Reload to refresh your session.
+You switched accounts on another tab or window. Reload to refresh your session.
+ 
+Dismiss alert
+
+{{ message }}
+
+[abetlen](https://github.com/abetlen)
+/
+**[llama-cpp-python](https://github.com/abetlen/llama-cpp-python)**
+Public
+
+* [Notifications](https://github.com/login?return_to=%2Fabetlen%2Fllama-cpp-python) You must be signed in to change notification settings
+* [Fork
+  1.4k](https://github.com/login?return_to=%2Fabetlen%2Fllama-cpp-python)
+* [Star
+   10.2k](https://github.com/login?return_to=%2Fabetlen%2Fllama-cpp-python)
+
+* [Code](https://github.com/abetlen/llama-cpp-python)
+* [Issues
+  600](https://github.com/abetlen/llama-cpp-python/issues)
+* [Pull requests
+  108](https://github.com/abetlen/llama-cpp-python/pulls)
+* [Discussions](https://github.com/abetlen/llama-cpp-python/discussions)
+* [Actions](https://github.com/abetlen/llama-cpp-python/actions)
+* [Projects](https://github.com/abetlen/llama-cpp-python/projects)
+* [Security and quality
+  1](https://github.com/abetlen/llama-cpp-python/security)
+* [Insights](https://github.com/abetlen/llama-cpp-python/pulse)
+
+Additional navigation options
+
+
+* [Code](https://github.com/abetlen/llama-cpp-python)
+* [Issues](https://github.com/abetlen/llama-cpp-python/issues)
+* [Pull requests](https://github.com/abetlen/llama-cpp-python/pulls)
+* [Discussions](https://github.com/abetlen/llama-cpp-python/discussions)
+* [Actions](https://github.com/abetlen/llama-cpp-python/actions)
+* [Projects](https://github.com/abetlen/llama-cpp-python/projects)
+* [Security and quality](https://github.com/abetlen/llama-cpp-python/security)
+* [Insights](https://github.com/abetlen/llama-cpp-python/pulse)
+
+Releases: abetlen/llama-cpp-python
+==================================
+
+[Releases](https://github.com/abetlen/llama-cpp-python/releases)
+[Tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+Releases · abetlen/llama-cpp-python
+
+v0.3.20-metal
+-------------
+
+03 Apr 07:00
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.20-metal](https://github.com/abetlen/llama-cpp-python/tree/v0.3.20-metal)
+
+[`02d6bee`](https://github.com/abetlen/llama-cpp-python/commit/02d6beed816535cb2ce845ad8558d0c8662f8e7e)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.20-metal](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.20-metal)
+
+```
+chore: bump version to 0.3.20 (#2171)
+```
+
+Assets
+3
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+All reactions
+
+v0.3.20-cu124
+-------------
+
+03 Apr 08:10
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.20-cu124](https://github.com/abetlen/llama-cpp-python/tree/v0.3.20-cu124)
+
+[`02d6bee`](https://github.com/abetlen/llama-cpp-python/commit/02d6beed816535cb2ce845ad8558d0c8662f8e7e)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.20-cu124](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.20-cu124)
+
+```
+chore: bump version to 0.3.20 (#2171)
+```
+
+Assets
+3
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+1
+ tianshangui001 reacted with thumbs up emoji
+
+All reactions
+
+* 👍
+  1 reaction
+
+1 person reacted
+
+v0.3.20-cu123
+-------------
+
+03 Apr 08:19
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.20-cu123](https://github.com/abetlen/llama-cpp-python/tree/v0.3.20-cu123)
+
+[`02d6bee`](https://github.com/abetlen/llama-cpp-python/commit/02d6beed816535cb2ce845ad8558d0c8662f8e7e)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.20-cu123](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.20-cu123)
+[Latest](https://github.com/abetlen/llama-cpp-python/releases/latest)
+
+[Latest](https://github.com/abetlen/llama-cpp-python/releases/latest)
+
+```
+chore: bump version to 0.3.20 (#2171)
+```
+
+Assets
+3
+
+* [llama\_cpp\_python-0.3.20-py3-none-linux\_x86\_64.whl](https://github.com/abetlen/llama-cpp-python/releases/download/v0.3.20-cu123/llama_cpp_python-0.3.20-py3-none-linux_x86_64.whl)
+
+  sha256:9ea4af7cc00a7116b3abf67cdd11891c8e7cc4144f06c31545540d946c5cf1b0
+
+  1.39 GB
+  2026-04-03T08:23:25Z
+* [Source code
+  (zip)](https://github.com/abetlen/llama-cpp-python/archive/refs/tags/v0.3.20-cu123.zip)
+
+  2026-04-03T06:42:35Z
+* [Source code
+  (tar.gz)](https://github.com/abetlen/llama-cpp-python/archive/refs/tags/v0.3.20-cu123.tar.gz)
+
+  2026-04-03T06:42:35Z
+
+All reactions
+
+v0.3.20-cu122
+-------------
+
+03 Apr 08:11
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.20-cu122](https://github.com/abetlen/llama-cpp-python/tree/v0.3.20-cu122)
+
+[`02d6bee`](https://github.com/abetlen/llama-cpp-python/commit/02d6beed816535cb2ce845ad8558d0c8662f8e7e)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.20-cu122](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.20-cu122)
+
+```
+chore: bump version to 0.3.20 (#2171)
+```
+
+Assets
+3
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+All reactions
+
+v0.3.20-cu121
+-------------
+
+03 Apr 08:09
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.20-cu121](https://github.com/abetlen/llama-cpp-python/tree/v0.3.20-cu121)
+
+[`02d6bee`](https://github.com/abetlen/llama-cpp-python/commit/02d6beed816535cb2ce845ad8558d0c8662f8e7e)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.20-cu121](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.20-cu121)
+
+```
+chore: bump version to 0.3.20 (#2171)
+```
+
+Assets
+3
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+All reactions
+
+v0.3.19-metal
+-------------
+
+25 Mar 22:51
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.19-metal](https://github.com/abetlen/llama-cpp-python/tree/v0.3.19-metal)
+
+[`f54421b`](https://github.com/abetlen/llama-cpp-python/commit/f54421ba71db942b262a28762bc9e035a5d4d349)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.19-metal](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.19-metal)
+
+```
+Bump version to 0.3.19 (#2162)
+```
+
+Assets
+6
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+👍
+1
+ GerMinChars reacted with thumbs up emoji
+
+All reactions
+
+* 👍
+  1 reaction
+
+1 person reacted
+
+v0.3.19-cu124
+-------------
+
+25 Mar 23:39
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.19-cu124](https://github.com/abetlen/llama-cpp-python/tree/v0.3.19-cu124)
+
+[`f54421b`](https://github.com/abetlen/llama-cpp-python/commit/f54421ba71db942b262a28762bc9e035a5d4d349)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.19-cu124](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.19-cu124)
+
+```
+Bump version to 0.3.19 (#2162)
+```
+
+Assets
+6
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+All reactions
+
+v0.3.19-cu123
+-------------
+
+25 Mar 23:42
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.19-cu123](https://github.com/abetlen/llama-cpp-python/tree/v0.3.19-cu123)
+
+[`f54421b`](https://github.com/abetlen/llama-cpp-python/commit/f54421ba71db942b262a28762bc9e035a5d4d349)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.19-cu123](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.19-cu123)
+
+```
+Bump version to 0.3.19 (#2162)
+```
+
+Assets
+6
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+All reactions
+
+v0.3.19-cu122
+-------------
+
+25 Mar 23:43
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.19-cu122](https://github.com/abetlen/llama-cpp-python/tree/v0.3.19-cu122)
+
+[`f54421b`](https://github.com/abetlen/llama-cpp-python/commit/f54421ba71db942b262a28762bc9e035a5d4d349)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.19-cu122](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.19-cu122)
+
+```
+Bump version to 0.3.19 (#2162)
+```
+
+Assets
+6
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+All reactions
+
+v0.3.19-cu121
+-------------
+
+25 Mar 23:41
+
+[github-actions](https://github.com/apps/github-actions)
+
+[v0.3.19-cu121](https://github.com/abetlen/llama-cpp-python/tree/v0.3.19-cu121)
+
+[`f54421b`](https://github.com/abetlen/llama-cpp-python/commit/f54421ba71db942b262a28762bc9e035a5d4d349)
+
+
+
+
+This commit was created on GitHub.com and signed with GitHub’s **verified signature**.
+
+GPG key ID: B5690EEEBB952194
+
+Verified
+
+[Learn about vigilant mode](https://docs.github.com/github/authenticating-to-github/displaying-verification-statuses-for-all-of-your-commits).
+
+Compare
+
+
+Choose a tag to compare
+=======================
+
+Sorry, something went wrong.
+----------------------------
+
+Filter
+
+Loading
+
+Sorry, something went wrong.
+----------------------------
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+No results found
+----------------
+
+[View all tags](https://github.com/abetlen/llama-cpp-python/tags)
+
+[v0.3.19-cu121](https://github.com/abetlen/llama-cpp-python/releases/tag/v0.3.19-cu121)
+
+```
+Bump version to 0.3.19 (#2162)
+```
+
+Assets
+6
+
+Loading
+
+### Uh oh!
+
+There was an error while loading. Please reload this page.
+
+All reactions
+
+Previous
+ *1* [2](https://github.com/abetlen/llama-cpp-python/releases?page=2) [3](https://github.com/abetlen/llama-cpp-python/releases?page=3) [4](https://github.com/abetlen/llama-cpp-python/releases?page=4) [5](https://github.com/abetlen/llama-cpp-python/releases?page=5) …
+ [32](https://github.com/abetlen/llama-cpp-python/releases?page=32) [33](https://github.com/abetlen/llama-cpp-python/releases?page=33) [Next](https://github.com/abetlen/llama-cpp-python/releases?page=2)
+
+Previous
+ [Next](https://github.com/abetlen/llama-cpp-python/releases?page=2)
+
+Footer
+------
+
+© 2026 GitHub, Inc.
+
+### Footer navigation
+
+* [Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)
+* [Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)
+* [Security](https://github.com/security)
+* [Status](https://www.githubstatus.com/)
+* [Community](https://github.community/)
+* [Docs](https://docs.github.com/)
+* [Contact](https://support.github.com?tags=dotcom-footer)
+* Manage cookies
+* Do not share my personal information
+
+
+
+You can’t perform that action at this time.
+
+# Reference
+- [430] [Releases · abetlen/llama-cpp-python](https://github.com/abetlen/llama-cpp-python/releases)

@@ -1,9 +1,34 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import { NovaBlockEditor } from './components/novablock/NovaBlockEditor'
+import { CanvasEditor } from './components/canvas/CanvasEditor'
 import { SidebarTree } from './components/sidebar/SidebarTree'
 import { MoodboardView } from './components/moodboard/MoodboardView'
+import CommandPalette from './components/search/CommandPalette'
+import { SettingsDialog } from './components/SettingsDialog'
 import type { Note } from './lib/types'
+import { api } from './lib/api'
 import { AnimatePresence, motion } from 'framer-motion'
+import { MusicProvider, useMusicControls } from './contexts/MusicContext'
+import { HabitProvider } from './contexts/HabitContext'
+import { TodoProvider } from './contexts/TodoContext'
+import { AIProvider } from './contexts/AIContext'
+import { FloatingMusicCapsule } from './components/widgets/FloatingMusicCapsule'
+import { PlaylistPopover } from './components/widgets/PlaylistPopover'
+
+function MusicGlobalUI() {
+  const { playlistPopoverAnchor, closePlaylist } = useMusicControls();
+  return (
+    <AnimatePresence>
+      {playlistPopoverAnchor && (
+        <PlaylistPopover
+          onClose={closePlaylist}
+          portal
+          anchorRect={playlistPopoverAnchor}
+        />
+      )}
+    </AnimatePresence>
+  );
+}
 
 // 初始模拟数据
 
@@ -90,10 +115,54 @@ function App() {
     return saved ? parseInt(saved) : 1
   })
   const [activeView, setActiveView] = useState<'notes' | 'moodboard'>('notes')
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+
+  // 对侧边栏切换进行简单的节流处理，防止动画堆积
+  const toggleSidebar = (collapsed: boolean) => {
+    setIsSidebarCollapsed(collapsed);
+  };
+
+  // 全局快捷键 Cmd+K 和 笔记跳转事件
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setIsCommandPaletteOpen(prev => !prev)
+      }
+    }
+    
+    const handleSelectNoteEvent = (e: any) => {
+      const noteId = e.detail?.noteId;
+      if (noteId) {
+        setCurrentNoteId(Number(noteId));
+        setActiveView('notes');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('nova-select-note', handleSelectNoteEvent)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('nova-select-note', handleSelectNoteEvent)
+    }
+  }, [currentNoteId])
 
   // 同步到 localStorage
   useEffect(() => {
-    localStorage.setItem('nova-block-notes', JSON.stringify(notes))
+    try {
+      localStorage.setItem('nova-block-notes', JSON.stringify(notes))
+    } catch (e) {
+      console.error('Failed to save notes to localStorage (likely quota exceeded)', e)
+      if (e instanceof DOMException && e.name === 'QuotaExceededError') {
+        // 如果爆了，尝试清理一些不必要的大数据，或者至少通知用户
+        console.warn('LocalStorage Quota Exceeded! Some data may not be saved.')
+      }
+    }
+    // @ts-ignore
+    window.novaNotes = notes
+    window.dispatchEvent(new Event('nova-notes-updated'))
   }, [notes])
 
   useEffect(() => {
@@ -114,6 +183,24 @@ function App() {
     return notes.find(n => n.id === currentNoteId) || null
   }, [notes, currentNoteId])
 
+  const loadNoteContent = useCallback(async (noteId: number) => {
+    const note = notes.find(n => n.id === noteId);
+    if (!note || note.content !== undefined) return;
+
+    try {
+      const fullNote = await api.getNote(noteId);
+      setNotes(prev => prev.map(n => n.id === noteId ? { ...n, content: fullNote.content } : n));
+    } catch (err) {
+      console.error('Failed to load note content:', err);
+    }
+  }, [notes]);
+
+  useEffect(() => {
+    if (activeView === 'notes' && currentNoteId) {
+      loadNoteContent(currentNoteId);
+    }
+  }, [currentNoteId, activeView, loadNoteContent]);
+
   // 节点转换 (TreeNode <-> Note)
   const treeNodes = useMemo(() => {
     return notes.map(n => ({
@@ -133,13 +220,22 @@ function App() {
     }
   }
 
-  const handleAddNote = (parentId: string | null, type: 'file' | 'folder' = 'file') => {
+  const handleAddNote = (parentId: string | null, type: 'file' | 'folder' | 'canvas' = 'file') => {
     const newId = Math.max(...notes.map(n => n.id), 0) + 1
+
+    const isFolder = type === 'folder'
+    const isCanvas = type === 'canvas'
+
     const newNote: Note = {
       id: newId,
-      title: type === 'folder' ? 'Untitled Folder' : 'Untitled Note',
-      icon: type === 'folder' ? '📂' : '📝',
-      content: type === 'folder' ? '' : '<p></p>',
+      title: isFolder ? '无标题文件夹' : isCanvas ? '无标题画布' : '无标题笔记',
+      icon: isFolder ? '📂' : isCanvas ? '🧩' : '📝',
+      content: isFolder
+        ? ''
+        : isCanvas
+          ? JSON.stringify({ version: 'v1', nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } })
+          : '<p></p>',
+      type: isCanvas ? 'canvas' : undefined,
       tags: [],
       properties: [],
       links: [],
@@ -149,11 +245,13 @@ function App() {
       sort_key: 'm',
       summary: '',
       is_title_manually_edited: false,
-      is_folder: type === 'folder',
-      created_at: new Date().toISOString()
+      is_folder: isFolder,
+      created_at: new Date().toISOString(),
     }
+
     setNotes([...notes, newNote])
-    if (type !== 'folder') {
+
+    if (!isFolder) {
       setCurrentNoteId(newId)
       setActiveView('notes')
     }
@@ -243,64 +341,130 @@ function App() {
   }
 
   return (
-    <div className="flex h-screen w-full bg-background text-foreground font-sans selection:bg-primary/30 overflow-hidden relative theme-transition">
-      {/* 全局背景质感 */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(var(--primary),0.05),transparent_70%)] pointer-events-none z-0" />
-      <div className="absolute inset-0 opacity-[0.4] pointer-events-none z-0" style={{ backgroundImage: "var(--paper-texture)" }} />
+    <AIProvider>
+    <MusicProvider>
+      <HabitProvider>
+        <TodoProvider>
+          <div className="flex h-screen w-full bg-background text-foreground font-sans selection:bg-primary/30 overflow-hidden relative theme-transition">
+        {/* 全局背景质感 */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(var(--primary),0.05),transparent_70%)] pointer-events-none z-0" />
+        <div className="absolute inset-0 opacity-[0.4] pointer-events-none z-0" style={{ backgroundImage: "var(--paper-texture)" }} />
 
-      {/* 侧边栏 */}
-      <SidebarTree 
-        initialNodes={treeNodes}
-        onNodeSelect={handleSelectNode}
-        onNodeAdd={handleAddNote}
-        onNodeMove={handleNodeMove}
-        onNodeRename={handleNodeRename}
-        onNodeDelete={handleNodeDelete}
-        onNodeDuplicate={handleNodeDuplicate}
-        onMoodboardSelect={handleMoodboardSelect}
-        activeView={activeView}
-        className="z-20"
-      />
+        {/* 侧边栏 */}
+        <SidebarTree 
+          initialNodes={treeNodes}
+          notes={notes}
+          onNodeSelect={handleSelectNode}
+          onNodeAdd={handleAddNote}
+          onNodeMove={handleNodeMove}
+          onNodeRename={handleNodeRename}
+          onNodeDelete={handleNodeDelete}
+          onNodeDuplicate={handleNodeDuplicate}
+          onMoodboardSelect={handleMoodboardSelect}
+          onQuickSearchOpen={() => setIsCommandPaletteOpen(true)}
+          onSettingsOpen={() => setIsSettingsOpen(true)}
+          activeView={activeView}
+          className="z-20"
+          isCollapsed={isSidebarCollapsed}
+          onToggleCollapse={toggleSidebar}
+        />
 
-      {/* 主编辑区 */}
-      <main className="flex-1 h-full relative overflow-hidden flex flex-col z-10">
-        <AnimatePresence mode="wait">
-          {activeView === 'notes' ? (
-            <motion.div
-              key={`note-${currentNoteId}`}
-              initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              className="flex-1 h-full"
-            >
-              <NovaBlockEditor 
-                note={currentNote} 
-                onSave={handleSave}
-                onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
-              />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="moodboard"
-              initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, scale: 1.02, filter: 'blur(10px)' }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              className="flex-1 h-full"
-            >
-              <MoodboardView />
-            </motion.div>
+        {/* 主编辑区 */}
+        <motion.main 
+          initial={false}
+          animate={{ 
+            scale: isSidebarCollapsed ? 1 : 0.98,
+            borderRadius: isSidebarCollapsed ? "0px" : "24px",
+            // 侧边栏宽度从 280 变到 64，差值 216。
+            // 当展开时，主页面缩小并向右偏移一点，保持呼吸感
+            x: isSidebarCollapsed ? 0 : 0, 
+          }}
+          transition={{ 
+            duration: 0.5, 
+            ease: [0.32, 0.72, 0, 1] 
+          }}
+          className="flex-1 h-full relative overflow-hidden flex flex-col z-10 bg-background shadow-[0_0_50px_rgba(0,0,0,0.1)] origin-left"
+        >
+          {/* 主页面遮罩 - 当侧边栏展开时显现 */}
+          {!isSidebarCollapsed && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/5 z-50 pointer-events-none"
+            />
           )}
-        </AnimatePresence>
 
-        {/* 底部装饰线 */}
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent absolute bottom-0 left-0" />
-      </main>
+          <AnimatePresence mode="wait">
+            {activeView === 'notes' ? (
+              <motion.div
+                key={`note-${currentNoteId}`}
+                initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="flex-1 h-full"
+              >
+                {currentNote?.type === 'canvas' ? (
+                  <CanvasEditor
+                    note={currentNote}
+                    notes={notes}
+                    onSave={handleSave}
+                    onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
+                  />
+                ) : (
+                  <NovaBlockEditor 
+                    note={currentNote} 
+                    onSave={handleSave}
+                    onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
+                  />
+                )}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="moodboard"
+                initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, scale: 1.02, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="flex-1 h-full"
+              >
+                <MoodboardView />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-      {/* 全局装饰 */}
-      <div className="fixed top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-50 pointer-events-none" />
-    </div>
+          {/* 底部装饰线 */}
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/5 to-transparent absolute bottom-0 left-0" />
+        </motion.main>
+
+        {/* Command Palette */}
+        <CommandPalette 
+          isOpen={isCommandPaletteOpen}
+          onClose={() => setIsCommandPaletteOpen(false)}
+          notes={notes}
+          onSelectNote={(note) => handleSelectNode(note.id.toString())}
+        />
+
+        {/* Settings Dialog */}
+        <SettingsDialog
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
+        />
+
+        {/* 全局装饰 */}
+        <div className="fixed top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-50 pointer-events-none" />
+        
+        {/* 全局悬浮音乐胶囊 */}
+        <FloatingMusicCapsule />
+        
+        {/* 全局音乐列表 (单例) */}
+         <MusicGlobalUI />
+       </div>
+        </TodoProvider>
+        </HabitProvider>
+      </MusicProvider>
+    </AIProvider>
   )
 }
 

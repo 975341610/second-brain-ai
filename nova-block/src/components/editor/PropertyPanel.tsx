@@ -21,11 +21,13 @@ import {
   Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAI } from '../../contexts/AIContext';
 
 interface PropertyPanelProps {
   note: Note;
   onUpdate: (updatedFields: Partial<Note>) => void;
   onUpdateTags?: (noteId: number, tags: string[]) => Promise<void>;
+  onFlushSave?: (updates: Partial<Note>) => void;
 }
 
 const WEATHER_OPTIONS = [
@@ -44,7 +46,8 @@ const MOOD_OPTIONS = [
   { value: 'energetic', icon: Zap, label: '充满活力' },
 ];
 
-export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, onUpdateTags }) => {
+export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, onUpdateTags, onFlushSave }) => {
+  const { isAiEnabled } = useAI();
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [suggestedTags, setSuggestedTags] = useState<string[]>([]);
   const [isSuggestionsExpanded, setIsSuggestionsExpanded] = useState(false);
@@ -53,7 +56,9 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
   
   // Sync local tags with prop when note changes
   useEffect(() => {
-    setLocalTags(note.tags || []);
+    // 使用 Set 进行去重，确保 localTags 中没有重复标签
+    const uniqueTags = Array.from(new Set(note.tags || []));
+    setLocalTags(uniqueTags);
   }, [note.id, note.tags]);
 
   // 初始化时读取一次
@@ -108,8 +113,11 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
     setIsSuggesting(true);
     setIsSuggestionsExpanded(true);
     try {
-      const response = await api.suggestTags(note.content);
-      setSuggestedTags(response.tags);
+      const response = await api.suggestTags(note.content || "");
+      // AI 建议的标签也要去重，且不能包含已有的标签
+      const uniqueSuggestedTags = Array.from(new Set(response.tags || []))
+        .filter(tag => !localTags.includes(tag));
+      setSuggestedTags(uniqueSuggestedTags);
     } catch (error) {
       console.error('Failed to suggest tags:', error);
     } finally {
@@ -117,8 +125,9 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
     }
   };
 
-  const applyTag = async (tag: string) => {
-    if (localTags.includes(tag)) return;
+  const applyTag = async (tagName: string) => {
+    const tag = tagName.trim();
+    if (!tag || localTags.includes(tag)) return;
     
     const newTags = [...localTags, tag];
     setLocalTags(newTags);
@@ -174,29 +183,32 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
     setIsFocused(false);
   };
 
-  // 在修改属性时，不只更新本地 properties，也将天气和心情的 local 状态马上更新
-  // 防止下一次渲染拿到的还是旧的 weatherValue
   const handleUpdateProperty = async (propName: string, value: string) => {
     try {
-      const properties = localProperties;
-      const targetProp = properties.find(p => p.name === propName || (propName === 'Weather' && p.name === '天气') || (propName === 'Mood' && p.name === '心情'));
+      const properties = [...localProperties];
+      const targetPropIdx = properties.findIndex(p => p.name === propName || (propName === 'Weather' && p.name === '天气') || (propName === 'Mood' && p.name === '心情'));
       
       if (propName === 'Weather') setLocalWeather(value);
       if (propName === 'Mood') setLocalMood(value);
       
-      if (targetProp) {
-        const updatedProp = await api.updateNoteProperty(note.id, targetProp.id, { value });
-        const newProps = properties.map(p => p.id === targetProp.id ? updatedProp : p);
-        setLocalProperties(newProps);
-        onUpdate({ properties: newProps });
+      let newProps;
+      if (targetPropIdx > -1) {
+        newProps = properties.map((p, idx) => idx === targetPropIdx ? { ...p, value } : p);
       } else {
-        const newProp = await api.createNoteProperty(note.id, {
+        newProps = [...properties, {
           name: propName,
           type: propName === 'Location' ? 'text' : 'select',
           value: value
-        });
-        const newProps = [...properties, newProp];
-        setLocalProperties(newProps);
+        } as any];
+      }
+      
+      setLocalProperties(newProps);
+      
+      // 如果有 onFlushSave，则立即触发全量保存（合并最新内容，彻底解决覆盖问题）
+      if (typeof onFlushSave === 'function') {
+        onFlushSave({ properties: newProps });
+      } else {
+        // Fallback: 如果没有 onFlushSave，仅更新本地状态由 editor 自动保存触发
         onUpdate({ properties: newProps });
       }
     } catch (error) {
@@ -298,6 +310,7 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
         </div>
 
         {/* AI Suggest Button */}
+        {isAiEnabled && (
         <button 
           onClick={handleSuggestTags}
           disabled={isSuggesting}
@@ -306,6 +319,7 @@ export const PropertyPanel: React.FC<PropertyPanelProps> = ({ note, onUpdate, on
         >
           <Sparkles size={13} />
         </button>
+        )}
 
         {/* Suggestion Toggle */}
         {suggestedTags.length > 0 && (

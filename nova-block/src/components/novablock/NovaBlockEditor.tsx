@@ -841,11 +841,15 @@ export const NovaBlockEditor = React.memo<NovaBlockEditorProps>(({
     };
 
     if (isEmoticonPanelOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      // 延迟注册监听器，防止被当前正在冒泡的点击事件直接触发而关闭
+      const timer = setTimeout(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+      }, 0);
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
     }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   }, [isEmoticonPanelOpen]);
 
   // 处理拖拽手柄点击：捕获当前 Block 位置

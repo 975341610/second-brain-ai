@@ -11,11 +11,42 @@ import type {
 } from './types';
 export const getApiBase = () => {
   if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
-  if (typeof window !== 'undefined' && window.location.hostname.includes('strato-https-proxy')) {
-    // 将前端 vite 预览的端口替换为后端 8765 端口
-    return `https://${window.location.hostname.replace(/^[0-9]+-/, '8765-')}/api`;
+  if (typeof window !== 'undefined') {
+    if (window.location.hostname.includes('strato-https-proxy')) {
+      return `https://${window.location.hostname.replace(/^[0-9]+-/, '8765-')}/api`;
+    }
+    if (window.location.hostname.includes('aime-app.bytedance.net')) {
+      return `https://${window.location.hostname}/api`;
+    }
+    
+    // 如果是本地 Vite 开发服务器 (5173 / 4173)，则强制请求本地 8765 后端
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      if (window.location.port === '5173' || window.location.port === '4173') {
+        return 'http://127.0.0.1:8765/api';
+      }
+    }
   }
+  
   return 'http://127.0.0.1:8765/api';
+};
+
+/**
+ * 格式化 API 返回的相对路径为绝对 URL
+ */
+export const formatUrl = (url: string | undefined | null) => {
+  if (!url) return '';
+  if (url.startsWith('http') || url.startsWith('data:')) return url;
+  
+  const base = getApiBase(); // e.g. http://127.0.0.1:8765/api
+  
+  // 如果路径以 /api 开头，我们需要处理掉重复的 /api
+  if (url.startsWith('/api/')) {
+    const apiBaseWithoutTrailingSlash = base.endsWith('/api') ? base.slice(0, -4) : base;
+    return `${apiBaseWithoutTrailingSlash}${url}`;
+  }
+  
+  // 否则直接拼接
+  return `${base}${url.startsWith('/') ? '' : '/'}${url}`;
 };
 
 
@@ -61,6 +92,7 @@ async function invoke<T>(channel: string, path: string, options?: any): Promise<
 
 export const api = {
   listNotes: () => invoke<Note[]>('notes:list', '/notes'),
+  getNote: (noteId: number) => invoke<Note>('notes:get', `/notes/${noteId}`),
   listNotebooks: () => invoke<Notebook[]>('notebooks:list', '/notebooks'),
   createNotebook: (payload: { name: string; icon?: string }) => 
     invoke<Notebook>('notebooks:create', '/notebooks', { method: 'POST', body: JSON.stringify(payload) }),
@@ -106,7 +138,7 @@ export const api = {
       return window.electron.ipcInvoke('ai:stream-inline', payload, (chunk: string) => onChunk(chunk));
     }
     const API_BASE = getApiBase();
-    const response = await fetch(`${API_BASE}/inline-ai`, {
+    const response = await fetch(`${API_BASE}/ai/inline`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -115,10 +147,27 @@ export const api = {
     const reader = response.body?.getReader();
     if (!reader) return;
     const decoder = new TextDecoder();
+    let buffer = '';
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
-      onChunk(decoder.decode(value, { stream: true }));
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6);
+          if (data === '[DONE]') continue;
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.text) {
+              onChunk(parsed.text);
+            }
+          } catch (e) {
+            console.error('Failed to parse SSE line:', data, e);
+          }
+        }
+      }
     }
   },
   getModelConfig: () => invoke<ModelConfig>('config:get-model', '/model-config'),
@@ -153,16 +202,53 @@ export const api = {
       onChunk(decoder.decode(value, { stream: true }));
     }
   },
-  upload: async (files: File[]) => {
-    // Upload is complex via IPC without proper encoding, keep it for now or implement as FS copy
+  upload: async (files: File[], noteId?: number | string) => {
     const API_BASE = getApiBase();
-    // Back-end expects single 'file' field for each upload, but let's support multi for future
+    const CHUNK_SIZE = 1024 * 256; // 256KB chunks (Strato proxy is extremely strict)
+
     const results = await Promise.all(files.map(async (file) => {
-      const formData = new FormData();
-      formData.append('file', file);
-      const response = await fetch(`${API_BASE}/media/upload`, { method: 'POST', body: formData });
-      if (!response.ok) throw new Error(await response.text());
-      return response.json();
+      if (file.size <= CHUNK_SIZE) {
+        // Small files, use simple upload
+        const formData = new FormData();
+        formData.append('file', file);
+        if (noteId) formData.append('note_id', noteId.toString());
+        const response = await fetch(`${API_BASE}/media/upload`, { method: 'POST', body: formData });
+        if (!response.ok) throw new Error(await response.text());
+        return response.json();
+      } else {
+        // Large files, use chunked upload
+        const initForm = new FormData();
+        initForm.append('filename', file.name);
+        initForm.append('size', file.size.toString());
+        if (noteId) initForm.append('note_id', noteId.toString());
+        
+        const initRes = await fetch(`${API_BASE}/media/upload/init`, { method: 'POST', body: initForm });
+        if (!initRes.ok) throw new Error('Failed to init upload');
+        const { upload_id } = await initRes.json();
+
+        const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+        for (let i = 0; i < totalChunks; i++) {
+          const chunk = file.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE);
+          const chunkForm = new FormData();
+          chunkForm.append('upload_id', upload_id);
+          chunkForm.append('chunk_index', i.toString());
+          chunkForm.append('file', chunk);
+          if (noteId) chunkForm.append('note_id', noteId.toString());
+          
+          const chunkRes = await fetch(`${API_BASE}/media/upload/chunk`, { method: 'POST', body: chunkForm });
+          if (!chunkRes.ok) throw new Error(`Failed to upload chunk ${i}`);
+        }
+
+        const compForm = new FormData();
+        compForm.append('upload_id', upload_id);
+        compForm.append('filename', file.name);
+        compForm.append('content_type', file.type);
+        if (noteId) compForm.append('note_id', noteId.toString());
+        
+        const compRes = await fetch(`${API_BASE}/media/upload/complete`, { method: 'POST', body: compForm });
+        if (!compRes.ok) throw new Error('Failed to complete upload');
+        return compRes.json();
+      }
     }));
     return results;
   },
@@ -181,12 +267,39 @@ export const api = {
   },
   getSystemVersion: () => invoke<{ version: string; git_commit?: string; build_time?: string; executable?: string }>('system:version', '/system/version'),
   openFile: (path: string) => invoke('system:open-file', '/system/open-file', { method: 'POST', body: JSON.stringify({ path }) }),
+  // 音乐库列表必须走后端扫描（HTTP），避免 Electron IPC 缺失导致库永远为空
+  listMusicLibrary: async () => {
+    const API_BASE = getApiBase();
+    const response = await fetch(`${API_BASE}/media/music-library`);
+    if (!response.ok) throw new Error(await response.text());
+    return response.json();
+  },
+  saveMusicLink: (payload: { title: string; url: string; cover?: string }) =>
+    invoke<any>('media:music-link', '/media/music-link', { method: 'POST', body: JSON.stringify(payload) }),
+  uploadMusic: async (file: File, cover?: File) => {
+    const API_BASE = getApiBase();
+    const formData = new FormData();
+    formData.append('file', file);
+    if (cover) formData.append('cover', cover);
+    const response = await fetch(`${API_BASE}/media/music-upload`, { method: 'POST', body: formData });
+    if (!response.ok) throw new Error(await response.text());
+    return response.json();
+  },
+  
+  // AI Plugin status and hardware check
+  getAIPluginStatus: () => invoke<{ enabled: boolean }>('ai:plugin-status', '/ai/plugin-status'),
+  updateAIPluginConfig: (payload: { enabled?: boolean; num_ctx?: number }) => 
+    invoke<{ enabled: boolean; num_ctx: number }>('ai:toggle-plugin', '/ai/toggle-plugin', { method: 'POST', body: JSON.stringify(payload) }),
+  updateOllama: () => invoke<{ status: string; output?: string; message?: string }>('ai:update-ollama', '/ai/update-ollama', { method: 'POST' }),
+  checkAIHardware: () => invoke<{ compatible: boolean; details: string }>('ai:hardware-check', '/ai/hardware-check'),
+  spellcheck: (text: string) =>
+    invoke<{ errors: Array<{ word: string; suggestion: string; reason: string; offset: number }> }>('text:spellcheck', '/text/spellcheck', { method: 'POST', body: JSON.stringify({ text }) }),
+  importDictionary: (text: string) =>
+    invoke<{ status: string; count: number; message: string }>('text:dictionary:import', '/text/dictionary/import', { method: 'POST', body: JSON.stringify({ text }) }),
   
   // Dummy implementations for PropertyPanel
-  suggestTags: async (content: string) => {
-    console.log('Dummy suggestTags called with content length:', content.length);
-    return { tags: [] as string[] };
-  },
+  suggestTags: (content: string) => 
+    invoke<{ tags: string[] }>('ai:suggest-tags', '/ai/suggest-tags', { method: 'POST', body: JSON.stringify({ content }) }),
   updateNoteProperty: async (noteId: number, propertyId: number, payload: any) => {
     console.log('Dummy updateNoteProperty called for note:', noteId, 'propertyId:', propertyId, 'payload:', payload);
     return { id: propertyId, ...payload } as NoteProperty;

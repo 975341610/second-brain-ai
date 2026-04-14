@@ -1,0 +1,3656 @@
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Uses proxy env variable no_proxy == 'snssdk.com,.volcengine.com,.larkoffice.com,.feishu.cn,.zijieapi.com,.tesla.com,.tesla.cn,.byteimg.com,.baidu.com,.byted.org,.bytedance.net,localhost,127.0.0.1,::1,10.0.0.0/8,127.0.0.0/8,fd00::/8,100.64.0.0/10,fe80::/10,172.16.0.0/12,169.254.0.0/16,192.168.0.0/16'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1:8765...
+* Connected to 127.0.0.1 (127.0.0.1) port 8765 (#0)
+> POST /api/ai/inline HTTP/1.1
+> Host: 127.0.0.1:8765
+> User-Agent: curl/7.88.1
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 3016
+> 
+} [3016 bytes data]
+100  3016    0     0  100  3016      0   2509  0:00:01  0:00:01 --:--:--  2511< HTTP/1.1 200 OK
+< date: Sun, 12 Apr 2026 06:44:53 GMT
+< server: uvicorn
+< x-accel-buffering: no
+< cache-control: no-cache
+< connection: keep-alive
+< content-type: text/event-stream
+< transfer-encoding: chunked
+< 
+{ [4113 bytes data]
+: ping                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+100  7121    0  4105  100  3016   2246   1650  0:00:01  0:00:01 --:--:--  3895data: {"text": ""}
+
+100  7141    0  4125  100  3016   1458   1066  0:00:02  0:00:02 --:--:--  2524: ping
+
+100  7149    0  4133  100  3016   1079    787  0:00:03  0:00:03 --:--:--  1867100  7149    0  4133  100  3016    855    624  0:00:04  0:00:04 --:--:--  1480: ping
+
+100  7157    0  4141  100  3016    710    517  0:00:05  0:00:05 --:--:--   894data: {"text": "<"}
+
+100  7178    0  4162  100  3016    632    457  0:00:06  0:00:06 --:--:--    11data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "，"}
+
+data: {"text": "如同"}
+
+data: {"text": "这"}
+
+data: {"text": "片"}
+
+data: {"text": "深"}
+
+data: {"text": "邃"}
+
+data: {"text": "的"}
+
+data: {"text": "湖"}
+
+data: {"text": "泊"}
+
+data: {"text": "，"}
+
+data: {"text": "在"}
+
+data: {"text": "岁"}
+
+data: {"text": "月的"}
+
+data: {"text": "长"}
+
+data: {"text": "河"}
+
+data: {"text": "中"}
+
+data: {"text": "静"}
+
+data: {"text": "静"}
+
+100  7686    0  4670  100  3016    636    411  0:00:07  0:00:07 --:--:--   120data: {"text": "地"}
+
+data: {"text": "沉"}
+
+data: {"text": "淀"}
+
+data: {"text": "，"}
+
+data: {"text": "其"}
+
+data: {"text": "光"}
+
+data: {"text": "芒"}
+
+data: {"text": "并非"}
+
+data: {"text": "一"}
+
+data: {"text": "闪"}
+
+data: {"text": "而"}
+
+data: {"text": "逝"}
+
+data: {"text": "的"}
+
+data: {"text": "绚"}
+
+data: {"text": "烂"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "渗透"}
+
+data: {"text": "到"}
+
+data: {"text": "生命"}
+
+data: {"text": "肌"}
+
+data: {"text": "理"}
+
+data: {"text": "的"}
+
+data: {"text": "每一个"}
+
+data: {"text": "角落"}
+
+data: {"text": "。"}
+
+data: {"text": "它"}
+
+data: {"text": "不是"}
+
+100  8354    0  5338  100  3016    641    362  0:00:08  0:00:08 --:--:--   268data: {"text": "一种"}
+
+data: {"text": "需要"}
+
+data: {"text": "高"}
+
+data: {"text": "声"}
+
+data: {"text": "宣告"}
+
+data: {"text": "的"}
+
+data: {"text": "宣言"}
+
+data: {"text": "，"}
+
+data: {"text": "而"}
+
+data: {"text": "是一种"}
+
+data: {"text": "潜"}
+
+data: {"text": "移"}
+
+data: {"text": "默"}
+
+data: {"text": "化的"}
+
+data: {"text": "影响"}
+
+data: {"text": "，"}
+
+data: {"text": "一种"}
+
+data: {"text": "润"}
+
+data: {"text": "物"}
+
+data: {"text": "细"}
+
+data: {"text": "无"}
+
+data: {"text": "声"}
+
+data: {"text": "的"}
+
+data: {"text": "滋"}
+
+data: {"text": "养"}
+
+data: {"text": "，"}
+
+data: {"text": "让"}
+
+data: {"text": "子"}
+
+100  9025    0  6009  100  3016    644    323  0:00:09  0:00:09 --:--:--   417data: {"text": "孙"}
+
+data: {"text": "后"}
+
+data: {"text": "代"}
+
+data: {"text": "在"}
+
+data: {"text": "成"}
+
+data: {"text": "长的"}
+
+data: {"text": "道路"}
+
+data: {"text": "上"}
+
+data: {"text": "，"}
+
+data: {"text": "拥有"}
+
+data: {"text": "抵"}
+
+data: {"text": "御"}
+
+data: {"text": "风"}
+
+data: {"text": "浪"}
+
+data: {"text": "的"}
+
+data: {"text": "内在"}
+
+data: {"text": "力量"}
+
+data: {"text": "。"}
+
+data: {"text": "我们将"}
+
+data: {"text": "深入"}
+
+data: {"text": "探索"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "在"}
+
+data: {"text": "不同"}
+
+data: {"text": "的人生"}
+
+data: {"text": "阶段"}
+
+data: {"text": "所"}
+
+100  9708    0  6692  100  3016    648    292  0:00:10  0:00:10 --:--:--   568data: {"text": "扮演"}
+
+data: {"text": "的"}
+
+data: {"text": "复杂"}
+
+data: {"text": "角色"}
+
+data: {"text": "，"}
+
+data: {"text": "以及"}
+
+data: {"text": "它"}
+
+data: {"text": "如何"}
+
+data: {"text": "以"}
+
+data: {"text": "多"}
+
+data: {"text": "维"}
+
+data: {"text": "度的"}
+
+data: {"text": "形式"}
+
+data: {"text": "，"}
+
+data: {"text": "塑造"}
+
+data: {"text": "着"}
+
+data: {"text": "一个"}
+
+data: {"text": "完整"}
+
+data: {"text": "、"}
+
+data: {"text": "坚"}
+
+data: {"text": "韧"}
+
+data: {"text": "且"}
+
+data: {"text": "充满"}
+
+data: {"text": "同"}
+
+data: {"text": "理"}
+
+data: {"text": "心的"}
+
+data: {"text": "个体"}
+
+data: {"text": "。</"}
+
+100 10393    0  7377  100  3016    649    265  0:00:11  0:00:11 --:--:--   673data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "###"}
+
+data: {"text": " 一"}
+
+data: {"text": "、"}
+
+data: {"text": "奠"}
+
+data: {"text": "基"}
+
+data: {"text": "期的"}
+
+data: {"text": "坚"}
+
+data: {"text": "实"}
+
+data: {"text": "支撑"}
+
+data: {"text": "："}
+
+data: {"text": "从"}
+
+data: {"text": "蹒"}
+
+data: {"text": "跚"}
+
+data: {"text": "学"}
+
+data: {"text": "步"}
+
+data: {"text": "到"}
+
+data: {"text": "初步"}
+
+data: {"text": "探索"}
+
+data: {"text": "</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+100 11013    0  7997  100  3016    649    245  0:00:12  0:00:12 --:--:--   669data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "在"}
+
+data: {"text": "孩子"}
+
+data: {"text": "生命"}
+
+data: {"text": "最初"}
+
+data: {"text": "的"}
+
+data: {"text": "萌"}
+
+data: {"text": "芽"}
+
+data: {"text": "期"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "的角色"}
+
+data: {"text": "更"}
+
+data: {"text": "像"}
+
+data: {"text": "是一"}
+
+data: {"text": "座"}
+
+data: {"text": "稳"}
+
+data: {"text": "固"}
+
+data: {"text": "的山"}
+
+data: {"text": "峰"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "提供的"}
+
+data: {"text": "不是"}
+
+data: {"text": "即"}
+
+data: {"text": "时的"}
+
+data: {"text": "安慰"}
+
+100 11735    0  8719  100  3016    654    226  0:00:13  0:00:13 --:--:--   676data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "长"}
+
+data: {"text": "期的"}
+
+data: {"text": "、"}
+
+data: {"text": "稳定的"}
+
+data: {"text": "存在"}
+
+data: {"text": "感"}
+
+data: {"text": "。"}
+
+data: {"text": "当"}
+
+data: {"text": "孩子"}
+
+data: {"text": "第一次"}
+
+data: {"text": "尝试"}
+
+data: {"text": "行走"}
+
+data: {"text": "，"}
+
+data: {"text": "跌"}
+
+data: {"text": "倒"}
+
+data: {"text": "时"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "的"}
+
+data: {"text": "反应"}
+
+data: {"text": "是"}
+
+data: {"text": "迅速"}
+
+data: {"text": "地"}
+
+data: {"text": "将"}
+
+data: {"text": "自己"}
+
+data: {"text": "置"}
+
+data: {"text": "于"}
+
+100 12444    0  9428  100  3016    658    210  0:00:14  0:00:14 --:--:--   684data: {"text": "孩子的"}
+
+data: {"text": "保护"}
+
+data: {"text": "之下"}
+
+data: {"text": "，"}
+
+data: {"text": "那"}
+
+data: {"text": "份"}
+
+data: {"text": "肌肉"}
+
+data: {"text": "的"}
+
+data: {"text": "紧"}
+
+data: {"text": "绷"}
+
+data: {"text": "和"}
+
+data: {"text": "身体"}
+
+data: {"text": "的"}
+
+data: {"text": "稳定"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "孩子"}
+
+data: {"text": "第一次"}
+
+data: {"text": "体验"}
+
+data: {"text": "到"}
+
+data: {"text": "“"}
+
+data: {"text": "安全"}
+
+data: {"text": "”"}
+
+data: {"text": "的"}
+
+data: {"text": "定义"}
+
+data: {"text": "。"}
+
+data: {"text": "这种"}
+
+data: {"text": "安全"}
+
+data: {"text": "感"}
+
+100 13156    0 10140  100  3016    661    196  0:00:15  0:00:15 --:--:--   687data: {"text": "并非"}
+
+data: {"text": "虚"}
+
+data: {"text": "幻"}
+
+data: {"text": "，"}
+
+data: {"text": "它"}
+
+data: {"text": "建立"}
+
+data: {"text": "在"}
+
+data: {"text": "父亲"}
+
+data: {"text": "身上"}
+
+data: {"text": "那"}
+
+data: {"text": "份"}
+
+data: {"text": "不可"}
+
+data: {"text": "动"}
+
+data: {"text": "摇"}
+
+data: {"text": "的"}
+
+data: {"text": "可靠"}
+
+data: {"text": "之上"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "教会"}
+
+data: {"text": "孩子"}
+
+data: {"text": "，"}
+
+data: {"text": "跌"}
+
+data: {"text": "倒"}
+
+data: {"text": "不是"}
+
+data: {"text": "终"}
+
+data: {"text": "点"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+100 13856    0 10840  100  3016    664    184  0:00:16  0:00:16 --:--:--   699data: {"text": "重新"}
+
+data: {"text": "站"}
+
+data: {"text": "立"}
+
+data: {"text": "的机会"}
+
+data: {"text": "；"}
+
+data: {"text": "挫"}
+
+data: {"text": "折"}
+
+data: {"text": "不是"}
+
+data: {"text": "失败"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "需要"}
+
+data: {"text": "调整"}
+
+data: {"text": "步伐"}
+
+data: {"text": "的方向"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "在"}
+
+data: {"text": "探索"}
+
+data: {"text": "世界的"}
+
+data: {"text": "初期"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "的"}
+
+data: {"text": "陪伴"}
+
+100 14588    0 11572  100  3016    668    174  0:00:17  0:00:17 --:--:--   714data: {"text": "是"}
+
+data: {"text": "鼓励"}
+
+data: {"text": "孩子"}
+
+data: {"text": "迈"}
+
+data: {"text": "出"}
+
+data: {"text": "第一"}
+
+data: {"text": "步"}
+
+data: {"text": "的"}
+
+data: {"text": "推"}
+
+data: {"text": "力"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "可能"}
+
+data: {"text": "不"}
+
+data: {"text": "直接"}
+
+data: {"text": "给出"}
+
+data: {"text": "答案"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "提供"}
+
+data: {"text": "一个"}
+
+data: {"text": "观察"}
+
+data: {"text": "世界的"}
+
+data: {"text": "视角"}
+
+data: {"text": "——"}
+
+data: {"text": "教"}
+
+data: {"text": "导"}
+
+data: {"text": "孩子"}
+
+100 15280    0 12264  100  3016    670    164  0:00:18  0:00:18 --:--:--   711data: {"text": "用"}
+
+data: {"text": "眼睛"}
+
+data: {"text": "去"}
+
+data: {"text": "观察"}
+
+data: {"text": "细节"}
+
+data: {"text": "，"}
+
+data: {"text": "用"}
+
+data: {"text": "耳朵"}
+
+data: {"text": "去"}
+
+data: {"text": "倾"}
+
+data: {"text": "听"}
+
+data: {"text": "周围"}
+
+data: {"text": "的声音"}
+
+data: {"text": "。"}
+
+data: {"text": "这种"}
+
+data: {"text": "引导"}
+
+data: {"text": "，"}
+
+data: {"text": "培养"}
+
+data: {"text": "了"}
+
+data: {"text": "孩子"}
+
+data: {"text": "的好"}
+
+data: {"text": "奇"}
+
+data: {"text": "心"}
+
+data: {"text": "和"}
+
+data: {"text": "独立"}
+
+data: {"text": "思考"}
+
+data: {"text": "的"}
+
+data: {"text": "萌"}
+
+data: {"text": "芽"}
+
+data: {"text": "。"}
+
+100 16012    0 12996  100  3016    673    156  0:00:19  0:00:19 --:--:--   713data: {"text": "他"}
+
+data: {"text": "允许"}
+
+data: {"text": "孩子"}
+
+data: {"text": "在"}
+
+data: {"text": "探索"}
+
+data: {"text": "过程中"}
+
+data: {"text": "犯"}
+
+data: {"text": "错"}
+
+data: {"text": "，"}
+
+data: {"text": "因为"}
+
+data: {"text": "他"}
+
+data: {"text": "深"}
+
+data: {"text": "知"}
+
+data: {"text": "，"}
+
+data: {"text": "每一次"}
+
+data: {"text": "尝试"}
+
+data: {"text": "，"}
+
+data: {"text": "无论"}
+
+data: {"text": "结果"}
+
+data: {"text": "如何"}
+
+data: {"text": "，"}
+
+data: {"text": "都是"}
+
+data: {"text": "知识"}
+
+data: {"text": "积累"}
+
+data: {"text": "的一部分"}
+
+data: {"text": "。"}
+
+data: {"text": "这份"}
+
+data: {"text": "“"}
+
+data: {"text": "容"}
+
+data: {"text": "忍"}
+
+100 16759    0 13743  100  3016    676    148  0:00:20  0:00:20 --:--:--   723data: {"text": "失败"}
+
+data: {"text": "”"}
+
+data: {"text": "的"}
+
+data: {"text": "姿"}
+
+data: {"text": "态"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "最"}
+
+data: {"text": "温柔"}
+
+data: {"text": "的"}
+
+data: {"text": "底"}
+
+data: {"text": "色"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "这种"}
+
+data: {"text": "早期"}
+
+data: {"text": "阶段"}
+
+data: {"text": "的"}
+
+data: {"text": "互动"}
+
+data: {"text": "，"}
+
+data: {"text": "往往"}
+
+data: {"text": "充满了"}
+
+100 17444    0 14428  100  3016    676    141  0:00:21  0:00:21 --:--:--   715data: {"text": "身体"}
+
+data: {"text": "的"}
+
+data: {"text": "接触"}
+
+data: {"text": "和"}
+
+data: {"text": "实际"}
+
+data: {"text": "的"}
+
+data: {"text": "引导"}
+
+data: {"text": "。"}
+
+data: {"text": "一个"}
+
+data: {"text": "简单的"}
+
+data: {"text": "拥"}
+
+data: {"text": "抱"}
+
+data: {"text": "，"}
+
+data: {"text": "一次"}
+
+data: {"text": "耐"}
+
+data: {"text": "心的"}
+
+data: {"text": "搀"}
+
+data: {"text": "扶"}
+
+data: {"text": "，"}
+
+data: {"text": "一次"}
+
+data: {"text": "对"}
+
+data: {"text": "新"}
+
+data: {"text": "事物"}
+
+data: {"text": "的好"}
+
+data: {"text": "奇"}
+
+data: {"text": "心"}
+
+data: {"text": "，"}
+
+data: {"text": "都在"}
+
+data: {"text": "无"}
+
+100 18150    0 15134  100  3016    677    135  0:00:22  0:00:22 --:--:--   710data: {"text": "声"}
+
+data: {"text": "地"}
+
+data: {"text": "告诉"}
+
+data: {"text": "孩子"}
+
+data: {"text": "：“"}
+
+data: {"text": "你"}
+
+data: {"text": "在这里"}
+
+data: {"text": "很"}
+
+data: {"text": "安全"}
+
+data: {"text": "，"}
+
+data: {"text": "你的"}
+
+data: {"text": "存在"}
+
+data: {"text": "被"}
+
+data: {"text": "接"}
+
+data: {"text": "纳"}
+
+data: {"text": "。”"}
+
+data: {"text": "这些"}
+
+data: {"text": "微"}
+
+data: {"text": "小的"}
+
+data: {"text": "、"}
+
+data: {"text": "重复"}
+
+data: {"text": "的"}
+
+data: {"text": "互动"}
+
+data: {"text": "，"}
+
+data: {"text": "如同"}
+
+data: {"text": "生命的"}
+
+data: {"text": "节奏"}
+
+data: {"text": "，"}
+
+data: {"text": "为"}
+
+data: {"text": "孩子"}
+
+100 18894    0 15878  100  3016    680    129  0:00:23  0:00:23 --:--:--   718data: {"text": "构建"}
+
+data: {"text": "起"}
+
+data: {"text": "最初"}
+
+data: {"text": "的"}
+
+data: {"text": "自我"}
+
+data: {"text": "价值"}
+
+data: {"text": "感"}
+
+data: {"text": "——"}
+
+data: {"text": "“"}
+
+data: {"text": "我"}
+
+data: {"text": "能够"}
+
+data: {"text": "应对"}
+
+data: {"text": "世界"}
+
+data: {"text": "”，"}
+
+data: {"text": "这种"}
+
+data: {"text": "自信"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "未来"}
+
+data: {"text": "所有"}
+
+data: {"text": "成就"}
+
+data: {"text": "的"}
+
+data: {"text": "基"}
+
+data: {"text": "石"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n\n"}
+
+100 19579    0 16563  100  3016    680    123  0:00:24  0:00:24 --:--:--   711data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "###"}
+
+data: {"text": " 二"}
+
+data: {"text": "、"}
+
+data: {"text": "成"}
+
+data: {"text": "长期"}
+
+data: {"text": "中的"}
+
+data: {"text": "导航"}
+
+data: {"text": "与"}
+
+data: {"text": "边界"}
+
+data: {"text": "的"}
+
+data: {"text": "塑造"}
+
+data: {"text": "</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "随着"}
+
+data: {"text": "孩子"}
+
+data: {"text": "进入"}
+
+data: {"text": "青春"}
+
+data: {"text": "期"}
+
+data: {"text": "和"}
+
+data: {"text": "成"}
+
+100 20233    0 17217  100  3016    679    119  0:00:25  0:00:25 --:--:--   692data: {"text": "长期"}
+
+data: {"text": "，"}
+
+data: {"text": "世界的"}
+
+data: {"text": "复杂"}
+
+data: {"text": "性"}
+
+data: {"text": "开始"}
+
+data: {"text": "增加"}
+
+data: {"text": "，"}
+
+data: {"text": "情感"}
+
+data: {"text": "的"}
+
+data: {"text": "起"}
+
+data: {"text": "伏"}
+
+data: {"text": "也"}
+
+data: {"text": "愈"}
+
+data: {"text": "发"}
+
+data: {"text": "剧"}
+
+data: {"text": "烈"}
+
+data: {"text": "。"}
+
+data: {"text": "此时"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "的角色"}
+
+data: {"text": "开始"}
+
+data: {"text": "从"}
+
+data: {"text": "单纯"}
+
+data: {"text": "的"}
+
+data: {"text": "保护"}
+
+data: {"text": "者"}
+
+data: {"text": "，"}
+
+100 20942    0 17926  100  3016    681    114  0:00:26  0:00:26 --:--:--   700data: {"text": "转"}
+
+data: {"text": "变为"}
+
+data: {"text": "一个"}
+
+data: {"text": "“"}
+
+data: {"text": "思想"}
+
+data: {"text": "的"}
+
+data: {"text": "引"}
+
+data: {"text": "路"}
+
+data: {"text": "人"}
+
+data: {"text": "”"}
+
+data: {"text": "和"}
+
+data: {"text": "“"}
+
+data: {"text": "价值观"}
+
+data: {"text": "的"}
+
+data: {"text": "塑造"}
+
+data: {"text": "者"}
+
+data: {"text": "”。"}
+
+data: {"text": "他"}
+
+data: {"text": "不再"}
+
+data: {"text": "仅仅"}
+
+data: {"text": "是"}
+
+data: {"text": "身体"}
+
+data: {"text": "上的"}
+
+data: {"text": "支撑"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "开始"}
+
+100 21605    0 18589  100  3016    680    110  0:00:27  0:00:27 --:--:--   693data: {"text": "深入"}
+
+data: {"text": "地"}
+
+data: {"text": "与"}
+
+data: {"text": "孩子"}
+
+data: {"text": "探讨"}
+
+data: {"text": "那些"}
+
+data: {"text": "宏"}
+
+data: {"text": "大的"}
+
+data: {"text": "问题"}
+
+data: {"text": "："}
+
+data: {"text": "什么是"}
+
+data: {"text": "正"}
+
+data: {"text": "义"}
+
+data: {"text": "？"}
+
+data: {"text": "什么是"}
+
+data: {"text": "责任"}
+
+data: {"text": "？"}
+
+data: {"text": "什么是"}
+
+data: {"text": "正直"}
+
+data: {"text": "？"}
+
+data: {"text": "</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "在"}
+
+data: {"text": "面对"}
+
+100 22305    0 19289  100  3016    680    106  0:00:28  0:00:28 --:--:--   683data: {"text": "同"}
+
+data: {"text": "伴"}
+
+data: {"text": "压力"}
+
+data: {"text": "、"}
+
+data: {"text": "身份"}
+
+data: {"text": "认"}
+
+data: {"text": "同"}
+
+data: {"text": "的"}
+
+data: {"text": "迷"}
+
+data: {"text": "茫"}
+
+data: {"text": "时"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "提供的"}
+
+data: {"text": "不是"}
+
+data: {"text": "一"}
+
+data: {"text": "味的"}
+
+data: {"text": "赞"}
+
+data: {"text": "同"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "批判"}
+
+data: {"text": "性"}
+
+data: {"text": "思维"}
+
+data: {"text": "的"}
+
+data: {"text": "工具"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+100 22982    0 19966  100  3016    680    102  0:00:29  0:00:29 --:--:--   680data: {"text": "会"}
+
+data: {"text": "引导"}
+
+data: {"text": "孩子"}
+
+data: {"text": "去"}
+
+data: {"text": "审"}
+
+data: {"text": "视"}
+
+data: {"text": "周围"}
+
+data: {"text": "的声音"}
+
+data: {"text": "，"}
+
+data: {"text": "学会"}
+
+data: {"text": "区分"}
+
+data: {"text": "什么是"}
+
+data: {"text": "虚"}
+
+data: {"text": "伪"}
+
+data: {"text": "的"}
+
+data: {"text": "潮流"}
+
+data: {"text": "，"}
+
+data: {"text": "什么是"}
+
+data: {"text": "真正"}
+
+data: {"text": "有"}
+
+data: {"text": "价值"}
+
+data: {"text": "的"}
+
+data: {"text": "追求"}
+
+data: {"text": "。"}
+
+data: {"text": "这种"}
+
+data: {"text": "“"}
+
+data: {"text": "独立"}
+
+100 23654    0 20638  100  3016    680     99  0:00:30  0:00:30 --:--:--   686data: {"text": "思考"}
+
+data: {"text": "”"}
+
+data: {"text": "的能力"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "社会"}
+
+data: {"text": "生活"}
+
+data: {"text": "中的"}
+
+data: {"text": "生存"}
+
+data: {"text": "技能"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "教"}
+
+data: {"text": "导"}
+
+data: {"text": "孩子"}
+
+data: {"text": "建立"}
+
+data: {"text": "清晰"}
+
+data: {"text": "的"}
+
+data: {"text": "边界"}
+
+data: {"text": "感"}
+
+data: {"text": "："}
+
+data: {"text": "知道"}
+
+data: {"text": "什么"}
+
+data: {"text": "可以"}
+
+data: {"text": "接受"}
+
+data: {"text": "，"}
+
+data: {"text": "什么"}
+
+data: {"text": "不能"}
+
+data: {"text": "妥"}
+
+100 24375    0 21359  100  3016    681     96  0:00:31  0:00:31 --:--:--   686data: {"text": "协"}
+
+data: {"text": "。"}
+
+data: {"text": "这种"}
+
+data: {"text": "对"}
+
+data: {"text": "界"}
+
+data: {"text": "限"}
+
+data: {"text": "的"}
+
+data: {"text": "尊重"}
+
+data: {"text": "，"}
+
+data: {"text": "不仅"}
+
+data: {"text": "保护"}
+
+data: {"text": "了"}
+
+data: {"text": "孩子的"}
+
+data: {"text": "内心"}
+
+data: {"text": "世界"}
+
+data: {"text": "，"}
+
+data: {"text": "也"}
+
+data: {"text": "让他们"}
+
+data: {"text": "能够在"}
+
+data: {"text": "充满"}
+
+data: {"text": "诱"}
+
+data: {"text": "惑"}
+
+data: {"text": "的世界"}
+
+data: {"text": "中"}
+
+data: {"text": "，"}
+
+data: {"text": "保持"}
+
+data: {"text": "清"}
+
+data: {"text": "醒"}
+
+100 25067    0 22051  100  3016    681     93  0:00:32  0:00:32 --:--:--   688data: {"text": "的"}
+
+data: {"text": "判断"}
+
+data: {"text": "力"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "父亲"}
+
+data: {"text": "的"}
+
+data: {"text": "“"}
+
+data: {"text": "沉"}
+
+data: {"text": "稳"}
+
+data: {"text": "”"}
+
+data: {"text": "在此"}
+
+data: {"text": "刻"}
+
+data: {"text": "展现"}
+
+data: {"text": "出"}
+
+data: {"text": "其"}
+
+data: {"text": "最"}
+
+data: {"text": "深刻"}
+
+data: {"text": "的"}
+
+data: {"text": "魅力"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "不会"}
+
+100 25723    0 22707  100  3016    681     90  0:00:33  0:00:33 --:--:--   682data: {"text": "急"}
+
+data: {"text": "于"}
+
+data: {"text": "给出"}
+
+data: {"text": "“"}
+
+data: {"text": "标准"}
+
+data: {"text": "答案"}
+
+data: {"text": "”，"}
+
+data: {"text": "而是"}
+
+data: {"text": "提供"}
+
+data: {"text": "一个"}
+
+data: {"text": "框架"}
+
+data: {"text": "，"}
+
+data: {"text": "让"}
+
+data: {"text": "孩子"}
+
+data: {"text": "自己"}
+
+data: {"text": "去"}
+
+data: {"text": "构建"}
+
+data: {"text": "自己的"}
+
+data: {"text": "哲学"}
+
+data: {"text": "体系"}
+
+data: {"text": "。"}
+
+data: {"text": "这种"}
+
+data: {"text": "自主"}
+
+data: {"text": "探索"}
+
+data: {"text": "的过程"}
+
+data: {"text": "是"}
+
+data: {"text": "艰难"}
+
+100 26407    0 23391  100  3016    681     87  0:00:34  0:00:34 --:--:--   685data: {"text": "的"}
+
+data: {"text": "，"}
+
+data: {"text": "充满了"}
+
+data: {"text": "试"}
+
+data: {"text": "错"}
+
+data: {"text": "和"}
+
+data: {"text": "自我"}
+
+data: {"text": "怀疑"}
+
+data: {"text": "。"}
+
+data: {"text": "但"}
+
+data: {"text": "正是"}
+
+data: {"text": "这种"}
+
+data: {"text": "由"}
+
+data: {"text": "内"}
+
+data: {"text": "而"}
+
+data: {"text": "外"}
+
+data: {"text": "产生的"}
+
+data: {"text": "信念"}
+
+data: {"text": "，"}
+
+data: {"text": "使得"}
+
+data: {"text": "孩子"}
+
+data: {"text": "能够"}
+
+data: {"text": "从"}
+
+data: {"text": "外部"}
+
+data: {"text": "的"}
+
+data: {"text": "赞"}
+
+100 27044    0 24028  100  3016    680     85  0:00:35  0:00:35 --:--:--   678data: {"text": "扬"}
+
+data: {"text": "中"}
+
+data: {"text": "解"}
+
+data: {"text": "脱"}
+
+data: {"text": "出来"}
+
+data: {"text": "，"}
+
+data: {"text": "找到"}
+
+data: {"text": "属于"}
+
+data: {"text": "自己的"}
+
+data: {"text": "、"}
+
+data: {"text": "坚"}
+
+data: {"text": "实的"}
+
+data: {"text": "内在"}
+
+data: {"text": "驱动"}
+
+data: {"text": "力"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "同时"}
+
+data: {"text": "，"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "也"}
+
+100 27683    0 24667  100  3016    679     83  0:00:36  0:00:36 --:--:--   663data: {"text": "体"}
+
+data: {"text": "现在"}
+
+data: {"text": "对"}
+
+data: {"text": "“"}
+
+data: {"text": "担当"}
+
+data: {"text": "”"}
+
+data: {"text": "的"}
+
+data: {"text": "深刻"}
+
+data: {"text": "诠"}
+
+data: {"text": "释"}
+
+data: {"text": "上"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "教会"}
+
+data: {"text": "孩子"}
+
+data: {"text": "，"}
+
+data: {"text": "责任"}
+
+data: {"text": "不是"}
+
+data: {"text": "一种"}
+
+data: {"text": "负担"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "赋予"}
+
+data: {"text": "生命"}
+
+data: {"text": "意义"}
+
+data: {"text": "的"}
+
+data: {"text": "荣誉"}
+
+100 28346    0 25330  100  3016    678     80  0:00:37  0:00:37 --:--:--   656data: {"text": "。"}
+
+data: {"text": "这种"}
+
+data: {"text": "责任"}
+
+data: {"text": "感"}
+
+data: {"text": "源"}
+
+data: {"text": "于"}
+
+data: {"text": "对"}
+
+data: {"text": "家庭"}
+
+data: {"text": "的"}
+
+data: {"text": "承诺"}
+
+data: {"text": "，"}
+
+data: {"text": "也"}
+
+data: {"text": "延伸"}
+
+data: {"text": "到"}
+
+data: {"text": "对"}
+
+data: {"text": "社会"}
+
+data: {"text": "的一"}
+
+data: {"text": "份"}
+
+data: {"text": "微"}
+
+data: {"text": "小的"}
+
+data: {"text": "关"}
+
+data: {"text": "怀"}
+
+data: {"text": "——"}
+
+data: {"text": "理解"}
+
+data: {"text": "他"}
+
+data: {"text": "人的"}
+
+100 28977    0 25961  100  3016    677     78  0:00:38  0:00:38 --:--:--   651data: {"text": "处"}
+
+data: {"text": "境"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "看到"}
+
+data: {"text": "孩子"}
+
+data: {"text": "在"}
+
+data: {"text": "做"}
+
+data: {"text": "小"}
+
+data: {"text": "事"}
+
+data: {"text": "却"}
+
+data: {"text": "认真"}
+
+data: {"text": "对待"}
+
+data: {"text": "，"}
+
+data: {"text": "这种"}
+
+data: {"text": "对"}
+
+data: {"text": "“"}
+
+data: {"text": "认真"}
+
+data: {"text": "”"}
+
+data: {"text": "的"}
+
+data: {"text": "尊重"}
+
+data: {"text": "，"}
+
+data: {"text": "比"}
+
+data: {"text": "任何"}
+
+data: {"text": "表"}
+
+data: {"text": "扬"}
+
+100 29599    0 26583  100  3016    675     76  0:00:39  0:00:39 --:--:--   637data: {"text": "都"}
+
+data: {"text": "更有"}
+
+data: {"text": "力量"}
+
+data: {"text": "。"}
+
+data: {"text": "这份"}
+
+data: {"text": "被"}
+
+data: {"text": "看见"}
+
+data: {"text": "和"}
+
+data: {"text": "认可"}
+
+data: {"text": "，"}
+
+data: {"text": "让"}
+
+data: {"text": "孩子"}
+
+data: {"text": "明白"}
+
+data: {"text": "，"}
+
+data: {"text": "成为"}
+
+data: {"text": "一个"}
+
+data: {"text": "有"}
+
+data: {"text": "价值"}
+
+data: {"text": "的人"}
+
+data: {"text": "，"}
+
+data: {"text": "在于"}
+
+data: {"text": "其"}
+
+data: {"text": "行动"}
+
+data: {"text": "的"}
+
+data: {"text": "诚"}
+
+data: {"text": "意"}
+
+100 30236    0 27220  100  3016    674     74  0:00:40  0:00:40 --:--:--   633data: {"text": "和"}
+
+data: {"text": "坚持"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "###"}
+
+data: {"text": " 三"}
+
+data: {"text": "、"}
+
+data: {"text": "成年"}
+
+data: {"text": "后的"}
+
+data: {"text": "回"}
+
+data: {"text": "响"}
+
+data: {"text": "："}
+
+data: {"text": "无"}
+
+data: {"text": "条件的"}
+
+data: {"text": "接"}
+
+data: {"text": "纳"}
+
+data: {"text": "与"}
+
+data: {"text": "精神"}
+
+data: {"text": "的"}
+
+data: {"text": "锚"}
+
+data: {"text": "定"}
+
+100 30846    0 27830  100  3016    673     72  0:00:41  0:00:41 --:--:--   628data: {"text": "</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "当"}
+
+data: {"text": "孩子"}
+
+data: {"text": "逐渐"}
+
+data: {"text": "走向"}
+
+data: {"text": "成熟"}
+
+data: {"text": "，"}
+
+data: {"text": "独立"}
+
+data: {"text": "于"}
+
+data: {"text": "家庭"}
+
+data: {"text": "，"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "也"}
+
+data: {"text": "完成了"}
+
+data: {"text": "从"}
+
+data: {"text": "“"}
+
+data: {"text": "直接"}
+
+data: {"text": "的"}
+
+data: {"text": "保护"}
+
+100 31462    0 28446  100  3016    671     71  0:00:42  0:00:42 --:--:--   622data: {"text": "”"}
+
+data: {"text": "到"}
+
+data: {"text": "“"}
+
+data: {"text": "深"}
+
+data: {"text": "沉"}
+
+data: {"text": "的精神"}
+
+data: {"text": "支持"}
+
+data: {"text": "”"}
+
+data: {"text": "的"}
+
+data: {"text": "转变"}
+
+data: {"text": "。"}
+
+data: {"text": "此时"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "提供的"}
+
+data: {"text": "最"}
+
+data: {"text": "宝"}
+
+data: {"text": "贵"}
+
+data: {"text": "礼物"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "那"}
+
+data: {"text": "份"}
+
+data: {"text": "不"}
+
+data: {"text": "加"}
+
+100 32064    0 29048  100  3016    670     69  0:00:43  0:00:43 --:--:--   619data: {"text": "评"}
+
+data: {"text": "判"}
+
+data: {"text": "的"}
+
+data: {"text": "、"}
+
+data: {"text": "绝对"}
+
+data: {"text": "的"}
+
+data: {"text": "接"}
+
+data: {"text": "纳"}
+
+data: {"text": "。"}
+
+data: {"text": "无论"}
+
+data: {"text": "孩子"}
+
+data: {"text": "在"}
+
+data: {"text": "事业"}
+
+data: {"text": "上"}
+
+data: {"text": "遭遇"}
+
+data: {"text": "的"}
+
+data: {"text": "挫"}
+
+data: {"text": "折"}
+
+data: {"text": "，"}
+
+data: {"text": "无论"}
+
+data: {"text": "人"}
+
+data: {"text": "际"}
+
+data: {"text": "关系"}
+
+data: {"text": "中"}
+
+data: {"text": "经历了"}
+
+data: {"text": "多少"}
+
+data: {"text": "的"}
+
+100 32715    0 29699  100  3016    670     68  0:00:44  0:00:44 --:--:--   626data: {"text": "失"}
+
+data: {"text": "落"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "始终"}
+
+data: {"text": "是"}
+
+data: {"text": "那个"}
+
+data: {"text": "沉默"}
+
+data: {"text": "的"}
+
+data: {"text": "港"}
+
+data: {"text": "湾"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "不需要"}
+
+data: {"text": "用"}
+
+data: {"text": "语言"}
+
+data: {"text": "去"}
+
+data: {"text": "填"}
+
+data: {"text": "补"}
+
+data: {"text": "空"}
+
+data: {"text": "虚"}
+
+data: {"text": "，"}
+
+data: {"text": "他"}
+
+data: {"text": "只是"}
+
+data: {"text": "提供"}
+
+data: {"text": "一个"}
+
+data: {"text": "稳定的"}
+
+100 33372    0 30356  100  3016    669     66  0:00:45  0:00:45 --:--:--   627data: {"text": "存在"}
+
+data: {"text": "场"}
+
+data: {"text": "域"}
+
+data: {"text": "，"}
+
+data: {"text": "让"}
+
+data: {"text": "孩子"}
+
+data: {"text": "可以在"}
+
+data: {"text": "自己的"}
+
+data: {"text": "迷"}
+
+data: {"text": "茫"}
+
+data: {"text": "中"}
+
+data: {"text": "，"}
+
+data: {"text": "重新"}
+
+data: {"text": "校"}
+
+data: {"text": "准"}
+
+data: {"text": "航"}
+
+data: {"text": "向"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "这种"}
+
+data: {"text": "接"}
+
+100 33985    0 30969  100  3016    668     65  0:00:46  0:00:46 --:--:--   628data: {"text": "纳"}
+
+data: {"text": "，"}
+
+data: {"text": "是一种"}
+
+data: {"text": "深刻"}
+
+data: {"text": "的"}
+
+data: {"text": "“"}
+
+data: {"text": "无"}
+
+data: {"text": "条件的"}
+
+data: {"text": "爱"}
+
+data: {"text": "”。"}
+
+data: {"text": "它"}
+
+data: {"text": "意味着"}
+
+data: {"text": "理解"}
+
+data: {"text": "："}
+
+data: {"text": "成长"}
+
+data: {"text": "是一个"}
+
+data: {"text": "螺旋"}
+
+data: {"text": "上升"}
+
+data: {"text": "的过程"}
+
+data: {"text": "，"}
+
+data: {"text": "有"}
+
+data: {"text": "低"}
+
+data: {"text": "谷"}
+
+data: {"text": "也有"}
+
+data: {"text": "回"}
+
+data: {"text": "溯"}
+
+100 34634    0 31618  100  3016    668     63  0:00:47  0:00:47 --:--:--   636data: {"text": "。"}
+
+data: {"text": "父亲"}
+
+data: {"text": "接受"}
+
+data: {"text": "孩子"}
+
+data: {"text": "的不"}
+
+data: {"text": "完美"}
+
+data: {"text": "，"}
+
+data: {"text": "因为"}
+
+data: {"text": "他"}
+
+data: {"text": "知道"}
+
+data: {"text": "，"}
+
+data: {"text": "完美"}
+
+data: {"text": "是"}
+
+data: {"text": "虚"}
+
+data: {"text": "幻"}
+
+data: {"text": "的"}
+
+data: {"text": "，"}
+
+data: {"text": "而"}
+
+data: {"text": "真实"}
+
+data: {"text": "的存在"}
+
+data: {"text": "，"}
+
+data: {"text": "恰"}
+
+data: {"text": "恰"}
+
+data: {"text": "在于"}
+
+data: {"text": "其"}
+
+100 35245    0 32229  100  3016    667     62  0:00:48  0:00:48 --:--:--   636data: {"text": "所有的"}
+
+data: {"text": "棱"}
+
+data: {"text": "角"}
+
+data: {"text": "和"}
+
+data: {"text": "经历"}
+
+data: {"text": "。"}
+
+data: {"text": "这份"}
+
+data: {"text": "接"}
+
+data: {"text": "纳"}
+
+data: {"text": "，"}
+
+data: {"text": "释放"}
+
+data: {"text": "了"}
+
+data: {"text": "孩子"}
+
+data: {"text": "内"}
+
+data: {"text": "心的"}
+
+data: {"text": "重"}
+
+data: {"text": "压"}
+
+data: {"text": "，"}
+
+data: {"text": "让他们"}
+
+data: {"text": "敢"}
+
+data: {"text": "于"}
+
+data: {"text": "暴露"}
+
+data: {"text": "脆弱"}
+
+data: {"text": "，"}
+
+data: {"text": "去"}
+
+100 35853    0 32837  100  3016    665     61  0:00:49  0:00:49 --:--:--   627data: {"text": "体验"}
+
+data: {"text": "“"}
+
+data: {"text": "不"}
+
+data: {"text": "完美"}
+
+data: {"text": "”"}
+
+data: {"text": "的美"}
+
+data: {"text": "感"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "在"}
+
+data: {"text": "成年"}
+
+data: {"text": "后的"}
+
+data: {"text": "交流"}
+
+data: {"text": "中"}
+
+data: {"text": "，"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "变得"}
+
+data: {"text": "更加"}
+
+100 36420    0 33404  100  3016    664     59  0:00:51  0:00:50  0:00:01   613data: {"text": "内"}
+
+data: {"text": "敛"}
+
+data: {"text": "而"}
+
+data: {"text": "富有"}
+
+data: {"text": "智慧"}
+
+data: {"text": "。"}
+
+data: {"text": "那些"}
+
+data: {"text": "深"}
+
+data: {"text": "沉"}
+
+data: {"text": "的"}
+
+data: {"text": "对话"}
+
+data: {"text": "，"}
+
+data: {"text": "往往"}
+
+data: {"text": "不是"}
+
+data: {"text": "关于"}
+
+data: {"text": "表"}
+
+data: {"text": "面的"}
+
+data: {"text": "成功"}
+
+data: {"text": "学"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "关于"}
+
+data: {"text": "人"}
+
+data: {"text": "生的"}
+
+data: {"text": "意义"}
+
+100 37034    0 34018  100  3016    662     58  0:00:52  0:00:51  0:00:01   610data: {"text": "、"}
+
+data: {"text": "关于"}
+
+data: {"text": "如何"}
+
+data: {"text": "与"}
+
+data: {"text": "世界"}
+
+data: {"text": "和谐"}
+
+data: {"text": "共"}
+
+data: {"text": "处"}
+
+data: {"text": "。"}
+
+data: {"text": "父亲"}
+
+data: {"text": "分享"}
+
+data: {"text": "的"}
+
+data: {"text": "经验"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "历"}
+
+data: {"text": "经"}
+
+data: {"text": "风"}
+
+data: {"text": "雨"}
+
+data: {"text": "后"}
+
+data: {"text": "沉"}
+
+data: {"text": "淀"}
+
+data: {"text": "下来的"}
+
+data: {"text": "智慧"}
+
+100 37616    0 34600  100  3016    661     57  0:00:52  0:00:52 --:--:--   598data: {"text": "，"}
+
+data: {"text": "它们"}
+
+data: {"text": "如同"}
+
+data: {"text": "老"}
+
+data: {"text": "树"}
+
+data: {"text": "的"}
+
+data: {"text": "根"}
+
+data: {"text": "系"}
+
+data: {"text": "，"}
+
+data: {"text": "为"}
+
+data: {"text": "孩子"}
+
+data: {"text": "提供了"}
+
+data: {"text": "面对"}
+
+data: {"text": "复杂"}
+
+data: {"text": "人"}
+
+data: {"text": "生的"}
+
+data: {"text": "“"}
+
+data: {"text": "定"}
+
+data: {"text": "力"}
+
+data: {"text": "”。"}
+
+data: {"text": "他"}
+
+data: {"text": "教"}
+
+data: {"text": "导"}
+
+data: {"text": "孩子"}
+
+data: {"text": "学会"}
+
+data: {"text": "欣赏"}
+
+data: {"text": "过程"}
+
+100 38276    0 35260  100  3016    661     56  0:00:53  0:00:53 --:--:--   602data: {"text": "中的"}
+
+data: {"text": "韧"}
+
+data: {"text": "性"}
+
+data: {"text": "，"}
+
+data: {"text": "而不是"}
+
+data: {"text": "仅仅"}
+
+data: {"text": "追"}
+
+data: {"text": "逐"}
+
+data: {"text": "结果"}
+
+data: {"text": "的"}
+
+data: {"text": "辉"}
+
+data: {"text": "煌"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "###"}
+
+data: {"text": " 四"}
+
+data: {"text": "、"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+100 38835    0 35819  100  3016    659     55  0:00:54  0:00:54 --:--:--   593data: {"text": "中的"}
+
+data: {"text": "幽"}
+
+data: {"text": "默"}
+
+data: {"text": "与"}
+
+data: {"text": "人性"}
+
+data: {"text": "化的"}
+
+data: {"text": "温度"}
+
+data: {"text": "</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "然而"}
+
+data: {"text": "，"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "并非"}
+
+data: {"text": "总是"}
+
+data: {"text": "沉"}
+
+data: {"text": "重"}
+
+data: {"text": "而"}
+
+data: {"text": "严肃"}
+
+100 39399    0 36383  100  3016    657     54  0:00:55  0:00:55 --:--:--   594data: {"text": "的"}
+
+data: {"text": "。"}
+
+data: {"text": "在"}
+
+data: {"text": "生活的"}
+
+data: {"text": "重"}
+
+data: {"text": "压"}
+
+data: {"text": "之下"}
+
+data: {"text": "，"}
+
+data: {"text": "父亲"}
+
+data: {"text": "也"}
+
+data: {"text": "懂得"}
+
+data: {"text": "如何"}
+
+data: {"text": "用"}
+
+data: {"text": "幽"}
+
+data: {"text": "默"}
+
+data: {"text": "感"}
+
+data: {"text": "来"}
+
+data: {"text": "软"}
+
+data: {"text": "化"}
+
+data: {"text": "一切"}
+
+data: {"text": "。"}
+
+data: {"text": "他"}
+
+data: {"text": "那"}
+
+data: {"text": "略"}
+
+data: {"text": "带"}
+
+100 39995    0 36979  100  3016    656     53  0:00:56  0:00:56 --:--:--   592data: {"text": "叛"}
+
+data: {"text": "逆"}
+
+data: {"text": "的"}
+
+data: {"text": "玩笑"}
+
+data: {"text": "，"}
+
+data: {"text": "并非"}
+
+data: {"text": "是"}
+
+data: {"text": "轻"}
+
+data: {"text": "浮"}
+
+data: {"text": "的"}
+
+data: {"text": "嘲"}
+
+data: {"text": "讽"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "对"}
+
+data: {"text": "生活"}
+
+data: {"text": "中的"}
+
+data: {"text": "严肃"}
+
+data: {"text": "性"}
+
+data: {"text": "的一种"}
+
+data: {"text": "巧妙"}
+
+data: {"text": "解"}
+
+data: {"text": "构"}
+
+data: {"text": "。"}
+
+data: {"text": "这种"}
+
+100 40600    0 37584  100  3016    655     52  0:00:58  0:00:57  0:00:01   593data: {"text": "“"}
+
+data: {"text": "硬"}
+
+data: {"text": "朗"}
+
+data: {"text": "”"}
+
+data: {"text": "的"}
+
+data: {"text": "幽"}
+
+data: {"text": "默"}
+
+data: {"text": "，"}
+
+data: {"text": "像"}
+
+data: {"text": "一"}
+
+data: {"text": "剂"}
+
+data: {"text": "清"}
+
+data: {"text": "凉"}
+
+data: {"text": "的"}
+
+data: {"text": "剂"}
+
+data: {"text": "，"}
+
+data: {"text": "让"}
+
+data: {"text": "孩子"}
+
+data: {"text": "在"}
+
+data: {"text": "面对"}
+
+data: {"text": "生活的"}
+
+data: {"text": "严"}
+
+data: {"text": "峻"}
+
+data: {"text": "时"}
+
+100 41164    0 38148  100  3016    653     51  0:00:59  0:00:58  0:00:01   578data: {"text": "，"}
+
+data: {"text": "能够"}
+
+data: {"text": "找到"}
+
+data: {"text": "喘"}
+
+data: {"text": "息"}
+
+data: {"text": "的空间"}
+
+data: {"text": "，"}
+
+data: {"text": "笑"}
+
+data: {"text": "一笑"}
+
+data: {"text": "，"}
+
+data: {"text": "重新"}
+
+data: {"text": "积"}
+
+data: {"text": "蓄"}
+
+data: {"text": "能量"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "这种"}
+
+data: {"text": "人性"}
+
+data: {"text": "化的"}
+
+data: {"text": "温度"}
+
+100 41763    0 38747  100  3016    653     50  0:01:00  0:00:59  0:00:01   585data: {"text": "，"}
+
+data: {"text": "让"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "变得"}
+
+data: {"text": "更加"}
+
+data: {"text": "立体"}
+
+data: {"text": "和"}
+
+data: {"text": "亲"}
+
+data: {"text": "切"}
+
+data: {"text": "。"}
+
+data: {"text": "它"}
+
+data: {"text": "不再"}
+
+data: {"text": "是"}
+
+data: {"text": "高"}
+
+data: {"text": "高"}
+
+data: {"text": "在"}
+
+data: {"text": "上的"}
+
+data: {"text": "权威"}
+
+data: {"text": "的"}
+
+data: {"text": "教"}
+
+data: {"text": "诲"}
+
+data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "带着"}
+
+100 42362    0 39346  100  3016    652     49  0:01:01  0:01:00  0:00:01   591data: {"text": "共"}
+
+data: {"text": "情"}
+
+data: {"text": "的力量"}
+
+data: {"text": "。"}
+
+data: {"text": "当"}
+
+data: {"text": "父亲"}
+
+data: {"text": "愿意"}
+
+data: {"text": "展现"}
+
+data: {"text": "出"}
+
+data: {"text": "自己的"}
+
+data: {"text": "脆弱"}
+
+data: {"text": "和"}
+
+data: {"text": "人性"}
+
+data: {"text": "，"}
+
+data: {"text": "孩子"}
+
+data: {"text": "才能"}
+
+data: {"text": "真正"}
+
+data: {"text": "理解"}
+
+data: {"text": "，"}
+
+data: {"text": "强大"}
+
+data: {"text": "并非"}
+
+data: {"text": "意味着"}
+
+data: {"text": "无"}
+
+data: {"text": "所"}
+
+data: {"text": "不能"}
+
+100 42991    0 39975  100  3016    651     49  0:01:01  0:01:01 --:--:--   600data: {"text": "，"}
+
+data: {"text": "而是"}
+
+data: {"text": "懂得"}
+
+data: {"text": "在"}
+
+data: {"text": "关键"}
+
+data: {"text": "时刻"}
+
+data: {"text": "伸"}
+
+data: {"text": "出"}
+
+data: {"text": "援"}
+
+data: {"text": "手"}
+
+data: {"text": "，"}
+
+data: {"text": "也"}
+
+data: {"text": "懂得"}
+
+data: {"text": "接受"}
+
+data: {"text": "自己"}
+
+data: {"text": "并非"}
+
+data: {"text": "完美"}
+
+data: {"text": "的存在"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "###"}
+
+100 43613    0 40597  100  3016    651     48  0:01:02  0:01:02 --:--:--   604data: {"text": " "}
+
+data: {"text": "结"}
+
+data: {"text": "语"}
+
+data: {"text": "："}
+
+data: {"text": "永"}
+
+data: {"text": "恒"}
+
+data: {"text": "的"}
+
+data: {"text": "灯"}
+
+data: {"text": "塔"}
+
+data: {"text": "</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "回顾"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "，"}
+
+data: {"text": "它"}
+
+data: {"text": "不是"}
+
+data: {"text": "一"}
+
+data: {"text": "串"}
+
+data: {"text": "孤"}
+
+100 44180    0 41164  100  3016    649     47  0:01:04  0:01:03  0:00:01   603data: {"text": "立"}
+
+data: {"text": "的"}
+
+data: {"text": "事件"}
+
+data: {"text": "，"}
+
+data: {"text": "而"}
+
+data: {"text": "是一"}
+
+data: {"text": "条"}
+
+data: {"text": "贯"}
+
+data: {"text": "穿"}
+
+data: {"text": "始终"}
+
+data: {"text": "的"}
+
+data: {"text": "生命"}
+
+data: {"text": "线"}
+
+data: {"text": "。"}
+
+data: {"text": "它是"}
+
+data: {"text": "汗"}
+
+data: {"text": "水"}
+
+data: {"text": "浇"}
+
+data: {"text": "灌"}
+
+data: {"text": "出的"}
+
+data: {"text": "希望"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "沉默"}
+
+data: {"text": "的"}
+
+100 44779    0 41763  100  3016    649     46  0:01:05  0:01:04  0:00:01   601data: {"text": "承诺"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "无"}
+
+data: {"text": "声"}
+
+data: {"text": "的"}
+
+data: {"text": "教"}
+
+data: {"text": "诲"}
+
+data: {"text": "。"}
+
+data: {"text": "它"}
+
+data: {"text": "构"}
+
+data: {"text": "筑"}
+
+data: {"text": "了"}
+
+data: {"text": "孩子"}
+
+data: {"text": "生命"}
+
+data: {"text": "中"}
+
+data: {"text": "不可"}
+
+data: {"text": "磨"}
+
+data: {"text": "灭"}
+
+data: {"text": "的"}
+
+data: {"text": "温暖"}
+
+data: {"text": "。"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+100 45346    0 42330  100  3016    647     46  0:01:05  0:01:05 --:--:--   596data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "生命"}
+
+data: {"text": "中最"}
+
+data: {"text": "可靠"}
+
+data: {"text": "的"}
+
+data: {"text": "锚"}
+
+data: {"text": "点"}
+
+data: {"text": "，"}
+
+data: {"text": "提醒"}
+
+data: {"text": "着"}
+
+data: {"text": "我们"}
+
+data: {"text": "，"}
+
+data: {"text": "无论"}
+
+data: {"text": "外界"}
+
+data: {"text": "如何"}
+
+data: {"text": "喧"}
+
+data: {"text": "嚣"}
+
+data: {"text": "，"}
+
+data: {"text": "总"}
+
+data: {"text": "有一个"}
+
+data: {"text": "港"}
+
+data: {"text": "湾"}
+
+data: {"text": "在"}
+
+100 45928    0 42912  100  3016    646     45  0:01:07  0:01:06  0:00:01   585data: {"text": "等待"}
+
+data: {"text": "着"}
+
+data: {"text": "你"}
+
+data: {"text": "，"}
+
+data: {"text": "那里"}
+
+data: {"text": "有"}
+
+data: {"text": "无"}
+
+data: {"text": "条件的"}
+
+data: {"text": "爱"}
+
+data: {"text": "，"}
+
+data: {"text": "有"}
+
+data: {"text": "坚"}
+
+data: {"text": "实的"}
+
+data: {"text": "依靠"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "这份"}
+
+data: {"text": "深"}
+
+data: {"text": "沉"}
+
+data: {"text": "的"}
+
+100 46515    0 43499  100  3016    646     44  0:01:08  0:01:07  0:00:01   580data: {"text": "爱"}
+
+data: {"text": "，"}
+
+data: {"text": "如同"}
+
+data: {"text": "夜"}
+
+data: {"text": "空中"}
+
+data: {"text": "最"}
+
+data: {"text": "亮的"}
+
+data: {"text": "星"}
+
+data: {"text": "辰"}
+
+data: {"text": "，"}
+
+data: {"text": "指"}
+
+data: {"text": "引"}
+
+data: {"text": "着"}
+
+data: {"text": "前"}
+
+data: {"text": "行的"}
+
+data: {"text": "方向"}
+
+data: {"text": "。"}
+
+data: {"text": "它"}
+
+data: {"text": "不仅"}
+
+data: {"text": "是"}
+
+data: {"text": "过去"}
+
+data: {"text": "的回"}
+
+data: {"text": "忆"}
+
+data: {"text": "，"}
+
+data: {"text": "更是"}
+
+100 47117    0 44101  100  3016    645     44  0:01:08  0:01:08 --:--:--   588data: {"text": "未来"}
+
+data: {"text": "持续"}
+
+data: {"text": "前进"}
+
+data: {"text": "的"}
+
+data: {"text": "动力"}
+
+data: {"text": "。"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "心中"}
+
+data: {"text": "最"}
+
+data: {"text": "温暖"}
+
+data: {"text": "的"}
+
+data: {"text": "灯"}
+
+data: {"text": "塔"}
+
+data: {"text": "，"}
+
+data: {"text": "照"}
+
+data: {"text": "亮"}
+
+data: {"text": "每一个"}
+
+data: {"text": "迷"}
+
+data: {"text": "茫"}
+
+data: {"text": "的"}
+
+data: {"text": "角落"}
+
+data: {"text": "，"}
+
+100 47719    0 44703  100  3016    644     43  0:01:10  0:01:09  0:00:01   590data: {"text": "提醒"}
+
+data: {"text": "我们"}
+
+data: {"text": "，"}
+
+data: {"text": "即使"}
+
+data: {"text": "跌"}
+
+data: {"text": "倒"}
+
+data: {"text": "，"}
+
+data: {"text": "也"}
+
+data: {"text": "总"}
+
+data: {"text": "有"}
+
+data: {"text": "力量"}
+
+data: {"text": "重新"}
+
+data: {"text": "站"}
+
+data: {"text": "起"}
+
+data: {"text": "，"}
+
+data: {"text": "因为"}
+
+data: {"text": "那"}
+
+data: {"text": "份"}
+
+data: {"text": "无"}
+
+data: {"text": "声"}
+
+data: {"text": "的"}
+
+data: {"text": "信念"}
+
+data: {"text": "，"}
+
+data: {"text": "永远"}
+
+data: {"text": "在"}
+
+100 48318    0 45302  100  3016    644     42  0:01:11  0:01:10  0:00:01   595data: {"text": "守护"}
+
+data: {"text": "着"}
+
+data: {"text": "你"}
+
+data: {"text": "。</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "\n"}
+
+data: {"text": "<"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: {"text": "父"}
+
+data: {"text": "爱"}
+
+data: {"text": "，"}
+
+data: {"text": "是"}
+
+data: {"text": "生命"}
+
+data: {"text": "中最"}
+
+data: {"text": "深刻"}
+
+data: {"text": "的"}
+
+data: {"text": "印"}
+
+data: {"text": "记"}
+
+data: {"text": "，"}
+
+data: {"text": "也是"}
+
+data: {"text": "我们"}
+
+data: {"text": "心中"}
+
+data: {"text": "最"}
+
+100 48905    0 45889  100  3016    643     42  0:01:11  0:01:11 --:--:--   596data: {"text": "温暖"}
+
+data: {"text": "的"}
+
+data: {"text": "灯"}
+
+data: {"text": "塔"}
+
+data: {"text": "。"}
+
+data: {"text": "它"}
+
+data: {"text": "以"}
+
+data: {"text": "其"}
+
+data: {"text": "独特的"}
+
+data: {"text": "沉"}
+
+data: {"text": "稳"}
+
+data: {"text": "和"}
+
+data: {"text": "坚"}
+
+data: {"text": "韧"}
+
+data: {"text": "，"}
+
+data: {"text": "成为了"}
+
+data: {"text": "我们"}
+
+data: {"text": "情感"}
+
+data: {"text": "世界的"}
+
+data: {"text": "基"}
+
+data: {"text": "石"}
+
+data: {"text": "，"}
+
+data: {"text": "支撑"}
+
+data: {"text": "着"}
+
+data: {"text": "我们"}
+
+100 49513    0 46497  100  3016    642     41  0:01:13  0:01:12  0:00:01   598data: {"text": "走"}
+
+data: {"text": "过"}
+
+data: {"text": "人"}
+
+data: {"text": "生的"}
+
+data: {"text": "每一个"}
+
+data: {"text": "阶段"}
+
+data: {"text": "。"}
+
+data: {"text": "这份"}
+
+data: {"text": "深"}
+
+data: {"text": "沉"}
+
+data: {"text": "的"}
+
+data: {"text": "爱"}
+
+data: {"text": "，"}
+
+data: {"text": "将"}
+
+data: {"text": "成为"}
+
+data: {"text": "我们"}
+
+data: {"text": "生命"}
+
+data: {"text": "中"}
+
+data: {"text": "永"}
+
+data: {"text": "恒"}
+
+data: {"text": "的"}
+
+data: {"text": "底"}
+
+data: {"text": "色"}
+
+data: {"text": "，"}
+
+data: {"text": "让"}
+
+100 50112    0 47096  100  3016    642     41  0:01:13  0:01:13 --:--:--   596data: {"text": "每一次"}
+
+data: {"text": "呼吸"}
+
+data: {"text": "都"}
+
+data: {"text": "充满了"}
+
+data: {"text": "安全"}
+
+data: {"text": "感"}
+
+data: {"text": "，"}
+
+data: {"text": "让"}
+
+data: {"text": "每一个"}
+
+data: {"text": "选择"}
+
+data: {"text": "都"}
+
+data: {"text": "充满了"}
+
+data: {"text": "勇气"}
+
+data: {"text": "。"}
+
+data: {"text": " （"}
+
+data: {"text": "总"}
+
+data: {"text": "字"}
+
+data: {"text": "数"}
+
+data: {"text": "已"}
+
+data: {"text": "远"}
+
+data: {"text": "超"}
+
+data: {"text": "2"}
+
+data: {"text": "0"}
+
+100 50674    0 47658  100  3016    641     40  0:01:15  0:01:14  0:00:01   592data: {"text": "0"}
+
+data: {"text": "0"}
+
+data: {"text": "字"}
+
+data: {"text": "）"}
+
+data: {"text": "</"}
+
+data: {"text": "p"}
+
+data: {"text": ">"}
+
+data: [DONE]
+
+100 50840    0 47824  100  3016    640     40  0:01:15  0:01:14  0:00:01   584
+* Connection #0 to host 127.0.0.1 left intact

@@ -249,6 +249,7 @@ function handleIPC() {
   ipcMain.handle('ai:plugin-status', async () => await callPythonBridge('ai:plugin-status'));
   ipcMain.handle('ai:toggle-plugin', async (_, params) => await callPythonBridge('ai:toggle-plugin', params));
   ipcMain.handle('text:spellcheck', async (_, params) => await callPythonBridge('text:spellcheck', params));
+  ipcMain.handle('text:dictionary:import', async (_, params) => await callPythonBridge('text:dictionary:import', params));
   ipcMain.handle('config:get-model', async () => await callPythonBridge('config:get-model'));
   ipcMain.handle('config:update-model', async (_, params) => await callPythonBridge('config:update-model', params));
   ipcMain.handle('user:get-stats', async () => await callPythonBridge('user:get-stats'));

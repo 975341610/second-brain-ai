@@ -1,0 +1,57 @@
+nova-block
+
+
+Nova Block
+
+文件树
+
+全局搜索
+
+双向链接
+
+快速搜索
+`⌘K`
+灵感集 (Moodboard)
+
+我的手账
+
+🚀 星核笔记：第二大脑
+
+🧠 核心架构设计
+
+快速开始指南
+
+设置与空间管理
+
+21 FPS
+
+QUEUED
+
+NovaBlock×
+Preview×
+
+2026/04/13 23:10
+
+NovaBlock 星核笔记
+==============
+
+这是一个完全独立运行的 **Sprint 3 编辑器** 预览工程。
+
+核心特性
+----
+
+* **高性能**：始终保持 60 FPS 的流畅输入。
+* **Fractional Indexing**：支持无限嵌套的块移动。
+* **AI 原生**：深度集成的星核助手。
+
+快速交互
+----
+
+点击右侧的 **TOC** 试试看！
+
+### 斜杠菜单
+
+在行首输入 `/` 即可呼出全能菜单。
+
+# Reference
+- [487] [nova-block](https://5173-1386dd6b88a446e9af180a631a881ac6-cube-kubestrato-online7.code-server.strato-https-proxy.bytedance.net/)
