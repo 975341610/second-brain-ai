@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect, useCallback } from 'react'
 import { NovaBlockEditor } from './components/novablock/NovaBlockEditor'
 import { CanvasEditor } from './components/canvas/CanvasEditor'
 import { SidebarTree } from './components/sidebar/SidebarTree'
-import { MoodboardView } from './components/moodboard/MoodboardView'
 import CommandPalette from './components/search/CommandPalette'
 import { SettingsDialog } from './components/SettingsDialog'
 import { TemplatePicker } from './components/editor/TemplatePicker'
@@ -116,7 +115,7 @@ function App() {
     const saved = localStorage.getItem('nova-block-current-note-id')
     return saved ? parseInt(saved) : 1
   })
-  const [activeView, setActiveView] = useState<'notes' | 'moodboard'>('notes')
+  const [activeView, setActiveView] = useState<'notes'>('notes')
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
@@ -344,10 +343,6 @@ function App() {
     })
   }
 
-  const handleMoodboardSelect = () => {
-    setActiveView('moodboard')
-  }
-
   const handleTemplateCreate = (parentId: string | null) => {
     setTemplateModal({ isOpen: true, mode: 'select', parentId });
   };
@@ -423,11 +418,8 @@ function App() {
           onNodeDelete={handleNodeDelete}
           onNodeDuplicate={handleNodeDuplicate}
           onTemplateCreate={handleTemplateCreate}
-          onMoodboardSelect={handleMoodboardSelect}
           onQuickSearchOpen={() => setIsCommandPaletteOpen(true)}
           onSettingsOpen={() => setIsSettingsOpen(true)}
-          activeView={activeView}
-          className="z-20"
           isCollapsed={isSidebarCollapsed}
           onToggleCollapse={toggleSidebar}
         />
@@ -459,43 +451,30 @@ function App() {
           )}
 
           <AnimatePresence mode="wait">
-            {activeView === 'notes' ? (
-              <motion.div
-                key={`note-${currentNoteId}`}
-                initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="flex-1 h-full"
-              >
-                {currentNote?.type === 'canvas' ? (
-                  <CanvasEditor
-                    note={currentNote}
-                    notes={notes}
-                    onSave={handleSave}
-                    onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
-                  />
-                ) : (
-                  <NovaBlockEditor 
-                    note={currentNote} 
-                    onSave={handleSave}
-                    onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
-                    onSaveAsTemplate={handleSaveAsTemplate}
-                  />
-                )}
-              </motion.div>
-            ) : (
-              <motion.div
-                key="moodboard"
-                initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, scale: 1.02, filter: 'blur(10px)' }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="flex-1 h-full"
-              >
-                <MoodboardView />
-              </motion.div>
-            )}
+            <motion.div
+              key={`note-${currentNoteId}`}
+              initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              className="flex-1 h-full"
+            >
+              {currentNote?.type === 'canvas' ? (
+                <CanvasEditor
+                  note={currentNote}
+                  notes={notes}
+                  onSave={handleSave}
+                  onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
+                />
+              ) : (
+                <NovaBlockEditor 
+                  note={currentNote} 
+                  onSave={handleSave}
+                  onNotify={(text, tone) => console.log(`[NovaNotify] ${tone}: ${text}`)}
+                  onSaveAsTemplate={handleSaveAsTemplate}
+                />
+              )}
+            </motion.div>
           </AnimatePresence>
 
           {/* 底部装饰线 */}
