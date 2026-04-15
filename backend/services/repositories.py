@@ -94,7 +94,7 @@ def get_note(db: Session, note_id: int) -> Note | None:
     return db.get(Note, note_id)
 
 
-def create_note(db: Session, title: str, content: str, summary: str, tags: list[str] | None, notebook_id: int | None, icon: str = "📝", parent_id: int | None = None, is_title_manually_edited: bool = False, is_folder: bool = False) -> Note:
+def create_note(db: Session, title: str, content: str, summary: str, tags: list[str] | None, notebook_id: int | None, icon: str = "📝", parent_id: int | None = None, is_title_manually_edited: bool = False, is_folder: bool = False, background_paper: str = "none") -> Note:
     note = Note(
         title=title,
         icon=icon,
@@ -105,6 +105,7 @@ def create_note(db: Session, title: str, content: str, summary: str, tags: list[
         parent_id=parent_id,
         is_title_manually_edited=1 if is_title_manually_edited else 0,
         is_folder=1 if is_folder else 0,
+        background_paper=background_paper,
         position=next_note_position(db, notebook_id, parent_id),
     )
     db.add(note)
@@ -113,7 +114,7 @@ def create_note(db: Session, title: str, content: str, summary: str, tags: list[
     return note
 
 
-def update_note(db: Session, note_id: int, title: str | None = None, content: str | None = None, summary: str | None = None, tags: list[str] | None = None, icon: str | None = None, parent_id: int | None = None, is_title_manually_edited: bool | None = None, is_folder: bool | None = None) -> Note | None:
+def update_note(db: Session, note_id: int, title: str | None = None, content: str | None = None, summary: str | None = None, tags: list[str] | None = None, icon: str | None = None, parent_id: int | None = None, is_title_manually_edited: bool | None = None, is_folder: bool | None = None, background_paper: str | None = None) -> Note | None:
     note = db.get(Note, note_id)
     if not note:
         return None
@@ -151,6 +152,9 @@ def update_note(db: Session, note_id: int, title: str | None = None, content: st
         if note.is_folder != val:
             note.is_folder = val
             changed = True
+    if background_paper is not None and note.background_paper != background_paper:
+        note.background_paper = background_paper
+        changed = True
     
     if changed:
         db.add(note)
@@ -626,6 +630,15 @@ def add_exp(db: Session, amount: int) -> UserStats:
 def update_user_wallpaper(db: Session, wallpaper_url: str) -> UserStats:
     stats = get_or_create_user_stats(db)
     stats.wallpaper_url = wallpaper_url
+    db.add(stats)
+    db.commit()
+    db.refresh(stats)
+    return stats
+
+
+def update_user_panel_settings(db: Session, settings_json: str) -> UserStats:
+    stats = get_or_create_user_stats(db)
+    stats.panel_settings = settings_json
     db.add(stats)
     db.commit()
     db.refresh(stats)

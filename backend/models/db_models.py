@@ -49,6 +49,7 @@ class Note(Base):
     is_folder: Mapped[bool] = mapped_column(Integer, default=0)  # 0 for false, 1 for true
     position: Mapped[int] = mapped_column(Integer, default=0)
     is_title_manually_edited: Mapped[bool] = mapped_column(Integer, default=0)  # 0 for false, 1 for true
+    background_paper: Mapped[str] = mapped_column(String(255), default="none")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
@@ -124,6 +125,7 @@ class UserStats(Base):
     total_captures: Mapped[int] = mapped_column(Integer, default=0)
     current_theme: Mapped[str] = mapped_column(String(50), default="default")
     wallpaper_url: Mapped[Optional[str]] = mapped_column(String(1000), nullable=True)
+    panel_settings: Mapped[str] = mapped_column(Text, default="{}")  # JSON string for panel customizations
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 

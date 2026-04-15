@@ -97,12 +97,20 @@ export type ToastMessage = {
   text: string;
 };
 
+export type PanelSettings = {
+  opacity: number;
+  background: string;
+  blur: number;
+  border: string;
+};
+
 export type UserStats = {
   exp: number;
   level: number;
   total_captures: number;
   current_theme: string;
   wallpaper_url?: string;
+  panel_settings?: string; // JSON string
 };
 
 export type Achievement = {

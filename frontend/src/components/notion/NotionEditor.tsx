@@ -892,7 +892,7 @@ export const NotionEditor: React.FC<NotionEditorProps> = ({
             <BubbleMenu 
               editor={editor} 
               shouldShow={({ editor }) => viewMode === 'edit' && !editor.state.selection.empty && !editor.isActive('table')}
-              className="flex overflow-hidden rounded-lg border border-stone-200 bg-white shadow-xl"
+              className="bubble-menu-panel flex overflow-hidden rounded-lg border border-stone-200 bg-white shadow-xl"
             >
               <div className="flex items-center gap-0.5 p-1">
                 <button onClick={() => editor.chain().focus().toggleBold().run()} className={`p-1.5 rounded hover:bg-stone-100 ${editor.isActive('bold') ? 'text-blue-600 bg-blue-50' : 'text-stone-600'}`}>

@@ -9,7 +9,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const { userStats, updateUserTheme } = useAppStore();
+  const { userStats, updateUserTheme, panelSettings } = useAppStore();
   const currentTheme = userStats?.current_theme || 'default';
 
   useEffect(() => {
@@ -21,6 +21,29 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       document.body.removeAttribute('data-theme');
     }
   }, [currentTheme]);
+
+  useEffect(() => {
+    // 动态应用面板设置到 CSS 变量
+    const root = document.documentElement;
+    
+    // Slash Menu
+    root.style.setProperty('--slash-menu-bg', panelSettings.slashMenu.background);
+    root.style.setProperty('--slash-menu-blur', `${panelSettings.slashMenu.blur}px`);
+    root.style.setProperty('--slash-menu-border', panelSettings.slashMenu.border);
+    root.style.setProperty('--slash-menu-opacity', panelSettings.slashMenu.opacity.toString());
+
+    // Text Menu
+    root.style.setProperty('--text-menu-bg', panelSettings.textMenu.background);
+    root.style.setProperty('--text-menu-blur', `${panelSettings.textMenu.blur}px`);
+    root.style.setProperty('--text-menu-border', panelSettings.textMenu.border);
+    root.style.setProperty('--text-menu-opacity', panelSettings.textMenu.opacity.toString());
+
+    // Block Menu
+    root.style.setProperty('--block-menu-bg', panelSettings.blockMenu.background);
+    root.style.setProperty('--block-menu-blur', `${panelSettings.blockMenu.blur}px`);
+    root.style.setProperty('--block-menu-border', panelSettings.blockMenu.border);
+    root.style.setProperty('--block-menu-opacity', panelSettings.blockMenu.opacity.toString());
+  }, [panelSettings]);
 
   const setTheme = (theme: string) => {
     void updateUserTheme(theme);

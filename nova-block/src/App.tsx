@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect, useCallback } from 'react'
 import { NovaBlockEditor } from './components/novablock/NovaBlockEditor'
 import { CanvasEditor } from './components/canvas/CanvasEditor'
 import { SidebarTree } from './components/sidebar/SidebarTree'
-import { MoodboardView } from './components/moodboard/MoodboardView'
 import CommandPalette from './components/search/CommandPalette'
 import { SettingsDialog } from './components/SettingsDialog'
 import type { Note } from './lib/types'
@@ -114,7 +113,6 @@ function App() {
     const saved = localStorage.getItem('nova-block-current-note-id')
     return saved ? parseInt(saved) : 1
   })
-  const [activeView, setActiveView] = useState<'notes' | 'moodboard'>('notes')
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
@@ -137,7 +135,6 @@ function App() {
       const noteId = e.detail?.noteId;
       if (noteId) {
         setCurrentNoteId(Number(noteId));
-        setActiveView('notes');
       }
     };
 
@@ -196,10 +193,10 @@ function App() {
   }, [notes]);
 
   useEffect(() => {
-    if (activeView === 'notes' && currentNoteId) {
+    if (currentNoteId) {
       loadNoteContent(currentNoteId);
     }
-  }, [currentNoteId, activeView, loadNoteContent]);
+  }, [currentNoteId, loadNoteContent]);
 
   // 节点转换 (TreeNode <-> Note)
   const treeNodes = useMemo(() => {
@@ -216,7 +213,6 @@ function App() {
     const noteId = parseInt(id)
     if (!isNaN(noteId)) {
       setCurrentNoteId(noteId)
-      setActiveView('notes')
     }
   }
 
@@ -250,10 +246,8 @@ function App() {
     }
 
     setNotes([...notes, newNote])
-
     if (!isFolder) {
       setCurrentNoteId(newId)
-      setActiveView('notes')
     }
   }
 
@@ -332,10 +326,6 @@ function App() {
     })
   }
 
-  const handleMoodboardSelect = () => {
-    setActiveView('moodboard')
-  }
-
   const handleSave = async (payload: Partial<Note>) => {
     setNotes(prev => prev.map(n => n.id === currentNoteId ? { ...n, ...payload } : n))
   }
@@ -360,10 +350,8 @@ function App() {
           onNodeRename={handleNodeRename}
           onNodeDelete={handleNodeDelete}
           onNodeDuplicate={handleNodeDuplicate}
-          onMoodboardSelect={handleMoodboardSelect}
           onQuickSearchOpen={() => setIsCommandPaletteOpen(true)}
           onSettingsOpen={() => setIsSettingsOpen(true)}
-          activeView={activeView}
           className="z-20"
           isCollapsed={isSidebarCollapsed}
           onToggleCollapse={toggleSidebar}
@@ -396,7 +384,6 @@ function App() {
           )}
 
           <AnimatePresence mode="wait">
-            {activeView === 'notes' ? (
               <motion.div
                 key={`note-${currentNoteId}`}
                 initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
@@ -420,18 +407,6 @@ function App() {
                   />
                 )}
               </motion.div>
-            ) : (
-              <motion.div
-                key="moodboard"
-                initial={{ opacity: 0, scale: 0.98, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, scale: 1.02, filter: 'blur(10px)' }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="flex-1 h-full"
-              >
-                <MoodboardView />
-              </motion.div>
-            )}
           </AnimatePresence>
 
           {/* 底部装饰线 */}

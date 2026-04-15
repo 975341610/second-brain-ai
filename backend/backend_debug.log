@@ -1,0 +1,23 @@
+/workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/backend/main.py:173: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+INFO:     Started server process [3646471]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+[*] Second Brain AI Version: v0.5.4
+[*] Frontend dist directory: /workspace/iris_4313d091-e484-4384-8564-8ce91e478bc4/frontend_dist
+[*] Frontend index.html exists: True
+[*] Starting backend server on 127.0.0.1:8765
+INFO:     fdbd:dc07:fe:4005::2700:0 - "GET /api/media/music-library HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2785:0 - "GET /api/ai/plugin-status HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2491:0 - "GET /api/media/music-library HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::21d5:0 - "GET /api/ai/plugin-status HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::24be:0 - "GET /api/media/music-library HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::25ad:0 - "GET /api/media/music-library HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::2058:0 - "GET /api/ai/plugin-status HTTP/1.1" 200 OK
+INFO:     fdbd:dc07:fe:4005::23f3:0 - "GET /api/ai/plugin-status HTTP/1.1" 200 OK

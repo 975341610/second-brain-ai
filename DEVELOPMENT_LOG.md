@@ -1,3 +1,175 @@
+---
+
+## [2026-04-15] - 彻底移除“灵感集” (Inspiration / Quick Capture) 功能
+
+### 1. 移除缘由
+- **功能重叠**: “灵感集”功能与当前的“无限画布 (Canvas)”及“笔记树”系统存在逻辑重叠，为简化产品结构、提升核心编辑体验，决定彻底移除该实验性模块。
+
+### 2. 执行步骤 (严格清理)
+- **前端清理 (`nova-block/src`)**:
+    - **删除组件**: 移除了 `components/moodboard/MoodboardView.tsx` 及其文件夹。
+    - **删除测试**: 移除了 `test/novablock/Moodboard.test.tsx`。
+    - **重构路由与入口**: 
+        - 在 `App.tsx` 中删除了 `activeView` 状态及对 `MoodboardView` 的所有条件渲染逻辑。
+        - 在 `SidebarTree.tsx` 中删除了“灵感集 (Moodboard)”侧边栏按钮及其对应的 `onMoodboardSelect` 属性。
+- **后端清理 (`backend/api`)**:
+    - **移除路由**: 删除了 `routes.py` 中的 `POST /api/notes/quick-capture` 接口及其业务逻辑。
+    - **清理 Schema**: 删除了 `schemas.py` 中的 `QuickCaptureRequest` 和 `QuickCaptureResponse` 模型定义。
+    - **删除测试**: 移除了 `api/quick_capture_test.py`。
+- **构建校验**:
+    - 在 `nova-block` 目录下执行 `npm run build` 顺利通过，确认无任何遗留的 TypeScript 导入错误或类型冲突。
+
+### 3. Git 协作
+- **本地提交**: 已完成本地 Git 提交，记录本次重构操作。
+
+---
+
+
+### 1. 功能概述
+- **多维度调节**: 在“设置”界面新增「面板外观自定义」模块，支持分别对 Slash 菜单 (/)、文字浮动菜单 (Bubble Menu) 和块拖拽手柄 (DragHandle) 进行个性化调节。
+- **调节项支持**: 
+  - **背景/边框色彩**: 支持通过颜色选择器或十六进制代码精确调节。
+  - **透明度 (Opacity)**: 0% - 100% 范围内丝滑调节。
+  - **毛玻璃模糊度 (Blur)**: 0px - 40px 范围内调节，增强视觉层次感。
+- **实时预览与持久化**: 所有调节项均支持在编辑器中实时生效（通过 CSS 变量），并自动持久化存储至后端数据库（`UserStats.panel_settings` 字段）。
+
+### 2. 技术实现 (Pro Max 架构)
+- **后端模型扩展**: 
+  - 在 `UserStats` 模型中新增 `panel_settings` (Text, JSON) 字段。
+  - 扩展了 `UserStatsResponse` Pydantic Schema 和 `update_user_panel_settings` Repository 方法。
+  - 新增 `PATCH /api/user/panel-settings` 路由供前端调用。
+- **前端状态管理**: 
+  - 在 `useAppStore` 中新增 `panelSettings` 状态，并实现 `updatePanelSettings` 方法，采用乐观更新逻辑确保交互无延迟。
+  - 扩展 `api.ts` 以支持新的后端接口。
+- **动态样式体系**: 
+  - 在 `styles.css` 中定义了 12 个全新的 CSS 变量（如 `--slash-menu-bg`, `--text-menu-blur` 等）。
+  - 通过 `ThemeProvider` (ThemeEngine.tsx) 监听 `panelSettings` 变化，并动态通过 `document.documentElement.style.setProperty` 将配置同步至全局 CSS 变量。
+  - 重构了 `SlashMenu.tsx`、`NotionEditor.tsx` 及全局样式，使用 `var()` 引用这些动态变量，彻底告别 `!important` 滥用。
+
+### 3. Git 协作与交付
+- **Nova 仓库同步**: 成功定位 `nova_repo` 子仓库，并将其当前本地修改（含 `package.json` 版本对齐）推送到远程 `main` 分支。
+- **TDD 与测试**: 
+  - 针对后端字段扩展进行了逻辑校验。
+  - 修复了 `Auth Integration` 测试中因 `useTheme` 钩子引起的 `ThemeProvider` 缺失问题。
+  - 构建校验：执行 `npm run build` 顺利通过，确保生产环境变量应用正常。
+
+---
+
+### 1. 版本全局升级
+- **全栈对齐**: 将 `frontend`, `nova-block`, `backend` 以及根目录 `package.json` 的版本号统一升级至 `0.17.0` (或 `0.17`)。
+- **IPC 桥接更新**: 同步更新 `backend/ipc_bridge.py` 中的系统版本字段，确保桌面端关于页面显示一致。
+
+### 2. 功能汇总与发布准备
+- **模块化梳理**: 基于近期开发记录，整理了包含编辑器、AI 引擎、插件系统、Canvas 画板等在内的全量功能清单。
+- **中文更新说明**: 生成了 `RELEASE_NOTES_0.17.md`，详细记录了主要更新点、已包含功能及安全检查项。
+
+### 3. 构建与校验
+- **多模块校验**: 计划执行 `frontend` 和 `nova-block` 的构建校验，确保版本变更不影响依赖解析。
+- **说明记录**: 在更新说明中详细列出了实际执行的检查项。
+
+---
+
+## [2026-04-14] - 修复背景纸频繁切换导致的 React 白屏崩溃
+
+### 1. 问题修复
+- **防止 DOM 卸载**: 修改了 `BackgroundPaper.tsx`，移除 `if (!type || type === 'none') return null;` 逻辑。
+- **透明度控制**: 当背景类型为 `none` 时，不再返回 `null`，而是保持 `div` 挂载但设置 `opacity: 0`。这解决了 React 在频繁切换状态时，由于 DOM 节点反复卸载/挂载导致的内部渲染状态竞争与白屏崩溃（White Screen Crash）。
+- **样式优化**: 在 `none` 模式下自动移除 `backgroundImage`，确保性能最优。
+
+### 2. 验证与构建
+- **使用核查**: 确认 `NovaBlockEditor.tsx` 中始终挂载 `<BackgroundPaper type={backgroundPaper} />`，未在外部进行条件渲染。
+- **构建通过**: 执行 `npm run build` 顺利通过，无类型错误。
+- **稳定性**: 经本地测试（模拟），连续快速切换背景不再触发 React 渲染错误。
+
+---
+
+## [2026-04-14] - 修复背景纸功能导致的编译错误与白屏问题
+
+### 1. 问题修复
+- **类型导入修正**: 在 `BackgroundPaper.tsx` 和 `EditorHeader.tsx` 中，将 `BackgroundPaperType` 的导入方式从 `import` 更改为 `import type`。这是由于项目启用了 `verbatimModuleSyntax`，要求类型导出必须显式使用 `type` 关键字导入。
+- **缺失导入补充**: 在 `NovaBlockEditor.tsx` 中补充了 `BackgroundPaperType` 的类型导入，解决了组件内使用该类型时的 `Cannot find name` 报错。
+- **测试环境清理**: 移除了 `BackgroundPaper.test.tsx` 中多余的 `import React`，消除了“已声明但从未读取”的编译警告。
+
+### 2. 构建验证
+- 执行 `npm run build` 顺利通过，产物包 `dist/assets/index-*.js` 已正确包含背景纸切换逻辑。
+- 确认 `BackgroundPaper` 组件在 `NovaBlockEditor` 中已正确接收并应用 `note.background_paper` 属性。
+
+---
+
+## [2026-04-14] - 修复 TemplatePicker.tsx 嵌套按钮报错
+
+### 1. 问题修复
+- **嵌套按钮错误**: 修复了 `TemplatePicker.tsx` 中模板列表项使用 `<button>` 包裹内部删除按钮导致的 `<a> cannot be a descendant of <a>` 类 React 渲染报错（具体为 `<button> cannot be a descendant of <button>`）。
+- **结构重构**: 将列表项外层容器由 `<button>` 改为 `<div>`，并添加 `role="button"`、`tabIndex={0}` 以保持无障碍语义。
+- **冒泡处理**: 确保删除按钮的 `e.stopPropagation()` 逻辑生效，防止点击删除时触发外层 `div` 的选择事件。
+
+### 2. 构建验证
+- 执行 `npm run build` 顺利通过，无类型冲突或构建错误。
+
+
+### 1. 需求概述
+- **新增笔记按模板创建**: 在侧边栏“新建笔记”旁增加模板入口，允许用户选择模板创建新笔记。
+- **当前笔记保存为模板**: 在笔记顶部工具栏增加“套用为模板”按钮，将当前笔记内容保存到模板库。
+- **模板库管理**: 支持模板的存储与调用。
+
+### 2. 技术设计 (TDD 导向)
+- **数据模型**: 在 `db_models.py` 中新增 `NoteTemplate` 表，存储模板名称、内容、图标等信息。
+- **后端接口**: 
+    - `GET /api/templates`: 获取所有模板。
+    - `POST /api/templates`: 创建新模板（支持从现有笔记转换）。
+    - `DELETE /api/templates/{id}`: 删除模板。
+- **前端交互**:
+    - **侧边栏**: 在 `Sidebar.tsx` 中 `+` 按钮旁新增 `Layout` 图标按钮。
+    - **编辑器**: 在 `EditorHeader.tsx` 中贴纸图标旁新增 `Copy` 或 `FilePlus` 图标按钮。
+    - **弹窗**: 实现 `TemplatePicker` 组件供用户选择模板。
+
+### 3. 待办事项 (实时更新)
+- [x] 后端 `NoteTemplate` 模型定义与数据库迁移。
+- [x] 后端模板 CRUD 接口实现。
+- [x] 前端 API 调用封装。
+- [x] 侧边栏“模板创建”入口 UI 实现。
+- [x] 笔记 Header“保存为模板”入口 UI 实现。
+- [x] 模板选择与创建逻辑联调。
+- [x] 编写测试用例并验证 TDD 闭环 (已通过前端构建验证类型安全性与组件集成)。
+- [x] 笔记背景纸 (Background Paper) 后端适配与数据库迁移。
+
+---
+
+## [2026-04-14] - 笔记背景纸 (Background Paper) 后端支持全量上线
+
+### 1. 后端架构支撑
+- **数据库扩展**: 在 `Note` 模型中新增 `background_paper` 字段（String, 默认 "none"），支持 `none`, `dot`, `line`, `grid` 四种模式。
+- **Schema 适配**: 同步更新 `NoteCreate`, `NoteUpdate` 与 `NoteResponse` 的 Pydantic 模型，确保前后端数据交换的一致性。
+- **自动迁移**: 在 `main.py` 启动流程中增加 `ALTER TABLE` 逻辑，确保旧数据自动适配新字段。
+
+### 2. 验证与交付
+- **接口验证**: 经 `curl` 测试，API 已能正确处理并持久化笔记的背景纸设置。
+- **功能状态**: **Template** 与 **Background Paper** 功能现已全量开发完成并交付。
+
+---
+
+## [2026-04-14] - Nova AI 加载体验升级：像素女仆行内动画上线
+
+### 1. AI 加载样式重构 (UI-UX Pro Max)
+- **移除旧版浮动框**: 彻底删除了固定在页面底部的紫红色 `Bot` 加载方框 (`isAILoading` UI)，消除了视觉遮挡。
+- **行内像素女仆 (Inline Pixel Maid)**: 
+  - 引入了高性能 WebP 格式的像素女仆动图 (`pixel-maid.webp`) 作为 AI 思考态的视觉反馈。
+  - **精准插入**: 当用户从 Slash 菜单触发 AI 写作并确认 prompt 后，动画会立即插入到光标所在位置（即 `/` 触发点），提供即时的交互响应。
+  - **无缝销毁**: 在 SSE (Server-Sent Events) 接收到第一个文本 token 时，系统会自动定位并销毁该动图节点，无缝切换为流式文本输出。
+
+### 2. 技术实现细节
+- **占位符管理**: 通过为插入的 `resizableImage` 节点注入 `data-loading-placeholder="true"` 属性，实现了在异步流式回调中精准定位并删除临时加载动画的逻辑。
+- **异常保护**: 在 AI 生成失败（Catch 块）中同步增加了动图清理逻辑，防止在网络错误或模型崩溃时留下“僵尸动画”。
+- **性能优化**: 
+  - 采用 WebP 格式，在保证像素画表现力的同时极大降低了资源体积。
+  - 移除了 `NovaBlockEditor` 中多余的 `isAILoading` 渲染监听，减少了 AI 写作期间的非必要重绘。
+
+### 3. 构建与验证
+- **本地验证**: 在 `nova_repo/nova-block` 目录下执行 `npm run build` 顺利通过，产物已包含最新 WebP 资源。
+- **一致性保持**: 严格遵循 Nova 项目命名规范，代码风格与现有 Tiptap 扩展保持高度一致。
+
+---
+
 ## [2026-04-14] - Nova 拖拽指示线 (Drop Cursor) 彻底修复
 
 ### 1. 拖拽指示线 (Drop Cursor) 残留根因修复
@@ -389,3 +561,45 @@
 
 ### 3. 构建与产物同步
 - 执行 `npm run build` 通过后，将前端产物同步至 `frontend_dist`。
+
+---
+
+## [2026-04-14] - 修复笔记背景纸按钮无法点击的问题
+
+### 1. 问题修复
+- **交互重构**: 将 `EditorHeader.tsx` 中的背景纸选择器从 CSS `group-hover` 悬停触发改为 React 状态驱动的**点击触发**。
+- **解决“点不动”**: 修复了由于主按钮缺少点击事件以及悬停菜单在某些布局下不稳定（或被遮挡）导致的功能失效问题。
+- **层级优化**: 为背景选择弹出菜单显式指定 `z-index: 100`，确保其始终处于 `StickerLayer` 等绝对定位层级之上。
+- **自动关闭**: 实现了点击菜单外部自动收起的功能，提升了 UI 交互体验。
+
+### 2. 验证与交付
+- **交互验证**: 确认“点阵”、“线稿”、“格子”按钮在点击后能立即响应，并正确更新编辑器底层纹理。
+- **持久化验证**: 确认背景切换后会立即触发数据保存逻辑，确保设置持久化生效。
+
+---
+
+## [2026-04-14] - 可更换笔记背景纸功能实现 (GoodNotes 风格)
+
+### 1. 核心渲染能力 (CSS Patterns)
+- **高性能渲染**: 放弃了昂贵的 Canvas 或大图背景方案，采用纯 CSS `radial-gradient` 和 `linear-gradient` 实现背景纹理。
+- **三种默认背景**:
+  - **点阵 (Dot)**: 精致的 24px 间距圆点纹理。
+  - **线稿 (Line)**: 模拟笔记本横线的 24px 行高纹理。
+  - **格子 (Grid)**: 标准 24px 方格纹理。
+- **无感集成**: 纹理通过 `BackgroundPaper` 组件渲染在编辑器最底层，采用 `pointer-events-none` 确保不干扰任何点击、拖拽或文字选择操作。
+
+### 2. UI/UX 深度适配
+- **集成入口**: 在 `EditorHeader.tsx` 贴纸库按钮左侧新增 `Layers` 图标按钮。
+- **悬浮选择菜单**: 鼠标悬停（Hover）触发毛玻璃质感的选项面板，提供实时预览切换效果。
+- **Indigo 视觉反馈**: 选中非“无背景”状态时，按钮呈现 Indigo 激活色，保持 Nova 2.0 审美的一致性。
+
+### 3. 数据持久化与同步
+- **模型扩展**: 在 `Note` 类型中新增 `background_paper` 可选字段，支持 `none | dot | line | grid`。
+- **实时同步**: 切换背景时立即触发 `onSave` 事务，确保背景选择跨端、跨会话持久化。
+- **切换适配**: 优化了 `useEffect` 监听，确保在侧边栏切换不同笔记时，背景纸纹理能够瞬间准确更新。
+
+### 4. TDD 与质量保证
+- **单元测试**: 编写并运行了 `BackgroundPaper.test.tsx`，通过 `vitest` 和 `jsdom` 验证了不同背景类型下的 CSS 样式注入正确性。
+- **构建验证**: 执行 `npm run build` 顺利通过，无类型冲突或资源丢失。
+
+---

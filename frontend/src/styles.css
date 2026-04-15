@@ -10,6 +10,22 @@
   --reflect-border: #e8e6e1;
   --reflect-text: #2d2c2a;
   --reflect-muted: #8e8c89;
+
+  /* Nova Custom Panel Variables (Dynamic) */
+  --slash-menu-bg: rgba(255, 255, 255, 0.9);
+  --slash-menu-blur: 10px;
+  --slash-menu-border: #e5e7eb;
+  --slash-menu-opacity: 0.9;
+
+  --text-menu-bg: rgba(255, 255, 255, 0.9);
+  --text-menu-blur: 10px;
+  --text-menu-border: #e5e7eb;
+  --text-menu-opacity: 0.9;
+
+  --block-menu-bg: rgba(255, 255, 255, 0.9);
+  --block-menu-blur: 10px;
+  --block-menu-border: #e5e7eb;
+  --block-menu-opacity: 0.9;
 }
 
 [data-theme="dark"] {
@@ -587,11 +603,29 @@ textarea {
   align-items: center;
 }
 
+.bubble-menu-panel {
+  background-color: var(--text-menu-bg) !important;
+  backdrop-filter: blur(var(--text-menu-blur)) !important;
+  border: 1px solid var(--text-menu-border) !important;
+  opacity: var(--text-menu-opacity) !important;
+}
+
+.tiptap-drag-handle {
+  background-color: var(--block-menu-bg) !important;
+  backdrop-filter: blur(var(--block-menu-blur)) !important;
+  border: 1px solid var(--block-menu-border) !important;
+  opacity: var(--block-menu-opacity) !important;
+}
+
 .notion-block-toolbar:hover {
   opacity: 1;
 }
 
 .notion-slash-menu {
+  background-color: var(--slash-menu-bg) !important;
+  backdrop-filter: blur(var(--slash-menu-blur)) !important;
+  border: 1px solid var(--slash-menu-border) !important;
+  opacity: var(--slash-menu-opacity) !important;
   box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15), 0 4px 10px -2px rgba(0,0,0,0.05);
 }
 

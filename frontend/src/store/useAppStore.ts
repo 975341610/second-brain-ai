@@ -16,6 +16,7 @@ import type {
   UserAchievement,
   AppStatus,
   BGMState,
+  PanelSettings,
 } from '../lib/types';
 
 
@@ -139,6 +140,11 @@ type AppState = {
   appStatus: AppStatus;
   bgm: BGMState;
   aiPluginEnabled: boolean;
+  panelSettings: {
+    slashMenu: PanelSettings;
+    textMenu: PanelSettings;
+    blockMenu: PanelSettings;
+  };
   setAppStatus: (status: AppStatus) => void;
   loadInitialData: () => Promise<void>;
   loadBgmTracks: () => Promise<void>;
@@ -147,6 +153,7 @@ type AppState = {
   nextTrack: () => void;
   updateUserTheme: (theme: string) => Promise<void>;
   updateUserWallpaper: (wallpaperUrl: string) => Promise<void>;
+  updatePanelSettings: (settings: { slashMenu?: Partial<PanelSettings>; textMenu?: Partial<PanelSettings>; blockMenu?: Partial<PanelSettings> }) => Promise<void>;
   selectNote: (noteId: number) => void;
     createDraftNote: (notebookId?: number | null, parentId?: number | null, silent?: boolean, isFolder?: boolean) => void;
     saveNote: (payload: { id?: number; title?: string; content?: string; notebookId?: number | null; parent_id?: number | null; icon?: string; is_title_manually_edited?: boolean; is_folder?: boolean; tags?: string[]; silent?: boolean }) => Promise<void>;
@@ -221,6 +228,11 @@ export const useAppStore = create<AppState>((set, get) => ({
     currentTrack: null,
   },
   aiPluginEnabled: false,
+  panelSettings: {
+    slashMenu: { opacity: 0.9, background: '#ffffff', blur: 10, border: '#e5e7eb' },
+    textMenu: { opacity: 0.9, background: '#ffffff', blur: 10, border: '#e5e7eb' },
+    blockMenu: { opacity: 0.9, background: '#ffffff', blur: 10, border: '#e5e7eb' },
+  },
   setAppStatus: (status) => set({ appStatus: status }),
   loadInitialData: async () => {
     // 优先从缓存加载，实现离线瞬间看到内容
@@ -287,6 +299,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         assistant: latestAssistantFromSession(get().chatSessions.find((session) => session.id === get().activeChatSessionId)),
         bgm: { ...get().bgm, tracks: bgmTracks },
         aiPluginEnabled: aiPluginStatus?.enabled ?? false,
+        panelSettings: userStats?.panel_settings ? JSON.parse(userStats.panel_settings) : get().panelSettings,
         appStatus: 'READY'
       });
     } catch (error) {
@@ -333,6 +346,21 @@ export const useAppStore = create<AppState>((set, get) => ({
       set({ userStats });
     } catch (error) {
       set({ toast: { id: Date.now(), tone: 'error', text: `壁纸设置失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
+    }
+  },
+  updatePanelSettings: async (settings) => {
+    const currentSettings = get().panelSettings;
+    const newSettings = {
+      slashMenu: { ...currentSettings.slashMenu, ...settings.slashMenu },
+      textMenu: { ...currentSettings.textMenu, ...settings.textMenu },
+      blockMenu: { ...currentSettings.blockMenu, ...settings.blockMenu },
+    };
+    try {
+      set({ panelSettings: newSettings });
+      const userStats = await api.updatePanelSettings(JSON.stringify(newSettings));
+      set({ userStats });
+    } catch (error) {
+      set({ toast: { id: Date.now(), tone: 'error', text: `面板设置保存失败：${error instanceof Error ? error.message : '请稍后重试'}` } });
     }
   },
   selectNote: (selectedNoteId) => set((state) => ({ selectedNoteId, recentNoteIds: [selectedNoteId, ...state.recentNoteIds.filter((id) => id !== selectedNoteId)].slice(0, 8) })),

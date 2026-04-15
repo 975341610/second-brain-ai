@@ -1,4 +1,4 @@
-import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Image as ImageIcon, Upload, Palette, Trash2, Check, Cpu } from 'lucide-react';
+import { Database, Settings2, Folder, RefreshCw, Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Image as ImageIcon, Upload, Palette, Trash2, Check, Cpu, Sliders, Blinds } from 'lucide-react';
 import { useEffect, useState, useRef, ChangeEvent } from 'react';
 import type { ModelConfig } from '../lib/types';
 import { api } from '../lib/api';
@@ -11,7 +11,7 @@ type SettingsPanelProps = {
 };
 
 export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPanelProps) {
-  const { userStats, updateUserWallpaper, updateUserTheme, aiPluginEnabled, setAIPluginEnabled } = useAppStore();
+  const { userStats, updateUserWallpaper, updateUserTheme, aiPluginEnabled, setAIPluginEnabled, panelSettings, updatePanelSettings } = useAppStore();
   const [config, setConfig] = useState(modelConfig);
   const [isCheckingHardware, setIsCheckingHardware] = useState(false);
   const [hwInfo, setHwInfo] = useState<{ compatible: boolean; memory_gb: number; cpu_count: number; os: string; message: string } | null>(null);
@@ -372,6 +372,87 @@ export function SettingsPanel({ modelConfig, onUpdateModelConfig }: SettingsPane
                 <div className="text-[11px] text-stone-400 leading-relaxed italic">
                   * 壁纸支持 MP4, WEBP, PNG。大视频将保存在本地。
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 面板外观自定义 */}
+          <div className="rounded-[24px] bg-white/85 p-5">
+            <div className="mb-3 flex items-center gap-2 text-sm font-medium text-stone-500"><Sliders size={16} /> 面板外观自定义</div>
+            <div className="space-y-6">
+              {[
+                { id: 'slashMenu', name: 'Slash 菜单 (/)' },
+                { id: 'textMenu', name: '文字菜单 (Bubble)' },
+                { id: 'blockMenu', name: '块菜单 (DragHandle)' }
+              ].map((panel) => (
+                <div key={panel.id} className="space-y-3">
+                  <div className="text-xs font-bold text-stone-400 uppercase tracking-wider">{panel.name}</div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-stone-500">背景颜色</label>
+                      <div className="flex items-center gap-2">
+                        <input 
+                          type="color" 
+                          value={panelSettings[panel.id as keyof typeof panelSettings].background} 
+                          onChange={(e) => updatePanelSettings({ [panel.id]: { background: e.target.value } })}
+                          className="h-8 w-8 rounded cursor-pointer border-none bg-transparent"
+                        />
+                        <input 
+                          type="text" 
+                          value={panelSettings[panel.id as keyof typeof panelSettings].background} 
+                          onChange={(e) => updatePanelSettings({ [panel.id]: { background: e.target.value } })}
+                          className="flex-1 text-[10px] font-mono border border-stone-100 rounded px-2 py-1"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] text-stone-500">边框颜色</label>
+                      <div className="flex items-center gap-2">
+                        <input 
+                          type="color" 
+                          value={panelSettings[panel.id as keyof typeof panelSettings].border} 
+                          onChange={(e) => updatePanelSettings({ [panel.id]: { border: e.target.value } })}
+                          className="h-8 w-8 rounded cursor-pointer border-none bg-transparent"
+                        />
+                        <input 
+                          type="text" 
+                          value={panelSettings[panel.id as keyof typeof panelSettings].border} 
+                          onChange={(e) => updatePanelSettings({ [panel.id]: { border: e.target.value } })}
+                          className="flex-1 text-[10px] font-mono border border-stone-100 rounded px-2 py-1"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <div className="flex justify-between">
+                        <label className="text-[10px] text-stone-500">透明度</label>
+                        <span className="text-[10px] font-mono text-stone-400">{Math.round(panelSettings[panel.id as keyof typeof panelSettings].opacity * 100)}%</span>
+                      </div>
+                      <input 
+                        type="range" min="0" max="1" step="0.01"
+                        value={panelSettings[panel.id as keyof typeof panelSettings].opacity} 
+                        onChange={(e) => updatePanelSettings({ [panel.id]: { opacity: parseFloat(e.target.value) } })}
+                        className="w-full h-1 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-stone-900"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex justify-between">
+                        <label className="text-[10px] text-stone-500">模糊度 (Blur)</label>
+                        <span className="text-[10px] font-mono text-stone-400">{panelSettings[panel.id as keyof typeof panelSettings].blur}px</span>
+                      </div>
+                      <input 
+                        type="range" min="0" max="40" step="1"
+                        value={panelSettings[panel.id as keyof typeof panelSettings].blur} 
+                        onChange={(e) => updatePanelSettings({ [panel.id]: { blur: parseInt(e.target.value) } })}
+                        className="w-full h-1 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-stone-900"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <div className="text-[11px] text-stone-400 leading-relaxed italic mt-2 border-t border-stone-50 pt-3">
+                * 设置将实时预览并自动保存。毛玻璃效果在深色模式或有背景图时更明显。
               </div>
             </div>
           </div>

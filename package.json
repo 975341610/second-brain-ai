@@ -1,6 +1,6 @@
 {
   "name": "second-brain-ai-electron",
-  "version": "1.0.0",
+  "version": "0.17.0",
   "description": "Second Brain AI Electron Desktop",
   "main": "./out/main/index.js",
   "author": "codeagent",

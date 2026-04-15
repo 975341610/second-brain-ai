@@ -40,6 +40,7 @@ class NoteCreate(NoteBase):
     notebook_id: int | None = None
     parent_id: int | None = None
     tags: list[str] | None = None
+    background_paper: Optional[str] = "none"
 
 
 class NoteUpdate(BaseModel):
@@ -50,6 +51,7 @@ class NoteUpdate(BaseModel):
     is_folder: bool | None = None
     is_title_manually_edited: bool | None = None
     tags: list[str] | None = None
+    background_paper: Optional[str] = "none"
 
 
 class NoteMovePayload(BaseModel):
@@ -74,6 +76,7 @@ class NoteResponse(NoteBase):
     notebook_id: int | None = None
     parent_id: int | None = None
     position: int = 0
+    background_paper: str = "none"
     is_title_manually_edited: bool = False
     created_at: datetime
     deleted_at: datetime | None = None
@@ -205,24 +208,13 @@ class TrashResponse(BaseModel):
     notebooks: list[NotebookResponse]
 
 
-class QuickCaptureRequest(BaseModel):
-    content: str
-
-
-class QuickCaptureResponse(BaseModel):
-    status: str
-    note: NoteResponse
-    exp_gained: int
-    current_exp: int
-    current_level: int
-
-
 class UserStatsResponse(BaseModel):
     exp: int
     level: int
     total_captures: int
     current_theme: str
     wallpaper_url: Optional[str] = None
+    panel_settings: str = "{}"
 
     class Config:
         from_attributes = True

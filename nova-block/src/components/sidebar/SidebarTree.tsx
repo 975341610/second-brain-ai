@@ -18,11 +18,9 @@ interface SidebarTreeProps {
   onNodeRename?: (nodeId: string, newTitle: string) => void;
   onNodeDelete?: (nodeId: string, deleteChildren: boolean) => void;
   onNodeDuplicate?: (nodeId: string) => void;
-  onMoodboardSelect?: () => void;
   onQuickSearchOpen?: () => void;
   onSettingsOpen?: () => void;
   className?: string;
-  activeView?: 'notes' | 'moodboard';
   isCollapsed?: boolean;
   onToggleCollapse?: (collapsed: boolean) => void;
 }
@@ -52,11 +50,9 @@ export const SidebarTree = ({
   onNodeRename,
   onNodeDelete,
   onNodeDuplicate,
-  onMoodboardSelect,
   onQuickSearchOpen,
   onSettingsOpen,
   className = '',
-  activeView = 'notes',
   isCollapsed: externalIsCollapsed,
   onToggleCollapse,
 }: SidebarTreeProps) => {
@@ -315,29 +311,6 @@ export const SidebarTree = ({
                   <span>快速搜索</span>
                   <kbd className="ml-auto text-[10px] opacity-40 font-sans bg-background/50 px-1.5 py-0.5 rounded-lg border border-border/10">⌘K</kbd>
                 </div>
-              </AnimatedLabel>
-            </button>
-            <button 
-              onClick={onMoodboardSelect}
-              className={`flex items-center h-11 w-full text-xs font-medium rounded-2xl transition-all duration-300 border overflow-hidden ${
-                activeView === 'moodboard' 
-                  ? 'text-primary bg-primary/10 border-primary/20 shadow-inner shadow-primary/5' 
-                  : 'text-muted-foreground bg-accent/30 hover:bg-accent/60 border-border/20'
-              }`}
-              title={isCollapsed ? "灵感集 (Moodboard)" : undefined}
-            >
-              <motion.div 
-                animate={{ 
-                  width: isCollapsed ? 40 : 44,
-                  marginLeft: isCollapsed ? 0 : 4,
-                  marginRight: isCollapsed ? 0 : 4
-                }}
-                className="h-10 flex items-center justify-center shrink-0 w-full"
-              >
-                <Sparkles size={14} className={`${activeView === 'moodboard' ? 'text-primary' : 'text-muted-foreground'} shrink-0`} />
-              </motion.div>
-              <AnimatedLabel isCollapsed={isCollapsed}>
-                <span className="pr-3">灵感集 (Moodboard)</span>
               </AnimatedLabel>
             </button>
           </div>

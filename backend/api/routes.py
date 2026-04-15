@@ -28,8 +28,6 @@ from backend.models.schemas import (
     NoteResponse,
     NoteTreeResponse,
     NoteUpdate,
-    QuickCaptureRequest,
-    QuickCaptureResponse,
     SearchRequest,
     TagSuggestRequest,
     TagSuggestResponse,
@@ -229,6 +227,7 @@ def note_to_response(note: Note) -> NoteResponse:
         notebook_id=note.notebook_id,
         parent_id=note.parent_id,
         position=note.position,
+        background_paper=note.background_paper,
         is_title_manually_edited=(note.is_title_manually_edited == 1),
         is_folder=(note.is_folder == 1),
         created_at=note.created_at,
@@ -246,7 +245,7 @@ def note_to_tree_response(note: Note) -> NoteTreeResponse:
 def notebook_to_response(notebook: Notebook) -> NotebookResponse:
     return NotebookResponse.model_validate(notebook)
 
-async def persist_note(db: Session, title: str, content: str, background_tasks: BackgroundTasks, notebook_id: int | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False, tags: list[str] | None = None) -> NoteResponse:
+async def persist_note(db: Session, title: str, content: str, background_tasks: BackgroundTasks, notebook_id: int | None = None, icon: str = "\U0001f4dd", parent_id: int | None = None, is_title_manually_edited: bool = False, tags: list[str] | None = None, background_paper: str = "none") -> NoteResponse:
     # 1. 快速创建数据库记录
     from backend.database import with_db_retry
     
@@ -254,7 +253,7 @@ async def persist_note(db: Session, title: str, content: str, background_tasks: 
     def do_create():
         nonlocal notebook_id
         notebook_id = notebook_id or get_or_create_default_notebook(db).id
-        return create_note(db, title=title, content=content, summary="", tags=tags, notebook_id=notebook_id, icon=icon, parent_id=parent_id, is_title_manually_edited=is_title_manually_edited)
+        return create_note(db, title=title, content=content, summary="", tags=tags, notebook_id=notebook_id, icon=icon, parent_id=parent_id, is_title_manually_edited=is_title_manually_edited, background_paper=background_paper)
     
     note = do_create()
     
@@ -266,29 +265,6 @@ async def persist_note(db: Session, title: str, content: str, background_tasks: 
     )
     
     return note_to_response(note)
-
-@router.post("/notes/quick-capture", response_model=QuickCaptureResponse)
-async def quick_capture_api(payload: QuickCaptureRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)) -> QuickCaptureResponse:
-    from datetime import datetime
-    title = f"灵感碎片 - {datetime.now().strftime('%Y-%m-%d %H:%M')}"
-    
-    # 1. 确保 Inbox 笔记本存在
-    inbox = get_or_create_inbox_notebook(db)
-    
-    # 2. 持久化笔记
-    note_resp = await persist_note(db, title, payload.content, background_tasks, notebook_id=inbox.id, icon="⚡")
-    
-    # 3. 增加 EXP
-    exp_gained = 10
-    stats = add_exp(db, exp_gained)
-    
-    return QuickCaptureResponse(
-        status="success",
-        note=note_resp,
-        exp_gained=exp_gained,
-        current_exp=stats.exp,
-        current_level=stats.level
-    )
 
 @router.get("/user/stats", response_model=UserStatsResponse)
 def get_user_stats_api(db: Session = Depends(get_db)) -> UserStatsResponse:
@@ -316,6 +292,16 @@ class WallpaperUpdatePayload(BaseModel):
 @router.patch("/user/wallpaper", response_model=UserStatsResponse)
 def update_user_wallpaper_api(payload: WallpaperUpdatePayload, db: Session = Depends(get_db)) -> UserStatsResponse:
     stats = update_user_wallpaper(db, payload.wallpaper_url)
+    return UserStatsResponse.model_validate(stats)
+
+
+class PanelSettingsUpdatePayload(BaseModel):
+    panel_settings: str
+
+@router.patch("/user/panel-settings", response_model=UserStatsResponse)
+def update_user_panel_settings_api(payload: PanelSettingsUpdatePayload, db: Session = Depends(get_db)) -> UserStatsResponse:
+    from backend.services.repositories import update_user_panel_settings
+    stats = update_user_panel_settings(db, payload.panel_settings)
     return UserStatsResponse.model_validate(stats)
 
 
@@ -622,7 +608,7 @@ def purge_notebook_api(notebook_id: int, db: Session = Depends(get_db)) -> dict:
 
 @router.post("/notes", response_model=NoteResponse)
 async def create_note_api(payload: NoteCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)) -> NoteResponse:
-    return await persist_note(db, payload.title, payload.content, background_tasks, payload.notebook_id, payload.icon, payload.parent_id, payload.is_title_manually_edited, payload.tags)
+    return await persist_note(db, payload.title, payload.content, background_tasks, payload.notebook_id, payload.icon, payload.parent_id, payload.is_title_manually_edited, payload.tags, payload.background_paper)
 
 @router.put("/notes/{note_id}", response_model=NoteResponse)
 async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)) -> NoteResponse:
@@ -639,13 +625,14 @@ async def update_note_api(note_id: int, payload: NoteUpdate, background_tasks: B
     parent_id = update_data.get("parent_id", existing.parent_id)
     is_title_manually_edited = update_data.get("is_title_manually_edited", (existing.is_title_manually_edited == 1))
     tags = update_data.get("tags")
+    background_paper = update_data.get("background_paper", existing.background_paper)
     
     # 同步更新数据库
     from backend.database import with_db_retry
     @with_db_retry(max_retries=3)
     def do_update():
         # 注意：repositories.update_note 需要适配 parent_id 为 None 的情况
-        return update_note(db, note_id, title, content, existing.summary, tags, icon, parent_id, is_title_manually_edited)
+        return update_note(db, note_id, title, content, existing.summary, tags, icon, parent_id, is_title_manually_edited, background_paper=background_paper)
     
     note = do_update()
     

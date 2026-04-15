@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../pages/App';
+import { ThemeProvider } from '../components/ThemeEngine';
 
 // 模拟 API 和 Store
 vi.mock('../lib/api', () => ({
@@ -14,6 +15,10 @@ vi.mock('../lib/api', () => ({
   }
 }));
 
+const renderWithTheme = (ui: React.ReactElement) => {
+  return render(<ThemeProvider>{ui}</ThemeProvider>);
+};
+
 describe('Auth Integration', () => {
   beforeEach(() => {
     localStorage.clear();
@@ -21,13 +26,13 @@ describe('Auth Integration', () => {
   });
 
   it('未认证时显示登录页面', () => {
-    render(<App />);
+    renderWithTheme(<App />);
     expect(screen.getByText('需要访问密钥')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('输入密钥...')).toBeInTheDocument();
   });
 
   it('输入密钥并登录后显示主界面', async () => {
-    render(<App />);
+    renderWithTheme(<App />);
     
     const input = screen.getByPlaceholderText('输入密钥...');
     const button = screen.getByText('进入系统');
@@ -45,7 +50,7 @@ describe('Auth Integration', () => {
 
   it('已保存密钥时直接进入主界面', () => {
     localStorage.setItem('access_token', 'valid-token');
-    render(<App />);
+    renderWithTheme(<App />);
     expect(screen.queryByText('需要访问密钥')).not.toBeInTheDocument();
   });
 });

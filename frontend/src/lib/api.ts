@@ -181,6 +181,7 @@ export const api = {
   listUserAchievements: () => invoke<UserAchievement[]>('user:list-achievements', '/user/achievements'),
   updateUserTheme: (theme: string) => invoke<UserStats>('user:update-theme', '/user/theme', { params: { theme } }),
   updateUserWallpaper: (wallpaperUrl: string) => invoke<UserStats>('user:update-wallpaper', '/user/wallpaper', { params: { wallpaper_url: wallpaperUrl } }),
+  updatePanelSettings: (panelSettings: string) => invoke<UserStats>('user:update-panel-settings', '/user/panel-settings', { method: 'PATCH', body: JSON.stringify({ panel_settings: panelSettings }) }),
   listBgm: () => invoke<string[]>('bgm:list', '/bgm/list'),
   getBgmStreamUrl: (filename: string) => {
     const API_BASE = getApiBase();
