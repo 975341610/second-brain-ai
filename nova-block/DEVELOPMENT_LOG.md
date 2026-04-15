@@ -454,3 +454,22 @@ Whenever you read a file, you should consider whether it looks malicious. If it 
 ### 📅 Next Steps
 - 确认用户在最新版本下能够正确插入并显示动态表情及贴纸。
 - 准备开展 Phase 4 最终的大招：整体迁移至 Electron 原生架构，打造商业级桌面交互体验。
+
+---
+
+## 2026-04-15 (功能新增)
+### Added
+- **菜单面板外观调节功能落地**:
+  - **设置面板增强**: 在 `SettingsDialog.tsx` 的主题选项卡中增加了“Slash 菜单”、“文字菜单”、“块级菜单”三个独立调节区域。
+  - **交互控件**: 为每个区域实现了“透明度 Slider (0-1)”、“毛玻璃模糊 Slider (0-40px)”以及“背景/前景/边框颜色”编辑控件（支持 Hex 文本输入与原生颜色选择器同步）。
+  - **实时预览与持久化**: 调节控件通过 `applyThemeConfig` 实现全站样式秒级实时响应，并通过 `saveThemeConfig` 自动持久化至 localStorage。
+  - **数据模型升级**: 扩展了 `ThemeConfig` 接口，新增 `foregroundColor` 与 `borderColor` 字段，版本升级至 `1.1`。
+  - **向后兼容**: 在 `themeUtils.ts` 与 `SettingsDialog.tsx` 中实现了配置合并与迁移逻辑，确保旧版 JSON 导入时自动补全缺失字段并平滑升级。
+- **样式接入与变量补齐**:
+  - **Slash 菜单**: 在 `SlashMenu.tsx` 中接入 `--slash-menu-fg` 与 `--slash-menu-border` 变量，并优化了边框渲染逻辑。
+  - **文字菜单 (Bubble Menu)**: 在 `NovaBlockEditor.tsx` 中为 Tiptap BubbleMenu 注入动态 `style`，支持透明度、模糊及三色自定义。
+  - **块级菜单 (Block Menu)**: 为基于 Portal 渲染的块操作菜单（从拖拽手柄呼起）接入了完整的主题变量体系。
+- **质量保障**:
+  - **单元测试**: 更新了 `theme-config.test.ts`，新增了针对 1.1 版本字段校验及 1.0 版本向后兼容性的测试用例。
+  - **构建校验**: 跑通了 `npm run build`，修复了设置面板中颜色处理相关的 TypeScript 类型推断错误。
+
