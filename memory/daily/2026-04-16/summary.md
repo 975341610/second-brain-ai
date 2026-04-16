@@ -15,3 +15,10 @@
 - 用户运行新脚本后遇到新报错 `Unable to find Electron app... Cannot find module`。
 - 代理诊断该报错是由于 `package.json` 中缺少 Electron 的主程序入口声明导致，补充了 `"main": "dist-electron/main.js"` 配置。
 - 代理将入口修复代码（Commit `f57932b`）推送至远程仓库，并指导用户执行 `git pull` 更新后重新运行启动脚本。
+
+## 13:41:42
+- 用户反馈 `feature/novablock-phase4-clean` 分支并非最新代码，要求代理比对 `main` 分支。
+- 代理排查发现先前的全量迁移方式覆盖了 `main` 分支上最新的 Bug 修复（包含 Note Link 崩溃、CodeBlock 回车报错、拼写检查 405 拦截等）。
+- 代理基于最新的 `main` 分支代码作为底座，重新创建了 `feature/novablock-phase4-updated` 分支，精细化合并了 Phase 4 核心功能（Electron 内核、DataService 离线引擎、左侧 Folder Tree），成功保留了所有近期的 Bug 修复。
+- 代理将合并后的最新代码（Commit `90a4e3e`）推送至远程仓库的 `feature/novablock-phase4-updated` 分支。
+- 因用户表示只使用 GitHub Desktop 客户端且未安装 Git 命令行环境，代理提供了在 GitHub Desktop 界面中刷新并切换至新分支的详细操作步骤，并辅助说明了切换后清理 `node_modules` 缓存及重新启动的具体流程。
