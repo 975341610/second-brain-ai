@@ -1,0 +1,30 @@
+{
+  "id": 0,
+  "message_id": "f41f2c47-1097-4a01-8873-81bf2e2db822",
+  "session_source": "assistant",
+  "session_id": "4313d091-e484-4384-8564-8ce91e478bc4",
+  "created_at": "2026-04-16T12:09:28.479499447+08:00",
+  "last_modified_at": "2026-04-16T12:09:28.479499447+08:00",
+  "key": "4e12ca9f-3baf-4f5d-822c-282f2182bb06-03f36",
+  "version": 1,
+  "type": "image",
+  "sub_type": "png",
+  "storage_type": "local",
+  "source": "user",
+  "metadata": {
+    "name": "img_v3_0210q_b655e5a7-b610-45e0-ad31-e454fcb593bg.png",
+    "size": 52686,
+    "checksum": "757db27d48bf9e53a38ee0daf917a938890d4098727b74abf148b29e3e509cf3",
+    "local_meta": {
+      "relative_path": "img_v3_0210q_b655e5a7-b610-45e0-ad31-e454fcb593bg.png"
+    },
+    "external_url_meta": {
+      "url": "https://p-devagent.bytedance.net/tos-cn-i-yx3gas52k5/2bf1df5eac05457a95f6f3d8bf03241f~tplv-yx3gas52k5-image.image",
+      "sub_type": "image"
+    },
+    "worker_artifact_meta": {
+      "worker_artifact_id": "cde7b201-95cf-4e16-b521-44fb80b93dce"
+    }
+  },
+  "status": "survive"
+}
